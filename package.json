@@ -1,7 +1,8 @@
 {
   "name": "karcin-ui",
-  "version": "1.0.0",
-  "description": "React & Typescript & Webpack",
+  "version": "1.0.4",
+  "description": "Karçin UI - React & Typescript",
+  "repository" : "https://github.com/ysimsek/karcin-ui",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.js --color --port 3000",
