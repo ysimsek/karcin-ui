@@ -10,9 +10,12 @@
     "lib": ["dom", "es2015", "es2016"],
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
-    "noEmitHelpers": true,
+    "noEmitHelpers": false,
     "strict": true,
     "noImplicitReturns": true,
-    "declaration": true
+    "declaration": true,
+    "paths": {
+      "karcin-ui": ["src/index"]
+    }
   }
 }

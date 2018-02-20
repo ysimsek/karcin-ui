@@ -1,14 +1,13 @@
 {
   "name": "karcin-ui",
-  "version": "1.0.4",
+  "version": "1.0.21",
   "description": "Karçin UI - React & Typescript",
-  "repository" : "https://github.com/ysimsek/karcin-ui",
+  "repository": "https://github.com/ysimsek/karcin-ui",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.js --color --port 3000",
     "build": "webpack --progress --profile --colors && Echo Showcase Build completed!",
-    "lib": "cd src && tsc && Echo Library Build completed!",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lib": "cd src && tsc && Echo Library Build completed!"
   },
   "keywords": [
     "react",
@@ -33,6 +32,7 @@
     "css-loader": "^0.28.9",
     "source-map-loader": "^0.2.3",
     "style-loader": "^0.20.1",
+    "tslib": "^1.9.0",
     "typescript": "^2.7.1",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.11.1"

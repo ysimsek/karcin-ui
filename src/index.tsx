@@ -1,1 +1,3 @@
-export { Button } from "./functional/button/index";
+import Button from "./functional/button/Button";
+export { Button };
+export default Button;
