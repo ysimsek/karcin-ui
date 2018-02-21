@@ -27,7 +27,7 @@ export default class Main extends React.Component<any, any> {
         return <div id="showcase-content">
             <Navbar fixed={"top"} className={`main-menu ${this.state.menuClass}`} expand="md">
                 <Container>
-                    <NavbarBrand href="/" className="mr-auto"><img src={`./assets/img/${this.state.logo}.png`} height="50" /></NavbarBrand>
+                    <NavbarBrand href="./" className="mr-auto"><img src={`./img/${this.state.logo}.png`} height="50" /></NavbarBrand>
                     <NavbarToggler onClick={this.toggle}><FaIcon code={`${(this.state.isOpen)?"fa-times":"fa-bars"}`}  /></NavbarToggler>
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>

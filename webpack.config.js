@@ -1,10 +1,13 @@
 const appRoot = require("app-root-path");
 const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const FileChanger = require("webpack-file-changer");
+const package = require("./package.json");
+var build = process.argv.indexOf("-p") !== -1;
 const paths = {
     root: appRoot.path,
     app: path.join(appRoot.path,"/showcase"),
-    build: path.join(appRoot.path,"/build"),
+    build: path.join(appRoot.path,"/docs"),
     lib: path.join(appRoot.path,"/src"),
     node_modules: path.join(appRoot.path,"/node_modules")
 };
@@ -13,7 +16,7 @@ const webpackConf = {
     entry: "./index.tsx",
     output: {
         filename: "bundle.js",
-        path: __dirname + "/dist"
+        path: __dirname + "/docs"
     },
     cache:true,
     // Enable sourcemaps for debugging webpack's output.
@@ -59,4 +62,24 @@ const webpackConf = {
         ])
     ]
 };
+
+if (build){
+    webpackConf.output.filename = "bundle.[hash].js";
+    webpackConf.plugins.push(new FileChanger({
+        move: [{
+            from: path.join(appRoot.path, "assets"),
+            to: path.join(appRoot.path, "docs")
+        }
+        ],
+        change: [{
+            file: "./index.html",
+            parameters: {
+                "bundle\\.js": "bundle.[hash].js",
+                "\\$VERSION": package.version,
+                "\\$BUILD_TIME": new Date(),
+            }
+        }
+        ]
+    }));
+}
 module.exports = webpackConf;
