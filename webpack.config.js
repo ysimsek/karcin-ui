@@ -37,6 +37,15 @@ const webpackConf = {
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
             { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
             {
+                /**
+                 * @link https://github.com/webpack/file-loader
+                 * npm install file-loader --save-dev
+                 */
+                test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+                use: "file-loader",
+                include: /fonts/
+            },
+            {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader']
             }
