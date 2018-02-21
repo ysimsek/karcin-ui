@@ -78,7 +78,7 @@ body {padding: 0; margin: 0; font-family: 'Quicksand', sans-serif;}
     .main-menu .navbar-collapse {background: white; color:#576644;}
     .main-menu .navbar-collapse a{color:#576644; }
     .main-menu .dropdown-menu {text-align: center; }
-    .slide-title .btn.btn-lg {font-size: 1rem}
+    .slide-title .btn.btn-lg {font-size: 1rem; text-shadow: none;}
     .slide-title h3 {font-size:48px;}
     .slide-title p {font-size:20px; }
 }
