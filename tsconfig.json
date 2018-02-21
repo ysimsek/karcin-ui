@@ -2,11 +2,12 @@
   "compilerOptions": {
     "outDir": "./docs/",
     "sourceMap": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "module": "commonjs",
     "target": "es5",
     "jsx": "react",
     "baseUrl": ".",
+    "allowJs":true,
     "paths": {
       "karcin-ui/lib": ["src"],
       "karcin-ui": ["src/index"]
