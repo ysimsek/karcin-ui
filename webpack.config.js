@@ -76,7 +76,7 @@ if (build){
             parameters: {
                 "bundle\\.js": "bundle.[hash].js",
                 "\\$VERSION": package.version,
-                "\\$BUILD_TIME": new Date(),
+                "\\$BUILDDATE": new Date(),
             }
         }
         ]

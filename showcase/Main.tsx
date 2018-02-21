@@ -25,6 +25,7 @@ export default class Main extends React.Component<any, any> {
     }
 
     render() {
+        let version = (sessionStorage.getItem("version") != "$VERSION")?<p>{`v${sessionStorage.getItem("version")}`}</p>:null;
         return <div id="showcase-content">
             <Navbar fixed={"top"} className={`main-menu ${this.state.menuClass}`} expand="md">
                 <Container>
@@ -70,6 +71,7 @@ export default class Main extends React.Component<any, any> {
                 <Container className="slide-title">
                     <h3>Karçin UI Showcase</h3>
                     <p>REACT & TYPESCRIPT & BOOTSTRAP</p>
+                    {version}
                     <div>
                         <Button href="#get-started" color="primary" size="lg">GET STARTED</Button>{' '}
                         <Button color="success" size="lg">COMPONENTS</Button>
