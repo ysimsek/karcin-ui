@@ -64,8 +64,30 @@ body {padding: 0; margin: 0; font-family: 'Quicksand', sans-serif;}
     text-shadow: 1px 1px #000000;
 }
 
+.slide-title .btn {text-shadow: none;}
 .slide-title h3 {font-size:60px; font-weight: 100;}
 .slide-title p {font-size:26px; font-weight: 100;}
+
+#get-started {padding-top: 40px; margin-bottom:40px; }
+
+#get-started h2,h3,h4,h5 {font-weight: 100; }
+
+.example-card {
+    padding: 20px;
+    border: 1px solid rgba(0,0,0,.125);
+}
+
+.footer {
+    padding-top: 0.7rem;
+    padding-bottom: 1rem;
+    border-top: 1px solid #e7e7e7;
+}
+.footer iframe {border:0;}
+.footer-right {text-align: right; line-height: 50px;}
+.footer-left {line-height: 50px; padding-top:7px;}
+
+
+
 
 @media (max-width: 768px){
     .main-menu .navbar-collapse {position:absolute; top:80px; width: 100%; left:0;
@@ -78,7 +100,7 @@ body {padding: 0; margin: 0; font-family: 'Quicksand', sans-serif;}
     .main-menu .navbar-collapse {background: white; color:#576644;}
     .main-menu .navbar-collapse a{color:#576644; }
     .main-menu .dropdown-menu {text-align: center; }
-    .slide-title .btn.btn-lg {font-size: 1rem; text-shadow: none;}
+    .slide-title .btn.btn-lg {font-size: 1rem;}
     .slide-title h3 {font-size:48px;}
     .slide-title p {font-size:20px; }
 }
