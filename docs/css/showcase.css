@@ -1,14 +1,9 @@
 body {padding: 0; margin: 0; font-family: 'Quicksand', sans-serif;}
-#showcase-content {height:1000px; background: black;}
+#showcase-content {height:1000px; background: white;}
 .header {
-
-}
-
-.header .header-section {
     width: 100%;
     height: 100vh;
     clear: both;
-    float: left;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     position: relative;
@@ -46,24 +41,14 @@ body {padding: 0; margin: 0; font-family: 'Quicksand', sans-serif;}
     transition: all 0.2s ease-in-out;
     color:white;
 }
-.main-menu.active-menu {background: white;}
+.main-menu.active-menu {background: rgba(255, 255, 255, 0.95);
+    -webkit-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.5);
+}
 .main-menu a {color:white; font-weight:500;}
 .main-menu.active-menu a {color:#576644;}
 
-
-@media (max-width: 768px){
-    .main-menu .navbar-collapse {position:absolute; top:80px; width: 100%; left:0;
-        -webkit-transition: all 0.2s ease-in-out;
-        -moz-transition: all 0.2s ease-in-out;
-        -o-transition: all 0.2s ease-in-out;
-        transition: all 0.2s ease-in-out;
-        text-align: center;
-    }
-    .main-menu .navbar-collapse {background: white; color:#576644;}
-    .main-menu .navbar-collapse a{color:#576644; }
-    .main-menu .dropdown-menu {text-align: center; }
-
-}
 .navbar-toggler i {color:white; font-size:26px;}
 .main-menu.active-menu .navbar-toggler i {color:#576644; }
 .navbar-toggler:focus {outline: 0;}
@@ -79,5 +64,19 @@ body {padding: 0; margin: 0; font-family: 'Quicksand', sans-serif;}
     text-shadow: 1px 1px #000000;
 }
 
-.slide-title h3 {font-size:60px;}
-.slide-title p {font-size:26px;}
+.slide-title h3 {font-size:60px; font-weight: 100;}
+.slide-title p {font-size:26px; font-weight: 100;}
+
+@media (max-width: 768px){
+    .main-menu .navbar-collapse {position:absolute; top:80px; width: 100%; left:0;
+        -webkit-transition: all 0.2s ease-in-out;
+        -moz-transition: all 0.2s ease-in-out;
+        -o-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+        text-align: center;
+    }
+    .main-menu .navbar-collapse {background: white; color:#576644;}
+    .main-menu .navbar-collapse a{color:#576644; }
+    .main-menu .dropdown-menu {text-align: center; }
+
+}
