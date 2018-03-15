@@ -1,0 +1,65 @@
+{
+  "name": "ComponentList",
+  "data": [
+    {
+      "id":1,
+      "name":"functional",
+      "title":"Functional",
+      "icon":"fa-cubes",
+      "collapse":true,
+      "items":[
+        {
+          "id":1,
+          "name":"Button",
+          "title":"Button",
+          "href":"#/Components/Button",
+          "samples":"components/examples/ButtonExample",
+          "description":"Use karcin-ui custom button styles for actions in forms, dialogs, and more. Includes support for a handful of contextual variations, sizes, states, and more."
+        },
+        {
+          "id":2,
+          "name":"Menu",
+          "title":"Menü",
+          "href":"#/Components/Menu",
+          "samples":"components/examples/MenuExample"
+        },
+        {
+          "id":3,
+          "name":"FaIcon",
+          "title":"Font Awesome Icon",
+          "href":"#/Components/FaIcon",
+          "samples":"components/examples/FaIconExample"
+        },
+        {
+          "id":4,
+          "name":"Tab",
+          "title":"Tabs",
+          "href":"#/Components/Tabs",
+          "samples":"components/examples/TabsExample"
+        }
+      ]
+    },{
+      "id":2,
+      "name":"input",
+      "title":"Input",
+      "icon":"fa-terminal",
+      "items":[
+        {
+          "id":1,
+          "name":"textInput",
+          "title":"Text Input"
+        },
+        {
+          "id":2,
+          "name":"NumericInput",
+          "title":"NumericInput"
+        },
+        {
+          "id":3,
+          "name":"textArea",
+          "title":"Textarea"
+        }
+      ]
+    }
+  ]
+}

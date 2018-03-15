@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "outDir": "../lib/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "target": "es5",
+    "jsx": "react",
+    "baseUrl": ".",
+    "lib": ["dom", "es2015", "es2016"],
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "noEmitHelpers": false,
+    "strict": true,
+    "noImplicitReturns": true,
+    "declaration": true,
+    "paths": {
+      "karcin-ui": ["src/index"]
+    }
+  }
+}
