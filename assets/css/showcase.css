@@ -125,6 +125,15 @@ body {padding: 0; margin: 0; font-family: 'Quicksand', sans-serif; color:#303030
 .karcin-menu .active.nav-link {color:#bfff68;}
 .container-component .tab-content {padding-top: 20px;}
 .description {color:#777; font-size: 14px;}
+span.opt {
+    font-size: 12px;
+    margin-left: 5px;
+    color: #999;
+    margin-top: 3px;
+    position: absolute;
+}
+
+.prop-table tbody tr td {width:50%;}
 
 
 @media (max-width: 768px){

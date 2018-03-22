@@ -2,6 +2,12 @@ import * as React from "react";
 import {Nav, NavItem, NavLink, Collapse} from "reactstrap";
 import {FaIcon} from "../../index";
 
+export interface MenuProps {
+    data: Array<MenuItemsProps>;
+    onChange?: React.EventHandler<any>;
+    active?: MenuItemsProps;
+}
+
 export interface MenuItemsProps {
     id:number,
     name:string,
@@ -10,12 +16,6 @@ export interface MenuItemsProps {
     href?:string,
     collapse?:boolean,
     items?:Array<MenuItemsProps>
-}
-
-export interface MenuProps {
-    data: Array<MenuItemsProps>,
-    onChange?: React.EventHandler<any>,
-    active?: MenuItemsProps
 }
 
 export interface MenuState {

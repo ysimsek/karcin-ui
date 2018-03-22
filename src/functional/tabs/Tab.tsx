@@ -2,7 +2,7 @@ import * as React from "react";
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 
 export interface TabProps {
-
+    activeTab?:number;
 }
 
 export default class Tab extends React.Component<TabProps,any> {
@@ -53,6 +53,7 @@ export default class Tab extends React.Component<TabProps,any> {
                 item.push(this.props.children);
             }
             item.forEach((v:any,i:number)=>{
+                if (v){
                     let className = (this.state.activeTab === i)?"active":"";
                     if (v.props.className){
                         className = className + " " + v.props.className;
@@ -68,6 +69,7 @@ export default class Tab extends React.Component<TabProps,any> {
                     body.push(<TabPane {...v.props} tabId={i} key={i}>
                         {v}
                     </TabPane>);
+                }
             });
         }
         return {header:header, body:body};

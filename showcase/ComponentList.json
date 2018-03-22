@@ -14,6 +14,7 @@
           "title":"Button",
           "href":"#/Components/Button",
           "samples":"components/examples/ButtonExample",
+          "library":"functional/button/Button",
           "description":"Use karcin-ui custom button styles for actions in forms, dialogs, and more. Includes support for a handful of contextual variations, sizes, states, and more."
         },
         {
@@ -21,21 +22,24 @@
           "name":"Menu",
           "title":"Menü",
           "href":"#/Components/Menu",
-          "samples":"components/examples/MenuExample"
+          "samples":"components/examples/MenuExample",
+          "library":"functional/menu/Menu"
         },
         {
           "id":3,
           "name":"FaIcon",
           "title":"Font Awesome Icon",
           "href":"#/Components/FaIcon",
-          "samples":"components/examples/FaIconExample"
+          "samples":"components/examples/FaIconExample",
+          "library":"functional/faicon/FaIcon"
         },
         {
           "id":4,
           "name":"Tab",
           "title":"Tabs",
           "href":"#/Components/Tabs",
-          "samples":"components/examples/TabsExample"
+          "samples":"components/examples/TabsExample",
+          "library":"functional/tabs/Tab"
         }
       ]
     },{

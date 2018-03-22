@@ -3,7 +3,7 @@ const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const FileChanger = require("webpack-file-changer");
 const package = require("./package.json");
-var build = process.argv.indexOf("-p") !== -1;
+const build = process.argv.indexOf("-p") !== -1;
 const paths = {
     root: appRoot.path,
     app: path.join(appRoot.path,"/showcase"),
@@ -21,7 +21,6 @@ const webpackConf = {
     cache:true,
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",
-
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
         extensions: [".ts", ".tsx", ".js", ".json"],
@@ -94,4 +93,5 @@ if (build){
         ]
     }));
 }
+
 module.exports = webpackConf;

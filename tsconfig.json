@@ -13,6 +13,7 @@
       "karcin-ui": ["src/index"]
     }
   },
+  "reflectionEnabled": true,
   "include": [
     "./**/*"
   ]

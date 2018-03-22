@@ -1,25 +1,39 @@
 import * as React from "react";
 import * as Highlight from "react-highlight";
 import {Tab,TabPanel, FaIcon} from "karcin-ui";
+import {Table} from "reactstrap";
 
 export default class RenderComponent extends React.Component<any, any> {
     private element;
     constructor(props){
         super(props);
+        this.state = {
+            activeTab:0
+        }
+    }
+
+    componentWillReceiveProps(){
+        this.setState({activeTab:0});
     }
 
     render() {
+        let properties = null;
+        if (this.getProperties() != null){
+            properties = (
+                <TabPanel title="Properties">
+                    {this.getProperties()}
+                </TabPanel>
+            );
+        }
         return (<div>
             <h2>{'<'}{this.props.item.name}{' />'}</h2>
             <p className="description">{this.props.item.description}</p>
             <div style={{marginTop:20}}>
-                <Tab>
+                <Tab activeTab={this.state.activeTab}>
                     <TabPanel title="Example">
                         {this.getReactElement()}
                     </TabPanel>
-                    <TabPanel title="Properties">
-
-                    </TabPanel>
+                    {properties}
                     <TabPanel className="source" title={<span><FaIcon code="fa-code"/> Source</span>}>
                         {this.getReactTxt()}
                     </TabPanel>
@@ -46,17 +60,61 @@ export default class RenderComponent extends React.Component<any, any> {
         }
     }
 
-    componentDidMount(){
-        this.setProperties();
+    getProperties(){
+        try{
+            let cmpFile = require('!raw-loader!../src/'+this.props.item.library+'.tsx') as string;
+            let cmpProps = this.getInterfaceToJson(cmpFile);
+            let propsArr = [];
+            cmpProps.forEach((v,i)=>{
+                let name = v.name.split("?");
+                let nameCmp = [<span key={1}>{name[0]}</span>];
+                if (name[1] != undefined){
+                    nameCmp.push(<span key={2} className={"opt"}>(optional)</span>);
+                }
+                propsArr.push(
+                    <tr key={i}>
+                        <td key={1}>{nameCmp}</td>
+                        <td key={2}>{v.value}</td>
+                    </tr>
+                );
+            });
+            return (
+                <Table className={"prop-table"}>
+                    <thead>
+                    <tr>
+                        <th>Properties</th>
+                        <th>Type</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {propsArr}
+                    </tbody>
+                </Table>
+            );
+        } catch (e){
+            return null;
+        }
     }
 
-    componentDidUpdate(){
-        this.setProperties();
-    }
-
-    setProperties(){
-        let Library = require("karcin-ui");
-
+    getInterfaceToJson(text:string){
+        let arr = [];
+        text.split("export interface")[1].split("{")[1].split("}")[0].trim();
+        if (text.split("export interface")[1]){
+            if (text.split("export interface")[1].split("{")[1]){
+                if (text.split("export interface")[1].split("{")[1].split("}")){
+                    text = text.split("export interface")[1].split("{")[1].split("}")[0].trim();
+                    if (text.split(";").length > 0){
+                        text.split(";").forEach((v,i)=>{
+                            if (v != ""){
+                                let value = v.replace(v.split(":")[0].trim()+":","");
+                                arr.push({name:v.split(":")[0].trim(),value:value});
+                            }
+                        });
+                    }
+                }
+            }
+        }
+        return arr;
     }
 
 }

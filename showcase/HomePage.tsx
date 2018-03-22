@@ -11,7 +11,12 @@ export default class HomePage extends React.Component<any, any> {
     }
 
     render() {
-        let version = (sessionStorage.getItem("version") != "$VERSION")?<p>{`v${sessionStorage.getItem("version")}`}</p>:null;
+        let version = (sessionStorage.getItem("version") != "$VERSION")?<span>{`v${sessionStorage.getItem("version")}`}</span>:null;
+        let date = null;
+        if (sessionStorage.getItem("date")){
+            let dateString = new Date(sessionStorage.getItem("date"));
+            date = <span>Build Date: {dateString.toLocaleDateString()} {dateString.toLocaleTimeString()}</span>
+        }
         return <div>
             <div className="header">
                 <div className="overlay"></div>
@@ -19,7 +24,7 @@ export default class HomePage extends React.Component<any, any> {
                 <Container className="slide-title">
                     <h3>Karçin UI Showcase</h3>
                     <p>REACT &#38; TYPESCRIPT &#38; BOOTSTRAP</p>
-                    {version}
+                    <p style={{color:"#ddd",fontSize:24}}>{version} {date}</p>
                     <div>
                         <Button onClick={this.getStarted} color="primary" size="lg">GET STARTED</Button>{' '}
                         <Button href="#Components" color="success" size="lg">COMPONENTS</Button>
