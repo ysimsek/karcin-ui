@@ -15,6 +15,7 @@ export interface MenuItemsProps {
     icon?:string,
     href?:string,
     collapse?:boolean,
+    catTitle?:string,
     items?:Array<MenuItemsProps>
 }
 
@@ -84,6 +85,7 @@ export class CollapseMenu extends React.Component<any,any> {
     render(){
         let item = this.props.item;
         return <NavItem>
+            {(item.catTitle !== undefined ? <h4 className="catTitle">{item.catTitle}</h4>: "")}
             <NavLink href="#" onClick={this.toggle}>{(item.icon)?<FaIcon code={item.icon} />:""}  {item.title} <FaIcon className="collapse-icon" code={(this.state.collapse)?"fa-angle-down":"fa-angle-right"} /></NavLink>
             <Collapse isOpen={this.state.collapse}>
                 {this.props.children}
