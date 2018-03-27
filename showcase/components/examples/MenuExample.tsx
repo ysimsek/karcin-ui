@@ -10,7 +10,6 @@ export default class MenuExample extends React.Component {
                 "title":"Functional",
                 "icon":"fa-cubes",
                 "collapse":true,
-                "catTitle" : "deniz",
                 "items":[
                     {
                         "id":1,
