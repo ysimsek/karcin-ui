@@ -115,9 +115,8 @@ body {padding: 0; margin: 0; font-family: 'Quicksand', sans-serif; color:#303030
 
 .footer {
     padding-top: 0.7rem;
-    padding-bottom: 0.7rem;
-    border-top: 1px solid #ddd;
-    background: #f2f2f2;
+    padding-bottom: 1rem;
+    border-top: 1px solid #e7e7e7;
 }
 .footer iframe {border:0;}
 .footer-right {text-align: right; line-height: 50px;}
