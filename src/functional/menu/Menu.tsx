@@ -62,7 +62,7 @@ export default class Menu extends React.Component<MenuProps,MenuState> {
         return <NavItem key={key}>
             <NavLink className={activeClass} onClick={()=>{
                 this.setActiveItem(item);
-            }} href={(item.href)?item.href:"#"}>{(item.icon)?<FaIcon code={item.icon} />:""} {item.title}</NavLink>
+            }} href={(item.href)?item.href:"#"}>{(item.icon)?<FaIcon code={item.icon} />:""}{item.title}</NavLink>
         </NavItem>;
     }
 
@@ -84,9 +84,9 @@ export class CollapseMenu extends React.Component<any,any> {
 
     render(){
         let item = this.props.item;
-        return <NavItem>
+        return <NavItem className={(this.state.collapse ? "opened" : "")}>
             {(item.catTitle !== undefined ? <h4 className="catTitle">{item.catTitle}</h4>: "")}
-            <NavLink href="#" onClick={this.toggle}>{(item.icon)?<FaIcon code={item.icon} />:""}  {item.title} <FaIcon className="collapse-icon" code={(this.state.collapse)?"fa-angle-down":"fa-angle-right"} /></NavLink>
+            <NavLink href="#" onClick={this.toggle}>{(item.icon)?<FaIcon code={item.icon} />:""}  <span>{item.title}</span> <FaIcon className="collapse-icon" code={(this.state.collapse)?"fa-angle-down":"fa-angle-right"} /></NavLink>
             <Collapse isOpen={this.state.collapse}>
                 {this.props.children}
             </Collapse>
