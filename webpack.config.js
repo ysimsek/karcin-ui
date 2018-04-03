@@ -62,6 +62,26 @@ const webpackConf = {
                  */
                 test: /\.(txt)(\?\S*)?$/,
                 use: "raw-loader"
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    {
+                        loader: require.resolve('style-loader'),
+                    },
+                    {
+                        loader: require.resolve('css-loader'),
+                        options: {
+                            importLoaders: 1,
+                            url:false,
+                            minimize:true,
+                            sourceMap:true
+                        }
+                    },
+                    {
+                        loader: require.resolve('sass-loader'),
+                    }
+                ]
             }
         ]
     },

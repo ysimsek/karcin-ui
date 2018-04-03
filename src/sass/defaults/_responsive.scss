@@ -1,0 +1,80 @@
+// responsive
+@mixin responsive($media, $min:false){
+  // xs = phone
+  @if ($media == xs) {
+    @if ($min == true) {
+      @media (min-width: 0) {
+        @content;
+      }
+    } @else {
+      @media screen and (max-width: $media-small) {
+        @content;
+      }
+    }
+  }
+
+    // sm = tablet and  big phone
+  @else if ($media == sm) {
+    @if ($min == true) {
+      @media (min-width: $media-small) {
+        @content;
+      }
+    } @else {
+      @media (min-width: $media-small) and (max-width: $media-medium) {
+        @content;
+      }
+    }
+  }
+
+    // md = small desktop
+  @else if ($media == md) {
+    @if ($min == true) {
+      @media (min-width: $media-medium) {
+        @content;
+      }
+    } @else {
+      @media (min-width: $media-medium) and (max-width: $media-large) {
+        @content;
+      }
+    }
+  }
+
+    // lg = normal desktop
+  @else if ($media == lg) {
+    @if ($min == true) {
+      @media (min-width: $media-large) {
+        @content;
+      }
+    } @else {
+      @media (min-width: $media-large) {
+        @content;
+      }
+    }
+  }
+
+    // extra screen
+  @else if ($media == exs) {
+    @if ($min == true) {
+      @media (min-width: $media-extra) {
+        @content;
+      }
+    } @else {
+      @media (min-width: $media-small) and (max-width: $media-extra) {
+        @content;
+      }
+    }
+  }
+
+    // extra-sm screen
+  @else if ($media == exs-sm) {
+    @if ($min == true) {
+      @media (min-width: $media-extra-sm) {
+        @content;
+      }
+    } @else {
+      @media (min-width: $media-small) and (max-width: $media-extra-sm) {
+        @content;
+      }
+    }
+  }
+}
