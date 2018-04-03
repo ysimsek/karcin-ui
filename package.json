@@ -37,12 +37,14 @@
     "css-loader": "^0.28.9",
     "file-loader": "^1.1.8",
     "json-loader": "^0.5.7",
+    "node-sass": "^4.8.3",
     "raw-loader": "^0.5.1",
+    "sass-loader": "^6.0.7",
     "source-map-loader": "^0.2.3",
     "style-loader": "^0.20.1",
     "tslib": "^1.9.0",
     "typescript": "^2.7.1",
-    "webpack": "^3.10.0",
+    "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.1",
     "webpack-file-changer": "^2.0.1"
   }

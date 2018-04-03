@@ -1,0 +1,32 @@
+// easing
+@mixin easing($eas : 0.3, $trs : ease) {
+  -webkit-transition: all $eas+s ease;
+  -moz-transition: all $eas+s ease;
+  -ms-transition: all $eas+s ease;
+  transition: all $eas+s ease;
+}
+
+// rotate origin
+@mixin transformOrigin($param1, $param2){
+  -webkit-transform-origin: $param1 $param2;
+  -moz-transform-origin: $param1 $param2;
+  -o-transform-origin: $param1 $param2;
+  transform-origin: $param1 $param2;
+}
+
+
+// rotate
+@mixin transformRotate($param:0){
+  -webkit-transform: rotate($param+deg);
+  -moz-transform: rotate($param+deg);
+  -o-transform: rotate($param+deg);
+  transform: rotate($param+deg);
+}
+
+// radius
+@mixin radius($param:3px){
+  -webkit-border-radius: $param;
+  -moz-border-radius: $param;
+  -ms-border-radius: $param;
+  border-radius: $param;
+}

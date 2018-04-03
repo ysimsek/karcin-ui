@@ -64,6 +64,22 @@
           "title":"Textarea"
         }
       ]
+    },
+    {
+      "id":3,
+      "name":"dataGrid",
+      "title":"DataGrid",
+      "icon":"fa-list",
+      "items":[
+        {
+          "id":1,
+          "name":"DataGrid",
+          "title":"Basic DataGrid",
+          "href":"#/Components/dataGrid/SampleDataGrid",
+          "samples":"components/examples/DataGridExample",
+          "library":"functional/datagrid/DataGrid"
+        }
+      ]
     }
   ]
 }
