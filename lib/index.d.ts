@@ -7,6 +7,7 @@ import NumericInput from "./inputs/NumericInput";
 import PasswordInput from "./inputs/PasswordInput";
 import SelectInput from "./inputs/SelectInput";
 import TextInput from "./inputs/TextInput";
+import DataGrid from "./functional/datagrid/DataGrid";
 import "./css/karcin-ui.css";
-export { Button, FaIcon, Menu, Tab, TabPanel, NumericInput, PasswordInput, SelectInput, TextInput };
+export { Button, FaIcon, Menu, Tab, TabPanel, NumericInput, PasswordInput, SelectInput, TextInput, DataGrid };
 export default Button;
