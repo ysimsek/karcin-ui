@@ -2,7 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import {Col, Row, InputGroup, InputGroupAddon, Input, Button, ButtonGroup, Popover, PopoverHeader, PopoverBody} from 'reactstrap';
-import {FaIcon} from 'karcin-ui'
+import FaIcon from '../faicon/FaIcon';
 
 export interface TableBodyProps {
     data : any,
@@ -18,12 +18,18 @@ export interface TableBodyState {
 export default class TableBody extends React.Component<TableBodyProps, TableBodyState> {
     constructor(props:TableBodyProps){
         super(props);
-
         this.state = {
             data    : this.props.data,
             fields  : this.props.fields,
             clickActive : []
         }
+    }
+
+    componentWillReceiveProps(props:any){
+        this.setState({
+            data:this.props.data,
+            fields : this.props.fields
+        })
     }
 
 
@@ -45,7 +51,7 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
     }
 
 
-    onClickRow(e,active){
+    public onClickRow(e:any, active:any) : void {
         if(e.metaKey){
             if(this.state.clickActive.indexOf(active) !== -1){
                 this.state.clickActive.splice(this.state.clickActive.indexOf(active), 1);

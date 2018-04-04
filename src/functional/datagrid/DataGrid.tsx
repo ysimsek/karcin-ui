@@ -13,22 +13,18 @@ import {
     PopoverBody
 } from 'reactstrap';
 
-import {FaIcon} from 'karcin-ui';
-import '../../sass/table.scss';
+import FaIcon from '../faicon/FaIcon';
+import '../../css/sass/table.scss';
 
 import TableBody from './TableBody';
 import TableHead from './TableHead';
 
 export interface DataGridProps {
-    data?:any,
-    fields?: any[]
+    data?:any;
+    fields?: any[];
 }
 
 export interface DataGridState {
-    popoverOpen1: boolean,
-    popoverOpen2: boolean,
-    popoverOpen3: boolean,
-    popoverOpen4: boolean,
     data?: any,
     fields?: any[],
     dataGridId : any
@@ -39,14 +35,17 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
         super(props);
 
         this.state = {
-            popoverOpen1: false,
-            popoverOpen2: false,
-            popoverOpen3: false,
-            popoverOpen4: false,
             data : this.props.data,
             fields : this.props.fields,
             dataGridId: Math.floor(Math.random() * 20)
         }
+    }
+
+    componentWillReceiveProps(props:any){
+        this.setState({
+            data:this.props.data,
+            fields : this.props.fields
+        })
     }
 
 
@@ -72,41 +71,6 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
             </div>
             <div className="data-grid-body">
                 <table className="table table-bordered dataGrid">
-                    {/*<thead>*/}
-                    {/*<tr>*/}
-                        {/*<th>İd</th>*/}
-                        {/*<th>Adı*/}
-                            {/*<div className="title-option">*/}
-                                {/*<span className="filter" id="Popover1" onClick={() => {*/}
-                                    {/*this.popoverOpen(1)*/}
-                                {/*}}><FaIcon code="fa-filter"/></span>*/}
-                                {/*<Popover placement="bottom" isOpen={this.state.popoverOpen1} target="Popover1"*/}
-                                         {/*toggle={() => {*/}
-                                             {/*this.popoverOpen(1)*/}
-                                         {/*}} className="popup-over-search">*/}
-                                    {/*<PopoverHeader>Adı</PopoverHeader>*/}
-                                    {/*<PopoverBody>*/}
-                                        {/*<InputGroup>*/}
-                                            {/*<Input placeholder="Arama"/>*/}
-                                            {/*<InputGroupAddon addonType="append"><Button><FaIcon*/}
-                                                {/*code="fa-search"/></Button></InputGroupAddon>*/}
-                                        {/*</InputGroup>*/}
-                                    {/*</PopoverBody>*/}
-                                {/*</Popover>*/}
-                                {/*<span className="order"><FaIcon code="fa-sort"/></span>*/}
-                            {/*</div>*/}
-                        {/*</th>*/}
-                        {/*<th>İşlem Türü*/}
-                            {/*<div className="title-option"><span className="filter"><FaIcon*/}
-                                {/*code="fa-filter"/></span><span className="order"><FaIcon code="fa-sort"/></span></div>*/}
-                        {/*</th>*/}
-                        {/*<th>Açıklama*/}
-                            {/*<div className="title-option"><span className="filter"><FaIcon*/}
-                                {/*code="fa-filter"/></span><span className="order"><FaIcon code="fa-sort"/></span></div>*/}
-                        {/*</th>*/}
-                        {/*<th>İşlemler</th>*/}
-                    {/*</tr>*/}
-                    {/*</thead>*/}
                     <TableHead fields={this.state.fields}/>
                     <TableBody data={this.state.data} fields={this.state.fields}/>
                 </table>
@@ -144,9 +108,4 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
         </div>;
     }
 
-
-    popoverOpen(param) {
-        this.state['popoverOpen' + param] = !this.state['popoverOpen' + param];
-        this.forceUpdate();
-    }
 }

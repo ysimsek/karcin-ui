@@ -1,13 +1,13 @@
 {
   "name": "karcin-ui",
-  "version": "1.0.27",
+  "version": "1.0.31",
   "description": "Karçin UI - React & Typescript",
   "repository": "https://github.com/ysimsek/karcin-ui",
   "main": "index.tsx",
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.js --color --port 3000",
     "build": "webpack --progress --profile --colors -p && Echo Showcase Build completed!",
-    "lib": "cd src && tsc && echo f | XCOPY /S /y .\\css\\karcin-ui.css ..\\lib\\css\\karcin-ui.css && copy ..\\package.json ..\\lib\\package.json && Echo Library Build completed!",
+    "lib": "cd src && tsc && mkdir -p ../lib/css && cp -R ./css/sass ../lib/css/sass && echo f | cp -R ./css/karcin-ui.css ../lib/css/karcin-ui.css && cp -R ../package.json ../lib/package.json && Echo Library Build completed!",
     "publish:lib": "cd lib && npm publish && Echo Library Npm Publish completed!"
   },
   "keywords": [
@@ -35,6 +35,7 @@
     "awesome-typescript-loader": "^3.4.1",
     "copy-webpack-plugin": "^4.4.0",
     "css-loader": "^0.28.9",
+    "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.8",
     "json-loader": "^0.5.7",
     "node-sass": "^4.8.3",
