@@ -76,7 +76,6 @@ export default class SelectInput extends React.Component<SelectInputProps>{
      * @private
      */
     __renderLabelPosition(){
-        debugger;
         let deger:any = Enums.labelPosition;
         let position = this.props.labelPosition != undefined ? this.props.labelPosition : Enums.labelPosition.Left;
         if(position == "Left"){
@@ -97,7 +96,6 @@ export default class SelectInput extends React.Component<SelectInputProps>{
      * @private
      */
     __handleChange(e:Object){
-        debugger;
         if (this.props.onChange){
             this.props.onChange(e);
         }
