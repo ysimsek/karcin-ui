@@ -2,7 +2,7 @@ import * as React from "react";
 import Input, {BaseInputProps} from "./base/BaseInput";
 import {Button} from "reactstrap";
 
-export interface TextInputProps{
+export interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement>{
     style?: React.CSSProperties;
     label?: string;
     name?: string;
@@ -13,9 +13,6 @@ export interface TextInputProps{
     readOnly?: boolean;
     hidden?: boolean;
     onChange?:any;
-    placeHolder?:string;
-    maxlength?:string;
-    autofocus?:boolean;
     // validationDisplay: oneOf(["overlay", "block"])
 }
 
@@ -29,8 +26,7 @@ export default class TextInput extends React.Component<TextInputProps>{
         readOnly: false,
         hidden: false,
         label : "",
-        type:"text",
-        maxlength:"1000"
+        type:"text"
     }
 
     constructor(props:any){
