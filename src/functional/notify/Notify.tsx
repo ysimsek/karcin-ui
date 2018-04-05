@@ -2,6 +2,8 @@ import * as React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import {css} from "glamor";
 import * as ReactDOM from "react-dom";
+import Enums from "../../../lib/inputs/enums/Enums";
+import {type} from "os";
 
 
 /**
@@ -15,16 +17,16 @@ export interface INotify{
     message ?: string;
 }
 
-class Notify extends React.Component<INotify,any>{
+class Notify extends React.Component<any,any>{
 
     static defaultProps:Partial<INotify>={
-        position : "TOP_CENTER",
+        position : "top-center",
         time : 5 ,
         message : "Notify Message"
     }
     static message:string | JSX.Element = "Notify Message";
     static time:any | boolean = 5 ;
-    static position:any | number = "TOP_CENTER";
+    static position:any | string = "top-center";
 
     constructor(props:any){
         super(props);
@@ -60,16 +62,16 @@ class Notify extends React.Component<INotify,any>{
      * @param {number} time
      * * * * Set the time second
      * @param {string} position
-     * * * * TOP_LEFT ,TOP_RIGHT,TOP_CENTER
-     * * * * BOTTOM_LEFT,BOTTOM_RIGHT,BOTTOM_CENTER
+     * * * * top-left ,top-right,top-center
+     * * * * bottom-left,bottom-right,bottom-center
      * @returns {any}
      */
-    static success = (data:any):any =>{
+    static success = (data:any ) =>{
         Notify.renderScreenData(data);
         let autoClose = Notify.time == false ? false : Notify.time*1000;
-        let position = Notify.position;
+        // let position =
         toast.success(Notify.message, {
-            position: toast.POSITION[position],
+            position: Notify.position,
             autoClose: autoClose
         });
     }
@@ -81,17 +83,15 @@ class Notify extends React.Component<INotify,any>{
      * @param {number} time
      * * * * Set the time second
      * @param {string} position
-     * * * * TOP_LEFT ,TOP_RIGHT,TOP_CENTER
-     * * * * BOTTOM_LEFT,BOTTOM_RIGHT,BOTTOM_CENTER
+     * * * * top-left ,top-right,top-center
+     * * * * bottom-left,bottom-right,bottom-center
      * @returns {any}
      */
-    static error = (data:object):any =>{
+    static error = (data:Object):any =>{
         Notify.renderScreenData(data);
         toast.error(Notify.message, {
-            // position: Notify.position,
-            position : toast.POSITION[Notify.position],
+            position : Notify.position,
             autoClose: Notify.time * 1000
-
         });
     }
 
@@ -102,14 +102,14 @@ class Notify extends React.Component<INotify,any>{
      * @param {number} time
      * * * * Set the time second
      * @param {string} position
-     * * * * TOP_LEFT ,TOP_RIGHT,TOP_CENTER
-     * * * * BOTTOM_LEFT,BOTTOM_RIGHT,BOTTOM_CENTER
+     * * * * top-left ,top-right,top-center
+     * * * * bottom-left,bottom-right,bottom-center
      * @returns {any}
      */
     static warning = (data:object):any =>{
         Notify.renderScreenData(data);
         toast.warn(Notify.message, {
-            position: toast.POSITION[Notify.position],
+            position: Notify.position,
             autoClose: Notify.time * 1000
         });
     }
@@ -121,14 +121,14 @@ class Notify extends React.Component<INotify,any>{
      * @param {number} time
      * * * * Set the time second
      * @param {string} position
-     * * * * TOP_LEFT ,TOP_RIGHT,TOP_CENTER
-     * * * * BOTTOM_LEFT,BOTTOM_RIGHT,BOTTOM_CENTER
+     * * * * top-left ,top-right,top-center
+     * * * * bottom-left,bottom-right,bottom-center
      * @returns {any}
      */
     static info = (data:object):any =>{
         Notify.renderScreenData(data);
         toast.info(Notify.message, {
-            position: toast.POSITION[Notify.position],
+            position: Notify.position,
             autoClose: Notify.time * 1000
         });
     }
@@ -140,15 +140,15 @@ class Notify extends React.Component<INotify,any>{
      * @param {number} time
      * * * * Set the time second
      * @param {string} position
-     * * * * TOP_LEFT ,TOP_RIGHT,TOP_CENTER
-     * * * * BOTTOM_LEFT,BOTTOM_RIGHT,BOTTOM_CENTER
+     * * * * top-left ,top-right,top-center
+     * * * * bottom-left,bottom-right,bottom-center
      * @param (object) css properties
      * @returns {any}
      */
     static customNotify= (data:any):any =>{
         Notify.renderScreenData(data);
         toast(Notify.message, {
-            position: toast.POSITION[Notify.position],
+            position: Notify.position,
             autoClose: Notify.time * 1000,
             className: css({
                 background: data["background"],
