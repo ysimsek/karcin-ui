@@ -6,7 +6,8 @@ import FaIcon from '../faicon/FaIcon';
 
 export interface TableBodyProps {
     data : any,
-    fields : any
+    fields : any,
+    onSelected : any;
 }
 
 export interface TableBodyState {
@@ -37,6 +38,7 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
         let Rows = [];
         for(let i = 0; i < this.props.data.length; i++) {
             let value = this.props.data[i];
+            let id = i;
 
             let Cell = [];
             for(let j = 0; j < this.state.fields.length; j++){
@@ -45,7 +47,11 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
                 Cell.push(<td key={j}>{value[valueField.value]}</td>);
             }
 
-            Rows.push(<tr key={i} className={(this.state.clickActive.indexOf(i) !== -1 ? 'active' : '')} onClick={(e)=>{this.onClickRow(e,i)}}>{Cell}</tr>);
+            if(value.id !== undefined){
+                id = value.id;
+            }
+
+            Rows.push(<tr key={i} className={(this.state.clickActive.indexOf(id) !== -1 ? 'active' : '')} onClick={(e)=>{this.onClickRow(e,id)}}>{Cell}</tr>);
         }
         return <tbody>{Rows}</tbody>;
     }
@@ -62,7 +68,14 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
             this.state.clickActive.splice(0, this.state.clickActive.length);
             this.state.clickActive.push(active);
         }
+
         this.forceUpdate();
+
+
+        // selectedProps
+        if(this.props.onSelected !== undefined){
+            this.props.onSelected(this.state.clickActive);
+        }
     }
 
 }
