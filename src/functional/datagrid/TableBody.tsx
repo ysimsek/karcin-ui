@@ -5,15 +5,16 @@ import {Col, Row, InputGroup, InputGroupAddon, Input, Button, ButtonGroup, Popov
 import FaIcon from '../faicon/FaIcon';
 
 export interface TableBodyProps {
-    data : any,
-    fields : any,
-    onSelected : any;
+    data : any;
+    fields : any;
+    onSelected ?: any;
 }
 
 export interface TableBodyState {
     data : any,
     fields: any,
-    clickActive : any[]
+    clickActive?: any[],
+    clickActiveRow?: any[]
 }
 
 export default class TableBody extends React.Component<TableBodyProps, TableBodyState> {
@@ -22,7 +23,8 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
         this.state = {
             data    : this.props.data,
             fields  : this.props.fields,
-            clickActive : []
+            clickActive : [],
+            clickActiveRow : []
         }
     }
 
@@ -51,22 +53,42 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
                 id = value.id;
             }
 
-            Rows.push(<tr key={i} className={(this.state.clickActive.indexOf(id) !== -1 ? 'active' : '')} onClick={(e)=>{this.onClickRow(e,id)}}>{Cell}</tr>);
+            Rows.push(<tr key={i} className={(this.state.clickActive.indexOf(id) !== -1 ? 'active' : '')} onClick={(e)=>{this.onClickRow(e,id, this.props.data[i])}}>{Cell}</tr>);
         }
         return <tbody>{Rows}</tbody>;
     }
 
 
-    public onClickRow(e:any, active:any) : void {
+    public onClickRow(e:any, active:any, data:any) : void {
         if(e.metaKey){
             if(this.state.clickActive.indexOf(active) !== -1){
+
+                // change rows id remove
                 this.state.clickActive.splice(this.state.clickActive.indexOf(active), 1);
+
+                // change rows json remove
+                for(let i = 0; i < this.state.clickActiveRow.length; i++){
+                    if(this.state.clickActiveRow[i].id === active){
+                        this.state.clickActiveRow.splice(i, 1);
+                    }
+                }
             }else {
+
+                //add row id
                 this.state.clickActive.push(active);
+
+                // add row json data
+                this.state.clickActiveRow.push(data);
             }
         }else {
+
+            // id first remove after add new id
             this.state.clickActive.splice(0, this.state.clickActive.length);
             this.state.clickActive.push(active);
+
+            // json first remove after add new rows json data
+            this.state.clickActiveRow.splice(0, this.state.clickActiveRow.length);
+            this.state.clickActiveRow.push(data);
         }
 
         this.forceUpdate();
@@ -74,7 +96,7 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
 
         // selectedProps
         if(this.props.onSelected !== undefined){
-            this.props.onSelected(this.state.clickActive);
+            this.props.onSelected(this.state.clickActiveRow, this.state.clickActive);
         }
     }
 

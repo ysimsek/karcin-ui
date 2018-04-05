@@ -34,44 +34,49 @@ export default class DataGridExample extends React.Component {
             'description': 'Belirtilmedi'
         }, {
             'id': '2',
-            'name': 'Deniz',
-            'surname': 'Dalkılıç',
+            'name': 'Cabbar',
+            'surname': 'Demir',
             'description': 'Belirtilmedi'
         }, {
             'id': '3',
-            'name': 'Deniz',
-            'surname': 'Dalkılıç',
+            'name': 'Asiye',
+            'surname': 'Koç',
             'description': 'Belirtilmedi'
         }, {
             'id': '4',
-            'name': 'Deniz',
-            'surname': 'Dalkılıç',
+            'name': 'Kazım',
+            'surname': 'Bekir',
             'description': 'Belirtilmedi'
         }, {
             'id': '5',
-            'name': 'Deniz',
-            'surname': 'Dalkılıç',
+            'name': 'Mehmet',
+            'surname': 'Ak',
             'description': 'Belirtilmedi'
         }, {
             'id': '6',
-            'name': 'Deniz',
-            'surname': 'Dalkılıç',
-            'description': 'Belirtilmedi'
-        }, {
-            'id': '7',
-            'name': 'Deniz',
-            'surname': 'Dalkılıç',
+            'name': 'Remziye',
+            'surname': 'Demir',
             'description': 'Belirtilmedi'
         }];
-        return (<div><DataGrid data={dataGridData} onSelected={(e)=>{this.getSelectData(e)}} toolbar={[{name:'Ekle', icon:'fa-plus', url:'https://www.google.com'}, {name:'Düzenle', icon:'fa-minus', onClick:()=>{this.clickEdit()}}]} fields={fields}/></div>);
+        return (<div><DataGrid data={dataGridData} onSelected={(e) => {
+            this.getSelectData(e)
+        }} toolbar={[{
+            name: 'Ekle',
+            icon: 'fa-plus',
+            url: 'https://www.google.com'
+        }, {
+            name: 'Düzenle', icon: 'fa-minus', onClick: () => {
+                this.clickEdit()
+            }
+        }]} fields={fields}/></div>);
     }
 
 
-    clickEdit(){
+    clickEdit() {
         debugger;
     }
 
-    getSelectData(e){
+    getSelectData(e) {
         console.log(e);
     }
 }

@@ -10,7 +10,7 @@ export interface DataGridProps {
     data?:any;
     fields?: any[];
     toolbar?: any[];
-    onSelected : any;
+    onSelected?: any;
 }
 
 export interface DataGridState {
