@@ -27,6 +27,8 @@
     "react-dom": "^16.2.0",
     "react-highlight": "^0.10.0",
     "react-router-dom": "^4.2.2",
+    "glamor": "^2.20.40",
+    "react-toastify": "^3.4.3",
     "reactstrap": "^5.0.0-beta"
   },
   "devDependencies": {

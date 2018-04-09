@@ -1,6 +1,6 @@
 import * as React from "react";
 import Enums from "./enums/Enums";
-
+import {Label} from "reactstrap";
 
 export interface SelectInputProps{
     items: Array<any>,
@@ -22,12 +22,12 @@ export default class SelectInput extends React.Component<SelectInputProps>{
         name: "selectinput",
         labelPosition : Enums.labelPosition.Right
     }
-    //CSS ÇALIŞMASINA DEVAM EDİLECEK, Şimdilik böyle bırakıldı.
-    cssStyles:any = {
-        textAlign : (this.props.labelPosition != Enums.labelPosition.Right ? this.__renderLabelPosition(): this.props.labelPosition),
-        float: (SelectInput.position == "norm" ?(this.props.labelPosition == "Left" ? Enums.labelPosition.Left:  Enums.labelPosition.Right): "" ),
-        marginTop: 10
-    };
+    // //CSS ÇALIŞMASINA DEVAM EDİLECEK, Şimdilik böyle bırakıldı.
+    // cssStyles:any = {
+    //     textAlign : (this.props.labelPosition != Enums.labelPosition.Right ? this.__renderLabelPosition(): this.props.labelPosition),
+    //     float: (SelectInput.position == "norm" ?(this.props.labelPosition == "Left" ? Enums.labelPosition.Left:  Enums.labelPosition.Right): "" ),
+    //     marginTop: 10
+    // };
 
     //norm,top,bottom
     public static position : string = "norm";
@@ -38,23 +38,14 @@ export default class SelectInput extends React.Component<SelectInputProps>{
     }
 
     render(){
-        let label = this.props.label != null ? <span>{this.props.label}</span> : null;
-        let labelPositionComponent = <div style={this.cssStyles}>{label}</div>;
-        let renderComponent = <div style={this.cssStyles}>
+        let renderComponent = <div><Label>{this.props.label}</Label>
             <select name={this.props.name} className="form-control" style={{width:`100%`}} onChange={this.__handleChange.bind(this)}>
                 <option label="Lütfen Seçiniz" value=""></option>
                 {this.__renderOptionValues(this.props.items)}
             </select>
         </div>;
-        let renderEnd = [];
-        if(SelectInput.position == "norm" || SelectInput.position == "top"){
-            renderEnd.push(labelPositionComponent);
-            renderEnd.push(renderComponent);
-        }else{
-            renderEnd.push(renderComponent);
-            renderEnd.push(labelPositionComponent);
-        }
-        return <div>{renderEnd}</div>;
+
+        return <div>{renderComponent}</div>;
     }
 
     __renderOptionValues(items: Array<any>){

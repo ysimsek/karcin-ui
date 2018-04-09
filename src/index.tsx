@@ -1,6 +1,6 @@
 import Button from "./functional/button/Button";
 import FaIcon from "./functional/faicon/FaIcon";
-import Menu1 from "./functional/menu/Menu";
+import Menu from "./functional/menu/Menu";
 import Tab from "./functional/tabs/Tab";
 import TabPanel from "./functional/tabs/TabPanel";
 import NumericInput from "./inputs/NumericInput";
@@ -9,5 +9,5 @@ import SelectInput from "./inputs/SelectInput";
 import TextInput from "./inputs/TextInput";
 import DataGrid from "./functional/datagrid/DataGrid";
 import "./css/karcin-ui.css";
-export { Button, FaIcon, Menu1, Tab, TabPanel, NumericInput, PasswordInput, SelectInput, TextInput, DataGrid};
+export { Button, FaIcon, Menu, Tab, TabPanel, NumericInput, PasswordInput, SelectInput, TextInput, DataGrid};
 export default Button;

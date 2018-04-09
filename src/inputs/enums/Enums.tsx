@@ -1,5 +1,3 @@
-
-
 export default class Enums{
     static inputTypes = {
         TextInput : 1,
