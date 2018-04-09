@@ -40,6 +40,14 @@
           "href":"#/Components/Tabs",
           "samples":"components/examples/TabsExample",
           "library":"functional/tabs/Tab"
+        },
+        {
+          "id":5,
+          "name":"Notify",
+          "title":"Notify",
+          "href":"#/Components/Notify",
+          "samples":"components/examples/NotifyExample",
+          "library":"functional/notify/Notify"
         }
       ]
     },{
@@ -50,19 +58,41 @@
       "items":[
         {
           "id":1,
-          "name":"textInput",
-          "title":"Text Input"
+          "name":"NumericInput",
+          "title":"Numeric Input",
+          "href":"#/Components/NumericInput",
+          "samples":"components/inputs/NumericInputExample",
+          "library":"inputs/NumericInput",
+          "description":"Use karcin-ui custom NumericInput props for actions in forms, dialogs, and more. Includes support for a handful of contextual variations, sizes, states, and more."
+
         },
         {
           "id":2,
-          "name":"NumericInput",
-          "title":"NumericInput"
+          "name":"PasswordInput",
+          "title":"PasswordInput",
+          "href":"#/Components/PasswordInput",
+          "samples":"components/inputs/PasswordInputExample",
+          "library":"inputs/PasswordInput"
+
         },
         {
           "id":3,
-          "name":"textArea",
-          "title":"Textarea"
+          "name":"SelectInput",
+          "title":"SelectInput",
+          "href":"#/Components/SelectInput",
+          "samples":"components/inputs/SelectInputExample",
+          "library":"inputs/SelectInput"
+        },
+        {
+          "id":4,
+          "name":"TextInput",
+          "title":"TextInput",
+          "href":"#/Components/TextInput",
+          "samples":"components/inputs/TextInputExample",
+          "library":"inputs/TextInput"
+
         }
+
       ]
     },
     {

@@ -2,8 +2,6 @@ import * as React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import {css} from "glamor";
 import * as ReactDOM from "react-dom";
-import Enums from "../../../lib/inputs/enums/Enums";
-import {type} from "os";
 
 
 /**

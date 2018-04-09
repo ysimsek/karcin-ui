@@ -1,6 +1,5 @@
 import * as React from "react";
 import Input, {BaseInputProps} from "./base/BaseInput";
-import {Button} from "reactstrap";
 
 export interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement>{
     style?: React.CSSProperties;
