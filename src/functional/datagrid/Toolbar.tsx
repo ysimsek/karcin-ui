@@ -81,7 +81,7 @@ export default class Toolbar extends React.Component<ToolbarProps, ToolbarState>
             } else {
                 for (let i = 0; i < data.length; i++) {
                     let value = data[i];
-                    buttons.push(<Button key={i} color="defaults" onClick={()=>{
+                    buttons.push(<Button key={i} color="defaults" disabled={(value.disabled !== undefined ? value.disabled : false)} onClick={()=>{
                         if(value.url !== undefined){
                             self.urlDirectory(value.url);
                         }else {
