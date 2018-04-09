@@ -1,5 +1,6 @@
 import * as React from "react";
 import Input, {BaseInputProps} from "./base/BaseInput";
+import {Label} from "reactstrap";
 
 export interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement>{
     style?: React.CSSProperties;
@@ -33,7 +34,7 @@ export default class TextInput extends React.Component<TextInputProps>{
     }
     render(){
         //label için sağ sol üst seçenekleri konulsun, hatta button ile birlikte beraber kullanılabilir.
-        let label = this.props.label != null ? <span>{this.props.label}</span> : null;
+        let label = this.props.label != null ? <Label>{this.props.label}</Label> : null;
         return <div>{label}<Input {...this.props}/></div>;
     }
 
