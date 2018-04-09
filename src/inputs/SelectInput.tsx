@@ -3,14 +3,14 @@ import Enums from "./enums/Enums";
 import {Label} from "reactstrap";
 
 export interface SelectInputProps{
-    items: Array<any>,
-    value?:string,
-    id?:string,
-    label?:string,
-    labelPosition?: string,
-    name?:string,
-    onChange?: any,
-    item?:Object
+    items: Array<any>;
+    value?:string;
+    id?:string;
+    label?:string;
+    labelPosition?: string;
+    name?:string;
+    onChange?: any;
+    item?:Object;
 }
 
 export default class SelectInput extends React.Component<SelectInputProps>{
