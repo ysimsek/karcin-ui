@@ -21,7 +21,11 @@ export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
 
 export default class Button extends React.Component<ButtonProps> {
     render() {
-        return <Buttonx {...this.props}>{this.props.children}</Buttonx>;
+        return <Buttonx {...this.props} onClick={this.onClick.bind(this)}>{this.props.children}</Buttonx>;
+    }
+    //Return props click event
+    onClick(e){
+        this.props.onClick(e);
     }
 }
 
