@@ -7,7 +7,8 @@ export default class DataGridExample extends React.Component {
             {
                 "property": "int",
                 "value": "id",
-                "name": "ID"
+                "name": "ID",
+                "visibility" : false
             },
             {
                 "property": "string",
@@ -58,12 +59,13 @@ export default class DataGridExample extends React.Component {
             'surname': 'Demir',
             'description': 'Belirtilmedi'
         }];
-        return (<div><DataGrid data={dataGridData} onSelected={(e) => {
-            this.getSelectData(e)
+        return (<div><DataGrid data={dataGridData} onSelected={(e,b) => {
+            this.getSelectData(e,b)
         }} toolbar={[{
             name: 'Ekle',
             icon: 'fa-plus',
-            url: 'https://www.google.com'
+            url: 'https://www.google.com',
+            disabled:true
         }, {
             name: 'Düzenle', icon: 'fa-minus', onClick: () => {
                 this.clickEdit()
@@ -76,7 +78,7 @@ export default class DataGridExample extends React.Component {
         debugger;
     }
 
-    getSelectData(e) {
-        console.log(e);
+    getSelectData(e,b) {
+        console.log(e,b);
     }
 }

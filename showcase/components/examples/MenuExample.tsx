@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Menu} from 'karcin-ui';
+import {Menu1} from 'karcin-ui';
 
 export default class MenuExample extends React.Component {
     render() {
@@ -62,7 +62,7 @@ export default class MenuExample extends React.Component {
             }
         ]
         return <div>
-            <Menu data={data} />
+            <Menu1 data={data} />
         </div>;
     }
 }

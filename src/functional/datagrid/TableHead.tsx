@@ -14,6 +14,10 @@ export interface TableHeadState {
     popover : any[]
 }
 
+export interface standartObject {
+    [key: string] : any
+}
+
 export default class TableHead extends React.Component<TableHeadProps, TableHeadState> {
     constructor(props:TableHeadProps){
         super(props);
@@ -40,11 +44,18 @@ export default class TableHead extends React.Component<TableHeadProps, TableHead
         for(let i = 0; i < this.state.fields.length; i++) {
             let value = this.state.fields[i];
 
+            // popup over control
             if(self.state.popover[i] === undefined) {
                 self.state.popover[i] = false;
             }
 
-            Cell.push(<th key={i}>
+            // style
+            let style: standartObject = {};
+            if(value.visibility !== undefined && !value.visibility){
+                style['display'] = 'none';
+            }
+
+            Cell.push(<th key={i} style={style}>
                 <span>{value.name}</span>
                 <div className="title-option">
                     <span className="filter" id={'Popover' + i} onClick={() => {

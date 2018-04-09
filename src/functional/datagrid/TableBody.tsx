@@ -28,6 +28,10 @@ export interface TableBodyState {
     clickActiveRow: Array<any>
 }
 
+export interface standartObject {
+    [key: string] : any
+}
+
 export default class TableBody extends React.Component<TableBodyProps, TableBodyState> {
     constructor(props: TableBodyProps) {
         super(props);
@@ -49,21 +53,27 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
 
     render() {
         let Rows = [];
-        let getId:number = 0;
         let self = this;
         for (let i = 0; i < this.props.data.length; i++) {
             let value = this.props.data[i];
-            getId = i;
 
+            let getId:number = i;
             if (value.id !== undefined) {
-                getId = value.id;
+                getId = parseInt(value.id);
             }
+
 
             let Cell = [];
             for (let j = 0; j < this.state.fields.length; j++) {
                 let valueField = this.state.fields[j];
 
-                Cell.push(<td key={j}>{value[valueField.value]}</td>);
+                // style
+                let style: standartObject = {};
+                if(valueField.visibility !== undefined && !valueField.visibility){
+                    style['display'] = 'none';
+                }
+
+                Cell.push(<td key={j} style={style}>{value[valueField.value]}</td>);
             }
 
             Rows.push(<tr key={i} className={(self.state.clickActive.indexOf(getId) !== -1) ? 'active' : ''}
