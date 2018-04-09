@@ -14,7 +14,6 @@ export interface PasswordInputProps{
     readOnly?: boolean;
     hidden?: boolean;
     onChange?:any;
-    // validationDisplay: oneOf(["overlay", "block"])
 }
 
 
