@@ -29,16 +29,17 @@ var __rest = (this && this.__rest) || function (s, e) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var BaseInput_1 = require("./base/BaseInput");
-var TextInput = /** @class */ (function (_super) {
-    __extends(TextInput, _super);
-    function TextInput(props) {
+var reactstrap_1 = require("reactstrap");
+var NumericInput = /** @class */ (function (_super) {
+    __extends(NumericInput, _super);
+    function NumericInput(props) {
         return _super.call(this, props) || this;
     }
-    TextInput.prototype.render = function () {
+    NumericInput.prototype.render = function () {
         var newProps = __rest(this.props, []);
         //todo: label için sağ sol üst seçenekleri konulsun, hatta button ile birlikte beraber kullanılabilir.
         //selectinput için yapıldı
-        var label = this.props.label != null ? React.createElement("span", null, this.props.label) : null;
+        var label = this.props.label != null ? React.createElement(reactstrap_1.Label, null, this.props.label) : null;
         return React.createElement("div", null,
             label,
             React.createElement(BaseInput_1.default, __assign({}, newProps, { onChange: this.__onChange.bind(this) })));
@@ -49,31 +50,31 @@ var TextInput = /** @class */ (function (_super) {
      * @returns {boolean}
      * @private
      */
-    TextInput.prototype.__onChange = function (e) {
+    NumericInput.prototype.__onChange = function (e) {
         var result = true;
         var value = e.target.value;
-        //boşluk karakteri ve diğerlerine bak
-        if (value && isNaN(value)) {
-            result = false;
-        }
-        else if (this.props.onChange) {
-            var parsedVal = parseInt(value, 10);
-            e.target.parsedValue = isNaN(parsedVal) ? undefined : parsedVal;
-            result = e.target.parsedValue != undefined ? this.props.onChange(e) : false;
-        }
-        if (!result) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-        return result;
+        this.props.onChange(e);
+        // //boşluk karakteri ve diğerlerine bak
+        // if (value && isNaN(value)) {
+        //     result = false;
+        // } else if (this.props.onChange) {
+        //     let parsedVal = parseInt(value, 10);
+        //     e.target.parsedValue = isNaN(parsedVal) ? undefined : parsedVal;
+        //     result = e.target.parsedValue != undefined ? this.props.onChange(e) : false;
+        // }
+        // if (!result) {
+        //     e.preventDefault();
+        //     e.stopPropagation();
+        // }
+        // return result;
     };
-    TextInput.defaultProps = {
+    NumericInput.defaultProps = {
         disabled: false,
         readOnly: false,
         hidden: false,
-        type: "text"
+        type: "number"
     };
-    return TextInput;
+    return NumericInput;
 }(React.Component));
-exports.default = TextInput;
+exports.default = NumericInput;
 //# sourceMappingURL=NumericInput.js.map

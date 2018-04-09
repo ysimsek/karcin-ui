@@ -41,7 +41,7 @@ var TableHead = /** @class */ (function (_super) {
             }
             // style
             var style = {};
-            if (!value.visibility) {
+            if (value.visibility !== undefined && !value.visibility) {
                 style['display'] = 'none';
             }
             Cell.push(React.createElement("th", { key: i, style: style },

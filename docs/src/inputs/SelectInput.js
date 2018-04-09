@@ -12,36 +12,21 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var Enums_1 = require("./enums/Enums");
+var reactstrap_1 = require("reactstrap");
 var SelectInput = /** @class */ (function (_super) {
     __extends(SelectInput, _super);
     function SelectInput(props) {
         var _this = _super.call(this, props) || this;
-        //CSS ÇALIŞMASINA DEVAM EDİLECEK, Şimdilik böyle bırakıldı.
-        _this.cssStyles = {
-            textAlign: (_this.props.labelPosition != Enums_1.default.labelPosition.Right ? _this.__renderLabelPosition() : _this.props.labelPosition),
-            float: (SelectInput.position == "norm" ? (_this.props.labelPosition == "Left" ? Enums_1.default.labelPosition.Left : Enums_1.default.labelPosition.Right) : ""),
-            marginTop: 10
-        };
         _this.__renderLabelPosition.bind(_this);
         return _this;
     }
     SelectInput.prototype.render = function () {
-        var label = this.props.label != null ? React.createElement("span", null, this.props.label) : null;
-        var labelPositionComponent = React.createElement("div", { style: this.cssStyles }, label);
-        var renderComponent = React.createElement("div", { style: this.cssStyles },
+        var renderComponent = React.createElement("div", null,
+            React.createElement(reactstrap_1.Label, null, this.props.label),
             React.createElement("select", { name: this.props.name, className: "form-control", style: { width: "100%" }, onChange: this.__handleChange.bind(this) },
                 React.createElement("option", { label: "L\u00FCtfen Se\u00E7iniz", value: "" }),
                 this.__renderOptionValues(this.props.items)));
-        var renderEnd = [];
-        if (SelectInput.position == "norm" || SelectInput.position == "top") {
-            renderEnd.push(labelPositionComponent);
-            renderEnd.push(renderComponent);
-        }
-        else {
-            renderEnd.push(renderComponent);
-            renderEnd.push(labelPositionComponent);
-        }
-        return React.createElement("div", null, renderEnd);
+        return React.createElement("div", null, renderComponent);
     };
     SelectInput.prototype.__renderOptionValues = function (items) {
         var renderItem = [];
@@ -94,6 +79,12 @@ var SelectInput = /** @class */ (function (_super) {
         name: "selectinput",
         labelPosition: Enums_1.default.labelPosition.Right
     };
+    // //CSS ÇALIŞMASINA DEVAM EDİLECEK, Şimdilik böyle bırakıldı.
+    // cssStyles:any = {
+    //     textAlign : (this.props.labelPosition != Enums.labelPosition.Right ? this.__renderLabelPosition(): this.props.labelPosition),
+    //     float: (SelectInput.position == "norm" ?(this.props.labelPosition == "Left" ? Enums.labelPosition.Left:  Enums.labelPosition.Right): "" ),
+    //     marginTop: 10
+    // };
     //norm,top,bottom
     SelectInput.position = "norm";
     return SelectInput;

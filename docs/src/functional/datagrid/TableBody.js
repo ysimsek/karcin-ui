@@ -45,7 +45,7 @@ var TableBody = /** @class */ (function (_super) {
                 var valueField = this_1.state.fields[j];
                 // style
                 var style = {};
-                if (!value.visibility) {
+                if (valueField.visibility !== undefined && !valueField.visibility) {
                     style['display'] = 'none';
                 }
                 Cell.push(React.createElement("td", { key: j, style: style }, value[valueField.value]));

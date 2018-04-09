@@ -5,7 +5,7 @@ exports.Button = Button_1.default;
 var FaIcon_1 = require("./functional/faicon/FaIcon");
 exports.FaIcon = FaIcon_1.default;
 var Menu_1 = require("./functional/menu/Menu");
-exports.Menu1 = Menu_1.default;
+exports.Menu = Menu_1.default;
 var Tab_1 = require("./functional/tabs/Tab");
 exports.Tab = Tab_1.default;
 var TabPanel_1 = require("./functional/tabs/TabPanel");
@@ -20,6 +20,8 @@ var TextInput_1 = require("./inputs/TextInput");
 exports.TextInput = TextInput_1.default;
 var DataGrid_1 = require("./functional/datagrid/DataGrid");
 exports.DataGrid = DataGrid_1.default;
+var Notify_1 = require("./functional/notify/Notify");
+exports.Notify = Notify_1.default;
 require("./css/karcin-ui.css");
 exports.default = Button_1.default;
 //# sourceMappingURL=index.js.map

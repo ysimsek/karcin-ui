@@ -35,7 +35,7 @@ var Components = /** @class */ (function (_super) {
         return React.createElement("div", { className: "content-component" },
             React.createElement("div", { className: "side-menu" },
                 React.createElement("div", { className: "side-menu-container" },
-                    React.createElement(karcin_ui_1.Menu1, { data: this.state.data }))),
+                    React.createElement(karcin_ui_1.Menu, { data: this.state.data }))),
             React.createElement("div", { className: "container-component content-page" }, detailCmp));
     };
     Components.prototype.componentDidMount = function () {

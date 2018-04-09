@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Menu1} from "karcin-ui";
+import {Menu} from "karcin-ui";
 import RenderComponents from "./RenderComponent";
 export default class Components extends React.Component<any, any> {
     private menucmp;
@@ -27,7 +27,7 @@ export default class Components extends React.Component<any, any> {
         return <div className="content-component">
             <div className="side-menu">
                 <div className="side-menu-container">
-                    <Menu1 data={this.state.data} />
+                    <Menu data={this.state.data} />
                     {/*ref={(v) => { this.menucmp = v; }}*/}
                 </div>
             </div>

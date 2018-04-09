@@ -26,13 +26,13 @@ var Menu1 = /** @class */ (function (_super) {
         return React.createElement("div", null, this.menuChilds);
     };
     Menu1.prototype.menuLoop = function (getData, getChild) {
-        for (var i = 0; i < getData.length; i++) {
-            var value = getData[i];
-            this.menuChilds.push(React.createElement("div", { className: "item" },
-                React.createElement("span", null, value.name),
-                (value.items !== undefined && value.items.length > 0) ?
-                    this.menuLoop(value.items, true) : ''));
-        }
+        // for (let i = 0; i < getData.length; i++) {
+        //     let value = getData[i];
+        //     this.menuChilds.push(<div className="item">
+        //         <span>{value.name}</span>{(value.items !== undefined && value.items.length > 0) ?
+        //         this.menuLoop(value.items, true) : ''}
+        //     </div>);
+        // }
     };
     return Menu1;
 }(React.Component));

@@ -77,7 +77,7 @@ var MenuExample = /** @class */ (function (_super) {
             }
         ];
         return React.createElement("div", null,
-            React.createElement(karcin_ui_1.Menu1, { data: data }));
+            React.createElement(karcin_ui_1.Menu, { data: data }));
     };
     return MenuExample;
 }(React.Component));

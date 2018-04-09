@@ -20,6 +20,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var BaseInput_1 = require("./base/BaseInput");
+var reactstrap_1 = require("reactstrap");
 var TextInput = /** @class */ (function (_super) {
     __extends(TextInput, _super);
     function TextInput(props) {
@@ -27,7 +28,7 @@ var TextInput = /** @class */ (function (_super) {
     }
     TextInput.prototype.render = function () {
         //label için sağ sol üst seçenekleri konulsun, hatta button ile birlikte beraber kullanılabilir.
-        var label = this.props.label != null ? React.createElement("span", null, this.props.label) : null;
+        var label = this.props.label != null ? React.createElement(reactstrap_1.Label, null, this.props.label) : null;
         return React.createElement("div", null,
             label,
             React.createElement(BaseInput_1.default, __assign({}, this.props)));

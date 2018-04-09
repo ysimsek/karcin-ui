@@ -1,110 +1,53 @@
-// import * as React from "react";
-// import {Button,Row,Col,Label} from "reactstrap";
-// import {SelectInput,TextInput,FaIcon} from "karcin-ui";
-// import {debug} from "util";
-//
-// const items = [
-//     {id:1,value:"Bottom Right",position:"BOTTOM_RIGHT"},
-//     {id:2,value:"Bottom Left",position:"BOTTOM_LEFT"},
-//     {id:3,value:"Bottom Center",position:"BOTTOM_CENTER"},
-//     {id:4,value:"Top Right",position:"TOP_RIGHT"},
-//     {id:5,value:"Top Left",position:"TOP_LEFT"},
-//     {id:6,value:"Top Center",position:"TOP_CENTER"}
-// ];
-//
-// export default class NotifyExample extends React.Component<any,any>{
-//     constructor(props:Object){
-//         super(props);
-//         this.state = {
-//             selectPosition : "",
-//             message:"Default message"
-//         }
-//     }
-//     render(){
-//         return <Row>
-//             <Col md={4}>
-//                 <Label>Notify pozisyonunu seçiniz!</Label>
-//                 <SelectInput
-//                     name="selectPosition"
-//                     label={"Notify pozisyonunun seçiniz"}
-//                     item={this.state.selectPosition}
-//                     value="value"
-//                     id="id"
-//                     items={items}
-//                     onChange={this.__onSelect.bind(this)}/>
-//             </Col>
-//             <Col md={4}>
-//                 <TextInput
-//                     name="message"
-//                     value={this.state.message}
-//                     onChange={this.__onSelect.bind(this)}
-//                 />
-//             </Col>
-//             <Button color={""} onClick={this.__notify.bind(this)}>NOTIFY</Button>
-//             <Button color={""} onClick={this.__topLeft}>custom</Button>
-//         </Row>
-//     }
-//
-//     __onSelect(e){
-//         let name = e.target.name;
-//         let state = [];
-//         state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
-//         this.setState(state);
-//     }
-//
-//     __notify(){
-//         let position:string  = "";
-//         items.forEach(function (v) {
-//             debugger;
-//             if(v.id == Number(this.state.selectPosition)){
-//                 position = v.position;
-//             }
-//         }.bind(this));
-//         let data = {}
-//     }
-//
-//     __topLeft(e){
-//         let message = <div>Components import <FaIcon code={"fa-pie-chart"}/></div>;
-//         let object = {
-//             message:message, //string or jsx
-//             time:false,  ///number and boolean
-//             position:"TOP_LEFT" //string
-//         };
-//         //delay kontrolü yap
-//         Notify.success(object);
-//     }
-//
-//     __topRight(e){
-//         let object = {
-//             message:"TOP RİGHT",
-//             time:6,
-//             position:"TOP_RIGHT"
-//         };
-//         Notify.info(object);
-//     }
-//
-//     __topCenter(e){
-//         let object = {
-//             message:"TOP CENTER",
-//             time:7,
-//             position:"TOP_CENTER"
-//         };
-//         Notify.warning(object);
-//     }
-//
-//     __bottomLeft(e){
-//         let object = {
-//             message:"TOP CENTER",
-//             time:1,
-//             position:"TOP_CENTER"
-//         };
-//         Notify.warning(object);
-//     }
-//     __bottomRight(e){
-//         // Notify.customNotify();
-//     }
-//     __bottomCenter(e){
-//
-//     }
-// }
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = require("react");
+var reactstrap_1 = require("reactstrap");
+var karcin_ui_1 = require("karcin-ui");
+var items = [
+    { id: 1, value: "Bottom Right", position: "BOTTOM_RIGHT" },
+    { id: 2, value: "Bottom Left", position: "BOTTOM_LEFT" },
+    { id: 3, value: "Bottom Center", position: "BOTTOM_CENTER" },
+    { id: 4, value: "Top Right", position: "TOP_RIGHT" },
+    { id: 5, value: "Top Left", position: "TOP_LEFT" },
+    { id: 6, value: "Top Center", position: "TOP_CENTER" }
+];
+var NotifyExample = /** @class */ (function (_super) {
+    __extends(NotifyExample, _super);
+    function NotifyExample(props) {
+        var _this = _super.call(this, props) || this;
+        _this.state = {
+            selectPosition: "",
+            message: "Default message"
+        };
+        return _this;
+    }
+    NotifyExample.prototype.render = function () {
+        return React.createElement(reactstrap_1.Row, null,
+            React.createElement(reactstrap_1.Col, { md: 4 },
+                React.createElement(karcin_ui_1.SelectInput, { name: "selectPosition", label: "Notify pozisyonunun seçiniz", item: this.state.selectPosition, value: "value", id: "id", items: items, onChange: this.__onSelect.bind(this) })),
+            React.createElement(reactstrap_1.Col, { md: 4 },
+                React.createElement(karcin_ui_1.TextInput, { name: "message", label: "Mesaj Yazınız", value: this.state.message, onChange: this.__onSelect.bind(this) })));
+    };
+    NotifyExample.prototype.onClick = function (e) {
+        debugger;
+    };
+    NotifyExample.prototype.__onSelect = function (e) {
+        var name = e.target.name;
+        var state = [];
+        state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
+        this.setState(state);
+    };
+    return NotifyExample;
+}(React.Component));
+exports.default = NotifyExample;
 //# sourceMappingURL=NotifyExample.js.map
