@@ -1,16 +1,18 @@
 import * as React from "react";
-import Input, {BaseInputProps} from "./base/BaseInput";
+import Input from "./base/BaseInput";
+import {Label,InputGroup, InputGroupAddon} from "reactstrap";
 
 export interface PasswordInputProps{
-    style?: React.CSSProperties,
-    label?: string,
-    name?: string,
-    value?: any,
-    validations?: object,
-    type?: string,
-    disabled?: boolean,
-    readOnly?: boolean,
-    hidden?: boolean,
+    style?: React.CSSProperties;
+    label?: string;
+    labelType?:string | any;//prepend or append
+    name?: string;
+    value?: any;
+    validations?: object;
+    type?: string;
+    disabled?: boolean;
+    readOnly?: boolean;
+    hidden?: boolean;
     onChange?:any;
     // validationDisplay: oneOf(["overlay", "block"])
 }
@@ -26,6 +28,7 @@ export default class PasswordInput extends React.Component<PasswordInputProps>{
         readOnly: false,
         hidden: false,
         label : "",
+        labelType:"prepend",
         type:"password"
     }
 
@@ -34,8 +37,8 @@ export default class PasswordInput extends React.Component<PasswordInputProps>{
     }
     render(){
         //todo :label için sağ sol üst seçenekleri konulsun, hatta button ile birlikte beraber kullanılabilir.
-        let label = this.props.label != "" ? <span>{this.props.label}</span> : null;
-        return <div>{label}<Input {...this.props}/></div>;
+        let label = this.props.label != "" ? <InputGroupAddon addonType={this.props.labelType}>{this.props.label}</InputGroupAddon> : null;
+        return <InputGroup>{label}<Input {...this.props}/></InputGroup>;
     }
 
 }

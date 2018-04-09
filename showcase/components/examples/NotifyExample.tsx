@@ -13,7 +13,7 @@ const items = [
 ];
 
 export default class NotifyExample extends React.Component<any,any>{
-    constructor(props:Object){
+    constructor(props:any){
         super(props);
         this.state = {
             selectPosition : "",
