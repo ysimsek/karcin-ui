@@ -12,80 +12,116 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var reactstrap_1 = require("reactstrap");
-var index_1 = require("../../index");
-var Menu = /** @class */ (function (_super) {
-    __extends(Menu, _super);
-    function Menu(props) {
+var FaIcon_1 = require("../../../lib/functional/faicon/FaIcon");
+var Menu2 = /** @class */ (function (_super) {
+    __extends(Menu2, _super);
+    function Menu2(props) {
         var _this = _super.call(this, props) || this;
+        _this.menuChilds = [];
         _this.state = {
-            active: {}
+            menuData: _this.props.data,
+            menuActive: []
         };
+        _this.menuLoop(_this.state.menuData);
         return _this;
     }
-    Menu.prototype.render = function () {
-        var menu = this.getMenu(this.props.data);
-        return menu;
+    Menu2.prototype.render = function () {
+        return React.createElement("div", null, this.menuChilds);
     };
-    Menu.prototype.getMenu = function (arr) {
-        var me = this;
-        var menu = [];
-        if (Array.isArray(arr) && arr.length > 0) {
-            arr.forEach(function (v, i) {
-                var subMenu = null;
-                if (v.items != undefined && Array.isArray(v.items) && v.items.length > 0) {
-                    subMenu = me.getMenu(v.items);
-                    menu.push(React.createElement(CollapseMenu, { key: i, item: v, collapse: v.collapse }, subMenu));
-                }
-                else {
-                    menu.push(me.getMenuItem(v, i));
-                }
-            });
-        }
-        return React.createElement(reactstrap_1.Nav, { vertical: true, className: "karcin-menu" }, menu);
-    };
-    Menu.prototype.getMenuItem = function (item, key) {
+    /**
+     * get start menu loop
+     * @param {any[]} getData
+     */
+    Menu2.prototype.menuLoop = function (getData) {
         var _this = this;
-        var activeClass = (item.id == this.state.active.id && item.name == this.state.active.name) ? "active" : "";
-        return React.createElement(reactstrap_1.NavItem, { key: key },
-            React.createElement(reactstrap_1.NavLink, { className: activeClass, onClick: function () {
-                    _this.setActiveItem(item);
-                }, href: (item.href) ? item.href : "#" },
-                (item.icon) ? React.createElement(index_1.FaIcon, { code: item.icon }) : "",
-                item.title));
-    };
-    Menu.prototype.setActiveItem = function (item) {
-        this.setState({ active: item });
-        if (this.props.onChange) {
-            this.props.onChange(item);
+        // reset list menu
+        this.menuChilds = [];
+        var _loop_1 = function (i) {
+            var value = getData[i];
+            // active control
+            var activeIconControl = false;
+            if (this_1.state.menuActive.indexOf(i.toString()) !== -1) {
+                activeIconControl = true;
+            }
+            else {
+                activeIconControl = false;
+            }
+            var menuHtml = React.createElement("div", { key: i + 1, className: "item" },
+                React.createElement("div", { className: "menu-head", onClick: function () { _this.toggleActiveMenu(i.toString()); } },
+                    (value.icon !== undefined) ? React.createElement(FaIcon_1.default, { code: value.icon }) : '',
+                    React.createElement("span", null, value.title),
+                    (this_1.props.type === 'dropDown' && value.items !== undefined) ? (activeIconControl ? React.createElement(FaIcon_1.default, { code: "fa-angle-up" }) : React.createElement(FaIcon_1.default, { code: "fa-angle-down" })) : ''),
+                (value.items !== undefined && value.items.length > 0) ? this_1.menuChildLoop(value.items, i.toString()) : '');
+            this_1.menuChilds.push(menuHtml);
+        };
+        var this_1 = this;
+        // loop main menu titles
+        for (var i = 0; i < getData.length; i++) {
+            _loop_1(i);
         }
     };
-    return Menu;
-}(React.Component));
-exports.default = Menu;
-var CollapseMenu = /** @class */ (function (_super) {
-    __extends(CollapseMenu, _super);
-    function CollapseMenu(props) {
-        var _this = _super.call(this, props) || this;
-        _this.toggle = _this.toggle.bind(_this);
-        _this.state = { collapse: props.collapse || false };
-        return _this;
-    }
-    CollapseMenu.prototype.render = function () {
-        var item = this.props.item;
-        return React.createElement(reactstrap_1.NavItem, { className: (this.state.collapse ? "opened" : "") },
-            (item.catTitle !== undefined ? React.createElement("h4", { className: "catTitle" }, item.catTitle) : ""),
-            React.createElement(reactstrap_1.NavLink, { href: "#", onClick: this.toggle },
-                (item.icon) ? React.createElement(index_1.FaIcon, { code: item.icon }) : "",
-                "  ",
-                React.createElement("span", null, item.title),
-                " ",
-                React.createElement(index_1.FaIcon, { className: "collapse-icon", code: (this.state.collapse) ? "fa-angle-down" : "fa-angle-right" })),
-            React.createElement(reactstrap_1.Collapse, { isOpen: this.state.collapse }, this.props.children));
+    /**
+     * get child menus
+     * @param {any[]} getChild
+     * @param {string} id
+     * @returns {Array<any>}
+     */
+    Menu2.prototype.menuChildLoop = function (getChild, id) {
+        var _this = this;
+        // child menu lists
+        var childs = [];
+        var _loop_2 = function (i) {
+            var valueChild = getChild[i];
+            var oldKey = id;
+            var newKey = id + "-" + i;
+            // active control
+            var active = false;
+            if (this_2.state.menuActive.indexOf(oldKey) !== -1) {
+                active = true;
+            }
+            else {
+                active = false;
+            }
+            // dropdown icon control
+            var activeIconControl = false;
+            if (this_2.state.menuActive.indexOf(newKey) !== -1) {
+                activeIconControl = true;
+            }
+            else {
+                activeIconControl = false;
+            }
+            childs.push(React.createElement(reactstrap_1.Collapse, { key: i, isOpen: active, id: oldKey },
+                React.createElement("div", { className: "menu-head", onClick: function () { _this.toggleActiveMenu(newKey); } },
+                    (valueChild.icon !== undefined) ? React.createElement(FaIcon_1.default, { code: valueChild.icon }) : '',
+                    React.createElement("span", null, valueChild.title),
+                    (this_2.props.type === 'dropDown' && valueChild.items !== undefined) ? (activeIconControl ? React.createElement(FaIcon_1.default, { code: "fa-angle-up" }) : React.createElement(FaIcon_1.default, { code: "fa-angle-down" })) : ''),
+                (valueChild.items !== undefined && valueChild.items.length > 0) ? this_2.menuChildLoop(valueChild.items, newKey) : ''));
+        };
+        var this_2 = this;
+        // child menu loop
+        for (var i = 0; i < getChild.length; i++) {
+            _loop_2(i);
+        }
+        return childs;
     };
-    CollapseMenu.prototype.toggle = function () {
-        this.setState({ collapse: !this.state.collapse });
+    /**
+     * toggle menu active
+     * @param {string} id
+     */
+    Menu2.prototype.toggleActiveMenu = function (id) {
+        if (this.state.menuActive.indexOf(id) !== -1) {
+            this.state.menuActive.splice(this.state.menuActive.indexOf(id), 1);
+        }
+        else {
+            this.state.menuActive.push(id);
+        }
+        this.forceUpdate();
+        this.menuLoop(this.state.menuData);
     };
-    return CollapseMenu;
+    Menu2.defaultProps = {
+        type: 'dropDown'
+    };
+    return Menu2;
 }(React.Component));
-exports.CollapseMenu = CollapseMenu;
+exports.default = Menu2;
 //# sourceMappingURL=Menu2.js.map

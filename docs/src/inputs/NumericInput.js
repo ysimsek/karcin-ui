@@ -39,8 +39,8 @@ var NumericInput = /** @class */ (function (_super) {
         var newProps = __rest(this.props, []);
         //todo: label için sağ sol üst seçenekleri konulsun, hatta button ile birlikte beraber kullanılabilir.
         //selectinput için yapıldı
-        var label = this.props.label != null ? React.createElement(reactstrap_1.Label, null, this.props.label) : null;
-        return React.createElement("div", null,
+        var label = this.props.label != null ? React.createElement(reactstrap_1.InputGroupAddon, { addonType: this.props.labelType }, this.props.label) : null;
+        return React.createElement(reactstrap_1.InputGroup, null,
             label,
             React.createElement(BaseInput_1.default, __assign({}, newProps, { onChange: this.__onChange.bind(this) })));
     };
@@ -72,7 +72,8 @@ var NumericInput = /** @class */ (function (_super) {
         disabled: false,
         readOnly: false,
         hidden: false,
-        type: "number"
+        type: "number",
+        labelType: "prepend"
     };
     return NumericInput;
 }(React.Component));
