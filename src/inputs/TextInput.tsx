@@ -1,6 +1,6 @@
 import * as React from "react";
 import Input, {BaseInputProps} from "./base/BaseInput";
-import {Label} from "reactstrap";
+import {Label,InputGroup, InputGroupAddon} from "reactstrap";
 
 export interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement>{
     style?: React.CSSProperties;
@@ -8,6 +8,7 @@ export interface TextInputProps extends React.InputHTMLAttributes<HTMLInputEleme
     name?: string;
     value?: any;
     validations?: object;
+    labelType?:string | any;//prepend or append
     type?: string;
     disabled?: boolean;
     readOnly?: boolean;
@@ -26,7 +27,8 @@ export default class TextInput extends React.Component<TextInputProps>{
         readOnly: false,
         hidden: false,
         label : "",
-        type:"text"
+        type:"text",
+        labelType:"prepend",
     }
 
     constructor(props:any){
@@ -34,8 +36,8 @@ export default class TextInput extends React.Component<TextInputProps>{
     }
     render(){
         //label için sağ sol üst seçenekleri konulsun, hatta button ile birlikte beraber kullanılabilir.
-        let label = this.props.label != null ? <Label>{this.props.label}</Label> : null;
-        return <div>{label}<Input {...this.props}/></div>;
+        let label = this.props.label != null ? <InputGroupAddon addonType={this.props.labelType}>{this.props.label}</InputGroupAddon> : null;
+        return <InputGroup>{label}<Input {...this.props}/></InputGroup>;
     }
 
 }

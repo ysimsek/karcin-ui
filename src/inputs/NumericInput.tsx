@@ -1,47 +1,33 @@
-import * as React from "react";
-import Input, {BaseInputProps} from "./base/BaseInput";
-import {Label} from "reactstrap";
+import * as React from 'react';
+import Input from "./base/BaseInput";
+import {Label,InputGroup, InputGroupAddon} from "reactstrap";
 
-export interface NumericInputProps{
-    /**
-     * React Css Properties
-     */
-    style?: React.CSSProperties,
-    /**
-     * label used to edit the text
-     */
-    label?: string,
-    /**
-     * input name
-     */
-    name?: string,
-    /**
-     * input value
-     */
-    value?: any,
-    validations?: object,
-    /**
-     * Html input types
-     * default as numeric
-     */
-    type?: string,
-    disabled?: boolean,
-    readOnly?: boolean,
-    hidden?: boolean,
-    onChange?: any,
-    placeHolder?: string
-    // validationDisplay: oneOf(["overlay", "block"])
+export interface NumericInputProps extends React.InputHTMLAttributes<HTMLInputElement>{
+    style?: React.CSSProperties;
+    label?: string;
+    labelType?:string | any;//prepend or append
+    name?: string;
+    value?: any;
+    validations?: object;
+    type?: string;
+    disabled?: boolean;
+    readOnly?: boolean;
+    hidden?: boolean;
+    onChange?: any;
+    placeHolder?: string;
 }
 
 
 
-export default class NumericInput extends React.Component<NumericInputProps>{
+
+export default class NumericInput extends React.Component<NumericInputProps,any>{
 
     public static defaultProps: Partial<NumericInputProps> = {
         disabled: false,
         readOnly: false,
         hidden: false,
-        type:"number"
+        type:"number",
+        labelType:"prepend"
     }
 
     constructor(props:any){
@@ -52,12 +38,12 @@ export default class NumericInput extends React.Component<NumericInputProps>{
         let { ...newProps } = this.props;
         //todo: label için sağ sol üst seçenekleri konulsun, hatta button ile birlikte beraber kullanılabilir.
         //selectinput için yapıldı
-        let label = this.props.label != null ? <Label>{this.props.label}</Label> : null;
-        return <div>{label}<Input
+        let label = this.props.label != null ? <InputGroupAddon addonType={this.props.labelType}>{this.props.label}</InputGroupAddon> : null;
+        return <InputGroup>{label}<Input
             {...newProps}
             onChange={this.__onChange.bind(this)}
         />
-        </div>;
+        </InputGroup>;
     }
 
     /**
