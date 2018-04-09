@@ -1,6 +1,6 @@
 import * as React from "react";
 import Enums from "./enums/Enums";
-import {Label} from "reactstrap";
+import {Label,InputGroup, InputGroupAddon} from "reactstrap";
 
 export interface SelectInputProps{
     items: Array<any>;
@@ -54,7 +54,7 @@ export default class SelectInput extends React.Component<SelectInputProps>{
         let value = this.props.value != undefined ? this.props.value :"value";
         if(items.length >0){
             items.forEach(function (v) {
-                renderItem.push(<option value={v[id]}>{v[value]}</option>);
+                renderItem.push(<option key={v[id]} value={v[id]}>{v[value]}</option>);
             });
         }
         return renderItem;
