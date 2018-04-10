@@ -4,7 +4,7 @@ import {Label,InputGroup, InputGroupAddon} from "reactstrap";
 
 export interface PasswordInputProps{
     style?: React.CSSProperties;
-    label?: string;
+    label?: string | JSX.Element;
     labelType?:string | any;//prepend or append
     name?: string;
     value?: any;
@@ -27,7 +27,7 @@ export default class PasswordInput extends React.Component<PasswordInputProps>{
         readOnly: false,
         hidden: false,
         label : "",
-        labelType:"prepend",
+        labelType:'append',
         type:"password"
     }
 
