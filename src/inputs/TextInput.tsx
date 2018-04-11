@@ -36,8 +36,8 @@ export default class TextInput extends React.Component<TextInputProps>{
     }
     render(){
         //label için sağ sol üst seçenekleri konulsun, hatta button ile birlikte beraber kullanılabilir.
-        let label = this.props.label != null ? <InputGroupAddon addonType={this.props.labelType}>{this.props.label}</InputGroupAddon> : null;
-        return <InputGroup>{label}<Input {...this.props}/></InputGroup>;
+        let label = this.props.label != null ? <Label>{this.props.label}</Label> : null;
+        return <div>{label}<Input {...this.props}/></div>;
     }
 
 }

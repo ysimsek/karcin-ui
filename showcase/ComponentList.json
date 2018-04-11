@@ -98,6 +98,14 @@
           "href":"#/Components/TextArea",
           "samples":"components/inputs/TextAreaExample",
           "library":"inputs/TextArea"
+        },
+        {
+          "id":6,
+          "name":"RadioInput",
+          "title":"RadioInput",
+          "href":"#/Components/RadioInput",
+          "samples":"components/inputs/RadioInputExample",
+          "library":"inputs/RadioInput"
         }
 
       ]

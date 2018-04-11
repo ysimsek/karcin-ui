@@ -4,3 +4,7 @@ textarea {
     width: 100%;
     max-width: 100% !important;
 }
+.radio{
+    margin: 5px;
+    padding: 2px;
+}

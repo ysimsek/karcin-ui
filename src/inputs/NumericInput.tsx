@@ -38,12 +38,12 @@ export default class NumericInput extends React.Component<NumericInputProps,any>
         let { ...newProps } = this.props;
         //todo: label için sağ sol üst seçenekleri konulsun, hatta button ile birlikte beraber kullanılabilir.
         //selectinput için yapıldı
-        let label = this.props.label != null ? <InputGroupAddon addonType={this.props.labelType}>{this.props.label}</InputGroupAddon> : null;
-        return <InputGroup>{label}<Input
+        let label = this.props.label != null ? <Label>{this.props.label}</Label> : null;
+        return <div>{label}<Input
             {...newProps}
             onChange={this.__onChange.bind(this)}
         />
-        </InputGroup>;
+        </div>;
     }
 
     /**
