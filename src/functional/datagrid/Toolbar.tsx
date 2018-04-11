@@ -45,29 +45,29 @@ export default class Toolbar extends React.Component<ToolbarProps, ToolbarState>
                 <Row>
                     <Col xs="4">
                         <div className="showing">
-                            <ButtonGroup>
-                                <Button color="defaults" active><span>10</span></Button>
-                                <Button color="defaults"><span>20</span></Button>
-                                <Button color="defaults"><span>30</span></Button>
-                            </ButtonGroup>
+                            {/*<ButtonGroup>*/}
+                                {/*<Button color="defaults" active><span>10</span></Button>*/}
+                                {/*<Button color="defaults"><span>20</span></Button>*/}
+                                {/*<Button color="defaults"><span>30</span></Button>*/}
+                            {/*</ButtonGroup>*/}
                         </div>
                     </Col>
                     <Col xs="4">
                         <div className="pagination">
-                            <ButtonGroup>
-                                <Button color="defaults" className="arrow next"><span><FaIcon
-                                    code="fa-angle-left"/></span></Button>
-                                <Button color="defaults" active><span>1</span></Button>
-                                <Button color="defaults"><span>2</span></Button>
-                                <Button color="defaults"><span>3</span></Button>
-                                <Button color="defaults" className="arrow next"><span><FaIcon
-                                    code="fa-angle-right"/></span></Button>
-                            </ButtonGroup>
+                            {/*<ButtonGroup>*/}
+                                {/*<Button color="defaults" className="arrow next"><span><FaIcon*/}
+                                    {/*code="fa-angle-left"/></span></Button>*/}
+                                {/*<Button color="defaults" active><span>1</span></Button>*/}
+                                {/*<Button color="defaults"><span>2</span></Button>*/}
+                                {/*<Button color="defaults"><span>3</span></Button>*/}
+                                {/*<Button color="defaults" className="arrow next"><span><FaIcon*/}
+                                    {/*code="fa-angle-right"/></span></Button>*/}
+                            {/*</ButtonGroup>*/}
                         </div>
                     </Col>
                     <Col xs="4" className="data-grid-detail">
-                        <div className="showing-text"><strong>Gösterilen : </strong> <span>10</span></div>
-                        <div className="pagination-text"><strong>Sayfa : </strong> <span>1/10</span></div>
+                        {/*<div className="showing-text"><strong>Gösterilen : </strong> <span>10</span></div>*/}
+                        {/*<div className="pagination-text"><strong>Sayfa : </strong> <span>1/10</span></div>*/}
                     </Col>
                 </Row>
             </div>;

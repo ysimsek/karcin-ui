@@ -90,18 +90,31 @@ body {padding: 0; margin: 0; font-family: 'Quicksand', sans-serif; color:#303030
 }
 
 .side-menu .collapse-icon {float: right; padding-right: 10px;}
-.side-menu .nav-item {padding-left: 10px;}
 .side-menu .nav-item .nav {padding-left: 15px;}
-.side-menu .nav-link {
-    display: block;
-    padding: 0.25rem 0.5rem;
+.side-menu .nav-item {
+    color:#c6c6c6;
+    padding-left: 10px;
+}
+
+.side-menu .nav-item .nav-link {
     color:#c6c6c6;
 }
 
-.side-menu .nav-link:hover {
-    display: block;
-    padding: 0.25rem 0.5rem;
+.side-menu .karcin-menu.hover .nav-item:hover,
+.side-menu .karcin-menu.hover .nav-item:hover .nav-link,
+.side-menu .karcin-menu.hover .nav-item.active,
+.side-menu .karcin-menu.hover .nav-item.active .nav-link{
+    color:#ffffff;
+    background-color: #afc098;
+}
+
+.side-menu .karcin-menu .nav-item:hover > .menu-head > .nav-link,
+.side-menu .karcin-menu .nav-item.active > .menu-head > .nav-link{
     color:#afc098;
+}
+
+.side-menu .nav-item .nav-item:hover .nav-link {
+    background-color: #303030;
 }
 
 .container-component {

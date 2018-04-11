@@ -7,40 +7,43 @@ import TableHead from './TableHead';
 import Toolbar  from './Toolbar';
 
 export interface DataGridProps {
-    data?:any;
-    fields?: any[];
-    toolbar?: any[];
+    data?:Array<any>;
+    fields?: Array<any>;
+    toolbar?: Array<any>;
     onSelected?: any;
 }
 
 export interface DataGridState {
-    data?: any;
-    fields?: any[];
-    dataGridId : any;
-    toolbar?: any[];
+    data?: Array<any>;
+    fields?: Array<any>;
+    toolbar?: Array<any>;
 }
 
 export default class DataGrid extends React.Component<DataGridProps, DataGridState> {
+
+    private dataGridId = Math.floor(Math.random() * 20);
+
     constructor(props: DataGridProps) {
         super(props);
 
-        this.state = {
-            data : this.props.data,
-            fields : this.props.fields,
-            dataGridId: Math.floor(Math.random() * 20)
-        }
+        this.init(props);
+
     }
 
-    componentWillReceiveProps(props:any){
-        this.setState({
-            data:this.props.data,
-            fields : this.props.fields
-        })
+    componentWillReceiveProps(props:DataGridProps){
+        this.init(props);
+    }
+
+    private init(props:DataGridProps){
+        this.state = {
+            data: props.data,
+            fields: props.fields
+        }
     }
 
 
     render() {
-        return <div className="karcin-data-grid" id={'karcinDataGrid' + this.state.dataGridId}>
+        return <div className="karcin-data-grid" id={'karcinDataGrid' + this.dataGridId}>
             <Toolbar data={this.props.toolbar}/>
             <div className="data-grid-body">
                 <table className="table table-bordered dataGrid">
@@ -48,7 +51,7 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
                     <TableBody onSelected={this.props.onSelected} data={this.state.data} fields={this.state.fields}/>
                 </table>
             </div>
-            <Toolbar type="footer"/>
+            {/*<Toolbar type="footer"/>*/}
         </div>;
     }
 

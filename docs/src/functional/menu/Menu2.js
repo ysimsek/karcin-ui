@@ -13,6 +13,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var reactstrap_1 = require("reactstrap");
 var FaIcon_1 = require("../../../lib/functional/faicon/FaIcon");
+require("./Menu.scss");
 var Menu2 = /** @class */ (function (_super) {
     __extends(Menu2, _super);
     function Menu2(props) {
@@ -20,13 +21,20 @@ var Menu2 = /** @class */ (function (_super) {
         _this.menuChilds = [];
         _this.state = {
             menuData: _this.props.data,
-            menuActive: []
+            menuActive: [],
+            type: _this.props.type
         };
         _this.menuLoop(_this.state.menuData);
         return _this;
     }
+    Menu2.prototype.componentWillReceiveProps = function (props) {
+        this.setState({
+            menuData: props.data,
+            type: props.type
+        });
+    };
     Menu2.prototype.render = function () {
-        return React.createElement("div", null, this.menuChilds);
+        return React.createElement(reactstrap_1.Nav, { className: "karcin-menu " + ((this.state.type === 'hover') ? 'hover-menu' : '') }, this.menuChilds);
     };
     /**
      * get start menu loop
@@ -46,11 +54,15 @@ var Menu2 = /** @class */ (function (_super) {
             else {
                 activeIconControl = false;
             }
-            var menuHtml = React.createElement("div", { key: i + 1, className: "item" },
-                React.createElement("div", { className: "menu-head", onClick: function () { _this.toggleActiveMenu(i.toString()); } },
-                    (value.icon !== undefined) ? React.createElement(FaIcon_1.default, { code: value.icon }) : '',
-                    React.createElement("span", null, value.title),
-                    (this_1.props.type === 'dropDown' && value.items !== undefined) ? (activeIconControl ? React.createElement(FaIcon_1.default, { code: "fa-angle-up" }) : React.createElement(FaIcon_1.default, { code: "fa-angle-down" })) : ''),
+            var menuHtml = React.createElement(reactstrap_1.NavItem, { key: i.toString(), className: (activeIconControl) ? 'active' : '' },
+                React.createElement("div", { className: "menu-head", onClick: function () { if (_this.state.type === 'dropDown') {
+                        _this.toggleActiveMenu(i.toString());
+                    } } },
+                    React.createElement(reactstrap_1.NavLink, { href: (value.href) ? value.href : "#" },
+                        (value.icon !== undefined) ? React.createElement(FaIcon_1.default, { code: value.icon, className: "menu-icon" }) : '',
+                        value.title,
+                        (value.badge !== undefined) ? React.createElement(reactstrap_1.Badge, { color: value.badgeColor }, value.badge) : '',
+                        (value.items !== undefined) ? (activeIconControl ? React.createElement(FaIcon_1.default, { code: "fa-angle-down", className: "open-icon" }) : React.createElement(FaIcon_1.default, { code: "fa-angle-right", className: "open-icon" })) : '')),
                 (value.items !== undefined && value.items.length > 0) ? this_1.menuChildLoop(value.items, i.toString()) : '');
             this_1.menuChilds.push(menuHtml);
         };
@@ -70,38 +82,37 @@ var Menu2 = /** @class */ (function (_super) {
         var _this = this;
         // child menu lists
         var childs = [];
-        var _loop_2 = function (i) {
-            var valueChild = getChild[i];
-            var oldKey = id;
-            var newKey = id + "-" + i;
-            // active control
-            var active = false;
-            if (this_2.state.menuActive.indexOf(oldKey) !== -1) {
-                active = true;
-            }
-            else {
-                active = false;
-            }
-            // dropdown icon control
-            var activeIconControl = false;
-            if (this_2.state.menuActive.indexOf(newKey) !== -1) {
-                activeIconControl = true;
-            }
-            else {
-                activeIconControl = false;
-            }
-            childs.push(React.createElement(reactstrap_1.Collapse, { key: i, isOpen: active, id: oldKey },
-                React.createElement("div", { className: "menu-head", onClick: function () { _this.toggleActiveMenu(newKey); } },
-                    (valueChild.icon !== undefined) ? React.createElement(FaIcon_1.default, { code: valueChild.icon }) : '',
-                    React.createElement("span", null, valueChild.title),
-                    (this_2.props.type === 'dropDown' && valueChild.items !== undefined) ? (activeIconControl ? React.createElement(FaIcon_1.default, { code: "fa-angle-up" }) : React.createElement(FaIcon_1.default, { code: "fa-angle-down" })) : ''),
-                (valueChild.items !== undefined && valueChild.items.length > 0) ? this_2.menuChildLoop(valueChild.items, newKey) : ''));
-        };
-        var this_2 = this;
-        // child menu loop
-        for (var i = 0; i < getChild.length; i++) {
-            _loop_2(i);
+        var self = this;
+        //active control
+        var active = false;
+        if (self.state.menuActive.indexOf(id) !== -1) {
+            active = true;
         }
+        else {
+            active = false;
+        }
+        childs.push(React.createElement(reactstrap_1.Nav, null,
+            React.createElement(reactstrap_1.Collapse, { key: id, isOpen: active, id: id }, getChild.map(function (val, i) {
+                var oldKey = id;
+                var newKey = id + "-" + i;
+                // dropdown icon control
+                var activeIconControl = false;
+                if (self.state.menuActive.indexOf(newKey) !== -1) {
+                    activeIconControl = true;
+                }
+                else {
+                    activeIconControl = false;
+                }
+                return React.createElement(reactstrap_1.NavItem, { key: i + id },
+                    React.createElement("div", { className: "menu-head", onClick: function () { if (_this.state.type === 'dropDown') {
+                            _this.toggleActiveMenu(newKey);
+                        } } },
+                        (val.icon !== undefined) ? React.createElement(FaIcon_1.default, { code: val.icon, className: "menu-icon" }) : '',
+                        React.createElement(reactstrap_1.NavLink, { href: (val.href) ? val.href : '#' }, val.title),
+                        (val.badge !== undefined) ? React.createElement(reactstrap_1.Badge, { color: val.badgeColor }, val.badge) : '',
+                        (val.items !== undefined) ? (activeIconControl ? React.createElement(FaIcon_1.default, { code: "fa-angle-down", className: "open-icon" }) : React.createElement(FaIcon_1.default, { code: "fa-angle-right", className: "open-icon" })) : ''),
+                    (val.items !== undefined && val.items.length > 0) ? self.menuChildLoop(val.items, newKey) : '');
+            }))));
         return childs;
     };
     /**
