@@ -90,7 +90,14 @@
           "href":"#/Components/TextInput",
           "samples":"components/inputs/TextInputExample",
           "library":"inputs/TextInput"
-
+        },
+        {
+          "id":5,
+          "name":"TextArea",
+          "title":"TextArea",
+          "href":"#/Components/TextArea",
+          "samples":"components/inputs/TextAreaExample",
+          "library":"inputs/TextArea"
         }
 
       ]
