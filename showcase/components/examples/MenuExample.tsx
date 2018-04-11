@@ -1,21 +1,23 @@
 import * as React from "react";
-import {Menu2} from 'karcin-ui';
+import {Menu} from 'karcin-ui';
 
 export default class MenuExample extends React.Component {
     render() {
-        let data = [
+        let data:Array<any> = [
             {
                 "id":1,
                 "name":"functional",
                 "title":"Functional",
                 "icon":"fa-cubes",
                 "collapse":true,
+                "badge" : "12",
+                "badgeColor" : "primary",
                 "items":[
                     {
                         "id":1,
                         "name":"Button",
                         "title":"Button",
-                        "href":"#/Components/Button",
+                        "href":"#/Components/Button"
                     },
                     {
                         "id":2,
@@ -62,7 +64,7 @@ export default class MenuExample extends React.Component {
             }
         ];
         return <div>
-            <Menu2 data={data} />
+            <Menu data={data} />
         </div>;
     }
 }

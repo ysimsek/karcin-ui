@@ -1,0 +1,52 @@
+.karcin-menu {
+  display: block;
+  .nav-item {
+    display: block;
+
+    .nav-link {
+      display: block;
+    }
+
+    .open-icon {
+      float: right;
+      margin-top: 4px;
+    }
+
+    .menu-icon {
+      margin-right: 5px;
+    }
+
+    .menu-head {
+      cursor: pointer;
+    }
+  }
+
+  // hover menu
+  &.hover-menu {
+    max-width: 100%;
+    .nav-item {
+      position: relative;
+
+      &:hover {
+        >ul.nav > .collapse{
+          display: block;
+        }
+      }
+
+      ul.nav {
+        background-color: #303030;
+        position: absolute;
+        width: 300px;
+        right: -300px;
+        top: 0;
+        display: block;
+        z-index: 999999;
+        padding: 0px;
+
+        .nav-item {
+          padding-left: 0;
+        }
+      }
+    }
+  }
+}

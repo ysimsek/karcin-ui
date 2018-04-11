@@ -25,12 +25,14 @@ var MenuExample = /** @class */ (function (_super) {
                 "title": "Functional",
                 "icon": "fa-cubes",
                 "collapse": true,
+                "badge": "12",
+                "badgeColor": "primary",
                 "items": [
                     {
                         "id": 1,
                         "name": "Button",
                         "title": "Button",
-                        "href": "#/Components/Button",
+                        "href": "#/Components/Button"
                     },
                     {
                         "id": 2,
@@ -77,7 +79,7 @@ var MenuExample = /** @class */ (function (_super) {
             }
         ];
         return React.createElement("div", null,
-            React.createElement(karcin_ui_1.Menu2, { data: data }));
+            React.createElement(karcin_ui_1.Menu, { data: data }));
     };
     return MenuExample;
 }(React.Component));
