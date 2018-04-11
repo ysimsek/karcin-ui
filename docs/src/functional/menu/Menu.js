@@ -12,8 +12,8 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var reactstrap_1 = require("reactstrap");
-var FaIcon_1 = require("../../../lib/functional/faicon/FaIcon");
-require("./Menu.scss");
+var FaIcon_1 = require("../faicon/FaIcon");
+require("../../css/sass/menu.scss");
 var Menu = /** @class */ (function (_super) {
     __extends(Menu, _super);
     function Menu(props) {
@@ -22,7 +22,8 @@ var Menu = /** @class */ (function (_super) {
         _this.state = {
             menuData: _this.props.data,
             menuActive: [],
-            type: _this.props.type
+            type: _this.props.type,
+            urlActive: []
         };
         _this.menuLoop(_this.state.menuData);
         return _this;
@@ -95,6 +96,7 @@ var Menu = /** @class */ (function (_super) {
             React.createElement(reactstrap_1.Collapse, { key: id, isOpen: active, id: id }, getChild.map(function (val, i) {
                 var oldKey = id;
                 var newKey = id + "-" + i;
+                self.urlHashControl(val, newKey);
                 // dropdown icon control
                 var activeIconControl = false;
                 if (self.state.menuActive.indexOf(newKey) !== -1) {
@@ -103,7 +105,7 @@ var Menu = /** @class */ (function (_super) {
                 else {
                     activeIconControl = false;
                 }
-                return React.createElement(reactstrap_1.NavItem, { key: i + id },
+                return React.createElement(reactstrap_1.NavItem, { key: i + id, className: (activeIconControl) ? 'active' : '' },
                     React.createElement("div", { className: "menu-head", onClick: function () { if (_this.state.type === 'dropDown') {
                             _this.toggleActiveMenu(newKey);
                         } } },
@@ -128,6 +130,22 @@ var Menu = /** @class */ (function (_super) {
         }
         this.forceUpdate();
         this.menuLoop(this.state.menuData);
+    };
+    Menu.prototype.urlHashControl = function (item, key) {
+        var hash = window.location.hash;
+        if (hash !== undefined && hash !== "") {
+            if (item.href !== undefined && item.href === hash) {
+                if (this.state.menuActive.indexOf(this.state.urlActive[0]) === -1) {
+                    this.state.menuActive.push(key);
+                }
+                else {
+                    this.state.menuActive.splice(this.state.menuActive.indexOf(this.state.urlActive[0]), 1);
+                }
+                this.state.urlActive.splice(0, 1);
+                this.state.urlActive.push(key);
+                this.forceUpdate();
+            }
+        }
     };
     Menu.defaultProps = {
         type: 'dropDown'

@@ -24,7 +24,8 @@ export interface MenuData {
 export interface MenuState {
     menuData: Array<MenuData> | any,
     menuActive?: any[] | any,
-    type?: string
+    type?: string,
+    urlActive?: Array<any> | any
 }
 
 export default class Menu extends React.Component<MenuProps, MenuState> {
@@ -41,7 +42,8 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
         this.state = {
             menuData: this.props.data,
             menuActive: [],
-            type: this.props.type
+            type: this.props.type,
+            urlActive : []
         };
 
         this.menuLoop(this.state.menuData);
@@ -69,6 +71,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
         // reset list menu
         this.menuChilds = [];
 
+
         // loop main menu titles
         for (let i:number = 0; i < getData.length; i++) {
             let value = getData[i];
@@ -83,7 +86,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
 
             let menuHtml = <NavItem key={i.toString()} className={(activeIconControl) ? 'active' : ''}>
                 <div className="menu-head" onClick={()=>{ if(this.state.type === 'dropDown'){this.toggleActiveMenu(i.toString())} }}>
-                    <NavLink href={(value.href)?value.href:"#"}>
+                    <NavLink href={(value.href) ? value.href : "#"}>
                         {(value.icon !== undefined) ? <FaIcon code={value.icon} className="menu-icon"/> : ''}
                         {value.title}{(value.badge !== undefined) ? <Badge color={value.badgeColor}>{value.badge}</Badge> : ''}
                         {(value.items !== undefined) ? (activeIconControl ? <FaIcon code="fa-angle-down" className="open-icon"/> : <FaIcon code="fa-angle-right" className="open-icon"/>) : ''}
@@ -106,6 +109,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
         let childs: Array<any> = [];
         let self:any = this;
 
+
         //active control
         let active: boolean = false;
         if (self.state.menuActive.indexOf(id) !== -1) { active = true; } else { active = false; }
@@ -116,11 +120,13 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
                     let oldKey:string = id;
                     let newKey:string = id + "-" + i;
 
+                    self.urlHashControl(val, newKey);
+
                     // dropdown icon control
                     let activeIconControl: boolean = false;
                     if (self.state.menuActive.indexOf(newKey) !== -1) { activeIconControl = true; } else { activeIconControl = false; }
 
-                    return <NavItem key={i + id}>
+                    return <NavItem key={i + id} className={(activeIconControl) ? 'active' : ''}>
                             <div className="menu-head" onClick={()=>{ if(this.state.type === 'dropDown'){this.toggleActiveMenu(newKey)} }}>
                                 {(val.icon !== undefined) ? <FaIcon code={val.icon} className="menu-icon"/> : ''}
                                 <NavLink href={(val.href) ? val.href : '#'}>{val.title}</NavLink>
@@ -150,6 +156,28 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
         this.forceUpdate();
         this.menuLoop(this.state.menuData);
     }
+
+
+    urlHashControl(item:any, key:any){
+        let hash = window.location.hash;
+        if(hash !== undefined && hash !== ""){
+            if(item.href !== undefined && item.href === hash){
+
+                if(this.state.menuActive.indexOf(this.state.urlActive[0]) === -1){
+                    this.state.menuActive.push(key);
+                }else {
+                    this.state.menuActive.splice(this.state.menuActive.indexOf(this.state.urlActive[0]), 1);
+                }
+
+                this.state.urlActive.splice(0,1);
+                this.state.urlActive.push(key);
+
+                this.forceUpdate();
+            }
+        }
+    }
+
+
 
 
 }
