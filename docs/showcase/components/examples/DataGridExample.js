@@ -44,27 +44,27 @@ var DataGridExample = /** @class */ (function (_super) {
                     'id': '1',
                     'name': 'Deniz',
                     'surname': 'DALKILIÇ',
-                    'title': 'UI Developer'
+                    'title': 'Yazılım Uzmanı'
                 }, {
                     'id': '2',
                     'name': 'Yunus',
                     'surname': 'ŞİMŞEK',
-                    'title': 'UI Developer Lead'
+                    'title': 'Yazılım Uzmanı'
                 }, {
                     'id': '3',
                     'name': 'Tayyip',
                     'surname': 'DEMİRCAN',
-                    'title': 'Software Architect'
+                    'title': 'Yazılım Uzmanı'
                 }, {
                     'id': '4',
                     'name': 'Mustafa',
                     'surname': 'GÜNGÖR',
-                    'title': 'Software Specialist'
+                    'title': 'Yazılım Uzmanı'
                 }, {
                     'id': '5',
                     'name': 'Bora',
                     'surname': 'AVCI',
-                    'title': 'Project Manager and Team Lead'
+                    'title': 'Yazılım Uzmanı'
                 }]
         };
         return _this;
