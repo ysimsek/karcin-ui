@@ -1,7 +1,7 @@
 import * as React from "react";
 import {FaIcon} from 'karcin-ui';
 
-export default class FaIconExample extends React.Component {
+export default class FaIconExample extends React.Component<any, any> {
     render() {
         return (
             <div>

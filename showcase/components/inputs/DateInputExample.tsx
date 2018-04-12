@@ -1,8 +1,7 @@
 import * as React from "react";
 import {Row,Col, Label} from 'reactstrap';
-import DatePicker from 'react-datepicker';
+import {DatePicker} from "karcin-ui"
 import moment = require('moment');
-import "react-datepicker/dist/react-datepicker.css";
 
 export interface dataGridState {
     startDate1: moment.Moment;
@@ -11,7 +10,7 @@ export interface dataGridState {
     displayName: string;
 }
 
-export default class DateInputExample extends React.Component<any, dataGridState> {
+export default class DateInputExample extends React.Component<{}, dataGridState> {
     constructor(props: any) {
         super(props);
 
@@ -20,7 +19,7 @@ export default class DateInputExample extends React.Component<any, dataGridState
             startDate2 : moment(),
             startDate3 : moment(),
             displayName: 'Example'
-        }
+        };
 
         this.handleChange = this.handleChange.bind(this);
     }

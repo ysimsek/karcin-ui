@@ -11,6 +11,7 @@ import RadioInput from "./inputs/RadioInput";
 import DataGrid from "./functional/datagrid/DataGrid";
 import Notify from "./functional/notify/Notify";
 import Panel from "./functional/panel/Panel";
+import DatePicker from "./datepicker/DatePicker";
 import "./css/karcin-ui.css";
-export { Button, FaIcon, Menu, Tab, TabPanel, NumericInput, PasswordInput, SelectInput, TextInput,RadioInput, DataGrid, Notify, Panel};
+export { Button, FaIcon, Menu, Tab, TabPanel, NumericInput, PasswordInput, SelectInput, TextInput,RadioInput, DataGrid, Notify, Panel, DatePicker};
 export default Button;

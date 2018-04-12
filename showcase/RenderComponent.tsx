@@ -29,7 +29,7 @@ export default class RenderComponent extends React.Component<any, any> {
             <h2>{'<'}{this.props.item.name}{' />'}</h2>
             <p className="description">{this.props.item.description}</p>
             <div style={{marginTop:20}}>
-                <Tab activeTab={this.state.activeTab}>
+                <Tab activeTab={this.state.activeTab} className="component-props">
                     <TabPanel title="Example">
                         {this.getReactElement()}
                     </TabPanel>
