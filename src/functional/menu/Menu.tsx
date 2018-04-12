@@ -1,155 +1,99 @@
-import * as React from 'react';
-import {Collapse, Nav, NavItem, Badge, NavLink} from 'reactstrap';
-import FaIcon from '../faicon/FaIcon'
-import "../../css/sass/menu.scss";
+import * as React from "react";
+import {Nav, NavItem, NavLink, Collapse} from "reactstrap";
+import {FaIcon} from "../../index";
 
 export interface MenuProps {
-    data: Array<MenuData> | any;
-    type?: string;
+    data: Array<MenuItemsProps>;
+    onChange?: React.EventHandler<any>;
+    active?: MenuItemsProps;
 }
 
-export interface MenuData {
-    id: number,
-    name: string,
-    title?: string,
-    icon?: string,
-    href?: string,
-    collapse?: boolean,
-    catTitle?: string,
-    items?: Array<MenuData>,
-    badge : string,
-    badgeColor: string
+export interface MenuItemsProps {
+    id:number,
+    name:string,
+    title?:string,
+    icon?:string,
+    href?:string,
+    collapse?:boolean,
+    catTitle?:string,
+    items?:Array<MenuItemsProps>
 }
 
 export interface MenuState {
-    menuData: Array<MenuData> | any,
-    menuActive?: any[] | any,
-    type?: string
+    active?: any
 }
 
-export default class Menu extends React.Component<MenuProps, MenuState> {
 
-    menuChilds: Array<any> = [];
+export default class Menu extends React.Component<MenuProps,MenuState> {
 
-    static defaultProps: Partial<MenuProps> = {
-        type: 'dropDown'
-    };
-
-    constructor(props: MenuProps) {
+    constructor(props:MenuProps){
         super(props);
-
         this.state = {
-            menuData: this.props.data,
-            menuActive: [],
-            type: this.props.type
+            active: {}
         };
-
-        this.menuLoop(this.state.menuData);
-    }
-
-    componentWillReceiveProps(props:MenuProps){
-       this.setState({
-           menuData : props.data,
-           type: props.type
-       })
     }
 
     render() {
-        return <Nav className={`karcin-menu ${(this.state.type === 'hover') ? 'hover-menu' : ''}`}>
-            {this.menuChilds}
-        </Nav>;
+        let menu = this.getMenu(this.props.data);
+        return menu;
     }
 
+    getMenu(arr:Array<MenuItemsProps>){
+        let me = this;
+        let menu:any = [];
+        if (Array.isArray(arr) && arr.length > 0){
+            arr.forEach((v,i)=>{
+                let subMenu = null;
+                if (v.items != undefined && Array.isArray(v.items) && v.items.length > 0){
+                    subMenu = me.getMenu(v.items);
+                    menu.push(<CollapseMenu key={i} item={v} collapse={v.collapse}>
+                        {subMenu}
+                    </CollapseMenu>);
+                } else {
+                    menu.push(me.getMenuItem(v,i));
+                }
+            });
+        }
+        return <Nav vertical className={"karcin-menu"}>{menu}</Nav>;
+    }
 
-    /**
-     * get start menu loop
-     * @param {any[]} getData
-     */
-    menuLoop(getData: any[]) {
-        // reset list menu
-        this.menuChilds = [];
+    getMenuItem(item:MenuItemsProps,key:any){
+        let activeClass = (item.id == this.state.active.id && item.name == this.state.active.name)?"active":"";
+        return <NavItem key={key}>
+            <NavLink className={activeClass} onClick={()=>{
+                this.setActiveItem(item);
+            }} href={(item.href)?item.href:"#"}>{(item.icon)?<FaIcon code={item.icon} />:""}{item.title}</NavLink>
+        </NavItem>;
+    }
 
-        // loop main menu titles
-        for (let i:number = 0; i < getData.length; i++) {
-            let value = getData[i];
-
-            // active control
-            let activeIconControl: boolean = false;
-            if (this.state.menuActive.indexOf(i.toString()) !== -1) {
-                activeIconControl = true;
-            } else {
-                activeIconControl = false;
-            }
-
-            let menuHtml = <NavItem key={i.toString()} className={(activeIconControl) ? 'active' : ''}>
-                <div className="menu-head" onClick={()=>{ if(this.state.type === 'dropDown'){this.toggleActiveMenu(i.toString())} }}>
-                    <NavLink href={(value.href)?value.href:"#"}>
-                        {(value.icon !== undefined) ? <FaIcon code={value.icon} className="menu-icon"/> : ''}
-                        {value.title}{(value.badge !== undefined) ? <Badge color={value.badgeColor}>{value.badge}</Badge> : ''}
-                        {(value.items !== undefined) ? (activeIconControl ? <FaIcon code="fa-angle-down" className="open-icon"/> : <FaIcon code="fa-angle-right" className="open-icon"/>) : ''}
-                    </NavLink>
-                </div>
-                {(value.items !== undefined && value.items.length > 0) ? this.menuChildLoop(value.items, i.toString()) : ''}
-            </NavItem>;
-            this.menuChilds.push(menuHtml);
+    setActiveItem(item:MenuItemsProps){
+        this.setState({active:item});
+        if (this.props.onChange){
+            this.props.onChange(item);
         }
     }
+}
 
-    /**
-     * get child menus
-     * @param {any[]} getChild
-     * @param {string} id
-     * @returns {Array<any>}
-     */
-    menuChildLoop(getChild: any[], id: string): Array<any> {
-        // child menu lists
-        let childs: Array<any> = [];
-        let self:any = this;
+export class CollapseMenu extends React.Component<any,any> {
 
-        //active control
-        let active: boolean = false;
-        if (self.state.menuActive.indexOf(id) !== -1) { active = true; } else { active = false; }
+    constructor(props:any){
+        super(props);
+        this.toggle = this.toggle.bind(this);
+        this.state = { collapse: props.collapse || false };
+    }
 
-        childs.push(<Nav>
-            <Collapse key={id} isOpen={active} id={id}>
-                {getChild.map((val:any, i:number) => {
-                    let oldKey:string = id;
-                    let newKey:string = id + "-" + i;
-
-                    // dropdown icon control
-                    let activeIconControl: boolean = false;
-                    if (self.state.menuActive.indexOf(newKey) !== -1) { activeIconControl = true; } else { activeIconControl = false; }
-
-                    return <NavItem key={i + id}>
-                            <div className="menu-head" onClick={()=>{ if(this.state.type === 'dropDown'){this.toggleActiveMenu(newKey)} }}>
-                                {(val.icon !== undefined) ? <FaIcon code={val.icon} className="menu-icon"/> : ''}
-                                <NavLink href={(val.href) ? val.href : '#'}>{val.title}</NavLink>
-                                {(val.badge !== undefined) ? <Badge color={val.badgeColor}>{val.badge}</Badge> : ''}
-                                {(val.items !== undefined) ? (activeIconControl ? <FaIcon code="fa-angle-down" className="open-icon"/> : <FaIcon code="fa-angle-right" className="open-icon"/>) : ''}
-                            </div>
-                            {(val.items !== undefined && val.items.length > 0) ? self.menuChildLoop(val.items, newKey) : ''}
-                        </NavItem>
-                })}
+    render(){
+        let item = this.props.item;
+        return <NavItem className={(this.state.collapse ? "opened" : "")}>
+            {(item.catTitle !== undefined ? <h4 className="catTitle">{item.catTitle}</h4>: "")}
+            <NavLink href="#" onClick={this.toggle}>{(item.icon)?<FaIcon code={item.icon} />:""}  <span>{item.title}</span> <FaIcon className="collapse-icon" code={(this.state.collapse)?"fa-angle-down":"fa-angle-right"} /></NavLink>
+            <Collapse isOpen={this.state.collapse}>
+                {this.props.children}
             </Collapse>
-        </Nav>);
-
-        return childs;
+        </NavItem>
     }
 
-    /**
-     * toggle menu active
-     * @param {string} id
-     */
-    toggleActiveMenu(id: string) {
-        if (this.state.menuActive.indexOf(id) !== -1) {
-            this.state.menuActive.splice(this.state.menuActive.indexOf(id), 1);
-        } else {
-            this.state.menuActive.push(id);
-        }
-
-        this.forceUpdate();
-        this.menuLoop(this.state.menuData);
+    toggle() {
+        this.setState({ collapse: !this.state.collapse });
     }
-
-
 }

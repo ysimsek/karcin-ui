@@ -86,7 +86,7 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
 
 
     public onClickRow(e: any, active: any, data: any): void {
-        if (e.metaKey) {
+        if (e.metaKey || e.ctrlKey) {
             if (this.state.clickActive.indexOf(active) !== -1) {
 
                 // change rows id remove
@@ -109,12 +109,17 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
         } else {
 
             // id first remove after add new id
-            this.state.clickActive.splice(0, this.state.clickActive.length);
-            this.state.clickActive.push(active);
+            if(this.state.clickActive[0] !== active) {
+                this.state.clickActive.splice(0, this.state.clickActive.length);
+                this.state.clickActive.push(active);
 
-            // json first remove after add new rows json data
-            this.state.clickActiveRow.splice(0, this.state.clickActiveRow.length);
-            this.state.clickActiveRow.push(data);
+                // json first remove after add new rows json data
+                this.state.clickActiveRow.splice(0, this.state.clickActiveRow.length);
+                this.state.clickActiveRow.push(data);
+            }else {
+                this.state.clickActive.splice(0, this.state.clickActive.length);
+                this.state.clickActiveRow.splice(0, this.state.clickActiveRow.length);
+            }
         }
 
         this.forceUpdate();

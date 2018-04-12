@@ -10,6 +10,7 @@ import TextInput from "./inputs/TextInput";
 import RadioInput from "./inputs/RadioInput";
 import DataGrid from "./functional/datagrid/DataGrid";
 import Notify from "./functional/notify/Notify";
+import Panel from "./functional/panel/Panel";
 import "./css/karcin-ui.css";
-export { Button, FaIcon, Menu, Tab, TabPanel, NumericInput, PasswordInput, SelectInput, TextInput,RadioInput, DataGrid, Notify};
+export { Button, FaIcon, Menu, Tab, TabPanel, NumericInput, PasswordInput, SelectInput, TextInput,RadioInput, DataGrid, Notify, Panel};
 export default Button;
