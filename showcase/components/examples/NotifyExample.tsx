@@ -22,49 +22,46 @@ export default class NotifyExample extends React.Component<any,any>{
         }
     }
     render(){
-        return <div>
-
-            <Row>
-                <Col md={4}>
-                    <SelectInput
-                        name="position"
-                        label={"Notify pozisyonunun seçiniz"}
-                        item={this.state.position}
-                        value="value"
-                        id="position"
-                        items={items}
-                        onChange={this.onChange.bind(this)}/>
-                </Col>
-                <Col md={4}>
-                    <TextInput
-                        name="message"
-                        label={"Mesaj Yazınız"}
-                        value={this.state.message}
-                        onChange={this.onChange.bind(this)}
-                    />
-                </Col>
-                <Col md={4}>
-                    <NumericInput
-                        name={"second"}
-                        value={this.state.second}
-                        label={"Notify Süresini(sn) Yazınız"}
-                        onChange={this.onChange.bind(this)}
-                    />
-                </Col>
-            </Row>
-            <hr/>
-            <div>
-                <div className={"form"}>
-                    <Button name={"success"} color="success" outline onClick={this.success.bind(this)}>Success</Button>{' '}
-                    <Button name={"warning"} color="warning" outline onClick={this.warning.bind(this)}>Warning</Button>{' '}
-                    <Button name={"error"} color="danger" outline onClick={this.error.bind(this)}>Error</Button>{' '}
-                    <Button name={"info"} color="info" outline onClick={this.info.bind(this)}>Info</Button>{' '}
-                    <Button name={"custom"} color="secondary" outline onClick={this.custom.bind(this)}>Custom modified</Button>{' '}
-                    <Button name={"all"} color={"success"} outline onClick={this.all.bind(this)}>All notify</Button>
-                </div>
-            </div>
-            <hr/>
-        </div>
+        return (<div>
+                    <Row>
+                        <Col md={4}>
+                            <SelectInput
+                                name="position"
+                                label={"Notify pozisyonunun seçiniz"}
+                                item={this.state.position}
+                                value="value"
+                                id="position"
+                                items={items}
+                                onChange={this.onChange.bind(this)}/>
+                        </Col>
+                        <Col md={4}>
+                            <TextInput
+                                name="message"
+                                label={"Mesaj Yazınız"}
+                                value={this.state.message}
+                                onChange={this.onChange.bind(this)}
+                            />
+                        </Col>
+                        <Col md={4}>
+                            <NumericInput
+                                name={"second"}
+                                value={this.state.second}
+                                label={"Notify Süresini(sn) Yazınız"}
+                                onChange={this.onChange.bind(this)}
+                            />
+                        </Col>
+                    </Row>
+                    <hr/>
+                    <div>
+                        <Button name={"success"} color="success" outline onClick={this.success.bind(this)}>Success</Button>{' '}
+                        <Button name={"warning"} color="warning" outline onClick={this.warning.bind(this)}>Warning</Button>{' '}
+                        <Button name={"error"} color="danger" outline onClick={this.error.bind(this)}>Error</Button>{' '}
+                        <Button name={"info"} color="info" outline onClick={this.info.bind(this)}>Info</Button>{' '}
+                        <Button name={"custom"} color="secondary" outline onClick={this.custom.bind(this)}>Custom modified</Button>{' '}
+                        <Button name={"all"} color={"success"} outline onClick={this.all.bind(this)}>All notify</Button>
+                    </div>
+                    <hr/>
+                </div>);
     }
 
 
