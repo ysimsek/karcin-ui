@@ -10,6 +10,7 @@ textarea {
 }
 .label-properties{
     margin-bottom: -0.5rem !important;
+    font-weight: bold;
 }
 .radio-properties{
     border : none;
