@@ -19,7 +19,7 @@ export default class RadioInput extends React.Component<any,RadioInputProps>{
     }
 
     render(){
-        return <form><div onChange={this.onChange.bind(this)} className={"form-control"}>{this.returnRadioElements(this,this.props.items)}</div></form>
+         return <form><div onChange={this.onChange.bind(this)} className={"form-control radio-properties"}>{this.returnRadioElements(this,this.props.items)}</div></form>
     }
 
     private returnRadioElements(e:any,value:Array<any>):any{

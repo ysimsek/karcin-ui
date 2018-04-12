@@ -27,7 +27,7 @@ export default class TextArea extends React.Component<TextAreaProps,any>{
 
     render(){
         return <div>
-            <Label>TextArea Label</Label>
+            <Label className={"label-properties"}>TextArea Label</Label>
             <textarea
                 className={this.props.className+ " form-control"}
                 name={this.props.name}

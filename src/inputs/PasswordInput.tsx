@@ -1,6 +1,7 @@
 import * as React from "react";
 import Input from "./base/BaseInput";
 import {Label,InputGroup, InputGroupAddon} from "reactstrap";
+import "./input.css";
 
 export interface PasswordInputProps{
     style?: React.CSSProperties;
@@ -36,7 +37,7 @@ export default class PasswordInput extends React.Component<PasswordInputProps>{
     }
     render(){
         //todo :label için sağ sol üst seçenekleri konulsun, hatta button ile birlikte beraber kullanılabilir.
-        let label = this.props.label != "" ? <Label>{this.props.label}</Label> : null;
+        let label = this.props.label != "" ? <Label className={"label-properties"}>{this.props.label}</Label> : null;
         return <div>{label}<Input {...this.props}/></div>;
     }
 
