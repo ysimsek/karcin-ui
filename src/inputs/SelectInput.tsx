@@ -1,7 +1,6 @@
 import * as React from "react";
 import Enums from "./enums/Enums";
 import {Label,InputGroup, InputGroupAddon} from "reactstrap";
-import "./input.css"
 
 export interface SelectInputProps{
     items: Array<any>;

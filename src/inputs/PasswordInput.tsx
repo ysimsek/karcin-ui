@@ -1,7 +1,6 @@
 import * as React from "react";
 import Input from "./base/BaseInput";
 import {Label,InputGroup, InputGroupAddon} from "reactstrap";
-import "./input.css";
 
 export interface PasswordInputProps{
     style?: React.CSSProperties;

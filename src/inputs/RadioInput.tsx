@@ -1,6 +1,4 @@
 import * as React from "react";
-import "./input.css"
-import {checked} from "glamor";
 
 export interface RadioInputProps{
     inline?:boolean;

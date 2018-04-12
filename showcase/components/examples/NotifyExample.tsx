@@ -1,7 +1,6 @@
 import * as React from "react";
-import {Row,Col,Label,Card} from "reactstrap";
+import {Row,Col} from "reactstrap";
 import {Button,SelectInput,TextInput,NumericInput,FaIcon,Notify} from "karcin-ui";
-import {debug} from "util";
 
 const items = [
     {id:1,value:"Bottom Right",position:"bottom-right"},

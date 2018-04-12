@@ -160,7 +160,7 @@ class Notify extends React.Component<any,any>{
      */
     static notify = (data:Object) => {
         Notify.renderScreenData(data);
-        toast("Default Notification !");
+        toast("Default Notification!");
         toast.success(Notify.message, {
             position: toast.POSITION.TOP_CENTER,
             autoClose : Notify.time * 1000
