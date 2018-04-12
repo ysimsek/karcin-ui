@@ -72,7 +72,6 @@ var DataGridExample = /** @class */ (function (_super) {
                     'description': 'Belirtilmedi'
                 }]
         };
-        _this.updateData();
         return _this;
     }
     DataGridExample.prototype.render = function () {
@@ -92,17 +91,8 @@ var DataGridExample = /** @class */ (function (_super) {
                     }] })));
     };
     DataGridExample.prototype.clickEdit = function () {
-        debugger;
     };
     DataGridExample.prototype.getSelectData = function (e, b) {
-        console.log(e, b);
-    };
-    DataGridExample.prototype.updateData = function () {
-        var self = this;
-        setTimeout(function () {
-            self.state.data.splice(0, 1);
-            self.forceUpdate();
-        }, 2000);
     };
     return DataGridExample;
 }(React.Component));

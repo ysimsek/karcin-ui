@@ -27,8 +27,7 @@ export default class Components extends React.Component<any, any> {
         return <div className="content-component">
             <div className="side-menu">
                 <div className="side-menu-container">
-                    <Menu data={this.state.data} />
-                    {/*ref={(v) => { this.menucmp = v; }}*/}
+                    <Menu data={this.state.data} ref={(v) => { this.menucmp = v; }} />
                 </div>
             </div>
             <div className="container-component content-page">{detailCmp}</div>
@@ -44,13 +43,13 @@ export default class Components extends React.Component<any, any> {
     }
 
     setActiveMenu(){
-        // let item = this.getItem(window.location.hash, this.state.data);
-        // if (window.location.hash.split("#/Components/")[1] == undefined){
-        //     window.location.hash = "#Components/Button";
-        // }
-        // if (item.length > 0){
-        //     this.menucmp.setActiveItem(item[0]);
-        // }
+        let item = this.getItem(window.location.hash, this.state.data);
+        if (window.location.hash.split("#/Components/")[1] == undefined){
+            window.location.hash = "#Components/Button";
+        }
+        if (item.length > 0){
+            this.menucmp.setActiveItem(item[0]);
+        }
     }
 
     getItem(href,data, item=[]){

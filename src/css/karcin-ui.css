@@ -5,3 +5,5 @@
 /***** TAB CSS Start ******/
 .karcin-tab .nav-link {cursor: pointer;}
 /***** TAB CSS End ******/
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {padding: 0;}

@@ -22,6 +22,8 @@ var DataGrid_1 = require("./functional/datagrid/DataGrid");
 exports.DataGrid = DataGrid_1.default;
 var Notify_1 = require("./functional/notify/Notify");
 exports.Notify = Notify_1.default;
+var Panel_1 = require("./functional/panel/Panel");
+exports.Panel = Panel_1.default;
 require("./css/karcin-ui.css");
 exports.default = Button_1.default;
 //# sourceMappingURL=index.js.map

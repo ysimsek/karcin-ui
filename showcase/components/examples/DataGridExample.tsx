@@ -67,8 +67,6 @@ export default class DataGridExample extends React.Component<any, dataGridState>
             }]
         };
 
-
-        this.updateData();
     }
 
     render() {
@@ -89,18 +87,10 @@ export default class DataGridExample extends React.Component<any, dataGridState>
 
 
     clickEdit() {
-        debugger;
+
     }
 
     getSelectData(e, b) {
-        console.log(e, b);
-    }
 
-    updateData() {
-        let self = this;
-        setTimeout(()=>{
-            self.state.data.splice(0,1);
-            self.forceUpdate();
-        }, 2000)
     }
 }

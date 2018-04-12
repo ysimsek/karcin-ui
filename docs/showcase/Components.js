@@ -24,6 +24,7 @@ var Components = /** @class */ (function (_super) {
         return _this;
     }
     Components.prototype.render = function () {
+        var _this = this;
         var item = this.getItem(window.location.hash, this.state.data);
         var detailCmp = null;
         if (item.length > 0) {
@@ -35,7 +36,7 @@ var Components = /** @class */ (function (_super) {
         return React.createElement("div", { className: "content-component" },
             React.createElement("div", { className: "side-menu" },
                 React.createElement("div", { className: "side-menu-container" },
-                    React.createElement(karcin_ui_1.Menu, { data: this.state.data }))),
+                    React.createElement(karcin_ui_1.Menu, { data: this.state.data, ref: function (v) { _this.menucmp = v; } }))),
             React.createElement("div", { className: "container-component content-page" }, detailCmp));
     };
     Components.prototype.componentDidMount = function () {
@@ -45,13 +46,13 @@ var Components = /** @class */ (function (_super) {
         this.setActiveMenu();
     };
     Components.prototype.setActiveMenu = function () {
-        // let item = this.getItem(window.location.hash, this.state.data);
-        // if (window.location.hash.split("#/Components/")[1] == undefined){
-        //     window.location.hash = "#Components/Button";
-        // }
-        // if (item.length > 0){
-        //     this.menucmp.setActiveItem(item[0]);
-        // }
+        var item = this.getItem(window.location.hash, this.state.data);
+        if (window.location.hash.split("#/Components/")[1] == undefined) {
+            window.location.hash = "#Components/Button";
+        }
+        if (item.length > 0) {
+            this.menucmp.setActiveItem(item[0]);
+        }
     };
     Components.prototype.getItem = function (href, data, item) {
         var _this = this;
