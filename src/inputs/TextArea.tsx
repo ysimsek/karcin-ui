@@ -35,14 +35,10 @@ export default class TextArea extends React.Component<TextAreaProps,any>{
                 readOnly={this.props.properties.readOnly}
                 required={this.props.properties.required}
                 disabled={this.props.properties.disabled}
-                onChange={this.onChange.bind(this)}
                 cols={this.props.properties.cols}
                 rows={this.props.properties.rows}
             />
             </div>
     }
 
-    onChange(e){
-        this.props.onChange(e);
-    }
 }

@@ -30,45 +30,38 @@ export default class DataGridExample extends React.Component<any, dataGridState>
                 },
                 {
                     "property": "string",
-                    "value": "description",
-                    "name": "Açıklama"
+                    "value": "title",
+                    "name": "Uzmanlık Alanı"
                 }
             ],
             data : [{
                 'id': '1',
                 'name': 'Deniz',
-                'surname': 'Dalkılıç',
-                'description': 'Belirtilmedi'
+                'surname': 'DALKILIÇ',
+                'title': 'Yazılım Uzmanı'
             }, {
                 'id': '2',
-                'name': 'Cabbar',
-                'surname': 'Demir',
-                'description': 'Belirtilmedi'
+                'name': 'Yunus',
+                'surname': 'ŞİMŞEK',
+                'title': 'Yazılım Uzmanı'
             }, {
                 'id': '3',
-                'name': 'Asiye',
-                'surname': 'Koç',
-                'description': 'Belirtilmedi'
+                'name': 'Tayyip',
+                'surname': 'DEMİRCAN',
+                'title': 'Yazılım Uzmanı'
             }, {
                 'id': '4',
-                'name': 'Kazım',
-                'surname': 'Bekir',
-                'description': 'Belirtilmedi'
+                'name': 'Mustafa',
+                'surname': 'GÜNGÖR',
+                'title': 'Yazılım Uzmanı'
             }, {
                 'id': '5',
-                'name': 'Mehmet',
-                'surname': 'Ak',
-                'description': 'Belirtilmedi'
-            }, {
-                'id': '6',
-                'name': 'Remziye',
-                'surname': 'Demir',
-                'description': 'Belirtilmedi'
+                'name': 'Bora',
+                'surname': 'AVCI',
+                'title': 'Yazılım Uzmanı'
             }]
         };
 
-
-        this.updateData();
     }
 
     render() {
@@ -89,18 +82,10 @@ export default class DataGridExample extends React.Component<any, dataGridState>
 
 
     clickEdit() {
-        debugger;
+
     }
 
     getSelectData(e, b) {
-        console.log(e, b);
-    }
 
-    updateData() {
-        let self = this;
-        setTimeout(()=>{
-            self.state.data.splice(0,1);
-            self.forceUpdate();
-        }, 2000)
     }
 }

@@ -34,7 +34,7 @@ var Tab = /** @class */ (function (_super) {
         this.setState(nextProps);
     };
     Tab.prototype.render = function () {
-        return (React.createElement("div", { className: "karcin-tab" },
+        return (React.createElement("div", { className: "karcin-tab " + ((this.props.className !== undefined) ? this.props.className : '') },
             React.createElement(reactstrap_1.Nav, { tabs: true }, this.getTab().header),
             React.createElement(reactstrap_1.TabContent, { activeTab: this.state.activeTab }, this.getTab().body)));
     };

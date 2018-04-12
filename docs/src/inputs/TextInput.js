@@ -28,8 +28,8 @@ var TextInput = /** @class */ (function (_super) {
     }
     TextInput.prototype.render = function () {
         //label için sağ sol üst seçenekleri konulsun, hatta button ile birlikte beraber kullanılabilir.
-        var label = this.props.label != null ? React.createElement(reactstrap_1.InputGroupAddon, { addonType: this.props.labelType }, this.props.label) : null;
-        return React.createElement(reactstrap_1.InputGroup, null,
+        var label = this.props.label != null ? React.createElement(reactstrap_1.Label, { className: "label-properties" }, this.props.label) : null;
+        return React.createElement("div", null,
             label,
             React.createElement(BaseInput_1.default, __assign({}, this.props)));
     };
@@ -39,7 +39,6 @@ var TextInput = /** @class */ (function (_super) {
         hidden: false,
         label: "",
         type: "text",
-        labelType: "prepend",
     };
     return TextInput;
 }(React.Component));

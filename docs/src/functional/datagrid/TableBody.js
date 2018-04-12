@@ -61,7 +61,7 @@ var TableBody = /** @class */ (function (_super) {
         return React.createElement("tbody", null, Rows);
     };
     TableBody.prototype.onClickRow = function (e, active, data) {
-        if (e.metaKey) {
+        if (e.metaKey || e.ctrlKey) {
             if (this.state.clickActive.indexOf(active) !== -1) {
                 // change rows id remove
                 this.state.clickActive.splice(this.state.clickActive.indexOf(active), 1);
@@ -81,11 +81,17 @@ var TableBody = /** @class */ (function (_super) {
         }
         else {
             // id first remove after add new id
-            this.state.clickActive.splice(0, this.state.clickActive.length);
-            this.state.clickActive.push(active);
-            // json first remove after add new rows json data
-            this.state.clickActiveRow.splice(0, this.state.clickActiveRow.length);
-            this.state.clickActiveRow.push(data);
+            if (this.state.clickActive[0] !== active) {
+                this.state.clickActive.splice(0, this.state.clickActive.length);
+                this.state.clickActive.push(active);
+                // json first remove after add new rows json data
+                this.state.clickActiveRow.splice(0, this.state.clickActiveRow.length);
+                this.state.clickActiveRow.push(data);
+            }
+            else {
+                this.state.clickActive.splice(0, this.state.clickActive.length);
+                this.state.clickActiveRow.splice(0, this.state.clickActiveRow.length);
+            }
         }
         this.forceUpdate();
         // selectedProps

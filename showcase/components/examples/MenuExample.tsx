@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Menu} from 'karcin-ui';
 
-export default class MenuExample extends React.Component {
+export default class MenuExample extends React.Component<any, any> {
     render() {
         let data:Array<any> = [
             {

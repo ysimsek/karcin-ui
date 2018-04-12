@@ -160,3 +160,23 @@ span.opt {
     .slide-title h3 {font-size:48px;}
     .slide-title p {font-size:20px; }
 }
+
+
+.component-props .nav {}
+.component-props .nav .nav-item {}
+.component-props > .nav > .nav-item .nav-link {
+    border: 0;
+    border-bottom: solid 3px transparent;
+    margin-bottom: -1px;
+    font-weight: bold;
+    position: relative;
+    z-index: 9;
+}
+.component-props > .nav > .nav-item .nav-link:hover {
+    border-color: #9aba42;
+}
+.component-props > .nav > .nav-item .nav-link.active {
+    border-color :#9aba42;
+    color: #9aba42;
+    font-weight: bold;
+}

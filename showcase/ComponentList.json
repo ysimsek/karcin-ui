@@ -48,6 +48,14 @@
           "href":"#/Components/Notify",
           "samples":"components/examples/NotifyExample",
           "library":"functional/notify/Notify"
+        },
+        {
+          "id":6,
+          "name":"Panel",
+          "title":"Panel",
+          "href":"#/Components/Panel",
+          "samples":"components/examples/PanelExample",
+          "library":"functional/panel/Panel"
         }
       ]
     },{
@@ -106,6 +114,14 @@
           "href":"#/Components/RadioInput",
           "samples":"components/inputs/RadioInputExample",
           "library":"inputs/RadioInput"
+        },
+        {
+          "id":7,
+          "name":"DateInput",
+          "title":"DateInput",
+          "href":"#/Components/DateInput",
+          "samples":"components/inputs/DateInputExample",
+          "library":"inputs/DateInput"
         }
 
       ]
