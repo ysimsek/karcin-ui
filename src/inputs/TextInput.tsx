@@ -8,7 +8,6 @@ export interface TextInputProps extends React.InputHTMLAttributes<HTMLInputEleme
     name?: string;
     value?: any;
     validations?: object;
-    labelType?:string | any;//prepend or append
     type?: string;
     disabled?: boolean;
     readOnly?: boolean;
@@ -28,7 +27,6 @@ export default class TextInput extends React.Component<TextInputProps>{
         hidden: false,
         label : "",
         type:"text",
-        labelType:"prepend",
     }
 
     constructor(props:any){

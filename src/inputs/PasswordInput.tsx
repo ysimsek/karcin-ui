@@ -6,7 +6,6 @@ import "./input.css";
 export interface PasswordInputProps{
     style?: React.CSSProperties;
     label?: string | JSX.Element;
-    labelType?:string | any;//prepend or append
     name?: string;
     value?: any;
     validations?: object;
@@ -28,7 +27,6 @@ export default class PasswordInput extends React.Component<PasswordInputProps>{
         readOnly: false,
         hidden: false,
         label : "",
-        labelType:'append',
         type:"password"
     }
 

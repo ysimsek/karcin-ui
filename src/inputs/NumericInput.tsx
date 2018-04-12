@@ -5,7 +5,6 @@ import {Label,InputGroup, InputGroupAddon} from "reactstrap";
 export interface NumericInputProps extends React.InputHTMLAttributes<HTMLInputElement>{
     style?: React.CSSProperties;
     label?: string;
-    labelType?:string | any;//prepend or append
     name?: string;
     value?: any;
     validations?: object;
@@ -26,8 +25,7 @@ export default class NumericInput extends React.Component<NumericInputProps,any>
         disabled: false,
         readOnly: false,
         hidden: false,
-        type:"number",
-        labelType:"prepend"
+        type:"number"
     }
 
     constructor(props:any){
