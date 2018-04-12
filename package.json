@@ -1,6 +1,6 @@
 {
   "name": "karcin-ui",
-  "version": "1.0.41",
+  "version": "1.0.42",
   "description": "Karçin UI - React & Typescript",
   "repository": "https://github.com/ysimsek/karcin-ui",
   "main": "index.tsx",
