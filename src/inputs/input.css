@@ -8,3 +8,11 @@ textarea {
     margin: 5px;
     padding: 2px;
 }
+.label-properties{
+    margin-bottom: -0.5rem !important;
+    font-weight: bold;
+}
+.radio-properties{
+    border : none;
+    padding :0px;
+}

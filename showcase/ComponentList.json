@@ -67,7 +67,7 @@
         {
           "id":1,
           "name":"NumericInput",
-          "title":"Numeric Input",
+          "title":"NumericInput",
           "href":"#/Components/NumericInput",
           "samples":"components/inputs/NumericInputExample",
           "library":"inputs/NumericInput",
