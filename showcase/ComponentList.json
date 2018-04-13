@@ -125,8 +125,8 @@
         },
         {
           "id":7,
-          "name":"DateInput",
-          "title":"DateInput",
+          "name":"Deneme",
+          "title":"Deneme",
           "href":"#/Components/Deneme",
           "samples":"components/inputs/CheckInputExample",
           "library":"input/Deneme"

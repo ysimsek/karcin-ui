@@ -1,5 +1,6 @@
 import * as React from "react";
-import Deneme from "../../../src/input/Deneme"
+import Deneme from "../../../src/input/Deneme";
+import Label from "../../../src/extras/Label";
 
 export default class CheckInputExample extends React.Component<any,any>{
     constructor(props:any){
@@ -13,6 +14,12 @@ export default class CheckInputExample extends React.Component<any,any>{
             {id:4,value:"value4"},
             ];
         return <div>
+            <Label color={"success"} text={"LabelDeneme"}/>
+            <Label color={"info"} text={"LabelDeneme"}/>
+            <Label color={"danger"} text={"LabelDeneme"}/>
+            <Label color={"warning"} text={"LabelDeneme"}/>
+            <Label color={"secondary"} text={"LabelDeneme"}/>
+            <Label color={"primary"} text={"LabelDeneme"}/>
             <Deneme type={"text"} label={"TextInput Exam"} name={"Tdeneme"} id={"Tdeneme"} onChange={this.onChange.bind(this)}/>
             <Deneme type={"number"} label={"NumericInput Exam"} name={"Ndeneme"} id={"Ndeneme"} onChange={this.onChange.bind(this)}/>
             <Deneme type={"textarea"} label={"TextAreaInput Exam"} name={"TAdeneme"} id={"TAdeneme"} onChange={this.onChange.bind(this)}/>
