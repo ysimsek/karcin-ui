@@ -1,7 +1,7 @@
 import * as React from "react";
 import {FormGroup,Input,Label,Col} from "reactstrap";
 
-class CheckInput extends React.Component<any,any>{
+export default class CheckInput extends React.Component<any,any>{
     constructor(props:any){
         super(props);
     }

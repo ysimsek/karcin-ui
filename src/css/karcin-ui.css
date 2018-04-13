@@ -26,3 +26,14 @@ textarea {
     border : none;
     padding :0px;
 }
+/**
+    New Reactstrap CSS
+ */
+.radio-inline{
+    display: inline-block;
+    padding-right: 10px;
+}
+.typecolor{
+    height: 38px;
+    padding: 0px;
+}
