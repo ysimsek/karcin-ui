@@ -26,3 +26,65 @@ textarea {
     border : none;
     padding :0px;
 }
+
+/**
+    Slider Checkbox
+*/
+.slider-checkbox {
+    position: relative;
+}
+
+.slider-checkbox label {
+    width: 50px;
+    height: 25px;
+    background-color: #d74c4c;
+    margin-bottom: 0;
+    border-radius: 3em;
+    position: relative;
+    transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    cursor: pointer;
+}
+
+.slider-checkbox.active label {
+    background-color: #2b7ab2;
+}
+
+.slider-checkbox label input {
+    position: absolute;
+    opacity: 0;
+}
+
+.slider-checkbox.active label span.circle {
+    left: calc(100% - 25px);
+}
+
+.slider-checkbox label .show-icon {
+    position: absolute;
+    top: 9px;
+    z-index: 999;
+    left: 14px;
+    color:#FFFFFF;
+}
+
+.slider-checkbox label .show-icon.reject {
+    left: auto;
+    right: 14px;
+}
+
+.slider-checkbox label span.circle {
+    width: 25px;
+    height: 25px;
+    background-color: #FFFFFF;
+    display: block;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    box-shadow: 0px 1px 5px #ccc;
+}

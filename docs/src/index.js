@@ -28,6 +28,8 @@ var Panel_1 = require("./functional/panel/Panel");
 exports.Panel = Panel_1.default;
 var DatePicker_1 = require("./datepicker/DatePicker");
 exports.DatePicker = DatePicker_1.default;
+var SliderCheckbox_1 = require("./inputs/SliderCheckbox");
+exports.SliderCheckbox = SliderCheckbox_1.default;
 require("./css/karcin-ui.css");
 exports.default = Button_1.default;
 //# sourceMappingURL=index.js.map

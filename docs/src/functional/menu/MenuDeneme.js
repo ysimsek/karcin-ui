@@ -22,7 +22,8 @@ var MenuDeneme = /** @class */ (function (_super) {
         _this.state = {
             menuData: _this.props.data,
             menuActive: [],
-            type: _this.props.type
+            type: _this.props.type,
+            active: null
         };
         _this.menuLoop(_this.state.menuData);
         return _this;
@@ -54,9 +55,9 @@ var MenuDeneme = /** @class */ (function (_super) {
             else {
                 activeIconControl = false;
             }
-            var menuHtml = React.createElement(reactstrap_1.NavItem, { key: i.toString(), className: (activeIconControl) ? 'active' : '' },
+            var menuHtml = React.createElement(reactstrap_1.NavItem, { key: i.toString(), className: (activeIconControl) ? 'active' : '', id: i.toString() },
                 React.createElement("div", { className: "menu-head", onClick: function () { if (_this.state.type === 'dropDown') {
-                        _this.toggleActiveMenu(i.toString());
+                        _this.setActive(value, i.toString());
                     } } },
                     React.createElement(reactstrap_1.NavLink, { href: (value.href) ? value.href : "#" },
                         (value.icon !== undefined) ? React.createElement(FaIcon_1.default, { code: value.icon, className: "menu-icon" }) : '',
@@ -103,7 +104,7 @@ var MenuDeneme = /** @class */ (function (_super) {
                 else {
                     activeIconControl = false;
                 }
-                return React.createElement(reactstrap_1.NavItem, { key: i + id },
+                return React.createElement(reactstrap_1.NavItem, { key: i + id, id: newKey },
                     React.createElement("div", { className: "menu-head", onClick: function () { if (_this.state.type === 'dropDown') {
                             _this.toggleActiveMenu(newKey);
                         } } },
@@ -120,14 +121,19 @@ var MenuDeneme = /** @class */ (function (_super) {
      * @param {string} id
      */
     MenuDeneme.prototype.toggleActiveMenu = function (id) {
-        if (this.state.menuActive.indexOf(id) !== -1) {
-            this.state.menuActive.splice(this.state.menuActive.indexOf(id), 1);
+        // if (this.state.menuActive.indexOf(id) !== -1) {
+        //     this.state.menuActive.splice(this.state.menuActive.indexOf(id), 1);
+        // } else {
+        //     this.state.menuActive.push(id);
+        // }
+        //
+        // this.forceUpdate();
+        // this.menuLoop(this.state.menuData);
+    };
+    MenuDeneme.prototype.setActive = function (getData, getId) {
+        if (getData !== undefined && getId === undefined) {
+            this.setState({ active: getData });
         }
-        else {
-            this.state.menuActive.push(id);
-        }
-        this.forceUpdate();
-        this.menuLoop(this.state.menuData);
     };
     MenuDeneme.defaultProps = {
         type: 'dropDown'

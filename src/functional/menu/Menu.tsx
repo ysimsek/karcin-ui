@@ -1,11 +1,13 @@
 import * as React from "react";
-import {Nav, NavItem, NavLink, Collapse} from "reactstrap";
+import {Nav, NavItem, NavLink, Collapse, Badge} from "reactstrap";
 import {FaIcon} from "../../index";
+import "../../css/sass/menu.scss";
 
 export interface MenuProps {
     data: Array<MenuItemsProps>;
     onChange?: React.EventHandler<any>;
     active?: MenuItemsProps;
+    type?: string;
 }
 
 export interface MenuItemsProps {
@@ -15,8 +17,9 @@ export interface MenuItemsProps {
     icon?:string,
     href?:string,
     collapse?:boolean,
-    catTitle?:string,
-    items?:Array<MenuItemsProps>
+    items?:Array<MenuItemsProps>,
+    badgeColor?:string,
+    badge?:string
 }
 
 export interface MenuState {
@@ -26,6 +29,10 @@ export interface MenuState {
 
 export default class Menu extends React.Component<MenuProps,MenuState> {
 
+    static defaultProps: Partial<MenuProps> = {
+        type: 'dropDown'
+    };
+
     constructor(props:MenuProps){
         super(props);
         this.state = {
@@ -33,9 +40,10 @@ export default class Menu extends React.Component<MenuProps,MenuState> {
         };
     }
 
+
     render() {
         let menu = this.getMenu(this.props.data);
-        return menu;
+        return (menu);
     }
 
     getMenu(arr:Array<MenuItemsProps>){
@@ -46,7 +54,7 @@ export default class Menu extends React.Component<MenuProps,MenuState> {
                 let subMenu = null;
                 if (v.items != undefined && Array.isArray(v.items) && v.items.length > 0){
                     subMenu = me.getMenu(v.items);
-                    menu.push(<CollapseMenu key={i} item={v} collapse={v.collapse}>
+                    menu.push(<CollapseMenu key={i} item={v} collapse={v.collapse} type={me.props.type}>
                         {subMenu}
                     </CollapseMenu>);
                 } else {
@@ -54,15 +62,19 @@ export default class Menu extends React.Component<MenuProps,MenuState> {
                 }
             });
         }
-        return <Nav vertical className={"karcin-menu"}>{menu}</Nav>;
+        return <Nav vertical className={`karcin-menu ${(this.props.type === 'hover') ? 'hover-menu' : ''}`}>{menu}</Nav>;
     }
 
     getMenuItem(item:MenuItemsProps,key:any){
         let activeClass = (item.id == this.state.active.id && item.name == this.state.active.name)?"active":"";
-        return <NavItem key={key}>
-            <NavLink className={activeClass} onClick={()=>{
-                this.setActiveItem(item);
-            }} href={(item.href)?item.href:"#"}>{(item.icon)?<FaIcon code={item.icon} />:""}{item.title}</NavLink>
+        return <NavItem key={key} className={activeClass}>
+            <div className="menu-head" onClick={()=>{ if(this.props.type === 'dropDown'){this.setActiveItem(item)} }}>
+                <NavLink href={(item.href) ? item.href : "#"}>
+                    {(item.icon !== undefined) ? <FaIcon code={item.icon} className="menu-icon"/> : ''}
+                    {item.title}{(item.badge !== undefined) ? <Badge color={item.badgeColor}>{item.badge}</Badge> : ''}
+                    {(item.items !== undefined) ? (activeClass === "active" ? <FaIcon code="fa-angle-down" className="open-icon"/> : <FaIcon code="fa-angle-right" className="open-icon"/>) : ''}
+                </NavLink>
+            </div>
         </NavItem>;
     }
 
@@ -76,17 +88,24 @@ export default class Menu extends React.Component<MenuProps,MenuState> {
 
 export class CollapseMenu extends React.Component<any,any> {
 
+
     constructor(props:any){
         super(props);
-        this.toggle = this.toggle.bind(this);
         this.state = { collapse: props.collapse || false };
     }
 
     render(){
         let item = this.props.item;
+        let self = this;
         return <NavItem className={(this.state.collapse ? "opened" : "")}>
-            {(item.catTitle !== undefined ? <h4 className="catTitle">{item.catTitle}</h4>: "")}
-            <NavLink href="#" onClick={this.toggle}>{(item.icon)?<FaIcon code={item.icon} />:""}  <span>{item.title}</span> <FaIcon className="collapse-icon" code={(this.state.collapse)?"fa-angle-down":"fa-angle-right"} /></NavLink>
+            <div className="menu-head" onClick={()=>{
+                if(self.props.type === 'dropDown'){self.toggle()}
+            }}>
+                {(item.icon !== undefined) ? <FaIcon code={item.icon} className="menu-icon"/> : ''}
+                <NavLink href={(item.href) ? item.href : '#'}>{item.title}</NavLink>
+                {(item.badge !== undefined) ? <Badge color={item.badgeColor}>{item.badge}</Badge> : ''}
+                {(item.items !== undefined) ? (this.state.collapse ? <FaIcon code="fa-angle-down" className="open-icon"/> : <FaIcon code="fa-angle-right" className="open-icon"/>) : ''}
+            </div>
             <Collapse isOpen={this.state.collapse}>
                 {this.props.children}
             </Collapse>

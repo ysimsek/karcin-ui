@@ -11,7 +11,6 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-require("./input.css");
 var RadioInput = /** @class */ (function (_super) {
     __extends(RadioInput, _super);
     function RadioInput(props) {

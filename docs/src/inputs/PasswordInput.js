@@ -21,7 +21,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var BaseInput_1 = require("./base/BaseInput");
 var reactstrap_1 = require("reactstrap");
-require("./input.css");
 /**
  * Varsayılan olarak * işareti var istenilen sembolle geri dönülsün.
  */

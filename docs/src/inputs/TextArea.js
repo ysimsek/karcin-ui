@@ -12,8 +12,6 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var reactstrap_1 = require("reactstrap");
-//css de hem veritical hem horizontal olması sağlandı
-require("./input.css");
 var TextArea = /** @class */ (function (_super) {
     __extends(TextArea, _super);
     function TextArea(props) {

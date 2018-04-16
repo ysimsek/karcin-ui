@@ -27,7 +27,7 @@ export default class Components extends React.Component<any, any> {
         return <div className="content-component">
             <div className="side-menu">
                 <div className="side-menu-container">
-                    <Menu data={this.state.data} ref={(v) => { this.menucmp = v; }} />
+                    <Menu data={this.state.data}  ref={(v) => { this.menucmp = v; }}/>
                 </div>
             </div>
             <div className="container-component content-page">{detailCmp}</div>

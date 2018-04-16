@@ -122,6 +122,14 @@
           "href":"#/Components/DateInput",
           "samples":"components/inputs/DateInputExample",
           "library":"inputs/DateInput"
+        },
+        {
+          "id":8,
+          "name":"SliderCheckbox",
+          "title":"SliderCheckbox",
+          "href":"#/Components/SliderCheckbox",
+          "samples":"components/inputs/SliderCheckboxExample",
+          "library":"inputs/SliderCheckbox"
         }
 
       ]

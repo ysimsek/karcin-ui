@@ -9,15 +9,20 @@
 
     .open-icon {
       float: right;
-      margin-top: 4px;
+      margin-top: 12px;
     }
 
     .menu-icon {
       margin-right: 5px;
+      display: inline-block;
     }
 
     .menu-head {
       cursor: pointer;
+
+      .nav-link {
+        display: inline-block;
+      }
     }
   }
 

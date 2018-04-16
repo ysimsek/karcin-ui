@@ -13,7 +13,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var Enums_1 = require("./enums/Enums");
 var reactstrap_1 = require("reactstrap");
-require("./input.css");
 var SelectInput = /** @class */ (function (_super) {
     __extends(SelectInput, _super);
     function SelectInput(props) {

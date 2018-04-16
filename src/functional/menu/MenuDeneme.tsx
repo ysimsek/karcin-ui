@@ -24,7 +24,8 @@ export interface MenuData {
 export interface MenuState {
     menuData: Array<MenuData> | any,
     menuActive?: any[] | any,
-    type?: string
+    type?: string,
+    active ?: any
 }
 
 export default class MenuDeneme extends React.Component<MenuProps, MenuState> {
@@ -41,7 +42,8 @@ export default class MenuDeneme extends React.Component<MenuProps, MenuState> {
         this.state = {
             menuData: this.props.data,
             menuActive: [],
-            type: this.props.type
+            type: this.props.type,
+            active : null
         };
 
         this.menuLoop(this.state.menuData);
@@ -81,8 +83,8 @@ export default class MenuDeneme extends React.Component<MenuProps, MenuState> {
                 activeIconControl = false;
             }
 
-            let menuHtml = <NavItem key={i.toString()} className={(activeIconControl) ? 'active' : ''}>
-                <div className="menu-head" onClick={()=>{ if(this.state.type === 'dropDown'){this.toggleActiveMenu(i.toString())} }}>
+            let menuHtml = <NavItem key={i.toString()} className={(activeIconControl) ? 'active' : ''} id={i.toString()}>
+                <div className="menu-head" onClick={()=>{ if(this.state.type === 'dropDown'){this.setActive(value, i.toString())} }}>
                     <NavLink href={(value.href)?value.href:"#"}>
                         {(value.icon !== undefined) ? <FaIcon code={value.icon} className="menu-icon"/> : ''}
                         {value.title}{(value.badge !== undefined) ? <Badge color={value.badgeColor}>{value.badge}</Badge> : ''}
@@ -120,7 +122,7 @@ export default class MenuDeneme extends React.Component<MenuProps, MenuState> {
                     let activeIconControl: boolean = false;
                     if (self.state.menuActive.indexOf(newKey) !== -1) { activeIconControl = true; } else { activeIconControl = false; }
 
-                    return <NavItem key={i + id}>
+                    return <NavItem key={i + id} id={newKey}>
                         <div className="menu-head" onClick={()=>{ if(this.state.type === 'dropDown'){this.toggleActiveMenu(newKey)} }}>
                             {(val.icon !== undefined) ? <FaIcon code={val.icon} className="menu-icon"/> : ''}
                             <NavLink href={(val.href) ? val.href : '#'}>{val.title}</NavLink>
@@ -141,14 +143,21 @@ export default class MenuDeneme extends React.Component<MenuProps, MenuState> {
      * @param {string} id
      */
     toggleActiveMenu(id: string) {
-        if (this.state.menuActive.indexOf(id) !== -1) {
-            this.state.menuActive.splice(this.state.menuActive.indexOf(id), 1);
-        } else {
-            this.state.menuActive.push(id);
-        }
+        // if (this.state.menuActive.indexOf(id) !== -1) {
+        //     this.state.menuActive.splice(this.state.menuActive.indexOf(id), 1);
+        // } else {
+        //     this.state.menuActive.push(id);
+        // }
+        //
+        // this.forceUpdate();
+        // this.menuLoop(this.state.menuData);
+    }
 
-        this.forceUpdate();
-        this.menuLoop(this.state.menuData);
+
+    setActive(getData:any, getId:any){
+        if(getData !== undefined && getId === undefined){
+            this.setState({active:getData});
+        }
     }
 
 
