@@ -91,7 +91,7 @@ export default class MenuExample extends React.Component<any, any> {
             }
         ];
         return <div>
-            <Menu data={data} />
+            <Menu data={data}/>
         </div>;
     }
 }

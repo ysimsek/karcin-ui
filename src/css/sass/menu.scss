@@ -33,16 +33,20 @@
       position: relative;
 
       &:hover {
-        >ul.nav > .collapse{
-          display: block;
+        >.collapse{
+          display: block !important;
         }
+      }
+
+      .collapse.show {
+        display: none;
       }
 
       ul.nav {
         background-color: #303030;
         position: absolute;
-        width: 300px;
-        right: -300px;
+        width: 255px;
+        right: -255px;
         top: 0;
         display: block;
         z-index: 999999;

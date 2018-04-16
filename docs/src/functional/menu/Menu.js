@@ -48,14 +48,19 @@ var Menu = /** @class */ (function (_super) {
         var _this = this;
         var activeClass = (item.id == this.state.active.id && item.name == this.state.active.name) ? "active" : "";
         return React.createElement(reactstrap_1.NavItem, { key: key, className: activeClass },
-            React.createElement("div", { className: "menu-head", onClick: function () { if (_this.props.type === 'dropDown') {
-                    _this.setActiveItem(item);
-                } } },
+            React.createElement("div", { className: "menu-head", onClick: function () {
+                    if (_this.props.type === 'dropDown') {
+                        _this.setActiveItem(item);
+                    }
+                } },
                 React.createElement(reactstrap_1.NavLink, { href: (item.href) ? item.href : "#" },
                     (item.icon !== undefined) ? React.createElement(index_1.FaIcon, { code: item.icon, className: "menu-icon" }) : '',
                     item.title,
                     (item.badge !== undefined) ? React.createElement(reactstrap_1.Badge, { color: item.badgeColor }, item.badge) : '',
-                    (item.items !== undefined) ? (activeClass === "active" ? React.createElement(index_1.FaIcon, { code: "fa-angle-down", className: "open-icon" }) : React.createElement(index_1.FaIcon, { code: "fa-angle-right", className: "open-icon" })) : '')));
+                    (item.items !== undefined) ? (this.props.type === "hover" ?
+                        React.createElement(index_1.FaIcon, { code: "fa-angle-right", className: "open-icon" }) : activeClass ?
+                        React.createElement(index_1.FaIcon, { code: "fa-angle-down", className: "open-icon" }) :
+                        React.createElement(index_1.FaIcon, { code: "fa-angle-right", className: "open-icon" })) : '')));
     };
     Menu.prototype.setActiveItem = function (item) {
         this.setState({ active: item });
@@ -88,7 +93,10 @@ var CollapseMenu = /** @class */ (function (_super) {
                 (item.icon !== undefined) ? React.createElement(index_1.FaIcon, { code: item.icon, className: "menu-icon" }) : '',
                 React.createElement(reactstrap_1.NavLink, { href: (item.href) ? item.href : '#' }, item.title),
                 (item.badge !== undefined) ? React.createElement(reactstrap_1.Badge, { color: item.badgeColor }, item.badge) : '',
-                (item.items !== undefined) ? (this.state.collapse ? React.createElement(index_1.FaIcon, { code: "fa-angle-down", className: "open-icon" }) : React.createElement(index_1.FaIcon, { code: "fa-angle-right", className: "open-icon" })) : ''),
+                (item.items !== undefined) ? (this.props.type === "hover" ?
+                    React.createElement(index_1.FaIcon, { code: "fa-angle-right", className: "open-icon" }) : this.state.collapse ?
+                    React.createElement(index_1.FaIcon, { code: "fa-angle-down", className: "open-icon" }) :
+                    React.createElement(index_1.FaIcon, { code: "fa-angle-right", className: "open-icon" })) : ''),
             React.createElement(reactstrap_1.Collapse, { isOpen: this.state.collapse }, this.props.children));
     };
     CollapseMenu.prototype.toggle = function () {
