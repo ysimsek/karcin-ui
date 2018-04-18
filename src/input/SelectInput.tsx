@@ -2,13 +2,14 @@ import * as React from "react";
 import BaseInput from "./BaseInput";
 import {Tooltip} from "reactstrap";
 
-export default class Deneme extends React.Component<any,any>{
+export default class SelectInput extends React.Component<any,any>{
+    type = "select";
     constructor(props:any){
         super(props);
         this.state = {}
     }
     render(){
-        return <BaseInput type={this.props.type}
+        return <BaseInput type={this.type}
                           name={this.props.name}
                           label={this.props.label}
                           tag={this.props.tag}

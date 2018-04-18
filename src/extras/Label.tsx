@@ -7,6 +7,9 @@ export default class Label extends React.Component<any,any>{
         this.state = {}
     }
     render(){
-        return <Labelx color={this.props.color}>{this.props.text}</Labelx>
+        return <Labelx
+                    color={this.props.color}
+                    style={{fontSize: this.props.textSize+"px"}}
+        >{this.props.text}</Labelx>;
     }
 }
