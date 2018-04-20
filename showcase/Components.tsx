@@ -27,7 +27,7 @@ export default class Components extends React.Component<any, any> {
         return <div className="content-component">
             <div className="side-menu">
                 <div className="side-menu-container">
-                    <Menu data={this.state.data} />
+                    <Menu data={this.state.data} accordion={true} />
                     {/*ref={(v) => { this.menucmp = v; }}*/}
                 </div>
             </div>

@@ -63,8 +63,10 @@ export default class MenuExample extends React.Component {
                 ]
             }
         ];
+
+        let deneme = [{"id":1, "name":"Button", "title":"Button", "href":"#/Components/Button"}];
         return <div>
-            <Menu data={data} />
+            <Menu data={data} active={deneme} />
         </div>;
     }
 }
