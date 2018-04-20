@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Button} from 'karcin-ui';
 
-export default class ButtonExample extends React.Component {
+export default class ButtonExample extends React.Component<any, any> {
     render() {
         return (
             <div>

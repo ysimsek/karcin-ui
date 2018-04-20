@@ -22,7 +22,7 @@ var SelectInput = /** @class */ (function (_super) {
     }
     SelectInput.prototype.render = function () {
         var renderComponent = React.createElement("div", null,
-            React.createElement(reactstrap_1.Label, null, this.props.label),
+            React.createElement(reactstrap_1.Label, { className: "label-properties" }, this.props.label),
             React.createElement("select", { name: this.props.name, className: "form-control", style: { width: "100%" }, onChange: this.__handleChange.bind(this) },
                 React.createElement("option", { label: "L\u00FCtfen Se\u00E7iniz", value: "" }),
                 this.__renderOptionValues(this.props.items)));

@@ -12,122 +12,61 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var reactstrap_1 = require("reactstrap");
-var FaIcon_1 = require("../../../lib/functional/faicon/FaIcon");
-require("./Menu.scss");
+var index_1 = require("../../index");
+require("../../css/sass/menu.scss");
 var Menu = /** @class */ (function (_super) {
     __extends(Menu, _super);
     function Menu(props) {
         var _this = _super.call(this, props) || this;
-        _this.menuChilds = [];
         _this.state = {
-            menuData: _this.props.data,
-            menuActive: [],
-            type: _this.props.type
+            active: {}
         };
-        _this.menuLoop(_this.state.menuData);
         return _this;
     }
-    Menu.prototype.componentWillReceiveProps = function (props) {
-        this.setState({
-            menuData: props.data,
-            type: props.type
-        });
-    };
     Menu.prototype.render = function () {
-        return React.createElement(reactstrap_1.Nav, { className: "karcin-menu " + ((this.state.type === 'hover') ? 'hover-menu' : '') }, this.menuChilds);
+        var menu = this.getMenu(this.props.data);
+        return (menu);
     };
-    /**
-     * get start menu loop
-     * @param {any[]} getData
-     */
-    Menu.prototype.menuLoop = function (getData) {
-        var _this = this;
-        // reset list menu
-        this.menuChilds = [];
-        var _loop_1 = function (i) {
-            var value = getData[i];
-            // active control
-            var activeIconControl = false;
-            if (this_1.state.menuActive.indexOf(i.toString()) !== -1) {
-                activeIconControl = true;
-            }
-            else {
-                activeIconControl = false;
-            }
-            var menuHtml = React.createElement(reactstrap_1.NavItem, { key: i.toString(), className: (activeIconControl) ? 'active' : '' },
-                React.createElement("div", { className: "menu-head", onClick: function () { if (_this.state.type === 'dropDown') {
-                        _this.toggleActiveMenu(i.toString());
-                    } } },
-                    React.createElement(reactstrap_1.NavLink, { href: (value.href) ? value.href : "#" },
-                        (value.icon !== undefined) ? React.createElement(FaIcon_1.default, { code: value.icon, className: "menu-icon" }) : '',
-                        value.title,
-                        (value.badge !== undefined) ? React.createElement(reactstrap_1.Badge, { color: value.badgeColor }, value.badge) : '',
-                        (value.items !== undefined) ? (activeIconControl ? React.createElement(FaIcon_1.default, { code: "fa-angle-down", className: "open-icon" }) : React.createElement(FaIcon_1.default, { code: "fa-angle-right", className: "open-icon" })) : '')),
-                (value.items !== undefined && value.items.length > 0) ? this_1.menuChildLoop(value.items, i.toString()) : '');
-            this_1.menuChilds.push(menuHtml);
-        };
-        var this_1 = this;
-        // loop main menu titles
-        for (var i = 0; i < getData.length; i++) {
-            _loop_1(i);
-        }
-    };
-    /**
-     * get child menus
-     * @param {any[]} getChild
-     * @param {string} id
-     * @returns {Array<any>}
-     */
-    Menu.prototype.menuChildLoop = function (getChild, id) {
-        var _this = this;
-        // child menu lists
-        var childs = [];
-        var self = this;
-        //active control
-        var active = false;
-        if (self.state.menuActive.indexOf(id) !== -1) {
-            active = true;
-        }
-        else {
-            active = false;
-        }
-        childs.push(React.createElement(reactstrap_1.Nav, null,
-            React.createElement(reactstrap_1.Collapse, { key: id, isOpen: active, id: id }, getChild.map(function (val, i) {
-                var oldKey = id;
-                var newKey = id + "-" + i;
-                // dropdown icon control
-                var activeIconControl = false;
-                if (self.state.menuActive.indexOf(newKey) !== -1) {
-                    activeIconControl = true;
+    Menu.prototype.getMenu = function (arr) {
+        var me = this;
+        var menu = [];
+        if (Array.isArray(arr) && arr.length > 0) {
+            arr.forEach(function (v, i) {
+                var subMenu = null;
+                if (v.items != undefined && Array.isArray(v.items) && v.items.length > 0) {
+                    subMenu = me.getMenu(v.items);
+                    menu.push(React.createElement(CollapseMenu, { key: i, item: v, collapse: v.collapse, type: me.props.type }, subMenu));
                 }
                 else {
-                    activeIconControl = false;
+                    menu.push(me.getMenuItem(v, i));
                 }
-                return React.createElement(reactstrap_1.NavItem, { key: i + id },
-                    React.createElement("div", { className: "menu-head", onClick: function () { if (_this.state.type === 'dropDown') {
-                            _this.toggleActiveMenu(newKey);
-                        } } },
-                        (val.icon !== undefined) ? React.createElement(FaIcon_1.default, { code: val.icon, className: "menu-icon" }) : '',
-                        React.createElement(reactstrap_1.NavLink, { href: (val.href) ? val.href : '#' }, val.title),
-                        (val.badge !== undefined) ? React.createElement(reactstrap_1.Badge, { color: val.badgeColor }, val.badge) : '',
-                        (val.items !== undefined) ? (activeIconControl ? React.createElement(FaIcon_1.default, { code: "fa-angle-down", className: "open-icon" }) : React.createElement(FaIcon_1.default, { code: "fa-angle-right", className: "open-icon" })) : ''),
-                    (val.items !== undefined && val.items.length > 0) ? self.menuChildLoop(val.items, newKey) : '');
-            }))));
-        return childs;
+            });
+        }
+        return React.createElement(reactstrap_1.Nav, { vertical: true, className: "karcin-menu " + ((this.props.type === 'hover') ? 'hover-menu' : '') }, menu);
     };
-    /**
-     * toggle menu active
-     * @param {string} id
-     */
-    Menu.prototype.toggleActiveMenu = function (id) {
-        if (this.state.menuActive.indexOf(id) !== -1) {
-            this.state.menuActive.splice(this.state.menuActive.indexOf(id), 1);
+    Menu.prototype.getMenuItem = function (item, key) {
+        var _this = this;
+        var activeClass = (item.id == this.state.active.id && item.name == this.state.active.name) ? "active" : "";
+        return React.createElement(reactstrap_1.NavItem, { key: key, className: activeClass },
+            React.createElement("div", { className: "menu-head", onClick: function () {
+                    if (_this.props.type === 'dropDown') {
+                        _this.setActiveItem(item);
+                    }
+                } },
+                React.createElement(reactstrap_1.NavLink, { href: (item.href) ? item.href : "#" },
+                    (item.icon !== undefined) ? React.createElement(index_1.FaIcon, { code: item.icon, className: "menu-icon" }) : '',
+                    item.title,
+                    (item.badge !== undefined) ? React.createElement(reactstrap_1.Badge, { color: item.badgeColor }, item.badge) : '',
+                    (item.items !== undefined) ? (this.props.type === "hover" ?
+                        React.createElement(index_1.FaIcon, { code: "fa-angle-right", className: "open-icon" }) : activeClass ?
+                        React.createElement(index_1.FaIcon, { code: "fa-angle-down", className: "open-icon" }) :
+                        React.createElement(index_1.FaIcon, { code: "fa-angle-right", className: "open-icon" })) : '')));
+    };
+    Menu.prototype.setActiveItem = function (item) {
+        this.setState({ active: item });
+        if (this.props.onChange) {
+            this.props.onChange(item);
         }
-        else {
-            this.state.menuActive.push(id);
-        }
-        this.forceUpdate();
-        this.menuLoop(this.state.menuData);
     };
     Menu.defaultProps = {
         type: 'dropDown'
@@ -135,4 +74,35 @@ var Menu = /** @class */ (function (_super) {
     return Menu;
 }(React.Component));
 exports.default = Menu;
+var CollapseMenu = /** @class */ (function (_super) {
+    __extends(CollapseMenu, _super);
+    function CollapseMenu(props) {
+        var _this = _super.call(this, props) || this;
+        _this.state = { collapse: props.collapse || false };
+        return _this;
+    }
+    CollapseMenu.prototype.render = function () {
+        var item = this.props.item;
+        var self = this;
+        return React.createElement(reactstrap_1.NavItem, { className: (this.state.collapse ? "opened" : "") },
+            React.createElement("div", { className: "menu-head", onClick: function () {
+                    if (self.props.type === 'dropDown') {
+                        self.toggle();
+                    }
+                } },
+                (item.icon !== undefined) ? React.createElement(index_1.FaIcon, { code: item.icon, className: "menu-icon" }) : '',
+                React.createElement(reactstrap_1.NavLink, { href: (item.href) ? item.href : '#' }, item.title),
+                (item.badge !== undefined) ? React.createElement(reactstrap_1.Badge, { color: item.badgeColor }, item.badge) : '',
+                (item.items !== undefined) ? (this.props.type === "hover" ?
+                    React.createElement(index_1.FaIcon, { code: "fa-angle-right", className: "open-icon" }) : this.state.collapse ?
+                    React.createElement(index_1.FaIcon, { code: "fa-angle-down", className: "open-icon" }) :
+                    React.createElement(index_1.FaIcon, { code: "fa-angle-right", className: "open-icon" })) : ''),
+            React.createElement(reactstrap_1.Collapse, { isOpen: this.state.collapse }, this.props.children));
+    };
+    CollapseMenu.prototype.toggle = function () {
+        this.setState({ collapse: !this.state.collapse });
+    };
+    return CollapseMenu;
+}(React.Component));
+exports.CollapseMenu = CollapseMenu;
 //# sourceMappingURL=Menu.js.map

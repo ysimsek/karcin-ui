@@ -1,0 +1,119 @@
+.panel-main {
+  border:solid 1px #ddd;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.panel-main .panel-title {
+  background-color: #f9f9f9;
+  padding: 12px 15px;
+  color: #868585;
+  border-bottom:solid 1px #ddd;
+  font-size: 14px;
+}
+.panel-main .panel-title .panel-head-button {
+  float: right;
+  margin: -1px;
+}
+.panel-main .panel-title .panel-head-button button {
+  padding: 2px;
+  line-height: 0;
+  background: #ffffff;
+  color: #b5b4b4;
+}
+.panel-main .panel-title span {
+  margin-bottom: 0;
+  font-size: 14px;
+}
+.panel-main .panel-content {
+  padding: 15px;
+}
+
+/* panel colors - primary */
+.panel-main.primary {
+  border-color: #0275d8;
+}
+.panel-main.primary .panel-title .panel-head-button button {
+  background: #045eab;
+  color: #ffffff;
+  border-color: #0561b1;
+}
+.panel-main.primary .panel-title {
+  background-color: #0275d8;
+  border-bottom-color: #0275d8;
+  color:#FFFFFF;
+}
+
+/* panel colors - info */
+.panel-main.info {
+  border-color: #5bc0de;
+}
+.panel-main.info .panel-title {
+  background-color: #5bc0de;
+  border-bottom-color: #5bc0de;
+  color:#FFFFFF;
+}
+.panel-main.info .panel-title .panel-head-button button {
+  background: #2e9bbb;
+  color: #ffffff;
+  border-color: #46a3bf;
+}
+/* panel colors - warning */
+.panel-main.warning {
+  border-color: #f0ad4e;
+}
+.panel-main.warning .panel-title {
+  background-color: #f0ad4e;
+  border-bottom-color: #f0ad4e;
+  color:#FFFFFF;
+}
+.panel-main.warning .panel-title .panel-head-button button {
+  background: #da9a40;
+  color: #ffffff;
+  border-color: #d89330;
+}
+
+/* panel colors - danger */
+.panel-main.danger {
+  border-color: #d9534f;
+}
+.panel-main.danger .panel-title {
+  background-color: #d9534f;
+  border-bottom-color: #d9534f;
+  color:#FFFFFF;
+}
+.panel-main.danger .panel-title .panel-head-button button {
+  background: #c12f2b;
+  color: #ffffff;
+  border-color: #c53632;
+}
+
+/* panel colors - secondary */
+.panel-main.secondary {
+  border-color: #ccc;
+}
+.panel-main.secondary .panel-title {
+  background-color: #fff;
+  border-bottom-color: #ccc;
+  color: #292b2c;
+}
+.panel-main.secondary .panel-title .panel-head-button button {
+  background: #ffffff;
+  color: #c3c2c2;
+  border-color: #cccccc;
+}
+/* panel colors - success */
+.panel-main.success {
+  border-color: #5cb85c;
+}
+.panel-main.success .panel-title {
+  background-color: #5cb85c;
+  border-bottom-color: #5cb85c;
+  color: #FFFFFF;
+}
+.panel-main.success .panel-title .panel-head-button button {
+  background: #3b963b;
+  color: #ffffff;
+  border-color: #4fb14f;
+}

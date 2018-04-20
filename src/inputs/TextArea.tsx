@@ -2,7 +2,6 @@ import * as React from "react";
 import Input from "./base/BaseInput";
 import {Label,InputGroup,InputGroupAddon} from "reactstrap";
 //css de hem veritical hem horizontal olması sağlandı
-import "./input.css"
 
 export interface TextAreaProps{
     className?:string;
@@ -27,7 +26,7 @@ export default class TextArea extends React.Component<TextAreaProps,any>{
 
     render(){
         return <div>
-            <Label>TextArea Label</Label>
+            <Label className={"label-properties"}>TextArea Label</Label>
             <textarea
                 className={this.props.className+ " form-control"}
                 name={this.props.name}
@@ -36,14 +35,10 @@ export default class TextArea extends React.Component<TextAreaProps,any>{
                 readOnly={this.props.properties.readOnly}
                 required={this.props.properties.required}
                 disabled={this.props.properties.disabled}
-                onChange={this.onChange.bind(this)}
                 cols={this.props.properties.cols}
                 rows={this.props.properties.rows}
             />
             </div>
     }
 
-    onChange(e){
-        this.props.onChange(e);
-    }
 }

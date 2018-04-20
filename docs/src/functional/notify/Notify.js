@@ -153,7 +153,7 @@ var Notify = /** @class */ (function (_super) {
      */
     Notify.notify = function (data) {
         Notify.renderScreenData(data);
-        react_toastify_1.toast("Default Notification !");
+        react_toastify_1.toast("Default Notification!");
         react_toastify_1.toast.success(Notify.message, {
             position: react_toastify_1.toast.POSITION.TOP_CENTER,
             autoClose: Notify.time * 1000

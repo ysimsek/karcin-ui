@@ -48,6 +48,14 @@
           "href":"#/Components/Notify",
           "samples":"components/examples/NotifyExample",
           "library":"functional/notify/Notify"
+        },
+        {
+          "id":6,
+          "name":"Panel",
+          "title":"Panel",
+          "href":"#/Components/Panel",
+          "samples":"components/examples/PanelExample",
+          "library":"functional/panel/Panel"
         }
       ]
     },{
@@ -59,7 +67,7 @@
         {
           "id":1,
           "name":"NumericInput",
-          "title":"Numeric Input",
+          "title":"NumericInput",
           "href":"#/Components/NumericInput",
           "samples":"components/inputs/NumericInputExample",
           "library":"inputs/NumericInput",
@@ -106,6 +114,22 @@
           "href":"#/Components/RadioInput",
           "samples":"components/inputs/RadioInputExample",
           "library":"inputs/RadioInput"
+        },
+        {
+          "id":7,
+          "name":"DateInput",
+          "title":"DateInput",
+          "href":"#/Components/DateInput",
+          "samples":"components/inputs/DateInputExample",
+          "library":"inputs/DateInput"
+        },
+        {
+          "id":8,
+          "name":"SliderCheckbox",
+          "title":"SliderCheckbox",
+          "href":"#/Components/SliderCheckbox",
+          "samples":"components/inputs/SliderCheckboxExample",
+          "library":"inputs/SliderCheckbox"
         }
 
       ]

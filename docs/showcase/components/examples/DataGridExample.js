@@ -36,43 +36,37 @@ var DataGridExample = /** @class */ (function (_super) {
                 },
                 {
                     "property": "string",
-                    "value": "description",
-                    "name": "Açıklama"
+                    "value": "title",
+                    "name": "Uzmanlık Alanı"
                 }
             ],
             data: [{
                     'id': '1',
                     'name': 'Deniz',
-                    'surname': 'Dalkılıç',
-                    'description': 'Belirtilmedi'
+                    'surname': 'DALKILIÇ',
+                    'title': 'Yazılım Uzmanı'
                 }, {
                     'id': '2',
-                    'name': 'Cabbar',
-                    'surname': 'Demir',
-                    'description': 'Belirtilmedi'
+                    'name': 'Yunus',
+                    'surname': 'ŞİMŞEK',
+                    'title': 'Yazılım Uzmanı'
                 }, {
                     'id': '3',
-                    'name': 'Asiye',
-                    'surname': 'Koç',
-                    'description': 'Belirtilmedi'
+                    'name': 'Tayyip',
+                    'surname': 'DEMİRCAN',
+                    'title': 'Yazılım Uzmanı'
                 }, {
                     'id': '4',
-                    'name': 'Kazım',
-                    'surname': 'Bekir',
-                    'description': 'Belirtilmedi'
+                    'name': 'Mustafa',
+                    'surname': 'GÜNGÖR',
+                    'title': 'Yazılım Uzmanı'
                 }, {
                     'id': '5',
-                    'name': 'Mehmet',
-                    'surname': 'Ak',
-                    'description': 'Belirtilmedi'
-                }, {
-                    'id': '6',
-                    'name': 'Remziye',
-                    'surname': 'Demir',
-                    'description': 'Belirtilmedi'
+                    'name': 'Bora',
+                    'surname': 'AVCI',
+                    'title': 'Yazılım Uzmanı'
                 }]
         };
-        _this.updateData();
         return _this;
     }
     DataGridExample.prototype.render = function () {
@@ -92,17 +86,8 @@ var DataGridExample = /** @class */ (function (_super) {
                     }] })));
     };
     DataGridExample.prototype.clickEdit = function () {
-        debugger;
     };
     DataGridExample.prototype.getSelectData = function (e, b) {
-        console.log(e, b);
-    };
-    DataGridExample.prototype.updateData = function () {
-        var self = this;
-        setTimeout(function () {
-            self.state.data.splice(0, 1);
-            self.forceUpdate();
-        }, 2000);
     };
     return DataGridExample;
 }(React.Component));

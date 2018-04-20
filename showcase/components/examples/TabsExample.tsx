@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Tab, TabPanel} from 'karcin-ui';
 
-export default class ButtonExample extends React.Component {
+export default class ButtonExample extends React.Component<any, any> {
     render() {
         return <Tab>
             <TabPanel title="Tab1">Tab 1 Example</TabPanel>

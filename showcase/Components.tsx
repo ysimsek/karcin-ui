@@ -44,13 +44,13 @@ export default class Components extends React.Component<any, any> {
     }
 
     setActiveMenu(){
-        // let item = this.getItem(window.location.hash, this.state.data);
-        // if (window.location.hash.split("#/Components/")[1] == undefined){
-        //     window.location.hash = "#Components/Button";
-        // }
-        // if (item.length > 0){
-        //     this.menucmp.setActiveItem(item[0]);
-        // }
+        let item = this.getItem(window.location.hash, this.state.data);
+        if (window.location.hash.split("#/Components/")[1] == undefined){
+            window.location.hash = "#Components/Button";
+        }
+        if (item.length > 0){
+            this.menucmp.setActiveItem(item[0]);
+        }
     }
 
     getItem(href,data, item=[]){

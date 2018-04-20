@@ -4,6 +4,7 @@ import "../../css/sass/tab.scss";
 
 export interface TabProps {
     activeTab?:number;
+    className?:string;
 }
 
 export default class Tab extends React.Component<TabProps,any> {
@@ -23,7 +24,7 @@ export default class Tab extends React.Component<TabProps,any> {
 
     render() {
         return (
-            <div className="karcin-tab">
+            <div className={`karcin-tab ${(this.props.className !== undefined) ? this.props.className : ''}`}>
                 <Nav tabs={true}>
                     {this.getTab().header}
                 </Nav>

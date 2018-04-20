@@ -31,8 +31,8 @@ var PasswordInput = /** @class */ (function (_super) {
     }
     PasswordInput.prototype.render = function () {
         //todo :label için sağ sol üst seçenekleri konulsun, hatta button ile birlikte beraber kullanılabilir.
-        var label = this.props.label != "" ? React.createElement(reactstrap_1.InputGroupAddon, { addonType: this.props.labelType }, this.props.label) : null;
-        return React.createElement(reactstrap_1.InputGroup, null,
+        var label = this.props.label != "" ? React.createElement(reactstrap_1.Label, { className: "label-properties" }, this.props.label) : null;
+        return React.createElement("div", null,
             label,
             React.createElement(BaseInput_1.default, __assign({}, this.props)));
     };
@@ -41,7 +41,6 @@ var PasswordInput = /** @class */ (function (_super) {
         readOnly: false,
         hidden: false,
         label: "",
-        labelType: "prepend",
         type: "password"
     };
     return PasswordInput;

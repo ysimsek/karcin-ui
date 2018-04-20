@@ -38,7 +38,7 @@ export default class SelectInput extends React.Component<SelectInputProps>{
     }
 
     render(){
-        let renderComponent = <div><Label>{this.props.label}</Label>
+        let renderComponent = <div><Label className={"label-properties"}>{this.props.label}</Label>
             <select name={this.props.name} className="form-control" style={{width:`100%`}} onChange={this.__handleChange.bind(this)}>
                 <option label="Lütfen Seçiniz" value=""></option>
                 {this.__renderOptionValues(this.props.items)}

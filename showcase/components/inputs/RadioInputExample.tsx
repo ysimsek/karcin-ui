@@ -12,10 +12,11 @@ export default class RadioInputExample extends React.Component<any,any>{
     }
     render(){
         let value= [
-            {id:1,value:"XxxX",des:"D1"},
-            {id:2,value:"XyyX",des:"D1"},
-            {id:3,value:"XzzX",des:"D1"},
-            {id:4,value:"XaaX",des:"D1"},
+            {id:1,value:"Apple",des:"D1"},
+            {id:2,value:"Samsung",des:"D1"},
+            {id:3,value:"Huawei",des:"D1"},
+            {id:4,value:"Lg",des:"D1"},
+            {id:4,value:"Lenovo",des:"D1"}
         ];
         return <div>
             <label>Inline RadioInput Example</label>

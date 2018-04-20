@@ -38,7 +38,7 @@ var RenderComponent = /** @class */ (function (_super) {
                 ' />'),
             React.createElement("p", { className: "description" }, this.props.item.description),
             React.createElement("div", { style: { marginTop: 20 } },
-                React.createElement(karcin_ui_1.Tab, { activeTab: this.state.activeTab },
+                React.createElement(karcin_ui_1.Tab, { activeTab: this.state.activeTab, className: "component-props" },
                     React.createElement(karcin_ui_1.TabPanel, { title: "Example" }, this.getReactElement()),
                     properties,
                     React.createElement(karcin_ui_1.TabPanel, { className: "source", title: React.createElement("span", null,
