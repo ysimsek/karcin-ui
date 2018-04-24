@@ -35,8 +35,8 @@ var Tab = /** @class */ (function (_super) {
     };
     Tab.prototype.render = function () {
         return (React.createElement("div", { className: "karcin-tab " + ((this.props.className !== undefined) ? this.props.className : '') },
-            React.createElement(reactstrap_1.Nav, { tabs: true }, this.getTab().header),
-            React.createElement(reactstrap_1.TabContent, { activeTab: this.state.activeTab }, this.getTab().body)));
+            React.createElement(reactstrap_1.Nav, { tabs: true, className: ((this.props.vertical !== undefined && this.props.vertical) ? 'vertical' : '') + " " + this.props.align }, this.getTab().header),
+            React.createElement(reactstrap_1.TabContent, { className: (this.props.vertical !== undefined && this.props.vertical) ? 'vertical' : '', activeTab: this.state.activeTab }, this.getTab().body)));
     };
     Tab.prototype.toggle = function (tab) {
         if (this.state.activeTab !== tab) {
@@ -70,6 +70,9 @@ var Tab = /** @class */ (function (_super) {
             });
         }
         return { header: header, body: body };
+    };
+    Tab.defaultProps = {
+        align: 'left'
     };
     return Tab;
 }(React.Component));

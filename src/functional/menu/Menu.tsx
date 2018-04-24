@@ -8,6 +8,7 @@ export interface MenuProps {
     onChange?: React.EventHandler<any>;
     active?: MenuItemsProps;
     type?: string;
+    accordion?: boolean;
 }
 
 export interface MenuItemsProps {
@@ -23,7 +24,8 @@ export interface MenuItemsProps {
 }
 
 export interface MenuState {
-    active?: any
+    active?: any,
+    activeList ?:any[]
 }
 
 
@@ -36,27 +38,33 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
     constructor(props: MenuProps) {
         super(props);
         this.state = {
-            active: {}
+            active: {},
+            activeList : []
         };
     }
 
 
     render() {
-        let menu = this.getMenu(this.props.data);
+        let menu = this.getMenu(this.props.data, undefined);
         return (menu);
     }
 
-    getMenu(arr: Array<MenuItemsProps>) {
+    getMenu(arr: Array<MenuItemsProps>, id:any) {
         let me = this;
         let menu: any = [];
         if (Array.isArray(arr) && arr.length > 0) {
             arr.forEach((v, i) => {
                 let subMenu = null;
+                let keys = (id !== undefined) ? id + "-" + i : i;
                 if (v.items != undefined && Array.isArray(v.items) && v.items.length > 0) {
-                    subMenu = me.getMenu(v.items);
-                    menu.push(<CollapseMenu key={i} item={v} collapse={v.collapse} type={me.props.type}>
-                        {subMenu}
-                    </CollapseMenu>);
+                    subMenu = me.getMenu(v.items, keys);
+                    let childMenu = me.getChildItems(v,keys,subMenu);
+
+                    menu.push(childMenu);
+
+                    // menu.push(<CollapseMenu key={i} id={keys} item={v} collapse={v.collapse} type={me.props.type} active={this.state.active} accordion={this.props.accordion}>
+                    //     {subMenu}
+                    // </CollapseMenu>);
                 } else {
                     menu.push(me.getMenuItem(v, i));
                 }
@@ -92,40 +100,39 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
             this.props.onChange(item);
         }
     }
-}
-
-export class CollapseMenu extends React.Component<any, any> {
 
 
-    constructor(props: any) {
-        super(props);
-        this.state = {collapse: props.collapse || false};
-    }
+    getChildItems(getItems:any, getKey:any, getSubMenu:any){
 
-    render() {
-        let item = this.props.item;
         let self = this;
-        return <NavItem className={(this.state.collapse ? "opened" : "")}>
+        let collapse = false;
+
+        return <NavItem className={(collapse ? "opened" : "")}>
             <div className="menu-head" onClick={() => {
-                if (self.props.type === 'dropDown') {
-                    self.toggle()
+                if (this.props.type === 'dropDown') {
+                    self.toggle(getKey);
                 }
             }}>
-                {(item.icon !== undefined) ? <FaIcon code={item.icon} className="menu-icon"/> : ''}
-                <NavLink href={(item.href) ? item.href : '#'}>{item.title}</NavLink>
-                {(item.badge !== undefined) ? <Badge color={item.badgeColor}>{item.badge}</Badge> : ''}
-                {(item.items !== undefined) ? (this.props.type === "hover" ?
-                    <FaIcon code="fa-angle-right" className="open-icon"/> : this.state.collapse ?
+                {(getItems.icon !== undefined) ? <FaIcon code={getItems.icon} className="menu-icon"/> : ''}
+                <NavLink href={(getItems.href) ? getItems.href : '#'}>{getItems.title}</NavLink>
+                {(getItems.badge !== undefined) ? <Badge color={getItems.badgeColor}>{getItems.badge}</Badge> : ''}
+                {(getItems.items !== undefined) ? (this.props.type === "hover" ?
+                    <FaIcon code="fa-angle-right" className="open-icon"/> : collapse ?
                         <FaIcon code="fa-angle-down" className="open-icon"/> :
                         <FaIcon code="fa-angle-right" className="open-icon"/>) : ''}
             </div>
-            <Collapse isOpen={this.state.collapse}>
-                {this.props.children}
+            <Collapse isOpen={(self.state.activeList.indexOf(getKey) !== -1 ? true : false)}>
+                {getSubMenu}
             </Collapse>
         </NavItem>
     }
 
-    toggle() {
-        this.setState({collapse: !this.state.collapse});
+    toggle(key:any) {
+
+        if(this.state.activeList.indexOf(key) === -1){
+            this.state.activeList.push(key);
+            this.forceUpdate();
+        }
     }
+
 }

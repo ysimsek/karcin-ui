@@ -1,12 +1,20 @@
 /***** MENU CSS Start ******/
-.karcin-menu .nav-item .nav {padding-left: 25px;}
+.karcin-menu .nav-item .nav {
+    padding-left: 25px;
+}
+
 /***** MENU CSS End ******/
 
 /***** TAB CSS Start ******/
-.karcin-tab .nav-link {cursor: pointer;}
+.karcin-tab .nav-link {
+    cursor: pointer;
+}
+
 /***** TAB CSS End ******/
 
-.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {padding: 0;}
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
+    padding: 0;
+}
 
 textarea {
     overflow: auto;
@@ -14,17 +22,20 @@ textarea {
     width: 100%;
     max-width: 100% !important;
 }
-.radio{
+
+.radio {
     margin: 5px;
     padding: 2px;
 }
-.label-properties{
+
+.label-properties {
     margin-bottom: -0.5rem !important;
     font-weight: bold;
 }
-.radio-properties{
-    border : none;
-    padding :0px;
+
+.radio-properties {
+    border: none;
+    padding: 0px;
 }
 
 /**
@@ -66,7 +77,7 @@ textarea {
     top: 9px;
     z-index: 999;
     left: 14px;
-    color:#FFFFFF;
+    color: #FFFFFF;
 }
 
 .slider-checkbox label .show-icon.reject {
@@ -87,4 +98,119 @@ textarea {
     -webkit-transition: all .3s ease;
     -ms-transition: all .3s ease;
     box-shadow: 0px 1px 5px #ccc;
+}
+
+/**
+    * tab css
+ */
+
+.karcin-tab {
+    width: 100%;
+    overflow: hidden;
+}
+
+.karcin-tab > .nav {
+    border-bottom: solid 1px #f1f1f1;
+}
+
+.karcin-tab > .nav li {
+    display: inline-block;
+    margin-right: 3px;
+}
+
+.karcin-tab > .nav li a {
+    border: solid 1px #f1f0f0;
+    border-bottom: 0;
+    border-radius: 3px 3px 0px 0px;
+    color: #a59c9c;
+}
+
+.karcin-tab > .nav li a.active {
+    background-color: #9aba42;
+    color: #fff;
+}
+
+.karcin-tab > .tab-content {
+    border: solid 1px #f1f0f0;
+    border-top: 0;
+    padding: 10px;
+}
+
+.karcin-tab > .tab-content .tab-pane {
+}
+
+.karcin-tab > .tab-content .tab-pane.active {
+}
+
+.karcin-tab > .nav.vertical {
+    float: left;
+    width: 200px;
+    display: block;
+    border-bottom: 0;
+}
+
+.karcin-tab > .nav.vertical li {
+    display: block;
+    margin-right: 0;
+}
+
+.karcin-tab > .nav.vertical li a {
+    border-right: 0;
+    border-radius: 0;
+}
+
+.karcin-tab > .nav.vertical li.active a {
+    background-color: #f2f2f2;
+    color: #555;
+}
+
+.karcin-tab > .nav.vertical li:first-child a {
+    border-radius: 5px 0px 0px 0px;
+}
+
+.karcin-tab > .nav.vertical li:last-child a {
+    border-radius: 0px 0 0px 5px;
+    border-bottom: solid 1px #f1f1f1;
+}
+
+.karcin-tab > .nav.right {
+    float: left;
+    width: 200px;
+    display: block;
+    border-bottom: 0;
+}
+
+.karcin-tab > .nav.right li {
+    display: block;
+    margin-right: 0;
+}
+
+.karcin-tab > .nav.right li.active a {
+    background-color: #f2f2f2;
+    color: #555;
+}
+
+.karcin-tab > .nav.right li:first-child a {
+    border-radius: 0px 5px 0px 0px;
+}
+
+.karcin-tab > .nav.right li:last-child a {
+    border-radius: 0px 0 5px 0px;
+    border-bottom: solid 1px #f1f1f1;
+}
+
+.karcin-tab > .nav.right li a {
+    border-right: solid 1px #f1f0f0;
+    border-left: 0;
+}
+
+.karcin-tab > .tab-content.vertical {
+    float: left;
+    width: calc(100% - 200px);
+    border: solid 1px #f1f0f0;
+    min-height: 200px;
+}
+
+.karcin-tab > .nav.right {
+    float: right
 }

@@ -19,23 +19,29 @@ var Menu = /** @class */ (function (_super) {
     function Menu(props) {
         var _this = _super.call(this, props) || this;
         _this.state = {
-            active: {}
+            active: {},
+            activeList: []
         };
         return _this;
     }
     Menu.prototype.render = function () {
-        var menu = this.getMenu(this.props.data);
+        var menu = this.getMenu(this.props.data, undefined);
         return (menu);
     };
-    Menu.prototype.getMenu = function (arr) {
+    Menu.prototype.getMenu = function (arr, id) {
         var me = this;
         var menu = [];
         if (Array.isArray(arr) && arr.length > 0) {
             arr.forEach(function (v, i) {
                 var subMenu = null;
+                var keys = (id !== undefined) ? id + "-" + i : i;
                 if (v.items != undefined && Array.isArray(v.items) && v.items.length > 0) {
-                    subMenu = me.getMenu(v.items);
-                    menu.push(React.createElement(CollapseMenu, { key: i, item: v, collapse: v.collapse, type: me.props.type }, subMenu));
+                    subMenu = me.getMenu(v.items, keys);
+                    var childMenu = me.getChildItems(v, keys, subMenu);
+                    menu.push(childMenu);
+                    // menu.push(<CollapseMenu key={i} id={keys} item={v} collapse={v.collapse} type={me.props.type} active={this.state.active} accordion={this.props.accordion}>
+                    //     {subMenu}
+                    // </CollapseMenu>);
                 }
                 else {
                     menu.push(me.getMenuItem(v, i));
@@ -68,41 +74,35 @@ var Menu = /** @class */ (function (_super) {
             this.props.onChange(item);
         }
     };
+    Menu.prototype.getChildItems = function (getItems, getKey, getSubMenu) {
+        var _this = this;
+        var self = this;
+        var collapse = false;
+        return React.createElement(reactstrap_1.NavItem, { className: (collapse ? "opened" : "") },
+            React.createElement("div", { className: "menu-head", onClick: function () {
+                    if (_this.props.type === 'dropDown') {
+                        self.toggle(getKey);
+                    }
+                } },
+                (getItems.icon !== undefined) ? React.createElement(index_1.FaIcon, { code: getItems.icon, className: "menu-icon" }) : '',
+                React.createElement(reactstrap_1.NavLink, { href: (getItems.href) ? getItems.href : '#' }, getItems.title),
+                (getItems.badge !== undefined) ? React.createElement(reactstrap_1.Badge, { color: getItems.badgeColor }, getItems.badge) : '',
+                (getItems.items !== undefined) ? (this.props.type === "hover" ?
+                    React.createElement(index_1.FaIcon, { code: "fa-angle-right", className: "open-icon" }) : collapse ?
+                    React.createElement(index_1.FaIcon, { code: "fa-angle-down", className: "open-icon" }) :
+                    React.createElement(index_1.FaIcon, { code: "fa-angle-right", className: "open-icon" })) : ''),
+            React.createElement(reactstrap_1.Collapse, { isOpen: (self.state.activeList.indexOf(getKey) !== -1 ? true : false) }, getSubMenu));
+    };
+    Menu.prototype.toggle = function (key) {
+        if (this.state.activeList.indexOf(key) === -1) {
+            this.state.activeList.push(key);
+            this.forceUpdate();
+        }
+    };
     Menu.defaultProps = {
         type: 'dropDown'
     };
     return Menu;
 }(React.Component));
 exports.default = Menu;
-var CollapseMenu = /** @class */ (function (_super) {
-    __extends(CollapseMenu, _super);
-    function CollapseMenu(props) {
-        var _this = _super.call(this, props) || this;
-        _this.state = { collapse: props.collapse || false };
-        return _this;
-    }
-    CollapseMenu.prototype.render = function () {
-        var item = this.props.item;
-        var self = this;
-        return React.createElement(reactstrap_1.NavItem, { className: (this.state.collapse ? "opened" : "") },
-            React.createElement("div", { className: "menu-head", onClick: function () {
-                    if (self.props.type === 'dropDown') {
-                        self.toggle();
-                    }
-                } },
-                (item.icon !== undefined) ? React.createElement(index_1.FaIcon, { code: item.icon, className: "menu-icon" }) : '',
-                React.createElement(reactstrap_1.NavLink, { href: (item.href) ? item.href : '#' }, item.title),
-                (item.badge !== undefined) ? React.createElement(reactstrap_1.Badge, { color: item.badgeColor }, item.badge) : '',
-                (item.items !== undefined) ? (this.props.type === "hover" ?
-                    React.createElement(index_1.FaIcon, { code: "fa-angle-right", className: "open-icon" }) : this.state.collapse ?
-                    React.createElement(index_1.FaIcon, { code: "fa-angle-down", className: "open-icon" }) :
-                    React.createElement(index_1.FaIcon, { code: "fa-angle-right", className: "open-icon" })) : ''),
-            React.createElement(reactstrap_1.Collapse, { isOpen: this.state.collapse }, this.props.children));
-    };
-    CollapseMenu.prototype.toggle = function () {
-        this.setState({ collapse: !this.state.collapse });
-    };
-    return CollapseMenu;
-}(React.Component));
-exports.CollapseMenu = CollapseMenu;
 //# sourceMappingURL=Menu.js.map

@@ -4,9 +4,15 @@ import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, Ca
 export interface TabProps {
     activeTab?:number;
     className?:string;
+    vertical?:boolean | any;
+    align?:string;
 }
 
 export default class Tab extends React.Component<TabProps,any> {
+
+    static defaultProps: Partial<TabProps> = {
+        align:'left'
+    }
 
     constructor(props:any) {
         super(props);
@@ -24,10 +30,10 @@ export default class Tab extends React.Component<TabProps,any> {
     render() {
         return (
             <div className={`karcin-tab ${(this.props.className !== undefined) ? this.props.className : ''}`}>
-                <Nav tabs={true}>
+                <Nav tabs={true} className={`${(this.props.vertical !== undefined && this.props.vertical) ? 'vertical' : ''} ${this.props.align}`}>
                     {this.getTab().header}
                 </Nav>
-                <TabContent activeTab={this.state.activeTab}>
+                <TabContent className={(this.props.vertical !== undefined && this.props.vertical) ? 'vertical' : ''} activeTab={this.state.activeTab}>
                     {this.getTab().body}
                 </TabContent>
             </div>

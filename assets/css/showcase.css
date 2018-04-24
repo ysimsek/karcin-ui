@@ -136,7 +136,7 @@ body {padding: 0; margin: 0; font-family: 'Quicksand', sans-serif; color:#303030
 .footer-left {line-height: 50px; padding-top:7px;}
 
 .karcin-menu .active.nav-link {color:#bfff68;}
-.container-component .tab-content {padding-top: 20px;}
+.container-component .component-props > .tab-content {padding:0;padding-top: 20px;}
 .description {color:#777; font-size: 14px;}
 span.opt {
     font-size: 12px;
@@ -171,6 +171,8 @@ span.opt {
     font-weight: bold;
     position: relative;
     z-index: 9;
+    background-color: transparent;
+    color:#212529;
 }
 .component-props > .nav > .nav-item .nav-link:hover {
     border-color: #9aba42;
@@ -179,4 +181,8 @@ span.opt {
     border-color :#9aba42;
     color: #9aba42;
     font-weight: bold;
+}
+
+.component-props > .tab-content {
+    border: 0;
 }

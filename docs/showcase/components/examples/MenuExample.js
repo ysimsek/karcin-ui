@@ -52,33 +52,6 @@ var MenuExample = /** @class */ (function (_super) {
                         "title": "Tabs",
                         "href": "#/Components/Tabs",
                         "samples": "components/examples/TabsExample",
-                        "items": [
-                            {
-                                "id": 1,
-                                "name": "Button",
-                                "title": "Button",
-                                "href": "#/Components/Button"
-                            },
-                            {
-                                "id": 2,
-                                "name": "Menu",
-                                "title": "Menü",
-                                "href": "#/Components/Menu"
-                            },
-                            {
-                                "id": 3,
-                                "name": "FaIcon",
-                                "title": "Font Awesome Icon",
-                                "href": "#/Components/FaIcon"
-                            },
-                            {
-                                "id": 4,
-                                "name": "Tab",
-                                "title": "Tabs",
-                                "href": "#/Components/Tabs",
-                                "samples": "components/examples/TabsExample"
-                            }
-                        ]
                     }
                 ]
             }, {
@@ -105,8 +78,9 @@ var MenuExample = /** @class */ (function (_super) {
                 ]
             }
         ];
+        var deneme = [{ "id": 1, "name": "Button", "title": "Button", "href": "#/Components/Button" }];
         return React.createElement("div", null,
-            React.createElement(karcin_ui_1.Menu, { data: data }));
+            React.createElement(karcin_ui_1.MenuDeneme, { data: data }));
     };
     return MenuExample;
 }(React.Component));
