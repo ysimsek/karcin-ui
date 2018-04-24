@@ -19,7 +19,8 @@ var Components = /** @class */ (function (_super) {
         var _this = _super.call(this, props) || this;
         var json = require('./ComponentList.json');
         _this.state = {
-            data: json.data
+            data: json.data,
+            active: []
         };
         return _this;
     }
@@ -32,26 +33,28 @@ var Components = /** @class */ (function (_super) {
         else {
             detailCmp = React.createElement("span", null, "Component Bulunamad\u0131...");
         }
-        return React.createElement("div", { className: "content-component" },
+        return (React.createElement("div", { className: "content-component" },
             React.createElement("div", { className: "side-menu" },
                 React.createElement("div", { className: "side-menu-container" },
-                    React.createElement(karcin_ui_1.MenuDeneme, { data: this.state.data, accordion: true }))),
-            React.createElement("div", { className: "container-component content-page" }, detailCmp));
+                    React.createElement(karcin_ui_1.Menu, { data: this.state.data, accordion: true, active: this.state.active }))),
+            React.createElement("div", { className: "container-component content-page" }, detailCmp)));
     };
     Components.prototype.componentDidMount = function () {
         this.setActiveMenu();
     };
-    Components.prototype.componentDidUpdate = function () {
+    Components.prototype.componentWillReceiveProps = function () {
         this.setActiveMenu();
     };
     Components.prototype.setActiveMenu = function () {
-        // let item = this.getItem(window.location.hash, this.state.data);
-        // if (window.location.hash.split("#/Components/")[1] == undefined){
-        //     window.location.hash = "#Components/Button";
-        // }
-        // if (item.length > 0){
-        //     this.menucmp.setActiveItem(item[0]);
-        // }
+        var item = this.getItem(window.location.hash, this.state.data);
+        if (window.location.hash.split("#/Components/")[1] == undefined) {
+            window.location.hash = "#Components/Button";
+        }
+        if (item.length > 0) {
+            this.state.active.length = 0;
+            this.state.active.push(item[0]);
+            this.forceUpdate();
+        }
     };
     Components.prototype.getItem = function (href, data, item) {
         var _this = this;

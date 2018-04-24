@@ -1,138 +1,225 @@
-import * as React from "react";
-import {Nav, NavItem, NavLink, Collapse, Badge} from "reactstrap";
-import {FaIcon} from "../../index";
+import * as React from 'react';
+import {Collapse, Nav, NavItem, Badge, NavLink} from 'reactstrap';
+import FaIcon from '../faicon/FaIcon'
 import "../../css/sass/menu.scss";
 
 export interface MenuProps {
-    data: Array<MenuItemsProps>;
-    onChange?: React.EventHandler<any>;
-    active?: MenuItemsProps;
+    data: Array<MenuData> | any;
     type?: string;
-    accordion?: boolean;
+    accordion?:boolean;
+    active?:Array<MenuData>;
 }
 
-export interface MenuItemsProps {
+export interface MenuData {
     id: number,
     name: string,
     title?: string,
     icon?: string,
     href?: string,
     collapse?: boolean,
-    items?: Array<MenuItemsProps>,
-    badgeColor?: string,
-    badge?: string
+    catTitle?: string,
+    items?: Array<MenuData>,
+    badge?: string,
+    badgeColor?: string
 }
 
 export interface MenuState {
-    active?: any,
-    activeList ?:any[]
+    menuData: Array<MenuData> | any,
+    menuActive?: any[] | any,
+    type?: string,
+    active ?: any,
+    addActive?: boolean,
+    activeControl ?:boolean
 }
-
 
 export default class Menu extends React.Component<MenuProps, MenuState> {
 
+    menuChilds: any = null;
+
     static defaultProps: Partial<MenuProps> = {
-        type: 'dropDown'
-    };
+        type: 'dropDown',
+        accordion:false,
+        active: [],
+    }
 
     constructor(props: MenuProps) {
         super(props);
+
         this.state = {
-            active: {},
-            activeList : []
+            menuData: [],
+            menuActive: [],
+            type: this.props.type,
+            active : null,
+            addActive : false,
+            activeControl : false
         };
     }
 
+    componentWillReceiveProps(props:MenuProps){
+        this.setState({
+            menuData : props.data,
+            type: props.type
+        });
+
+        this.activeFind(this.props.active);
+
+    }
+
+    componentDidMount(){
+        this.activeFind(this.props.active);
+    }
 
     render() {
-        let menu = this.getMenu(this.props.data, undefined);
-        return (menu);
+        this.menuChilds = this.menuLoop(this.props.data, undefined, 0,false);
+        return <Nav key="0" className={`karcin-menu ${(this.state.type === 'hover') ? 'hover-menu' : ''}`}>
+            {this.menuChilds}
+        </Nav>;
     }
 
-    getMenu(arr: Array<MenuItemsProps>, id:any) {
-        let me = this;
-        let menu: any = [];
-        if (Array.isArray(arr) && arr.length > 0) {
-            arr.forEach((v, i) => {
-                let subMenu = null;
-                let keys = (id !== undefined) ? id + "-" + i : i;
-                if (v.items != undefined && Array.isArray(v.items) && v.items.length > 0) {
-                    subMenu = me.getMenu(v.items, keys);
-                    let childMenu = me.getChildItems(v,keys,subMenu);
 
-                    menu.push(childMenu);
+    /**
+     * get start menu loop
+     * @param {any[]} getData
+     */
+    menuLoop(getData: any, key: any, level:any, collapse:boolean) {
 
-                    // menu.push(<CollapseMenu key={i} id={keys} item={v} collapse={v.collapse} type={me.props.type} active={this.state.active} accordion={this.props.accordion}>
-                    //     {subMenu}
-                    // </CollapseMenu>);
-                } else {
-                    menu.push(me.getMenuItem(v, i));
+
+
+        // reset list menu
+        this.menuChilds = [];
+
+        // loop main menu titles
+
+        let listMenu:any[] = [];
+        let self = this;
+        getData.forEach((value:any, index:number) => {
+
+            // active control
+            let keys = (key !== undefined) ? key + "-" + index : index.toString();
+
+            let params = {keys:keys, level:level, collapse:false};
+            let activeControlBool = false;
+            self.state.menuActive.forEach((val:any)=>{
+                if(val.keys === keys){
+                    activeControlBool = true;
                 }
             });
-        }
-        return <Nav vertical
-                    className={`karcin-menu ${(this.props.type === 'hover') ? 'hover-menu' : ''}`}>{menu}</Nav>;
+            if(!activeControlBool){
+                self.state.menuActive.push(params);
+                value['keys'] = keys;
+                value['level'] = level;
+                self.state.menuData.push(value);
+            }
+
+
+            let actives = this.menuItemActive(keys);
+
+
+            listMenu.push(<NavItem key={index} className={(actives) ? 'active' : ''}>
+                <div className="menu-head" onClick={()=>{ if(this.state.type === 'dropDown'){this.toggleActiveMenu(params)} }}>
+                    <NavLink href={(value.href) ? value.href : "#"}>
+                        {(value.icon !== undefined) ? <FaIcon code={value.icon} className="menu-icon"/> : ''}
+                        <strong>{value.title}{(value.badge !== undefined) ? <Badge color={value.badgeColor}>{value.badge}</Badge> : ''}</strong>
+                        {(value.items !== undefined) ? (actives ? <FaIcon code="fa-angle-down" className="open-icon"/> : <FaIcon code="fa-angle-right" className="open-icon"/>) : ''}
+                    </NavLink>
+                </div>
+                {(value.items !== undefined && value.items.length > 0) ? this.menuLoop(value.items, keys, level + 1, true) : ''}
+            </NavItem>);
+        });
+
+        let active = this.menuItemActive(key);
+
+        return (collapse ? <Collapse isOpen={active}><Nav>{listMenu}</Nav></Collapse> : <Nav>{listMenu}</Nav>);
     }
 
-    getMenuItem(item: MenuItemsProps, key: any) {
-        let activeClass = (item.id == this.state.active.id && item.name == this.state.active.name) ? "active" : "";
-        return <NavItem key={key} className={activeClass}>
-            <div className="menu-head" onClick={() => {
-                if (this.props.type === 'dropDown') {
-                    this.setActiveItem(item)
-                }
-            }}>
-                <NavLink href={(item.href) ? item.href : "#"}>
-                    {(item.icon !== undefined) ? <FaIcon code={item.icon} className="menu-icon"/> : ''}
-                    {item.title}{(item.badge !== undefined) ? <Badge color={item.badgeColor}>{item.badge}</Badge> : ''}
-                    {(item.items !== undefined) ? (this.props.type === "hover" ?
-                        <FaIcon code="fa-angle-right" className="open-icon"/> : activeClass ?
-                            <FaIcon code="fa-angle-down" className="open-icon"/> :
-                            <FaIcon code="fa-angle-right" className="open-icon"/>) : ''}
-                </NavLink>
-            </div>
-        </NavItem>;
-    }
-
-    setActiveItem(item: MenuItemsProps) {
-        this.setState({active: item});
-        if (this.props.onChange) {
-            this.props.onChange(item);
-        }
-    }
-
-
-    getChildItems(getItems:any, getKey:any, getSubMenu:any){
-
+    /**
+     * click dropdown menu toggle
+     * @param param
+     */
+    toggleActiveMenu(param:any){
         let self = this;
-        let collapse = false;
-
-        return <NavItem className={(collapse ? "opened" : "")}>
-            <div className="menu-head" onClick={() => {
-                if (this.props.type === 'dropDown') {
-                    self.toggle(getKey);
+        this.state.menuActive.map((val:any, index:number) => {
+            if(self.props.accordion){
+                if(param.level === val.level){
+                    if(param.keys === val.keys){
+                        val.collapse = true;
+                    }
+                    else {
+                        val.collapse = false;
+                    }
                 }
-            }}>
-                {(getItems.icon !== undefined) ? <FaIcon code={getItems.icon} className="menu-icon"/> : ''}
-                <NavLink href={(getItems.href) ? getItems.href : '#'}>{getItems.title}</NavLink>
-                {(getItems.badge !== undefined) ? <Badge color={getItems.badgeColor}>{getItems.badge}</Badge> : ''}
-                {(getItems.items !== undefined) ? (this.props.type === "hover" ?
-                    <FaIcon code="fa-angle-right" className="open-icon"/> : collapse ?
-                        <FaIcon code="fa-angle-down" className="open-icon"/> :
-                        <FaIcon code="fa-angle-right" className="open-icon"/>) : ''}
-            </div>
-            <Collapse isOpen={(self.state.activeList.indexOf(getKey) !== -1 ? true : false)}>
-                {getSubMenu}
-            </Collapse>
-        </NavItem>
+            }else {
+
+                if(param.keys === val.keys && param.level === val.level){
+                    val.collapse = !val.collapse;
+                }
+            }
+
+            return val;
+        });
+
+
+        let state:object | any = {};
+        state['addActive'] = true;
+        this.setState(state);
     }
 
-    toggle(key:any) {
 
-        if(this.state.activeList.indexOf(key) === -1){
-            this.state.activeList.push(key);
+    /**
+     * active find func
+     * @param getActive
+     */
+    activeFind(getActive:any){
+        if(this.state.menuData.length > 0 && getActive !== undefined && getActive !== null && getActive.length > 0 && !this.state.activeControl) {
+            getActive = getActive[0];
+            this.state.menuData.forEach((val:any) => {
+                if (val.href === getActive.href && val.name === getActive.name) {
+
+                    for (let i = val.level; i >= 0; i--) {
+                        let splitKey = val.keys.split('-');
+                        this.state.menuActive.map((vals:any) => {
+                            let id = splitKey.slice(0, i + 1).join('-');
+                            if (this.props.accordion) {
+                                if (vals.level === i && id === vals.keys) {
+                                    vals.collapse = true;
+                                } else if (vals.level === i) {
+                                    vals.collapse = false;
+                                }
+                            } else {
+
+                                if (vals.level === i && vals.keys === id) {
+                                    vals.collapse = !vals.collapse;
+                                }
+                            }
+
+                            return vals;
+                        });
+
+                    }
+                }
+            });
             this.forceUpdate();
         }
     }
+
+
+    /**
+     * active control func
+     * @param id
+     * @returns {boolean}
+     */
+    menuItemActive(id:any){
+        let active = false;
+        this.state.menuActive.forEach((val:any)=>{
+            let keys = (id !== undefined) ? id : "0";
+            if(val.keys === keys){
+                active = val.collapse;
+            }
+        });
+
+        return active;
+    }
+
+
 
 }

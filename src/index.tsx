@@ -1,7 +1,6 @@
 import Button from "./functional/button/Button";
 import FaIcon from "./functional/faicon/FaIcon";
 import Menu from "./functional/menu/Menu";
-import MenuDeneme from "./functional/menu/MenuDeneme";
 import Tab from "./functional/tabs/Tab";
 import TabPanel from "./functional/tabs/TabPanel";
 import NumericInput from "./inputs/NumericInput";
@@ -15,5 +14,5 @@ import Panel from "./functional/panel/Panel";
 import DatePicker from "./datepicker/DatePicker";
 import SliderCheckbox from "./inputs/SliderCheckbox";
 import "./css/karcin-ui.css";
-export { Button, FaIcon, Menu, Tab, TabPanel, NumericInput, PasswordInput, SelectInput, TextInput,RadioInput, DataGrid, Notify, Panel, DatePicker, SliderCheckbox, MenuDeneme};
+export { Button, FaIcon, Menu, Tab, TabPanel, NumericInput, PasswordInput, SelectInput, TextInput,RadioInput, DataGrid, Notify, Panel, DatePicker, SliderCheckbox};
 export default Button;

@@ -80,7 +80,7 @@ var MenuExample = /** @class */ (function (_super) {
         ];
         var deneme = [{ "id": 1, "name": "Button", "title": "Button", "href": "#/Components/Button" }];
         return React.createElement("div", null,
-            React.createElement(karcin_ui_1.MenuDeneme, { data: data }));
+            React.createElement(karcin_ui_1.Menu, { data: data, active: deneme }));
     };
     return MenuExample;
 }(React.Component));

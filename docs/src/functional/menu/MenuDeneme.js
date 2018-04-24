@@ -20,7 +20,7 @@ var MenuDeneme = /** @class */ (function (_super) {
         var _this = _super.call(this, props) || this;
         _this.menuChilds = null;
         _this.state = {
-            menuData: _this.props.data,
+            menuData: [],
             menuActive: [],
             type: _this.props.type,
             active: null,
@@ -57,6 +57,8 @@ var MenuDeneme = /** @class */ (function (_super) {
             var params = { keys: keys, level: level, collapse: false };
             if (!self.state.addActive) {
                 self.state.menuActive.push(params);
+                value['key'] = keys;
+                self.state.menuData.push(value);
             }
             listMenu.push(React.createElement(reactstrap_1.NavItem, { key: index, className: (activeIconControl) ? 'active' : '', id: index },
                 React.createElement("div", { className: "menu-head", onClick: function () { if (_this.state.type === 'dropDown') {
@@ -75,6 +77,7 @@ var MenuDeneme = /** @class */ (function (_super) {
                 active = val.collapse;
             }
         });
+        this.state.menuData = getData;
         return (collapse ? React.createElement(reactstrap_1.Collapse, { isOpen: active },
             React.createElement(reactstrap_1.Nav, null, listMenu)) : React.createElement(reactstrap_1.Nav, null, listMenu));
     };
@@ -92,11 +95,17 @@ var MenuDeneme = /** @class */ (function (_super) {
                     }
                 }
             }
+            else {
+                if (param.keys === val.keys && param.level === val.level) {
+                    return val.collapse = (!val.collapse ? true : false);
+                }
+            }
         });
         this.setState({ addActive: true });
         this.forceUpdate();
     };
-    MenuDeneme.prototype.activeFind = function () { };
+    MenuDeneme.prototype.activeFind = function () {
+    };
     MenuDeneme.defaultProps = {
         type: 'dropDown',
         accordion: false

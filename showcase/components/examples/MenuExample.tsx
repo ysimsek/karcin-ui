@@ -1,5 +1,5 @@
 import * as React from "react";
-import {MenuDeneme} from 'karcin-ui';
+import {Menu} from 'karcin-ui';
 
 export default class MenuExample extends React.Component<any, any> {
     render() {
@@ -63,9 +63,9 @@ export default class MenuExample extends React.Component<any, any> {
                 ]
             }
         ];
-        let deneme = [{"id": 1, "name": "Button", "title": "Button", "href": "#/Components/Button"}];
+        let deneme = [{"id":1, "name":"Button", "title":"Button", "href":"#/Components/Button"}];
         return <div>
-            <MenuDeneme data={data}/>
+            <Menu data={data} active={deneme} />
         </div>;
     }
 }
