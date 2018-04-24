@@ -39,8 +39,8 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
     static defaultProps: Partial<MenuProps> = {
         type: 'dropDown',
         accordion:false,
-        active: null
-    };
+        active: [],
+    }
 
     constructor(props: MenuProps) {
         super(props);
@@ -88,9 +88,9 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
 
         // loop main menu titles
 
-        let listMenu = [];
+        let listMenu:any[] = [];
         let self = this;
-        getData.forEach((value, index)=> {
+        getData.forEach((value:any, index:number) => {
 
             // active control
             let activeIconControl = false;
@@ -98,7 +98,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
 
             let params = {keys:keys, level:level, collapse:false};
             let activeControlBool = false;
-            self.state.menuActive.forEach((val)=>{
+            self.state.menuActive.forEach((val:any)=>{
                 if(val.keys === keys){
                     activeControlBool = true;
                 }
@@ -114,7 +114,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
             let actives = this.menuItemActive(keys);
 
 
-            listMenu.push(<NavItem key={index} className={(actives) ? 'active' : ''} id={index}>
+            listMenu.push(<NavItem key={index} className={(actives) ? 'active' : ''}>
                 <div className="menu-head" onClick={()=>{ if(this.state.type === 'dropDown'){this.toggleActiveMenu(params)} }}>
                     <NavLink href={(value.href) ? value.href : "#"}>
                         {(value.icon !== undefined) ? <FaIcon code={value.icon} className="menu-icon"/> : ''}
@@ -132,29 +132,29 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
     }
 
     toggleActiveMenu(param:any){
-        console.log(this.state.menuActive);
         let self = this;
-        this.state.menuActive.map((val)=>{
+        this.state.menuActive.map((val:any, index:number) => {
             if(self.props.accordion){
                 if(param.level === val.level){
                     if(param.keys === val.keys){
-                        return val.collapse = true;
+                        val.collapse = true;
                     }
                     else {
-                        return val.collapse = false;
+                        val.collapse = false;
                     }
                 }
-
             }else {
 
                 if(param.keys === val.keys && param.level === val.level){
-                    return val.collapse = !val.collapse;
+                    val.collapse = !val.collapse;
                 }
             }
+
+            return val;
         });
 
 
-        let state = {};
+        let state:object | any = {};
         state['addActive'] = true;
         this.setState(state);
     }
@@ -163,25 +163,27 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
     activeFind(getActive:any){
         if(this.state.menuData.length > 0 && getActive !== undefined && getActive !== null && getActive.length > 0 && !this.state.activeControl) {
             getActive = getActive[0];
-            this.state.menuData.forEach((val) => {
+            this.state.menuData.forEach((val:any) => {
                 if (val.href === getActive.href && val.name === getActive.name) {
 
                     for (let i = val.level; i >= 0; i--) {
                         let splitKey = val.keys.split('-');
-                        this.state.menuActive.map((vals) => {
+                        this.state.menuActive.map((vals:any) => {
                             let id = splitKey.slice(0, i + 1).join('-');
                             if (this.props.accordion) {
                                 if (vals.level === i && id === vals.keys) {
-                                    return vals.collapse = true;
+                                    vals.collapse = true;
                                 } else if (vals.level === i) {
-                                    return vals.collapse = false;
+                                    vals.collapse = false;
                                 }
                             } else {
 
                                 if (vals.level === i && vals.keys === id) {
-                                    return vals.collapse = !vals.collapse;
+                                    vals.collapse = !vals.collapse;
                                 }
                             }
+
+                            return vals;
                         });
 
                     }
@@ -194,7 +196,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
 
     menuItemActive(id:any){
         let active = false;
-        this.state.menuActive.forEach((val)=>{
+        this.state.menuActive.forEach((val:any)=>{
             let keys = (id !== undefined) ? id : "0";
             if(val.keys === keys){
                 active = val.collapse;
