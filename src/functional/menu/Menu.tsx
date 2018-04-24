@@ -38,7 +38,8 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
 
     static defaultProps: Partial<MenuProps> = {
         type: 'dropDown',
-        accordion:false
+        accordion:false,
+        active: null
     };
 
     constructor(props: MenuProps) {
@@ -117,7 +118,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
                 <div className="menu-head" onClick={()=>{ if(this.state.type === 'dropDown'){this.toggleActiveMenu(params)} }}>
                     <NavLink href={(value.href) ? value.href : "#"}>
                         {(value.icon !== undefined) ? <FaIcon code={value.icon} className="menu-icon"/> : ''}
-                        {value.title}{(value.badge !== undefined) ? <Badge color={value.badgeColor}>{value.badge}</Badge> : ''}
+                        <strong>{value.title}{(value.badge !== undefined) ? <Badge color={value.badgeColor}>{value.badge}</Badge> : ''}</strong>
                         {(value.items !== undefined) ? (actives ? <FaIcon code="fa-angle-down" className="open-icon"/> : <FaIcon code="fa-angle-right" className="open-icon"/>) : ''}
                     </NavLink>
                 </div>
@@ -160,7 +161,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
 
 
     activeFind(getActive:any){
-        if(this.state.menuData.length > 0 && getActive !== undefined && getActive.length > 0 && !this.state.activeControl) {
+        if(this.state.menuData.length > 0 && getActive !== undefined && getActive !== null && getActive.length > 0 && !this.state.activeControl) {
             getActive = getActive[0];
             this.state.menuData.forEach((val) => {
                 if (val.href === getActive.href && val.name === getActive.name) {

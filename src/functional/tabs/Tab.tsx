@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
-import "../../css/sass/tab.scss";
 
 export interface TabProps {
     activeTab?:number;

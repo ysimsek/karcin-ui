@@ -39,12 +39,6 @@ export default class MenuExample extends React.Component<any, any> {
                         "samples":"components/examples/TabsExample",
                         "items":[
                             {
-                                "id":1,
-                                "name":"Button",
-                                "title":"Button",
-                                "href":"#/Components/Button"
-                            },
-                            {
                                 "id":2,
                                 "name":"Menu",
                                 "title":"Menü",
