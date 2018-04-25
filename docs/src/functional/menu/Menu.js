@@ -12,7 +12,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var reactstrap_1 = require("reactstrap");
-var FaIcon_1 = require("../faicon/FaIcon");
+var FaIcon_1 = require("../../functional/faicon/FaIcon");
 require("../../css/sass/menu.scss");
 var Menu = /** @class */ (function (_super) {
     __extends(Menu, _super);
@@ -40,7 +40,8 @@ var Menu = /** @class */ (function (_super) {
         this.activeFind(this.props.active);
     };
     Menu.prototype.render = function () {
-        this.menuChilds = this.menuLoop(this.props.data, undefined, 0, false);
+        var menusList = this.props.data.slice(0);
+        this.menuChilds = this.menuLoop(menusList, undefined, 0, false);
         return React.createElement(reactstrap_1.Nav, { key: "0", className: "karcin-menu " + ((this.state.type === 'hover') ? 'hover-menu' : '') }, this.menuChilds);
     };
     /**
@@ -54,7 +55,8 @@ var Menu = /** @class */ (function (_super) {
         // loop main menu titles
         var listMenu = [];
         var self = this;
-        getData.forEach(function (value, index) {
+        var newData = getData.slice(0);
+        newData.forEach(function (value, index) {
             // active control
             var keys = (key !== undefined) ? key + "-" + index : index.toString();
             var params = { keys: keys, level: level, collapse: false };
@@ -68,7 +70,8 @@ var Menu = /** @class */ (function (_super) {
                 self.state.menuActive.push(params);
                 value['keys'] = keys;
                 value['level'] = level;
-                self.state.menuData.push(value);
+                var menuDatas = self.state.menuData.slice(0);
+                menuDatas.push(value);
             }
             var actives = _this.menuItemActive(keys);
             listMenu.push(React.createElement(reactstrap_1.NavItem, { key: index, className: (actives) ? 'active' : '' },
@@ -111,9 +114,9 @@ var Menu = /** @class */ (function (_super) {
             }
             return val;
         });
-        var state = {};
-        state['addActive'] = true;
-        this.setState(state);
+        this.setState({
+            addActive: true
+        });
     };
     /**
      * active find func

@@ -18,6 +18,7 @@ var MenuExample = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     MenuExample.prototype.render = function () {
+        var _this = this;
         var data = [
             {
                 "id": 1,
@@ -80,7 +81,10 @@ var MenuExample = /** @class */ (function (_super) {
         ];
         var deneme = [{ "id": 1, "name": "Button", "title": "Button", "href": "#/Components/Button" }];
         return React.createElement("div", null,
-            React.createElement(karcin_ui_1.Menu, { data: data, active: deneme }));
+            React.createElement(karcin_ui_1.Menu, { data: data, active: deneme, onChange: function (val) { _this.handleChange(val); } }));
+    };
+    MenuExample.prototype.handleChange = function (val) {
+        console.log(val);
     };
     return MenuExample;
 }(React.Component));

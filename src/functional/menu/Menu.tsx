@@ -1,35 +1,37 @@
 import * as React from 'react';
 import {Collapse, Nav, NavItem, Badge, NavLink} from 'reactstrap';
-import FaIcon from '../faicon/FaIcon'
-import "../../css/sass/menu.scss";
+import FaIcon from '../../functional/faicon/FaIcon'
+import '../../css/sass/menu.scss';
 
 export interface MenuProps {
     data: Array<MenuData> | any;
     type?: string;
     accordion?:boolean;
     active?:Array<MenuData>;
+    onChange?:React.EventHandler<any>;
 }
 
 export interface MenuData {
-    id: number,
-    name: string,
-    title?: string,
-    icon?: string,
-    href?: string,
-    collapse?: boolean,
-    catTitle?: string,
-    items?: Array<MenuData>,
-    badge?: string,
-    badgeColor?: string
+    id: number;
+    name: string;
+    title?: string;
+    icon?: string;
+    href?: string;
+    collapse?: boolean;
+    catTitle?: string;
+    items?: Array<MenuData>;
+    badge?: string;
+    path?:string;
+    badgeColor?: string;
 }
 
 export interface MenuState {
-    menuData: Array<MenuData> | any,
-    menuActive?: any[] | any,
-    type?: string,
-    active ?: any,
-    addActive?: boolean,
-    activeControl ?:boolean
+    menuData: Array<MenuData> | any;
+    menuActive?: any[] | any;
+    type?: string;
+    active ?: any;
+    addActive?: boolean;
+    activeControl ?:boolean;
 }
 
 export default class Menu extends React.Component<MenuProps, MenuState> {
@@ -70,7 +72,8 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
     }
 
     render() {
-        this.menuChilds = this.menuLoop(this.props.data, undefined, 0,false);
+        let menusList = this.props.data.slice(0);
+        this.menuChilds = this.menuLoop(menusList, undefined, 0,false);
         return <Nav key="0" className={`karcin-menu ${(this.state.type === 'hover') ? 'hover-menu' : ''}`}>
             {this.menuChilds}
         </Nav>;
@@ -83,8 +86,6 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
      */
     menuLoop(getData: any, key: any, level:any, collapse:boolean) {
 
-
-
         // reset list menu
         this.menuChilds = [];
 
@@ -92,7 +93,8 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
 
         let listMenu:any[] = [];
         let self = this;
-        getData.forEach((value:any, index:number) => {
+        let newData = getData.slice(0);
+        newData.forEach((value:any, index:number) => {
 
             // active control
             let keys = (key !== undefined) ? key + "-" + index : index.toString();
@@ -108,7 +110,8 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
                 self.state.menuActive.push(params);
                 value['keys'] = keys;
                 value['level'] = level;
-                self.state.menuData.push(value);
+                let menuDatas = self.state.menuData.slice(0);
+                menuDatas.push(value);
             }
 
 
@@ -147,23 +150,33 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
                     else {
                         val.collapse = false;
                     }
+
+                    if(self.props.onChange !== undefined) {
+                        let changeMenu = self.state.menuData.slice();
+                        self.props.onChange(changeMenu.filter((v) => v.keys === val.keys));
+                    }
+
                 }
             }else {
 
                 if(param.keys === val.keys && param.level === val.level){
                     val.collapse = !val.collapse;
+
+                    if(self.props.onChange !== undefined) {
+                        let changeMenu = self.state.menuData.slice();
+                        self.props.onChange(changeMenu.filter((v) => v.keys === val.keys));
+                    }
                 }
             }
 
             return val;
         });
 
+        this.setState({
+            addActive:true
+        });
 
-        let state:object | any = {};
-        state['addActive'] = true;
-        this.setState(state);
     }
-
 
     /**
      * active find func

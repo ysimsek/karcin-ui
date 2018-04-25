@@ -65,7 +65,12 @@ export default class MenuExample extends React.Component<any, any> {
         ];
         let deneme = [{"id":1, "name":"Button", "title":"Button", "href":"#/Components/Button"}];
         return <div>
-            <Menu data={data} active={deneme} />
+            <Menu data={data} active={deneme} onChange={(val)=>{this.handleChange(val)}} />
         </div>;
+    }
+
+
+    handleChange(val){
+        console.log(val);
     }
 }
