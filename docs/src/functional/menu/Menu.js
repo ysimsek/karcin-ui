@@ -105,11 +105,19 @@ var Menu = /** @class */ (function (_super) {
                     else {
                         val.collapse = false;
                     }
+                    if (self.props.onChange !== undefined) {
+                        var changeMenu = self.state.menuData.slice();
+                        self.props.onChange(changeMenu.filter(function (v) { return v.keys === val.keys; }));
+                    }
                 }
             }
             else {
                 if (param.keys === val.keys && param.level === val.level) {
                     val.collapse = !val.collapse;
+                    if (self.props.onChange !== undefined) {
+                        var changeMenu = self.state.menuData.slice();
+                        self.props.onChange(changeMenu.filter(function (v) { return v.keys === val.keys; }));
+                    }
                 }
             }
             return val;

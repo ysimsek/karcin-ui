@@ -13,6 +13,7 @@ import Notify from "./functional/notify/Notify";
 import Panel from "./functional/panel/Panel";
 import DatePicker from "./datepicker/DatePicker";
 import SliderCheckbox from "./inputs/SliderCheckbox";
+import DataFilter from "./functional/datafilter/DataFilter";
 import "./css/karcin-ui.css";
-export { Button, FaIcon, Menu, Tab, TabPanel, NumericInput, PasswordInput, SelectInput, TextInput,RadioInput, DataGrid, Notify, Panel, DatePicker, SliderCheckbox};
+export { Button, FaIcon, Menu, Tab, TabPanel, NumericInput, PasswordInput, SelectInput, TextInput,RadioInput, DataGrid, Notify, Panel, DatePicker, SliderCheckbox, DataFilter};
 export default Button;
