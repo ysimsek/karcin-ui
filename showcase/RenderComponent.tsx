@@ -1,7 +1,8 @@
 import * as React from "react";
-import * as Highlight from "react-highlight";
+import * as Highlight from 'react-highlight';
 import {Tab,TabPanel, FaIcon} from "karcin-ui";
 import {Table} from "reactstrap";
+import {debug} from "util";
 
 export default class RenderComponent extends React.Component<any, any> {
     private element;
@@ -73,8 +74,9 @@ export default class RenderComponent extends React.Component<any, any> {
                 }
                 propsArr.push(
                     <tr key={i}>
-                        <td key={1}>{nameCmp}</td>
-                        <td key={2}>{v.value}</td>
+                        <td style={{width:"25%"}} key={1}>{nameCmp}</td>
+                        <td style={{width:"35%"}} key={2}>{v.value}</td>
+                        <td key={3}>{v.description}</td>
                     </tr>
                 );
             });
@@ -84,6 +86,7 @@ export default class RenderComponent extends React.Component<any, any> {
                     <tr>
                         <th>Properties</th>
                         <th>Type</th>
+                        <th>Description</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -106,8 +109,14 @@ export default class RenderComponent extends React.Component<any, any> {
                     if (text.split(";").length > 0){
                         text.split(";").forEach((v,i)=>{
                             if (v != ""){
-                                let value = v.replace(v.split(":")[0].trim()+":","");
-                                arr.push({name:v.split(":")[0].trim(),value:value});
+                                if(v.split('/*')[1] != undefined ){
+                                    let value = v.split('*/')[1].split(':')[1].trim();
+                                    arr.push({name:v.split('*/')[1].split(':')[0].trim(),value:value,description:v.split('/**')[1].split('*/')[0].trim()});
+                                }else{
+                                    let value = v.replace(v.split(":")[0].trim()+":","");
+                                    arr.push({name:v.split(":")[0].trim(),value:value});
+                                }
+
                             }
                         });
                     }

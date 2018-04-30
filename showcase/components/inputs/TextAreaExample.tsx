@@ -1,5 +1,5 @@
 import * as React from "react";
-import TextArea from "../../../src/inputs/TextArea";
+import {TextArea} from "karcin-ui";
 
 export default class RadioInputExample extends React.Component<any,any>{
     constructor(props:any){
@@ -11,8 +11,8 @@ export default class RadioInputExample extends React.Component<any,any>{
     render(){
         return <TextArea
                     name={"textArea"}
+                    label={"TextArea Example"}
                     value={this.state.textArea}
-                    properties={{disabled:false,autoFocus:false}}
                     onChange={this.handleChange.bind(this)}
         />
     }

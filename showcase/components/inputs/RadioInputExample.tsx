@@ -1,5 +1,5 @@
 import * as React from "react";
-import RadioInput from "../../../src/inputs/RadioInput";
+import {RadioInput} from "karcin-ui";
 
 
 export default class RadioInputExample extends React.Component<any,any>{
@@ -23,16 +23,18 @@ export default class RadioInputExample extends React.Component<any,any>{
             <RadioInput
                   name={"radioInputInline"}
                   value={this.state.radioInputInline}
-                  inline
-                  items={value}
+                  tag={"fieldset"}
+                  inline={true}
+                  values={value}
                   idField="id"
                   textField="value"
                   onChange={this.handleChange.bind(this)}/>
             <label>Horizontal RadioInput Example</label>
             <RadioInput
                 name={"radioInputHori"}
+                tag={"fieldset"}
                 value={this.state.radioInputHori}
-                items={value}
+                values={value}
                 idField="id"
                 textField="value"
                 onChange={this.handleChange.bind(this)}/>

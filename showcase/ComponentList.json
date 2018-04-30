@@ -19,6 +19,14 @@
         },
         {
           "id":2,
+          "name":"Label",
+          "title":"Label",
+          "href":"#/Components/Label",
+          "samples":"components/examples/LabelExample",
+          "library":"functional/label/Label"
+        },
+        {
+          "id":3,
           "name":"Menu",
           "title":"Menü",
           "href":"#/Components/Menu",
@@ -26,7 +34,7 @@
           "library":"functional/menu/Menu"
         },
         {
-          "id":3,
+          "id":4,
           "name":"FaIcon",
           "title":"Font Awesome Icon",
           "href":"#/Components/FaIcon",
@@ -34,7 +42,7 @@
           "library":"functional/faicon/FaIcon"
         },
         {
-          "id":4,
+          "id":5,
           "name":"Tab",
           "title":"Tabs",
           "href":"#/Components/Tabs",
@@ -42,7 +50,7 @@
           "library":"functional/tabs/Tab"
         },
         {
-          "id":5,
+          "id":6,
           "name":"Notify",
           "title":"Notify",
           "href":"#/Components/Notify",
@@ -50,7 +58,7 @@
           "library":"functional/notify/Notify"
         },
         {
-          "id":6,
+          "id":7,
           "name":"Panel",
           "title":"Panel",
           "href":"#/Components/Panel",
@@ -70,7 +78,7 @@
           "title":"NumericInput",
           "href":"#/Components/NumericInput",
           "samples":"components/inputs/NumericInputExample",
-          "library":"inputs/NumericInput",
+          "library":"input/NumericInput",
           "description":"Use karcin-ui custom NumericInput props for actions in forms, dialogs, and more. Includes support for a handful of contextual variations, sizes, states, and more."
 
         },
@@ -80,7 +88,7 @@
           "title":"PasswordInput",
           "href":"#/Components/PasswordInput",
           "samples":"components/inputs/PasswordInputExample",
-          "library":"inputs/PasswordInput"
+          "library":"input/PasswordInput"
 
         },
         {
@@ -89,7 +97,7 @@
           "title":"SelectInput",
           "href":"#/Components/SelectInput",
           "samples":"components/inputs/SelectInputExample",
-          "library":"inputs/SelectInput"
+          "library":"input/SelectInput"
         },
         {
           "id":4,
@@ -97,7 +105,7 @@
           "title":"TextInput",
           "href":"#/Components/TextInput",
           "samples":"components/inputs/TextInputExample",
-          "library":"inputs/TextInput"
+          "library":"input/TextInput"
         },
         {
           "id":5,
@@ -105,7 +113,7 @@
           "title":"TextArea",
           "href":"#/Components/TextArea",
           "samples":"components/inputs/TextAreaExample",
-          "library":"inputs/TextArea"
+          "library":"input/TextArea"
         },
         {
           "id":6,
@@ -113,7 +121,7 @@
           "title":"RadioInput",
           "href":"#/Components/RadioInput",
           "samples":"components/inputs/RadioInputExample",
-          "library":"inputs/RadioInput"
+          "library":"input/RadioInput"
         },
         {
           "id":7,
@@ -121,7 +129,7 @@
           "title":"DateInput",
           "href":"#/Components/DateInput",
           "samples":"components/inputs/DateInputExample",
-          "library":"inputs/DateInput"
+          "library":"input/DateInput"
         },
         {
           "id":8,
@@ -129,7 +137,7 @@
           "title":"SliderCheckbox",
           "href":"#/Components/SliderCheckbox",
           "samples":"components/inputs/SliderCheckboxExample",
-          "library":"inputs/SliderCheckbox"
+          "library":"input/SliderCheckbox"
         }
 
       ]
@@ -148,6 +156,72 @@
           "samples":"components/examples/DataGridExample",
           "library":"functional/datagrid/DataGrid"
         }
+      ]
+    },
+    {
+      "id":4,
+      "name":"charts",
+      "title":"Charts",
+      "icon":"fa-pie-chart",
+      "collapse":true,
+      "items":[
+        {
+          "id":1,
+          "name":"BarChart",
+          "title":"BarChart",
+          "href":"#/Components/BarChart",
+          "samples":"components/charts/SimpleBarChartExam",
+          "library":"chart/barchart/BarChart"
+        },
+        {
+          "id":2,
+          "name":"LineChart",
+          "title":"LineChart",
+          "href":"#/Components/LineChart",
+          "samples":"components/charts/SimpleLineChartExam",
+          "library":"chart/linechart/LineChart"
+        },
+        {
+          "id":3,
+          "name":"PieChart",
+          "title":"PieChart",
+          "href":"#/Components/PieChart",
+          "samples":"components/charts/PieChartExam",
+          "library":"chart/piechart/PieChart"
+        },
+        {
+          "id":4,
+          "name":"AreaChart",
+          "title":"AreaChart",
+          "href":"#/Components/AreaChart",
+          "samples":"components/charts/AreaChartExam",
+          "library":"chart/areachart/SimpleAreaChart"
+        },
+        {
+          "id":5,
+          "name":"ScatterChart",
+          "title":"ScatterChart",
+          "href":"#/Components/ScatterChart",
+          "samples":"components/charts/ScatterChartExam",
+          "library":"chart/scatterchart/ScatterChart"
+        },
+        {
+          "id":6,
+          "name":"ComposedBarChart",
+          "title":"ComposedBarChart",
+          "href":"#/Components/ComposedBarChart",
+          "samples":"components/charts/ComposedBarChartExam",
+          "library":"chart/barchart/ComposedBarChart"
+        },
+        {
+          "id":7,
+          "name":"ComplexBarChart",
+          "title":"ComplexBarChart",
+          "href":"#/Components/ComplexBarChart",
+          "samples":"components/charts/ComplexBarChartExam",
+          "library":"chart/barchart/ComplexBarChart"
+        }
+
       ]
     }
   ]

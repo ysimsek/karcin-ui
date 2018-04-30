@@ -27,10 +27,10 @@ export default class NotifyExample extends React.Component<any,any>{
                             <SelectInput
                                 name="position"
                                 label={"Notify pozisyonunun seçiniz"}
-                                item={this.state.position}
-                                value="value"
-                                id="position"
-                                items={items}
+                                id="id"
+                                value="position"
+                                valueField={"value"}
+                                values={items}
                                 onChange={this.onChange.bind(this)}/>
                         </Col>
                         <Col md={4}>

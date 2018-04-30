@@ -1,14 +1,16 @@
 {
   "name": "karcin-ui",
-  "version": "1.0.48",
+  "version": "1.0.51",
   "description": "Karçin UI - React & Typescript",
   "repository": "https://github.com/ysimsek/karcin-ui",
   "main": "index.tsx",
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.js --color --port 3000",
-    "build": "webpack --progress --profile --colors -p && Echo Showcase Build completed!",
+    "build": "webpack --progress --config webpack.config.js --profile --colors -p && Echo Showcase Build completed!",
     "lib": "cd src && tsc && echo f | XCOPY /S /y .\\css ..\\lib\\css && copy ..\\package.json ..\\lib\\package.json && Echo Library Build completed!",
-    "publish:lib": "cd lib && npm publish && Echo Library Npm Publish completed!"
+    "publish:lib": "cd lib && npm publish && Echo Library Npm Publish completed!",
+    "test": "karma start",
+    "test-multi": "karma start --single-run=false"
   },
   "keywords": [
     "react",
@@ -18,12 +20,21 @@
   "author": "asis elektronik",
   "license": "ISC",
   "dependencies": {
+    "@amcharts/amcharts3-react": "^3.1.0",
     "@types/react": "^16.0.36",
     "@types/react-datepicker": "^1.1.2",
     "@types/react-dom": "^16.0.3",
     "@types/react-transition-group": "^2.0.7",
     "@types/reactstrap": "^5.0.12",
+    "amcharts3": "^3.21.12",
+    "ammap3": "^3.21.12",
+    "amstock3": "^3.21.12",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "bootstrap": "^4.0.0",
+    "expect": "^22.4.3",
     "font-awesome": "^4.7.0",
     "glamor": "^2.20.40",
     "moment": "^2.22.0",
