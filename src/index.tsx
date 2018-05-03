@@ -11,7 +11,7 @@ import Label from "./functional/label/Label";
 import TextInput from "./inputs/TextInput";
 import TextArea from "./inputs/TextArea";
 import RadioInput from "./inputs/RadioInput";
-import SliderCheckbox from "./inputs/SliderCheckbox";
+import ToggleButton from "./input/ToggleButton";
 
 import DataGrid from "./functional/datagrid/DataGrid";
 import Notify from "./functional/notify/Notify";
@@ -19,6 +19,7 @@ import Panel from "./functional/panel/Panel";
 import DatePicker from "./datepicker/DatePicker";
 import DataFilter from "./functional/datafilter/DataFilter";
 import "./css/karcin-ui.css";
+
 
 import AreaChart from "./chart/areachart/SimpleAreaChart";
 import BarChart from "./chart/barchart/BarChart";
@@ -45,7 +46,7 @@ export {
     Notify,
     Panel,
     DatePicker,
-    SliderCheckbox,
+    ToggleButton,
     DataFilter,
     AreaChart,
     BarChart,

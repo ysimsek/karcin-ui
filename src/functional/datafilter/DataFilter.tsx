@@ -332,6 +332,11 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
      */
     removeSelectItem(id: number) {
         this.state.selectedItem.splice(id, 1);
+        this.state.active.arrowActive = null;
+
+        if(this.props.onChange !== undefined){
+            this.props.onChange(this.state.selectedItem);
+        }
         this.forceUpdate();
     }
 

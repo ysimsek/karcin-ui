@@ -1,18 +1,18 @@
 import * as React from 'react';
 import FaIcon from "../functional/faicon/FaIcon";
 
-export interface SliderCheckboxProps {
+export interface ToggleButtonProps {
     successIcon?:string | any;
     rejectIcon?:string | any;
 }
 
-export interface SliderCheckboxState {
+export interface ToggleButtonState {
     checked?:boolean
 }
 
-export default class SliderCheckbox extends React.Component<SliderCheckboxProps, SliderCheckboxState> {
+export default class ToggleButton extends React.Component<ToggleButtonProps, ToggleButtonState> {
 
-    constructor(props:SliderCheckboxProps){
+    constructor(props:ToggleButtonProps){
         super(props);
 
         this.state = {
