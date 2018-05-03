@@ -1,5 +1,5 @@
 import * as React from "react";
-import {AreaChart} from "karcin-ui";
+import {AreaChart,Panel} from "karcin-ui";
 import {Row,Col} from "reactstrap";
 
 
@@ -78,46 +78,56 @@ export default class AreaChartExam extends React.Component<any,any>{
         } ];
         return <Row>
             <Col md={6}>
-                <AreaChart
-                    data={data}
-                    categoryValue={"value"}
-                    categoryField={"date"}
-                />
+                <Panel title={"Simple AreaChart(none theme)"}>
+                    <AreaChart
+                        data={data}
+                        categoryValue={"value"}
+                        categoryField={"date"}
+                    />
+                </Panel>
             </Col>
             <Col md={6}>
-                <AreaChart
-                    theme={"light"}
-                    data={data}
-                    textColor={"#aabbcc"}
-                    categoryValue={"value"}
-                    categoryField={"date"}
-                />
+                <Panel title={"Simple AreaChart(light theme)"}>
+                    <AreaChart
+                        theme={"light"}
+                        data={data}
+                        textColor={"#aabbcc"}
+                        categoryValue={"value"}
+                        categoryField={"date"}
+                    />
+                </Panel>
             </Col>
             <Col md={6}>
-                <AreaChart
-                    theme={"dark"}
-                    data={data}
-                    textColor={"red"}
-                    categoryValue={"value"}
-                    categoryField={"date"}
-                />
+                <Panel title={"Simple AreaChart(dark theme)"}>
+                    <AreaChart
+                        theme={"dark"}
+                        data={data}
+                        textColor={"red"}
+                        categoryValue={"value"}
+                        categoryField={"date"}
+                    />
+                </Panel>
             </Col>
             <Col md={6}>
-                <AreaChart
-                    data={data}
-                    categoryValue={"value"}
-                    categoryField={"date"}
-                    cutOffColor={"lineColor"}
-                />
+                <Panel title={"Simple AreaChart Changes values"}>
+                    <AreaChart
+                        data={data}
+                        categoryValue={"value"}
+                        categoryField={"date"}
+                        cutOffColor={"lineColor"}
+                    />
+                </Panel>
             </Col>
             <Col md={6}>
-                <AreaChart
-                    data={data}
-                    inline={true}
-                    categoryValue={"value"}
-                    categoryField={"date"}
-                    cutOffColor={"lineColor"}
-                />
+                <Panel title={"Horizantal Area Chart"}>
+                    <AreaChart
+                        data={data}
+                        inline={true}
+                        categoryValue={"value"}
+                        categoryField={"date"}
+                        cutOffColor={"lineColor"}
+                    />
+                </Panel>
             </Col>
         </Row>
     }

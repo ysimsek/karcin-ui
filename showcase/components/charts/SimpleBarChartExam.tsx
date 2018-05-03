@@ -1,6 +1,6 @@
 import * as React from "react";
-import {BarChart} from "karcin-ui"
-import {Col,Row,Label} from "reactstrap";
+import {BarChart,Panel} from "karcin-ui"
+import {Col,Row} from "reactstrap";
 
 
 export default class SimpleBarChartExam extends React.Component<any,any>{
@@ -40,7 +40,7 @@ export default class SimpleBarChartExam extends React.Component<any,any>{
         }];
         return <Row>
             <Col md={6}>
-                <Label>Simple Light Theme Chart</Label>
+                <Panel title={"Simple Light Theme Chart"}>
                     <BarChart
                         data={data}
                         theme={"light"}
@@ -48,62 +48,68 @@ export default class SimpleBarChartExam extends React.Component<any,any>{
                         categoryField={"country"}
                         categoryValue={"visits"}
                     />
+                </Panel>
              </Col>
             <Col md={6}>
-                <Label>Simple Dark Theme Chart(Inline)</Label>
-                <BarChart
-                    data={data}
-                    theme={"dark"}
-                    inline={true}
-                    textColor={"#aa00cc"}
-                    categoryField={"country"}
-                    categoryValue={"visits"}
-                />
+                <Panel title={"Simple Dark Theme Chart(Inline)"}>
+                    <BarChart
+                        data={data}
+                        theme={"dark"}
+                        inline={true}
+                        textColor={"#aa00cc"}
+                        categoryField={"country"}
+                        categoryValue={"visits"}
+                    />
+                </Panel>
             </Col>
             <Col md={6}>
-                <Label>Simple Pattern Theme Chart</Label>
-                <BarChart
-                    data={data}
-                    theme={"black"}
-                    textColor={"#3333aa"}
-                    categoryField={"country"}
-                    categoryValue={"visits"}
-                    valueLine={true}
-                />
+                <Panel title={"Simple Pattern Theme Chart"}>
+                    <BarChart
+                        data={data}
+                        theme={"black"}
+                        textColor={"#3333aa"}
+                        categoryField={"country"}
+                        categoryValue={"visits"}
+                        valueLine={true}
+                    />
+                </Panel>
             </Col>
             <Col md={6}>
-                <Label>Color Column Chart</Label>
-                <BarChart
-                    data={data}
-                    textColor={"#3333aa"}
-                    categoryField={"country"}
-                    categoryValue={"visits"}
-                    colorField={"color"}
-                    valueLine={true}
-                />
+                <Panel title={"Color Column Chart"}>
+                    <BarChart
+                        data={data}
+                        textColor={"#3333aa"}
+                        categoryField={"country"}
+                        categoryValue={"visits"}
+                        colorField={"color"}
+                        valueLine={true}
+                    />
+                </Panel>
             </Col>
             <Col md={6}>
-                <Label>Simple 3D Square Chart</Label>
-                <BarChart
-                    data={data}
-                    threeD={true}
-                    textColor={"#3333aa"}
-                    categoryField={"country"}
-                    categoryValue={"visits"}
-                    colorField={"color"}
-                />
+                <Panel title={"Simple 3D Square Chart"}>
+                    <BarChart
+                        data={data}
+                        threeD={true}
+                        textColor={"#3333aa"}
+                        categoryField={"country"}
+                        categoryValue={"visits"}
+                        colorField={"color"}
+                    />
+                </Panel>
             </Col>
             <Col md={6}>
-                <Label>Simple 3D Oval Chart</Label>
-                <BarChart
-                    ovalColumn
-                    data={data}
-                    threeD={true}
-                    textColor={"#3333aa"}
-                    categoryField={"country"}
-                    categoryValue={"visits"}
-                    colorField={"color"}
-                />
+                <Panel title={"Simple 3D Oval Chart"}>
+                    <BarChart
+                        ovalColumn
+                        data={data}
+                        threeD={true}
+                        textColor={"#3333aa"}
+                        categoryField={"country"}
+                        categoryValue={"visits"}
+                        colorField={"color"}
+                    />
+                </Panel>
             </Col>
 
         </Row>

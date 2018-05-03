@@ -1,7 +1,6 @@
 import * as React from "react";
-import {ComposedBarChart} from "karcin-ui"
+import {ComposedBarChart,Panel} from "karcin-ui"
 import {Row,Col} from "reactstrap";
-import {Panel} from "karcin-ui";
 
 export default class ComposedBarChartExam extends React.Component<any,any>{
     render(){
@@ -32,22 +31,26 @@ export default class ComposedBarChartExam extends React.Component<any,any>{
         }];
         return <Row>
                     <Col md={6}>
-                        <ComposedBarChart
-                            height={300}
-                            data={data}
-                            categoryField={"continent"}
-                            categoryValue={"total"}
-                            theme={"light"}
-                            textColor={"black"}/>
+                        <Panel title={"Three Chart side by side BarChart"}>
+                            <ComposedBarChart
+                                height={300}
+                                data={data}
+                                categoryField={"continent"}
+                                categoryValue={"total"}
+                                theme={"light"}
+                                textColor={"black"}/>
+                        </Panel>
                     </Col>
                     <Col md={6}>
-                        <ComposedBarChart
-                            height={300}
-                            data={data}
-                            categoryField={"continent"}
-                            categoryValue={"total"}
-                            theme={"dark"}
-                            textColor={"red"}/>
+                        <Panel title={"Dark Theme side by side BarChart"}>
+                            <ComposedBarChart
+                                height={300}
+                                data={data}
+                                categoryField={"continent"}
+                                categoryValue={"total"}
+                                theme={"dark"}
+                                textColor={"red"}/>
+                        </Panel>
                     </Col>
 
         </Row>

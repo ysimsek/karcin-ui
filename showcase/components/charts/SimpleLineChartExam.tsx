@@ -1,5 +1,5 @@
 import * as React from "react";
-import {LineChart} from "karcin-ui";
+import {LineChart,Panel} from "karcin-ui";
 import {Row,Col} from "reactstrap";
 
 export default class SimpleLineChartExam extends React.Component<any,any>{
@@ -48,39 +48,47 @@ export default class SimpleLineChartExam extends React.Component<any,any>{
         ];
         return <Row>
             <Col md={6}>
-                <LineChart
-                    data={data}
-                    theme={"none"}
-                    categoryField={"date"}
-                    categoryValue={"value"}
-                />
+                <Panel title={"Simple LineChart"}>
+                    <LineChart
+                        data={data}
+                        theme={"none"}
+                        categoryField={"date"}
+                        categoryValue={"value"}
+                    />
+                </Panel>
             </Col>
             <Col md={6}>
-                <LineChart
-                    data={data}
-                    theme={"light"}
-                    textColor={"red"}
-                    categoryField={"date"}
-                    categoryValue={"value"}
-                />
+                <Panel title={"Light LineChart"}>
+                    <LineChart
+                        data={data}
+                        theme={"light"}
+                        textColor={"red"}
+                        categoryField={"date"}
+                        categoryValue={"value"}
+                    />
+                </Panel>
             </Col>
             <Col md={6}>
-                <LineChart
-                    data={data}
-                    theme={"patterns"}
-                    textColor={"blue"}
-                    categoryField={"date"}
-                    categoryValue={"value"}
-                />
+                <Panel title={"Pattern LineChart"}>
+                    <LineChart
+                        data={data}
+                        theme={"patterns"}
+                        textColor={"blue"}
+                        categoryField={"date"}
+                        categoryValue={"value"}
+                    />
+                </Panel>
             </Col>
             <Col md={6}>
-                <LineChart
-                    data={data}
-                    negativeColor={"red"}
-                    positiveColor={"blue"}
-                    categoryField={"date"}
-                    categoryValue={"value"}
-                />
+                <Panel title={"Negative/Positive LineChart"}>
+                    <LineChart
+                        data={data}
+                        negativeColor={"red"}
+                        positiveColor={"blue"}
+                        categoryField={"date"}
+                        categoryValue={"value"}
+                    />
+                </Panel>
             </Col>
 
         </Row>

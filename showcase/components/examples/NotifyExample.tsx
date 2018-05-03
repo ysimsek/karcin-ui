@@ -1,7 +1,6 @@
 import * as React from "react";
 import {Row,Col,Label,Card} from "reactstrap";
-import {Button,TextInput,NumericInput,FaIcon,Notify} from "karcin-ui";
-import SelectInput from "../../../src/input/SelectInput";
+import {Button,SelectInput,TextInput,NumericInput,FaIcon,Notify} from "karcin-ui";
 
 const items = [
     {id:1,value:"Bottom Right",position:"bottom-right"},
@@ -23,16 +22,15 @@ export default class NotifyExample extends React.Component<any,any>{
     }
     render(){
         return <div>
-
             <Row>
                 <Col md={4}>
                     <SelectInput
                         name="position"
                         label={"Notify pozisyonunun seçiniz"}
-                        value={this.state.position}
-                        valueField="position"
+                        item={this.state.position}
+                        value="value"
                         id="position"
-                        values={items}
+                        items={items}
                         onChange={this.onChange.bind(this)}/>
                 </Col>
                 <Col md={4}>

@@ -1,5 +1,5 @@
 import * as React from "react";
-import {PieChart} from "karcin-ui";
+import {PieChart,Panel} from "karcin-ui";
 import {Row,Col} from "reactstrap";
 
 const data = [ {
@@ -39,39 +39,47 @@ export default class PieChartExam extends React.Component<any,any>{
     render(){
         return <Row>
             <Col md={6}>
-                <PieChart
-                        data={data}
-                        categoryField={"country"}
-                        categoryValue={"litres"}
-                        height={300}
-                    />
+                <Panel title={"PieChart default none theme"}>
+                    <PieChart
+                            data={data}
+                            categoryField={"country"}
+                            categoryValue={"litres"}
+                            height={300}
+                        />
+                </Panel>
             </Col>
             <Col md={6}>
-                <PieChart
-                        data={data}
-                        categoryField={"country"}
-                        categoryValue={"litres"}
-                        height={300}
-                        innerSize={40}
+                <Panel title={"PieChart İnner Size Example"}>
+                    <PieChart
+                            data={data}
+                            categoryField={"country"}
+                            categoryValue={"litres"}
+                            height={300}
+                            innerSize={40}
                     />
+                </Panel>
             </Col>
             <Col md={6}>
-                <PieChart
-                        data={data}
-                        categoryField={"country"}
-                        categoryValue={"litres"}
-                        height={300}
-                        deepth={true}
-                    />
+                <Panel title={"PieChart deepth property"}>
+                    <PieChart
+                            data={data}
+                            categoryField={"country"}
+                            categoryValue={"litres"}
+                            height={300}
+                            deepth={true}
+                        />
+                </Panel>
             </Col>
             <Col md={6}>
-                <PieChart
-                        data={data}
-                        categoryField={"country"}
-                        categoryValue={"litres"}
-                        height={300}
-                        threeD={true}
+                <Panel title={"PieChart 3D property"}>
+                    <PieChart
+                            data={data}
+                            categoryField={"country"}
+                            categoryValue={"litres"}
+                            height={300}
+                            threeD={true}
                     />
+                </Panel>
             </Col>
 
         </Row>

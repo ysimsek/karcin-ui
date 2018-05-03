@@ -1,7 +1,6 @@
 import * as React from "react";
-import {ComplexBarChart} from "karcin-ui";
+import {ComplexBarChart,Panel} from "karcin-ui";
 import {Row,Col} from "reactstrap";
-import {Panel} from "karcin-ui";
 
 export default class ComposedBarChartExam extends React.Component<any,any>{
     render(){
@@ -17,25 +16,28 @@ export default class ComposedBarChartExam extends React.Component<any,any>{
 
         return <Row>
             <Col md={6}>
-                <ComplexBarChart
-                    data={data}
-                    categoryField={"date"}
-                    type={[
-                        {type:"column",valueField:"distance"},
-                        {type:"line",valueField:"latitude"},
-                        {type:"line",valueField:"duration"}]}/>
+                <Panel title={"Three Data in ComplexBarChart"}>
+                    <ComplexBarChart
+                        data={data}
+                        categoryField={"date"}
+                        type={[
+                            {type:"column",valueField:"distance"},
+                            {type:"line",valueField:"latitude"},
+                            {type:"line",valueField:"duration"}]}/>
+                </Panel>
             </Col>
             <Col md={6}>
-                <ComplexBarChart
-                    data={data}
-                    categoryField={"date"}
-                    textColor={"red"}
-                    type={[
-                        {type:"column",valueField:"distance",color:"gray"},
-                        {type:"column",valueField:"latitude",color:"blue"},
-                        {type:"column",valueField:"duration",color:"#aabbcc"}]}/>
+                <Panel title={"Three Column BarChart"}>
+                    <ComplexBarChart
+                        data={data}
+                        categoryField={"date"}
+                        textColor={"red"}
+                        type={[
+                            {type:"column",valueField:"distance",color:"gray"},
+                            {type:"column",valueField:"latitude",color:"blue"},
+                            {type:"column",valueField:"duration",color:"#aabbcc"}]}/>
+                </Panel>
             </Col>
-
         </Row>
     }
 }
