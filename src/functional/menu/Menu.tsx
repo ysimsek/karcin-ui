@@ -59,12 +59,11 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
 
     componentWillReceiveProps(props:MenuProps){
         this.setState({
-            menuData : props.data,
+            menuData : props.data.slice(0),
             type: props.type
         });
 
         this.activeFind(this.props.active);
-
     }
 
     componentDidMount(){
@@ -73,6 +72,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
 
     render() {
         let menusList = this.props.data.slice(0);
+        this.state.menuData.length = 0;
         this.menuChilds = this.menuLoop(menusList, undefined, 0,false);
         return <Nav key="0" className={`karcin-menu ${(this.state.type === 'hover') ? 'hover-menu' : ''}`}>
             {this.menuChilds}
@@ -112,6 +112,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
                 value['level'] = level;
                 let menuDatas = self.state.menuData.slice(0);
                 menuDatas.push(value);
+                self.state.menuData.push(value);
             }
 
 
@@ -152,8 +153,8 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
                     }
 
                     if(self.props.onChange !== undefined) {
-                        let changeMenu = self.state.menuData.slice();
-                        self.props.onChange(changeMenu.filter((v:any) => v.keys === val.keys));
+                        let changeMenu = self.state.menuData.slice(0);
+                        self.props.onChange(changeMenu.filter((v) => v.keys === val.keys));
                     }
 
                 }
@@ -163,8 +164,8 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
                     val.collapse = !val.collapse;
 
                     if(self.props.onChange !== undefined) {
-                        let changeMenu = self.state.menuData.slice();
-                        self.props.onChange(changeMenu.filter((v:any) => v.keys === val.keys));
+                        let changeMenu = self.state.menuData.slice(0);
+                        self.props.onChange(changeMenu.filter((v) => v.keys === val.keys));
                     }
                 }
             }
@@ -187,7 +188,6 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
             getActive = getActive[0];
             this.state.menuData.forEach((val:any) => {
                 if (val.href === getActive.href && val.name === getActive.name) {
-
                     for (let i = val.level; i >= 0; i--) {
                         let splitKey = val.keys.split('-');
                         this.state.menuActive.map((vals:any) => {

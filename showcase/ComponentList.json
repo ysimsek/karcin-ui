@@ -64,6 +64,14 @@
           "href":"#/Components/Panel",
           "samples":"components/examples/PanelExample",
           "library":"functional/panel/Panel"
+        },
+        {
+          "id":6,
+          "name":"DataFilter",
+          "title":"DataFilter",
+          "href":"#/Components/DataFilter",
+          "samples":"components/examples/DataFilterExample",
+          "library":"functional/datafilter/DataFilter"
         }
       ]
     },{

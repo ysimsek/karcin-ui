@@ -106,7 +106,6 @@ textarea {
 
 .karcin-tab {
     width: 100%;
-    overflow: hidden;
 }
 
 .karcin-tab > .nav {
@@ -215,24 +214,80 @@ textarea {
     float: right
 }
 
-/*CHARTS*/
-a[href='http://www.amcharts.com'] {
-    display: none !important;
-}
+
 
 /**
-New Reactstrap CSS
-*/
-.radio-inline{
-    display: inline-block;
-    padding-right: 10px;
-}
-.typecolor {
-    height: 38px;
-    padding: 0px;
+    * data filter css
+ */
+
+.karcin-data-filter {
+    width: 100%;
+    border-radius: 3px;
+    border:solid 1px #ccc;
+    min-height: 40px;
 }
 
-.radio-properties {
-    border: none;
-    padding: 0px;
+.karcin-data-filter .filter-content {}
+.karcin-data-filter .filter-content .text-input {
+    float: left;
+    position: relative;
+}
+.karcin-data-filter .filter-content .text-input .form-control {
+    float:left;
+    border:0;
+    background-color: transparent;
+    box-shadow: none;
+    padding: 7px 6px;
+    width: 200px;
+}
+
+.karcin-data-filter .filter-content .selected-items {
+    float: left;
+}
+.karcin-data-filter .filter-content .selected-items .item {
+    width: auto;
+    padding: 4px 10px;
+    background-color: #e8e6e6;
+    border-radius: 3px;
+    border: solid 1px #ccc;
+    margin: 2px;
+    color: #838080;
+    float: left;
+}
+.karcin-data-filter .filter-content .selected-items .item span {
+    display: inline-block;
+    font-size: 13px;
+}
+.karcin-data-filter .filter-content .selected-items .item .close-button {
+    margin-left: 5px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.karcin-data-filter .filter-content .selected-field {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    z-index: 999;
+    background: #fff;
+    border: solid 1px #e1e1e1;
+    padding:0;
+    box-shadow: 0px 2px 5px #e2e2e2;
+}
+
+.karcin-data-filter .filter-content .selected-field .item {
+    font-size:14px;
+    cursor: pointer;
+    padding: 2px 5px;
+}
+
+.karcin-data-filter .filter-content .selected-field .item.active {
+    background-color: #9aba42;
+    color: #fff;
+}
+
+.karcin-data-filter .filter-content .half-select {float: left;}
+.karcin-data-filter .filter-content .half-select span {
+    display: inline-block;
+    padding: 7px 5px;
 }

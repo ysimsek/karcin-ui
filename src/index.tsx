@@ -4,19 +4,22 @@ import Menu from "./functional/menu/Menu";
 import Tab from "./functional/tabs/Tab";
 import TabPanel from "./functional/tabs/TabPanel";
 
-import NumericInput from "./inputs/NumericInput";
-import PasswordInput from "./inputs/PasswordInput";
-import SelectInput from "./inputs/SelectInput";
+import NumericInput from "./input/NumericInput";
+import PasswordInput from "./input/PasswordInput";
+import SelectInput from "./input/SelectInput";
 import Label from "./functional/label/Label";
-import TextInput from "./inputs/TextInput";
-import TextArea from "./inputs/TextArea";
-import RadioInput from "./inputs/RadioInput";
+import TextInput from "./input/TextInput";
+import TextArea from "./input/TextArea";
+import RadioInput from "./input/RadioInput";
+import CheckInput from "./input/CheckInput";
 import SliderCheckbox from "./input/SliderCheckbox";
+import MailInput from "./input/MailInput";
 
 import DataGrid from "./functional/datagrid/DataGrid";
 import Notify from "./functional/notify/Notify";
 import Panel from "./functional/panel/Panel";
 import DatePicker from "./datepicker/DatePicker";
+import DataFilter from "./functional/datafilter/DataFilter";
 import "./css/karcin-ui.css";
 
 
@@ -37,6 +40,7 @@ export {
     NumericInput,
     PasswordInput,
     Label,
+    DataFilter,
     SelectInput,
     TextInput,
     TextArea,
