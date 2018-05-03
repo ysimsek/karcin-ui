@@ -5,14 +5,14 @@ import FaIcon from "../faicon/FaIcon";
 import "../../css/sass/Panel.scss";
 
 export interface PanelProps {
-    title: string;
-    color?: string;
-    collapse?:boolean;
-    collapsible?: boolean;
-    onOpened    ?: void | any,
-    onClosed    ?: void | any,
-    onClick     ?: void | any,
-    accordion   ?: boolean,
+    title: string | any;
+    color?: string | any;
+    collapse?:boolean | any;
+    collapsible?: boolean | any;
+    onOpened    ?: React.EventHandler<any> | any,
+    onClosed    ?: React.EventHandler<any> | any;
+    onClick     ?: React.EventHandler<any> | any;
+    accordion   ?: boolean | any,
 }
 
 export interface PanelState {
@@ -39,12 +39,7 @@ export default class Panel extends React.Component<PanelProps, PanelState> {
         this.init(props);
     }
 
-
-    componentWillReceiveProps(props:PanelProps){
-        this.init(props);
-    }
-
-    private init(props:PanelProps){
+    init(props:PanelProps){
         this.state = {
             contentStyle   : {},
             icon           : "fa-plus",
@@ -66,6 +61,17 @@ export default class Panel extends React.Component<PanelProps, PanelState> {
            if(this.state.collapse !== undefined && this.props.collapsible) {
                openedIcon = <FaIcon code={(this.state.collapse) ? "fa-angle-up" : "fa-angle-down"}/>;
                openButton = <div className="panel-head-button"><Button onClick={()=>{if(this.props.onClick) { this.props.onClick() }else{ this.openPanel()}}}>{openedIcon}</Button></div>;
+
+
+               if(this.state.collapse){
+                    if(this.props.onOpened !== undefined){
+                        this.props.onOpened();
+                    }
+               }else {
+                if(this.props.onClosed !== undefined){
+                    this.props.onClosed();
+                }
+               }
            }
 
            if(this.state.accordion) {
@@ -74,13 +80,12 @@ export default class Panel extends React.Component<PanelProps, PanelState> {
                panelTitle = <div className="panel-title"><span>{this.props.title}</span>{openButton}</div>;
            }
 
+
            return (
                <div className={`panel-main ${this.props.color}`}>
                    {panelTitle}
                    <Collapse
-                       isOpen={this.state.collapse}
-                       onOpened={this.onOpened}
-                       onClosed={this.onClosed}>
+                       isOpen={this.state.collapse}>
                        <div className="panel-content">
                            {childHtmlElement}
                        </div>

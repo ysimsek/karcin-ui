@@ -22,9 +22,6 @@ var Panel = /** @class */ (function (_super) {
         _this.init(props);
         return _this;
     }
-    Panel.prototype.componentWillReceiveProps = function (props) {
-        this.init(props);
-    };
     Panel.prototype.init = function (props) {
         this.state = {
             contentStyle: {},
@@ -49,6 +46,16 @@ var Panel = /** @class */ (function (_super) {
                     else {
                         _this.openPanel();
                     } } }, openedIcon));
+            if (this.state.collapse) {
+                if (this.props.onOpened !== undefined) {
+                    this.props.onOpened();
+                }
+            }
+            else {
+                if (this.props.onClosed !== undefined) {
+                    this.props.onClosed();
+                }
+            }
         }
         if (this.state.accordion) {
             panelTitle = React.createElement("div", { className: "accordion-title " + (this.state.collapse ? 'active' : '') },
@@ -63,7 +70,7 @@ var Panel = /** @class */ (function (_super) {
         }
         return (React.createElement("div", { className: "panel-main " + this.props.color },
             panelTitle,
-            React.createElement(reactstrap_1.Collapse, { isOpen: this.state.collapse, onOpened: this.onOpened, onClosed: this.onClosed },
+            React.createElement(reactstrap_1.Collapse, { isOpen: this.state.collapse },
                 React.createElement("div", { className: "panel-content" }, childHtmlElement))));
     };
     Panel.prototype.onOpened = function () {
