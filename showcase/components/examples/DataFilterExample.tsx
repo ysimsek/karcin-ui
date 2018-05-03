@@ -1,9 +1,19 @@
 import * as React from "react";
 import {DataFilter} from 'karcin-ui';
 
+import * as Highlight from "react-highlight";
+
+export interface DataFilterExampleState {
+    writeCode ?: object | any
+}
+
 export default class DataFilterExample extends React.Component<any, any> {
     constructor(props:any){
         super(props);
+
+        this.state = {
+            writeCode : {data:[]}
+        }
 
     }
     render() {
@@ -11,44 +21,37 @@ export default class DataFilterExample extends React.Component<any, any> {
             {
                 "label": "Id",
                 "type": "number",
-                "name": "id",
-                "filter": true
+                "name": "id"
             },
             {
                 "label": "Name",
                 "type": "string",
-                "name": "name",
-                "filter": true
+                "name": "name"
             },
             {
                 "label": "Surname",
                 "type": "string",
-                "name": "surname",
-                "filter": true
+                "name": "surname"
             },
             {
                 "label": "E-Mail",
                 "type": "string",
-                "name": "email",
-                "filter": true
+                "name": "email"
             },
             {
                 "label": "Password",
                 "type": "password",
-                "name": "password",
-                "filter": false
+                "name": "password"
             },
             {
                 "label": "Birthdate",
                 "type": "date",
-                "name": "birthdate",
-                "filter": true
+                "name": "birthdate"
             },
             {
                 "label": "Job Title",
                 "type": "select",
                 "name": "job",
-                "filter": true,
                 "items": [
                     {
                         name: "sd",
@@ -64,7 +67,6 @@ export default class DataFilterExample extends React.Component<any, any> {
                 "label": "Gender",
                 "type": "radio",
                 "name": "gender",
-                "filter": true,
                 "items": [
                     {
                         name: "male",
@@ -79,8 +81,28 @@ export default class DataFilterExample extends React.Component<any, any> {
         ];
 
         return <div>
-            <DataFilter field={field}/>
+            <DataFilter field={field} onChange={(e)=>{
+                this.getList(e);
+            }}/>
+            <div style={{marginTop:20}}>
+                {(this.state.writeCode.data.length > 0) ? <Highlight className='json' innerHtml={true}>{JSON.stringify(this.state.writeCode.data)}</Highlight> : ''}
+            </div>
+            
         </div>;
+    }
+
+    getList(val:any){
+        let getList = [];
+        val.forEach((value:any)=>{
+            let itemVal:any[] = [];
+
+            value.forEach((val:any)=>{
+                itemVal.push(val.label);
+            });
+            getList.push(itemVal);
+        });
+        this.state.writeCode.data = getList;
+        this.forceUpdate();
     }
 
 }

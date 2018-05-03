@@ -12,54 +12,53 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var karcin_ui_1 = require("karcin-ui");
+var Highlight = require("react-highlight");
 var DataFilterExample = /** @class */ (function (_super) {
     __extends(DataFilterExample, _super);
     function DataFilterExample(props) {
-        return _super.call(this, props) || this;
+        var _this = _super.call(this, props) || this;
+        _this.state = {
+            writeCode: { data: [] }
+        };
+        return _this;
     }
     DataFilterExample.prototype.render = function () {
+        var _this = this;
         var field = [
             {
                 "label": "Id",
                 "type": "number",
-                "name": "id",
-                "filter": true
+                "name": "id"
             },
             {
                 "label": "Name",
                 "type": "string",
-                "name": "name",
-                "filter": true
+                "name": "name"
             },
             {
                 "label": "Surname",
                 "type": "string",
-                "name": "surname",
-                "filter": true
+                "name": "surname"
             },
             {
                 "label": "E-Mail",
                 "type": "string",
-                "name": "email",
-                "filter": true
+                "name": "email"
             },
             {
                 "label": "Password",
                 "type": "password",
-                "name": "password",
-                "filter": false
+                "name": "password"
             },
             {
                 "label": "Birthdate",
                 "type": "date",
-                "name": "birthdate",
-                "filter": true
+                "name": "birthdate"
             },
             {
                 "label": "Job Title",
                 "type": "select",
                 "name": "job",
-                "filter": true,
                 "items": [
                     {
                         name: "sd",
@@ -75,7 +74,6 @@ var DataFilterExample = /** @class */ (function (_super) {
                 "label": "Gender",
                 "type": "radio",
                 "name": "gender",
-                "filter": true,
                 "items": [
                     {
                         name: "male",
@@ -89,7 +87,22 @@ var DataFilterExample = /** @class */ (function (_super) {
             }
         ];
         return React.createElement("div", null,
-            React.createElement(karcin_ui_1.DataFilter, { field: field }));
+            React.createElement(karcin_ui_1.DataFilter, { field: field, onChange: function (e) {
+                    _this.getList(e);
+                } }),
+            React.createElement("div", { style: { marginTop: 20 } }, (this.state.writeCode.data.length > 0) ? React.createElement(Highlight, { className: 'json', innerHtml: true }, JSON.stringify(this.state.writeCode.data)) : ''));
+    };
+    DataFilterExample.prototype.getList = function (val) {
+        var getList = [];
+        val.forEach(function (value) {
+            var itemVal = [];
+            value.forEach(function (val) {
+                itemVal.push(val.label);
+            });
+            getList.push(itemVal);
+        });
+        this.state.writeCode.data = getList;
+        this.forceUpdate();
     };
     return DataFilterExample;
 }(React.Component));

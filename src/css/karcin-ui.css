@@ -271,14 +271,21 @@ textarea {
     z-index: 999;
     background: #fff;
     border: solid 1px #e1e1e1;
-    padding: 5px 8px;
+    padding:0;
     box-shadow: 0px 2px 5px #e2e2e2;
 }
 
 .karcin-data-filter .filter-content .selected-field .item {
     font-size:14px;
     cursor: pointer;
+    padding: 2px 5px;
 }
+
+.karcin-data-filter .filter-content .selected-field .item.active {
+    background-color: #9aba42;
+    color: #fff;
+}
+
 .karcin-data-filter .filter-content .half-select {float: left;}
 .karcin-data-filter .filter-content .half-select span {
     display: inline-block;
