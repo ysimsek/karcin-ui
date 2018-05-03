@@ -1,16 +1,14 @@
 {
   "name": "karcin-ui",
-  "version": "1.0.51",
+  "version": "1.0.53",
   "description": "Karçin UI - React & Typescript",
   "repository": "https://github.com/ysimsek/karcin-ui",
   "main": "index.tsx",
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.js --color --port 3000",
     "build": "webpack --progress --config webpack.config.js --profile --colors -p && Echo Showcase Build completed!",
-    "lib": "cd src && tsc && echo f | XCOPY /S /y .\\css ..\\lib\\css && copy ..\\package.json ..\\lib\\package.json && Echo Library Build completed!",
-    "publish:lib": "cd lib && npm publish && Echo Library Npm Publish completed!",
-    "test": "karma start",
-    "test-multi": "karma start --single-run=false"
+    "lib": "cd src && tsc && echo f | XCOPY /S /y .\\css ..\\lib\\css\\ && copy ..\\package.json ..\\lib\\package.json && Echo Library Build completed!",
+    "publish:lib": "cd lib && npm publish && Echo Library Npm Publish completed!"
   },
   "keywords": [
     "react",

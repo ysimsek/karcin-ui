@@ -21,20 +21,18 @@ export default class RadioInputExample extends React.Component<any,any>{
         return <div>
             <label>Inline RadioInput Example</label>
             <RadioInput
-                  name={"radioInputInline"}
-                  value={this.state.radioInputInline}
-                  tag={"fieldset"}
-                  inline={true}
-                  values={value}
-                  idField="id"
-                  textField="value"
-                  onChange={this.handleChange.bind(this)}/>
+                name={"radioInputInline"}
+                value={this.state.radioInputInline}
+                inline
+                items={value}
+                idField="id"
+                textField="value"
+                onChange={this.handleChange.bind(this)}/>
             <label>Horizontal RadioInput Example</label>
             <RadioInput
                 name={"radioInputHori"}
-                tag={"fieldset"}
                 value={this.state.radioInputHori}
-                values={value}
+                items={value}
                 idField="id"
                 textField="value"
                 onChange={this.handleChange.bind(this)}/>

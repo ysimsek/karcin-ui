@@ -11,18 +11,12 @@ export default class NumericInputExample extends React.Component<any,any>{
     render(){
         return (<div>
             <NumericInput
-                label={"NumericInput Exam"}
                 name={"numericInput"}
-                id={"numericInput"}
-                onChange={this.handleChange.bind(this)}/>
-            <span><i>{this.state.numericInput}</i></span>
-            <NumericInput
-                label={"NumericInput Disabled"}
-                name={"numericInput2"}
-                id={"numericInput2"}
-                properties={{disabled:true,hidden:false}}
+                value={this.state.numericInput}
+                label={"NumericInput Example"}
                 onChange={this.handleChange.bind(this)}
             />
+            <span><i>{this.state.numericInput}</i></span>
         </div>)
     }
 

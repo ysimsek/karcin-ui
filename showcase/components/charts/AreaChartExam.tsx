@@ -1,5 +1,5 @@
 import * as React from "react";
-import AreaChart from "../../../src/chart/areachart/SimpleAreaChart";
+import {AreaChart} from "karcin-ui";
 import {Row,Col} from "reactstrap";
 
 
@@ -102,7 +102,6 @@ export default class AreaChartExam extends React.Component<any,any>{
                     categoryField={"date"}
                 />
             </Col>
-
             <Col md={6}>
                 <AreaChart
                     data={data}
@@ -111,7 +110,15 @@ export default class AreaChartExam extends React.Component<any,any>{
                     cutOffColor={"lineColor"}
                 />
             </Col>
-            <Col md={6}></Col>
+            <Col md={6}>
+                <AreaChart
+                    data={data}
+                    inline={true}
+                    categoryValue={"value"}
+                    categoryField={"date"}
+                    cutOffColor={"lineColor"}
+                />
+            </Col>
         </Row>
     }
 }

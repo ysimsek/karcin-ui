@@ -46,6 +46,14 @@ export interface SimpleBarChartProps{
      * oval and square
      */
     ovalColumn?: boolean;
+    /**
+     * Line changes true or false
+     */
+    inline ?:boolean;
+    /**
+     * valueLine is true or false
+     */
+    valueLine?:boolean;
 }
 
 export default class SimpleLineChart extends React.Component<SimpleBarChartProps,any>{
@@ -53,7 +61,8 @@ export default class SimpleLineChart extends React.Component<SimpleBarChartProps
     static defaultProps: Partial<SimpleBarChartProps> = {
         data : [],
         theme : "light",
-        threeD: false
+        threeD: false,
+        inline: false
     }
 
     constructor(props:any){
@@ -72,6 +81,7 @@ export default class SimpleLineChart extends React.Component<SimpleBarChartProps
                     "gridAlpha": 0.2,
                     "dashLength": 0
                 } ],
+                "rotate": this.props.inline,
                 "gridAboveGraphs": true,
                 "depth3D": (this.props.threeD == true ? 40 : null),
                 "angle": (this.props.threeD == true ? 30 : null),
@@ -87,7 +97,9 @@ export default class SimpleLineChart extends React.Component<SimpleBarChartProps
                 "chartCursor": {
                     "categoryBalloonEnabled": false,
                     "cursorAlpha": 0,
-                    "zoomable": false
+                    "zoomable": false,
+                    "valueLineEnabled": this.props.valueLine,
+                    "valueLineBalloonEnabled": this.props.valueLine
                 },
                 "categoryField": this.props.categoryField,
                 "categoryAxis": {
@@ -96,6 +108,7 @@ export default class SimpleLineChart extends React.Component<SimpleBarChartProps
                     "tickPosition": "start",
                     "tickLength": 20
                 },
+
                 "export": {
                     "enabled": true
                 }

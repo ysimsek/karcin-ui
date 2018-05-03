@@ -33,13 +33,18 @@ export interface SimpleAreaChartProps{
      * Change the color in color
      */
     cutOffColor ?: string;
+    /**
+     * Line changes true or false
+     */
+    inline ?:boolean;
 }
 
 export default class SimleAreaChart extends React.Component<SimpleAreaChartProps,any>{
 
     static defaultProps: Partial<SimpleAreaChartProps> = {
         theme : "none",
-        height : 200
+        height : 200,
+        inline: false
     }
     constructor(props:any){
         super(props);
@@ -53,6 +58,7 @@ export default class SimleAreaChart extends React.Component<SimpleAreaChartProps
             "marginRight": 40,
             "marginLeft": 40,
             "autoMarginOffset": 20,
+            "rotate": this.props.inline,
             "dataDateFormat": "YYYY-MM-DD",
             "valueAxes": [ {
                 "id": "v1",
@@ -105,7 +111,6 @@ export default class SimleAreaChart extends React.Component<SimpleAreaChartProps
             },
             "dataProvider": this.props.data
         } ;
-
         return <AmCharts.React options={data} style={{width:"100%",height:this.props.height+"px"}}/>;
     }
 

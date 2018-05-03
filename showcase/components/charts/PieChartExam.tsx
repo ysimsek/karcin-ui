@@ -1,5 +1,5 @@
 import * as React from "react";
-import PieChart from "../../../src/chart/piechart/PieChart"
+import {PieChart} from "karcin-ui";
 import {Row,Col} from "reactstrap";
 
 const data = [ {

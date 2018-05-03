@@ -33,12 +33,10 @@ export default class BaseInput extends React.Component<BaseInputProps,any>{
         }
     }
     render(){
-        return <Form>
-            <FormGroup tag={this.props.tag}>
+        return <FormGroup tag={this.props.tag}>
                 <Label for={this.props.id}><b>{this.props.label}</b></Label>
                 {this.returnInput()}
             </FormGroup>
-        </Form>
     }
 
     /**

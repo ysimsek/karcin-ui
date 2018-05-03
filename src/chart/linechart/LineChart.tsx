@@ -36,11 +36,16 @@ export interface LineChartProps{
     textColor ?: string;
     positiveColor ?: string;
     negativeColor ?: string;
+    /**
+     * Line changes true or false
+     */
+    inline ?:boolean;
 }
 
 export default class LineChart extends React.Component<LineChartProps,any>{
     static defaultProps:Partial<LineChartProps> = {
-        theme : "none"
+        theme : "none",
+        inline : false
     }
     constructor(props:any){
         super(props);
@@ -54,6 +59,7 @@ export default class LineChart extends React.Component<LineChartProps,any>{
             "marginRight": 40,
             "marginLeft": 40,
             "autoMarginOffset": 20,
+            "rotate":this.props.inline,
             // "mouseWheelZoomEnabled":true,
             "dataDateFormat": "YYYY-MM-DD",
             "valueAxes": [{
@@ -93,6 +99,10 @@ export default class LineChart extends React.Component<LineChartProps,any>{
                 "parseDates": true,
                 "dashLength": 1,
                 "minorGridEnabled": true
+            },
+            "chartCursor": {
+                "valueLineEnabled": true,
+                "valueLineBalloonEnabled": true
             },
             "export": {
                 "enabled": true

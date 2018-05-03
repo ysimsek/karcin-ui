@@ -40,7 +40,7 @@ export default class SelectInput extends React.Component<SelectInputProps>{
     render(){
         let renderComponent = <div><Label className={"label-properties"}>{this.props.label}</Label>
             <select name={this.props.name} className="form-control" style={{width:`100%`}} onChange={this.__handleChange.bind(this)}>
-                <option label="Lütfen Seçiniz" value=""></option>
+                <option label="Lütfen Seçiniz" key={-1}></option>
                 {this.__renderOptionValues(this.props.items)}
             </select>
         </div>;
@@ -51,7 +51,7 @@ export default class SelectInput extends React.Component<SelectInputProps>{
     __renderOptionValues(items: Array<any>){
         let renderItem: JSX.Element[] = [];
         let id = this.props.id != undefined ? this.props.id : "id";
-        let value = this.props.value != undefined ? this.props.value :"value";
+        let value:any = this.props.value != undefined ? this.props.value :"value";
         if(items.length >0){
             items.forEach(function (v) {
                 renderItem.push(<option key={v[id]} value={v[id]}>{v[value]}</option>);

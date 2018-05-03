@@ -1,5 +1,5 @@
 import * as React from "react";
-import LineChart from "../../../src/chart/linechart/LineChart"
+import {LineChart} from "karcin-ui";
 import {Row,Col} from "reactstrap";
 
 export default class SimpleLineChartExam extends React.Component<any,any>{

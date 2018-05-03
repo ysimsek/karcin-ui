@@ -10,10 +10,10 @@ export default class RadioInputExample extends React.Component<any,any>{
     }
     render(){
         return <TextArea
-                    name={"textArea"}
-                    label={"TextArea Example"}
-                    value={this.state.textArea}
-                    onChange={this.handleChange.bind(this)}
+            name={"textArea"}
+            value={this.state.textArea}
+            properties={{disabled:false,autoFocus:false}}
+            onChange={this.handleChange.bind(this)}
         />
     }
     handleChange(e){

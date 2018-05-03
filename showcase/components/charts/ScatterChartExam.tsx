@@ -1,5 +1,5 @@
 import * as React from "react";
-import ScatterChart from "../../../src/chart/scatterchart/ScatterChart";
+import {ScatterChart} from "karcin-ui";
 import {Row,Col,Label} from "reactstrap";
 import {Panel} from "karcin-ui";
 
@@ -37,32 +37,32 @@ export default class ScatterChartExam extends React.Component<any,any>{
     render(){
         return <Row>
                     <Col md={6}>
-                        <Panel title="Diamond and Bubble Chart Example1" collapse={true} collapsible={true} color="primary">
+                        <Panel title="Diamond and Bubble Chart Example1" color="primary">
                             <ScatterChart data={newData1}/>
                         </Panel>
                     </Col>
                     <Col md={6}>
-                        <Panel title="Diamond and Bubble Chart Example2" collapse={true} collapsible={true} color={"info"}>
+                        <Panel title="Diamond and Bubble Chart Example2"  color={"info"}>
                             <ScatterChart data={newData1} theme={"black"} textColor={"blue"}/>
                         </Panel>
                     </Col>
                     <Col md={6}>
-                        <Panel title="Xerror and Yerror Chart Example1" collapse={true} collapsible={true} color="primary">
+                        <Panel title="Xerror and Yerror Chart Example1"  color="primary">
                             <ScatterChart data={newData2} theme={"black"} textColor={"red"} line={true}/>
                         </Panel>
                     </Col>
                     <Col md={6}>
-                        <Panel title="Xerror and Yerror Chart Example2" collapse={true} collapsible={true} color={"info"}>
+                        <Panel title="Xerror and Yerror Chart Example2"  color={"info"}>
                             <ScatterChart data={newData2} textColor={"#aa1177"} line={true}/>
                         </Panel>
                     </Col>
                     <Col md={6}>
-                        <Panel title="Circle and Yerror Chart Example1" collapse={true} collapsible={true} color="primary">
+                        <Panel title="Circle and Yerror Chart Example1"  color="primary">
                             <ScatterChart data={newData3} textColor={"black"}/>
                         </Panel>
                     </Col>
                     <Col md={6}>
-                        <Panel title="Bubble and TriangleUp Chart Example1" collapse={true} collapsible={true} color={"info"}>
+                        <Panel title="Bubble and TriangleUp Chart Example1" color={"info"}>
                             <ScatterChart data={newData4} textColor={"black"}/>
                         </Panel>
                     </Col>

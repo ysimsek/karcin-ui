@@ -5,7 +5,7 @@ export default class ButtonExample extends React.Component<any, any> {
     render() {
         return (
             <div>
-                <Button color="primary">primary</Button>{' '}
+                <Button color="primary" async>primary</Button>{' '}
                 <Button color="secondary">secondary</Button>{' '}
                 <Button color="success">success</Button>{' '}
                 <Button color="info">info</Button>{' '}

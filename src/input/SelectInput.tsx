@@ -1,6 +1,5 @@
 import * as React from "react";
 import BaseInput from "./BaseInput";
-import {Tooltip} from "reactstrap";
 
 export default class SelectInput extends React.Component<any,any>{
     type = "select";

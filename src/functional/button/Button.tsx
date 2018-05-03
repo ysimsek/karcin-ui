@@ -15,6 +15,7 @@ export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
     id?: string;
     style?: React.CSSProperties;
     cssModule?: CSSModule;
+    async ?:boolean;
 }
 // 'HelloProps' describes the shape of props.
 // State is never set so we use the '{}' type.

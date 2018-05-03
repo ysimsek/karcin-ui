@@ -78,9 +78,7 @@ export default class Panel extends React.Component<PanelProps, PanelState> {
                <div className={`panel-main ${this.props.color}`}>
                    {panelTitle}
                    <Collapse
-                       isOpen={this.state.collapse}
-                       onOpened={this.onOpened}
-                       onClosed={this.onClosed}>
+                       isOpen={this.state.collapse}>
                        <div className="panel-content">
                            {childHtmlElement}
                        </div>

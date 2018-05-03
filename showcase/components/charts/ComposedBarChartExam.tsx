@@ -1,5 +1,5 @@
 import * as React from "react";
-import ComposedBarChart from "../../../src/chart/barchart/ComposedBarChart";
+import {ComposedBarChart} from "karcin-ui"
 import {Row,Col} from "reactstrap";
 import {Panel} from "karcin-ui";
 

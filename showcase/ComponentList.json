@@ -220,6 +220,38 @@
           "href":"#/Components/ComplexBarChart",
           "samples":"components/charts/ComplexBarChartExam",
           "library":"chart/barchart/ComplexBarChart"
+        },
+        {
+          "id":8,
+          "name":"LineChartTrend",
+          "title":"LineChartTrend",
+          "href":"#/Components/LineChartTrend",
+          "samples":"components/charts/LineTrendChartExam",
+          "library":"chart/linechart/LineChartTrend"
+        },
+        {
+          "id":9,
+          "name":"PyramidChart",
+          "title":"PyramidChart",
+          "href":"#/Components/PyramidChart",
+          "samples":"components/charts/PyramidChartExam",
+          "library":"chart/extrachart/PyramidChart"
+        },
+        {
+          "id":10,
+          "name":"MicroChart",
+          "title":"MicroChart",
+          "href":"#/Components/MicroChart",
+          "samples":"components/charts/MicroChartExam",
+          "library":"chart/extrachart/MicroChart"
+        },
+        {
+          "id":11,
+          "name":"CylinderChart",
+          "title":"CylinderChart",
+          "href":"#/Components/CylinderChart",
+          "samples":"components/charts/CylinderChartExam",
+          "library":"chart/extrachart/CylinderChart"
         }
 
       ]

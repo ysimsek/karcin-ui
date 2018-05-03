@@ -1,5 +1,5 @@
 import * as React from "react";
-import BarChart from "../../../src/chart/barchart/BarChart"
+import {BarChart} from "karcin-ui"
 import {Col,Row,Label} from "reactstrap";
 
 
@@ -50,10 +50,11 @@ export default class SimpleBarChartExam extends React.Component<any,any>{
                     />
              </Col>
             <Col md={6}>
-                <Label>Simple Dark Theme Chart</Label>
+                <Label>Simple Dark Theme Chart(Inline)</Label>
                 <BarChart
                     data={data}
                     theme={"dark"}
+                    inline={true}
                     textColor={"#aa00cc"}
                     categoryField={"country"}
                     categoryValue={"visits"}
@@ -67,6 +68,7 @@ export default class SimpleBarChartExam extends React.Component<any,any>{
                     textColor={"#3333aa"}
                     categoryField={"country"}
                     categoryValue={"visits"}
+                    valueLine={true}
                 />
             </Col>
             <Col md={6}>
@@ -77,6 +79,7 @@ export default class SimpleBarChartExam extends React.Component<any,any>{
                     categoryField={"country"}
                     categoryValue={"visits"}
                     colorField={"color"}
+                    valueLine={true}
                 />
             </Col>
             <Col md={6}>
