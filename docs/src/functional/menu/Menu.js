@@ -31,7 +31,7 @@ var Menu = /** @class */ (function (_super) {
     }
     Menu.prototype.componentWillReceiveProps = function (props) {
         this.setState({
-            menuData: props.data,
+            menuData: props.data.slice(0),
             type: props.type
         });
         this.activeFind(this.props.active);
@@ -41,6 +41,7 @@ var Menu = /** @class */ (function (_super) {
     };
     Menu.prototype.render = function () {
         var menusList = this.props.data.slice(0);
+        this.state.menuData.length = 0;
         this.menuChilds = this.menuLoop(menusList, undefined, 0, false);
         return React.createElement(reactstrap_1.Nav, { key: "0", className: "karcin-menu " + ((this.state.type === 'hover') ? 'hover-menu' : '') }, this.menuChilds);
     };
@@ -72,6 +73,7 @@ var Menu = /** @class */ (function (_super) {
                 value['level'] = level;
                 var menuDatas = self.state.menuData.slice(0);
                 menuDatas.push(value);
+                self.state.menuData.push(value);
             }
             var actives = _this.menuItemActive(keys);
             listMenu.push(React.createElement(reactstrap_1.NavItem, { key: index, className: (actives) ? 'active' : '' },
@@ -106,7 +108,7 @@ var Menu = /** @class */ (function (_super) {
                         val.collapse = false;
                     }
                     if (self.props.onChange !== undefined) {
-                        var changeMenu = self.state.menuData.slice();
+                        var changeMenu = self.state.menuData.slice(0);
                         self.props.onChange(changeMenu.filter(function (v) { return v.keys === val.keys; }));
                     }
                 }
@@ -115,7 +117,7 @@ var Menu = /** @class */ (function (_super) {
                 if (param.keys === val.keys && param.level === val.level) {
                     val.collapse = !val.collapse;
                     if (self.props.onChange !== undefined) {
-                        var changeMenu = self.state.menuData.slice();
+                        var changeMenu = self.state.menuData.slice(0);
                         self.props.onChange(changeMenu.filter(function (v) { return v.keys === val.keys; }));
                     }
                 }
