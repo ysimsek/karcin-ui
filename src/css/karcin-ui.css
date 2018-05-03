@@ -291,3 +291,25 @@ textarea {
     display: inline-block;
     padding: 7px 5px;
 }
+
+/*CHARTS*/
+a[href='http://www.amcharts.com'] {
+    display: none !important;
+}
+
+/**
+New Reactstrap CSS
+*/
+.radio-inline{
+    display: inline-block;
+    padding-right: 10px;
+}
+.typecolor {
+    height: 38px;
+    padding: 0px;
+}
+
+.radio-properties {
+    border: none;
+    padding: 0px;
+}
