@@ -12,7 +12,7 @@ import TextInput from "./input/TextInput";
 import TextArea from "./input/TextArea";
 import RadioInput from "./input/RadioInput";
 import CheckInput from "./input/CheckInput";
-import SliderCheckbox from "./input/SliderCheckbox";
+import ToggleButton from "./input/ToggleButton";
 import MailInput from "./input/MailInput";
 
 import DataGrid from "./functional/datagrid/DataGrid";
@@ -48,7 +48,7 @@ export {
     Notify,
     Panel,
     DatePicker,
-    SliderCheckbox,
+    ToggleButton,
     DataFilter,
     AreaChart,
     BarChart,
