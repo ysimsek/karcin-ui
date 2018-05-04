@@ -28,6 +28,10 @@ import ComposedBarChart from "./chart/barchart/ComposedBarChart";
 import LineChart from "./chart/linechart/LineChart";
 import PieChart from "./chart/piechart/PieChart";
 import ScatterChart from "./chart/scatterchart/ScatterChart";
+import MicroChart from "./chart/extrachart/MicroChart";
+import CylinderChart from "./chart/extrachart/CylinderChart";
+import PyramidChart from "./chart/extrachart/PyramidChart";
+import LineChartTrend from "./chart/linechart/LineChartTrend";
 
 export {
     Button,
@@ -54,6 +58,10 @@ export {
     ComplexBarChart,
     LineChart,
     PieChart,
-    ScatterChart
+    ScatterChart,
+    MicroChart,
+    CylinderChart,
+    PyramidChart,
+    LineChartTrend
 };
 export default Button;

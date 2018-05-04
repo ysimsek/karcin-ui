@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Row,Col} from "reactstrap";
-import MicroChart from "../../../src/chart/extrachart/MicroChart";
+import {MicroChart} from "karcin-ui";
 
 const dataLine = [{
     "day": 1,

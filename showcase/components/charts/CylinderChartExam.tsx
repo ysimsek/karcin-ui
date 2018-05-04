@@ -1,5 +1,5 @@
 import * as React from "react";
-import CylinderChart from "../../../src/chart/extrachart/CylinderChart";
+import {CylinderChart} from "karcin-ui";
 import {Row,Col} from "reactstrap";
 
 export default class CylinderChartExam extends React.Component{
