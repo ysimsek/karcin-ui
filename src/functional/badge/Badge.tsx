@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Badge as Labelx} from 'reactstrap';
+import {Badge as BadgeX} from 'reactstrap';
 
 /**
  * Label Properties(interfaces)
@@ -12,27 +12,23 @@ export interface LabelProps {
     /**
      * Label text Size
      */
-    textSize?:number | string;
-    /**
-     * Label Text
-     */
-    text?:string;
+    size?:number | string;
 }
 
 
-export default class Label extends React.Component<LabelProps,any>{
+export default class Badge extends React.Component<LabelProps,any>{
     static defaultProps:Partial<LabelProps> ={
         color:"light",
-        textSize:14
+        size:14
     }
     constructor(props:any){
         super(props);
         this.state = {}
     }
     render(){
-        return <Labelx
+        return <BadgeX
             color={this.props.color}
-            style={{fontSize: this.props.textSize+"px"}}
-        >{this.props.text}</Labelx>;
+            style={{fontSize: this.props.size+"px"}}
+        >{this.props.children}</BadgeX>;
     }
 }

@@ -1,6 +1,7 @@
 import * as React from "react";
 import {Button as Buttonx} from 'reactstrap';
 import {CSSModule} from "reactstrap";
+import {FaIcon} from "karcin-ui";
 
 export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
     outline?: boolean;
@@ -22,7 +23,7 @@ export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
 
 export default class Button extends React.Component<ButtonProps> {
     render() {
-        return <Buttonx {...this.props}>{this.props.children}</Buttonx>;
+        return <Buttonx {...this.props}>{this.props.children}</Buttonx>
     }
 
 }

@@ -19,11 +19,11 @@
         },
         {
           "id":2,
-          "name":"Label",
-          "title":"Label",
-          "href":"#/Components/Label",
-          "samples":"components/examples/LabelExample",
-          "library":"functional/label/Label"
+          "name":"Badge",
+          "title":"Badge",
+          "href":"#/Components/Badge",
+          "samples":"components/examples/BadgeExample",
+          "library":"functional/badge/Badge"
         },
         {
           "id":3,
