@@ -7,6 +7,7 @@ import TabPanel from "./functional/tabs/TabPanel";
 import NumericInput from "./inputs/NumericInput";
 import PasswordInput from "./inputs/PasswordInput";
 import SelectInput from "./inputs/SelectInput";
+import SelectInput2 from "./inputs/selectInput/SelectInput";
 import Label from "./functional/label/Label";
 import TextInput from "./inputs/TextInput";
 import TextArea from "./inputs/TextArea";
@@ -39,6 +40,7 @@ export {
     PasswordInput,
     Label,
     SelectInput,
+    SelectInput2,
     TextInput,
     TextArea,
     RadioInput,

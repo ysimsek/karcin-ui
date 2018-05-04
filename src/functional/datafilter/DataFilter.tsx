@@ -46,7 +46,7 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
 
         this.state = {
             inputText: {value: ""},
-            showing: {filterName: false, operator: false, value: false},
+            showing: {filterName: false, operator: false, value: false, dropValue:false},
             selectedItem: [],
             selectText: [],
             getListResult : {data:[]},
@@ -131,7 +131,7 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
      */
     inputOutFocus() {
         this.setState({
-            showing: {filterName:false, operator:false, value:false},
+            showing: {filterName:false, operator:false, value:false, dropValue:false},
             active : {arrowActive:null}
         });
     }
@@ -202,7 +202,9 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
             } else if (this.state.showing.value) {
                 let getItems = this.fieldValueShowing();
                 getArray = [];
+                this.state.showing.dropValue = false;
                 if (getItems.length > 0) {
+                    this.state.showing.dropValue = true;
                     getItems.forEach((value:any, index:number)=>{
                         if (this.state.inputText.value !== "") {
                             if (value.label.search(this.state.inputText.value) !== -1) {
@@ -391,7 +393,7 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
         // "enter" key code
         if (event.keyCode === 13) {
             // value select item 
-            if(this.state.getListResult.data.length <= 0 && this.state.selectText.length >= 2 && this.state.inputText.value !== ""){
+            if(this.state.getListResult.data.length <= 0 && this.state.selectText.length >= 2 && this.state.inputText.value !== "" && !this.state.showing.dropValue){
                 this.setValue({label: this.state.inputText.value});
             }
             

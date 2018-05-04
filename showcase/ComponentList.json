@@ -108,6 +108,14 @@
           "library":"input/SelectInput"
         },
         {
+          "id":7,
+          "name":"SelectInput2",
+          "title":"SelectInput2",
+          "href":"#/Components/SelectInput2",
+          "samples":"components/inputs/SelectInputExample2",
+          "library":"inputs/selectInput/SelectInput"
+        },
+        {
           "id":4,
           "name":"TextInput",
           "title":"TextInput",

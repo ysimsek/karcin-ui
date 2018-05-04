@@ -2,7 +2,7 @@ import * as React from "react";
 import {Collapse, CardBody, Card} from "reactstrap";
 import Button from "../button/Button";
 import FaIcon from "../faicon/FaIcon";
-import "../../css/sass/Panel.scss";
+import "../../css/karcin-ui.css"; 
 
 export interface PanelProps {
     title: string | any;
