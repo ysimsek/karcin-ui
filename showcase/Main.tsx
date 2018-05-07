@@ -37,11 +37,13 @@ export default class Main extends React.Component<any, any> {
                             <a href="#" className="logo-img">
                                 <img src={`./img/logo-reverse.png`} height="50" />
                             </a>
-                            <div className={`side-menu-button ${this.state.sideMenuOpen ? 'active' : ''}`} onClick={()=>this.sideMenuToggle()}>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
+                            {(window.location.hash !== "#/" && window.location.hash.search("#/Components") !== -1)?
+                                <div className={`side-menu-button ${this.state.sideMenuOpen ? 'active' : ''}`} onClick={()=>this.sideMenuToggle()}>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            :''}
                         </div>
                         <NavbarToggler onClick={this.toggle}><FaIcon code={`${(this.state.isOpen)?"fa-times":"fa-bars"}`}  /></NavbarToggler>
                         <Collapse isOpen={this.state.isOpen} navbar>
