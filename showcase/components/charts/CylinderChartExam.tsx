@@ -1,5 +1,5 @@
 import * as React from "react";
-import {CylinderChart} from "karcin-ui";
+import {CylinderChart,Panel} from "karcin-ui";
 import {Row,Col} from "reactstrap";
 
 export default class CylinderChartExam extends React.Component{
@@ -18,19 +18,23 @@ export default class CylinderChartExam extends React.Component{
 
         return <Row>
                     <Col md={6}>
-                        <CylinderChart
-                            data={data1}
-                            height={400}
-                            categoryField={"data"}
-                            categoryTitle={"category"}
-                            categoryValue={"value"}/>
+                        <Panel title={"Three Data Cylinder Chart Example"}>
+                            <CylinderChart
+                                data={data1}
+                                height={400}
+                                categoryField={"data"}
+                                categoryTitle={"category"}
+                                categoryValue={"value"}/>
+                        </Panel>
                     </Col>
                     <Col md={6}>
-                        <CylinderChart
-                            data={data2}
-                            categoryField={"data"}
-                            categoryTitle={"category"}
-                            categoryValue={"value"}/>
+                        <Panel title={"Two Data Cylinder Chart Example"}>
+                            <CylinderChart
+                                data={data2}
+                                categoryField={"data"}
+                                categoryTitle={"category"}
+                                categoryValue={"value"}/>
+                        </Panel>
                     </Col>
                 </Row>
     }

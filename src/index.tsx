@@ -8,6 +8,7 @@ import NumericInput from "./inputs/NumericInput";
 import PasswordInput from "./inputs/PasswordInput";
 import SelectInput from "./inputs/SelectInput";
 import Badge from "./functional/badge/Badge";
+import Label from "./functional/label/Label"
 import TextInput from "./inputs/TextInput";
 import TextArea from "./inputs/TextArea";
 import RadioInput from "./inputs/RadioInput";
@@ -42,6 +43,7 @@ export {
     NumericInput,
     PasswordInput,
     Badge,
+    Label,
     SelectInput,
     TextInput,
     TextArea,

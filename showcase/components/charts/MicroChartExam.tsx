@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Row,Col} from "reactstrap";
-import {MicroChart} from "karcin-ui";
+import {MicroChart,Panel} from "karcin-ui";
 
 const dataLine = [{
     "day": 1,
@@ -87,14 +87,15 @@ export default class MicroChartExam extends React.Component<any,any>{
     render(){
         return <Row>
             <Col>
+                <Panel title={"MicroChart Examples"}>
                     <MicroChart chartType={"line"} data={dataLine} categoryValue={"value"} categoryField={"day"}/><br/>
-                    <MicroChart chartType={"line2"} data={dataLine} categoryValue={"value"} categoryField={"day"}/><br/>
+                    <MicroChart chartType={"line2"} data={dataLine} categoryValue={"value"} categoryField={"day"}/>{'  '}
                     <MicroChart chartType={"pie"} data={dataPie} categoryValue={"value"} categoryField={"x"}/><br/>
-                    <MicroChart chartType={"therm"} data={dataTerm} categoryValue={"y"} categoryField={"x"} cutOffPoint={66}/><br/>
+                    <MicroChart chartType={"therm"} data={dataTerm} categoryValue={"y"} categoryField={"x"} cutOffPoint={66}/>{'  '}
                     <MicroChart chartType={"therm"} data={dataTerm} categoryValue={"y"} categoryField={"x"} cutOffPoint={36}/><br/>
-                    <MicroChart chartType={"bar"} data={dataBar} categoryValue={"value"} categoryField={"day"}/><br/>
+                    <MicroChart chartType={"bar"} data={dataBar} categoryValue={"value"} categoryField={"day"}/>{'  '}
                     <MicroChart chartType={"bar2"} data={dataBar} categoryValue={"value"} categoryField={"day"}/><br/>
-
+                </Panel>
             </Col>
         </Row>
     }

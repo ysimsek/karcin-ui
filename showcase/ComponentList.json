@@ -27,6 +27,15 @@
         },
         {
           "id":3,
+          "name":"Label",
+          "title":"Label",
+          "href":"#/Components/Label",
+          "samples":"components/examples/LabelExample",
+          "library":"functional/label/Label"
+        },
+
+        {
+          "id":4,
           "name":"Menu",
           "title":"Menü",
           "href":"#/Components/Menu",
@@ -34,7 +43,7 @@
           "library":"functional/menu/Menu"
         },
         {
-          "id":4,
+          "id":5,
           "name":"FaIcon",
           "title":"Font Awesome Icon",
           "href":"#/Components/FaIcon",
@@ -42,7 +51,7 @@
           "library":"functional/faicon/FaIcon"
         },
         {
-          "id":5,
+          "id":6,
           "name":"Tab",
           "title":"Tabs",
           "href":"#/Components/Tabs",
@@ -50,7 +59,7 @@
           "library":"functional/tabs/Tab"
         },
         {
-          "id":6,
+          "id":7,
           "name":"Notify",
           "title":"Notify",
           "href":"#/Components/Notify",
@@ -58,7 +67,7 @@
           "library":"functional/notify/Notify"
         },
         {
-          "id":7,
+          "id":8,
           "name":"Panel",
           "title":"Panel",
           "href":"#/Components/Panel",
@@ -66,7 +75,7 @@
           "library":"functional/panel/Panel"
         },
         {
-          "id":6,
+          "id":8,
           "name":"DataFilter",
           "title":"DataFilter",
           "href":"#/Components/DataFilter",
