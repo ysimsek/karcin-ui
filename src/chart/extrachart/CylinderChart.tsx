@@ -77,7 +77,6 @@ export default class CylinderChart extends React.Component<CylinderChartProps,an
     }
     render(){
         let propsData : any = this.returnChartData(this.props.data);
-        debugger;
         let data = {
             "theme": "light",
             "type": "serial",

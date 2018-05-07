@@ -37,7 +37,7 @@ export default class Components extends React.Component<ComponentsProps, Compone
         return (<div className="content-component">
             <div className={`side-menu ${this.props.menuToggle ? 'close-menu' : ''}`}>
                 <div className="side-menu-container">
-                    <Menu data={this.state.data} accordion={true} active={this.state.active}/> 
+                    <Menu data={this.state.data} accordion={true} active={this.state.active}/>
                 </div>
             </div>
             <div className="container-component content-page">{detailCmp}</div></div>);

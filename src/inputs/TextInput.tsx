@@ -1,6 +1,7 @@
 import * as React from "react";
 import Input, {BaseInputProps} from "./base/BaseInput";
 import {Label,InputGroup, InputGroupAddon} from "reactstrap";
+import * as ReactDOM from "react-dom";
 
 export interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement>{
     style?: React.CSSProperties;
@@ -37,5 +38,4 @@ export default class TextInput extends React.Component<TextInputProps>{
         let label = this.props.label != null ? <Label className={"label-properties"}>{this.props.label}</Label> : null;
         return <div>{label}<Input {...this.props}/></div>;
     }
-
 }

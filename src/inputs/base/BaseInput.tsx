@@ -3,7 +3,7 @@ import * as React from 'react';
 
 export interface BaseInputProps extends React.InputHTMLAttributes<HTMLInputElement>{
     type?: string;
-    value?:string;
+    value?:any;
     name?:string;
     onChange?:any;
     hidden?:boolean;
@@ -12,7 +12,7 @@ export interface BaseInputProps extends React.InputHTMLAttributes<HTMLInputEleme
 
 
 
-export default class BaseInput extends React.Component<BaseInputProps> {
+export default class BaseInput extends React.Component<BaseInputProps,any> {
     public static defaultProps: Partial<BaseInputProps> = {
         type: "text",
         value: ""

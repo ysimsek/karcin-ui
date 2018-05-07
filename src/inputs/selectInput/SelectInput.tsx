@@ -108,7 +108,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
 
     /**
      * single select input ' un değiştiğinde value atama
-     * @param event 
+     * @param event
      */
     singleHandleChange(event:any){
         this.props.items.forEach((value:any, index:number) => {
@@ -122,7 +122,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
     }
 
     /**
-     * label return methodu 
+     * label return methodu
      */
     labelResult(){
         let returnLabel:any = null;
@@ -171,7 +171,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
 
         return returnHtml;
     }
-    
+
     /**
      * seçili itemları listeleme methodu
      */
@@ -189,7 +189,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
 
     /**
      * seçilen itemları silme methodu
-     * @param id 
+     * @param id
      */
     removeSelectItem(id:any){
         this.state.selectedItem.splice(id,1);
@@ -198,8 +198,8 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
     }
 
     /**
-     * multi select input da değişen value kontrol edip atama 
-     * @param event 
+     * multi select input da değişen value kontrol edip atama
+     * @param event
      */
     multiHandleChangeInput(event:any){
         let value = event.target.value;
@@ -236,7 +236,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
             getPropsItems = newArray.slice(0);
         }
 
-        
+
         // input text filter data
         if(this.state.inputText.value !== ""){
             newArray.length = 0;
@@ -261,8 +261,8 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
 
 
     /**
-     * seçilen item ' ı ekleme 
-     * @param value 
+     * seçilen item ' ı ekleme
+     * @param value
      */
     addSelectedItem(value:any){
         this.state.selectedItem.push(value);
@@ -327,7 +327,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
      */
     enterSelectArrowItem(){
         let value = this.state.dropDownItems.data[this.state.active.arrowActive];
-    
+
         if(value !== undefined){
             this.addSelectedItem(value);
         }
@@ -342,14 +342,14 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
 
 
     /**
-     * props onChange methodu çalıştırma 
+     * props onChange methodu çalıştırma
      */
     onChangeProps(){
         if(this.props.onChange !== undefined){
             this.props.onChange(this.state.selectedItem);
         }
     }
-    
+
     /**
      * props ' tan gelen active objesini atama
      */
@@ -357,7 +357,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         if(this.props.item !== undefined && this.props.item !== ""){
             this.props.item.forEach((value:any, index:number) => {
                 this.state.selectedItem.push(value);
-            });   
+            });
             this.forceUpdate();
         }
     }
