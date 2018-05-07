@@ -282,8 +282,8 @@ textarea {
 }
 
 .karcin-data-filter .filter-content .selected-field .item.active {
-    background-color: #9aba42;
-    color: #fff;
+    background-color: #1e90ff;
+    color:#fff;
 }
 
 .karcin-data-filter .filter-content .half-select {float: left;}
@@ -313,3 +313,267 @@ New Reactstrap CSS
     border: none;
     padding: 0px;
 }
+
+/*
+* select input css 
+*/
+
+.karcin-select-input {
+    width: 100%;
+    position: relative;
+}
+.karcin-select-input .form-group {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+}
+.karcin-select-input .form-group.left {}
+.karcin-select-input .form-group.right {}
+.karcin-select-input .form-group .karcin-input {
+    width: 100%;
+}
+.karcin-select-input .form-group .karcin-label {
+    width: 100%;
+    margin-bottom: 5px;
+    font-weight: 500;
+    line-height: 1;
+    font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.karcin-select-input .form-group .multi-select-input {
+    width: 100%;
+    border-radius: 3px;
+    border: solid 1px #d1d1d1;
+    padding: 1px 2px;
+    float: left;
+}
+.karcin-select-input .form-group .multi-select-input .multi-input {
+    width: 20%;
+    float: left;
+    border:0;
+    outline:0;
+    padding: 4.5px;
+}
+.karcin-select-input .form-group .multi-select-input .select-item {
+    width: auto;
+    padding: 1px 4px;
+    background-color: #e8e6e6;
+    border-radius: 3px;
+    border: solid 1px #ccc;
+    margin: 2px;
+    color: #838080;
+    float: left;
+    padding-right: 27px;
+    position: relative;
+}
+.karcin-select-input .form-group .multi-select-input .select-item span {
+    float: left;
+    font-size: 13px;
+}
+.karcin-select-input .form-group .multi-select-input .select-item .close-button {
+    cursor: pointer;
+    font-size: 13px;
+    position: absolute;
+    right: 5px;
+    height: 20px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.karcin-select-input .select-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 999;
+    background: #fff;
+    border: solid 1px #e1e1e1;
+    padding:0;
+    box-shadow: 0px 2px 5px #e2e2e2;
+    width: 100%;
+    max-height: 140px;
+    overflow-y: auto;
+}
+.karcin-select-input .select-dropdown .item {
+    font-size:14px;
+    cursor: pointer;
+    padding: 2px 5px;
+    float: left;
+    width: 100%;
+}
+.karcin-select-input .select-dropdown .item.active {
+    background-color: #1e90ff !important;
+    color:#fff;
+}
+.karcin-select-input .select-dropdown .item:hover {
+    background-color: #45a2fc;
+    color:#fff;
+}
+
+.karcin-select-input .form-group .select-input-result {
+    position: relative;
+    float: left;
+    width: 100%;
+}
+
+.karcin-select-input .form-group.left {
+    display: inline-flex;
+    align-items: center;
+}
+.karcin-select-input .form-group.left .select-input-result {
+    width: 80%;
+    float: right;
+}
+.karcin-select-input .form-group.left .karcin-label {
+    width: 20%;
+    float: left;
+    padding: 10px;
+}
+
+.karcin-select-input .form-group.right {
+    flex-direction: row-reverse;
+    display: inline-flex;
+    align-items: center;
+}
+.karcin-select-input .form-group.right .select-input-result {
+    width: 80%;
+    float: left;
+}
+.karcin-select-input .form-group.right .karcin-label {
+    width: 20%;
+    padding: 10px;
+}
+
+/**
+* panel css
+*/
+
+.panel-main {
+    border:solid 1px #ddd;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    display: inline-block;
+    width: 100%;
+  }
+  
+  .panel-main .panel-title {
+    background-color: #f9f9f9;
+    padding: 12px 15px;
+    color: #868585;
+    border-bottom:solid 1px #ddd;
+    font-size: 14px;
+    float: left;
+    width: 100%;
+  }
+  .panel-main .panel-title .panel-head-button {
+    float: right;
+    margin: -1px;
+  }
+  .panel-main .panel-title .panel-head-button button {
+    padding: 2px;
+    line-height: 0;
+    background: #ffffff;
+    color: #b5b4b4;
+  }
+  .panel-main .panel-title span {
+    margin-bottom: 0;
+    font-size: 14px;
+  }
+  .panel-main .panel-content {
+    padding: 15px;
+  }
+  .panel-main .collapse {
+      float: left;
+      width: 100%;
+  }
+  
+  /* panel colors - primary */
+  .panel-main.primary {
+    border-color: #0275d8;
+  }
+  .panel-main.primary .panel-title .panel-head-button button {
+    background: #045eab;
+    color: #ffffff;
+    border-color: #0561b1;
+  }
+  .panel-main.primary .panel-title {
+    background-color: #0275d8;
+    border-bottom-color: #0275d8;
+    color:#FFFFFF;
+  }
+  
+  /* panel colors - info */
+  .panel-main.info {
+    border-color: #5bc0de;
+  }
+  .panel-main.info .panel-title {
+    background-color: #5bc0de;
+    border-bottom-color: #5bc0de;
+    color:#FFFFFF;
+  }
+  .panel-main.info .panel-title .panel-head-button button {
+    background: #2e9bbb;
+    color: #ffffff;
+    border-color: #46a3bf;
+  }
+  /* panel colors - warning */
+  .panel-main.warning {
+    border-color: #f0ad4e;
+  }
+  .panel-main.warning .panel-title {
+    background-color: #f0ad4e;
+    border-bottom-color: #f0ad4e;
+    color:#FFFFFF;
+  }
+  .panel-main.warning .panel-title .panel-head-button button {
+    background: #da9a40;
+    color: #ffffff;
+    border-color: #d89330;
+  }
+  
+  /* panel colors - danger */
+  .panel-main.danger {
+    border-color: #d9534f;
+  }
+  .panel-main.danger .panel-title {
+    background-color: #d9534f;
+    border-bottom-color: #d9534f;
+    color:#FFFFFF;
+  }
+  .panel-main.danger .panel-title .panel-head-button button {
+    background: #c12f2b;
+    color: #ffffff;
+    border-color: #c53632;
+  }
+  
+  /* panel colors - secondary */
+  .panel-main.secondary {
+    border-color: #ccc;
+  }
+  .panel-main.secondary .panel-title {
+    background-color: #fff;
+    border-bottom-color: #ccc;
+    color: #292b2c;
+  }
+  .panel-main.secondary .panel-title .panel-head-button button {
+    background: #ffffff;
+    color: #c3c2c2;
+    border-color: #cccccc;
+  }
+  /* panel colors - success */
+  .panel-main.success {
+    border-color: #5cb85c;
+  }
+  .panel-main.success .panel-title {
+    background-color: #5cb85c;
+    border-bottom-color: #5cb85c;
+    color: #FFFFFF;
+  }
+  .panel-main.success .panel-title .panel-head-button button {
+    background: #3b963b;
+    color: #ffffff;
+    border-color: #4fb14f;
+  }

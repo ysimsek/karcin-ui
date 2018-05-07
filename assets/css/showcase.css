@@ -186,3 +186,36 @@ span.opt {
 .component-props > .tab-content {
     border: 0;
 }
+
+.karcin-select-input .select-dropdown .item {}
+.karcin-select-input .select-dropdown .item .img {
+    width: 35px;
+    height: 35px;
+    overflow: hidden;
+    float: left;
+}
+.karcin-select-input .select-dropdown .item .img img {
+    width: 100%;
+}
+.karcin-select-input .select-dropdown .item span {
+    padding: 7px;
+    float: left;
+}
+
+.karcin-select-input .multi-select-input .select-item {}
+.karcin-select-input .multi-select-input .select-item .img {
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    float: left;
+}
+.karcin-select-input .multi-select-input .select-item .img img {
+    width: 100%;
+}
+.karcin-select-input .multi-select-input .select-item span {
+    padding: 2px;
+}
+.karcin-select-input .multi-select-input .select-item span span {
+    padding: 1px 4px;
+    float: left;
+}
