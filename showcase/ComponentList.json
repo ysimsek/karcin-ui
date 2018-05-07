@@ -109,19 +109,11 @@
 
         },
         {
-          "id":3,
+          "id":7,
           "name":"SelectInput",
           "title":"SelectInput",
           "href":"#/Components/SelectInput",
           "samples":"components/inputs/SelectInputExample",
-          "library":"input/SelectInput"
-        },
-        {
-          "id":7,
-          "name":"SelectInput2",
-          "title":"SelectInput2",
-          "href":"#/Components/SelectInput2",
-          "samples":"components/inputs/SelectInputExample2",
           "library":"inputs/selectInput/SelectInput"
         },
         {
