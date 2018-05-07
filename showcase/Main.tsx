@@ -16,20 +16,33 @@ import { HashRouter as Router, Route, Link, browserHistory, Switch } from "react
 import Components from "./Components";
 import Docs from "./Docs";
 import NotFound from "./NotFound";
+
+  
+
 export default class Main extends React.Component<any, any> {
 
     constructor(props:any) {
         super(props);
         this.toggle = this.toggle.bind(this);
         this.state = {
-            isOpen: false
+            isOpen: false,
+            sideMenuOpen: false
         };
     }
 
     render() {
         return <div id="showcase-content">
                 <Navbar className={`main-menu ${(window.location.hash == "#/")?"active-menu":""}`} expand="md">
-                        <NavbarBrand href="#" className="mr-auto"><img src={`./img/logo-reverse.png`} height="50" /></NavbarBrand>
+                        <div className="header-logo">
+                            <a href="#" className="logo-img">
+                                <img src={`./img/logo-reverse.png`} height="50" />
+                            </a>
+                            <div className={`side-menu-button ${this.state.sideMenuOpen ? 'active' : ''}`} onClick={()=>this.sideMenuToggle()}>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
                         <NavbarToggler onClick={this.toggle}><FaIcon code={`${(this.state.isOpen)?"fa-times":"fa-bars"}`}  /></NavbarToggler>
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>
@@ -65,9 +78,9 @@ export default class Main extends React.Component<any, any> {
                         </Collapse>
                 </Navbar>
                 <div className={`${(window.location.hash == "#/")?"main-content":"subpage-content"}`}>
-                    <Switch>
+                    <Switch >
                         <Route exact path="/" component={HomePage} />
-                        <Route path="/Components" component={Components} />
+                        <Route path="/Components" render={()=><Components menuToggle={this.state.sideMenuOpen} />} />
                         <Route path="/Docs" component={Docs} />
                         <Route component={NotFound} />
                     </Switch>
@@ -89,6 +102,12 @@ export default class Main extends React.Component<any, any> {
     toggle(){
         this.setState({
             isOpen: !this.state.isOpen
+        });
+    }
+
+    sideMenuToggle(){
+        this.setState({
+            sideMenuOpen: !this.state.sideMenuOpen
         });
     }
 

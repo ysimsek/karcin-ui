@@ -465,8 +465,6 @@ New Reactstrap CSS
     color: #868585;
     border-bottom:solid 1px #ddd;
     font-size: 14px;
-    float: left;
-    width: 100%;
   }
   .panel-main .panel-title .panel-head-button {
     float: right;
@@ -485,11 +483,7 @@ New Reactstrap CSS
   .panel-main .panel-content {
     padding: 15px;
   }
-  .panel-main .collapse {
-      float: left;
-      width: 100%;
-  }
-  
+
   /* panel colors - primary */
   .panel-main.primary {
     border-color: #0275d8;

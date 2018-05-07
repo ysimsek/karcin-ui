@@ -354,7 +354,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
      * props ' tan gelen active objesini atama
      */
     itemActive(){
-        if(this.props.item !== undefined){
+        if(this.props.item !== undefined && this.props.item !== ""){
             this.props.item.forEach((value:any, index:number) => {
                 this.state.selectedItem.push(value);
             });   

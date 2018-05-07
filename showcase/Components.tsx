@@ -2,13 +2,19 @@ import * as React from "react";
 import {Menu} from "karcin-ui";
 import RenderComponents from "./RenderComponent";
 
+export interface ComponentsProps {
+    menuToggle ?: any
+}
+
 export interface ComponentsState {
     data?:any,
     active?:any[] | any
 }
 
-export default class Components extends React.Component<any, ComponentsState> {
-    constructor(props){
+
+
+export default class Components extends React.Component<ComponentsProps, ComponentsState> {
+    constructor(props:ComponentsProps){
         super(props);
         const json = require('./ComponentList.json');
         this.state = {
@@ -29,7 +35,7 @@ export default class Components extends React.Component<any, ComponentsState> {
         }
 
         return (<div className="content-component">
-            <div className="side-menu">
+            <div className={`side-menu ${this.props.menuToggle ? 'close-menu' : ''}`}>
                 <div className="side-menu-container">
                     <Menu data={this.state.data} accordion={true} active={this.state.active}/> 
                 </div>

@@ -24,8 +24,8 @@ export default class HomePage extends React.Component<any, any> {
                 <Container className="slide-title">
                     <h3>Karçin UI Showcase</h3>
                     <p>REACT &#38; TYPESCRIPT &#38; BOOTSTRAP</p>
-                    <p style={{color:"#ddd",fontSize:24}}>{version} {date}</p>
-                    <div>
+                    <p className="build-text">{version} {date}</p>
+                    <div className="buttons">
                         <Button onClick={this.getStarted} color="primary" size="lg">GET STARTED</Button>{' '}
                         <Button href="#Components" color="success" size="lg">COMPONENTS</Button>
                     </div>
