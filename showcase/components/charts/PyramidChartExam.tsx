@@ -1,7 +1,6 @@
 import * as React from "react";
 import {Row,Col} from "reactstrap";
-import {Panel} from "karcin-ui";
-import PyramidChart from "../../../src/chart/extrachart/PyramidChart";
+import {Panel,PyramidChart} from "karcin-ui";
 
 const data = [ {
     "title": "Website visits",

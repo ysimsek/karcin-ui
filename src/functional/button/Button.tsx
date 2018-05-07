@@ -22,7 +22,7 @@ export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
 
 export default class Button extends React.Component<ButtonProps> {
     render() {
-        return <Buttonx {...this.props}>{this.props.children}</Buttonx>;
+        return <Buttonx {...this.props}>{this.props.children}</Buttonx>
     }
 
 }

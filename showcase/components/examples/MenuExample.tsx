@@ -6,66 +6,91 @@ export default class MenuExample extends React.Component<any, any> {
         let data: Array<any> = [
             {
                 "id": 1,
-                "name": "functional",
-                "title": "Functional",
+                "name": "Languages",
+                "title": "Languages",
                 "icon": "fa-cubes",
                 "collapse": true,
-                "badge": "12",
+                "badge": "7",
                 "badgeColor": "primary",
                 "items": [
                     {
                         "id": 1,
-                        "name": "Button",
-                        "title": "Button",
-                        "href": "#/Components/Button"
+                        "name": "Arial",
+                        "title": "Arial",
+                        "href": "#/Components/Menu"
                     },
                     {
                         "id": 2,
-                        "name": "Menu",
-                        "title": "Menü",
+                        "name": "Calibri",
+                        "title": "Calibri",
                         "href": "#/Components/Menu"
                     },
                     {
                         "id": 3,
-                        "name": "FaIcon",
-                        "title": "Font Awesome Icon",
-                        "href": "#/Components/FaIcon"
+                        "name": "ComicSans",
+                        "title": "Comic Sans",
+                        "href": "#/Components/Menu"
                     },
                     {
                         "id": 4,
-                        "name": "Tab",
-                        "title": "Tabs",
-                        "href": "#/Components/Tabs",
-                        "samples": "components/examples/TabsExample",
+                        "name": "corsiva",
+                        "title": "Corsiva"
+                    },
+                    {
+                        "id": 5,
+                        "name": "couriernew",
+                        "title": "Courier New"
+                    },
+                    {
+                        "id": 6,
+                        "name": "georgia",
+                        "title": "Georgia"
+                    },
+                    {
+                        "id": 7,
+                        "name": "helvetica",
+                        "title": "Helvetica Neue"
                     }
                 ]
             }, {
                 "id": 2,
-                "name": "input",
-                "title": "Input",
+                "name": "format",
+                "title": "Format",
                 "icon": "fa-terminal",
                 "items": [
                     {
                         "id": 1,
-                        "name": "textInput",
-                        "title": "Text Input"
+                        "name": "bold",
+                        "title": "Bold"
                     },
                     {
                         "id": 2,
-                        "name": "NumericInput",
-                        "title": "NumericInput"
+                        "name": "italic",
+                        "title": "Italic"
                     },
                     {
                         "id": 3,
-                        "name": "textArea",
-                        "title": "Textarea"
+                        "name": "LineSpecing",
+                        "title": "Line Specing",
+                        "badge": "2",
+                        "items": [
+                            {
+                                id:1,
+                                name:"single",
+                                title:"Single"
+                            },
+                            {
+                                id:2,
+                                name:"double",
+                                title:"Double"
+                            }
+                        ]
                     }
                 ]
             }
         ];
-        let deneme = [{"id":1, "name":"Button", "title":"Button", "href":"#/Components/Button"}];
         return <div>
-            <Menu data={data} active={deneme} onChange={(val)=>{this.handleChange(val)}} />
+            <Menu data={data} onChange={(val)=>{this.handleChange(val)}} />
         </div>;
     }
 
@@ -73,4 +98,5 @@ export default class MenuExample extends React.Component<any, any> {
     handleChange(val){
         console.log(val);
     }
+
 }

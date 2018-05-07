@@ -1,38 +1,43 @@
 import * as React from "react";
-import {Badge as Labelx} from 'reactstrap';
+import {CSSModule, Label as LabelX} from "reactstrap";
+import {ColumnProps} from "reactstrap/lib/Col";
 
-/**
- * Label Properties(interfaces)
- */
-export interface LabelProps {
+export interface LabelProps{
     /**
-     * Label body color
+     * Show or Hide default false
      */
-    color?:string;
+    hidden?: boolean;
     /**
-     * Label text Size
+     * Bonded another components
      */
-    textSize?:number | string;
+    for?: string;
+    tag?: string;
+    className?: string;
+    cssModule?: CSSModule;
     /**
-     * Label Text
+     * Text size , default 16px
      */
-    text?:string;
+    size ?: number | string;
+    /**
+     * Color (red,blue), hex or rgb
+     */
+    color ?: string;
 }
 
-
 export default class Label extends React.Component<LabelProps,any>{
-    static defaultProps:Partial<LabelProps> ={
-        color:"light",
-        textSize:14
+    static defaultProps:Partial<LabelProps> = {
+        size : 16
     }
+
     constructor(props:any){
         super(props);
-        this.state = {}
     }
     render(){
-        return <Labelx
-            color={this.props.color}
-            style={{fontSize: this.props.textSize+"px"}}
-        >{this.props.text}</Labelx>;
+        return <LabelX
+                    hidden={this.props.hidden}
+                    for={this.props.for}
+                    className={this.props.className}
+                    tag={this.props.tag}
+                    ><div style={{fontSize: this.props.size+"px", color: this.props.color}}>{this.props.children}</div></LabelX>
     }
 }

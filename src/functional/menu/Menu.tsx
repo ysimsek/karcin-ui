@@ -154,7 +154,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
 
                     if(self.props.onChange !== undefined) {
                         let changeMenu = self.state.menuData.slice(0);
-                        self.props.onChange(changeMenu.filter((v) => v.keys === val.keys));
+                        self.props.onChange(changeMenu.filter((v:any) => v.keys === val.keys));
                     }
 
                 }
@@ -165,7 +165,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
 
                     if(self.props.onChange !== undefined) {
                         let changeMenu = self.state.menuData.slice(0);
-                        self.props.onChange(changeMenu.filter((v) => v.keys === val.keys));
+                        self.props.onChange(changeMenu.filter((v:any) => v.keys === val.keys));
                     }
                 }
             }

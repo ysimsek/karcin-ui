@@ -1,9 +1,9 @@
 import * as React from "react";
-import LineChartTrend from "../../../src/chart/linechart/LineChartTrend";
+import {Panel,LineChartTrend} from "karcin-ui";
 
 
 export default class LineTrendChartExam extends React.Component<any,any>{
     render(){
-        return <LineChartTrend/>
+        return <Panel title={"Line Changes Chart"}><LineChartTrend/></Panel>
     }
 }

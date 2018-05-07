@@ -7,8 +7,9 @@ import TabPanel from "./functional/tabs/TabPanel";
 import NumericInput from "./inputs/NumericInput";
 import PasswordInput from "./inputs/PasswordInput";
 import SelectInput from "./inputs/SelectInput";
+import Badge from "./functional/badge/Badge";
+import Label from "./functional/label/Label"
 import SelectInput2 from "./inputs/selectInput/SelectInput";
-import Label from "./functional/label/Label";
 import TextInput from "./inputs/TextInput";
 import TextArea from "./inputs/TextArea";
 import RadioInput from "./inputs/RadioInput";
@@ -29,6 +30,10 @@ import ComposedBarChart from "./chart/barchart/ComposedBarChart";
 import LineChart from "./chart/linechart/LineChart";
 import PieChart from "./chart/piechart/PieChart";
 import ScatterChart from "./chart/scatterchart/ScatterChart";
+import MicroChart from "./chart/extrachart/MicroChart";
+import CylinderChart from "./chart/extrachart/CylinderChart";
+import PyramidChart from "./chart/extrachart/PyramidChart";
+import LineChartTrend from "./chart/linechart/LineChartTrend";
 
 export {
     Button,
@@ -38,6 +43,7 @@ export {
     TabPanel,
     NumericInput,
     PasswordInput,
+    Badge,
     Label,
     SelectInput,
     SelectInput2,
@@ -56,6 +62,10 @@ export {
     ComplexBarChart,
     LineChart,
     PieChart,
-    ScatterChart
+    ScatterChart,
+    MicroChart,
+    CylinderChart,
+    PyramidChart,
+    LineChartTrend
 };
 export default Button;
