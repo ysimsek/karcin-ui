@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import {Input} from 'reactstrap';
 import FaIcon from '../../functional/faicon/FaIcon'
 import '../../css/karcin-ui.css';
@@ -287,4 +288,5 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
             this.props.onChange(this.state.selectedItem);
         }
     }
+
 }

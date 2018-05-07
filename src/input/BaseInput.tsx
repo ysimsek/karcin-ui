@@ -132,10 +132,13 @@ export default class BaseInput extends React.Component<BaseInputProps,any>{
                     multiple={me.props.multiple}
                     onChange={me.onChange.bind(me)}>{component}</Input>
     }
+
     /**
      * Returned RadioInput Properties
+     * @param type
+     * @returns {JSX.Element}
      */
-    returnRadioInput(type:any){
+    returnRadioInput(type:any):JSX.Element{
         //TODO : RETURN OBJECT ELEMENTS
         //TODO valuefield, idField ekle
         let component : JSX.Element | any = [];
@@ -158,7 +161,12 @@ export default class BaseInput extends React.Component<BaseInputProps,any>{
         </FormGroup>
     }
 
-    returnCheckInput(type:any){
+    /**
+     * Returned RadioInput Properties
+     * @param type
+     * @returns {JSX.Element}
+     */
+    returnCheckInput(type:any):JSX.Element{
         let component:JSX.Element | any = [];
         let values:Array<any> = this.props.values;
         let me = this;

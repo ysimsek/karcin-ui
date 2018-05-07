@@ -10,8 +10,8 @@ export default class MenuExample extends React.Component<any, any> {
                 "title": "Languages",
                 "icon": "fa-cubes",
                 "collapse": true,
-                "badge": "7",
-                "badgeColor": "primary",
+                "badge": "new",
+                "badgeColor": "danger",
                 "items": [
                     {
                         "id": 1,
@@ -29,7 +29,9 @@ export default class MenuExample extends React.Component<any, any> {
                         "id": 3,
                         "name": "ComicSans",
                         "title": "Comic Sans",
-                        "href": "#/Components/Menu"
+                        "href": "#/Components/Menu",
+                        "badge": "v4",
+                        "badgeColor": "warning",
                     },
                     {
                         "id": 4,
@@ -44,7 +46,9 @@ export default class MenuExample extends React.Component<any, any> {
                     {
                         "id": 6,
                         "name": "georgia",
-                        "title": "Georgia"
+                        "title": "Georgia",
+                        "badge": "v3",
+                        "badgeColor": "warning",
                     },
                     {
                         "id": 7,
@@ -73,6 +77,7 @@ export default class MenuExample extends React.Component<any, any> {
                         "name": "LineSpecing",
                         "title": "Line Specing",
                         "badge": "2",
+                        "badgeColor": "warning",
                         "items": [
                             {
                                 id:1,
@@ -90,7 +95,7 @@ export default class MenuExample extends React.Component<any, any> {
             }
         ];
         return <div>
-            <Menu data={data} onChange={(val)=>{this.handleChange(val)}} />
+            <Menu data={data} accordion={true} onChange={(val)=>{this.handleChange(val)}} />
         </div>;
     }
 

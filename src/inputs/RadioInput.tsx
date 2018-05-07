@@ -34,15 +34,15 @@ export default class RadioInput extends React.Component<any,RadioInputProps>{
                 component.push(<label style={{paddingLeft: "2px"}}><label><input
                     className={"radio"}
                     type="radio"
-                    checked={isChecked}
+                    defaultChecked={isChecked}
                     key={v.id}
                     name={e.props.name}
                     value={v.id} />{v.value}</label></label>)
             }else{
-                component.push(<div><label><input
+                component.push(<div key={v.id}><label><input
                     className={"radio"}
                     type="radio"
-                    checked={isChecked}
+                    defaultChecked={isChecked}
                     key={v.id}
                     name={e.props.name}
                     value={v.id} />{v.value}</label></div>)
