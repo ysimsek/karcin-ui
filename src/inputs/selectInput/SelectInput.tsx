@@ -63,6 +63,9 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
                 this.inputFocusOut();
             }
         });
+
+        this.itemActive();
+
     }
 
 
@@ -86,7 +89,9 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         </div>;
     }
 
-
+    /**
+     * single select type result method
+     */
     singleSelectResult(){
         let returnHtml:any[] = [];
 
@@ -101,6 +106,10 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         return <select className={`form-control karcin-select ${this.props.className}`} name={this.props.name} onChange={(e)=>{ this.singleHandleChange(e); }}>{returnHtml}</select>
     }
 
+    /**
+     * single select input ' un değiştiğinde value atama
+     * @param event 
+     */
     singleHandleChange(event:any){
         this.props.items.forEach((value:any, index:number) => {
             if(value[this.props.id].toString() === event.target.value){
@@ -112,6 +121,9 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         });
     }
 
+    /**
+     * label return methodu 
+     */
     labelResult(){
         let returnLabel:any = null;
         if(this.props.label !== undefined){
@@ -120,23 +132,35 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         return returnLabel;
     }
 
+    /**
+     * single onchange method
+     */
     propsOnChange(){
         if(this.state.itemActive.length > 0 && this.props.onChange !== undefined){
             this.props.onChange(this.state.itemActive);
         }
     }
 
+    /**
+     * input focus method
+     */
     inputFocus(){
         this.selectInput.focus();
         this.state.showing.multiDrop = true;
         this.forceUpdate();
     }
 
+    /**
+     * input out focus methodu
+     */
     inputFocusOut(){
         this.state.showing.multiDrop = false;
         this.forceUpdate();
     }
 
+    /**
+     * multi input type result method
+     */
     multiSelectResult(){
         let returnHtml = <div className="multi-select-input">
             {this.getMultiSelectItem()}
@@ -148,6 +172,9 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         return returnHtml;
     }
     
+    /**
+     * seçili itemları listeleme methodu
+     */
     getMultiSelectItem(){
         let getSelectItem:any = [];
 
@@ -160,12 +187,20 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         return getSelectItem;
     }
 
+    /**
+     * seçilen itemları silme methodu
+     * @param id 
+     */
     removeSelectItem(id:any){
         this.state.selectedItem.splice(id,1);
         this.forceUpdate();
         this.onChangeProps();
     }
 
+    /**
+     * multi select input da değişen value kontrol edip atama 
+     * @param event 
+     */
     multiHandleChangeInput(event:any){
         let value = event.target.value;
         this.state.inputText.value = value;
@@ -173,6 +208,9 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         this.inputFocus();
     }
 
+    /**
+     * dropdown da gösterilecek itemları array return eden method
+     */
     getDropDownItems(){
         let itemsList:any[] = [];
         let newArray:any[] = [];
@@ -221,6 +259,11 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         return <div className="select-dropdown">{itemsList}</div>;
     }
 
+
+    /**
+     * seçilen item ' ı ekleme 
+     * @param value 
+     */
     addSelectedItem(value:any){
         this.state.selectedItem.push(value);
         this.state.inputText.value = "";
@@ -229,6 +272,9 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         this.onChangeProps();
     }
 
+    /**
+     * klavya tuş kontrol ana method
+     */
     inputKeyControl(event:any){
         if(event.keyCode == 38) {
             this.arrowSelectFieldUp();
@@ -243,6 +289,9 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         }
     }
 
+    /**
+     * klavyeden üst yön tuşuna basınca dropdown item seçme methodu
+     */
     arrowSelectFieldUp(){
         this.inputFocus();
         if(this.state.active.arrowActive > 0 && this.state.active.arrowActive !== null){
@@ -252,6 +301,9 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         }
     }
 
+    /**
+     * klavyeden alt yön tuşuna basınca dropdown item seçme methodu
+     */
     arrowSelectFieldDown() {
         this.inputFocus();
         if(this.state.dropDownItems.data.length >= 0){
@@ -270,6 +322,9 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         }
     }
 
+    /**
+     * klavyeden enter ' a basınca çalışacak method
+     */
     enterSelectArrowItem(){
         let value = this.state.dropDownItems.data[this.state.active.arrowActive];
     
@@ -278,13 +333,32 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         }
     }
 
+    /**
+     * kalvyeden back space' e basınca çalışacak method
+     */
     backSpaceRemove(){
         this.removeSelectItem(this.state.selectedItem.length - 1);
     }
 
+
+    /**
+     * props onChange methodu çalıştırma 
+     */
     onChangeProps(){
         if(this.props.onChange !== undefined){
             this.props.onChange(this.state.selectedItem);
+        }
+    }
+    
+    /**
+     * props ' tan gelen active objesini atama
+     */
+    itemActive(){
+        if(this.props.item !== undefined){
+            this.props.item.forEach((value:any, index:number) => {
+                this.state.selectedItem.push(value);
+            });   
+            this.forceUpdate();
         }
     }
 }

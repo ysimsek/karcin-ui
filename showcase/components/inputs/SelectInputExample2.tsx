@@ -34,7 +34,6 @@ export default class SelectInputExample extends React.Component<any,any>{
                     items={items}
                     id={"id"}
                     value={"project"}
-                    item={this.state.selectInput}
                     onChange={this.handleChange.bind(this)}
                 />
             </Panel>
@@ -45,7 +44,6 @@ export default class SelectInputExample extends React.Component<any,any>{
                     items={items}
                     id={"id"}
                     value={"project"}
-                    item={this.state.selectInput}
                     onChange={this.handleChange.bind(this)}
                     type={"multi"}
                 />
@@ -57,7 +55,6 @@ export default class SelectInputExample extends React.Component<any,any>{
                     items={items}
                     id={"id"}
                     value={"project"}
-                    item={this.state.selectInput}
                     onChange={this.handleChange.bind(this)}
                     type={"multi"}
                     renderer={this.rendererDropDown}
@@ -71,7 +68,6 @@ export default class SelectInputExample extends React.Component<any,any>{
                     items={items}
                     id={"id"}
                     value={"project"}
-                    item={this.state.selectInput}
                     onChange={this.handleChange.bind(this)}
                     type={"multi"}
                     renderer={this.rendererDropDown}
