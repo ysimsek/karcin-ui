@@ -11,18 +11,49 @@ import "ammap3/ammap/ammap";
 var AmCharts = require("@amcharts/amcharts3-react");
 
 export interface PieChartProps{
+    /**
+     * Views data
+     */
     data ?: Array<any>;
+    /**
+     * set the theme , default theme = light
+     other theme = light , dark , chalk, black, patterns,
+     default = 'light'
+     */
     theme ?: string;
-    categoryValue?: string;
-    categoryField?:string;
+    /**
+     * Default show field
+     */
+    categoryField ?: string;
+    /**
+     * Default show value
+     */
+    categoryValue ?: string;
+    /**
+     * Set the max value
+     * default 300px
+     */
     height?: number;
+    /**
+     * Set the innerSize
+     * default 0
+     */
     innerSize ?: number;
+    /**
+     * Default false
+     */
     deepth ?: boolean;
+    /**
+     * Default false
+     */
     threeD ?: boolean;
 }
 
 export default class PieChart extends React.Component<PieChartProps,any>{
-
+    /**
+     *
+     * @type {{theme: string; height: number; innerSize: number; deepth: boolean; threeD: boolean}}
+     */
     static defaultProps:Partial<PieChartProps>={
         theme : "none",
         height : 300,
@@ -30,10 +61,20 @@ export default class PieChart extends React.Component<PieChartProps,any>{
         deepth : false,
         threeD : false
     }
+
+    /**
+     *
+     * @param props
+     */
     constructor(props:any){
         super(props);
         this.state = {}
     }
+
+    /**
+     *
+     * @returns {any}
+     */
     render(){
         let data = {
             "type": "pie",

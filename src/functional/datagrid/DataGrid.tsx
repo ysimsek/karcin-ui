@@ -7,9 +7,21 @@ import TableHead from './TableHead';
 import Toolbar  from './Toolbar';
 
 export interface DataGridProps {
+    /**
+     * Set the array data
+     */
     data?:Array<any>;
+    /**
+     * Set the data array models
+     */
     fields?: Array<any>;
+    /**
+     * Set the toolbar array models
+     */
     toolbar?: Array<any>;
+    /**
+     * Set the selected data returned func
+     */
     onSelected?: any;
 }
 

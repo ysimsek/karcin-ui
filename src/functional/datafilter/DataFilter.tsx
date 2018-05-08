@@ -4,13 +4,19 @@ import {Input} from 'reactstrap';
 import { ENGINE_METHOD_DIGESTS } from 'constants';
 
 export interface DataFilterProps {
+    /**
+     * Set the fields model (Array)
+     */
     field: Array<FieldArray> | any;
+    /**
+     * Manage the values (function)
+     */
     onChange?: React.EventHandler<any> | any;
 }
 
 export interface DataFilterState {
-    inputText?: any | any,
-    showing?: any | any,
+    inputText?: any,
+    showing?: any,
     selectedItem?: any[] | any,
     selectText?: any[] | any,
     getListResult?: object | any,
@@ -26,9 +32,17 @@ export interface FieldArray {
 }
 
 export default class DataFilter extends React.Component<DataFilterProps, DataFilterState> {
-
+    /**
+     * @type {null}
+     */
     inputText:any = null;
+    /**
+     * @type {string}
+     */
     inputType:string =  "text";
+    /**
+     * @type {{label: string; name: string}[]}
+     */
     operators:any[] = [
         {label: '=', name: 'equal'},
         {label: '!=', name: 'not equal'},
@@ -40,9 +54,12 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
         {label: '|=', name: 'in(use | to separate)'}
     ];
 
+    /**
+     * Initial values
+     * @param {DataFilterProps} props
+     */
     constructor(props: DataFilterProps) {
         super(props);
-
 
         this.state = {
             inputText: {value: ""},
@@ -70,7 +87,7 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
     }
 
 
-    render() {
+    render():any {
 
         let getFilterItem = this.getSelectFieldItem();
 

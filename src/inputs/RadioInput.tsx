@@ -1,13 +1,25 @@
 import * as React from "react";
 
 export interface RadioInputProps{
+    /**
+     * Default value false(horizontal)
+     */
     inline?:boolean;
-    value?:string;
+    /**
+     * Manage the target value
+     */
+    value?:string | any;
     idField?:string | any;
     textField?:string | any;
     onChange?:any;
     items?: Array<any>;
+    /**
+     * set the component's name
+     */
     name?:string;
+    /**
+     * Default false
+     */
     checked?:boolean;
 }
 

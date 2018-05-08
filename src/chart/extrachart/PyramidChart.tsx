@@ -50,6 +50,7 @@ export interface PyramidChartProps {
      */
     threeD ?: boolean;
     /**
+     * Set the max value
      * Default height = 300px
      */
     height ?: number;

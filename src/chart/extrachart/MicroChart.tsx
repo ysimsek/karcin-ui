@@ -33,11 +33,13 @@ export interface MicroChartProps{
      */
     cutOffPoint : number;
     /**
-     * Change the size width
+     * Max chart height
+     * default 100px
      */
     width ?: number;
     /**
-     * Change the size height
+     * Max chart height
+     * default 25px
      */
     height ?: number;
     /**

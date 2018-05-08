@@ -19,7 +19,13 @@ export interface SimpleAreaChartProps{
      default = 'none'
      */
     theme ?: string;
+    /**
+     * Default show field
+     */
     categoryField ?: string;
+    /**
+     * Default show value
+     */
     categoryValue ?: string;
     /**
      * Change the text Color

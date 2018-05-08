@@ -23,18 +23,24 @@ export interface LineChartProps{
      */
     theme ?: string;
     /**
-     * Set the balloontext field 'a' = 5
+     * Default show field
      */
     categoryField ?: string;
     /**
-     * Set the balloontext value a = '5'
+     * Default show value
      */
     categoryValue ?: string;
     /**
      * Set the text color
      */
     textColor ?: string;
+    /**
+     * Set the increase color
+     */
     positiveColor ?: string;
+    /**
+     * Set the decrease color
+     */
     negativeColor ?: string;
     /**
      * Line changes true or false

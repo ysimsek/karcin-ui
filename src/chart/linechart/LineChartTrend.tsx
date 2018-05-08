@@ -15,7 +15,7 @@ export interface LineChartProps{
     /**
      * Views data
      */
-    data ?: Array<any>;
+    data : Array<any>;
     /**
      * set the theme,
      * default theme = light,
@@ -23,18 +23,28 @@ export interface LineChartProps{
      */
     theme ?: string;
     /**
-     * Set the balloontext field 'a' = 5
+     * Default show field
      */
     categoryField ?: string;
     /**
-     * Set the balloontext value a = '5'
+     * Default show value
      */
     categoryValue ?: string;
+    /**
+     * Set the colorField
+     */
+    colorField?:string;
     /**
      * Set the text color
      */
     textColor ?: string;
+    /**
+     * Set the increase color
+     */
     positiveColor ?: string;
+    /**
+     * Set the decrease color
+     */
     negativeColor ?: string;
     /**
      * Line changes true or false
@@ -43,14 +53,28 @@ export interface LineChartProps{
 }
 
 export default class LineChartTrend extends React.Component<LineChartProps,any>{
+    /**
+     *
+     * @type {{theme: string; inline: boolean}}
+     */
     static defaultProps:Partial<LineChartProps> = {
         theme : "none",
         inline : false
     }
+
+    /**
+     *
+     * @param props
+     */
     constructor(props:any){
         super(props);
         this.state = {}
     }
+
+    /**
+     *
+     * @returns {any}
+     */
     render(){
         let data = {
             "type": "serial",
@@ -58,80 +82,7 @@ export default class LineChartTrend extends React.Component<LineChartProps,any>{
             "marginRight":80,
             "autoMarginOffset":20,
             "dataDateFormat": "YYYY-MM-DD HH:NN",
-            "dataProvider": [{
-                "date": "2012-01-01",
-                "value": 8
-            }, {
-                "date": "2012-01-02",
-                "color":"#CC0000",
-                "value": 10
-            }, {
-                "date": "2012-01-03",
-                "value": 12
-            }, {
-                "date": "2012-01-04",
-                "value": 14
-            }, {
-                "date": "2012-01-05",
-                "value": 11
-            }, {
-                "date": "2012-01-06",
-                "value": 6
-            }, {
-                "date": "2012-01-07",
-                "value": 7
-            }, {
-                "date": "2012-01-08",
-                "value": 9
-            }, {
-                "date": "2012-01-09",
-                "value": 13
-            }, {
-                "date": "2012-01-10",
-                "value": 15
-            }, {
-                "date": "2012-01-11",
-                "color":"#CC0000",
-                "value": 19
-            }, {
-                "date": "2012-01-12",
-                "value": 21
-            }, {
-                "date": "2012-01-13",
-                "value": 22
-            }, {
-                "date": "2012-01-14",
-                "value": 20
-            }, {
-                "date": "2012-01-15",
-                "value": 18
-            }, {
-                "date": "2012-01-16",
-                "value": 14
-            }, {
-                "date": "2012-01-17",
-                "color":"#CC0000",
-                "value": 16
-            }, {
-                "date": "2012-01-18",
-                "value": 18
-            }, {
-                "date": "2012-01-19",
-                "value": 17
-            }, {
-                "date": "2012-01-20",
-                "value": 15
-            }, {
-                "date": "2012-01-21",
-                "value": 12
-            }, {
-                "date": "2012-01-22",
-                "color":"#CC0000",
-                "value": 10
-            }, {
-                "date": "2012-01-23",
-                "value": 8
-            }],
+            "dataProvider": this.props.data,
             "valueAxes": [{
                 "axisAlpha": 0,
                 "guides": [{
@@ -148,8 +99,8 @@ export default class LineChartTrend extends React.Component<LineChartProps,any>{
                 "balloonText": "[[category]]<br><b><span style='font-size:14px;'>value:[[value]]</span></b>",
                 "bullet": "round",
                 "dashLength": 3,
-                "colorField":"color",
-                "valueField": "value"
+                "colorField":this.props.colorField,
+                "valueField": this.props.categoryValue
             }],
             "trendLines": [{
                 "finalDate": "2012-01-11 12",
@@ -179,7 +130,7 @@ export default class LineChartTrend extends React.Component<LineChartProps,any>{
                 "valueLineAlpha":0.5,
                 "cursorAlpha":0
             },
-            "categoryField": "date",
+            "categoryField": this.props.categoryField,
             "categoryAxis": {
                 "parseDates": true,
                 "axisAlpha": 0,

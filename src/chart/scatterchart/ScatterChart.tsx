@@ -40,16 +40,28 @@ export interface ScatterChartProps {
 }
 
 export default class ScatterChart extends React.Component<ScatterChartProps,any>{
-
-    static defaultProps ={
+    /**
+     *
+     * @type {{height: number; theme: string}}
+     */
+    static defaultProps:Partial<ScatterChartProps> ={
         height : 300,
         theme : "none",
     }
 
+    /**
+     * Initial Values
+     * @param props
+     */
     constructor(props:any){
         super(props);
         this.state = {}
     }
+
+    /**
+     *
+     * @returns {any}
+     */
     render(){
         let newData = this.configData(this.props.data);
         let data = {
@@ -79,6 +91,11 @@ export default class ScatterChart extends React.Component<ScatterChartProps,any>
         return <AmCharts.React options={data} style={{width:"100%",height:this.props.height+"px"}}/>
     }
 
+    /**
+     *
+     * @param getData
+     * @returns {any[]}
+     */
     configData(getData:any){
         let combineData:any[] = [];
         let newResultData:any[] = [];
@@ -94,6 +111,11 @@ export default class ScatterChart extends React.Component<ScatterChartProps,any>
         return newResultData;
     }
 
+    /**
+     *
+     * @param propsData
+     * @returns {any[]}
+     */
     graphsData(propsData:any){
         let returnData : any[] = [];
         let me = this;
@@ -116,6 +138,12 @@ export default class ScatterChart extends React.Component<ScatterChartProps,any>
         return returnData;
     }
 
+    /**
+     *
+     * @param a
+     * @param b
+     * @returns {Object | any}
+     */
     combineObject(a:any,b:any){
         let c:Object | any = {};
         for (let key in a) {

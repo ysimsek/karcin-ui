@@ -4,13 +4,38 @@ import FaIcon from '../../functional/faicon/FaIcon'
 import '../../css/karcin-ui.css';
 
 export interface SelectInputProps {
+    /**
+     * change the type
+     * single and multi
+     */
     type ?: string | any;
+    /**
+     * Selectinput elements
+     */
     items: Array<any> | any;
+    /**
+     * Manage the target value
+     */
     value?:string | any;
+    /**
+     * Set the component's id
+     */
     id?:string | any;
+    /**
+     * Set the title component
+     */
     label?:string | any;
+    /**
+     * left,right,up
+     */
     labelPosition?: string | any;
+    /**
+     * set the component's name
+     */
     name?:string | any;
+    /**
+     * Manage the value in function
+     */
     onChange?: any;
     item?:Object | any;
     className?:any;
