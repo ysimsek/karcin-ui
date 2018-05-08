@@ -125,7 +125,8 @@ textarea {
 }
 
 .karcin-tab > .nav li a.active {
-    background-color: #9aba42;
+    background-color: #272727;
+    border-color:#272727;
     color: #fff;
 }
 
@@ -482,6 +483,8 @@ New Reactstrap CSS
   }
   .panel-main .panel-content {
     padding: 15px;
+      display: inline-block;
+      width: 100%;
   }
 
   /* panel colors - primary */

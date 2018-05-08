@@ -30,7 +30,7 @@ var DataFilter = /** @class */ (function (_super) {
         ];
         _this.state = {
             inputText: { value: "" },
-            showing: { filterName: false, operator: false, value: false },
+            showing: { filterName: false, operator: false, value: false, dropValue: false },
             selectedItem: [],
             selectText: [],
             getListResult: { data: [] },
@@ -94,7 +94,7 @@ var DataFilter = /** @class */ (function (_super) {
      */
     DataFilter.prototype.inputOutFocus = function () {
         this.setState({
-            showing: { filterName: false, operator: false, value: false },
+            showing: { filterName: false, operator: false, value: false, dropValue: false },
             active: { arrowActive: null }
         });
     };
@@ -162,7 +162,9 @@ var DataFilter = /** @class */ (function (_super) {
             else if (this.state.showing.value) {
                 var getItems = this.fieldValueShowing();
                 getArray = [];
+                this.state.showing.dropValue = false;
                 if (getItems.length > 0) {
+                    this.state.showing.dropValue = true;
                     getItems.forEach(function (value, index) {
                         if (_this.state.inputText.value !== "") {
                             if (value.label.search(_this.state.inputText.value) !== -1) {
@@ -286,6 +288,10 @@ var DataFilter = /** @class */ (function (_super) {
      */
     DataFilter.prototype.removeSelectItem = function (id) {
         this.state.selectedItem.splice(id, 1);
+        this.state.active.arrowActive = null;
+        if (this.props.onChange !== undefined) {
+            this.props.onChange(this.state.selectedItem);
+        }
         this.forceUpdate();
     };
     /**
@@ -332,7 +338,7 @@ var DataFilter = /** @class */ (function (_super) {
         // "enter" key code
         if (event.keyCode === 13) {
             // value select item 
-            if (this.state.getListResult.data.length <= 0 && this.state.selectText.length >= 2 && this.state.inputText.value !== "") {
+            if (this.state.getListResult.data.length <= 0 && this.state.selectText.length >= 2 && this.state.inputText.value !== "" && !this.state.showing.dropValue) {
                 this.setValue({ label: this.state.inputText.value });
             }
             if (this.state.active.arrowActive !== null) {

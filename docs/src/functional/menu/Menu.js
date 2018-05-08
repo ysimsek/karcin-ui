@@ -102,7 +102,7 @@ var Menu = /** @class */ (function (_super) {
             if (self.props.accordion) {
                 if (param.level === val.level) {
                     if (param.keys === val.keys) {
-                        val.collapse = true;
+                        val.collapse = !val.collapse;
                     }
                     else {
                         val.collapse = false;

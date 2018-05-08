@@ -116,7 +116,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
                 this.state.itemActive.length = 0;
                 this.state.itemActive.push(value);
                 this.forceUpdate();
-                this.propsOnChange();
+                this.singlePropsOnchange();
             }
         });
     }
@@ -135,9 +135,9 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
     /**
      * single onchange method
      */
-    propsOnChange(){
+    singlePropsOnchange(){
         if(this.state.itemActive.length > 0 && this.props.onChange !== undefined){
-            this.props.onChange(this.state.itemActive);
+            this.props.onChange(this.state.itemActive[0]);
         }
     }
 
