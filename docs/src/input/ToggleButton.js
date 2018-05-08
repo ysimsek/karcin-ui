@@ -36,6 +36,16 @@ var ToggleButton = /** @class */ (function (_super) {
     };
     ToggleButton.prototype.toggleChange = function () {
         this.setState({ checked: !this.state.checked });
+        this.propsOnChange();
+    };
+    ToggleButton.prototype.propsOnChange = function () {
+        if (this.props.onChange !== undefined) {
+            var eventValue = {};
+            eventValue['name'] = this.props.name;
+            eventValue['label'] = this.props.label;
+            eventValue['value'] = this.state.checked;
+            this.props.onChange(eventValue);
+        }
     };
     return ToggleButton;
 }(React.Component));

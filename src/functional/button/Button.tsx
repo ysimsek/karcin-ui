@@ -3,10 +3,22 @@ import {Button as Buttonx} from 'reactstrap';
 import {CSSModule} from "reactstrap";
 
 export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
+    /**
+     * default false
+     */
     outline?: boolean;
+    /**
+     * default false
+     */
     active?: boolean;
+    /**
+     * default false
+     */
     block?: boolean;
     color?: string;
+    /**
+     * default false
+     */
     disabled?: boolean;
     tag?: React.ReactType;
     innerRef?: string | ((instance: HTMLButtonElement) => any);

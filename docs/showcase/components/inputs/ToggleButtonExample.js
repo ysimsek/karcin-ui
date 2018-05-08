@@ -18,8 +18,11 @@ var ToggleButtonExample = /** @class */ (function (_super) {
         return _super.call(this, props) || this;
     }
     ToggleButtonExample.prototype.render = function () {
+        var _this = this;
         return (React.createElement("div", null,
-            React.createElement(karcin_ui_1.ToggleButton, null)));
+            React.createElement(karcin_ui_1.ToggleButton, { onChange: function (event) { _this.handleChange(event); } })));
+    };
+    ToggleButtonExample.prototype.handleChange = function (event) {
     };
     return ToggleButtonExample;
 }(React.Component));
