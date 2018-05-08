@@ -14,7 +14,7 @@ var React = require("react");
 var reactstrap_1 = require("reactstrap");
 var Button_1 = require("../button/Button");
 var FaIcon_1 = require("../faicon/FaIcon");
-require("../../css/sass/Panel.scss");
+require("../../css/karcin-ui.css");
 var Panel = /** @class */ (function (_super) {
     __extends(Panel, _super);
     function Panel(props) {

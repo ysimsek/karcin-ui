@@ -8,8 +8,11 @@ export default class ToggleButtonExample extends React.Component<{}, {}> {
     }
 
     render(){
-        return (<div><ToggleButton/>
-        </div>);
+        return (<div><ToggleButton onChange={(event:any)=> {this.handleChange(event)}}/></div>);
+    }
+
+    handleChange(event:any){
+
     }
 
 }

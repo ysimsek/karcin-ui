@@ -4,6 +4,11 @@ import FaIcon from "../functional/faicon/FaIcon";
 export interface ToggleButtonProps {
     successIcon?:string | any;
     rejectIcon?:string | any;
+    onChange?:React.EventHandler<any> | any;
+    name ?:string | any;
+    label ?:string | any;
+    labelPosition ?:string | any;
+
 }
 
 export interface ToggleButtonState {
@@ -36,6 +41,19 @@ export default class ToggleButton extends React.Component<ToggleButtonProps, Tog
 
     toggleChange(){
         this.setState({checked:!this.state.checked});
+
+        this.propsOnChange();
+    }
+
+    propsOnChange(){
+        if(this.props.onChange !== undefined) {
+            let eventValue: Object | any = {};
+            eventValue['name'] = this.props.name;
+            eventValue['label'] = this.props.label;
+            eventValue['value'] = this.state.checked;
+
+            this.props.onChange(eventValue);
+        }
     }
 
 }
