@@ -38,6 +38,17 @@ textarea {
     padding: 0px;
 }
 
+.input-focus {
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
 /**
     Slider Checkbox
 */
@@ -125,9 +136,13 @@ textarea {
 }
 
 .karcin-tab > .nav li a.active {
-    background-color: #272727;
-    border-color:#272727;
-    color: #fff;
+    background-color: #cacaca;
+    border-color: #c1bfbf;
+    color: #6f6c6c;
+}
+
+.karcin-tab > .nav li a:hover {
+    color: #6f6c6c;
 }
 
 .karcin-tab > .tab-content {
@@ -222,13 +237,48 @@ textarea {
  */
 
 .karcin-data-filter {
+
+}
+
+
+.karcin-data-filter .karcin-label {
+    width: 100%;
+    margin-bottom: 5px;
+    font-weight: 500;
+    line-height: 1;
+    font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.karcin-data-filter.left .karcin-label {
+    width: 20%;
+    padding: 10px;
+    float: left;
+}
+
+.karcin-data-filter.right .karcin-label {
+    width: 20%;
+    padding: 10px;
+    float: right;
+}
+
+.karcin-data-filter.left .filter-content {
+    width: 80%;
+    float: left;
+}
+.karcin-data-filter.right .filter-content {
+    float: left;
+    width: 80%;
+}
+
+.karcin-data-filter .filter-content {
     width: 100%;
     border-radius: 3px;
     border:solid 1px #ccc;
     min-height: 40px;
 }
-
-.karcin-data-filter .filter-content {}
 .karcin-data-filter .filter-content .text-input {
     float: left;
     position: relative;
@@ -406,11 +456,11 @@ New Reactstrap CSS
     width: 100%;
 }
 .karcin-select-input .select-dropdown .item.active {
-    background-color: #1e90ff !important;
+    background-color: #4e9dfb !important;
     color:#fff;
 }
 .karcin-select-input .select-dropdown .item:hover {
-    background-color: #45a2fc;
+    background-color: #4e9dfb;
     color:#fff;
 }
 
@@ -632,4 +682,208 @@ New Reactstrap CSS
 }
 .karcin-menu.hover-menu .nav-item ul.nav .nav-item {
     padding-left: 0;
+}
+
+/**
+    dataGrid css
+ */
+
+.karcin-data-grid .data-grid-header {
+    width: 100%;
+    padding: 10px;
+    background-color: #8cb753;
+    border-radius: 5px 5px 0px 0px;
+}
+.karcin-data-grid .data-grid-header .data-grid-search .btn {
+    background-color: #779c45;
+    border: solid 1px #b2d484;
+    border-left: 0;
+    color: #fff;
+}
+.karcin-data-grid .data-grid-header .data-grid-search .btn:focus {
+    box-shadow: none;
+}
+.karcin-data-grid .data-grid-header .data-grid-search .form-control {
+    background-color: #779c45;
+    border: solid 1px #b2d484;
+    border-right: 0;
+    color: #fff;
+}
+.karcin-data-grid .data-grid-header .data-grid-search .form-control::placeholder {
+    color: #fff;
+}
+.karcin-data-grid .data-grid-header .data-grid-search .form-control:focus {
+    box-shadow: none;
+}
+.karcin-data-grid .data-grid-header .header-buttons {
+    text-align: right;
+}
+.karcin-data-grid .data-grid-header .header-buttons .btn {
+    background-color: #779c45;
+    color: #fff;
+    border-right: solid 2px #70943f;
+}
+.karcin-data-grid .data-grid-header .header-buttons .btn:last-child {
+    border: 0;
+}
+.karcin-data-grid .data-grid-header .header-buttons .btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+.karcin-data-grid .data-grid-header .header-buttons .btn:hover:not(:disabled) {
+    background-color: #9dbf6e;
+}
+.karcin-data-grid .table {
+    border: 0;
+    margin-bottom: 0;
+}
+.karcin-data-grid .table thead {
+    background-color: #f1efef;
+    overflow: hidden;
+    display: block;
+    border: solid 1px #dee2e6;
+}
+.karcin-data-grid .table thead tr {
+    overflow: hidden;
+    display: flex;
+}
+.karcin-data-grid .table thead tr td, .karcin-data-grid .table thead tr th {
+    font-size: 15px;
+    font-weight: 600;
+    color: #8e8a8a;
+    border-bottom: 0;
+    padding: 8px 15px;
+    flex: 1;
+    overflow: hidden;
+    min-height: 36px;
+    border-color: #dee2e6;
+    border-bottom: 0;
+    border-left: 0;
+    border-top: 0;
+    position: relative;
+}
+.karcin-data-grid .table thead tr td:last-child, .karcin-data-grid .table thead tr th:last-child {
+    border-right: 0;
+}
+.karcin-data-grid .table thead tr td .title-option, .karcin-data-grid .table thead tr th .title-option {
+    position: absolute;
+    right: 5px;
+    top: 7px;
+}
+.karcin-data-grid .table thead tr td span, .karcin-data-grid .table thead tr th span {
+    float: right;
+    cursor: pointer;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    transition: all .3s ease;
+}
+.karcin-data-grid .table thead tr td span:hover, .karcin-data-grid .table thead tr th span:hover {
+    color: #636161;
+}
+.karcin-data-grid .table tbody {
+    height: 350px;
+    overflow-y: auto;
+    display: block;
+    border: solid 1px #dee2e6;
+    border-top: 0;
+}
+.karcin-data-grid .table tbody tr {
+    overflow: hidden;
+    display: flex;
+}
+.karcin-data-grid .table tbody tr:hover td {
+    background-color: #f1f1f1;
+}
+.karcin-data-grid .table tbody tr:first-child td {
+    border-top: 0;
+}
+.karcin-data-grid .table tbody tr:last-child td {
+    border-bottom: solid 1px #dee2e6;
+}
+.karcin-data-grid .table tbody tr.active td {
+    background-color: #4e9dfb;
+    color: #fff;
+}
+.karcin-data-grid .table tbody tr td {
+    vertical-align: middle;
+    padding: 5px 12px;
+    flex: 1;
+    overflow: hidden;
+    min-height: 36px;
+    border-bottom: 0;
+    border-left: 0;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    transition: all .3s ease;
+}
+.karcin-data-grid .table tbody tr td:last-child {
+    border-right: 0;
+}
+.karcin-data-grid .table tr td, .karcin-data-grid .table tr th {
+    display: inline-flex;
+    align-items: center;
+}
+.karcin-data-grid .data-grid-footer {
+    width: 100%;
+    padding: 10px;
+    background-color: #8cb753;
+    border-radius: 0px 0px 5px 5px;
+}
+.karcin-data-grid .data-grid-footer .btn {
+    background-color: #779c45;
+    color: #fff;
+    border-right: solid 2px #70943f;
+    padding: 3px 10px;
+    font-size: 15px;
+}
+.karcin-data-grid .data-grid-footer .btn.arrow {
+    padding: 3px 5px;
+}
+.karcin-data-grid .data-grid-footer .btn:last-child {
+    border: 0;
+}
+.karcin-data-grid .data-grid-footer .btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+.karcin-data-grid .data-grid-footer .btn:hover:not(:disabled), .karcin-data-grid .data-grid-footer .btn.active {
+    background-color: #9dbf6e;
+}
+.karcin-data-grid .data-grid-footer .pagination {
+    justify-content: center;
+}
+.karcin-data-grid .data-grid-footer .data-grid-detail {
+    display: inline-flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.karcin-data-grid .data-grid-footer .data-grid-detail div {
+    display: inline-block;
+    font-size: 14px;
+    color: #fff;
+    margin-left: 15px;
+}
+
+.popup-over-search .btn {
+    background-color: #ffffff;
+    border: solid 1px #c3c3c3;
+    border-left: 0;
+    color: #948f8f;
+}
+.popup-over-search .btn:focus {
+    box-shadow: none;
+}
+.popup-over-search .form-control {
+    background-color: #ffffff;
+    border: 1px solid #c3c3c3;
+    border-right: 0;
+    color: #a5a1a1;
+}
+.popup-over-search .form-control::placeholder {
+    color: #948f8f;
+}
+.popup-over-search .form-control:focus {
+    box-shadow: none;
 }

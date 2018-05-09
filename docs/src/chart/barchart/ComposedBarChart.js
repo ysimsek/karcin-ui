@@ -73,6 +73,10 @@ var ComposedBarChart = /** @class */ (function (_super) {
         });
         return graphsData;
     };
+    /**
+     * Initial props value
+     * @type {{height: number; theme: string}}
+     */
     ComposedBarChart.defaultProps = {
         height: 200,
         theme: "none"

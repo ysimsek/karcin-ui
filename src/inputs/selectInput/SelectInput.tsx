@@ -50,6 +50,7 @@ export interface SelectInputState {
     showing ?: object | any;
     dropDownItems ?: Object | any;
     active ?: object | any;
+    focusControl:object | any;
 }
 
 export default class SelectInput extends React.Component<SelectInputProps, SelectInputState> {
@@ -72,14 +73,15 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
             inputText : {value:""},
             showing : {multiDrop:false},
             dropDownItems: {data:[]},
-            active: {arrowActive:null}
+            active: {arrowActive:null},
+            focusControl : {control:false}
         }
 
         // boş alana tıklanıldığını kontol eden method
         window.addEventListener('click', (event:any) => {
             let control = false;
             event.path.forEach((value:any)=>{
-                if(value.className !== undefined && value.className !== "" && value.className === "karcin-select-input"){
+                if(value.className !== undefined && value.className !== "" && value.className.indexOf("karcin-select-input") !== -1){
                     control = true;
                 }
             });
@@ -163,6 +165,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
     inputFocus(){
         this.selectInput.focus();
         this.state.showing.multiDrop = true;
+        this.state.focusControl.control = true;
         this.forceUpdate();
     }
 
@@ -170,6 +173,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
      * input out focus methodu
      */
     inputFocusOut(){
+        this.state.focusControl.control = false;
         this.state.showing.multiDrop = false;
         this.forceUpdate();
     }
@@ -178,7 +182,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
      * multi input type result method
      */
     multiSelectResult(){
-        let returnHtml = <div className="multi-select-input">
+        let returnHtml = <div className={`multi-select-input ${(this.state.focusControl.control) ? 'input-focus' : ''}`}>
             {this.getMultiSelectItem()}
             <input type="text" value={this.state.inputText.value} onKeyDown={(event)=>{
                 this.inputKeyControl(event);

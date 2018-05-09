@@ -16,8 +16,15 @@ var FaIcon_1 = require("../../functional/faicon/FaIcon");
 require("../../css/karcin-ui.css");
 var Menu = /** @class */ (function (_super) {
     __extends(Menu, _super);
+    /**
+     * Initial values
+     * @param {MenuProps} props
+     */
     function Menu(props) {
         var _this = _super.call(this, props) || this;
+        /**
+         * @type {null}
+         */
         _this.menuChilds = null;
         _this.state = {
             menuData: [],
@@ -29,6 +36,12 @@ var Menu = /** @class */ (function (_super) {
         };
         return _this;
     }
+    Menu.prototype.UNSAFE_componentWillReceiveProps = function () {
+    };
+    /**
+     *
+     * @param {MenuProps} props
+     */
     Menu.prototype.componentWillReceiveProps = function (props) {
         this.setState({
             menuData: props.data.slice(0),
@@ -36,9 +49,15 @@ var Menu = /** @class */ (function (_super) {
         });
         this.activeFind(this.props.active);
     };
+    /**
+     * End render finished
+     */
     Menu.prototype.componentDidMount = function () {
         this.activeFind(this.props.active);
     };
+    /**
+     * @returns {any}
+     */
     Menu.prototype.render = function () {
         var menusList = this.props.data.slice(0);
         this.state.menuData.length = 0;
@@ -77,15 +96,21 @@ var Menu = /** @class */ (function (_super) {
             }
             var actives = _this.menuItemActive(keys);
             listMenu.push(React.createElement(reactstrap_1.NavItem, { key: index, className: (actives) ? 'active' : '' },
-                React.createElement("div", { className: "menu-head", onClick: function () { if (_this.state.type === 'dropDown') {
-                        _this.toggleActiveMenu(params);
-                    } } },
+                React.createElement("div", { className: "menu-head", onClick: function () {
+                        if (_this.state.type === 'dropDown') {
+                            _this.toggleActiveMenu(params);
+                        }
+                    } }, (_this.props.renderer !== undefined ?
+                    React.createElement(reactstrap_1.NavLink, { href: (value.href) ? value.href : "#" }, _this.props.renderer(value)) :
                     React.createElement(reactstrap_1.NavLink, { href: (value.href) ? value.href : "#" },
                         (value.icon !== undefined) ? React.createElement(FaIcon_1.default, { code: value.icon, className: "menu-icon" }) : '',
                         React.createElement("strong", null,
                             value.title,
-                            (value.badge !== undefined) ? React.createElement(reactstrap_1.Badge, { color: value.badgeColor }, value.badge) : ''),
-                        (value.items !== undefined) ? (actives ? React.createElement(FaIcon_1.default, { code: "fa-angle-down", className: "open-icon" }) : React.createElement(FaIcon_1.default, { code: "fa-angle-right", className: "open-icon" })) : '')),
+                            (value.badge !== undefined) ?
+                                React.createElement(reactstrap_1.Badge, { color: value.badgeColor }, value.badge) : ''),
+                        (value.items !== undefined) ? (actives ?
+                            React.createElement(FaIcon_1.default, { code: "fa-angle-down", className: "open-icon" }) :
+                            React.createElement(FaIcon_1.default, { code: "fa-angle-right", className: "open-icon" })) : ''))),
                 (value.items !== undefined && value.items.length > 0) ? _this.menuLoop(value.items, keys, level + 1, true) : ''));
         });
         var active = this.menuItemActive(key);
@@ -95,6 +120,7 @@ var Menu = /** @class */ (function (_super) {
     /**
      * click dropdown menu toggle
      * @param param
+     * @returns {any}
      */
     Menu.prototype.toggleActiveMenu = function (param) {
         var self = this;
@@ -129,8 +155,9 @@ var Menu = /** @class */ (function (_super) {
         });
     };
     /**
-     * active find func
+     * active find function
      * @param getActive
+     * @returns {any}
      */
     Menu.prototype.activeFind = function (getActive) {
         var _this = this;
@@ -181,6 +208,9 @@ var Menu = /** @class */ (function (_super) {
         });
         return active;
     };
+    /**
+     * @type {{type: string; accordion: boolean; active: any[]}}
+     */
     Menu.defaultProps = {
         type: 'dropDown',
         accordion: false,

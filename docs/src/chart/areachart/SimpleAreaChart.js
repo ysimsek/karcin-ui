@@ -23,11 +23,12 @@ require("ammap3/ammap/ammap");
 var AmCharts = require("@amcharts/amcharts3-react");
 var SimleAreaChart = /** @class */ (function (_super) {
     __extends(SimleAreaChart, _super);
-    function SimleAreaChart(props) {
-        var _this = _super.call(this, props) || this;
-        _this.state = {};
-        return _this;
+    function SimleAreaChart() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
+    /**
+     * @returns {any}
+     */
     SimleAreaChart.prototype.render = function () {
         var data = {
             "color": this.props.textColor,
@@ -91,6 +92,9 @@ var SimleAreaChart = /** @class */ (function (_super) {
         };
         return React.createElement(AmCharts.React, { options: data, style: { width: "100%", height: this.props.height + "px" } });
     };
+    /**
+     * @type {{theme: string; height: number; inline: boolean}}
+     */
     SimleAreaChart.defaultProps = {
         theme: "none",
         height: 200,

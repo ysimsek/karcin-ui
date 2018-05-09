@@ -14,14 +14,25 @@ var React = require("react");
 var reactstrap_1 = require("reactstrap");
 var Badge = /** @class */ (function (_super) {
     __extends(Badge, _super);
+    /**
+     * Initial props
+     * @param props
+     */
     function Badge(props) {
         var _this = _super.call(this, props) || this;
         _this.state = {};
         return _this;
     }
+    /**
+     * @returns {any}
+     */
     Badge.prototype.render = function () {
         return React.createElement(reactstrap_1.Badge, { color: this.props.color, style: { fontSize: this.props.size + "px" } }, this.props.children);
     };
+    /**
+     * Initial props value
+     * @type {{color: string; size: number}}
+     */
     Badge.defaultProps = {
         color: "light",
         size: 14

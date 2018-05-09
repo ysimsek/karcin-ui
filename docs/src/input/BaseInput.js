@@ -14,11 +14,18 @@ var React = require("react");
 var reactstrap_1 = require("reactstrap");
 var BaseInput = /** @class */ (function (_super) {
     __extends(BaseInput, _super);
+    /**
+     * Initial value
+     * @param props
+     */
     function BaseInput(props) {
         var _this = _super.call(this, props) || this;
         _this.state = {};
         return _this;
     }
+    /**
+     * @returns {any}
+     */
     BaseInput.prototype.render = function () {
         return React.createElement(reactstrap_1.FormGroup, { tag: this.props.tag },
             React.createElement(reactstrap_1.Label, { for: this.props.id },
@@ -26,8 +33,8 @@ var BaseInput = /** @class */ (function (_super) {
             this.returnInput());
     };
     /**
-     * Select the Input types
-     * @returns {()[]}
+     * Change the Input types
+     * @returns {JSX.Element[]}
      */
     BaseInput.prototype.returnInput = function () {
         var component = [];
@@ -148,6 +155,10 @@ var BaseInput = /** @class */ (function (_super) {
     BaseInput.prototype.onChange = function (e) {
         this.props.onChange(e);
     };
+    /**
+     * Initial props value
+     * @type {{valueField: string; value: string}}
+     */
     BaseInput.propTypes = {
         valueField: "valueField",
         value: "value"

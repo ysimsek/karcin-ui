@@ -5,7 +5,7 @@
       "id":1,
       "name":"Button",
       "title":"Button",
-      "icon":"fa-bold",
+      "icon":"fa-hand-pointer-o",
       "href":"#/Components/Button",
       "samples":"components/examples/ButtonExample",
       "library":"functional/button/Button",

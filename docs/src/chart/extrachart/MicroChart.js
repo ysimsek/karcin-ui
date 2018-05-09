@@ -23,16 +23,25 @@ require("ammap3/ammap/ammap");
 var AmCharts = require("@amcharts/amcharts3-react");
 var MicroChart = /** @class */ (function (_super) {
     __extends(MicroChart, _super);
-    function MicroChart(props) {
-        return _super.call(this, props) || this;
+    function MicroChart() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
+    /**
+     * @returns {any}
+     */
     MicroChart.prototype.render = function () {
         var data = this.returnChart(this.props.chartType);
         return React.createElement(AmCharts.React, { options: data, style: { width: this.props.width + "px", height: this.props.height + "px" } });
     };
+    /**
+     * Return chart data initial
+     * @param {string} type
+     * @returns {{}}
+     */
     MicroChart.prototype.returnChart = function (type) {
         var data = {};
         switch (type) {
+            //linechart
             case "line":
                 data = {
                     "type": "serial",
@@ -61,6 +70,7 @@ var MicroChart = /** @class */ (function (_super) {
                     }
                 };
                 break;
+            //piechart
             case "pie":
                 data = {
                     "type": "pie",
@@ -76,6 +86,7 @@ var MicroChart = /** @class */ (function (_super) {
                     "startDuration": 0
                 };
                 break;
+            //linechart
             case "line2":
                 data = {
                     "type": "serial",
@@ -107,6 +118,7 @@ var MicroChart = /** @class */ (function (_super) {
                     }
                 };
                 break;
+            //Thermochart
             case "therm":
                 data = {
                     "type": "serial",
@@ -143,6 +155,7 @@ var MicroChart = /** @class */ (function (_super) {
                     }
                 };
                 break;
+            //BarChart
             case "bar":
                 data = {
                     "type": "serial",
@@ -170,6 +183,7 @@ var MicroChart = /** @class */ (function (_super) {
                     }
                 };
                 break;
+            //BarChart
             case "bar2":
                 data = {
                     "type": "serial",
@@ -202,9 +216,17 @@ var MicroChart = /** @class */ (function (_super) {
         }
         return data;
     };
+    /**
+     * return random color
+     * @returns {string}
+     */
     MicroChart.prototype.randomColorFunc = function () {
         return Math.floor(Math.random() * 16777215).toString(16);
     };
+    /**
+     * Initial props value
+     * @type {{width: number; height: number; theme: string; lineColor: string}}
+     */
     MicroChart.defaultProps = {
         width: 100,
         height: 25,

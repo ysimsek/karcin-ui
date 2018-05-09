@@ -81,7 +81,7 @@ export default class DataFilterExample extends React.Component<any, any> {
         ];
 
         return <div>
-            <DataFilter field={field} onChange={(e)=>{
+            <DataFilter field={field} label="Data Filter Example" onChange={(e)=>{
                 this.getList(e);
             }}/>
             <div style={{marginTop:20}}>

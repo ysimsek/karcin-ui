@@ -14,13 +14,24 @@ var React = require("react");
 var reactstrap_1 = require("reactstrap");
 var Label = /** @class */ (function (_super) {
     __extends(Label, _super);
+    /**
+     * Initial values
+     * @param props
+     */
     function Label(props) {
         return _super.call(this, props) || this;
     }
+    /**
+     * @returns {any}
+     */
     Label.prototype.render = function () {
         return React.createElement(reactstrap_1.Label, { hidden: this.props.hidden, for: this.props.for, className: this.props.className, tag: this.props.tag },
             React.createElement("div", { style: { fontSize: this.props.size + "px", color: this.props.color } }, this.props.children));
     };
+    /**
+     * Initial props value
+     * @type {{size: number}}
+     */
     Label.defaultProps = {
         size: 16
     };

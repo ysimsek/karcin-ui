@@ -17,11 +17,19 @@ var FaIcon_1 = require("../faicon/FaIcon");
 require("../../css/karcin-ui.css");
 var Panel = /** @class */ (function (_super) {
     __extends(Panel, _super);
+    /**
+     * Intial values
+     * @param {PanelProps} props
+     */
     function Panel(props) {
         var _this = _super.call(this, props) || this;
         _this.init(props);
         return _this;
     }
+    /**
+     * Set the first state
+     * @param {PanelProps} props
+     */
     Panel.prototype.init = function (props) {
         this.state = {
             contentStyle: {},
@@ -31,6 +39,9 @@ var Panel = /** @class */ (function (_super) {
             accordion: props.accordion,
         };
     };
+    /**
+     * @returns {Object}
+     */
     Panel.prototype.render = function () {
         var _this = this;
         var childHtmlElement = this.props.children;
@@ -73,6 +84,9 @@ var Panel = /** @class */ (function (_super) {
             React.createElement(reactstrap_1.Collapse, { isOpen: this.state.collapse },
                 React.createElement("div", { className: "panel-content" }, childHtmlElement))));
     };
+    /**
+     * Props function returned
+     */
     Panel.prototype.onOpened = function () {
         if (this.props.onOpened !== undefined) {
             this.props.onOpened(event);
@@ -97,6 +111,10 @@ var Panel = /** @class */ (function (_super) {
             }
         }
     };
+    /**
+     * Initial props value
+     * @type {{title: string; color: string; collapsible: boolean; collapse: boolean; accordion: boolean}}
+     */
     Panel.defaultProps = {
         title: "",
         color: "default",

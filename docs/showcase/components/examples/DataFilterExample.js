@@ -87,7 +87,7 @@ var DataFilterExample = /** @class */ (function (_super) {
             }
         ];
         return React.createElement("div", null,
-            React.createElement(karcin_ui_1.DataFilter, { field: field, onChange: function (e) {
+            React.createElement(karcin_ui_1.DataFilter, { field: field, label: "Data Filter Example", onChange: function (e) {
                     _this.getList(e);
                 } }),
             React.createElement("div", { style: { marginTop: 20 } }, (this.state.writeCode.data.length > 0) ? React.createElement(Highlight, { className: 'json', innerHtml: true }, JSON.stringify(this.state.writeCode.data)) : ''));

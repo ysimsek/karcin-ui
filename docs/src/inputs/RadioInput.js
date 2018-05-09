@@ -13,13 +13,25 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var RadioInput = /** @class */ (function (_super) {
     __extends(RadioInput, _super);
+    /**
+     * Initial values
+     * @param props
+     */
     function RadioInput(props) {
         return _super.call(this, props) || this;
     }
+    /**
+     * @returns {any}
+     */
     RadioInput.prototype.render = function () {
         return React.createElement("form", null,
             React.createElement("div", { onChange: this.onChange.bind(this), className: "form-control radio-properties" }, this.returnRadioElements(this, this.props.items)));
     };
+    /**
+     * @param e
+     * @param {Array<any>} value
+     * @returns {any}
+     */
     RadioInput.prototype.returnRadioElements = function (e, value) {
         var component = [];
         var inline = false;
@@ -44,6 +56,10 @@ var RadioInput = /** @class */ (function (_super) {
         }.bind(e));
         return component;
     };
+    /**
+     * Return props function
+     * @param e
+     */
     RadioInput.prototype.onChange = function (e) {
         this.props.onChange(e);
     };

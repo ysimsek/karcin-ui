@@ -27,7 +27,6 @@ var ComplexBarChart = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
-     *
      * @returns {any}
      */
     ComplexBarChart.prototype.render = function () {
@@ -158,7 +157,7 @@ var ComplexBarChart = /** @class */ (function (_super) {
         return graphsData;
     };
     /**
-     *
+     * Initial props value
      * @type {{height: number; theme: string; barColor: string}}
      */
     ComplexBarChart.defaultProps = {

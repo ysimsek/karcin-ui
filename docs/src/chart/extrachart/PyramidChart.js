@@ -23,9 +23,12 @@ require("ammap3/ammap/ammap");
 var AmCharts = require("@amcharts/amcharts3-react");
 var PyramidChart = /** @class */ (function (_super) {
     __extends(PyramidChart, _super);
-    function PyramidChart(props) {
-        return _super.call(this, props) || this;
+    function PyramidChart() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
+    /**
+     * @returns {any}
+     */
     PyramidChart.prototype.render = function () {
         var data = {
             color: this.props.textColor,
@@ -55,6 +58,10 @@ var PyramidChart = /** @class */ (function (_super) {
         };
         return React.createElement(AmCharts.React, { options: data, style: { width: "100%", height: this.props.height + "px" } });
     };
+    /**
+     * Initial props value
+     * @type {{height: number; theme: string; representType: string; unit: string}}
+     */
     PyramidChart.defaultProps = {
         height: 300,
         theme: "light",

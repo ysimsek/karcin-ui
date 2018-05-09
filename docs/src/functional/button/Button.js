@@ -27,6 +27,9 @@ var Button = /** @class */ (function (_super) {
     function Button() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    /**
+     * @returns {any}
+     */
     Button.prototype.render = function () {
         return React.createElement(reactstrap_1.Button, __assign({}, this.props), this.props.children);
     };

@@ -23,11 +23,12 @@ require("ammap3/ammap/ammap");
 var AmCharts = require("@amcharts/amcharts3-react");
 var ScatterChart = /** @class */ (function (_super) {
     __extends(ScatterChart, _super);
-    function ScatterChart(props) {
-        var _this = _super.call(this, props) || this;
-        _this.state = {};
-        return _this;
+    function ScatterChart() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
+    /**
+     * @returns {any}
+     */
     ScatterChart.prototype.render = function () {
         var newData = this.configData(this.props.data);
         var data = {
@@ -56,6 +57,11 @@ var ScatterChart = /** @class */ (function (_super) {
         };
         return React.createElement(AmCharts.React, { options: data, style: { width: "100%", height: this.props.height + "px" } });
     };
+    /**
+     * return config data
+     * @param getData
+     * @returns {any[]}
+     */
     ScatterChart.prototype.configData = function (getData) {
         var combineData = [];
         var newResultData = [];
@@ -69,6 +75,11 @@ var ScatterChart = /** @class */ (function (_super) {
         }
         return newResultData;
     };
+    /**
+     * return graphs data in chart data
+     * @param propsData
+     * @returns {any[]}
+     */
     ScatterChart.prototype.graphsData = function (propsData) {
         var returnData = [];
         var me = this;
@@ -90,6 +101,11 @@ var ScatterChart = /** @class */ (function (_super) {
         });
         return returnData;
     };
+    /**
+     * @param a
+     * @param b
+     * @returns {Object | any}
+     */
     ScatterChart.prototype.combineObject = function (a, b) {
         var c = {};
         for (var key in a) {
@@ -100,6 +116,10 @@ var ScatterChart = /** @class */ (function (_super) {
         }
         return c;
     };
+    /**
+     * Initial props value
+     * @type {{height: number; theme: string}}
+     */
     ScatterChart.defaultProps = {
         height: 300,
         theme: "none",
