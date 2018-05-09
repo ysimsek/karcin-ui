@@ -23,11 +23,12 @@ require("ammap3/ammap/ammap");
 var AmCharts = require("@amcharts/amcharts3-react");
 var PieChart = /** @class */ (function (_super) {
     __extends(PieChart, _super);
-    function PieChart(props) {
-        var _this = _super.call(this, props) || this;
-        _this.state = {};
-        return _this;
+    function PieChart() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
+    /**
+     * @returns {any}
+     */
     PieChart.prototype.render = function () {
         var data = {
             "type": "pie",
@@ -47,6 +48,10 @@ var PieChart = /** @class */ (function (_super) {
         };
         return React.createElement(AmCharts.React, { options: data, style: { width: "100%", height: this.props.height + "px" } });
     };
+    /**
+     * Initial props value
+     * @type {{theme: string; height: number; innerSize: number; deepth: boolean; threeD: boolean}}
+     */
     PieChart.defaultProps = {
         theme: "none",
         height: 300,

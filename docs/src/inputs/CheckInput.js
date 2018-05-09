@@ -14,9 +14,15 @@ var React = require("react");
 var reactstrap_1 = require("reactstrap");
 var CheckInput = /** @class */ (function (_super) {
     __extends(CheckInput, _super);
+    /**
+     * @param props
+     */
     function CheckInput(props) {
         return _super.call(this, props) || this;
     }
+    /**
+     * @returns {any}
+     */
     CheckInput.prototype.render = function () {
         return (React.createElement(reactstrap_1.FormGroup, { row: true },
             React.createElement(reactstrap_1.Label, { for: "checkbox2", sm: 2 }, "Checkbox"),

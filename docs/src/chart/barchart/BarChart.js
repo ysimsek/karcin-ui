@@ -23,10 +23,8 @@ require("ammap3/ammap/ammap");
 var AmCharts = require("@amcharts/amcharts3-react");
 var SimpleLineChart = /** @class */ (function (_super) {
     __extends(SimpleLineChart, _super);
-    function SimpleLineChart(props) {
-        var _this = _super.call(this, props) || this;
-        _this.state = {};
-        return _this;
+    function SimpleLineChart() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     SimpleLineChart.prototype.render = function () {
         var data = {
@@ -71,13 +69,17 @@ var SimpleLineChart = /** @class */ (function (_super) {
                 "enabled": true
             }
         };
-        return React.createElement(AmCharts.React, { options: data, style: { width: "100%", height: "200px" } });
+        return React.createElement(AmCharts.React, { options: data, style: { width: "100%", height: this.props.height + "px" } });
     };
+    /**
+     * @type {{data: any[]; theme: string; threeD: boolean; inline: boolean; height: number}}
+     */
     SimpleLineChart.defaultProps = {
         data: [],
         theme: "light",
         threeD: false,
-        inline: false
+        inline: false,
+        height: 200
     };
     return SimpleLineChart;
 }(React.Component));

@@ -1,6 +1,6 @@
 import * as React from "react";
 import 'bootstrap/dist/css/bootstrap.css';
-import '../../css/sass/table.scss';
+import '../../css/karcin-ui.css';
 
 import TableBody from './TableBody';
 import TableHead from './TableHead';

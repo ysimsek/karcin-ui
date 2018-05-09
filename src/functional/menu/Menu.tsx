@@ -15,12 +15,16 @@ export interface MenuProps {
     /**
      * Default false
      */
-    accordion?:boolean;
+    accordion?: boolean;
     /**
      * Active menu
      */
-    active?:Array<MenuData>;
-    onChange?:React.EventHandler<any>;
+    active?: Array<MenuData>;
+    onChange?: React.EventHandler<any> | any;
+    /**
+     * menu loop text change method
+     */
+    renderer?: React.EventHandler<any> | any;
 }
 
 export interface MenuData {
@@ -33,7 +37,7 @@ export interface MenuData {
     catTitle?: string;
     items?: Array<MenuData>;
     badge?: string;
-    path?:string;
+    path?: string;
     badgeColor?: string;
 }
 
@@ -41,9 +45,9 @@ export interface MenuState {
     menuData: Array<MenuData> | any;
     menuActive?: any[] | any;
     type?: string;
-    active ?: any;
+    active?: any;
     addActive?: boolean;
-    activeControl ?:boolean;
+    activeControl?: boolean;
 }
 
 export default class Menu extends React.Component<MenuProps, MenuState> {
@@ -56,7 +60,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
      */
     static defaultProps: Partial<MenuProps> = {
         type: 'dropDown',
-        accordion:false,
+        accordion: false,
         active: [],
     }
 
@@ -71,19 +75,22 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
             menuData: [],
             menuActive: [],
             type: this.props.type,
-            active : null,
-            addActive : false,
-            activeControl : false
+            active: null,
+            addActive: false,
+            activeControl: false
         };
     }
-    UNSAFE_componentWillReceiveProps(){}
+
+    UNSAFE_componentWillReceiveProps() {
+    }
+
     /**
      *
      * @param {MenuProps} props
      */
-    componentWillReceiveProps(props:MenuProps){
+    componentWillReceiveProps(props: MenuProps) {
         this.setState({
-            menuData : props.data.slice(0),
+            menuData: props.data.slice(0),
             type: props.type
         });
 
@@ -93,17 +100,17 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
     /**
      * End render finished
      */
-    componentDidMount(){
+    componentDidMount() {
         this.activeFind(this.props.active);
     }
 
     /**
      * @returns {any}
      */
-    render():any {
+    render(): any {
         let menusList = this.props.data.slice(0);
         this.state.menuData.length = 0;
-        this.menuChilds = this.menuLoop(menusList, undefined, 0,false);
+        this.menuChilds = this.menuLoop(menusList, undefined, 0, false);
         return <Nav key="0" className={`karcin-menu ${(this.state.type === 'hover') ? 'hover-menu' : ''}`}>
             {this.menuChilds}
         </Nav>;
@@ -114,29 +121,29 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
      * get start menu loop
      * @param {any[]} getData
      */
-    menuLoop(getData: any, key: any, level:any, collapse:boolean) {
+    menuLoop(getData: any, key: any, level: any, collapse: boolean) {
 
         // reset list menu
         this.menuChilds = [];
 
         // loop main menu titles
 
-        let listMenu:any[] = [];
+        let listMenu: any[] = [];
         let self = this;
         let newData = getData.slice(0);
-        newData.forEach((value:any, index:number) => {
+        newData.forEach((value: any, index: number) => {
 
             // active control
             let keys = (key !== undefined) ? key + "-" + index : index.toString();
 
-            let params = {keys:keys, level:level, collapse:false};
+            let params = {keys: keys, level: level, collapse: false};
             let activeControlBool = false;
-            self.state.menuActive.forEach((val:any)=>{
-                if(val.keys === keys){
+            self.state.menuActive.forEach((val: any) => {
+                if (val.keys === keys) {
                     activeControlBool = true;
                 }
             });
-            if(!activeControlBool){
+            if (!activeControlBool) {
                 self.state.menuActive.push(params);
                 value['keys'] = keys;
                 value['level'] = level;
@@ -150,12 +157,22 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
 
 
             listMenu.push(<NavItem key={index} className={(actives) ? 'active' : ''}>
-                <div className="menu-head" onClick={()=>{ if(this.state.type === 'dropDown'){this.toggleActiveMenu(params)} }}>
-                    <NavLink href={(value.href) ? value.href : "#"}>
-                        {(value.icon !== undefined) ? <FaIcon code={value.icon} className="menu-icon"/> : ''}
-                        <strong>{value.title}{(value.badge !== undefined) ? <Badge color={value.badgeColor}>{value.badge}</Badge> : ''}</strong>
-                        {(value.items !== undefined) ? (actives ? <FaIcon code="fa-angle-down" className="open-icon"/> : <FaIcon code="fa-angle-right" className="open-icon"/>) : ''}
-                    </NavLink>
+                <div className="menu-head" onClick={() => {
+                    if (this.state.type === 'dropDown') {
+                        this.toggleActiveMenu(params)
+                    }
+                }}>
+                    {(this.props.renderer !== undefined ?
+                            <NavLink href={(value.href) ? value.href : "#"}>{this.props.renderer(value)}</NavLink> :
+                            <NavLink href={(value.href) ? value.href : "#"}>
+                                {(value.icon !== undefined) ? <FaIcon code={value.icon} className="menu-icon"/> : ''}
+                                <strong>{value.title}{(value.badge !== undefined) ?
+                                    <Badge color={value.badgeColor}>{value.badge}</Badge> : ''}</strong>
+                                {(value.items !== undefined) ? (actives ?
+                                    <FaIcon code="fa-angle-down" className="open-icon"/> :
+                                    <FaIcon code="fa-angle-right" className="open-icon"/>) : ''}
+                            </NavLink>
+                    )}
                 </div>
                 {(value.items !== undefined && value.items.length > 0) ? this.menuLoop(value.items, keys, level + 1, true) : ''}
             </NavItem>);
@@ -171,32 +188,31 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
      * @param param
      * @returns {any}
      */
-    toggleActiveMenu(param:any):any{
+    toggleActiveMenu(param: any): any {
         let self = this;
-        this.state.menuActive.map((val:any, index:number) => {
-            if(self.props.accordion){
-                if(param.level === val.level){
-                    if(param.keys === val.keys){
+        this.state.menuActive.map((val: any, index: number) => {
+            if (self.props.accordion) {
+                if (param.level === val.level) {
+                    if (param.keys === val.keys) {
                         val.collapse = !val.collapse;
                     }
                     else {
                         val.collapse = false;
                     }
 
-                    if(self.props.onChange !== undefined) {
+                    if (self.props.onChange !== undefined) {
                         let changeMenu = self.state.menuData.slice(0);
-                        self.props.onChange(changeMenu.filter((v:any) => v.keys === val.keys));
+                        self.props.onChange(changeMenu.filter((v: any) => v.keys === val.keys));
                     }
-
                 }
-            }else {
+            } else {
 
-                if(param.keys === val.keys && param.level === val.level){
+                if (param.keys === val.keys && param.level === val.level) {
                     val.collapse = !val.collapse;
 
-                    if(self.props.onChange !== undefined) {
+                    if (self.props.onChange !== undefined) {
                         let changeMenu = self.state.menuData.slice(0);
-                        self.props.onChange(changeMenu.filter((v:any) => v.keys === val.keys));
+                        self.props.onChange(changeMenu.filter((v: any) => v.keys === val.keys));
                     }
                 }
             }
@@ -205,7 +221,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
         });
 
         this.setState({
-            addActive:true
+            addActive: true
         });
 
     }
@@ -215,14 +231,14 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
      * @param getActive
      * @returns {any}
      */
-    activeFind(getActive:any):any{
-        if(this.state.menuData.length > 0 && getActive !== undefined && getActive !== null && getActive.length > 0 && !this.state.activeControl) {
+    activeFind(getActive: any): any {
+        if (this.state.menuData.length > 0 && getActive !== undefined && getActive !== null && getActive.length > 0 && !this.state.activeControl) {
             getActive = getActive[0];
-            this.state.menuData.forEach((val:any) => {
+            this.state.menuData.forEach((val: any) => {
                 if (val.href === getActive.href && val.name === getActive.name) {
                     for (let i = val.level; i >= 0; i--) {
                         let splitKey = val.keys.split('-');
-                        this.state.menuActive.map((vals:any) => {
+                        this.state.menuActive.map((vals: any) => {
                             let id = splitKey.slice(0, i + 1).join('-');
                             if (this.props.accordion) {
                                 if (vals.level === i && id === vals.keys) {
@@ -253,18 +269,17 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
      * @param id
      * @returns {boolean}
      */
-    menuItemActive(id:any):boolean{
+    menuItemActive(id: any): boolean {
         let active = false;
-        this.state.menuActive.forEach((val:any)=>{
+        this.state.menuActive.forEach((val: any) => {
             let keys = (id !== undefined) ? id : "0";
-            if(val.keys === keys){
+            if (val.keys === keys) {
                 active = val.collapse;
             }
         });
 
         return active;
     }
-
 
 
 }

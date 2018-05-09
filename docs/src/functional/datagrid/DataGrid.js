@@ -12,14 +12,20 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 require("bootstrap/dist/css/bootstrap.css");
-require("../../css/sass/table.scss");
+require("../../css/karcin-ui.css");
 var TableBody_1 = require("./TableBody");
 var TableHead_1 = require("./TableHead");
 var Toolbar_1 = require("./Toolbar");
 var DataGrid = /** @class */ (function (_super) {
     __extends(DataGrid, _super);
+    /**
+     * Initial values
+     */
     function DataGrid(props) {
         var _this = _super.call(this, props) || this;
+        /**
+         * @type {number}
+         */
         _this.dataGridId = Math.floor(Math.random() * 20);
         _this.init(props);
         return _this;
@@ -27,12 +33,18 @@ var DataGrid = /** @class */ (function (_super) {
     DataGrid.prototype.componentWillReceiveProps = function (props) {
         this.init(props);
     };
+    /**
+     * set the first values
+     */
     DataGrid.prototype.init = function (props) {
         this.state = {
             data: props.data,
             fields: props.fields
         };
     };
+    /**
+     *
+     */
     DataGrid.prototype.render = function () {
         return React.createElement("div", { className: "karcin-data-grid", id: 'karcinDataGrid' + this.dataGridId },
             React.createElement(Toolbar_1.default, { data: this.props.toolbar }),

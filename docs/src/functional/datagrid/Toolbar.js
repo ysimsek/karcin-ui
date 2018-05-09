@@ -15,9 +15,15 @@ var reactstrap_1 = require("reactstrap");
 var FaIcon_1 = require("../faicon/FaIcon");
 var Toolbar = /** @class */ (function (_super) {
     __extends(Toolbar, _super);
+    /**
+     * Initial values
+     */
     function Toolbar(props) {
         return _super.call(this, props) || this;
     }
+    /**
+     * return any
+     */
     Toolbar.prototype.render = function () {
         if (this.props.type == "footer") {
             // footer Html Elements
@@ -69,9 +75,16 @@ var Toolbar = /** @class */ (function (_super) {
                         React.createElement(reactstrap_1.ButtonGroup, null, buttons))));
         }
     };
+    /**
+     * location url
+     * @param url
+     */
     Toolbar.prototype.urlDirectory = function (url) {
         window.location.href = url;
     };
+    /**
+     * Initial props value
+     */
     Toolbar.defaultProps = {
         type: "header"
     };

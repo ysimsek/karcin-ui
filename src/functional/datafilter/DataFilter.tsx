@@ -12,6 +12,16 @@ export interface DataFilterProps {
      * Manage the values (function)
      */
     onChange?: React.EventHandler<any> | any;
+
+    /**
+     * label text
+     */
+    label?: string | any;
+
+    /**
+     * label position : [up(default), left, right]
+     */
+    labelPosition?: string | any
 }
 
 export interface DataFilterState {
@@ -21,7 +31,8 @@ export interface DataFilterState {
     selectText?: any[] | any,
     getListResult?: object | any,
     active ?: object | any,
-    dropDownList ?: any
+    dropDownList ?: any,
+    focusControl ?: object | any
 }
 
 export interface FieldArray {
@@ -55,6 +66,14 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
     ];
 
     /**
+     * Default props
+     * @type {{labelPosition: string}}
+     */
+    static defaultProps: Partial<DataFilterProps> = {
+        labelPosition : 'up'
+    };
+
+    /**
      * Initial values
      * @param {DataFilterProps} props
      */
@@ -67,21 +86,24 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
             selectedItem: [],
             selectText: [],
             getListResult : {data:[]},
-            active: {arrowActive:null}
-        }
+            active: {arrowActive:null},
+            focusControl: {control:false}
+        };
 
 
         // boş alana tıklanıldığını kontol eden method
         window.addEventListener('click', (event:any) => {
-            let control = false;
-            event.path.forEach((value:any)=>{
-                if(value.className !== undefined && value.className !== "" && value.className === "karcin-data-filter"){
-                    control = true;
-                }
-            });
+            if(this.state.focusControl.control !== false) {
+                let control = false;
+                event.path.forEach((value: any) => {
+                    if (value.className !== undefined && value.className !== "" && value.className.indexOf("karcin-data-filter") !== - 1) {
+                        control = true;
+                    }
+                });
 
-            if(!control){
-                this.inputOutFocus();
+                if (!control) {
+                    this.inputOutFocus();
+                }
             }
         });
     }
@@ -93,10 +115,11 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
 
         let getFilterItem = this.getSelectFieldItem();
 
-        return (<div className="karcin-data-filter" onClick={() => {
+        return (<div className={`karcin-data-filter ${this.props.labelPosition}`} onClick={() => {
             this.focusInput()
         }}>
-            <div className="filter-content">
+            {this.labelResult()}
+            <div className={`filter-content ${(this.state.focusControl.control) ? 'input-focus' : ''}`}>
                 {(this.state.selectedItem.length > 0) ?
                     <div className="selected-items">
                         {this.getSelectedItem()}
@@ -129,7 +152,7 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
 
     /**
      * input value control methodu
-     * @param e 
+     * @param e
      */
     handleChange(e:any) {
         this.state.inputText.value = e.target.value;
@@ -138,11 +161,25 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
     }
 
     /**
+     * label return methodu
+     */
+    labelResult(){
+        let returnLabel:any = null;
+        if(this.props.label !== undefined){
+            returnLabel = <label className="karcin-label">{this.props.label}</label>
+        }
+        return returnLabel;
+    }
+
+    /**
      * input ' a focus olduğunda çalışan method
      */
     focusInput() {
+        this.setState({
+            focusControl: {control: true}
+        });
         this.inputText.focus();
-        this.fieldShowingControl()
+        this.fieldShowingControl();
     }
 
     /**
@@ -151,7 +188,8 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
     inputOutFocus() {
         this.setState({
             showing: {filterName:false, operator:false, value:false, dropValue:false},
-            active : {arrowActive:null}
+            active : {arrowActive:null},
+            focusControl: {control: false}
         });
     }
 
@@ -163,7 +201,7 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
             selectText: [],
             inputText: {value:""}
         });
-        
+
         this.inputType = "text";
     }
 
@@ -285,7 +323,7 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
 
     /**
      * filtername seçildikten sonra setlemek için kullanılan method
-     * @param val 
+     * @param val
      */
     setName(val: any) {
         val['openType'] = "filterName";
@@ -299,13 +337,13 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
 
     /**
      * operator seçildikten sonra setlemek için kullanılan method
-     * @param val 
+     * @param val
      */
     setOperator(val: any) {
         val['openType'] = "operator";
         this.state.selectText.push(val);
         this.state.showing.operator = false;
-        this.state.showing.value = true; 
+        this.state.showing.value = true;
         this.state.inputText.value = "";
         this.state.active.arrowActive = null;
         this.forceUpdate();
@@ -313,7 +351,7 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
 
     /**
      * value seçildikten sonra setlemek için kullanılan method
-     * @param val 
+     * @param val
      */
     setValue(val: any) {
         val['openType'] = "value";
@@ -389,7 +427,7 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
     }
 
     /**
-     * selectText' i selectItem' a atayan method 
+     * selectText' i selectItem' a atayan method
      */
     textConvertItem() {
         if (this.state.selectText.length >= 3) {
@@ -407,7 +445,7 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
 
     /**
      * input focusken key controlu yapan ona göre metodları çalıştıran method
-     * @param event 
+     * @param event
      */
     inputKeyControl(event: any) {
         // "enter" key code
@@ -416,7 +454,7 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
             if(this.state.getListResult.data.length <= 0 && this.state.selectText.length >= 2 && this.state.inputText.value !== "" && !this.state.showing.dropValue){
                 this.setValue({label: this.state.inputText.value});
             }
-            
+
             if(this.state.active.arrowActive !== null){
                 this.enterSelectArrowItem();
             }
@@ -485,11 +523,12 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
      * arrow up ' a bastığımız zaman dropdowndaki itemları seçmek için kullanılan method
      */
     arrowSelectFieldUp(){
+        this.dropdownShowing();
         if(this.state.active.arrowActive > 0){
             let active = this.state.active.arrowActive;
             this.state.active.arrowActive = active - 1;
             this.forceUpdate();
-        
+
         }
     }
 
@@ -497,6 +536,7 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
      * arrow down ' a bastığımız zaman dropdowndaki itemları seçmek için kullanılan method
      */
     arrowSelectFieldDown(){
+        this.dropdownShowing();
         if(this.state.getListResult.data.length >= 0){
             let active = 0;
 
@@ -518,7 +558,7 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
      */
     enterSelectArrowItem(){
         let value = this.state.getListResult.data[this.state.active.arrowActive];
-    
+
         if(value !== undefined){
             if(this.state.showing.filterName){
                 this.setName(value);
@@ -528,6 +568,20 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
                 this.setValue(value);
             }
         }
+    }
+
+    /**
+     * dropdown content controlling of the showing
+     */
+    dropdownShowing(){
+        if(this.state.selectText.length === 2){
+            this.state.showing.value = true;
+        }else if(this.state.selectText.length === 1){
+            this.state.showing.operator = true;
+        }else {
+            this.state.showing.filterName = true;
+        }
+        this.forceUpdate();
     }
 
 

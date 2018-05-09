@@ -24,13 +24,14 @@ var SelectInput = /** @class */ (function (_super) {
             inputText: { value: "" },
             showing: { multiDrop: false },
             dropDownItems: { data: [] },
-            active: { arrowActive: null }
+            active: { arrowActive: null },
+            focusControl: { control: false }
         };
         // boş alana tıklanıldığını kontol eden method
         window.addEventListener('click', function (event) {
             var control = false;
             event.path.forEach(function (value) {
-                if (value.className !== undefined && value.className !== "" && value.className === "karcin-select-input") {
+                if (value.className !== undefined && value.className !== "" && value.className.indexOf("karcin-select-input") !== -1) {
                     control = true;
                 }
             });
@@ -105,12 +106,14 @@ var SelectInput = /** @class */ (function (_super) {
     SelectInput.prototype.inputFocus = function () {
         this.selectInput.focus();
         this.state.showing.multiDrop = true;
+        this.state.focusControl.control = true;
         this.forceUpdate();
     };
     /**
      * input out focus methodu
      */
     SelectInput.prototype.inputFocusOut = function () {
+        this.state.focusControl.control = false;
         this.state.showing.multiDrop = false;
         this.forceUpdate();
     };
@@ -119,7 +122,7 @@ var SelectInput = /** @class */ (function (_super) {
      */
     SelectInput.prototype.multiSelectResult = function () {
         var _this = this;
-        var returnHtml = React.createElement("div", { className: "multi-select-input" },
+        var returnHtml = React.createElement("div", { className: "multi-select-input " + ((this.state.focusControl.control) ? 'input-focus' : '') },
             this.getMultiSelectItem(),
             React.createElement("input", { type: "text", value: this.state.inputText.value, onKeyDown: function (event) {
                     _this.inputKeyControl(event);
@@ -209,6 +212,7 @@ var SelectInput = /** @class */ (function (_super) {
      */
     SelectInput.prototype.addSelectedItem = function (value) {
         this.state.selectedItem.push(value);
+        this.state.itemActive.push(value);
         this.state.inputText.value = "";
         this.state.active.arrowActive = null;
         this.forceUpdate();
@@ -216,6 +220,7 @@ var SelectInput = /** @class */ (function (_super) {
     };
     /**
      * klavya tuş kontrol ana method
+     * @param event
      */
     SelectInput.prototype.inputKeyControl = function (event) {
         if (event.keyCode == 38) {
@@ -288,7 +293,7 @@ var SelectInput = /** @class */ (function (_super) {
             var value = void 0;
             var target_1 = {};
             if (this.props.type === "multi") {
-                value = this.state.selectedItem;
+                value = this.state.itemActive;
                 target_1['id'] = [];
                 target_1['name'] = this.props.name;
                 target_1['value'] = [];
@@ -300,7 +305,7 @@ var SelectInput = /** @class */ (function (_super) {
                 });
             }
             else {
-                value = this.state.selectedItem[0];
+                value = this.state.itemActive[0];
                 target_1['id'] = value[this.props.id];
                 target_1['name'] = this.props.name;
                 target_1['value'] = value[this.props.value];

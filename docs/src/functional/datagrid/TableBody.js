@@ -14,6 +14,10 @@ var React = require("react");
 require("bootstrap/dist/css/bootstrap.css");
 var TableBody = /** @class */ (function (_super) {
     __extends(TableBody, _super);
+    /**
+     * Initial values
+     * @param {TableBodyProps} props
+     */
     function TableBody(props) {
         var _this = _super.call(this, props) || this;
         _this.state = {
@@ -24,12 +28,19 @@ var TableBody = /** @class */ (function (_super) {
         };
         return _this;
     }
+    /**
+     * Rerender props values
+     * @param props
+     */
     TableBody.prototype.componentWillReceiveProps = function (props) {
         this.setState({
             data: this.props.data,
             fields: this.props.fields
         });
     };
+    /**
+     * @returns {any}
+     */
     TableBody.prototype.render = function () {
         var _this = this;
         var Rows = [];
@@ -60,6 +71,11 @@ var TableBody = /** @class */ (function (_super) {
         }
         return React.createElement("tbody", null, Rows);
     };
+    /**
+     * @param e
+     * @param active
+     * @param data
+     */
     TableBody.prototype.onClickRow = function (e, active, data) {
         if (e.metaKey || e.ctrlKey) {
             if (this.state.clickActive.indexOf(active) !== -1) {

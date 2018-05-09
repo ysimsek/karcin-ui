@@ -26,9 +26,16 @@ var reactstrap_1 = require("reactstrap");
  */
 var PasswordInput = /** @class */ (function (_super) {
     __extends(PasswordInput, _super);
+    /**
+     * Initial value
+     * @param props
+     */
     function PasswordInput(props) {
         return _super.call(this, props) || this;
     }
+    /**
+     * @returns {any}
+     */
     PasswordInput.prototype.render = function () {
         //todo :label için sağ sol üst seçenekleri konulsun, hatta button ile birlikte beraber kullanılabilir.
         var label = this.props.label != "" ? React.createElement(reactstrap_1.Label, { className: "label-properties" }, this.props.label) : null;
@@ -36,6 +43,10 @@ var PasswordInput = /** @class */ (function (_super) {
             label,
             React.createElement(BaseInput_1.default, __assign({}, this.props)));
     };
+    /**
+     * Initial props value
+     * @type {{disabled: boolean; readOnly: boolean; hidden: boolean; label: string; type: string}}
+     */
     PasswordInput.defaultProps = {
         disabled: false,
         readOnly: false,

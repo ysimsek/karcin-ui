@@ -14,6 +14,10 @@ var React = require("react");
 var FaIcon_1 = require("../functional/faicon/FaIcon");
 var ToggleButton = /** @class */ (function (_super) {
     __extends(ToggleButton, _super);
+    /**
+     * Initial values
+     * @param {ToggleButtonProps} props
+     */
     function ToggleButton(props) {
         var _this = _super.call(this, props) || this;
         _this.state = {
@@ -21,6 +25,9 @@ var ToggleButton = /** @class */ (function (_super) {
         };
         return _this;
     }
+    /**
+     * @returns {any}
+     */
     ToggleButton.prototype.render = function () {
         var _this = this;
         var icon = null;
@@ -34,10 +41,16 @@ var ToggleButton = /** @class */ (function (_super) {
                 React.createElement("input", { type: "checkbox", checked: this.state.checked, onChange: function () { _this.toggleChange(); } }),
                 React.createElement("span", { className: "circle" }))));
     };
+    /**
+     * Change the state
+     */
     ToggleButton.prototype.toggleChange = function () {
         this.setState({ checked: !this.state.checked });
         this.propsOnChange();
     };
+    /**
+     * return eventValues
+     */
     ToggleButton.prototype.propsOnChange = function () {
         if (this.props.onChange !== undefined) {
             var eventValue = {};

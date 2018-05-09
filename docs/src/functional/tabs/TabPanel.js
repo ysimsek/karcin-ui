@@ -16,6 +16,9 @@ var TabPanel = /** @class */ (function (_super) {
     function TabPanel() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    /**
+     * @returns {any}
+     */
     TabPanel.prototype.render = function () {
         return (React.createElement("div", null, this.props.children));
     };

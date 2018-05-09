@@ -14,10 +14,23 @@ var React = require("react");
 var FaIcon_1 = require("../faicon/FaIcon");
 var DataFilter = /** @class */ (function (_super) {
     __extends(DataFilter, _super);
+    /**
+     * Initial values
+     * @param {DataFilterProps} props
+     */
     function DataFilter(props) {
         var _this = _super.call(this, props) || this;
+        /**
+         * @type {null}
+         */
         _this.inputText = null;
+        /**
+         * @type {string}
+         */
         _this.inputType = "text";
+        /**
+         * @type {{label: string; name: string}[]}
+         */
         _this.operators = [
             { label: '=', name: 'equal' },
             { label: '!=', name: 'not equal' },
@@ -34,29 +47,36 @@ var DataFilter = /** @class */ (function (_super) {
             selectedItem: [],
             selectText: [],
             getListResult: { data: [] },
-            active: { arrowActive: null }
+            active: { arrowActive: null },
+            focusControl: { control: false }
         };
         // boş alana tıklanıldığını kontol eden method
         window.addEventListener('click', function (event) {
-            var control = false;
-            event.path.forEach(function (value) {
-                if (value.className !== undefined && value.className !== "" && value.className === "karcin-data-filter") {
-                    control = true;
+            if (_this.state.focusControl.control !== false) {
+                var control_1 = false;
+                event.path.forEach(function (value) {
+                    if (value.className !== undefined && value.className !== "" && value.className.indexOf("karcin-data-filter") !== -1) {
+                        control_1 = true;
+                    }
+                });
+                if (!control_1) {
+                    _this.inputOutFocus();
                 }
-            });
-            if (!control) {
-                _this.inputOutFocus();
             }
         });
         return _this;
     }
+    /**
+     * @returns {any}
+     */
     DataFilter.prototype.render = function () {
         var _this = this;
         var getFilterItem = this.getSelectFieldItem();
-        return (React.createElement("div", { className: "karcin-data-filter", onClick: function () {
+        return (React.createElement("div", { className: "karcin-data-filter " + this.props.labelPosition, onClick: function () {
                 _this.focusInput();
             } },
-            React.createElement("div", { className: "filter-content" },
+            this.labelResult(),
+            React.createElement("div", { className: "filter-content " + ((this.state.focusControl.control) ? 'input-focus' : '') },
                 (this.state.selectedItem.length > 0) ?
                     React.createElement("div", { className: "selected-items" }, this.getSelectedItem())
                     : '',
@@ -83,9 +103,22 @@ var DataFilter = /** @class */ (function (_super) {
         this.fieldShowingControl();
     };
     /**
+     * label return methodu
+     */
+    DataFilter.prototype.labelResult = function () {
+        var returnLabel = null;
+        if (this.props.label !== undefined) {
+            returnLabel = React.createElement("label", { className: "karcin-label" }, this.props.label);
+        }
+        return returnLabel;
+    };
+    /**
      * input ' a focus olduğunda çalışan method
      */
     DataFilter.prototype.focusInput = function () {
+        this.setState({
+            focusControl: { control: true }
+        });
         this.inputText.focus();
         this.fieldShowingControl();
     };
@@ -95,7 +128,8 @@ var DataFilter = /** @class */ (function (_super) {
     DataFilter.prototype.inputOutFocus = function () {
         this.setState({
             showing: { filterName: false, operator: false, value: false, dropValue: false },
-            active: { arrowActive: null }
+            active: { arrowActive: null },
+            focusControl: { control: false }
         });
     };
     /**
@@ -110,6 +144,7 @@ var DataFilter = /** @class */ (function (_super) {
     };
     /**
      * dropdown ' a basılacak itemları return eden method
+     * @returns {JSX.Element[]}
      */
     DataFilter.prototype.getSelectFieldItem = function () {
         var _this = this;
@@ -192,6 +227,7 @@ var DataFilter = /** @class */ (function (_super) {
     };
     /**
      * input typenı belirleyen method
+     * @returns {JSX.Element[]}
      */
     DataFilter.prototype.fieldValueShowing = function () {
         var _this = this;
@@ -261,8 +297,8 @@ var DataFilter = /** @class */ (function (_super) {
         this.textConvertItem();
     };
     /**
-     * seleccted yaptıktan sonra seçili değişkenine atayan method
-     * @param val
+     * selected yaptıktan sonra seçili değişkenine atayan method
+     * @returns {JSX.Element[]}
      */
     DataFilter.prototype.getSelectedItem = function () {
         var _this = this;
@@ -284,7 +320,7 @@ var DataFilter = /** @class */ (function (_super) {
     };
     /**
      * seçili itemları silen method
-     * @param val
+     * @param {number} id
      */
     DataFilter.prototype.removeSelectItem = function (id) {
         this.state.selectedItem.splice(id, 1);
@@ -296,7 +332,6 @@ var DataFilter = /** @class */ (function (_super) {
     };
     /**
      * filter namelerin dropdown u açan method
-     * @param val
      */
     DataFilter.prototype.fieldShowingControl = function () {
         if (this.state.selectText.length <= 0) {
@@ -306,6 +341,7 @@ var DataFilter = /** @class */ (function (_super) {
     };
     /**
      * input da seçtikten sonra selectText ' e atayan method
+     * @returns {JSX.Element[]}
      */
     DataFilter.prototype.getSelectText = function () {
         var getLists = [];
@@ -406,6 +442,7 @@ var DataFilter = /** @class */ (function (_super) {
      * arrow up ' a bastığımız zaman dropdowndaki itemları seçmek için kullanılan method
      */
     DataFilter.prototype.arrowSelectFieldUp = function () {
+        this.dropdownShowing();
         if (this.state.active.arrowActive > 0) {
             var active = this.state.active.arrowActive;
             this.state.active.arrowActive = active - 1;
@@ -416,6 +453,7 @@ var DataFilter = /** @class */ (function (_super) {
      * arrow down ' a bastığımız zaman dropdowndaki itemları seçmek için kullanılan method
      */
     DataFilter.prototype.arrowSelectFieldDown = function () {
+        this.dropdownShowing();
         if (this.state.getListResult.data.length >= 0) {
             var active = 0;
             if (this.state.active.arrowActive !== null) {
@@ -446,6 +484,28 @@ var DataFilter = /** @class */ (function (_super) {
                 this.setValue(value);
             }
         }
+    };
+    /**
+     * dropdown content controlling of the showing
+     */
+    DataFilter.prototype.dropdownShowing = function () {
+        if (this.state.selectText.length === 2) {
+            this.state.showing.value = true;
+        }
+        else if (this.state.selectText.length === 1) {
+            this.state.showing.operator = true;
+        }
+        else {
+            this.state.showing.filterName = true;
+        }
+        this.forceUpdate();
+    };
+    /**
+     * Default props
+     * @type {{labelPosition: string}}
+     */
+    DataFilter.defaultProps = {
+        labelPosition: 'up'
     };
     return DataFilter;
 }(React.Component));

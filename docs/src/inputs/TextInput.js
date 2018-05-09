@@ -23,9 +23,16 @@ var BaseInput_1 = require("./base/BaseInput");
 var reactstrap_1 = require("reactstrap");
 var TextInput = /** @class */ (function (_super) {
     __extends(TextInput, _super);
+    /**
+     * Intial values
+     * @param props
+     */
     function TextInput(props) {
         return _super.call(this, props) || this;
     }
+    /**
+     * @returns {any}
+     */
     TextInput.prototype.render = function () {
         //label için sağ sol üst seçenekleri konulsun, hatta button ile birlikte beraber kullanılabilir.
         var label = this.props.label != null ? React.createElement(reactstrap_1.Label, { className: "label-properties" }, this.props.label) : null;
@@ -33,6 +40,10 @@ var TextInput = /** @class */ (function (_super) {
             label,
             React.createElement(BaseInput_1.default, __assign({}, this.props)));
     };
+    /**
+     * Initial props value
+     * @type {{disabled: boolean; readOnly: boolean; hidden: boolean; label: string; type: string}}
+     */
     TextInput.defaultProps = {
         disabled: false,
         readOnly: false,

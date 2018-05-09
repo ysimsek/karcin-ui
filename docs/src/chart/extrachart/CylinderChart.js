@@ -23,8 +23,8 @@ require("ammap3/ammap/ammap");
 var AmCharts = require("@amcharts/amcharts3-react");
 var CylinderChart = /** @class */ (function (_super) {
     __extends(CylinderChart, _super);
-    function CylinderChart(props) {
-        return _super.call(this, props) || this;
+    function CylinderChart() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     CylinderChart.prototype.render = function () {
         var propsData = this.returnChartData(this.props.data);
@@ -85,9 +85,17 @@ var CylinderChart = /** @class */ (function (_super) {
         };
         return newArr;
     };
+    /**
+     * Return random color
+     * @returns {string}
+     */
     CylinderChart.prototype.randomColorFunc = function () {
         return Math.floor(Math.random() * 16777215).toString(16);
     };
+    /**
+     * Initial props value
+     * @type {{height: number; theme: string; representType: string; unit: string}}
+     */
     CylinderChart.defaultProps = {
         height: 300,
         theme: "light",

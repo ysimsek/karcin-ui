@@ -23,11 +23,12 @@ require("ammap3/ammap/ammap");
 var AmCharts = require("@amcharts/amcharts3-react");
 var LineChart = /** @class */ (function (_super) {
     __extends(LineChart, _super);
-    function LineChart(props) {
-        var _this = _super.call(this, props) || this;
-        _this.state = {};
-        return _this;
+    function LineChart() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
+    /**
+     * @returns {any}
+     */
     LineChart.prototype.render = function () {
         var data = {
             "type": "serial",
@@ -88,6 +89,10 @@ var LineChart = /** @class */ (function (_super) {
         };
         return React.createElement(AmCharts.React, { options: data, style: { width: "100%", height: "200px" } });
     };
+    /**
+     * Initial props value
+     * @type {{theme: string; inline: boolean}}
+     */
     LineChart.defaultProps = {
         theme: "none",
         inline: false

@@ -16,6 +16,10 @@ var reactstrap_1 = require("reactstrap");
 var FaIcon_1 = require("../faicon/FaIcon");
 var TableHead = /** @class */ (function (_super) {
     __extends(TableHead, _super);
+    /**
+     * Initial values
+     * @param {TableHeadProps} props
+     */
     function TableHead(props) {
         var _this = _super.call(this, props) || this;
         _this.state = {
@@ -25,11 +29,18 @@ var TableHead = /** @class */ (function (_super) {
         };
         return _this;
     }
+    /**
+     * rerender state
+     * @param props
+     */
     TableHead.prototype.componentWillReceiveProps = function (props) {
         this.setState({
             fields: this.props.fields
         });
     };
+    /**
+     * @returns {any}
+     */
     TableHead.prototype.render = function () {
         var Cell = [];
         var self = this;
@@ -71,6 +82,9 @@ var TableHead = /** @class */ (function (_super) {
         return React.createElement("thead", null,
             React.createElement("tr", null, Cell));
     };
+    /**
+     * @param {number} param
+     */
     TableHead.prototype.popoverOpen = function (param) {
         this.state.popover[param] = !this.state.popover[param];
         this.forceUpdate();
