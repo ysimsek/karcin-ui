@@ -85,7 +85,7 @@ var SelectInput = /** @class */ (function (_super) {
                 _this.state.itemActive.length = 0;
                 _this.state.itemActive.push(value);
                 _this.forceUpdate();
-                _this.singlePropsOnchange();
+                _this.onChangeProps();
             }
         });
     };
@@ -98,14 +98,6 @@ var SelectInput = /** @class */ (function (_super) {
             returnLabel = React.createElement("label", { className: "karcin-label" }, this.props.label);
         }
         return returnLabel;
-    };
-    /**
-     * single onchange method
-     */
-    SelectInput.prototype.singlePropsOnchange = function () {
-        if (this.state.itemActive.length > 0 && this.props.onChange !== undefined) {
-            this.props.onChange(this.state.itemActive[0]);
-        }
     };
     /**
      * input focus method
@@ -291,8 +283,30 @@ var SelectInput = /** @class */ (function (_super) {
      * props onChange methodu çalıştırma
      */
     SelectInput.prototype.onChangeProps = function () {
+        var _this = this;
         if (this.props.onChange !== undefined) {
-            this.props.onChange(this.state.selectedItem);
+            var value = void 0;
+            var target_1 = {};
+            if (this.props.type === "multi") {
+                value = this.state.selectedItem;
+                target_1['id'] = [];
+                target_1['name'] = this.props.name;
+                target_1['value'] = [];
+                target_1['object'] = [];
+                value.forEach(function (val) {
+                    target_1['id'].push(val[_this.props.id]);
+                    target_1['value'].push(val[_this.props.value]);
+                    target_1['object'].push(val);
+                });
+            }
+            else {
+                value = this.state.selectedItem[0];
+                target_1['id'] = value[this.props.id];
+                target_1['name'] = this.props.name;
+                target_1['value'] = value[this.props.value];
+                target_1['object'] = value;
+            }
+            this.props.onChange({ target: target_1 });
         }
     };
     /**

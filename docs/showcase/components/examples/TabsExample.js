@@ -19,24 +19,24 @@ var ButtonExample = /** @class */ (function (_super) {
     }
     ButtonExample.prototype.render = function () {
         return (React.createElement("div", null,
-            React.createElement(karcin_ui_1.Panel, { title: "Normal Tab", collapse: true },
-                React.createElement(karcin_ui_1.Tab, null,
-                    React.createElement(karcin_ui_1.TabPanel, { title: "Tab1" }, "Tab 1 Example"),
-                    React.createElement(karcin_ui_1.TabPanel, { title: "Tab2" }, "Tab 2 Example"),
-                    React.createElement(karcin_ui_1.TabPanel, { title: "Tab3" }, "Tab 3 Example"),
-                    React.createElement(karcin_ui_1.TabPanel, { title: "Tab4" }, "Tab 4 Example"))),
-            React.createElement(karcin_ui_1.Panel, { title: "Left Align Tab", collapse: true },
-                React.createElement(karcin_ui_1.Tab, { vertical: true, align: "left" },
-                    React.createElement(karcin_ui_1.TabPanel, { title: "Tab1" }, "Tab 1 Example"),
-                    React.createElement(karcin_ui_1.TabPanel, { title: "Tab2" }, "Tab 2 Example"),
-                    React.createElement(karcin_ui_1.TabPanel, { title: "Tab3" }, "Tab 3 Example"),
-                    React.createElement(karcin_ui_1.TabPanel, { title: "Tab4" }, "Tab 4 Example"))),
-            React.createElement(karcin_ui_1.Panel, { title: "Right Align Tab", collapse: true },
-                React.createElement(karcin_ui_1.Tab, { vertical: true, align: "right" },
-                    React.createElement(karcin_ui_1.TabPanel, { title: "Tab1" }, "Tab 1 Example"),
-                    React.createElement(karcin_ui_1.TabPanel, { title: "Tab2" }, "Tab 2 Example"),
-                    React.createElement(karcin_ui_1.TabPanel, { title: "Tab3" }, "Tab 3 Example"),
-                    React.createElement(karcin_ui_1.TabPanel, { title: "Tab4" }, "Tab 4 Example")))));
+            React.createElement("span", { className: "example-reagent" }, "Normal Tab"),
+            React.createElement(karcin_ui_1.Tab, null,
+                React.createElement(karcin_ui_1.TabPanel, { title: "Tab1" }, "Tab 1 Example"),
+                React.createElement(karcin_ui_1.TabPanel, { title: "Tab2" }, "Tab 2 Example"),
+                React.createElement(karcin_ui_1.TabPanel, { title: "Tab3" }, "Tab 3 Example"),
+                React.createElement(karcin_ui_1.TabPanel, { title: "Tab4" }, "Tab 4 Example")),
+            React.createElement("span", { className: "example-reagent" }, "Align Left Tab"),
+            React.createElement(karcin_ui_1.Tab, { vertical: true, align: "left" },
+                React.createElement(karcin_ui_1.TabPanel, { title: "Tab1" }, "Tab 1 Example"),
+                React.createElement(karcin_ui_1.TabPanel, { title: "Tab2" }, "Tab 2 Example"),
+                React.createElement(karcin_ui_1.TabPanel, { title: "Tab3" }, "Tab 3 Example"),
+                React.createElement(karcin_ui_1.TabPanel, { title: "Tab4" }, "Tab 4 Example")),
+            React.createElement("span", { className: "example-reagent" }, "Align Right Tab"),
+            React.createElement(karcin_ui_1.Tab, { vertical: true, align: "right" },
+                React.createElement(karcin_ui_1.TabPanel, { title: "Tab1" }, "Tab 1 Example"),
+                React.createElement(karcin_ui_1.TabPanel, { title: "Tab2" }, "Tab 2 Example"),
+                React.createElement(karcin_ui_1.TabPanel, { title: "Tab3" }, "Tab 3 Example"),
+                React.createElement(karcin_ui_1.TabPanel, { title: "Tab4" }, "Tab 4 Example"))));
     };
     return ButtonExample;
 }(React.Component));

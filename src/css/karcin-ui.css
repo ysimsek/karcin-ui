@@ -574,3 +574,62 @@ New Reactstrap CSS
     color: #ffffff;
     border-color: #4fb14f;
   }
+
+
+  /**
+  * karcin menu css
+   */
+
+.karcin-menu {
+    display: block;
+}
+.karcin-menu .nav-item {
+    display: block;
+    width: 100%;
+}
+.karcin-menu .nav-item .nav-link {
+    display: block;
+}
+.karcin-menu .nav-item .open-icon {
+    float: right;
+    margin-top: 8px;
+    text-align: right;
+}
+.karcin-menu .nav-item .menu-icon {
+    margin-right: 5px;
+    display: inline-block;
+}
+.karcin-menu .nav-item .menu-head {
+    cursor: pointer;
+}
+.karcin-menu .nav-item .menu-head .nav-link {
+    display: block;
+}
+.karcin-menu .nav-item .menu-head .nav-link strong .badge {
+    margin-left: 10px;
+}
+.karcin-menu.hover-menu {
+    max-width: 100%;
+}
+.karcin-menu.hover-menu .nav-item {
+    position: relative;
+}
+.karcin-menu.hover-menu .nav-item:hover > .collapse {
+    display: block !important;
+}
+.karcin-menu.hover-menu .nav-item .collapse.show {
+    display: none;
+}
+.karcin-menu.hover-menu .nav-item ul.nav {
+    background-color: #303030;
+    position: absolute;
+    width: 255px;
+    right: -255px;
+    top: 0;
+    display: block;
+    z-index: 999999;
+    padding: 0px;
+}
+.karcin-menu.hover-menu .nav-item ul.nav .nav-item {
+    padding-left: 0;
+}

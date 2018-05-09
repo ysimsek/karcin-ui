@@ -78,7 +78,7 @@ var NotifyExample = /** @class */ (function (_super) {
     NotifyExample.prototype.onChange = function (e) {
         var name = e.target.name;
         var state = [];
-        state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
+        state[e.target.name] = e.target.value;
         this.setState(state);
     };
     return NotifyExample;

@@ -34,7 +34,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         id : "id",
         value: "value",
         labelPosition : "up"
-    }
+    };
 
     selectInput:any = null;
 
@@ -116,7 +116,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
                 this.state.itemActive.length = 0;
                 this.state.itemActive.push(value);
                 this.forceUpdate();
-                this.singlePropsOnchange();
+                this.onChangeProps();
             }
         });
     }
@@ -130,15 +130,6 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
             returnLabel = <label className="karcin-label">{this.props.label}</label>
         }
         return returnLabel;
-    }
-
-    /**
-     * single onchange method
-     */
-    singlePropsOnchange(){
-        if(this.state.itemActive.length > 0 && this.props.onChange !== undefined){
-            this.props.onChange(this.state.itemActive[0]);
-        }
     }
 
     /**
@@ -266,6 +257,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
      */
     addSelectedItem(value:any){
         this.state.selectedItem.push(value);
+        this.state.itemActive.push(value);
         this.state.inputText.value = "";
         this.state.active.arrowActive = null;
         this.forceUpdate();
@@ -346,7 +338,30 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
      */
     onChangeProps(){
         if(this.props.onChange !== undefined){
-            this.props.onChange(this.state.selectedItem);
+            let value:any;
+            let target:any = {};
+
+            if(this.props.type === "multi"){
+                value = this.state.itemActive;
+                target['id'] = [];
+                target['name'] = this.props.name;
+                target['value'] = [];
+                target['object'] = [];
+
+                value.forEach((val:any) => {
+                    target['id'].push(val[this.props.id]);
+                    target['value'].push(val[this.props.value]);
+                    target['object'].push(val);
+                });
+            }else {
+                value = this.state.itemActive[0];
+                target['id'] = value[this.props.id];
+                target['name'] = this.props.name;
+                target['value'] = value[this.props.value];
+                target['object'] = value;
+            }
+
+            this.props.onChange({target});
         }
     }
 
