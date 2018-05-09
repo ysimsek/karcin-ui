@@ -57,7 +57,10 @@ export interface PyramidChartProps {
 }
 
 export default class PyramidChart extends React.Component<PyramidChartProps,any>{
-
+    /**
+     * Initial props value
+     * @type {{height: number; theme: string; representType: string; unit: string}}
+     */
     static defaultProps ={
         height : 300,
         theme : "light",
@@ -65,10 +68,10 @@ export default class PyramidChart extends React.Component<PyramidChartProps,any>
         unit : "br"
     }
 
-    constructor(props:any){
-        super(props);
-    }
-    render(){
+    /**
+     * @returns {any}
+     */
+    render():any{
         let data = {
             color : this.props.textColor,
             "type": "funnel",

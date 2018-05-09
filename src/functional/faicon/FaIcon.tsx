@@ -24,13 +24,19 @@ export interface FaIconProps {
 // 'HelloProps' describes the shape of props.
 // State is never set so we use the '{}' type.
 export default class FaIcon extends React.Component<FaIconProps> {
-
+    /**
+     * Initial props value
+     * @type {{size: string; fixed: boolean}}
+     */
     public static defaultProps: Partial<FaIconProps> = {
         size: "fa-sm",
         fixed: true
     };
 
-    render() {
+    /**
+     * @returns {any}
+     */
+    render():any {
         let classNameProps = this.props.className === undefined ? "" : this.props.className;
         let className = `fa ${(this.props.fixed ? "fa-fw" : "")} ${this.props.code} ${this.props.size} ${classNameProps}`;
         const { fixed, code, size, ...props } = this.props;

@@ -16,7 +16,10 @@ export interface ToggleButtonState {
 }
 
 export default class ToggleButton extends React.Component<ToggleButtonProps, ToggleButtonState> {
-
+    /**
+     * Initial values
+     * @param {ToggleButtonProps} props
+     */
     constructor(props:ToggleButtonProps){
         super(props);
 
@@ -25,7 +28,10 @@ export default class ToggleButton extends React.Component<ToggleButtonProps, Tog
         }
     }
 
-    render(){
+    /**
+     * @returns {any}
+     */
+    render():any{
         let icon = null;
         if(this.props.successIcon !== undefined && this.props.rejectIcon !== undefined){
             icon = <span className={`show-icon ${(this.state.checked) ? 'success' : 'reject'}`}><FaIcon code={(this.state.checked) ? this.props.successIcon : this.props.rejectIcon}/></span>
@@ -39,12 +45,17 @@ export default class ToggleButton extends React.Component<ToggleButtonProps, Tog
         </div>);
     }
 
+    /**
+     * Change the state
+     */
     toggleChange(){
         this.setState({checked:!this.state.checked});
-
         this.propsOnChange();
     }
 
+    /**
+     * return eventValues
+     */
     propsOnChange(){
         if(this.props.onChange !== undefined) {
             let eventValue: Object | any = {};

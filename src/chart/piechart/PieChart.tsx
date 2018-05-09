@@ -51,7 +51,7 @@ export interface PieChartProps{
 
 export default class PieChart extends React.Component<PieChartProps,any>{
     /**
-     *
+     * Initial props value
      * @type {{theme: string; height: number; innerSize: number; deepth: boolean; threeD: boolean}}
      */
     static defaultProps:Partial<PieChartProps>={
@@ -62,20 +62,11 @@ export default class PieChart extends React.Component<PieChartProps,any>{
         threeD : false
     }
 
-    /**
-     *
-     * @param props
-     */
-    constructor(props:any){
-        super(props);
-        this.state = {}
-    }
 
     /**
-     *
      * @returns {any}
      */
-    render(){
+    render():any{
         let data = {
             "type": "pie",
             "gradientRatio": this.props.deepth == true ? [-0.4, -0.4, -0.4, -0.4, -0.4, -0.4, 0, 0.1, 0.2, 0.1, 0, -0.2, -0.5] : undefined,

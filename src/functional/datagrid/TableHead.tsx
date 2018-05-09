@@ -19,6 +19,10 @@ export interface standartObject {
 }
 
 export default class TableHead extends React.Component<TableHeadProps, TableHeadState> {
+    /**
+     * Initial values
+     * @param {TableHeadProps} props
+     */
     constructor(props:TableHeadProps){
         super(props);
 
@@ -29,15 +33,20 @@ export default class TableHead extends React.Component<TableHeadProps, TableHead
         };
     }
 
+    /**
+     * rerender state
+     * @param props
+     */
     componentWillReceiveProps(props:any){
         this.setState({
             fields : this.props.fields
         })
     }
 
-
-
-    render() {
+    /**
+     * @returns {any}
+     */
+    render():any {
         let Cell = [];
         let self = this;
 
@@ -82,7 +91,9 @@ export default class TableHead extends React.Component<TableHeadProps, TableHead
         return <thead><tr>{Cell}</tr></thead>;
     }
 
-
+    /**
+     * @param {number} param
+     */
     public popoverOpen(param: number): void {
         this.state.popover[param] = !this.state.popover[param];
         this.forceUpdate();

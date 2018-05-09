@@ -2,10 +2,17 @@ import * as React from "react";
 import {FormGroup,Input,Label,Col} from "reactstrap";
 
 class CheckInput extends React.Component<any,any>{
+    /**
+     * @param props
+     */
     constructor(props:any){
         super(props);
     }
-    render(){
+
+    /**
+     * @returns {any}
+     */
+    render():any{
         return (<FormGroup row>
             <Label for="checkbox2" sm={2}>Checkbox</Label>
             <Col sm={{ size: 10 }}>

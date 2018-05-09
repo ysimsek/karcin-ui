@@ -5,13 +5,38 @@ import FaIcon from "../faicon/FaIcon";
 import "../../css/karcin-ui.css"; 
 
 export interface PanelProps {
+    /**
+     * Add the panel title is required
+     */
     title: string | any;
+    /**
+     * Change the Panel color
+     * primary, info, warning, danger, success, secondary
+     */
     color?: string | any;
+    /**
+     * Change the collapse default false
+     */
     collapse?:boolean | any;
+    /**
+     * Change the opened and closed default false
+     */
     collapsible?: boolean | any;
-    onOpened    ?: React.EventHandler<any> | any,
+    /**
+     * return function
+     */
+    onOpened    ?: React.EventHandler<any> | any;
+    /**
+     * return function
+     */
     onClosed    ?: React.EventHandler<any> | any;
+    /**
+     * return function
+     */
     onClick     ?: React.EventHandler<any> | any;
+    /**
+     * Default value false
+     */
     accordion   ?: boolean | any,
 }
 
@@ -24,33 +49,46 @@ export interface PanelState {
 }
 
 export default class Panel extends React.Component<PanelProps, PanelState> {
-
-    static defaultProps: Partial<PanelProps> = {
-        title           : "",
-        color           : "default",
-        collapsible     : false,
-        collapse        : true,
-        accordion       : false
-    };
-
-    constructor(props:PanelProps) {
-        super(props);
-
-        this.init(props);
-    }
-
-    init(props:PanelProps){
-        this.state = {
-            contentStyle   : {},
-            icon           : "fa-plus",
-            collapse       : props.collapsible ? props.collapse : true,
-            accordionClickId : null,
-            accordion        : props.accordion,
+        /**
+         * Initial props value
+         * @type {{title: string; color: string; collapsible: boolean; collapse: boolean; accordion: boolean}}
+         */
+        static defaultProps: Partial<PanelProps> = {
+            title           : "",
+            color           : "default",
+            collapsible     : false,
+            collapse        : true,
+            accordion       : false
         };
-    }
 
+        /**
+         * Intial values
+         * @param {PanelProps} props
+         */
+        constructor(props:PanelProps) {
+            super(props);
 
-       render(): Object {
+            this.init(props);
+        }
+
+        /**
+         * Set the first state
+         * @param {PanelProps} props
+         */
+        init(props:PanelProps){
+            this.state = {
+                contentStyle   : {},
+                icon           : "fa-plus",
+                collapse       : props.collapsible ? props.collapse : true,
+                accordionClickId : null,
+                accordion        : props.accordion,
+            };
+        }
+
+        /**
+         * @returns {Object}
+         */
+        render(): Object {
 
            let childHtmlElement:any = this.props.children;
 
@@ -94,11 +132,14 @@ export default class Panel extends React.Component<PanelProps, PanelState> {
            );
        }
 
+        /**
+         * Props function returned
+         */
        onOpened() {
-           if(this.props.onOpened !== undefined) {
-               this.props.onOpened(event);
+               if(this.props.onOpened !== undefined) {
+                   this.props.onOpened(event);
+               }
            }
-       }
 
        onClosed() {
            if(this.props.onClosed !== undefined){

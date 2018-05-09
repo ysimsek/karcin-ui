@@ -5,7 +5,7 @@
       "id":1,
       "name":"Button",
       "title":"Button",
-      "icon":"fa-floppy-o",
+      "icon":"fa-bold",
       "href":"#/Components/Button",
       "samples":"components/examples/ButtonExample",
       "library":"functional/button/Button",
@@ -92,13 +92,14 @@
       "icon":"fa-list",
       "href":"#/Components/List",
       "samples":"components/examples/ListExample",
-      "library":"functional/list/List"
+      "library":"functional/list/List",
+      "description":"<List/>, allows listing the data for the page."
     },
     {
       "id":2,
       "name":"input",
       "title":"Input",
-      "icon":"fa-genderless",
+      "icon":"fa-italic",
       "items":[
         {
           "id":1,
@@ -116,7 +117,8 @@
           "title":"PasswordInput",
           "href":"#/Components/PasswordInput",
           "samples":"components/inputs/PasswordInputExample",
-          "library":"input/PasswordInput"
+          "library":"input/PasswordInput",
+          "description":"<PasswordInput> is the default input field to collect password data from form."
 
         },
         {
@@ -125,7 +127,8 @@
           "title":"SelectInput",
           "href":"#/Components/SelectInput",
           "samples":"components/inputs/SelectInputExample",
-          "library":"inputs/selectInput/SelectInput"
+          "library":"inputs/selectInput/SelectInput",
+          "description":"<SelectInput> is the input field to provide selection items from given array items"
         },
         {
           "id":4,
@@ -133,7 +136,8 @@
           "title":"TextInput",
           "href":"#/Components/TextInput",
           "samples":"components/inputs/TextInputExample",
-          "library":"input/TextInput"
+          "library":"input/TextInput",
+          "description":"<TextInput> is the default input field to collect one line text data from form."
         },
         {
           "id":5,
@@ -141,7 +145,8 @@
           "title":"TextArea",
           "href":"#/Components/TextArea",
           "samples":"components/inputs/TextAreaExample",
-          "library":"input/TextArea"
+          "library":"input/TextArea",
+          "description":"<TextArea> is the large input field to collect multi line text data from form."
         },
         {
           "id":6,
@@ -149,7 +154,8 @@
           "title":"RadioInput",
           "href":"#/Components/RadioInput",
           "samples":"components/inputs/RadioInputExample",
-          "library":"input/RadioInput"
+          "library":"input/RadioInput",
+          "description":"<RadioInput />, provides data control on the form."
         },
         {
           "id":7,
@@ -157,7 +163,8 @@
           "title":"DateInput",
           "href":"#/Components/DateInput",
           "samples":"components/inputs/DateInputExample",
-          "library":"input/DateInput"
+          "library":"input/DateInput",
+          "description":"<DateInput> is the input field for the collection of date data. Day, month, year provide data control."
         },
         {
           "id":8,
@@ -182,7 +189,8 @@
           "title":"Basic DataGrid",
           "href":"#/Components/dataGrid/SampleDataGrid",
           "samples":"components/examples/DataGridExample",
-          "library":"functional/datagrid/DataGrid"
+          "library":"functional/datagrid/DataGrid",
+          "description":"<DataGrid> is a smart grid with filter, sort, Crud operations, search capabilities. Manage the all array data."
         }
       ]
     },

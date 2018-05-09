@@ -66,6 +66,10 @@ export interface CylinderChartProps {
 
 export default class CylinderChart extends React.Component<CylinderChartProps,any>{
 
+    /**
+     * Initial props value
+     * @type {{height: number; theme: string; representType: string; unit: string}}
+     */
     static defaultProps:Partial<CylinderChartProps> ={
         height : 300,
         theme : "light",
@@ -73,10 +77,7 @@ export default class CylinderChart extends React.Component<CylinderChartProps,an
         unit : "br"
     }
 
-    constructor(props:any){
-        super(props);
-    }
-    render(){
+    render():any{
         let propsData : any = this.returnChartData(this.props.data);
         let data = {
             "theme": "light",
@@ -105,7 +106,7 @@ export default class CylinderChart extends React.Component<CylinderChartProps,an
         };
         return <AmCharts.React options={data} style={{width:"100%",height:this.props.height+"px"}}/>
     }
-    returnChartData(propsData:any):any{
+    returnChartData(propsData:any):JSX.Element[]{
         let data = propsData[this.props.categoryField];
         let title = propsData[this.props.categoryTitle];
         let graphsData:Array<any> = [];
@@ -136,6 +137,10 @@ export default class CylinderChart extends React.Component<CylinderChartProps,an
         return newArr;
     }
 
+    /**
+     * Return random color
+     * @returns {string}
+     */
     randomColorFunc(){
         return Math.floor(Math.random()*16777215).toString(16);
     }

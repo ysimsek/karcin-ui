@@ -22,20 +22,40 @@ class Notify extends React.Component<any,any>{
         time : 5 ,
         message : "Notify Message"
     }
+    /**
+     * Default message
+     * @type {string}
+     */
     static message:string | JSX.Element = "Notify Message";
+    /**
+     * Default time 5 second
+     * @type {number}
+     */
     static time:any | boolean = 5 ;
-    static position:any | string = "top-center";
+    /**
+     * Default position top-right
+     * @type {string}
+     */
+    static position:any | string = "top-right";
 
     constructor(props:any){
         super(props);
         this.state = {}
     }
 
-    render(){
+    /**
+     * @returns {any}
+     */
+    render():any{
         return this.__returnAlerts();
     }
 
-    __returnAlerts(){
+    /**
+     * defaul toastcontainer
+     * @returns {any}
+     * @private
+     */
+    __returnAlerts():any{
         return <ToastContainer autoClose={8000}/>
 
     }
@@ -64,7 +84,7 @@ class Notify extends React.Component<any,any>{
      * * * * bottom-left,bottom-right,bottom-center
      * @returns {any}
      */
-    static success = (data:any ) =>{
+    static success = (data:any ):any =>{
         Notify.renderScreenData(data);
         let autoClose = Notify.time == false ? false : Notify.time*1000;
         // let position =
@@ -156,9 +176,12 @@ class Notify extends React.Component<any,any>{
         });
     }
     /**
-     * Todo :
+     * All alert position
+     * top-right, top-center, top-left and bottom-right, bottom-center, bottom-left
+     * @param {Object} data
+     * @returns {any}
      */
-    static notify = (data:Object) => {
+    static notify = (data:Object):any => {
         Notify.renderScreenData(data);
         toast("Default Notification!");
         toast.success(Notify.message, {
@@ -186,10 +209,14 @@ class Notify extends React.Component<any,any>{
         });
     };
 
-
     static containerNode:any;
     static componentId:any;
-    static configuration(){
+
+    /**
+     * Set the reactdom render
+     * @returns {any}
+     */
+    static configuration():any{
         ReactDOM.render(<ToastContainer
             autoClose={5000}
             hideProgressBar={false}

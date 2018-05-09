@@ -54,7 +54,7 @@ export interface LineChartProps{
 
 export default class LineChartTrend extends React.Component<LineChartProps,any>{
     /**
-     *
+     * Initial props value
      * @type {{theme: string; inline: boolean}}
      */
     static defaultProps:Partial<LineChartProps> = {
@@ -62,17 +62,8 @@ export default class LineChartTrend extends React.Component<LineChartProps,any>{
         inline : false
     }
 
-    /**
-     *
-     * @param props
-     */
-    constructor(props:any){
-        super(props);
-        this.state = {}
-    }
 
     /**
-     *
      * @returns {any}
      */
     render(){

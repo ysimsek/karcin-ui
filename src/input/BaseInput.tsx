@@ -21,18 +21,30 @@ export interface BaseInputProps extends React.InputHTMLAttributes<HTMLInputEleme
 
 export default class BaseInput extends React.Component<BaseInputProps,any>{
 
+    /**
+     * Initial props value
+     * @type {{valueField: string; value: string}}
+     */
     static propTypes:Partial<BaseInputProps> = {
         valueField : "valueField",
         value :"value"
     }
 
+    /**
+     * Initial value
+     * @param props
+     */
     constructor(props:any){
         super(props);
         this.state = {
 
         }
     }
-    render(){
+
+    /**
+     * @returns {any}
+     */
+    render():any{
         return <FormGroup tag={this.props.tag}>
                 <Label for={this.props.id}><b>{this.props.label}</b></Label>
                 {this.returnInput()}
@@ -40,10 +52,10 @@ export default class BaseInput extends React.Component<BaseInputProps,any>{
     }
 
     /**
-     * Select the Input types
-     * @returns {()[]}
+     * Change the Input types
+     * @returns {JSX.Element[]}
      */
-    returnInput(){
+    returnInput():JSX.Element[]{
         let component = [];
         //email,password,select,textarea,file,radio,checkbox,time,color,search,datetime
         //TODO toolTip ekle, valid özelliği

@@ -4,27 +4,49 @@ import {Label,InputGroup,InputGroupAddon} from "reactstrap";
 //css de hem veritical hem horizontal olması sağlandı
 
 export interface TextAreaProps{
+    /**
+     * css style name describe .class
+     */
     className?:string;
+    /**
+     *  Set the name
+     */
     name?:string;
+    /**
+     * Set the value
+     */
     value?:string;
     properties?:object | any;
+    /**
+     * Return function
+     */
     onChange?: any;
 }
 
 
 export default class TextArea extends React.Component<TextAreaProps,any>{
-
+    /**
+     * Initial props value
+     * @type {{properties: {}; name: string; value: string}}
+     */
     public static defaultProps:Partial<TextAreaProps> = {
         properties : {},
         name:"textArea",
         value: "Text Area!"
     }
 
+    /**
+     * Initial values
+     * @param props
+     */
     constructor(props:any){
         super(props);
     }
 
-    render(){
+    /**
+     * @returns {any}
+     */
+    render():any{
         return <div>
             <Label className={"label-properties"}>TextArea Label</Label>
             <textarea

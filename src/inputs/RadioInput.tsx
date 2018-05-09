@@ -9,9 +9,21 @@ export interface RadioInputProps{
      * Manage the target value
      */
     value?:string | any;
+    /**
+     * idField name in object
+     */
     idField?:string | any;
+    /**
+     * textField name in object
+     */
     textField?:string | any;
+    /**
+     * Return props function
+     */
     onChange?:any;
+    /**
+     * Set the Array data
+     */
     items?: Array<any>;
     /**
      * set the component's name
@@ -24,14 +36,26 @@ export interface RadioInputProps{
 }
 
 export default class RadioInput extends React.Component<any,RadioInputProps>{
+    /**
+     * Initial values
+     * @param props
+     */
     constructor(props:any){
         super(props);
     }
 
-    render(){
+    /**
+     * @returns {any}
+     */
+    render():any{
          return <form><div onChange={this.onChange.bind(this)} className={"form-control radio-properties"}>{this.returnRadioElements(this,this.props.items)}</div></form>
     }
 
+    /**
+     * @param e
+     * @param {Array<any>} value
+     * @returns {any}
+     */
     private returnRadioElements(e:any,value:Array<any>):any{
 
         let component:Array<any> = [];
@@ -63,6 +87,10 @@ export default class RadioInput extends React.Component<any,RadioInputProps>{
         return component;
     }
 
+    /**
+     * Return props function
+     * @param e
+     */
     onChange(e:any){
         this.props.onChange(e);
     }

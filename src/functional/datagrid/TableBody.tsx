@@ -33,6 +33,10 @@ export interface standartObject {
 }
 
 export default class TableBody extends React.Component<TableBodyProps, TableBodyState> {
+    /**
+     * Initial values
+     * @param {TableBodyProps} props
+     */
     constructor(props: TableBodyProps) {
         super(props);
         this.state = {
@@ -43,6 +47,10 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
         }
     }
 
+    /**
+     * Rerender props values
+     * @param props
+     */
     componentWillReceiveProps(props: any) {
         this.setState({
             data: this.props.data,
@@ -50,8 +58,10 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
         })
     }
 
-
-    render() {
+    /**
+     * @returns {any}
+     */
+    render():any {
         let Rows = [];
         let self = this;
         for (let i = 0; i < this.props.data.length; i++) {
@@ -84,7 +94,11 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
         return <tbody>{Rows}</tbody>;
     }
 
-
+    /**
+     * @param e
+     * @param active
+     * @param data
+     */
     public onClickRow(e: any, active: any, data: any): void {
         if (e.metaKey || e.ctrlKey) {
             if (this.state.clickActive.indexOf(active) !== -1) {

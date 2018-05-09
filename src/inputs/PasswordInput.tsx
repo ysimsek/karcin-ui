@@ -20,7 +20,10 @@ export interface PasswordInputProps{
  * Varsayılan olarak * işareti var istenilen sembolle geri dönülsün.
  */
 export default class PasswordInput extends React.Component<PasswordInputProps>{
-
+    /**
+     * Initial props value
+     * @type {{disabled: boolean; readOnly: boolean; hidden: boolean; label: string; type: string}}
+     */
     public static defaultProps: Partial<PasswordInputProps> = {
         disabled: false,
         readOnly: false,
@@ -29,10 +32,18 @@ export default class PasswordInput extends React.Component<PasswordInputProps>{
         type:"password"
     }
 
+    /**
+     * Initial value
+     * @param props
+     */
     constructor(props:any){
         super(props);
     }
-    render(){
+
+    /**
+     * @returns {any}
+     */
+    render():any{
         //todo :label için sağ sol üst seçenekleri konulsun, hatta button ile birlikte beraber kullanılabilir.
         let label = this.props.label != "" ? <Label className={"label-properties"}>{this.props.label}</Label> : null;
         return <div>{label}<Input {...this.props}/></div>;

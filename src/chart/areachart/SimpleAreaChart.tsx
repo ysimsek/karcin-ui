@@ -46,17 +46,19 @@ export interface SimpleAreaChartProps{
 }
 
 export default class SimleAreaChart extends React.Component<SimpleAreaChartProps,any>{
-
+    /**
+     * @type {{theme: string; height: number; inline: boolean}}
+     */
     static defaultProps: Partial<SimpleAreaChartProps> = {
         theme : "none",
         height : 200,
         inline: false
     }
-    constructor(props:any){
-        super(props);
-        this.state = {}
-    }
-    render(){
+
+    /**
+     * @returns {any}
+     */
+    render():any{
         let data = {
             "color":this.props.textColor,
             "type": "serial",

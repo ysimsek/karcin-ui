@@ -29,16 +29,23 @@ export interface DataArray {
 }
 
 export default class Toolbar extends React.Component<ToolbarProps, ToolbarState>{
-
+    /**
+     * Initial props value
+     */
     static defaultProps:Partial<ToolbarProps> = {
       type : "header"
     };
-
+    /**
+     * Initial values
+     */
     constructor(props:ToolbarProps){
         super(props)
     }
 
-    render(){
+    /**
+     * return any
+     */
+    render():any{
         if(this.props.type == "footer"){
             // footer Html Elements
             return <div className="data-grid-footer">
@@ -113,6 +120,10 @@ export default class Toolbar extends React.Component<ToolbarProps, ToolbarState>
         }
     }
 
+    /**
+     * location url
+     * @param url
+     */
     urlDirectory(url:any){
         window.location.href = url;
     }

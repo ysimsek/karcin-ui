@@ -43,7 +43,10 @@ export interface ComposedBarChartData{
 }
 
 export default class ComposedBarChart extends React.Component<ComposedBarChartData,any>{
-
+    /**
+     * Initial props value
+     * @type {{height: number; theme: string}}
+     */
     static defaultProps: Partial<ComposedBarChartData> = {
         height : 200,
         theme: "none"
@@ -86,7 +89,7 @@ export default class ComposedBarChart extends React.Component<ComposedBarChartDa
      * @param propsData
      * @returns {any[]}
      */
-    returnGrapsData(propsData:any){
+    returnGrapsData(propsData:any):JSX.Element[]{
         let graphsData : any[]= [];
         let me= this;
         propsData.forEach(function (v:any) {

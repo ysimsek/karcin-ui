@@ -299,6 +299,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
 
     /**
      * klavya tuş kontrol ana method
+     * @param event
      */
     inputKeyControl(event:any){
         if(event.keyCode == 38) {

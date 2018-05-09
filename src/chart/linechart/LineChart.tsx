@@ -49,15 +49,19 @@ export interface LineChartProps{
 }
 
 export default class LineChart extends React.Component<LineChartProps,any>{
+    /**
+     * Initial props value
+     * @type {{theme: string; inline: boolean}}
+     */
     static defaultProps:Partial<LineChartProps> = {
         theme : "none",
         inline : false
     }
-    constructor(props:any){
-        super(props);
-        this.state = {}
-    }
-    render(){
+
+    /**
+     * @returns {any}
+     */
+    render():any{
         let data = {
             "type": "serial",
             "theme": this.props.theme,

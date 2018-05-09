@@ -62,7 +62,9 @@ export interface SimpleBarChartProps{
 }
 
 export default class SimpleLineChart extends React.Component<SimpleBarChartProps,any>{
-
+    /**
+     * @type {{data: any[]; theme: string; threeD: boolean; inline: boolean; height: number}}
+     */
     static defaultProps: Partial<SimpleBarChartProps> = {
         data : [],
         theme : "light",
@@ -71,10 +73,6 @@ export default class SimpleLineChart extends React.Component<SimpleBarChartProps
         height:200
     }
 
-    constructor(props:any){
-        super(props);
-        this.state = {}
-    }
     render(){
         let data = {
                 "color": this.props.textColor,

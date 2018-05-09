@@ -7,8 +7,10 @@ export interface TabPanelProps {
 }
 
 export default class TabPanel extends React.Component<TabPanelProps,any> {
-
-    render() {
+    /**
+     * @returns {any}
+     */
+    render():any {
         return (
             <div>{this.props.children}</div>
         );

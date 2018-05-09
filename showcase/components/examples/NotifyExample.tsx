@@ -29,7 +29,7 @@ export default class NotifyExample extends React.Component<any,any>{
                         label={"Notify pozisyonunun seçiniz"}
                         item={this.state.position}
                         value="value"
-                        id="position"
+                        id="id"
                         items={items}
                         onChange={this.onChange.bind(this)}/>
                 </Col>

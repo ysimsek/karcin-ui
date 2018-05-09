@@ -25,6 +25,7 @@ export interface LabelProps{
 
 export default class Label extends React.Component<LabelProps,any>{
     /**
+     * Initial props value
      * @type {{size: number}}
      */
     static defaultProps:Partial<LabelProps> = {

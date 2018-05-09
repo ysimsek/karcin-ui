@@ -3,24 +3,47 @@ import Input from "./base/BaseInput";
 import {Label,InputGroup, InputGroupAddon} from "reactstrap";
 
 export interface NumericInputProps extends React.InputHTMLAttributes<HTMLInputElement>{
+    /**
+     * React css style with in object
+     */
     style?: React.CSSProperties;
     label?: string;
+    /**
+     * Set the name
+     */
     name?: string;
+    /**
+     * Set the value
+     */
     value?: any;
     validations?: object;
     type?: string;
+    /**
+     * Default value false
+     */
     disabled?: boolean;
+    /**
+     * Default value false
+     */
     readOnly?: boolean;
+    /**
+     * Default value false
+     */
     hidden?: boolean;
+    /**
+     * Return props function
+     */
     onChange?: any;
-    placeHolder?: string;
 }
 
 
 
 
 export default class NumericInput extends React.Component<NumericInputProps,any>{
-
+    /**
+     * Initial props value
+     * @type {{disabled: boolean; readOnly: boolean; hidden: boolean; type: string}}
+     */
     public static defaultProps: Partial<NumericInputProps> = {
         disabled: false,
         readOnly: false,
@@ -28,11 +51,18 @@ export default class NumericInput extends React.Component<NumericInputProps,any>
         type:"number"
     }
 
+    /**
+     * Initial value
+     * @param props
+     */
     constructor(props:any){
         super(props);
     }
 
-    render(){
+    /**
+     * @returns {any}
+     */
+    render():any{
         let { ...newProps } = this.props;
         //todo: label için sağ sol üst seçenekleri konulsun, hatta button ile birlikte beraber kullanılabilir.
         //selectinput için yapıldı

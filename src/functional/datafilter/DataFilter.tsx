@@ -86,7 +86,9 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
         });
     }
 
-
+    /**
+     * @returns {any}
+     */
     render():any {
 
         let getFilterItem = this.getSelectFieldItem();
@@ -167,8 +169,9 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
 
     /**
      * dropdown ' a basılacak itemları return eden method
+     * @returns {JSX.Element[]}
      */
-    getSelectFieldItem() {
+    getSelectFieldItem():JSX.Element[] {
         let getLists: any[] = [];
         let getListResultData:any[] = [];
         let getArray:any = [];
@@ -251,8 +254,9 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
 
     /**
      * input typenı belirleyen method
+     * @returns {JSX.Element[]}
      */
-    fieldValueShowing() {
+    fieldValueShowing():JSX.Element[] {
         let getLists: any[] = [];
         let inputType: any = "text";
         this.props.field.forEach((value: any, index: number) => {
@@ -321,10 +325,10 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
     }
 
     /**
-     * seleccted yaptıktan sonra seçili değişkenine atayan method
-     * @param val 
+     * selected yaptıktan sonra seçili değişkenine atayan method
+     * @returns {JSX.Element[]}
      */
-    getSelectedItem() {
+    getSelectedItem():JSX.Element[] {
         let getList: any[] = [];
 
         this.state.selectedItem.forEach((value: any, index: number) => {
@@ -347,7 +351,7 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
 
     /**
      * seçili itemları silen method
-     * @param val 
+     * @param {number} id
      */
     removeSelectItem(id: number) {
         this.state.selectedItem.splice(id, 1);
@@ -361,7 +365,6 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
 
     /**
      * filter namelerin dropdown u açan method
-     * @param val 
      */
     fieldShowingControl() {
         if (this.state.selectText.length <= 0) {
@@ -372,8 +375,9 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
 
     /**
      * input da seçtikten sonra selectText ' e atayan method
+     * @returns {JSX.Element[]}
      */
-    getSelectText() {
+    getSelectText():JSX.Element[] {
         let getLists: any[] = [];
 
         if (this.state.selectText.length > 0) {
@@ -381,7 +385,6 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
                 getLists.push(<span key={index}>{val.label}</span>);
             });
         }
-
         return getLists;
     }
 

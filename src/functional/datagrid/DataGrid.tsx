@@ -32,9 +32,14 @@ export interface DataGridState {
 }
 
 export default class DataGrid extends React.Component<DataGridProps, DataGridState> {
-
+    /**
+     * @type {number}
+     */
     private dataGridId = Math.floor(Math.random() * 20);
 
+    /**
+     * Initial values
+     */
     constructor(props: DataGridProps) {
         super(props);
 
@@ -45,7 +50,9 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
     componentWillReceiveProps(props:DataGridProps){
         this.init(props);
     }
-
+    /**
+     * set the first values
+     */
     private init(props:DataGridProps){
         this.state = {
             data: props.data,
@@ -53,8 +60,10 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
         }
     }
 
-
-    render() {
+    /**
+     *
+     */
+    render():any {
         return <div className="karcin-data-grid" id={'karcinDataGrid' + this.dataGridId}>
             <Toolbar data={this.props.toolbar}/>
             <div className="data-grid-body">

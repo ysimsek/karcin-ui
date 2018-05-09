@@ -90,11 +90,17 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
         this.activeFind(this.props.active);
     }
 
+    /**
+     * End render finished
+     */
     componentDidMount(){
         this.activeFind(this.props.active);
     }
 
-    render() {
+    /**
+     * @returns {any}
+     */
+    render():any {
         let menusList = this.props.data.slice(0);
         this.state.menuData.length = 0;
         this.menuChilds = this.menuLoop(menusList, undefined, 0,false);
@@ -163,8 +169,9 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
     /**
      * click dropdown menu toggle
      * @param param
+     * @returns {any}
      */
-    toggleActiveMenu(param:any){
+    toggleActiveMenu(param:any):any{
         let self = this;
         this.state.menuActive.map((val:any, index:number) => {
             if(self.props.accordion){
@@ -204,10 +211,11 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
     }
 
     /**
-     * active find func
+     * active find function
      * @param getActive
+     * @returns {any}
      */
-    activeFind(getActive:any){
+    activeFind(getActive:any):any{
         if(this.state.menuData.length > 0 && getActive !== undefined && getActive !== null && getActive.length > 0 && !this.state.activeControl) {
             getActive = getActive[0];
             this.state.menuData.forEach((val:any) => {
@@ -245,7 +253,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
      * @param id
      * @returns {boolean}
      */
-    menuItemActive(id:any){
+    menuItemActive(id:any):boolean{
         let active = false;
         this.state.menuActive.forEach((val:any)=>{
             let keys = (id !== undefined) ? id : "0";
