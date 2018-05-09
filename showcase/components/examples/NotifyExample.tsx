@@ -20,6 +20,7 @@ export default class NotifyExample extends React.Component<any,any>{
             second:null
         }
     }
+
     render(){
         return <div>
             <Row>
@@ -29,7 +30,7 @@ export default class NotifyExample extends React.Component<any,any>{
                         label={"Notify pozisyonunun seçiniz"}
                         item={this.state.position}
                         value="value"
-                        id="id"
+                        id="position"
                         items={items}
                         onChange={this.onChange.bind(this)}/>
                 </Col>
@@ -88,7 +89,7 @@ export default class NotifyExample extends React.Component<any,any>{
     onChange(e){
         let name = e.target.name;
         let state = [];
-        state[e.target.name] = e.target.value;
+        state[e.target.name] = e.target.id;
         this.setState(state);
     }
 
