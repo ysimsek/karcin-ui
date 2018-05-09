@@ -88,7 +88,7 @@ export default class NotifyExample extends React.Component<any,any>{
     onChange(e){
         let name = e.target.name;
         let state = [];
-        state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
+        state[e.target.name] = e.target.value;
         this.setState(state);
     }
 

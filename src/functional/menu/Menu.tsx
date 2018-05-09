@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Collapse, Nav, NavItem, Badge, NavLink} from 'reactstrap';
-import FaIcon from '../../functional/faicon/FaIcon';
-import '../../css/sass/menu.scss';
+import FaIcon from '../../functional/faicon/FaIcon'
+import '../../css/karcin-ui.css';
 
 export interface MenuProps {
     /**

@@ -169,7 +169,7 @@ body {padding: 0; margin: 0; font-family: 'Quicksand', sans-serif; color:#303030
 
 .side-menu i.fa {text-align: left;}
 
-.side-menu-container {padding-top: 20px;
+.side-menu-container {
     min-height: calc(100vh - 80px);
     clear: both;
     width: 255px;
@@ -180,11 +180,18 @@ body {padding: 0; margin: 0; font-family: 'Quicksand', sans-serif; color:#303030
 .side-menu .nav-item .nav {padding-left: 15px;}
 .side-menu .nav-item {
     color:#c6c6c6;
-    padding-left: 10px;
 }
 
 .side-menu .nav-item .nav-link {
     color:#c6c6c6;
+    position: relative;
+}
+.side-menu .nav-item .nav-link strong {
+    font-weight: 400;
+}
+
+.side-menu .nav-item.active > .menu-head .nav-link strong {
+    font-weight: 900;
 }
 
 .side-menu .karcin-menu.hover .nav-item:hover,
@@ -192,16 +199,36 @@ body {padding: 0; margin: 0; font-family: 'Quicksand', sans-serif; color:#303030
 .side-menu .karcin-menu.hover .nav-item.active,
 .side-menu .karcin-menu.hover .nav-item.active .nav-link{
     color:#ffffff;
-    background-color: #afc098;
 }
 
-.side-menu .karcin-menu .nav-item:hover > .menu-head > .nav-link,
+/*.side-menu .karcin-menu .nav-item:hover > .menu-head > .nav-link*/
 .side-menu .karcin-menu .nav-item.active > .menu-head > .nav-link{
-    color:#afc098;
+    color: #ffffff;
+    background: #344f71;
 }
 
-.side-menu .nav-item .nav-item:hover .nav-link {
-    background-color: #303030;
+.side-menu .karcin-menu .nav-item.active > .menu-head > .nav-link:after {
+    content: "";
+    border: solid 13px transparent;
+    border-color: transparent #ffffff transparent transparent;
+    position: absolute;
+    right: 0;
+    top: 7px;
+}
+
+.side-menu .karcin-menu .nav-item.active .collapse .nav {
+    background-color: #3e3c3c;
+}
+.side-menu .karcin-menu .nav-item.active .collapse .nav .nav-item.active .menu-head .nav-link {background-color: transparent;}
+.side-menu .karcin-menu .nav-item.active .collapse .nav .nav-item.active .menu-head .nav-link:after {content:initial;}
+
+.side-menu .karcin-menu .nav-item .open-icon {
+    margin-top: 4px;
+    margin-right: 10px;
+}
+
+.side-menu .karcin-menu {
+    margin-top: 20px;
 }
 
 .container-component {
@@ -232,6 +259,8 @@ body {padding: 0; margin: 0; font-family: 'Quicksand', sans-serif; color:#303030
 .karcin-menu .active.nav-link {color:#bfff68;}
 .container-component .component-props > .tab-content {padding:0;padding-top: 20px;}
 .description {color:#777; font-size: 14px;}
+
+
 span.opt {
     font-size: 12px;
     margin-left: 5px;
@@ -316,4 +345,27 @@ span.opt {
 .karcin-select-input .multi-select-input .select-item span span {
     padding: 1px 4px;
     float: left;
+}
+
+
+.example-reagent {
+    display: inline-block;
+    width: 100%;
+    color: #4a4a4a;
+    font-size: 14px;
+    border-bottom: solid 1px #e8e8e8;
+    font-weight: 600;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    padding-bottom: 7px;
+    clear: both;
+}
+
+.example-reagent:first-child {margin-top: 0;}
+
+.example-reagent:before {
+    content: "\f105";
+    font-family: 'FontAwesome';
+    margin-right: 10px;
+    color: #4a4a4a;
 }

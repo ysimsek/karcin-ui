@@ -13,7 +13,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var reactstrap_1 = require("reactstrap");
 var FaIcon_1 = require("../../functional/faicon/FaIcon");
-require("../../css/sass/menu.scss");
+require("../../css/karcin-ui.css");
 var Menu = /** @class */ (function (_super) {
     __extends(Menu, _super);
     function Menu(props) {
