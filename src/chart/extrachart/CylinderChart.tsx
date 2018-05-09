@@ -54,7 +54,8 @@ export interface CylinderChartProps {
      */
     threeD ?: boolean;
     /**
-     * Default height = 300px
+     * Max chart height
+     * default 300px
      */
     height ?: number;
     /**

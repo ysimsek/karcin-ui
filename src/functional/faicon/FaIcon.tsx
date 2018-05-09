@@ -2,9 +2,20 @@ import * as React from "react";
 import "font-awesome/css/font-awesome.min.css";
 
 export interface FaIconProps {
+    /**
+     * Default fa-sm
+     * Another fa-2x , fa-3x, fa-4x, fa-5x
+     */
     size?: string;
+    /**
+     * default false
+     */
     fixed?: boolean;
     className?:string;
+    /**
+     * fa icon code
+     * address : https://fontawesome.com/v4.7.0/icons/
+     */
     code:string;
     style?:object;
     onClick?():void;

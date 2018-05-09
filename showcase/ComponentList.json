@@ -18,7 +18,8 @@
       "icon":"fa-text-width",
       "href":"#/Components/Badge",
       "samples":"components/examples/BadgeExample",
-      "library":"functional/badge/Badge"
+      "library":"functional/badge/Badge",
+      "description":"Badge component ile sarılmış text metinleri kullanabilirsiniz."
     },
     {
       "id":3,
@@ -83,7 +84,17 @@
       "href":"#/Components/DataFilter",
       "samples":"components/examples/DataFilterExample",
       "library":"functional/datafilter/DataFilter"
-    },{
+    },
+    {
+      "id":9,
+      "name":"List",
+      "title":"List",
+      "icon":"fa-list",
+      "href":"#/Components/List",
+      "samples":"components/examples/ListExample",
+      "library":"functional/list/List"
+    },
+    {
       "id":2,
       "name":"input",
       "title":"Input",

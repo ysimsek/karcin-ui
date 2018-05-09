@@ -20,6 +20,9 @@ export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
      * default false
      */
     disabled?: boolean;
+    /**
+     * a or button react types
+     */
     tag?: React.ReactType;
     innerRef?: string | ((instance: HTMLButtonElement) => any);
     onClick?: React.MouseEventHandler<any>;

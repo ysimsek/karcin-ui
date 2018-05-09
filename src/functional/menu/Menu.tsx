@@ -4,9 +4,21 @@ import FaIcon from '../../functional/faicon/FaIcon'
 import '../../css/karcin-ui.css';
 
 export interface MenuProps {
+    /**
+     * Set the array data
+     */
     data: Array<MenuData> | any;
+    /**
+     * type : dropDown, hover
+     */
     type?: string;
+    /**
+     * Default false
+     */
     accordion?:boolean;
+    /**
+     * Active menu
+     */
     active?:Array<MenuData>;
     onChange?:React.EventHandler<any>;
 }
@@ -35,15 +47,23 @@ export interface MenuState {
 }
 
 export default class Menu extends React.Component<MenuProps, MenuState> {
-
+    /**
+     * @type {null}
+     */
     menuChilds: any = null;
-
+    /**
+     * @type {{type: string; accordion: boolean; active: any[]}}
+     */
     static defaultProps: Partial<MenuProps> = {
         type: 'dropDown',
         accordion:false,
         active: [],
     }
 
+    /**
+     * Initial values
+     * @param {MenuProps} props
+     */
     constructor(props: MenuProps) {
         super(props);
 
@@ -56,7 +76,11 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
             activeControl : false
         };
     }
-
+    UNSAFE_componentWillReceiveProps(){}
+    /**
+     *
+     * @param {MenuProps} props
+     */
     componentWillReceiveProps(props:MenuProps){
         this.setState({
             menuData : props.data.slice(0),

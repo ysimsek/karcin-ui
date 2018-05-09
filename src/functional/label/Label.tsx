@@ -1,6 +1,5 @@
 import * as React from "react";
 import {CSSModule, Label as LabelX} from "reactstrap";
-import {ColumnProps} from "reactstrap/lib/Col";
 
 export interface LabelProps{
     /**
@@ -25,14 +24,25 @@ export interface LabelProps{
 }
 
 export default class Label extends React.Component<LabelProps,any>{
+    /**
+     * @type {{size: number}}
+     */
     static defaultProps:Partial<LabelProps> = {
         size : 16
     }
 
+    /**
+     * Initial values
+     * @param props
+     */
     constructor(props:any){
         super(props);
     }
-    render(){
+
+    /**
+     * @returns {any}
+     */
+    render():any{
         return <LabelX
                     hidden={this.props.hidden}
                     for={this.props.for}

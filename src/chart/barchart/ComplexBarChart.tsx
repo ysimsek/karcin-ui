@@ -24,9 +24,24 @@ export interface ComposedBarChartData{
      * column or line
      */
     type : Array<any>;
+    /**
+     * set the theme , default theme = light
+     other theme = light , dark , chalk, black, patterns,
+     default = 'light'
+     */
     theme ?: string;
-    categoryField : string;
+    /**
+     * Default show field
+     */
+    categoryField ?: string;
+    /**
+     * Default show value
+     */
     categoryValue ?: string;
+    /**
+     * Max chart height
+     * default 300px
+     */
     height ?: number;
 
 }

@@ -54,6 +54,11 @@ export interface SimpleBarChartProps{
      * valueLine is true or false
      */
     valueLine?:boolean;
+    /**
+     * Max chart height
+     * default 200px
+     */
+    height?:number;
 }
 
 export default class SimpleLineChart extends React.Component<SimpleBarChartProps,any>{
@@ -62,7 +67,8 @@ export default class SimpleLineChart extends React.Component<SimpleBarChartProps
         data : [],
         theme : "light",
         threeD: false,
-        inline: false
+        inline: false,
+        height:200
     }
 
     constructor(props:any){
@@ -114,6 +120,6 @@ export default class SimpleLineChart extends React.Component<SimpleBarChartProps
                 }
 
             };
-        return <AmCharts.React options={data} style={{width:"100%",height:"200px"}}/>
+        return <AmCharts.React options={data} style={{width:"100%",height:this.props.height+"px"}}/>
     }
 }
