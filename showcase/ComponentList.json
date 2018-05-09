@@ -28,7 +28,8 @@
       "icon":"fa-text-height",
       "href":"#/Components/Label",
       "samples":"components/examples/LabelExample",
-      "library":"functional/label/Label"
+      "library":"functional/label/Label",
+      "description":"<Label/> , allows us to use text properly"
     },
 
     {
@@ -38,7 +39,8 @@
       "icon":"fa-bars",
       "href":"#/Components/Menu",
       "samples":"components/examples/MenuExample",
-      "library":"functional/menu/Menu"
+      "library":"functional/menu/Menu",
+      "description":"<Menu/>, allows us to use menus properly"
     },
     {
       "id":5,
@@ -47,7 +49,8 @@
       "icon":"fa-ils",
       "href":"#/Components/FaIcon",
       "samples":"components/examples/FaIconExample",
-      "library":"functional/faicon/FaIcon"
+      "library":"functional/faicon/FaIcon",
+      "description":"<FaIcon/>, allow us to actively use icons"
     },
     {
       "id":6,
@@ -56,7 +59,8 @@
       "icon":"fa-th-list",
       "href":"#/Components/Tabs",
       "samples":"components/examples/TabsExample",
-      "library":"functional/tabs/Tab"
+      "library":"functional/tabs/Tab",
+      "description":"<Tab/>, allow us to switch between pages"
     },
     {
       "id":7,
@@ -65,7 +69,8 @@
       "icon":"fa-exclamation-triangle",
       "href":"#/Components/Notify",
       "samples":"components/examples/NotifyExample",
-      "library":"functional/notify/Notify"
+      "library":"functional/notify/Notify",
+      "description":"<Notify/>,  provides alert management on pages"
     },
     {
       "id":8,

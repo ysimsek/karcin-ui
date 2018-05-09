@@ -2,7 +2,6 @@ import * as React from "react";
 import * as Highlight from 'react-highlight';
 import {Tab,TabPanel, FaIcon} from "karcin-ui";
 import {Table} from "reactstrap";
-import {debug} from "util";
 
 export default class RenderComponent extends React.Component<any, any> {
     private element;
