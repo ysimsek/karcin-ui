@@ -5,7 +5,7 @@ export interface ListProps extends React.HTMLAttributes<HTMLElement>{
     /**
      * Set the array data
      */
-    data :Array<any>;
+    data ?:Array<any>;
     /**
      * a or button tag
      */
@@ -50,6 +50,9 @@ export interface ListProps extends React.HTMLAttributes<HTMLElement>{
     activeId ?: number;
 }
 
+/**
+ * List array data or childs data returned
+ */
 export default class List extends React.Component<ListProps,any>{
     /**
      * Initial values
@@ -66,7 +69,26 @@ export default class List extends React.Component<ListProps,any>{
      * @returns {any}
      */
     render():any{
-        return <ListGroup>{this.childsReturn(this.props.data)}</ListGroup>
+        let renderList:any = [];
+        if(this.props.children != undefined){
+            renderList = this.renderShowChilds(this.props.children);
+        }else{
+            renderList.push(<ListGroup>{this.childsReturn(this.props.data)}</ListGroup>);
+        }
+        return renderList;
+    }
+
+    /**
+     * Return Childs Elements
+     * @param childs
+     * @returns {JSX.Element[]}
+     */
+    renderShowChilds(childs:any):JSX.Element[]{
+        let renderElements:any[] = [];
+        childs.forEach(function (child:any,index:number) {
+           renderElements.push(<ListGroupItem>{child}</ListGroupItem>)
+        });
+        return renderElements;
     }
 
     /**
@@ -74,7 +96,7 @@ export default class List extends React.Component<ListProps,any>{
      * @param {Array<any>} list
      * @returns {JSX.Element[]}
      */
-    childsReturn(list:Array<any>):JSX.Element[]{
+    childsReturn(list:any):JSX.Element[]{
         let childs:Array<any> = [];
         let me:any = this;
         list.forEach(function (child:any,idx:number) {

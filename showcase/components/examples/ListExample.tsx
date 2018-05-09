@@ -2,6 +2,7 @@ import * as React from "react";
 import {Row,Col} from "reactstrap";
 import {Panel} from "karcin-ui";
 import List from "../../../src/functional/list/List";
+import ListItem from "../../../src/functional/list/ListItem";
 
 export default class ListExample extends React.Component{
 
@@ -31,13 +32,14 @@ export default class ListExample extends React.Component{
                        </Panel>
                    </Col>
                    <Col md={4}>
-                        <Panel title={"Simple Badge List"}>
-                            <List
-                                data={data}
-                                value={"value"}
-                                color={"info"}
-                                badge={true}
-                                badgeValue={"badge"}/>
+                        <Panel title={"Simple Child List"}>
+                            <List>
+                                <ListItem>Lorem</ListItem>
+                                <ListItem>Ipsum</ListItem>
+                                <ListItem>is simply</ListItem>
+                                <div>Dummy Text</div>
+                                <span>Of the printing</span>
+                            </List>
                         </Panel>
                    </Col>
                    <Col md={4}>

@@ -101,6 +101,36 @@
       "description":"<List/>, allows listing the data for the page."
     },
     {
+      "id":10,
+      "name":"ToolTip",
+      "title":"ToolTip",
+      "icon":"fa-podcast",
+      "href":"#/Components/ToolTip",
+      "samples":"components/examples/ToolTipExample",
+      "library":"functional/tip/ToolTip",
+      "description":"<ToolTip/>, allows alert the data for the component."
+    },
+    {
+      "id":11,
+      "name":"PopOver",
+      "title":"PopOver",
+      "icon":"fa-podcast",
+      "href":"#/Components/PopOver",
+      "samples":"components/examples/PopOverExample",
+      "library":"functional/tip/PopOver",
+      "description":"<PopOver/>, allows alert the data for the component."
+    },
+    {
+      "id":11,
+      "name":"Pagination",
+      "title":"Pagination",
+      "icon":"fa-podcast",
+      "href":"#/Components/Pagination",
+      "samples":"components/examples/PaginationExample",
+      "library":"functional/paging/Pagination",
+      "description":"<Pagination/>, allows alert the data for the component."
+    },
+    {
       "id":2,
       "name":"input",
       "title":"Input",
