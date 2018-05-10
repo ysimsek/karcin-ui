@@ -19,7 +19,7 @@ export default class Components extends React.Component<ComponentsProps, Compone
     constructor(props:ComponentsProps){
         super(props);
 
-        const json = require('./ComponentList.json');
+        const json = require('./jsons/ComponentList.json');
         this.state = {
             data:json.data,
             active : [],

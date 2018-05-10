@@ -32,7 +32,7 @@ export default class NotifyExample extends React.Component<any,any>{
                         value="value"
                         id="position"
                         items={items}
-                        onChange={this.onChange.bind(this)}/>
+                        onChange={this.selectOnChange.bind(this)}/>
                 </Col>
                 <Col md={4}>
                     <TextInput
@@ -86,10 +86,17 @@ export default class NotifyExample extends React.Component<any,any>{
         Notify.notify({message:this.state.message,position:this.state.position,time:this.state.second})
     }
 
-    onChange(e){
+    selectOnChange(e){
         let name = e.target.name;
         let state = [];
         state[e.target.name] = e.target.id;
+        this.setState(state);
+    }
+
+    onChange(e){
+        let name = e.target.name;
+        let state = [];
+        state[e.target.name] = e.target.value;
         this.setState(state);
     }
 
