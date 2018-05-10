@@ -6,13 +6,15 @@ export interface TabProps {
     className?:string;
     vertical?:boolean | any;
     align?:string;
+    color?:string | any;
 }
 
 export default class Tab extends React.Component<TabProps,any> {
 
     static defaultProps: Partial<TabProps> = {
-        align:'left'
-    }
+        align:'left',
+        color: 'secondary'
+    };
 
     constructor(props:any) {
         super(props);
@@ -29,7 +31,7 @@ export default class Tab extends React.Component<TabProps,any> {
 
     render() {
         return (
-            <div className={`karcin-tab ${(this.props.className !== undefined) ? this.props.className : ''}`}>
+            <div className={`karcin-tab ${(this.props.className !== undefined) ? this.props.className : ''} ${this.props.color}`}>
                 <Nav tabs={true} className={`${(this.props.vertical !== undefined && this.props.vertical) ? 'vertical' : ''} ${this.props.align}`}>
                     {this.getTab().header}
                 </Nav>

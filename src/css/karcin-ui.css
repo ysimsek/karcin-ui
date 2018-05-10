@@ -40,7 +40,7 @@ textarea {
 
 .input-focus {
     background-color: #fff;
-    border-color: #80bdff;
+    border-color: #80bdff !important;
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
     -webkit-transition: all .3s ease;
@@ -135,11 +135,38 @@ textarea {
     color: #a59c9c;
 }
 
-.karcin-tab > .nav li a.active {
-    background-color: #cacaca;
-    border-color: #c1bfbf;
-    color: #6f6c6c;
+.karcin-tab.secondary > .nav li a.active {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color:#fff;
 }
+
+.karcin-tab.primary > .nav li a.active {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.karcin-tab.success > .nav li a.active {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+}
+.karcin-tab.info > .nav li a.active {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+.karcin-tab.warning > .nav li a.active {
+    color: #212529;
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
+.karcin-tab.danger > .nav li a.active {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
 
 .karcin-tab > .nav li a:hover {
     color: #6f6c6c;
