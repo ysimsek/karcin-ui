@@ -1,8 +1,6 @@
 import * as React from "react";
 import {Row,Col} from "reactstrap";
-import {Panel} from "karcin-ui";
-import List from "../../../src/functional/list/List";
-import ListItem from "../../../src/functional/list/ListItem";
+import {Panel,List,ListItem} from "karcin-ui";
 
 export default class ListExample extends React.Component{
 

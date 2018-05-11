@@ -1,6 +1,5 @@
 import * as React from "react";
-import PopOver from "../../../src/functional/tip/PopOver";
-import {Button} from "karcin-ui";
+import {Button,PopOver} from "karcin-ui";
 
 export default class PopOverExample extends React.Component<any,any>{
     constructor(props:any){
