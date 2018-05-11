@@ -17,7 +17,7 @@ var Components = /** @class */ (function (_super) {
     __extends(Components, _super);
     function Components(props) {
         var _this = _super.call(this, props) || this;
-        var json = require('./ComponentList.json');
+        var json = require('./jsons/ComponentList.json');
         _this.state = {
             data: json.data,
             active: [],

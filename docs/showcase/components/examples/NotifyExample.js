@@ -36,7 +36,7 @@ var NotifyExample = /** @class */ (function (_super) {
         return React.createElement("div", null,
             React.createElement(reactstrap_1.Row, null,
                 React.createElement(reactstrap_1.Col, { md: 4 },
-                    React.createElement(karcin_ui_1.SelectInput, { name: "position", label: "Notify pozisyonunun seçiniz", item: this.state.position, value: "value", id: "position", items: items, onChange: this.onChange.bind(this) })),
+                    React.createElement(karcin_ui_1.SelectInput, { name: "position", label: "Notify pozisyonunun seçiniz", item: this.state.position, value: "value", id: "position", items: items, onChange: this.selectOnChange.bind(this) })),
                 React.createElement(reactstrap_1.Col, { md: 4 },
                     React.createElement(karcin_ui_1.TextInput, { name: "message", label: "Mesaj Yazınız", value: this.state.message, onChange: this.onChange.bind(this) })),
                 React.createElement(reactstrap_1.Col, { md: 4 },
@@ -75,10 +75,16 @@ var NotifyExample = /** @class */ (function (_super) {
     NotifyExample.prototype.all = function (e) {
         karcin_ui_1.Notify.notify({ message: this.state.message, position: this.state.position, time: this.state.second });
     };
-    NotifyExample.prototype.onChange = function (e) {
+    NotifyExample.prototype.selectOnChange = function (e) {
         var name = e.target.name;
         var state = [];
         state[e.target.name] = e.target.id;
+        this.setState(state);
+    };
+    NotifyExample.prototype.onChange = function (e) {
+        var name = e.target.name;
+        var state = [];
+        state[e.target.name] = e.target.value;
         this.setState(state);
     };
     return NotifyExample;

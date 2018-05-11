@@ -14,6 +14,7 @@ var React = require("react");
 var reactstrap_1 = require("reactstrap");
 var karcin_ui_1 = require("karcin-ui");
 var List_1 = require("../../../src/functional/list/List");
+var ListItem_1 = require("../../../src/functional/list/ListItem");
 var ListExample = /** @class */ (function (_super) {
     __extends(ListExample, _super);
     function ListExample() {
@@ -35,8 +36,13 @@ var ListExample = /** @class */ (function (_super) {
                 React.createElement(karcin_ui_1.Panel, { title: "Action List" },
                     React.createElement(List_1.default, { data: data, value: "value", action: true }))),
             React.createElement(reactstrap_1.Col, { md: 4 },
-                React.createElement(karcin_ui_1.Panel, { title: "Simple Badge List" },
-                    React.createElement(List_1.default, { data: data, value: "value", color: "info", badge: true, badgeValue: "badge" }))),
+                React.createElement(karcin_ui_1.Panel, { title: "Simple Child List" },
+                    React.createElement(List_1.default, null,
+                        React.createElement(ListItem_1.default, null, "Lorem"),
+                        React.createElement(ListItem_1.default, null, "Ipsum"),
+                        React.createElement(ListItem_1.default, null, "is simply"),
+                        React.createElement("div", null, "Dummy Text"),
+                        React.createElement("span", null, "Of the printing")))),
             React.createElement(reactstrap_1.Col, { md: 4 },
                 React.createElement(karcin_ui_1.Panel, { title: "Link to Data (<a>)" },
                     React.createElement(List_1.default, { data: data, value: "value", tag: "a", tagValue: "href" }))),

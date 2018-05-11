@@ -12,6 +12,9 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var reactstrap_1 = require("reactstrap");
+/**
+ * List array data or childs data returned
+ */
 var List = /** @class */ (function (_super) {
     __extends(List, _super);
     /**
@@ -27,7 +30,26 @@ var List = /** @class */ (function (_super) {
      * @returns {any}
      */
     List.prototype.render = function () {
-        return React.createElement(reactstrap_1.ListGroup, null, this.childsReturn(this.props.data));
+        var renderList = [];
+        if (this.props.children != undefined) {
+            renderList = this.renderShowChilds(this.props.children);
+        }
+        else {
+            renderList.push(React.createElement(reactstrap_1.ListGroup, null, this.childsReturn(this.props.data)));
+        }
+        return renderList;
+    };
+    /**
+     * Return Childs Elements
+     * @param childs
+     * @returns {JSX.Element[]}
+     */
+    List.prototype.renderShowChilds = function (childs) {
+        var renderElements = [];
+        childs.forEach(function (child, index) {
+            renderElements.push(React.createElement(reactstrap_1.ListGroupItem, null, child));
+        });
+        return renderElements;
     };
     /**
      * Childs elements in list

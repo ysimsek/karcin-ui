@@ -12,12 +12,18 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var karcin_ui_1 = require("karcin-ui");
+var AjaxRequest_1 = require("../../../request/AjaxRequest");
 var ButtonExample = /** @class */ (function (_super) {
     __extends(ButtonExample, _super);
     function ButtonExample() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     ButtonExample.prototype.render = function () {
+        var _this = this;
+        var denem = { url: 'dasds' };
+        var asd = new AjaxRequest_1.default({ data: { deniz: 'dede' } }, function (response) {
+            _this.onSuccess(response);
+        });
         return (React.createElement("div", null,
             React.createElement(karcin_ui_1.Button, { color: "primary" }, "primary"),
             ' ',
@@ -55,6 +61,12 @@ var ButtonExample = /** @class */ (function (_super) {
             React.createElement("hr", null),
             React.createElement(karcin_ui_1.Button, { color: "primary", size: "lg", block: true }, "Block level button"),
             React.createElement(karcin_ui_1.Button, { color: "secondary", size: "lg", block: true }, "Block level button")));
+    };
+    ButtonExample.prototype.onSuccess = function (res) {
+        console.log(res);
+    };
+    ButtonExample.prototype.onError = function (res) {
+        console.log(res);
     };
     return ButtonExample;
 }(React.Component));
