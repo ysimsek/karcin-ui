@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Pagination as Page, PaginationItem, PaginationLink } from 'reactstrap';
 import {debug} from "util";
+import {disabled} from "glamor";
 
 export interface PaginationProps{
     /**
@@ -16,17 +17,30 @@ export interface PaginationProps{
      */
     selectedValue ?: void | any;
     /**
-     * Set the page count
+     * Set the page count (Max : 5) or listSize
      */
     pageCount ?: number;
     /**
-     * En başa dön
+     * Go to The Begin show button name or icon
      */
     toBegin ?: any;
     /**
-     * En sona git
+     * Go to The End show button name or icon
      */
     toEnd ?: any;
+    /**
+     * increase one by one show button name or icon
+     */
+    toIncrease ?: any;
+    /**
+     * decrease one by one show button name or icon
+     */
+    toDecrease ?: any;
+    /**
+     * default normal
+     * sm, lg
+     */
+    size ?: any;
 }
 
 export default class Pagination extends React.Component<PaginationProps,any>{
@@ -35,9 +49,9 @@ export default class Pagination extends React.Component<PaginationProps,any>{
      * @type {{pageCount: number}}
      */
     static defaultProps={
-        pageCount : 10,
         toBegin : "«",
-        toEnd : "»"
+        toEnd : "»",
+        pageCount :3
     }
 
     id :any;
@@ -94,9 +108,11 @@ export default class Pagination extends React.Component<PaginationProps,any>{
      */
     render():any{
         let cmp : any = <span/>;
-        cmp = <Page onClick={this.handleChange.bind(this)}>
-            {this.renderPageFunctions(this.props.data)}
-        </Page>;
+        if(this.props.pageCount != undefined) {
+            cmp = <Page onClick={this.handleChange.bind(this)} size={this.props.size}>
+                {this.renderPageFunctions(this.props.data)}
+            </Page>;
+        }
         return cmp;
     }
 
@@ -112,44 +128,26 @@ export default class Pagination extends React.Component<PaginationProps,any>{
             for (let i = 1; i < numb + 1; i++) {
                 this.showPage.push(i);
             }
-            ;
         }
-
 
         let component:JSX.Element[] = [];
         let me:any = this;
-        let i = 0;
-        /**
-         * İlk eleman azaltma elemanı ilk başta pushlanıyor
-         */
-        let firstPage: JSX.Element = <li key={i} className="page-item">
-                            <a  id="decrease" className="page-link" aria-label="Previous">‹</a>
-                        </li>;
-
-        let goToTheBegin: JSX.Element = <li key={-1} className="page-item">
-            <a  id="firstDecrease" className="page-link" aria-label="Next">{this.props.toBegin}</a>
-        </li>;
+        let i:any = 0;
+        let firstPage: JSX.Element = this.decreaseElement(i);
+        let goToTheBegin: JSX.Element = this.firstPageElement();
         /**
          * Array içerisinde data ayıklanıyor
          */
         data.forEach(function (val : any, idx: number) {
             i++;
             component.push(<PaginationItem active={parseInt(me.selectPage) == idx+1 ? true : false} key={i}>
-                <PaginationLink href={val[me.props.hrefValue]}>
+                <PaginationLink id={i} href={val[me.props.hrefValue]}>
                     {idx+1}
                 </PaginationLink>
             </PaginationItem>)
         })
-
-        /**
-         * Son elemanda statik bir şekilde pushlanıyor
-         */
-        let lastPage: JSX.Element = <li key={i+2} className="page-item">
-            <a  id="increase" className="page-link" aria-label="Next">›</a>
-        </li>;
-        let goToTheEnd: JSX.Element = <li key={-2} className="page-item">
-            <a  id="lastIncrease" className="page-link" aria-label="Next">{this.props.toEnd}</a>
-        </li>;
+        let lastPage: JSX.Element = this.increaseElement(i);
+        let goToTheEnd: JSX.Element = this.lastPageElement();
         me.lastIndex = data.length;
         me.firstPage = this.showPage[0];
 
@@ -177,7 +175,14 @@ export default class Pagination extends React.Component<PaginationProps,any>{
 
         showData.push(goToTheBegin);
         showData.push(firstData);
-        
+
+        /**
+         * İlk eleman kontrolü ile var yok kontrolü yapılıyor
+         */
+        if(me.showPage.indexOf(1) == -1){
+            showData.push(this.blablaElement(-3))
+        }
+
         data.forEach(function (comp: any, i: number) {
             me.showPage.forEach(function (show: any,j: number) {
                 if(show == parseInt(comp.key)){
@@ -185,6 +190,14 @@ export default class Pagination extends React.Component<PaginationProps,any>{
                 }
             })
         })
+
+        /**
+         * Son index kontrolü yapılıyor
+         */
+        if(me.showPage.indexOf(me.lastIndex) == -1){
+            showData.push(this.blablaElement(-4))
+        }
+
         showData.push(lastData);
         showData.push(goToTheEnd);
 
@@ -206,6 +219,8 @@ export default class Pagination extends React.Component<PaginationProps,any>{
             this.goToTheBegin();
         }else if(e.target.id == "lastIncrease"){
             this.goToTheEnd();
+        }else if(e.target.id == "blabla" || e.target.id == ""){
+            return;
         }else {
             this.selectPage = e.target.text;
         }
@@ -221,6 +236,14 @@ export default class Pagination extends React.Component<PaginationProps,any>{
      * @param pageCount
      */
     increaseOne(pageCount:any):void{
+        //diziyi ortala
+        if(this.selectPage){
+            if(this.selectPage>=3 && (this.lastIndex != Math.max(...pageCount))){
+                this.changeShowPage("ortala");
+            }else if(this.selectPage >=2 && (this.lastIndex != Math.max(...pageCount))){
+                this.changeShowPage("ortala");
+            }
+        }
         //increase index
         if(this.lastIndex == this.selectPage){
             return;
@@ -235,6 +258,15 @@ export default class Pagination extends React.Component<PaginationProps,any>{
      * Birer birer azaltma yap
      */
     decreaseOne():void{
+        debugger;
+         if(this.selectPage<=this.lastIndex-2 && (this.firstPage == Math.min(...this.showPage))){
+             if(this.firstPage <= 1){
+
+             }else {
+                 this.changeShowPage("ortalaEks");
+             }
+         }
+
         //decrease index
         if(this.selectPage == 1){
             return;
@@ -262,7 +294,6 @@ export default class Pagination extends React.Component<PaginationProps,any>{
     goToTheEnd():void{
         let me:any = this;
         let lastIndex = this.lastIndex - me.props.pageCount +1;
-        debugger;
         me.showPage.forEach(function (v : any, idx: number) {
             me.showPage[idx] = lastIndex;
             lastIndex++;
@@ -280,11 +311,68 @@ export default class Pagination extends React.Component<PaginationProps,any>{
         let me: any = this;
         me.showPage.forEach(function (v:any , idx : number) {
             if( val == "art"){
-                me.showPage[idx] = v + 1;
+                me.showPage[idx] = v + 3;
+                me.firstPage = v + 1;
             }else if(val == "eks"){
                 me.showPage[idx] = v - 1;
                 me.lastPage = v - 1;
+            }else if(val == "ortala"){
+                me.showPage[idx] = v + 1;
+            }else if(val == "ortalaEks"){
+                me.showPage[idx] = v - 1;
             }
         });
+        if(val == "ortala")
+            me.firstPage = me.firstPage + 1;
+        if(val == "ortalaEks") {
+            me.firstPage = me.firstPage - 1;
+        }
     }
+    /**
+     * En başa dönmek için link
+     * @type {any}
+     */
+    firstPageElement(){
+        return <li key={-1} className={"page-item"+ (this.selectPage == 1 ? " disabled" : "") }>
+            <a  id="firstDecrease" className="page-link" aria-label="Next">{this.props.toBegin}</a>
+        </li>;
+    }
+    /**
+     * En sona gitmek için a button
+     * @type {any}
+     */
+    lastPageElement(){
+        return <li key={-2} className={"page-item" + (this.lastIndex == this.selectPage? " disabled" : "")}>
+            <a  id="lastIncrease" className="page-link" aria-label="Next">{this.props.toEnd}</a>
+        </li>;
+    }
+    /**
+     * Son elemanda statik bir şekilde pushlanıyor
+     */
+    increaseElement(i:any){
+        return <li key={i+2} className={"page-item"+(this.lastIndex == this.selectPage? " disabled" : "")}>
+            <a  id="increase" className="page-link" aria-label="Next">›</a>
+        </li>;
+    }
+    /**
+     * İlk eleman azaltma elemanı ilk başta pushlanıyor
+     */
+    decreaseElement(i:any){
+        return <li key={i} className={"page-item"+ (this.selectPage == 1 ? " disabled" : "")}>
+            <a  id="decrease" className="page-link" aria-label="Previous">‹</a>
+        </li>;
+    }
+
+    /**
+     * Bla Bla element
+     * Daha devamı var mahiyetinde
+     * @param i
+     * @returns {any}
+     */
+    blablaElement(i:any){
+        return <li key={i} className={"page-item disabled"}>
+            <span id="blabla" className="page-link" aria-label="BlaBla">…</span>
+        </li>
+    }
+
 }

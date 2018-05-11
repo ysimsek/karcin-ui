@@ -23,29 +23,43 @@ export default class PaginationExample extends React.Component<any,any> {
         super(props);
         this.state = {
             selectedPage : 1,
-            selectedPage2 : 1
+            selectedPage2 : 1,
+            selectedPage3 : 1,
+            selectedPage4 : 1
         }
     }
 
     render(){
         return <div>
                     <Label>Selected Page: {this.state.selectedPage}</Label>
-                    <Pagination data={this.data} hrefValue={"link"} pageCount={13} selectedValue={this.getClick.bind(this)}/>
+                    <Pagination data={this.data} hrefValue={"link"} selectedValue={this.getClick.bind(this)}/>
 
                     <br/>
 
-                    <Label>Selected Page: {this.state.selectedPage2}</Label>
-                    <Pagination data={this.data} hrefValue={"link"} pageCount={5} selectedValue={this.getClick2.bind(this)}/>
+                    <Label>sm Size ,Selected Page: {this.state.selectedPage2}</Label>
+                    <Pagination data={this.data} hrefValue={"link"} size={"sm"} pageCount={4} selectedValue={this.getClick2.bind(this)}/>
+
+                    <br/>
+
+                    <Label>lg Size , Selected Page: {this.state.selectedPage3}</Label>
+                    <Pagination data={this.data} hrefValue={"link"} size={"lg"} pageCount={13} selectedValue={this.getClick3.bind(this)}/>
+
+
+
                 </div>
     }
 
     getClick(e){
-        console.log(e.selectData);
         this.setState({selectedPage:e.page})
     }
 
     getClick2(e){
         this.setState({selectedPage2:e.page})
     }
+
+    getClick3(e) {
+        this.setState({selectedPage3: e.page})
+    }
+
 
 }
