@@ -1,5 +1,5 @@
 import * as React from "react";
-import ToolTip from "../../../src/functional/tip/ToolTip";
+import {ToolTip} from "karcin-ui";
 
 export default class ToolTipExample extends React.Component<any,any>{
 
