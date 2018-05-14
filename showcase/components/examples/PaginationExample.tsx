@@ -42,7 +42,7 @@ export default class PaginationExample extends React.Component<any,any> {
                     <br/>
 
                     <Label>lg Size , Selected Page: {this.state.selectedPage3}</Label>
-                    <Pagination data={this.data} hrefValue={"link"} size={"lg"} pageCount={13} selectedValue={this.getClick3.bind(this)}/>
+                    <Pagination data={this.data} hrefValue={"link"} size={"lg"} pageCount={5} selectedValue={this.getClick3.bind(this)}/>
 
 
 

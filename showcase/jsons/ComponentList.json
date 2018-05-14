@@ -131,6 +131,16 @@
       "description":"<Pagination/>, allows alert the data for the component."
     },
     {
+      "id":12,
+      "name":"Progress",
+      "title":"Progress",
+      "icon":"fa-percent",
+      "href":"#/Components/Progress",
+      "samples":"components/examples/ProgressExample",
+      "library":"functional/progress/Progress",
+      "description":"<Progress/>"
+    },
+    {
       "id":2,
       "name":"input",
       "title":"Input",

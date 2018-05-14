@@ -153,7 +153,7 @@ export default class Pagination extends React.Component<PaginationProps,any>{
 
         /**
          * Gösterilmek istenene sayı kadar page görünüyor
-          * @type {JSX.Element[]}
+         * @type {JSX.Element[]}
          */
         let showPage: JSX.Element[] = this.paging(component,firstPage, lastPage, goToTheBegin, goToTheEnd);
         return showPage;
@@ -258,14 +258,13 @@ export default class Pagination extends React.Component<PaginationProps,any>{
      * Birer birer azaltma yap
      */
     decreaseOne():void{
-        debugger;
-         if(this.selectPage<=this.lastIndex-2 && (this.firstPage == Math.min(...this.showPage))){
-             if(this.firstPage <= 1){
+        if(this.selectPage<=this.lastIndex-2 && (this.firstPage == Math.min(...this.showPage))){
+            if(this.firstPage <= 1){
 
-             }else {
-                 this.changeShowPage("ortalaEks");
-             }
-         }
+            }else {
+                this.changeShowPage("ortalaEks");
+            }
+        }
 
         //decrease index
         if(this.selectPage == 1){
