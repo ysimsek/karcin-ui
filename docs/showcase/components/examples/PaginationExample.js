@@ -33,7 +33,9 @@ var PaginationExample = /** @class */ (function (_super) {
         ];
         _this.state = {
             selectedPage: 1,
-            selectedPage2: 1
+            selectedPage2: 1,
+            selectedPage3: 1,
+            selectedPage4: 1
         };
         return _this;
     }
@@ -42,19 +44,26 @@ var PaginationExample = /** @class */ (function (_super) {
             React.createElement(karcin_ui_1.Label, null,
                 "Selected Page: ",
                 this.state.selectedPage),
-            React.createElement(karcin_ui_1.Pagination, { data: this.data, hrefValue: "link", pageCount: 13, selectedValue: this.getClick.bind(this) }),
+            React.createElement(karcin_ui_1.Pagination, { data: this.data, hrefValue: "link", selectedValue: this.getClick.bind(this) }),
             React.createElement("br", null),
             React.createElement(karcin_ui_1.Label, null,
-                "Selected Page: ",
+                "sm Size ,Selected Page: ",
                 this.state.selectedPage2),
-            React.createElement(karcin_ui_1.Pagination, { data: this.data, hrefValue: "link", pageCount: 5, selectedValue: this.getClick2.bind(this) }));
+            React.createElement(karcin_ui_1.Pagination, { data: this.data, hrefValue: "link", size: "sm", pageCount: 4, selectedValue: this.getClick2.bind(this) }),
+            React.createElement("br", null),
+            React.createElement(karcin_ui_1.Label, null,
+                "lg Size , Selected Page: ",
+                this.state.selectedPage3),
+            React.createElement(karcin_ui_1.Pagination, { data: this.data, hrefValue: "link", size: "lg", pageCount: 5, selectedValue: this.getClick3.bind(this) }));
     };
     PaginationExample.prototype.getClick = function (e) {
-        console.log(e.selectData);
         this.setState({ selectedPage: e.page });
     };
     PaginationExample.prototype.getClick2 = function (e) {
         this.setState({ selectedPage2: e.page });
+    };
+    PaginationExample.prototype.getClick3 = function (e) {
+        this.setState({ selectedPage3: e.page });
     };
     return PaginationExample;
 }(React.Component));

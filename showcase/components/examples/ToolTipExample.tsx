@@ -1,41 +1,93 @@
 import * as React from "react";
-import {ToolTip} from "karcin-ui";
+import {ToolTip, Button} from "karcin-ui";
+import {Row, Col} from "reactstrap";
 
-export default class ToolTipExample extends React.Component<any,any>{
+export default class ToolTipExample extends React.Component<any, any> {
 
-    constructor(props:any){
+    constructor(props: any) {
         super(props);
-        this.state={
-            showFirst : false,
-            showSecond : false
+        this.state = {
+            direction: {left: false, right: false, top: false, bottom: false, links: false, button:false}
         }
 
     }
 
     //state değişiklşiği
-    render(){
+    render() {
         return <div>
-                    <p>It opens when it  <a id="first" href="#">comes on</a></p>
+            <Row className="basic-row">
+                <span className="example-reagent">Text Tooltip</span>
+                <Col sm={3}>
+                    <p id="left">Left Tooltip</p>
+                    <ToolTip
+                        position={"left"}
+                        id={"left"}
+                        show={this.state.direction.left}
+                        toggle={() => {
+                            this.toggle('left')
+                        }}>Hello First Tip</ToolTip>
+                </Col>
+                <Col sm={3}>
+                    <p id="right">Right Tooltip</p>
                     <ToolTip
                         position={"right"}
-                        id={"first"}
-                        show={this.state.showFirst}
-                        toggle={this.toggle.bind(this)}>Hello First Tip</ToolTip>
-                    <hr/>
-                    <span id={"second"}>Come on over</span>
+                        id={"right"}
+                        show={this.state.direction.right}
+                        toggle={() => {
+                            this.toggle('right')
+                        }}>Hello First Tip</ToolTip>
+                </Col>
+                <Col sm={3}>
+                    <p id="top">Top Tooltip</p>
+                    <ToolTip
+                        position={"top"}
+                        id={"top"}
+                        show={this.state.direction.top}
+                        toggle={() => {
+                            this.toggle('top')
+                        }}>Hello First Tip</ToolTip>
+                </Col>
+                <Col sm={3}>
+                    <p id="bottom">Bottom Tooltip</p>
                     <ToolTip
                         position={"bottom"}
-                        id={"second"}
-                        show={this.state.showSecond}
-                        toggle={this.toggleSecond.bind(this)}>Congratulations</ToolTip>
-              </div>
+                        id={"bottom"}
+                        show={this.state.direction.bottom}
+                        toggle={() => {
+                            this.toggle('bottom')
+                        }}>Hello First Tip</ToolTip>
+                </Col>
+
+                <span className="example-reagent">Link Tooltip</span>
+                <Col sm={12}>
+                    <p>Link <a href="#" id={"links"}>Tooltip</a></p>
+                    <ToolTip
+                        position={"right"}
+                        id={"links"}
+                        show={this.state.direction.links}
+                        toggle={() => {
+                            this.toggle('links')
+                        }}>Hello First Tip</ToolTip>
+                </Col>
+
+                <span className="example-reagent">Button Tooltip</span>
+                <Col sm={12}>
+                    <Button color={"primary"} id={"buttons"}>Buton</Button>
+                    <ToolTip
+                        position={"right"}
+                        id={"buttons"}
+                        show={this.state.direction.buttons}
+                        toggle={() => {
+                            this.toggle('buttons')
+                        }}>Hello First Tip</ToolTip>
+                </Col>
+            </Row>
+        </div>
     }
 
-    toggle(){
-        this.setState({showFirst : !this.state.showFirst});
-    }
-    toggleSecond(){
-        this.setState({showSecond : !this.state.showSecond});
+    toggle(direction: any) {
+        this.state.direction[direction] = !this.state.direction[direction];
+        this.forceUpdate();
     }
 
 }

@@ -12,6 +12,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var karcin_ui_1 = require("karcin-ui");
+var reactstrap_1 = require("reactstrap");
 var MenuExample = /** @class */ (function (_super) {
     __extends(MenuExample, _super);
     function MenuExample() {
@@ -110,11 +111,19 @@ var MenuExample = /** @class */ (function (_super) {
                 ]
             }
         ];
-        return React.createElement("div", null,
-            React.createElement(karcin_ui_1.Menu, { data: data, accordion: true, onChange: function (val) { _this.handleChange(val); } }));
+        return React.createElement("div", { className: "example-menu" },
+            React.createElement(reactstrap_1.Row, { className: "basic-row" },
+                React.createElement("span", { className: "example-reagent" }, "Accordion Men\u00FC"),
+                React.createElement(reactstrap_1.Col, { sm: 6 },
+                    React.createElement(karcin_ui_1.Menu, { data: data, accordion: true, onChange: function (val) { _this.handleChange(val); } })),
+                React.createElement("span", { className: "example-reagent" }, "Hover Menu"),
+                React.createElement(reactstrap_1.Col, { sm: 6 },
+                    React.createElement(karcin_ui_1.Menu, { data: data, hover: true, onChange: function (val) { _this.handleChange(val); } })),
+                React.createElement("span", { className: "example-reagent" }, "Collapse Menu"),
+                React.createElement(reactstrap_1.Col, { sm: 6 },
+                    React.createElement(karcin_ui_1.Menu, { data: data, onChange: function (val) { _this.handleChange(val); } }))));
     };
     MenuExample.prototype.handleChange = function (val) {
-        console.log(val);
     };
     return MenuExample;
 }(React.Component));

@@ -2,10 +2,28 @@ import * as React from "react";
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 
 export interface TabProps {
+    /**
+     * active tab id
+     */
     activeTab?:number;
+    /**
+     * new class name add
+     */
     className?:string;
+
+    /**
+     * vertical option boolean
+     */
     vertical?:boolean | any;
+
+    /**
+     * align option "left" and "right"
+     */
     align?:string;
+
+    /**
+     * tab head color style "primary", "secondary", "danger", "warning", "info"
+     */
     color?:string | any;
 }
 

@@ -29,10 +29,10 @@ var Menu = /** @class */ (function (_super) {
         _this.state = {
             menuData: [],
             menuActive: [],
-            type: _this.props.type,
+            hover: _this.props.hover,
             active: null,
-            addActive: false,
-            activeControl: false
+            activeControl: false,
+            collapseActive: false
         };
         return _this;
     }
@@ -45,7 +45,7 @@ var Menu = /** @class */ (function (_super) {
     Menu.prototype.componentWillReceiveProps = function (props) {
         this.setState({
             menuData: props.data.slice(0),
-            type: props.type
+            hover: props.hover
         });
         this.activeFind(this.props.active);
     };
@@ -62,7 +62,7 @@ var Menu = /** @class */ (function (_super) {
         var menusList = this.props.data.slice(0);
         this.state.menuData.length = 0;
         this.menuChilds = this.menuLoop(menusList, undefined, 0, false);
-        return React.createElement(reactstrap_1.Nav, { key: "0", className: "karcin-menu " + ((this.state.type === 'hover') ? 'hover-menu' : '') }, this.menuChilds);
+        return React.createElement(reactstrap_1.Nav, { key: "0", className: "karcin-menu " + ((this.state.hover) ? 'hover-menu' : '') }, this.menuChilds);
     };
     /**
      * get start menu loop
@@ -79,7 +79,7 @@ var Menu = /** @class */ (function (_super) {
         newData.forEach(function (value, index) {
             // active control
             var keys = (key !== undefined) ? key + "-" + index : index.toString();
-            var params = { keys: keys, level: level, collapse: false };
+            var params = { keys: keys, level: level, collapse: false, hover: false, onOpened: false, onClosed: false };
             var activeControlBool = false;
             self.state.menuActive.forEach(function (val) {
                 if (val.keys === keys) {
@@ -90,14 +90,19 @@ var Menu = /** @class */ (function (_super) {
                 self.state.menuActive.push(params);
                 value['keys'] = keys;
                 value['level'] = level;
-                var menuDatas = self.state.menuData.slice(0);
-                menuDatas.push(value);
                 self.state.menuData.push(value);
             }
-            var actives = _this.menuItemActive(keys);
-            listMenu.push(React.createElement(reactstrap_1.NavItem, { key: index, className: (actives) ? 'active' : '' },
+            var getActiveValue = _this.menuItemActive(keys);
+            var actives = false;
+            if (getActiveValue['value']['onOpened'] !== false && getActiveValue['value']['onClosed'] === false) {
+                actives = true;
+            }
+            else if (value.items === undefined) {
+                actives = getActiveValue['active'];
+            }
+            listMenu.push(React.createElement(reactstrap_1.NavItem, { key: index, className: (actives ? 'active' : '') },
                 React.createElement("div", { className: "menu-head", onClick: function () {
-                        if (_this.state.type === 'dropDown') {
+                        if (!_this.state.hover) {
                             _this.toggleActiveMenu(params);
                         }
                     } }, (_this.props.renderer !== undefined ?
@@ -113,9 +118,30 @@ var Menu = /** @class */ (function (_super) {
                             React.createElement(FaIcon_1.default, { code: "fa-angle-right", className: "open-icon" })) : ''))),
                 (value.items !== undefined && value.items.length > 0) ? _this.menuLoop(value.items, keys, level + 1, true) : ''));
         });
-        var active = this.menuItemActive(key);
-        return (collapse ? React.createElement(reactstrap_1.Collapse, { isOpen: active },
+        var active = (!this.state.hover) ? this.menuItemActive(key) : false;
+        return (collapse ? React.createElement(reactstrap_1.Collapse, { isOpen: active['active'], onEntered: function () {
+                _this.collapseOnControl(key, true);
+            }, onExited: function () {
+                _this.collapseOnControl(key, false);
+            } },
             React.createElement(reactstrap_1.Nav, null, listMenu)) : React.createElement(reactstrap_1.Nav, null, listMenu));
+    };
+    /**
+     * menu collapse opened and closed controlling method
+     * @param key
+     * @param val
+     */
+    Menu.prototype.collapseOnControl = function (key, val) {
+        var active = this.menuItemActive(key);
+        if (val) {
+            this.state.menuActive[active['index']].onOpened = true;
+            this.state.menuActive[active['index']].onClosed = false;
+        }
+        else {
+            this.state.menuActive[active['index']].onClosed = true;
+            this.state.menuActive[active['index']].onOpened = false;
+        }
+        this.forceUpdate();
     };
     /**
      * click dropdown menu toggle
@@ -150,9 +176,7 @@ var Menu = /** @class */ (function (_super) {
             }
             return val;
         });
-        this.setState({
-            addActive: true
-        });
+        this.forceUpdate();
     };
     /**
      * active find function
@@ -199,20 +223,25 @@ var Menu = /** @class */ (function (_super) {
      * @returns {boolean}
      */
     Menu.prototype.menuItemActive = function (id) {
-        var active = false;
-        this.state.menuActive.forEach(function (val) {
+        var _this = this;
+        var value = {};
+        this.state.menuActive.forEach(function (val, index) {
             var keys = (id !== undefined) ? id : "0";
             if (val.keys === keys) {
-                active = val.collapse;
+                value['value'] = val;
+                value['index'] = index;
+                if (!_this.props.hover) {
+                    value['active'] = val.collapse;
+                }
             }
         });
-        return active;
+        return value;
     };
     /**
-     * @type {{type: string; accordion: boolean; active: any[]}}
+     * @type {{hover: boolean; accordion: boolean; active: any[]}}
      */
     Menu.defaultProps = {
-        type: 'dropDown',
+        hover: false,
         accordion: false,
         active: [],
     };

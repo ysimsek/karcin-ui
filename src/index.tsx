@@ -14,7 +14,7 @@ import ToolTip from "./functional/tip/ToolTip";
 import Pagination from "./functional/paging/Pagination";
 import List from "./functional/list/List";
 import ListItem from "./functional/list/ListItem";
-
+import Progress from "./functional/progress/Progress";
 
 import NumericInput from "./inputs/NumericInput";
 import PasswordInput from "./inputs/PasswordInput";
@@ -54,6 +54,7 @@ export {
     Label,
     PopOver,
     Pagination,
+    Progress,
     ToolTip,
     List,
     ListItem,
