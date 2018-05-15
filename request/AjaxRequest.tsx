@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Application from '../applications/Applications';
 
 export default class AjaxRequest {
 
@@ -143,7 +144,7 @@ export default class AjaxRequest {
 
     constructor(props?: Object, callback?:any) {
         // get object props control
-        if(props !== undefined) { this.props = this.mergeObject(this.props, props); }
+        if(props !== undefined) { this.props = Application.mergeObject(this.props, props); }
 
         // url this.props change to url
         if(callback !== undefined) { this.props['callback'] = callback; }
@@ -170,27 +171,4 @@ export default class AjaxRequest {
 
     }
 
-    mergeObject(mainObj: object, mergeObj: object) {
-        let obj = {};
-
-        if (mainObj !== undefined && mergeObj !== undefined) {
-            // main object
-            for (let mnObj in mainObj) {
-                obj[mnObj] = mainObj[mnObj];
-            }
-
-            // merge object
-            for (let mergObj in mergeObj) {
-                if (obj[mergObj] !== undefined) {
-                    obj[mergObj] = mergeObj[mergObj];
-                } else {
-                    throw new Error('Tanımsız bir name(' + mergObj + ') kullandınız!');
-                }
-            }
-
-            return obj;
-        } else {
-            throw new Error('Lütfen default objeniz ve birleştireceğiniz objeyi boş burakmayınız...');
-        }
-    }
 }

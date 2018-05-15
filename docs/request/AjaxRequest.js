@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
+var Applications_1 = require("../applications/Applications");
 var AjaxRequest = /** @class */ (function () {
     function AjaxRequest(props, callback) {
         this.props = {
@@ -112,7 +113,7 @@ var AjaxRequest = /** @class */ (function () {
         };
         // get object props control
         if (props !== undefined) {
-            this.props = this.mergeObject(this.props, props);
+            this.props = Applications_1.default.mergeObject(this.props, props);
         }
         // url this.props change to url
         if (callback !== undefined) {
@@ -141,28 +142,6 @@ var AjaxRequest = /** @class */ (function () {
                 _this.props['callback'](error);
             }
         });
-    };
-    AjaxRequest.prototype.mergeObject = function (mainObj, mergeObj) {
-        var obj = {};
-        if (mainObj !== undefined && mergeObj !== undefined) {
-            // main object
-            for (var mnObj in mainObj) {
-                obj[mnObj] = mainObj[mnObj];
-            }
-            // merge object
-            for (var mergObj in mergeObj) {
-                if (obj[mergObj] !== undefined) {
-                    obj[mergObj] = mergeObj[mergObj];
-                }
-                else {
-                    throw new Error('Tanımsız bir name(' + mergObj + ') kullandınız!');
-                }
-            }
-            return obj;
-        }
-        else {
-            throw new Error('Lütfen default objeniz ve birleştireceğiniz objeyi boş burakmayınız...');
-        }
     };
     return AjaxRequest;
 }());

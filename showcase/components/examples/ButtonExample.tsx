@@ -1,18 +1,27 @@
 import * as React from "react";
 import {Button} from 'karcin-ui';
-import AjaxRequest from '../../../request/AjaxRequest';
+import Store from '../../../store/Store';
+import LocalEndPoint from '../../../store/LocaleEndPoint';
 
 export default class ButtonExample extends React.Component<any, any> {
-    render() {
+    store = null;
+    constructor(props:any){
+        super(props);
 
-        let denem = {url: 'dasds'};
-        let asd = new AjaxRequest({data: {deniz: 'dede'}}, (response) => {
-            this.onSuccess(response)
+        this.store = new Store({
+            idField : 'id',
+            endPoint: new LocalEndPoint({
+                data: [{ id: 1, name: "John", surname: "Doe" }, { id: 2, name: "Jane", surname: "Roe" }]
+            })
         });
+
+        this.store.create({id :5, name: "Deneme", surname: "asd"}, (vl)=>{this.onSuccess(vl)});
+    }
+    render() {
         return (
             <div>
-                <Button color="primary">primary</Button>{' '}
-                <Button color="secondary">secondary</Button>{' '}
+                <Button color="primary" onClick={()=>{this.onError()}}>primary</Button>{' '}
+                <Button color="secondary" onClick={()=>{this.onError2()}}>secondary</Button>{' '}
                 <Button color="success">success</Button>{' '}
                 <Button color="info">info</Button>{' '}
                 <Button color="warning">warning</Button>{' '}
@@ -42,7 +51,12 @@ export default class ButtonExample extends React.Component<any, any> {
         console.log(res);
     }
 
-    onError(res) {
-        console.log(res);
+    onError() {
+        console.log(this.store.reset());
+    }
+
+    onError2(){
+        let data = [{ id: 1, name: "Deniz", surname: "Dalkılıç" }, { id: 2, name: "name", surname: "surname" }];
+        console.log(this.store.update(data));
     }
 }

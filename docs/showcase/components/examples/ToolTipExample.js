@@ -11,7 +11,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var ToolTip_1 = require("../../../src/functional/tip/ToolTip");
+var karcin_ui_1 = require("karcin-ui");
 var ToolTipExample = /** @class */ (function (_super) {
     __extends(ToolTipExample, _super);
     function ToolTipExample(props) {
@@ -28,10 +28,10 @@ var ToolTipExample = /** @class */ (function (_super) {
             React.createElement("p", null,
                 "It opens when it  ",
                 React.createElement("a", { id: "first", href: "#" }, "comes on")),
-            React.createElement(ToolTip_1.default, { position: "right", id: "first", show: this.state.showFirst, toggle: this.toggle.bind(this) }, "Hello First Tip"),
+            React.createElement(karcin_ui_1.ToolTip, { position: "right", id: "first", show: this.state.showFirst, toggle: this.toggle.bind(this) }, "Hello First Tip"),
             React.createElement("hr", null),
             React.createElement("span", { id: "second" }, "Come on over"),
-            React.createElement(ToolTip_1.default, { position: "bottom", id: "second", show: this.state.showSecond, toggle: this.toggleSecond.bind(this) }, "Congratulations"));
+            React.createElement(karcin_ui_1.ToolTip, { position: "bottom", id: "second", show: this.state.showSecond, toggle: this.toggleSecond.bind(this) }, "Congratulations"));
     };
     ToolTipExample.prototype.toggle = function () {
         this.setState({ showFirst: !this.state.showFirst });

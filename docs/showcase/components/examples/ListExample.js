@@ -13,8 +13,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var reactstrap_1 = require("reactstrap");
 var karcin_ui_1 = require("karcin-ui");
-var List_1 = require("../../../src/functional/list/List");
-var ListItem_1 = require("../../../src/functional/list/ListItem");
 var ListExample = /** @class */ (function (_super) {
     __extends(ListExample, _super);
     function ListExample() {
@@ -31,27 +29,27 @@ var ListExample = /** @class */ (function (_super) {
         return React.createElement(reactstrap_1.Row, null,
             React.createElement(reactstrap_1.Col, { md: 4 },
                 React.createElement(karcin_ui_1.Panel, { title: "Simple List" },
-                    React.createElement(List_1.default, { data: data, value: "value" }))),
+                    React.createElement(karcin_ui_1.List, { data: data, value: "value" }))),
             React.createElement(reactstrap_1.Col, { md: 4 },
                 React.createElement(karcin_ui_1.Panel, { title: "Action List" },
-                    React.createElement(List_1.default, { data: data, value: "value", action: true }))),
+                    React.createElement(karcin_ui_1.List, { data: data, value: "value", action: true }))),
             React.createElement(reactstrap_1.Col, { md: 4 },
                 React.createElement(karcin_ui_1.Panel, { title: "Simple Child List" },
-                    React.createElement(List_1.default, null,
-                        React.createElement(ListItem_1.default, null, "Lorem"),
-                        React.createElement(ListItem_1.default, null, "Ipsum"),
-                        React.createElement(ListItem_1.default, null, "is simply"),
+                    React.createElement(karcin_ui_1.List, null,
+                        React.createElement(karcin_ui_1.ListItem, null, "Lorem"),
+                        React.createElement(karcin_ui_1.ListItem, null, "Ipsum"),
+                        React.createElement(karcin_ui_1.ListItem, null, "is simply"),
                         React.createElement("div", null, "Dummy Text"),
                         React.createElement("span", null, "Of the printing")))),
             React.createElement(reactstrap_1.Col, { md: 4 },
                 React.createElement(karcin_ui_1.Panel, { title: "Link to Data (<a>)" },
-                    React.createElement(List_1.default, { data: data, value: "value", tag: "a", tagValue: "href" }))),
+                    React.createElement(karcin_ui_1.List, { data: data, value: "value", tag: "a", tagValue: "href" }))),
             React.createElement(reactstrap_1.Col, { md: 4 },
                 React.createElement(karcin_ui_1.Panel, { title: "Link to Data (<button>)" },
-                    React.createElement(List_1.default, { data: data, value: "value", tag: "button", tagValue: "href" }))),
+                    React.createElement(karcin_ui_1.List, { data: data, value: "value", tag: "button", tagValue: "href" }))),
             React.createElement(reactstrap_1.Col, { md: 4 },
                 React.createElement(karcin_ui_1.Panel, { title: "Active Link" },
-                    React.createElement(List_1.default, { data: data, value: "value", active: true, activeValue: "id", activeId: 4 }))));
+                    React.createElement(karcin_ui_1.List, { data: data, value: "value", active: true, activeValue: "id", activeId: 4 }))));
     };
     return ListExample;
 }(React.Component));

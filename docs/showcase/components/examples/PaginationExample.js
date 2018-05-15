@@ -11,7 +11,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var Pagination_1 = require("../../../src/functional/paging/Pagination");
+var karcin_ui_1 = require("karcin-ui");
 var PaginationExample = /** @class */ (function (_super) {
     __extends(PaginationExample, _super);
     function PaginationExample(props) {
@@ -21,21 +21,40 @@ var PaginationExample = /** @class */ (function (_super) {
             { id: 101, name: "Badge", link: "#/Components/Pagination" },
             { id: 102, name: "Label", link: "#/Components/Pagination" },
             { id: 103, name: "Menu", link: "#/Components/Pagination" },
+            { id: 104, name: "Font Awesome Icon", link: "#/Components/Pagination" },
+            { id: 105, name: "Tabs", link: "#/Components/Pagination" },
+            { id: 106, name: "Notify", link: "#/Components/Pagination" },
+            { id: 107, name: "Panel", link: "#/Components/Pagination" },
+            { id: 108, name: "DataFilter", link: "#/Components/Pagination" },
+            { id: 109, name: "List", link: "#/Components/Pagination" },
+            { id: 110, name: "ToolTip", link: "#/Components/Pagination" },
+            { id: 111, name: "PopOver", link: "#/Components/Pagination" },
+            { id: 112, name: "Pagination", link: "#/Components/Pagination" },
         ];
         _this.state = {
-            selectedPage: ""
+            selectedPage: 1,
+            selectedPage2: 1
         };
         return _this;
     }
     PaginationExample.prototype.render = function () {
         return React.createElement("div", null,
-            "Selected Page: ",
-            this.state.selectedPage,
+            React.createElement(karcin_ui_1.Label, null,
+                "Selected Page: ",
+                this.state.selectedPage),
+            React.createElement(karcin_ui_1.Pagination, { data: this.data, hrefValue: "link", pageCount: 13, selectedValue: this.getClick.bind(this) }),
             React.createElement("br", null),
-            React.createElement(Pagination_1.default, { data: this.data, hrefValue: "link", selectedValue: this.getClick.bind(this) }));
+            React.createElement(karcin_ui_1.Label, null,
+                "Selected Page: ",
+                this.state.selectedPage2),
+            React.createElement(karcin_ui_1.Pagination, { data: this.data, hrefValue: "link", pageCount: 5, selectedValue: this.getClick2.bind(this) }));
     };
     PaginationExample.prototype.getClick = function (e) {
+        console.log(e.selectData);
         this.setState({ selectedPage: e.page });
+    };
+    PaginationExample.prototype.getClick2 = function (e) {
+        this.setState({ selectedPage2: e.page });
     };
     return PaginationExample;
 }(React.Component));

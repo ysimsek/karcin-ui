@@ -11,7 +11,6 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var PopOver_1 = require("../../../src/functional/tip/PopOver");
 var karcin_ui_1 = require("karcin-ui");
 var PopOverExample = /** @class */ (function (_super) {
     __extends(PopOverExample, _super);
@@ -26,11 +25,11 @@ var PopOverExample = /** @class */ (function (_super) {
     PopOverExample.prototype.render = function () {
         return React.createElement("div", null,
             React.createElement(karcin_ui_1.Button, { id: "pop1", onClick: this.toggle.bind(this) }, "Click to Me"),
-            React.createElement(PopOver_1.default, { id: "pop1", show: this.state.show, toggle: this.toggle.bind(this), title: "What is React?" },
+            React.createElement(karcin_ui_1.PopOver, { id: "pop1", show: this.state.show, toggle: this.toggle.bind(this), title: "What is React?" },
                 React.createElement("div", null, "React is a declarative, efficient, and flexible JavaScript library for building user interfaces.")),
             React.createElement("hr", null),
             React.createElement("span", { id: "pop2", onClick: this.toggle2.bind(this) }, "Click to Me"),
-            React.createElement(PopOver_1.default, { id: "pop2", show: this.state.show2, toggle: this.toggle2.bind(this), title: "What is React?" },
+            React.createElement(karcin_ui_1.PopOver, { id: "pop2", show: this.state.show2, toggle: this.toggle2.bind(this), title: "What is React?" },
                 React.createElement("div", null, "React is a declarative, efficient, and flexible JavaScript library for building user interfaces.")));
     };
     PopOverExample.prototype.toggle = function (e) {
