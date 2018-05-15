@@ -310,6 +310,7 @@ span.opt {
     border-color :#9aba42;
     color: #9aba42;
     font-weight: bold;
+    background: transparent;
 }
 
 .component-props > .tab-content {
