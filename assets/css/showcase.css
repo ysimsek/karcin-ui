@@ -231,6 +231,10 @@ body {padding: 0; margin: 0; font-family: 'Quicksand', sans-serif; color:#303030
 
 .side-menu .karcin-menu {
     margin-top: 20px;
+    background: none;
+}
+.side-menu .karcin-menu .nav-item .nav-link {
+    border-bottom:none;
 }
 
 .container-component {
