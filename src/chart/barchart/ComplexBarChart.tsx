@@ -43,6 +43,11 @@ export interface ComposedBarChartData{
      * default 300px
      */
     height ?: number;
+    /**
+     * Scroll true or false
+     * default false
+     */
+    scroll?: boolean;
 
 }
 
@@ -54,7 +59,8 @@ export default class ComplexBarChart extends React.Component<ComposedBarChartDat
      */
     static defaultProps: Partial<ComposedBarChartData> = {
         height : 300,
-        theme: "none"
+        theme: "none",
+        scroll: false
     }
 
     /**
@@ -121,7 +127,7 @@ export default class ComplexBarChart extends React.Component<ComposedBarChartDat
                 }
             } ],
             "graphs": this.returnGrapsData(this.props.type),
-
+            "chartScrollbar": (this.props.scroll == true ? {} : undefined),
             "chartCursor": {
                 "zoomable": false,
                 "categoryBalloonDateFormat": "DD",

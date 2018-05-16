@@ -46,6 +46,11 @@ export interface LineChartProps{
      * Line changes true or false
      */
     inline ?:boolean;
+    /**
+     * Scroll true or false
+     * default false
+     */
+    scroll?: boolean;
 }
 
 export default class LineChart extends React.Component<LineChartProps,any>{
@@ -82,6 +87,7 @@ export default class LineChart extends React.Component<LineChartProps,any>{
                 "borderThickness": 1,
                 "shadowAlpha": 0
             },
+            "chartScrollbar": (this.props.scroll == true ? {} : undefined),
             "graphs": [{
                 "id": "g1",
                 "useNegativeColorIfDown": true,

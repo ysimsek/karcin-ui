@@ -887,3 +887,9 @@ New Reactstrap CSS
 .popup-over-search .form-control:focus {
     box-shadow: none;
 }
+
+a[href='http://www.amcharts.com/javascript-maps/'] {
+    display: none !important;
+}
+
+

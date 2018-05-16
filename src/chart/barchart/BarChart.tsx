@@ -59,6 +59,11 @@ export interface SimpleBarChartProps{
      * default 200px
      */
     height?:number;
+    /**
+     * Scroll true or false
+     * default false
+     */
+    scroll?: boolean;
 }
 
 export default class SimpleLineChart extends React.Component<SimpleBarChartProps,any>{
@@ -70,7 +75,8 @@ export default class SimpleLineChart extends React.Component<SimpleBarChartProps
         theme : "light",
         threeD: false,
         inline: false,
-        height:200
+        height:200,
+        scroll: false
     }
 
     render(){
@@ -89,6 +95,7 @@ export default class SimpleLineChart extends React.Component<SimpleBarChartProps
                 "gridAboveGraphs": true,
                 "depth3D": (this.props.threeD == true ? 40 : null),
                 "angle": (this.props.threeD == true ? 30 : null),
+                "chartScrollbar": (this.props.scroll == true ? {} : undefined),
                 "graphs": [ {
                     "balloonText": "[[category]]: <b>[[value]]</b>",
                     "fillColorsField": this.props.colorField,

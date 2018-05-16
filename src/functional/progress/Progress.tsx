@@ -30,6 +30,7 @@ export interface ProgressProps{
      * You can not use multi child elements
      */
     title ?: string | any;
+    max ?: number | string;
 }
 
 export default class Progress extends React.Component<ProgressProps,any>{
@@ -47,6 +48,7 @@ export default class Progress extends React.Component<ProgressProps,any>{
                     striped={this.props.striped ? true : false}
                     animated ={this.props.animated ? true : false}
                     bar={this.props.bar ? true : false}
+                    max={this.props.max}
                     color={this.props.color}
                     value={this.props.value}
                 >

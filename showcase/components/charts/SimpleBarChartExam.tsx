@@ -63,10 +63,11 @@ export default class SimpleBarChartExam extends React.Component<any,any>{
                 </Panel>
             </Col>
             <Col md={6}>
-                <Panel title={"Simple Pattern Theme Chart"}>
+                <Panel title={"Simple Pattern Theme Chart Scrolling"}>
                     <BarChart
                         data={data}
                         theme={"black"}
+                        scroll={true}
                         textColor={"#3333aa"}
                         categoryField={"country"}
                         categoryValue={"visits"}

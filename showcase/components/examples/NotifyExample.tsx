@@ -27,7 +27,7 @@ export default class NotifyExample extends React.Component<any,any>{
                 <Col md={4}>
                     <SelectInput
                         name="position"
-                        label={"Notify pozisyonunun seçiniz"}
+                        label={"Select Notify Position"}
                         item={this.state.position}
                         value="value"
                         id="position"
@@ -37,7 +37,7 @@ export default class NotifyExample extends React.Component<any,any>{
                 <Col md={4}>
                     <TextInput
                         name="message"
-                        label={"Mesaj Yazınız"}
+                        label={"Write the Message"}
                         value={this.state.message}
                         onChange={this.onChange.bind(this)}
                     />
@@ -46,7 +46,7 @@ export default class NotifyExample extends React.Component<any,any>{
                     <NumericInput
                         name={"second"}
                         value={this.state.second}
-                        label={"Notify Süresini(sn) Yazınız"}
+                        label={"Set the alert time(s)"}
                         onChange={this.onChange.bind(this)}
                     />
                 </Col>

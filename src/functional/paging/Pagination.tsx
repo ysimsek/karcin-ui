@@ -210,7 +210,6 @@ export default class Pagination extends React.Component<PaginationProps,any>{
      */
     handleChange(e:any):void{
         let pageCount:any = this.showPage;
-
         if(e.target.id == "increase"){
             this.increaseOne(pageCount);
         }else if(e.target.id == "decrease"){
@@ -222,6 +221,18 @@ export default class Pagination extends React.Component<PaginationProps,any>{
         }else if(e.target.id == "blabla" || e.target.id == ""){
             return;
         }else {
+            if(this.props.pageCount == 3){
+                if(Math.max(...pageCount) > parseInt(e.target.id)){
+
+                }else if(Math.max(...pageCount)){
+
+                }
+                debugger;
+            }else if(this.props.pageCount == 4){
+
+            }else if(this.props.pageCount == 5){
+
+            }
             this.selectPage = e.target.text;
         }
 

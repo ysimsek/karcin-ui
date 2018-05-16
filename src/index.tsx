@@ -39,6 +39,7 @@ import MicroChart from "./chart/extrachart/MicroChart";
 import CylinderChart from "./chart/extrachart/CylinderChart";
 import PyramidChart from "./chart/extrachart/PyramidChart";
 import LineChartTrend from "./chart/linechart/LineChartTrend";
+import MapChart from "./chart/mapchart/MapChart";
 
 import "./css/karcin-ui.css";
 
@@ -72,6 +73,7 @@ export {
     BarChart,
     ComposedBarChart,
     ComplexBarChart,
+    MapChart,
     LineChart,
     PieChart,
     ScatterChart,
