@@ -136,7 +136,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
 
             // active control
             let keys = (key !== undefined) ? key + "-" + index : index.toString();
-            let params = {keys: keys, level: level, collapse: false, hover:false, onOpened: false, onClosed: false};
+            let params = {keys: keys, level: level, collapse: false, hover:false};
             let activeControlBool = false;
 
             self.state.menuActive.forEach((val: any) => {
@@ -153,17 +153,10 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
             }
 
 
-            let getActiveValue = this.menuItemActive(keys);
-            let actives = false;
-
-            if (getActiveValue['value']['onOpened'] !== false && getActiveValue['value']['onClosed'] === false) {
-                actives = true;
-            } else if (value.items === undefined) {
-                actives = getActiveValue['active'];
-            }
+            let actives = this.menuItemActive(keys);
 
 
-            listMenu.push(<NavItem key={index}  className={(actives ? 'active' : '')}>
+            listMenu.push(<NavItem key={index}  className={(actives) ? 'active' : ''}>
                 <div className="menu-head" onClick={() => {
                     if (!this.state.hover) {
                         this.toggleActiveMenu(params)
@@ -187,31 +180,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
 
         let active = (!this.state.hover) ? this.menuItemActive(key) : false;
 
-        return (collapse ? <Collapse isOpen={active['active']} onEntered={() => {
-            this.collapseOnControl(key, true)
-        }} onExited={() => {
-            this.collapseOnControl(key, false)
-        }}><Nav>{listMenu}</Nav></Collapse> : <Nav>{listMenu}</Nav>);
-    }
-
-
-    /**
-     * menu collapse opened and closed controlling method
-     * @param key
-     * @param val
-     */
-    collapseOnControl(key: any, val: any) {
-        let active = this.menuItemActive(key);
-
-        if (val) {
-            this.state.menuActive[active['index']].onOpened = true;
-            this.state.menuActive[active['index']].onClosed = false;
-        } else {
-            this.state.menuActive[active['index']].onClosed = true;
-            this.state.menuActive[active['index']].onOpened = false;
-        }
-
-        this.forceUpdate();
+        return (collapse ? <Collapse isOpen={active}><Nav>{listMenu}</Nav></Collapse> : <Nav>{listMenu}</Nav>);
     }
 
     /**
@@ -297,22 +266,17 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
      * @param id
      * @returns {boolean}
      */
-    menuItemActive(id: any) {
-        let value = {};
+    menuItemActive(id: any):boolean {
+        let active = false;
 
         this.state.menuActive.forEach((val: any, index: number) => {
             let keys = (id !== undefined) ? id : "0";
             if (val.keys === keys) {
-                value['value'] = val;
-                value['index'] = index;
-
-                if(!this.props.hover) {
-                    value['active'] = val.collapse;
-                }
+                active = val.collapse;
             }
         });
 
-        return value;
+        return active;
     }
 
 

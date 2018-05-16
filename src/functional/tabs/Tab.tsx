@@ -22,7 +22,7 @@ export interface TabProps {
     align?:string;
 
     /**
-     * tab head color style "primary", "secondary", "danger", "warning", "info"
+     * tab head color style "primary", "secondary", "danger", "warning", "info", "dark", "light", "success"
      */
     color?:string | any;
 }

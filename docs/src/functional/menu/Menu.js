@@ -79,7 +79,7 @@ var Menu = /** @class */ (function (_super) {
         newData.forEach(function (value, index) {
             // active control
             var keys = (key !== undefined) ? key + "-" + index : index.toString();
-            var params = { keys: keys, level: level, collapse: false, hover: false, onOpened: false, onClosed: false };
+            var params = { keys: keys, level: level, collapse: false, hover: false };
             var activeControlBool = false;
             self.state.menuActive.forEach(function (val) {
                 if (val.keys === keys) {
@@ -92,15 +92,8 @@ var Menu = /** @class */ (function (_super) {
                 value['level'] = level;
                 self.state.menuData.push(value);
             }
-            var getActiveValue = _this.menuItemActive(keys);
-            var actives = false;
-            if (getActiveValue['value']['onOpened'] !== false && getActiveValue['value']['onClosed'] === false) {
-                actives = true;
-            }
-            else if (value.items === undefined) {
-                actives = getActiveValue['active'];
-            }
-            listMenu.push(React.createElement(reactstrap_1.NavItem, { key: index, className: (actives ? 'active' : '') },
+            var actives = _this.menuItemActive(keys);
+            listMenu.push(React.createElement(reactstrap_1.NavItem, { key: index, className: (actives) ? 'active' : '' },
                 React.createElement("div", { className: "menu-head", onClick: function () {
                         if (!_this.state.hover) {
                             _this.toggleActiveMenu(params);
@@ -119,29 +112,8 @@ var Menu = /** @class */ (function (_super) {
                 (value.items !== undefined && value.items.length > 0) ? _this.menuLoop(value.items, keys, level + 1, true) : ''));
         });
         var active = (!this.state.hover) ? this.menuItemActive(key) : false;
-        return (collapse ? React.createElement(reactstrap_1.Collapse, { isOpen: active['active'], onEntered: function () {
-                _this.collapseOnControl(key, true);
-            }, onExited: function () {
-                _this.collapseOnControl(key, false);
-            } },
+        return (collapse ? React.createElement(reactstrap_1.Collapse, { isOpen: active },
             React.createElement(reactstrap_1.Nav, null, listMenu)) : React.createElement(reactstrap_1.Nav, null, listMenu));
-    };
-    /**
-     * menu collapse opened and closed controlling method
-     * @param key
-     * @param val
-     */
-    Menu.prototype.collapseOnControl = function (key, val) {
-        var active = this.menuItemActive(key);
-        if (val) {
-            this.state.menuActive[active['index']].onOpened = true;
-            this.state.menuActive[active['index']].onClosed = false;
-        }
-        else {
-            this.state.menuActive[active['index']].onClosed = true;
-            this.state.menuActive[active['index']].onOpened = false;
-        }
-        this.forceUpdate();
     };
     /**
      * click dropdown menu toggle
@@ -223,19 +195,14 @@ var Menu = /** @class */ (function (_super) {
      * @returns {boolean}
      */
     Menu.prototype.menuItemActive = function (id) {
-        var _this = this;
-        var value = {};
+        var active = false;
         this.state.menuActive.forEach(function (val, index) {
             var keys = (id !== undefined) ? id : "0";
             if (val.keys === keys) {
-                value['value'] = val;
-                value['index'] = index;
-                if (!_this.props.hover) {
-                    value['active'] = val.collapse;
-                }
+                active = val.collapse;
             }
         });
-        return value;
+        return active;
     };
     /**
      * @type {{hover: boolean; accordion: boolean; active: any[]}}

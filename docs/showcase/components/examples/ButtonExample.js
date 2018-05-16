@@ -31,6 +31,10 @@ var ButtonExample = /** @class */ (function (_super) {
     ButtonExample.prototype.render = function () {
         var _this = this;
         return (React.createElement("div", null,
+            React.createElement(karcin_ui_1.Button, { color: "light", onClick: function () { _this.onError(); } }, "light"),
+            ' ',
+            React.createElement(karcin_ui_1.Button, { color: "dark", onClick: function () { _this.onError(); } }, "dark"),
+            ' ',
             React.createElement(karcin_ui_1.Button, { color: "primary", onClick: function () { _this.onError(); } }, "primary"),
             ' ',
             React.createElement(karcin_ui_1.Button, { color: "secondary", onClick: function () { _this.onError2(); } }, "secondary"),
@@ -45,6 +49,10 @@ var ButtonExample = /** @class */ (function (_super) {
             ' ',
             React.createElement(karcin_ui_1.Button, { color: "link" }, "link"),
             React.createElement("hr", null),
+            React.createElement(karcin_ui_1.Button, { outline: true, color: "light" }, "light"),
+            ' ',
+            React.createElement(karcin_ui_1.Button, { outline: true, color: "dark" }, "dark"),
+            ' ',
             React.createElement(karcin_ui_1.Button, { outline: true, color: "primary" }, "primary"),
             ' ',
             React.createElement(karcin_ui_1.Button, { outline: true, color: "secondary" }, "secondary"),

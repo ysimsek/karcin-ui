@@ -21,24 +21,17 @@ var Components = /** @class */ (function (_super) {
         _this.state = {
             data: json.data,
             active: [],
-            menuResponsiveSize: 900,
             menuToggle: props.menuToggle,
-            responsiveMenu: { control: false }
+            responsiveMenu: props.responsiveMenu
         };
-        if (_this.state.menuResponsiveSize >= window.innerWidth) {
-            _this.state.responsiveMenu.control = true;
-        }
-        window.addEventListener('resize', function () {
-            if (window.innerWidth <= _this.state.menuResponsiveSize) {
-                _this.state.responsiveMenu.control = true;
-            }
-            else {
-                _this.state.responsiveMenu.control = false;
-            }
-            _this.forceUpdate();
-        });
         return _this;
     }
+    Components.prototype.UNSAFE_componentWillReceiveProps = function (props) {
+        this.setState({
+            menuToggle: props.menuToggle,
+            responsiveMenu: props.responsiveMenu
+        });
+    };
     Components.prototype.render = function () {
         var item = this.getItem(window.location.hash, this.state.data);
         var detailCmp = null;
@@ -49,7 +42,7 @@ var Components = /** @class */ (function (_super) {
             detailCmp = React.createElement("span", null, "Component Bulunamad\u0131...");
         }
         return (React.createElement("div", { className: "content-component" },
-            React.createElement("div", { className: "side-menu " + ((this.state.responsiveMenu.control) ? 'responsive-menu' : '') + " " + (this.state.menuToggle ? 'close-menu' : '') },
+            React.createElement("div", { className: "side-menu " + ((this.state.responsiveMenu) ? 'responsive-menu' : '') + " " + (this.state.menuToggle ? 'close-menu' : '') },
                 React.createElement("div", { className: "side-menu-container" },
                     React.createElement(karcin_ui_1.Menu, { data: this.state.data, accordion: true, active: this.state.active }))),
             React.createElement("div", { className: "container-component content-page" }, detailCmp)));

@@ -66,6 +66,9 @@ var SelectInput = /** @class */ (function (_super) {
     SelectInput.prototype.singleSelectResult = function () {
         var _this = this;
         var returnHtml = [];
+        if (this.props.placeholder !== false) {
+            returnHtml.push(React.createElement("option", { key: 0, value: 0 }, this.props.placeholder));
+        }
         this.props.items.forEach(function (value, index) {
             var id = value[_this.props.id];
             var val = value[_this.props.value];
@@ -124,7 +127,7 @@ var SelectInput = /** @class */ (function (_super) {
         var _this = this;
         var returnHtml = React.createElement("div", { className: "multi-select-input " + ((this.state.focusControl.control) ? 'input-focus' : '') },
             this.getMultiSelectItem(),
-            React.createElement("input", { type: "text", value: this.state.inputText.value, onKeyDown: function (event) {
+            React.createElement("input", { type: "text", placeholder: (this.state.selectedItem.length <= 0 ? this.props.placeholder !== false ? this.props.placeholder : '' : ''), value: this.state.inputText.value, onKeyDown: function (event) {
                     _this.inputKeyControl(event);
                 }, className: "multi-input", ref: function (e) { _this.selectInput = e; }, onChange: function (e) { _this.multiHandleChangeInput(e); } }));
         return returnHtml;
@@ -319,8 +322,8 @@ var SelectInput = /** @class */ (function (_super) {
      */
     SelectInput.prototype.itemActive = function () {
         var _this = this;
-        if (this.props.item !== undefined && this.props.item !== "") {
-            this.props.item.forEach(function (value, index) {
+        if (this.props.activeItem !== undefined && this.props.activeItem !== "") {
+            this.props.activeItem.forEach(function (value, index) {
                 _this.state.selectedItem.push(value);
             });
             this.forceUpdate();
@@ -330,7 +333,8 @@ var SelectInput = /** @class */ (function (_super) {
         type: "single",
         id: "id",
         value: "value",
-        labelPosition: "up"
+        labelPosition: "up",
+        placeholder: "Lütfen Seçiniz"
     };
     return SelectInput;
 }(React.Component));

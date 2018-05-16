@@ -37,10 +37,30 @@ export interface SelectInputProps {
      * Manage the value in function
      */
     onChange?: any;
-    item?:Object | any;
+
+    /**
+     * item active item or items
+     */
+    activeItem?:Object | any;
+
+    /**
+     * select div className
+     */
     className?:any;
+    /**
+     * multi select dropdown items renderer
+     */
     renderer?: React.EventHandler<any> | any;
+
+    /**
+     * multi select item selected renderer function
+     */
     selectedRenderer?: React.EventHandler<any> | any;
+
+    /**
+     * Select placeholder show text and disabled = false
+     */
+    placeholder?: string | any;
 }
 
 export interface SelectInputState {
@@ -59,7 +79,8 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         type : "single",
         id : "id",
         value: "value",
-        labelPosition : "up"
+        labelPosition : "up",
+        placeholder : "Lütfen Seçiniz"
     };
 
     selectInput:any = null;
@@ -75,7 +96,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
             dropDownItems: {data:[]},
             active: {arrowActive:null},
             focusControl : {control:false}
-        }
+        };
 
         // boş alana tıklanıldığını kontol eden method
         window.addEventListener('click', (event:any) => {
@@ -122,13 +143,16 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
     singleSelectResult(){
         let returnHtml:any[] = [];
 
+        if(this.props.placeholder !== false) {
+            returnHtml.push(<option key={0} value={0}>{this.props.placeholder}</option>);
+        }
         this.props.items.forEach((value:any, index:number) => {
             let id = value[this.props.id];
             let val = value[this.props.value];
             if(id !== undefined &&  val !== undefined){
                 returnHtml.push(<option key={index} value={id}>{val}</option>);
             }
-        })
+        });
 
         return <select className={`form-control karcin-select ${this.props.className}`} name={this.props.name} onChange={(e)=>{ this.singleHandleChange(e); }}>{returnHtml}</select>
     }
@@ -184,7 +208,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
     multiSelectResult(){
         let returnHtml = <div className={`multi-select-input ${(this.state.focusControl.control) ? 'input-focus' : ''}`}>
             {this.getMultiSelectItem()}
-            <input type="text" value={this.state.inputText.value} onKeyDown={(event)=>{
+            <input type="text" placeholder={(this.state.selectedItem.length <= 0 ? this.props.placeholder !== false ? this.props.placeholder : '' : '')} value={this.state.inputText.value} onKeyDown={(event)=>{
                 this.inputKeyControl(event);
             }} className="multi-input" ref={(e) => { this.selectInput = e; }} onChange={(e)=>{this.multiHandleChangeInput(e);}}/>
         </div>;
@@ -399,8 +423,8 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
      * props ' tan gelen active objesini atama
      */
     itemActive(){
-        if(this.props.item !== undefined && this.props.item !== ""){
-            this.props.item.forEach((value:any, index:number) => {
+        if(this.props.activeItem !== undefined && this.props.activeItem !== ""){
+            this.props.activeItem.forEach((value:any, index:number) => {
                 this.state.selectedItem.push(value);
             });
             this.forceUpdate();

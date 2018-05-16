@@ -134,6 +134,16 @@ textarea {
     border-radius: 3px 3px 0px 0px;
     color: #a59c9c;
 }
+.karcin-tab.light > .nav li a.active {
+    color: #212529;
+    background-color: #f8f9fa;
+    border-color: #f8f9fa;
+}
+.karcin-tab.dark > .nav li a.active {
+    color: #fff;
+    background-color: #343a40;
+    border-color: #343a40;
+}
 
 .karcin-tab.secondary > .nav li a.active {
     background-color: #6c757d;
@@ -566,7 +576,7 @@ New Reactstrap CSS
 
   /* panel colors - primary */
   .panel-main.primary {
-    border-color: #0275d8;
+    border-color: #007bff;
   }
   .panel-main.primary .panel-title .panel-head-button button {
     background: #045eab;
@@ -574,18 +584,18 @@ New Reactstrap CSS
     border-color: #0561b1;
   }
   .panel-main.primary .panel-title {
-    background-color: #0275d8;
-    border-bottom-color: #0275d8;
+    background-color: #007bff;
+    border-bottom-color: #007bff;
     color:#FFFFFF;
   }
   
   /* panel colors - info */
   .panel-main.info {
-    border-color: #5bc0de;
+    border-color: #17a2b8;
   }
   .panel-main.info .panel-title {
-    background-color: #5bc0de;
-    border-bottom-color: #5bc0de;
+    background-color: #17a2b8;
+    border-bottom-color: #17a2b8;
     color:#FFFFFF;
   }
   .panel-main.info .panel-title .panel-head-button button {
@@ -595,11 +605,11 @@ New Reactstrap CSS
   }
   /* panel colors - warning */
   .panel-main.warning {
-    border-color: #f0ad4e;
+    border-color: #ffc107;
   }
   .panel-main.warning .panel-title {
-    background-color: #f0ad4e;
-    border-bottom-color: #f0ad4e;
+    background-color: #ffc107;
+    border-bottom-color: #ffc107;
     color:#FFFFFF;
   }
   .panel-main.warning .panel-title .panel-head-button button {
@@ -610,11 +620,11 @@ New Reactstrap CSS
   
   /* panel colors - danger */
   .panel-main.danger {
-    border-color: #d9534f;
+    border-color: #dc3545;
   }
   .panel-main.danger .panel-title {
-    background-color: #d9534f;
-    border-bottom-color: #d9534f;
+    background-color: #dc3545;
+    border-bottom-color: #dc3545;
     color:#FFFFFF;
   }
   .panel-main.danger .panel-title .panel-head-button button {
@@ -625,11 +635,11 @@ New Reactstrap CSS
   
   /* panel colors - secondary */
   .panel-main.secondary {
-    border-color: #ccc;
+    border-color: #6c757d;
   }
   .panel-main.secondary .panel-title {
-    background-color: #fff;
-    border-bottom-color: #ccc;
+    background-color: #6c757d;
+    border-bottom-color: #6c757d;
     color: #292b2c;
   }
   .panel-main.secondary .panel-title .panel-head-button button {
@@ -639,11 +649,11 @@ New Reactstrap CSS
   }
   /* panel colors - success */
   .panel-main.success {
-    border-color: #5cb85c;
+    border-color: #28a745;
   }
   .panel-main.success .panel-title {
-    background-color: #5cb85c;
-    border-bottom-color: #5cb85c;
+    background-color: #28a745;
+    border-bottom-color: #28a745;
     color: #FFFFFF;
   }
   .panel-main.success .panel-title .panel-head-button button {
@@ -659,6 +669,7 @@ New Reactstrap CSS
 
 .karcin-menu {
     display: block;
+    background-color: #292b3a;
 }
 .karcin-menu .nav-item {
     display: block;
@@ -697,7 +708,7 @@ New Reactstrap CSS
 .karcin-menu.hover-menu .nav-item .collapse.show {
     display: none;
 }
-.karcin-menu.hover-menu .nav-item ul.nav {
+.karcin-menu.hover-menu .nav-item .nav {
     background-color: #303030;
     position: absolute;
     width: 255px;
@@ -707,8 +718,29 @@ New Reactstrap CSS
     z-index: 999999;
     padding: 0px;
 }
-.karcin-menu.hover-menu .nav-item ul.nav .nav-item {
+.karcin-menu.hover-menu .nav-item .nav .nav-item {
     padding-left: 0;
+}
+.karcin-menu .nav-item.active,
+.karcin-menu.hover-menu .nav-item:hover,
+.karcin-menu.hover-menu .nav-item .nav {
+    background: #3c3e4f;
+}
+.karcin-menu .nav-item .nav-item {
+    background: transparent !important;
+}
+.karcin-menu .nav-item.active .nav-link,
+.karcin-menu.hover-menu .nav-item:hover .nav-link{
+    border-color: #4d4f61;
+}
+.karcin-menu .nav-item.active .nav-item:hover > .menu-head .nav-link,
+.karcin-menu .nav-item.active .nav-item.active > .menu-head > .nav-link,
+.karcin-menu.hover-menu .nav-item:hover .nav-item:hover > .menu-head > .nav-link  {
+    color: #8a8da5;
+}
+.karcin-menu .nav-item .nav-link {
+    color: #ffffff;
+    border-bottom: solid 1px #43444f;
 }
 
 /**
@@ -913,4 +945,30 @@ New Reactstrap CSS
 }
 .popup-over-search .form-control:focus {
     box-shadow: none;
+}
+
+
+
+/**
+notify color
+ */
+
+/* info color */
+.css-1dbhh97, [data-css-1dbhh97] {
+    background-color: #17a2b8 !important;
+}
+
+/* success color */
+.css-lj0up9, [data-css-lj0up9] {
+    background-color: #28a745 !important;
+}
+
+/* danger color */
+.css-1imjg0i, [data-css-1imjg0i] {
+    background-color: #dc3545 !important;
+}
+
+/* warning color */
+.css-1qmczst, [data-css-1qmczst] {
+    background-color: #ffc107 !important;
 }

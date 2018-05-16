@@ -20,6 +20,8 @@ export default class ButtonExample extends React.Component<any, any> {
     render() {
         return (
             <div>
+                <Button color="light" onClick={()=>{this.onError()}}>light</Button>{' '}
+                <Button color="dark" onClick={()=>{this.onError()}}>dark</Button>{' '}
                 <Button color="primary" onClick={()=>{this.onError()}}>primary</Button>{' '}
                 <Button color="secondary" onClick={()=>{this.onError2()}}>secondary</Button>{' '}
                 <Button color="success">success</Button>{' '}
@@ -28,6 +30,8 @@ export default class ButtonExample extends React.Component<any, any> {
                 <Button color="danger">danger</Button>{' '}
                 <Button color="link">link</Button>
                 <hr/>
+                <Button outline color="light">light</Button>{' '}
+                <Button outline color="dark">dark</Button>{' '}
                 <Button outline color="primary">primary</Button>{' '}
                 <Button outline color="secondary">secondary</Button>{' '}
                 <Button outline color="success">success</Button>{' '}

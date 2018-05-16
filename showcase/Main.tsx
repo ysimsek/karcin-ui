@@ -26,8 +26,30 @@ export default class Main extends React.Component<any, any> {
         this.toggle = this.toggle.bind(this);
         this.state = {
             isOpen: false,
-            sideMenuOpen: false
+            sideMenuOpen: false,
+            responsiveMenu : false,
+            menuResponsiveSize:900
         };
+
+        if(this.state.menuResponsiveSize >= window.innerWidth){
+            this.setState({
+                responsiveMenu : true
+            });
+        }
+
+        window.addEventListener('resize', () => {
+            if(window.innerWidth <= this.state.menuResponsiveSize){
+                this.setState({
+                    responsiveMenu : true,
+                    sideMenuOpen : true
+                });
+            }else {
+                this.setState({
+                    responsiveMenu : false,
+                    sideMenuOpen: false
+                });
+            }
+        });
     }
 
     render() {
@@ -82,7 +104,7 @@ export default class Main extends React.Component<any, any> {
                 <div className={`${(window.location.hash == "#/")?"main-content":"subpage-content"}`}>
                     <Switch >
                         <Route exact path="/" component={HomePage} />
-                        <Route path="/Components" render={()=><Components menuToggle={this.state.sideMenuOpen} />} />
+                        <Route path="/Components" render={()=><Components menuToggle={this.state.sideMenuOpen} responsiveMenu={this.state.responsiveMenu} />} />
                         <Route path="/Docs" component={Docs} />
                         <Route component={NotFound} />
                     </Switch>

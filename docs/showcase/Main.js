@@ -25,8 +25,29 @@ var Main = /** @class */ (function (_super) {
         _this.toggle = _this.toggle.bind(_this);
         _this.state = {
             isOpen: false,
-            sideMenuOpen: false
+            sideMenuOpen: false,
+            responsiveMenu: false,
+            menuResponsiveSize: 900
         };
+        if (_this.state.menuResponsiveSize >= window.innerWidth) {
+            _this.setState({
+                responsiveMenu: true
+            });
+        }
+        window.addEventListener('resize', function () {
+            if (window.innerWidth <= _this.state.menuResponsiveSize) {
+                _this.setState({
+                    responsiveMenu: true,
+                    sideMenuOpen: true
+                });
+            }
+            else {
+                _this.setState({
+                    responsiveMenu: false,
+                    sideMenuOpen: false
+                });
+            }
+        });
         return _this;
     }
     Main.prototype.render = function () {
@@ -64,7 +85,7 @@ var Main = /** @class */ (function (_super) {
             React.createElement("div", { className: "" + ((window.location.hash == "#/") ? "main-content" : "subpage-content") },
                 React.createElement(react_router_dom_1.Switch, null,
                     React.createElement(react_router_dom_1.Route, { exact: true, path: "/", component: HomePage_1.default }),
-                    React.createElement(react_router_dom_1.Route, { path: "/Components", render: function () { return React.createElement(Components_1.default, { menuToggle: _this.state.sideMenuOpen }); } }),
+                    React.createElement(react_router_dom_1.Route, { path: "/Components", render: function () { return React.createElement(Components_1.default, { menuToggle: _this.state.sideMenuOpen, responsiveMenu: _this.state.responsiveMenu }); } }),
                     React.createElement(react_router_dom_1.Route, { path: "/Docs", component: Docs_1.default }),
                     React.createElement(react_router_dom_1.Route, { component: NotFound_1.default }))),
             React.createElement("div", { className: "footer" },
