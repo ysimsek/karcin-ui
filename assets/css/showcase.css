@@ -48,7 +48,7 @@ body {padding: 0; margin: 0; font-family: 'Quicksand', sans-serif; color:#303030
     z-index: 4;
 }
 .main-menu a {
-    color:#FFF; 
+    color:#FFF;
     font-weight:400;
     transition:all .3s ease;
     -moz-transition:all .3s ease;
@@ -231,6 +231,10 @@ body {padding: 0; margin: 0; font-family: 'Quicksand', sans-serif; color:#303030
 
 .side-menu .karcin-menu {
     margin-top: 20px;
+    background: none;
+}
+.side-menu .karcin-menu .nav-item .nav-link {
+    border-bottom:none;
 }
 
 .container-component {
@@ -310,6 +314,7 @@ span.opt {
     border-color :#9aba42;
     color: #9aba42;
     font-weight: bold;
+    background: transparent;
 }
 
 .component-props > .tab-content {
@@ -371,3 +376,7 @@ span.opt {
     margin-right: 10px;
     color: #4a4a4a;
 }
+
+
+
+.basic-row {margin: 0;}

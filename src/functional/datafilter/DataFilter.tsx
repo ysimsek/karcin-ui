@@ -21,7 +21,12 @@ export interface DataFilterProps {
     /**
      * label position : [up(default), left, right]
      */
-    labelPosition?: string | any
+    labelPosition?: string | any;
+
+    /**
+     * label case boolean (default:true)
+     */
+    labelCase?: boolean | any;
 }
 
 export interface DataFilterState {
@@ -70,7 +75,8 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
      * @type {{labelPosition: string}}
      */
     static defaultProps: Partial<DataFilterProps> = {
-        labelPosition : 'up'
+        labelPosition : 'up',
+        labelCase : true
     };
 
     /**
@@ -218,10 +224,18 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
 
             if (this.state.showing.filterName) {
                 getArray = [];
+
+                // dropdown items
                 this.props.field.forEach((value:any, index:number)=>{
                     if (this.state.inputText.value !== "") {
-                        if (value.label.search(this.state.inputText.value) !== -1) {
-                            getArray.push(value);
+                        if(!this.props.labelCase) {
+                            if (value.label.search(this.state.inputText.value) !== -1) {
+                                getArray.push(value);
+                            }
+                        }else {
+                            if (value.label.toLowerCase().search(this.state.inputText.value.toLowerCase()) !== -1) {
+                                getArray.push(value);
+                            }
                         }
                     } else {
                         getArray.push(value);
@@ -239,10 +253,18 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
                 });
             } else if (this.state.showing.operator) {
                 getArray = [];
+
+                // dropdown items
                 this.operators.forEach((value:any, index:number)=>{
                     if (this.state.inputText.value !== "") {
-                        if (value.label.search(this.state.inputText.value) !== -1) {
-                            getArray.push(value);
+                        if(!this.props.labelCase) {
+                            if (value.label.search(this.state.inputText.value) !== -1) {
+                                getArray.push(value);
+                            }
+                        }else {
+                            if (value.label.toLowerCase().search(this.state.inputText.value.toLowerCase()) !== -1) {
+                                getArray.push(value);
+                            }
                         }
                     } else {
                         getArray.push(value);
@@ -263,10 +285,18 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
                 this.state.showing.dropValue = false;
                 if (getItems.length > 0) {
                     this.state.showing.dropValue = true;
+
+                    // dropdown items
                     getItems.forEach((value:any, index:number)=>{
                         if (this.state.inputText.value !== "") {
-                            if (value.label.search(this.state.inputText.value) !== -1) {
-                                getArray.push(value);
+                            if(!this.props.labelCase) {
+                                if (value.label.search(this.state.inputText.value) !== -1) {
+                                    getArray.push(value);
+                                }
+                            }else {
+                                if (value.label.toLowerCase().search(this.state.inputText.value.toLowerCase()) !== -1) {
+                                    getArray.push(value);
+                                }
                             }
                         } else {
                             getArray.push(value);

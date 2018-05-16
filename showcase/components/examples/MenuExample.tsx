@@ -1,5 +1,6 @@
 import * as React from "react";
 import {Menu} from 'karcin-ui';
+import {Row, Col} from 'reactstrap';
 
 export default class MenuExample extends React.Component<any, any> {
     render() {
@@ -94,14 +95,27 @@ export default class MenuExample extends React.Component<any, any> {
                 ]
             }
         ];
-        return <div>
-            <Menu data={data} accordion={true} onChange={(val)=>{this.handleChange(val)}} />
+        return <div className="example-menu">
+            <Row className="basic-row">
+                <span className="example-reagent">Accordion Menü</span>
+                <Col sm={6}>
+                    <Menu data={data} accordion={true} onChange={(val)=>{this.handleChange(val)}} />
+                </Col>
+                <span className="example-reagent">Hover Menu</span>
+                <Col sm={6}>
+                    <Menu data={data} hover={true} onChange={(val)=>{this.handleChange(val)}} />
+                </Col>
+                <span className="example-reagent">Collapse Menu</span>
+                <Col sm={6}>
+                    <Menu data={data} onChange={(val)=>{this.handleChange(val)}} />
+                </Col>
+            </Row>
         </div>;
     }
 
 
-    handleChange(val){
-        console.log(val);
+    handleChange(val:any){
+
     }
 
 

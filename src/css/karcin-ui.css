@@ -40,7 +40,7 @@ textarea {
 
 .input-focus {
     background-color: #fff;
-    border-color: #80bdff;
+    border-color: #80bdff !important;
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
     -webkit-transition: all .3s ease;
@@ -134,12 +134,49 @@ textarea {
     border-radius: 3px 3px 0px 0px;
     color: #a59c9c;
 }
-
-.karcin-tab > .nav li a.active {
-    background-color: #cacaca;
-    border-color: #c1bfbf;
-    color: #6f6c6c;
+.karcin-tab.light > .nav li a.active {
+    color: #212529;
+    background-color: #f8f9fa;
+    border-color: #f8f9fa;
 }
+.karcin-tab.dark > .nav li a.active {
+    color: #fff;
+    background-color: #343a40;
+    border-color: #343a40;
+}
+
+.karcin-tab.secondary > .nav li a.active {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color:#fff;
+}
+
+.karcin-tab.primary > .nav li a.active {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.karcin-tab.success > .nav li a.active {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+}
+.karcin-tab.info > .nav li a.active {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+.karcin-tab.warning > .nav li a.active {
+    color: #212529;
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
+.karcin-tab.danger > .nav li a.active {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
 
 .karcin-tab > .nav li a:hover {
     color: #6f6c6c;
@@ -366,7 +403,7 @@ New Reactstrap CSS
 }
 
 /*
-* select input css 
+* select input css
 */
 
 .karcin-select-input {
@@ -508,130 +545,131 @@ New Reactstrap CSS
     margin-bottom: 15px;
     display: inline-block;
     width: 100%;
-  }
-  
-  .panel-main .panel-title {
+}
+
+.panel-main .panel-title {
     background-color: #f9f9f9;
     padding: 12px 15px;
     color: #868585;
     border-bottom:solid 1px #ddd;
     font-size: 14px;
-  }
-  .panel-main .panel-title .panel-head-button {
+}
+.panel-main .panel-title .panel-head-button {
     float: right;
     margin: -1px;
-  }
-  .panel-main .panel-title .panel-head-button button {
+}
+.panel-main .panel-title .panel-head-button button {
     padding: 2px;
     line-height: 0;
     background: #ffffff;
     color: #b5b4b4;
-  }
-  .panel-main .panel-title span {
+}
+.panel-main .panel-title span {
     margin-bottom: 0;
     font-size: 14px;
-  }
-  .panel-main .panel-content {
+}
+.panel-main .panel-content {
     padding: 15px;
-      display: inline-block;
-      width: 100%;
-  }
+    display: inline-block;
+    width: 100%;
+}
 
-  /* panel colors - primary */
-  .panel-main.primary {
-    border-color: #0275d8;
-  }
-  .panel-main.primary .panel-title .panel-head-button button {
+/* panel colors - primary */
+.panel-main.primary {
+    border-color: #007bff;
+}
+.panel-main.primary .panel-title .panel-head-button button {
     background: #045eab;
     color: #ffffff;
     border-color: #0561b1;
-  }
-  .panel-main.primary .panel-title {
-    background-color: #0275d8;
-    border-bottom-color: #0275d8;
+}
+.panel-main.primary .panel-title {
+    background-color: #007bff;
+    border-bottom-color: #007bff;
     color:#FFFFFF;
-  }
-  
-  /* panel colors - info */
-  .panel-main.info {
-    border-color: #5bc0de;
-  }
-  .panel-main.info .panel-title {
-    background-color: #5bc0de;
-    border-bottom-color: #5bc0de;
+}
+
+/* panel colors - info */
+.panel-main.info {
+    border-color: #17a2b8;
+}
+.panel-main.info .panel-title {
+    background-color: #17a2b8;
+    border-bottom-color: #17a2b8;
     color:#FFFFFF;
-  }
-  .panel-main.info .panel-title .panel-head-button button {
+}
+.panel-main.info .panel-title .panel-head-button button {
     background: #2e9bbb;
     color: #ffffff;
     border-color: #46a3bf;
-  }
-  /* panel colors - warning */
-  .panel-main.warning {
-    border-color: #f0ad4e;
-  }
-  .panel-main.warning .panel-title {
-    background-color: #f0ad4e;
-    border-bottom-color: #f0ad4e;
+}
+/* panel colors - warning */
+.panel-main.warning {
+    border-color: #ffc107;
+}
+.panel-main.warning .panel-title {
+    background-color: #ffc107;
+    border-bottom-color: #ffc107;
     color:#FFFFFF;
-  }
-  .panel-main.warning .panel-title .panel-head-button button {
+}
+.panel-main.warning .panel-title .panel-head-button button {
     background: #da9a40;
     color: #ffffff;
     border-color: #d89330;
-  }
-  
-  /* panel colors - danger */
-  .panel-main.danger {
-    border-color: #d9534f;
-  }
-  .panel-main.danger .panel-title {
-    background-color: #d9534f;
-    border-bottom-color: #d9534f;
+}
+
+/* panel colors - danger */
+.panel-main.danger {
+    border-color: #dc3545;
+}
+.panel-main.danger .panel-title {
+    background-color: #dc3545;
+    border-bottom-color: #dc3545;
     color:#FFFFFF;
-  }
-  .panel-main.danger .panel-title .panel-head-button button {
+}
+.panel-main.danger .panel-title .panel-head-button button {
     background: #c12f2b;
     color: #ffffff;
     border-color: #c53632;
-  }
-  
-  /* panel colors - secondary */
-  .panel-main.secondary {
-    border-color: #ccc;
-  }
-  .panel-main.secondary .panel-title {
-    background-color: #fff;
-    border-bottom-color: #ccc;
+}
+
+/* panel colors - secondary */
+.panel-main.secondary {
+    border-color: #6c757d;
+}
+.panel-main.secondary .panel-title {
+    background-color: #6c757d;
+    border-bottom-color: #6c757d;
     color: #292b2c;
-  }
-  .panel-main.secondary .panel-title .panel-head-button button {
+}
+.panel-main.secondary .panel-title .panel-head-button button {
     background: #ffffff;
     color: #c3c2c2;
     border-color: #cccccc;
-  }
-  /* panel colors - success */
-  .panel-main.success {
-    border-color: #5cb85c;
-  }
-  .panel-main.success .panel-title {
-    background-color: #5cb85c;
-    border-bottom-color: #5cb85c;
+}
+/* panel colors - success */
+.panel-main.success {
+    border-color: #28a745;
+}
+.panel-main.success .panel-title {
+    background-color: #28a745;
+    border-bottom-color: #28a745;
     color: #FFFFFF;
-  }
-  .panel-main.success .panel-title .panel-head-button button {
+}
+.panel-main.success .panel-title .panel-head-button button {
     background: #3b963b;
     color: #ffffff;
     border-color: #4fb14f;
-  }
+}
 
 
-  /**
-  * karcin menu css
-   */
+/**
+* karcin menu css
+ */
 
 .karcin-menu {
     display: block;
+    background-color: #292b3a;
 }
 .karcin-menu .nav-item {
     display: block;
@@ -642,7 +680,7 @@ New Reactstrap CSS
 }
 .karcin-menu .nav-item .open-icon {
     float: right;
-    margin-top: 8px;
+    margin-top: 4px;
     text-align: right;
 }
 .karcin-menu .nav-item .menu-icon {
@@ -670,7 +708,7 @@ New Reactstrap CSS
 .karcin-menu.hover-menu .nav-item .collapse.show {
     display: none;
 }
-.karcin-menu.hover-menu .nav-item ul.nav {
+.karcin-menu.hover-menu .nav-item .nav {
     background-color: #303030;
     position: absolute;
     width: 255px;
@@ -680,8 +718,29 @@ New Reactstrap CSS
     z-index: 999999;
     padding: 0px;
 }
-.karcin-menu.hover-menu .nav-item ul.nav .nav-item {
+.karcin-menu.hover-menu .nav-item .nav .nav-item {
     padding-left: 0;
+}
+.karcin-menu .nav-item.active,
+.karcin-menu.hover-menu .nav-item:hover,
+.karcin-menu.hover-menu .nav-item .nav {
+    background: #3c3e4f;
+}
+.karcin-menu .nav-item .nav-item {
+    background: transparent !important;
+}
+.karcin-menu .nav-item.active .nav-link,
+.karcin-menu.hover-menu .nav-item:hover .nav-link{
+    border-color: #4d4f61;
+}
+.karcin-menu .nav-item.active .nav-item:hover > .menu-head .nav-link,
+.karcin-menu .nav-item.active .nav-item.active > .menu-head > .nav-link,
+.karcin-menu.hover-menu .nav-item:hover .nav-item:hover > .menu-head > .nav-link  {
+    color: #8a8da5;
+}
+.karcin-menu .nav-item .nav-link {
+    color: #ffffff;
+    border-bottom: solid 1px #43444f;
 }
 
 /**
@@ -888,8 +947,32 @@ New Reactstrap CSS
     box-shadow: none;
 }
 
+
+
+/**
+notify color
+ */
+
+/* info color */
+.css-1dbhh97, [data-css-1dbhh97] {
+    background-color: #17a2b8 !important;
+}
+
+/* success color */
+.css-lj0up9, [data-css-lj0up9] {
+    background-color: #28a745 !important;
+}
+
+/* danger color */
+.css-1imjg0i, [data-css-1imjg0i] {
+    background-color: #dc3545 !important;
+}
+
+/* warning color */
+.css-1qmczst, [data-css-1qmczst] {
+    background-color: #ffc107 !important;
+}
+
 a[href='http://www.amcharts.com/javascript-maps/'] {
     display: none !important;
 }
-
-

@@ -28,7 +28,7 @@ export default class NotifyExample extends React.Component<any,any>{
                     <SelectInput
                         name="position"
                         label={"Select Notify Position"}
-                        item={this.state.position}
+                        activeItem={this.state.position}
                         value="value"
                         id="position"
                         items={items}

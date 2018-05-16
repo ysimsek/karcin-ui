@@ -3,15 +3,15 @@ import {Menu} from "karcin-ui";
 import RenderComponents from "./RenderComponent";
 
 export interface ComponentsProps {
-    menuToggle ?: any
+    menuToggle ?: any,
+    responsiveMenu ?:any
 }
 
 export interface ComponentsState {
     data?:any,
     active?:any[] | any,
-    menuResponsiveSize : any,
-    menuToggle : any,
-    responsiveMenu: any
+    menuToggle?: any,
+    responsiveMenu?: any
 }
 
 export default class Components extends React.Component<ComponentsProps, ComponentsState> {
@@ -23,24 +23,16 @@ export default class Components extends React.Component<ComponentsProps, Compone
         this.state = {
             data:json.data,
             active : [],
-            menuResponsiveSize:900,
             menuToggle: props.menuToggle,
-            responsiveMenu: {control:false}
+            responsiveMenu:props.responsiveMenu
         };
+    }
 
-        if(this.state.menuResponsiveSize >= window.innerWidth){
-            this.state.responsiveMenu.control = true;
-        }
-
-
-        window.addEventListener('resize', () => {
-            if(window.innerWidth <= this.state.menuResponsiveSize){
-                this.state.responsiveMenu.control = true;
-            }else {
-                this.state.responsiveMenu.control = false;
-            }
-            this.forceUpdate();
-        });
+    UNSAFE_componentWillReceiveProps(props:any){
+        this.setState({
+            menuToggle: props.menuToggle,
+            responsiveMenu : props.responsiveMenu
+        })
     }
 
 
@@ -56,7 +48,7 @@ export default class Components extends React.Component<ComponentsProps, Compone
         }
 
         return (<div className="content-component">
-            <div className={`side-menu ${(this.state.responsiveMenu.control) ? 'responsive-menu' : ''} ${this.state.menuToggle ? 'close-menu' : ''}`}>
+            <div className={`side-menu ${(this.state.responsiveMenu) ? 'responsive-menu' : ''} ${this.state.menuToggle ? 'close-menu' : ''}`}>
                 <div className="side-menu-container">
                     <Menu data={this.state.data} accordion={true} active={this.state.active}/>
                 </div>
