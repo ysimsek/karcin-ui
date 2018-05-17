@@ -81,36 +81,36 @@ export default class MenuExample extends React.Component<any, any> {
                         "badgeColor": "warning",
                         "items": [
                             {
-                                id:1,
-                                name:"single",
-                                title:"Single"
+                                "id":1,
+                                "name":"single",
+                                "title":"Single"
                             },
                             {
-                                id:2,
-                                name:"double",
-                                title:"Double"
+                                "id":2,
+                                "name":"double",
+                                "title":"Double"
                             }
                         ]
                     }
                 ]
             }
         ];
-        return <div className="example-menu">
+        return (<div className="example-menu">
             <Row className="basic-row">
-                <span className="example-reagent">Accordion Menü</span>
                 <Col sm={6}>
+                    <span className="example-reagent first">Accordion Menü</span>
                     <Menu data={data} accordion={true} onChange={(val)=>{this.handleChange(val)}} />
                 </Col>
-                <span className="example-reagent">Hover Menu</span>
                 <Col sm={6}>
-                    <Menu data={data} hover={true} onChange={(val)=>{this.handleChange(val)}} />
-                </Col>
-                <span className="example-reagent">Collapse Menu</span>
-                <Col sm={6}>
+                    <span className="example-reagent first">Collapse Menu</span>
                     <Menu data={data} onChange={(val)=>{this.handleChange(val)}} />
                 </Col>
+                <Col sm={6}>
+                    <span className="example-reagent">Hover Menu</span>
+                    <Menu data={data} hover={true} onChange={(val)=>{this.handleChange(val)}} />
+                </Col>
             </Row>
-        </div>;
+        </div>);
     }
 
 

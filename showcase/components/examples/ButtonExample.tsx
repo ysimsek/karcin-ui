@@ -1,7 +1,6 @@
 import * as React from "react";
 import {Button} from 'karcin-ui';
 import Store from '../../../store/Store';
-import LocalEndPoint from '../../../store/LocaleEndPoint';
 
 export default class ButtonExample extends React.Component<any, any> {
     store = null;
@@ -10,34 +9,32 @@ export default class ButtonExample extends React.Component<any, any> {
 
         this.store = new Store({
             idField : 'id',
-            endPoint: new LocalEndPoint({
-                data: [{ id: 1, name: "John", surname: "Doe" }, { id: 2, name: "Jane", surname: "Roe" }]
-            })
-        });
+            data: [{ id: 1, name: "John", surname: "Doe" }, { id: 2, name: "Jane", surname: "Roe" }]
+        }, this.onSuccess);
 
-        this.store.create({id :5, name: "Deneme", surname: "asd"}, (vl)=>{this.onSuccess(vl)});
+       // this.store.create({id :5, name: "Deneme", surname: "asd"}, (vl)=>{this.onSuccess(vl)});
     }
     render() {
         return (
             <div>
-                <Button color="light" onClick={()=>{this.onError()}}>light</Button>{' '}
-                <Button color="dark" onClick={()=>{this.onError()}}>dark</Button>{' '}
                 <Button color="primary" onClick={()=>{this.onError()}}>primary</Button>{' '}
                 <Button color="secondary" onClick={()=>{this.onError2()}}>secondary</Button>{' '}
                 <Button color="success">success</Button>{' '}
                 <Button color="info">info</Button>{' '}
                 <Button color="warning">warning</Button>{' '}
                 <Button color="danger">danger</Button>{' '}
+                <Button color="dark" onClick={()=>{this.onError()}}>dark</Button>{' '}
+                <Button color="light" onClick={()=>{this.onError()}}>light</Button>{' '}
                 <Button color="link">link</Button>
                 <hr/>
-                <Button outline color="light">light</Button>{' '}
-                <Button outline color="dark">dark</Button>{' '}
                 <Button outline color="primary">primary</Button>{' '}
                 <Button outline color="secondary">secondary</Button>{' '}
                 <Button outline color="success">success</Button>{' '}
                 <Button outline color="info">info</Button>{' '}
                 <Button outline color="warning">warning</Button>{' '}
-                <Button outline color="danger">danger</Button>
+                <Button outline color="danger">danger</Button>{' '}
+                <Button outline color="dark">dark</Button>{' '}
+                <Button outline color="light">light</Button>{' '}
                 <hr/>
                 <Button color="primary" size="lg">Large Button</Button>{' '}
                 <Button color="secondary" size="lg">Large Button</Button>
@@ -51,7 +48,7 @@ export default class ButtonExample extends React.Component<any, any> {
         );
     }
 
-    onSuccess(res) {
+    onSuccess(res:any) {
         console.log(res);
     }
 

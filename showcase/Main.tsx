@@ -33,7 +33,8 @@ export default class Main extends React.Component<any, any> {
 
         if(this.state.menuResponsiveSize >= window.innerWidth){
             this.setState({
-                responsiveMenu : true
+                responsiveMenu : true,
+                sideMenuOpen:true
             });
         }
 
