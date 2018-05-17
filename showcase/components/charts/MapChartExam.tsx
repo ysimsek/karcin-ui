@@ -19,6 +19,11 @@ const turkeyMapData = [
 
 
 export default class MapChartExam extends React.Component{
+
+    rendererItems(data){
+        return data.value;
+    }
+
     render(){
         return <Row>
             <Col md={6}>
@@ -32,6 +37,7 @@ export default class MapChartExam extends React.Component{
                         zoom={true}
                         map = "turkeyLow"
                         code ="TR"
+                        rendererItems={this.rendererItems}
                         title={"Turkey"}
                     />
                 </Panel>

@@ -29,7 +29,44 @@ export interface AmChartProps{
      * onChange returned
      */
     clickOnChange?: any;
+    /**
+     * Click the zoom
+     * true or false default false
+     */
     zoom ?: boolean;
+    /**
+     * Set the country code
+     */
+    code ?: any;
+    /**
+     * Set the map title
+     */
+    title ?: string;
+    /**
+     * Set the Page height
+     */
+    height ?: string | number;
+    /**
+     * Set the array data with idField, descrField and valueField
+     */
+    data ?: Array<any>;
+    /**
+     * id in Data field
+     */
+    idField ?: any;
+    /**
+     * value in data field
+     */
+    valueField ?: any;
+    /**
+     * description in data field
+     */
+    descrField ?: any;
+    rendererItems ?: any;
+    /**
+     * HaritaMap
+     */
+    map ?: any;
 }
 
 function g() {
@@ -39,7 +76,7 @@ function g() {
     }
 }
 
-export default class DashboardMap extends React.Component<any,any>{
+export default class MapChart extends React.Component<AmChartProps,any>{
 
     static defaultProps : Partial<AmChartProps> = {
         theme : "light",
@@ -299,7 +336,7 @@ export default class DashboardMap extends React.Component<any,any>{
                 ///////////////////////////////////////////////////////
                 data.forEach(function (val: any, idx: number) {
                     if(map.dataProvider.areas[i].id == val[me.props.idField]) {
-                        map.dataProvider.areas[i].description = val[me.props.descrField]
+                        map.dataProvider.areas[i].description = (me.props.rendererItems)?me.props.rendererItems(val): val[me.props.descrField]
                         map.dataProvider.areas[i].value = val[me.props.valueField] != undefined ? val[me.props.valueField] : NaN;
                     }
                 })
