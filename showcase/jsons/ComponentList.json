@@ -333,6 +333,14 @@
           "href":"#/Components/CylinderChart",
           "samples":"components/charts/CylinderChartExam",
           "library":"chart/extrachart/CylinderChart"
+        },
+        {
+          "id":12,
+          "name":"MapChart",
+          "title":"MapChart",
+          "href":"#/Components/MapChart",
+          "samples":"components/charts/MapChartExam",
+          "library":"chart/mapchart/MapChart"
         }
 
       ]

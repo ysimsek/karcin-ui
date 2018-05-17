@@ -403,7 +403,7 @@ New Reactstrap CSS
 }
 
 /*
-* select input css 
+* select input css
 */
 
 .karcin-select-input {
@@ -545,127 +545,127 @@ New Reactstrap CSS
     margin-bottom: 15px;
     display: inline-block;
     width: 100%;
-  }
-  
-  .panel-main .panel-title {
+}
+
+.panel-main .panel-title {
     background-color: #f9f9f9;
     padding: 12px 15px;
     color: #868585;
     border-bottom:solid 1px #ddd;
     font-size: 14px;
-  }
-  .panel-main .panel-title .panel-head-button {
+}
+.panel-main .panel-title .panel-head-button {
     float: right;
     margin: -1px;
-  }
-  .panel-main .panel-title .panel-head-button button {
+}
+.panel-main .panel-title .panel-head-button button {
     padding: 2px;
     line-height: 0;
     background: #ffffff;
     color: #b5b4b4;
-  }
-  .panel-main .panel-title span {
+}
+.panel-main .panel-title span {
     margin-bottom: 0;
     font-size: 14px;
-  }
-  .panel-main .panel-content {
+}
+.panel-main .panel-content {
     padding: 15px;
-      display: inline-block;
-      width: 100%;
-  }
+    display: inline-block;
+    width: 100%;
+}
 
-  /* panel colors - primary */
-  .panel-main.primary {
+/* panel colors - primary */
+.panel-main.primary {
     border-color: #007bff;
-  }
-  .panel-main.primary .panel-title .panel-head-button button {
+}
+.panel-main.primary .panel-title .panel-head-button button {
     background: #045eab;
     color: #ffffff;
     border-color: #0561b1;
-  }
-  .panel-main.primary .panel-title {
+}
+.panel-main.primary .panel-title {
     background-color: #007bff;
     border-bottom-color: #007bff;
     color:#FFFFFF;
-  }
-  
-  /* panel colors - info */
-  .panel-main.info {
+}
+
+/* panel colors - info */
+.panel-main.info {
     border-color: #17a2b8;
-  }
-  .panel-main.info .panel-title {
+}
+.panel-main.info .panel-title {
     background-color: #17a2b8;
     border-bottom-color: #17a2b8;
     color:#FFFFFF;
-  }
-  .panel-main.info .panel-title .panel-head-button button {
+}
+.panel-main.info .panel-title .panel-head-button button {
     background: #2e9bbb;
     color: #ffffff;
     border-color: #46a3bf;
-  }
-  /* panel colors - warning */
-  .panel-main.warning {
+}
+/* panel colors - warning */
+.panel-main.warning {
     border-color: #ffc107;
-  }
-  .panel-main.warning .panel-title {
+}
+.panel-main.warning .panel-title {
     background-color: #ffc107;
     border-bottom-color: #ffc107;
     color:#FFFFFF;
-  }
-  .panel-main.warning .panel-title .panel-head-button button {
+}
+.panel-main.warning .panel-title .panel-head-button button {
     background: #da9a40;
     color: #ffffff;
     border-color: #d89330;
-  }
-  
-  /* panel colors - danger */
-  .panel-main.danger {
+}
+
+/* panel colors - danger */
+.panel-main.danger {
     border-color: #dc3545;
-  }
-  .panel-main.danger .panel-title {
+}
+.panel-main.danger .panel-title {
     background-color: #dc3545;
     border-bottom-color: #dc3545;
     color:#FFFFFF;
-  }
-  .panel-main.danger .panel-title .panel-head-button button {
+}
+.panel-main.danger .panel-title .panel-head-button button {
     background: #c12f2b;
     color: #ffffff;
     border-color: #c53632;
-  }
-  
-  /* panel colors - secondary */
-  .panel-main.secondary {
+}
+
+/* panel colors - secondary */
+.panel-main.secondary {
     border-color: #6c757d;
-  }
-  .panel-main.secondary .panel-title {
+}
+.panel-main.secondary .panel-title {
     background-color: #6c757d;
     border-bottom-color: #6c757d;
     color: #292b2c;
-  }
-  .panel-main.secondary .panel-title .panel-head-button button {
+}
+.panel-main.secondary .panel-title .panel-head-button button {
     background: #ffffff;
     color: #c3c2c2;
     border-color: #cccccc;
-  }
-  /* panel colors - success */
-  .panel-main.success {
+}
+/* panel colors - success */
+.panel-main.success {
     border-color: #28a745;
-  }
-  .panel-main.success .panel-title {
+}
+.panel-main.success .panel-title {
     background-color: #28a745;
     border-bottom-color: #28a745;
     color: #FFFFFF;
-  }
-  .panel-main.success .panel-title .panel-head-button button {
+}
+.panel-main.success .panel-title .panel-head-button button {
     background: #3b963b;
     color: #ffffff;
     border-color: #4fb14f;
-  }
+}
 
 
-  /**
-  * karcin menu css
-   */
+/**
+* karcin menu css
+ */
 
 .karcin-menu {
     display: block;
@@ -971,4 +971,8 @@ notify color
 /* warning color */
 .css-1qmczst, [data-css-1qmczst] {
     background-color: #ffc107 !important;
+}
+
+a[href='http://www.amcharts.com/javascript-maps/'] {
+    display: none !important;
 }

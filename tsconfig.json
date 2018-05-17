@@ -8,6 +8,7 @@
     "jsx": "react",
     "baseUrl": ".",
     "allowJs":true,
+    "lib": ["es6", "dom"],
     "paths": {
       "karcin-ui/lib": ["src"],
       "karcin-ui": ["src/index"]

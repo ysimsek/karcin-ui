@@ -50,6 +50,11 @@ export interface LineChartProps{
      * Line changes true or false
      */
     inline ?:boolean;
+    /**
+     * Scroll true or false
+     * default false
+     */
+    scroll?: boolean;
 }
 
 export default class LineChartTrend extends React.Component<LineChartProps,any>{

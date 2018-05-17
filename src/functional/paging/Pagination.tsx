@@ -210,7 +210,6 @@ export default class Pagination extends React.Component<PaginationProps,any>{
      */
     handleChange(e:any):void{
         let pageCount:any = this.showPage;
-
         if(e.target.id == "increase"){
             this.increaseOne(pageCount);
         }else if(e.target.id == "decrease"){
@@ -222,6 +221,14 @@ export default class Pagination extends React.Component<PaginationProps,any>{
         }else if(e.target.id == "blabla" || e.target.id == ""){
             return;
         }else {
+            if(this.props.pageCount == 3){
+                    this.propsCountWhenThreeSelectPosition(e,pageCount);
+            }else if(this.props.pageCount == 4){
+                this.propsCountWhenFourSelectPosition(e,pageCount);
+
+            }else if(this.props.pageCount == 5){
+                this.propsCountWhenFiveSelectPosition(e,pageCount);
+            }
             this.selectPage = e.target.text;
         }
 
@@ -230,6 +237,73 @@ export default class Pagination extends React.Component<PaginationProps,any>{
         }
 
     }
+
+    /**
+     * Props Page 3 için ayarlama fonksiyonu
+     * @param e
+     * @param {Array<any>} pageCount
+     */
+    propsCountWhenThreeSelectPosition(e:any,pageCount:Array<any>){
+        this.selectPage = e.target.text;
+        if(parseInt(this.selectPage) == this.lastIndex){
+            return;
+        }
+        if(parseInt(this.selectPage) == 1){
+            this.showPage = [1,2,3];
+            return;
+        }
+        for(let i =0 ; i< pageCount.length ; i++){
+            pageCount[i] = parseInt(this.selectPage) - 1;
+            if(i == 1) pageCount[i] = parseInt(this.selectPage);
+            if(i == 2) pageCount[i] = parseInt(this.selectPage)+1;
+        }
+    }
+
+    /**
+     * PropsPage 4 için ayarlama fonksiyonu
+     * @param e
+     * @param {Array<any>} pageCount
+     */
+    propsCountWhenFourSelectPosition(e:any, pageCount:Array<any>){
+        this.selectPage = e.target.text;
+        if(parseInt(this.selectPage) == this.lastIndex || parseInt(this.selectPage) == this.lastIndex - 1){
+            return;
+        }
+        if(parseInt(this.selectPage) == 1 || parseInt(this.selectPage) == 2){
+            this.showPage = [1,2,3,4];
+            return;
+        }
+        for(let i =0 ; i< pageCount.length ; i++){
+            pageCount[i] = parseInt(this.selectPage) - 1;
+            if(i == 1) pageCount[i] = parseInt(this.selectPage);
+            if(i == 2) pageCount[i] = parseInt(this.selectPage)+1;
+            if(i == 3) pageCount[i] = parseInt(this.selectPage)+2;
+        }
+    }
+
+    /**
+     * Propsu 5 sayfa görünsün için değerler.
+     * @param e
+     * @param {Array<any>} pageCount
+     */
+    propsCountWhenFiveSelectPosition(e:any, pageCount:Array<any>){
+        this.selectPage = e.target.text;
+        if(parseInt(this.selectPage) == this.lastIndex || parseInt(this.selectPage) == this.lastIndex - 1){
+            return;
+        }
+        if(parseInt(this.selectPage) == 1 || parseInt(this.selectPage) == 2){
+            this.showPage = [1,2,3,4,5];
+            return;
+        }
+        for(let i =0 ; i< pageCount.length ; i++){
+            pageCount[i] = parseInt(this.selectPage) - 2;
+            if(i == 1) pageCount[i] = parseInt(this.selectPage) -1;
+            if(i == 2) pageCount[i] = parseInt(this.selectPage);
+            if(i == 3) pageCount[i] = parseInt(this.selectPage)+1;
+            if(i == 4) pageCount[i] = parseInt(this.selectPage)+2;
+        }
+    }
+
 
     /**
      * Birer Birer artırım yap
