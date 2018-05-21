@@ -71,6 +71,7 @@ export interface SelectInputState {
     dropDownItems ?: Object | any;
     active ?: object | any;
     focusControl:object | any;
+    randomId ?: any;
 }
 
 export default class SelectInput extends React.Component<SelectInputProps, SelectInputState> {
@@ -95,14 +96,15 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
             showing : {multiDrop:false},
             dropDownItems: {data:[]},
             active: {arrowActive:null},
-            focusControl : {control:false}
+            focusControl : {control:false},
+            randomId : Math.floor(Math.random() * 10)
         };
 
         // boş alana tıklanıldığını kontol eden method
         window.addEventListener('click', (event:any) => {
             let control = false;
             event.path.forEach((value:any)=>{
-                if(value.className !== undefined && value.className !== "" && value.className.indexOf("karcin-select-input") !== -1){
+                if(value.className !== undefined && value.className !== "" && value.className.indexOf("karcin-select-input") !== -1 && value.className.indexOf('select-' + this.state.randomId) !== -1){
                     control = true;
                 }
             });
@@ -126,7 +128,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
             selectInputType = this.singleSelectResult();
         }
 
-        return <div className="karcin-select-input" onClick={() => { if(this.props.type !== "single") { this.inputFocus();} }}>
+        return <div className={`karcin-select-input select-${this.state.randomId}`} onClick={() => { if(this.props.type !== "single") { this.inputFocus();} }}>
             <div className={`form-group ${this.props.labelPosition}`}>
                 {this.labelResult()}
                 <div className="select-input-result">

@@ -4,7 +4,7 @@ import {Tab, TabPanel, Panel} from 'karcin-ui';
 export default class ButtonExample extends React.Component<any, any> {
     render() {
         return (<div>
-                <span className="example-reagent">Normal Tab</span>
+                <span className="example-reagent first">Normal Tab</span>
                 <Tab>
                     <TabPanel title="Tab1">Tab 1 Example</TabPanel>
                     <TabPanel title="Tab2">Tab 2 Example</TabPanel>

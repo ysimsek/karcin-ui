@@ -22,7 +22,8 @@ export default class NotifyExample extends React.Component<any,any>{
     }
 
     render(){
-        return <div>
+        return (
+            <div>
             <Row>
                 <Col md={4}>
                     <SelectInput
@@ -64,6 +65,7 @@ export default class NotifyExample extends React.Component<any,any>{
             </div>
             <hr/>
         </div>
+        );
     }
 
 

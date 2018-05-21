@@ -27,7 +27,7 @@ export default class SelectInputExample extends React.Component<any,any>{
     }
     render(){
         return <div>
-                <span className="example-reagent">Single Select</span>
+                <span className="example-reagent first">Single Select</span>
                 <SelectInput
                     name={"selectInput"}
                     items={items}

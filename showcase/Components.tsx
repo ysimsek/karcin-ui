@@ -40,9 +40,7 @@ export default class Components extends React.Component<ComponentsProps, Compone
         let item = this.getItem(window.location.hash, this.state.data);
         let detailCmp = null;
         if (item.length > 0){
-            detailCmp = (
-                <RenderComponents item={item[0]}/>
-            );
+            detailCmp = <RenderComponents item={item[0]}/>;
         } else {
             detailCmp = <span>Component Bulunamadı...</span>;
         }
@@ -50,18 +48,18 @@ export default class Components extends React.Component<ComponentsProps, Compone
         return (<div className="content-component">
             <div className={`side-menu ${(this.state.responsiveMenu) ? 'responsive-menu' : ''} ${this.state.menuToggle ? 'close-menu' : ''}`}>
                 <div className="side-menu-container">
-                    <Menu data={this.state.data} accordion={true} active={this.state.active}/>
+                    <Menu data={this.state.data} accordion={true} active={this.setActiveMenu()}/>
                 </div>
             </div>
             <div className="container-component content-page">{detailCmp}</div></div>);
     }
 
     componentDidMount(){
-        this.setActiveMenu();
+       // this.setActiveMenu();
     }
 
     componentWillReceiveProps(props:ComponentsProps){
-        this.setActiveMenu();
+        //this.setActiveMenu();
 
         if(props.menuToggle !== undefined){
             this.setState({
@@ -75,11 +73,7 @@ export default class Components extends React.Component<ComponentsProps, Compone
         if (window.location.hash.split("#/Components/")[1] == undefined){
             window.location.hash = "#Components/Button";
         }
-        if (item.length > 0){
-            this.state.active.length = 0;
-            this.state.active.push(item[0]);
-            this.forceUpdate();
-        }
+        return item;
     }
 
     getItem(href,data, item=[]){
