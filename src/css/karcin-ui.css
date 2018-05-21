@@ -1162,3 +1162,8 @@ a[href='http://www.amcharts.com/javascript-maps/'] {
 .karcin-context-menu .dropdown-menu .dropdown-item:hover > .dropdown-menu {
     display: block;
 }
+button-square-to-radius{
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+}
