@@ -86,14 +86,14 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
                 }
 
                 Cell.push(<td key={j} style={style}>
-                    {(this.props.cellRenderer !== undefined) ? value[valueField.value] : this.props.cellRenderer()}
+                    {(self.props.cellRenderer !== undefined) ? value[valueField.value] : self.props.cellRenderer()}
                     </td>);
             }
 
             Rows.push(<tr key={i} className={(self.state.clickActive.indexOf(getId) !== -1) ? 'active' : ''}
                           onClick={(e) => {
                               this.onClickRow(e, getId, this.props.data[i])
-                          }}>{(this.props.rowRenderer !== undefined) ? Cell : this.props.rowRenderer()}</tr>);
+                          }}>{(self.props.rowRenderer !== undefined) ? Cell : self.props.rowRenderer()}</tr>);
         }
         return <tbody>{Rows}</tbody>;
     }
