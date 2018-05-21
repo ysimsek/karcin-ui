@@ -43,6 +43,16 @@
       "description":"<Menu/>, allows us to use menus properly"
     },
     {
+      "id":4,
+      "name":"ContextMenu",
+      "title":"Context Menu",
+      "icon":"fa-bars",
+      "href":"#/Components/ContextMenu",
+      "samples":"components/examples/ContextMenuExample",
+      "library":"functional/contextmenu/ContextMenu",
+      "description":"<ContextMenu/>, allows us to use menus properly"
+    },
+    {
       "id":5,
       "name":"FaIcon",
       "title":"Font Awesome Icon",

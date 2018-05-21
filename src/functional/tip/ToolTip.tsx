@@ -33,12 +33,12 @@ export default class ToolTip extends React.Component<any,any>{
 
     render(){
         return <Tool
-                    placement={this.props.position}
-                    target={this.props.id}
-                    isOpen={this.props.show}
-                    toggle={this.toggle.bind(this)}>
-                {this.props.children}
-               </Tool>
+            placement={this.props.position}
+            target={this.props.id}
+            isOpen={this.props.show}
+            toggle={this.toggle.bind(this)}>
+            {this.props.children}
+        </Tool>
     }
 
     toggle(e:any){

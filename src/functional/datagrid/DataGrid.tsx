@@ -23,6 +23,14 @@ export interface DataGridProps {
      * Set the selected data returned func
      */
     onSelected?: any;
+    /**
+     * cell(td) renderer
+     */
+    cellRenderer?: any;
+    /**
+     * row(tr) renderer
+     */
+    rowRenderer?:any;
 }
 
 export interface DataGridState {
@@ -69,7 +77,7 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
             <div className="data-grid-body">
                 <table className="table table-bordered dataGrid">
                     <TableHead fields={this.state.fields}/>
-                    <TableBody onSelected={this.props.onSelected} data={this.state.data} fields={this.state.fields}/>
+                    <TableBody onSelected={this.props.onSelected} data={this.state.data} cellRenderer={this.props.cellRenderer} rowRenderer={this.props.rowRenderer} fields={this.state.fields}/>
                 </table>
             </div>
             {/*<Toolbar type="footer"/>*/}

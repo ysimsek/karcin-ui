@@ -134,11 +134,13 @@ textarea {
     border-radius: 3px 3px 0px 0px;
     color: #a59c9c;
 }
+
 .karcin-tab.light > .nav li a.active {
     color: #212529;
     background-color: #f8f9fa;
     border-color: #f8f9fa;
 }
+
 .karcin-tab.dark > .nav li a.active {
     color: #fff;
     background-color: #343a40;
@@ -148,7 +150,7 @@ textarea {
 .karcin-tab.secondary > .nav li a.active {
     background-color: #6c757d;
     border-color: #6c757d;
-    color:#fff;
+    color: #fff;
 }
 
 .karcin-tab.primary > .nav li a.active {
@@ -156,27 +158,30 @@ textarea {
     background-color: #007bff;
     border-color: #007bff;
 }
+
 .karcin-tab.success > .nav li a.active {
     color: #fff;
     background-color: #28a745;
     border-color: #28a745;
 }
+
 .karcin-tab.info > .nav li a.active {
     color: #fff;
     background-color: #17a2b8;
     border-color: #17a2b8;
 }
+
 .karcin-tab.warning > .nav li a.active {
     color: #212529;
     background-color: #ffc107;
     border-color: #ffc107;
 }
+
 .karcin-tab.danger > .nav li a.active {
     color: #fff;
     background-color: #dc3545;
     border-color: #dc3545;
 }
-
 
 .karcin-tab > .nav li a:hover {
     color: #6f6c6c;
@@ -267,8 +272,6 @@ textarea {
     float: right
 }
 
-
-
 /**
     * data filter css
  */
@@ -276,7 +279,6 @@ textarea {
 .karcin-data-filter {
 
 }
-
 
 .karcin-data-filter .karcin-label {
     width: 100%;
@@ -305,6 +307,7 @@ textarea {
     width: 80%;
     float: left;
 }
+
 .karcin-data-filter.right .filter-content {
     float: left;
     width: 80%;
@@ -313,16 +316,18 @@ textarea {
 .karcin-data-filter .filter-content {
     width: 100%;
     border-radius: 3px;
-    border:solid 1px #ccc;
+    border: solid 1px #ccc;
     min-height: 40px;
 }
+
 .karcin-data-filter .filter-content .text-input {
     float: left;
     position: relative;
 }
+
 .karcin-data-filter .filter-content .text-input .form-control {
-    float:left;
-    border:0;
+    float: left;
+    border: 0;
     background-color: transparent;
     box-shadow: none;
     padding: 7px 6px;
@@ -332,6 +337,7 @@ textarea {
 .karcin-data-filter .filter-content .selected-items {
     float: left;
 }
+
 .karcin-data-filter .filter-content .selected-items .item {
     width: auto;
     padding: 4px 10px;
@@ -342,10 +348,12 @@ textarea {
     color: #838080;
     float: left;
 }
+
 .karcin-data-filter .filter-content .selected-items .item span {
     display: inline-block;
     font-size: 13px;
 }
+
 .karcin-data-filter .filter-content .selected-items .item .close-button {
     margin-left: 5px;
     cursor: pointer;
@@ -359,22 +367,25 @@ textarea {
     z-index: 999;
     background: #fff;
     border: solid 1px #e1e1e1;
-    padding:0;
+    padding: 0;
     box-shadow: 0px 2px 5px #e2e2e2;
 }
 
 .karcin-data-filter .filter-content .selected-field .item {
-    font-size:14px;
+    font-size: 14px;
     cursor: pointer;
     padding: 2px 5px;
 }
 
 .karcin-data-filter .filter-content .selected-field .item.active {
     background-color: #1e90ff;
-    color:#fff;
+    color: #fff;
 }
 
-.karcin-data-filter .filter-content .half-select {float: left;}
+.karcin-data-filter .filter-content .half-select {
+    float: left;
+}
+
 .karcin-data-filter .filter-content .half-select span {
     display: inline-block;
     padding: 7px 5px;
@@ -388,10 +399,11 @@ a[href='http://www.amcharts.com'] {
 /**
 New Reactstrap CSS
 */
-.radio-inline{
+.radio-inline {
     display: inline-block;
     padding-right: 10px;
 }
+
 .typecolor {
     height: 38px;
     padding: 0px;
@@ -410,16 +422,23 @@ New Reactstrap CSS
     width: 100%;
     position: relative;
 }
+
 .karcin-select-input .form-group {
     width: 100%;
     position: relative;
     display: inline-block;
 }
-.karcin-select-input .form-group.left {}
-.karcin-select-input .form-group.right {}
+
+.karcin-select-input .form-group.left {
+}
+
+.karcin-select-input .form-group.right {
+}
+
 .karcin-select-input .form-group .karcin-input {
     width: 100%;
 }
+
 .karcin-select-input .form-group .karcin-label {
     width: 100%;
     margin-bottom: 5px;
@@ -438,13 +457,15 @@ New Reactstrap CSS
     padding: 1px 2px;
     float: left;
 }
+
 .karcin-select-input .form-group .multi-select-input .multi-input {
     width: 20%;
     float: left;
-    border:0;
-    outline:0;
+    border: 0;
+    outline: 0;
     padding: 4.5px;
 }
+
 .karcin-select-input .form-group .multi-select-input .select-item {
     width: auto;
     padding: 1px 4px;
@@ -457,10 +478,12 @@ New Reactstrap CSS
     padding-right: 27px;
     position: relative;
 }
+
 .karcin-select-input .form-group .multi-select-input .select-item span {
     float: left;
     font-size: 13px;
 }
+
 .karcin-select-input .form-group .multi-select-input .select-item .close-button {
     cursor: pointer;
     font-size: 13px;
@@ -479,26 +502,29 @@ New Reactstrap CSS
     z-index: 999;
     background: #fff;
     border: solid 1px #e1e1e1;
-    padding:0;
+    padding: 0;
     box-shadow: 0px 2px 5px #e2e2e2;
     width: 100%;
     max-height: 140px;
     overflow-y: auto;
 }
+
 .karcin-select-input .select-dropdown .item {
-    font-size:14px;
+    font-size: 14px;
     cursor: pointer;
     padding: 2px 5px;
     float: left;
     width: 100%;
 }
+
 .karcin-select-input .select-dropdown .item.active {
     background-color: #4e9dfb !important;
-    color:#fff;
+    color: #fff;
 }
+
 .karcin-select-input .select-dropdown .item:hover {
     background-color: #4e9dfb;
-    color:#fff;
+    color: #fff;
 }
 
 .karcin-select-input .form-group .select-input-result {
@@ -511,10 +537,12 @@ New Reactstrap CSS
     display: inline-flex;
     align-items: center;
 }
+
 .karcin-select-input .form-group.left .select-input-result {
     width: 80%;
     float: right;
 }
+
 .karcin-select-input .form-group.left .karcin-label {
     width: 20%;
     float: left;
@@ -526,10 +554,12 @@ New Reactstrap CSS
     display: inline-flex;
     align-items: center;
 }
+
 .karcin-select-input .form-group.right .select-input-result {
     width: 80%;
     float: left;
 }
+
 .karcin-select-input .form-group.right .karcin-label {
     width: 20%;
     padding: 10px;
@@ -540,7 +570,7 @@ New Reactstrap CSS
 */
 
 .panel-main {
-    border:solid 1px #ddd;
+    border: solid 1px #ddd;
     border-radius: 3px;
     margin-bottom: 15px;
     display: inline-block;
@@ -551,23 +581,27 @@ New Reactstrap CSS
     background-color: #f9f9f9;
     padding: 12px 15px;
     color: #868585;
-    border-bottom:solid 1px #ddd;
+    border-bottom: solid 1px #ddd;
     font-size: 14px;
 }
+
 .panel-main .panel-title .panel-head-button {
     float: right;
     margin: -1px;
 }
+
 .panel-main .panel-title .panel-head-button button {
     padding: 2px;
     line-height: 0;
     background: #ffffff;
     color: #b5b4b4;
 }
+
 .panel-main .panel-title span {
     margin-bottom: 0;
     font-size: 14px;
 }
+
 .panel-main .panel-content {
     padding: 15px;
     display: inline-block;
@@ -578,40 +612,47 @@ New Reactstrap CSS
 .panel-main.primary {
     border-color: #007bff;
 }
+
 .panel-main.primary .panel-title .panel-head-button button {
     background: #045eab;
     color: #ffffff;
     border-color: #0561b1;
 }
+
 .panel-main.primary .panel-title {
     background-color: #007bff;
     border-bottom-color: #007bff;
-    color:#FFFFFF;
+    color: #FFFFFF;
 }
 
 /* panel colors - info */
 .panel-main.info {
     border-color: #17a2b8;
 }
+
 .panel-main.info .panel-title {
     background-color: #17a2b8;
     border-bottom-color: #17a2b8;
-    color:#FFFFFF;
+    color: #FFFFFF;
 }
+
 .panel-main.info .panel-title .panel-head-button button {
     background: #2e9bbb;
     color: #ffffff;
     border-color: #46a3bf;
 }
+
 /* panel colors - warning */
 .panel-main.warning {
     border-color: #ffc107;
 }
+
 .panel-main.warning .panel-title {
     background-color: #ffc107;
     border-bottom-color: #ffc107;
-    color:#FFFFFF;
+    color: #FFFFFF;
 }
+
 .panel-main.warning .panel-title .panel-head-button button {
     background: #da9a40;
     color: #ffffff;
@@ -622,11 +663,13 @@ New Reactstrap CSS
 .panel-main.danger {
     border-color: #dc3545;
 }
+
 .panel-main.danger .panel-title {
     background-color: #dc3545;
     border-bottom-color: #dc3545;
-    color:#FFFFFF;
+    color: #FFFFFF;
 }
+
 .panel-main.danger .panel-title .panel-head-button button {
     background: #c12f2b;
     color: #ffffff;
@@ -637,31 +680,35 @@ New Reactstrap CSS
 .panel-main.secondary {
     border-color: #6c757d;
 }
+
 .panel-main.secondary .panel-title {
     background-color: #6c757d;
     border-bottom-color: #6c757d;
     color: #292b2c;
 }
+
 .panel-main.secondary .panel-title .panel-head-button button {
     background: #ffffff;
     color: #c3c2c2;
     border-color: #cccccc;
 }
+
 /* panel colors - success */
 .panel-main.success {
     border-color: #28a745;
 }
+
 .panel-main.success .panel-title {
     background-color: #28a745;
     border-bottom-color: #28a745;
     color: #FFFFFF;
 }
+
 .panel-main.success .panel-title .panel-head-button button {
     background: #3b963b;
     color: #ffffff;
     border-color: #4fb14f;
 }
-
 
 /**
 * karcin menu css
@@ -671,43 +718,55 @@ New Reactstrap CSS
     display: block;
     background-color: #292b3a;
 }
+
 .karcin-menu .nav-item {
     display: block;
     width: 100%;
 }
+
 .karcin-menu .nav-item .nav-link {
     display: block;
 }
+
 .karcin-menu .nav-item .open-icon {
     float: right;
     margin-top: 4px;
     text-align: right;
 }
+
 .karcin-menu .nav-item .menu-icon {
     margin-right: 5px;
     display: inline-block;
 }
+
 .karcin-menu .nav-item .menu-head {
     cursor: pointer;
 }
+
 .karcin-menu .nav-item .menu-head .nav-link {
     display: block;
 }
+
 .karcin-menu .nav-item .menu-head .nav-link strong .badge {
     margin-left: 10px;
 }
+
 .karcin-menu.hover-menu {
     max-width: 100%;
 }
+
 .karcin-menu.hover-menu .nav-item {
     position: relative;
 }
+
 .karcin-menu.hover-menu .nav-item:hover > .collapse {
     display: block !important;
 }
+
 .karcin-menu.hover-menu .nav-item .collapse.show {
     display: none;
 }
+
 .karcin-menu.hover-menu .nav-item .nav {
     background-color: #303030;
     position: absolute;
@@ -718,26 +777,32 @@ New Reactstrap CSS
     z-index: 999999;
     padding: 0px;
 }
+
 .karcin-menu.hover-menu .nav-item .nav .nav-item {
     padding-left: 0;
 }
+
 .karcin-menu .nav-item.active,
 .karcin-menu.hover-menu .nav-item:hover,
 .karcin-menu.hover-menu .nav-item .nav {
     background: #3c3e4f;
 }
+
 .karcin-menu .nav-item .nav-item {
     background: transparent !important;
 }
+
 .karcin-menu .nav-item.active .nav-link,
-.karcin-menu.hover-menu .nav-item:hover .nav-link{
+.karcin-menu.hover-menu .nav-item:hover .nav-link {
     border-color: #4d4f61;
 }
+
 .karcin-menu .nav-item.active .nav-item:hover > .menu-head .nav-link,
 .karcin-menu .nav-item.active .nav-item.active > .menu-head > .nav-link,
-.karcin-menu.hover-menu .nav-item:hover .nav-item:hover > .menu-head > .nav-link  {
+.karcin-menu.hover-menu .nav-item:hover .nav-item:hover > .menu-head > .nav-link {
     color: #8a8da5;
 }
+
 .karcin-menu .nav-item .nav-link {
     color: #ffffff;
     border-bottom: solid 1px #43444f;
@@ -753,59 +818,73 @@ New Reactstrap CSS
     background-color: #8cb753;
     border-radius: 5px 5px 0px 0px;
 }
+
 .karcin-data-grid .data-grid-header .data-grid-search .btn {
     background-color: #779c45;
     border: solid 1px #b2d484;
     border-left: 0;
     color: #fff;
 }
+
 .karcin-data-grid .data-grid-header .data-grid-search .btn:focus {
     box-shadow: none;
 }
+
 .karcin-data-grid .data-grid-header .data-grid-search .form-control {
     background-color: #779c45;
     border: solid 1px #b2d484;
     border-right: 0;
     color: #fff;
 }
+
 .karcin-data-grid .data-grid-header .data-grid-search .form-control::placeholder {
     color: #fff;
 }
+
 .karcin-data-grid .data-grid-header .data-grid-search .form-control:focus {
     box-shadow: none;
 }
+
 .karcin-data-grid .data-grid-header .header-buttons {
     text-align: right;
 }
+
 .karcin-data-grid .data-grid-header .header-buttons .btn {
     background-color: #779c45;
     color: #fff;
     border-right: solid 2px #70943f;
 }
+
 .karcin-data-grid .data-grid-header .header-buttons .btn:last-child {
     border: 0;
 }
+
 .karcin-data-grid .data-grid-header .header-buttons .btn:focus {
     outline: none;
     box-shadow: none;
 }
+
 .karcin-data-grid .data-grid-header .header-buttons .btn:hover:not(:disabled) {
     background-color: #9dbf6e;
 }
+
 .karcin-data-grid .table {
     border: 0;
     margin-bottom: 0;
 }
+
 .karcin-data-grid .table thead {
     background-color: #f1efef;
     overflow: hidden;
     display: block;
     border: solid 1px #dee2e6;
 }
+
 .karcin-data-grid .table thead tr {
     overflow: hidden;
     display: flex;
 }
+
 .karcin-data-grid .table thead tr td, .karcin-data-grid .table thead tr th {
     font-size: 15px;
     font-weight: 600;
@@ -821,14 +900,17 @@ New Reactstrap CSS
     border-top: 0;
     position: relative;
 }
+
 .karcin-data-grid .table thead tr td:last-child, .karcin-data-grid .table thead tr th:last-child {
     border-right: 0;
 }
+
 .karcin-data-grid .table thead tr td .title-option, .karcin-data-grid .table thead tr th .title-option {
     position: absolute;
     right: 5px;
     top: 7px;
 }
+
 .karcin-data-grid .table thead tr td span, .karcin-data-grid .table thead tr th span {
     float: right;
     cursor: pointer;
@@ -837,9 +919,11 @@ New Reactstrap CSS
     -ms-transition: all .3s ease;
     transition: all .3s ease;
 }
+
 .karcin-data-grid .table thead tr td span:hover, .karcin-data-grid .table thead tr th span:hover {
     color: #636161;
 }
+
 .karcin-data-grid .table tbody {
     height: 350px;
     overflow-y: auto;
@@ -847,23 +931,29 @@ New Reactstrap CSS
     border: solid 1px #dee2e6;
     border-top: 0;
 }
+
 .karcin-data-grid .table tbody tr {
     overflow: hidden;
     display: flex;
 }
+
 .karcin-data-grid .table tbody tr:hover td {
     background-color: #f1f1f1;
 }
+
 .karcin-data-grid .table tbody tr:first-child td {
     border-top: 0;
 }
+
 .karcin-data-grid .table tbody tr:last-child td {
     border-bottom: solid 1px #dee2e6;
 }
+
 .karcin-data-grid .table tbody tr.active td {
     background-color: #4e9dfb;
     color: #fff;
 }
+
 .karcin-data-grid .table tbody tr td {
     vertical-align: middle;
     padding: 5px 12px;
@@ -877,19 +967,23 @@ New Reactstrap CSS
     -ms-transition: all .3s ease;
     transition: all .3s ease;
 }
+
 .karcin-data-grid .table tbody tr td:last-child {
     border-right: 0;
 }
+
 .karcin-data-grid .table tr td, .karcin-data-grid .table tr th {
     display: inline-flex;
     align-items: center;
 }
+
 .karcin-data-grid .data-grid-footer {
     width: 100%;
     padding: 10px;
     background-color: #8cb753;
     border-radius: 0px 0px 5px 5px;
 }
+
 .karcin-data-grid .data-grid-footer .btn {
     background-color: #779c45;
     color: #fff;
@@ -897,27 +991,34 @@ New Reactstrap CSS
     padding: 3px 10px;
     font-size: 15px;
 }
+
 .karcin-data-grid .data-grid-footer .btn.arrow {
     padding: 3px 5px;
 }
+
 .karcin-data-grid .data-grid-footer .btn:last-child {
     border: 0;
 }
+
 .karcin-data-grid .data-grid-footer .btn:focus {
     outline: none;
     box-shadow: none;
 }
+
 .karcin-data-grid .data-grid-footer .btn:hover:not(:disabled), .karcin-data-grid .data-grid-footer .btn.active {
     background-color: #9dbf6e;
 }
+
 .karcin-data-grid .data-grid-footer .pagination {
     justify-content: center;
 }
+
 .karcin-data-grid .data-grid-footer .data-grid-detail {
     display: inline-flex;
     justify-content: flex-end;
     align-items: center;
 }
+
 .karcin-data-grid .data-grid-footer .data-grid-detail div {
     display: inline-block;
     font-size: 14px;
@@ -931,23 +1032,25 @@ New Reactstrap CSS
     border-left: 0;
     color: #948f8f;
 }
+
 .popup-over-search .btn:focus {
     box-shadow: none;
 }
+
 .popup-over-search .form-control {
     background-color: #ffffff;
     border: 1px solid #c3c3c3;
     border-right: 0;
     color: #a5a1a1;
 }
+
 .popup-over-search .form-control::placeholder {
     color: #948f8f;
 }
+
 .popup-over-search .form-control:focus {
     box-shadow: none;
 }
-
-
 
 /**
 notify color
@@ -975,4 +1078,87 @@ notify color
 
 a[href='http://www.amcharts.com/javascript-maps/'] {
     display: none !important;
+}
+
+/**
+* Context Menu
+*/
+.karcin-context-menu {
+    position: absolute;
+    z-index: 99999999999;
+    left: 0;
+    top: 0;
+    width: 200px;
+    display: none;
+}
+
+.karcin-context-menu.active,
+.karcin-context-menu.active .dropdown-menu {
+    display: block;
+    padding: 0;
+}
+
+.karcin-context-menu .nav {
+    width: 100%;
+    background-color: #fafafa;
+    border: solid 1px #e9e9e9;
+}
+
+.karcin-context-menu .dropdown-menu .dropdown-item {
+    padding: 0;
+    position: relative;
+}
+
+.karcin-context-menu .dropdown-menu .dropdown-item:last-child a {
+    border-bottom: 0;
+}
+
+.karcin-context-menu .dropdown-menu .dropdown-item a {
+    display: block;
+    padding: 6px 10px;
+    border-bottom: solid 1px #e9e9e9;
+    color: #212529;
+}
+
+.karcin-context-menu .dropdown-menu .dropdown-item:hover > .menu-head a {
+    color: #fff;
+    text-decoration: none;
+    background-color: #007bff;
+}
+
+.karcin-context-menu .dropdown-menu .dropdown-item a {
+}
+
+.karcin-context-menu .dropdown-menu .dropdown-item .menu-head {
+}
+
+.karcin-context-menu .dropdown-menu .dropdown-item i.basic-icon {
+    float: left;
+    margin-top: 6px;
+    margin-right: 2px;
+}
+
+.karcin-context-menu .dropdown-menu .dropdown-item i.dropdown-icon {
+    float: right;
+    margin-top: 6px;
+}
+
+.karcin-context-menu .dropdown-menu .dropdown-item span {
+}
+
+.karcin-context-menu .dropdown-menu .dropdown-item .dropdown-menu {
+    display: none;
+}
+
+.karcin-context-menu .dropdown-menu .dropdown-item .dropdown-menu {
+    position: absolute;
+    width: 200px;
+    right: -200px;
+    top: 0;
+    left:auto;
+    margin: 0;
+}
+
+.karcin-context-menu .dropdown-menu .dropdown-item:hover > .dropdown-menu {
+    display: block;
 }

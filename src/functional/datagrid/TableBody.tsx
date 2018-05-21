@@ -19,6 +19,8 @@ export interface TableBodyProps {
     data: any;
     fields: any;
     onSelected ?: any;
+    cellRenderer?:any;
+    rowRenderer?:any;
 }
 
 export interface TableBodyState {
@@ -83,13 +85,15 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
                     style['display'] = 'none';
                 }
 
-                Cell.push(<td key={j} style={style}>{value[valueField.value]}</td>);
+                Cell.push(<td key={j} style={style}>
+                    {(this.props.cellRenderer !== undefined) ? value[valueField.value] : this.props.cellRenderer()}
+                    </td>);
             }
 
             Rows.push(<tr key={i} className={(self.state.clickActive.indexOf(getId) !== -1) ? 'active' : ''}
                           onClick={(e) => {
                               this.onClickRow(e, getId, this.props.data[i])
-                          }}>{Cell}</tr>);
+                          }}>{(this.props.rowRenderer !== undefined) ? Cell : this.props.rowRenderer()}</tr>);
         }
         return <tbody>{Rows}</tbody>;
     }

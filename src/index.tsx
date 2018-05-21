@@ -40,6 +40,8 @@ import CylinderChart from "./chart/extrachart/CylinderChart";
 import PyramidChart from "./chart/extrachart/PyramidChart";
 import LineChartTrend from "./chart/linechart/LineChartTrend";
 import MapChart from "./chart/mapchart/MapChart";
+import ContextMenu from "./functional/contextmenu/contextMenu";
+import Store from "./store/Store";
 
 import "./css/karcin-ui.css";
 
@@ -80,6 +82,8 @@ export {
     MicroChart,
     CylinderChart,
     PyramidChart,
-    LineChartTrend
+    LineChartTrend,
+    Store,
+    ContextMenu
 };
 export default Button;

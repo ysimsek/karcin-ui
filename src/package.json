@@ -32,7 +32,7 @@
     "react-router-dom": "^4.2.2",
     "glamor": "^2.20.40",
     "react-toastify": "^3.4.3",
-    "reactstrap": "^5.0.0-beta",
+    "reactstrap": "^6.",
     "@amcharts/amcharts3-react": "^3.1.0"
   },
   "devDependencies": {

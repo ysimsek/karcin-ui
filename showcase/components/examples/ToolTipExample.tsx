@@ -16,7 +16,7 @@ export default class ToolTipExample extends React.Component<any, any> {
     render() {
         return <div>
             <Row className="basic-row">
-                <span className="example-reagent first">Text Tooltip</span>
+                <span className="example-reagent">Text Tooltip</span>
                 <Col sm={3}>
                     <span id="left">Left Tooltip</span>
                     <ToolTip
