@@ -240,6 +240,10 @@ export default class Pagination extends React.Component<PaginationProps,any>{
 
     /**
      * Props Page 3 için ayarlama fonksiyonu
+     * 3 için tıklanılan sayfa son sayfa ise return ediliyor
+     * Tıklanılan sayfa 1 ise ilk olması gereken değerler set ediliyor.
+     * Onun haricinde tıkladığımız değer orta değişken olarak kabul ediliyor ve
+     * 1 eksiği ve 1 fazlası olarak set ediliyor.
      * @param e
      * @param {Array<any>} pageCount
      */
@@ -261,6 +265,10 @@ export default class Pagination extends React.Component<PaginationProps,any>{
 
     /**
      * PropsPage 4 için ayarlama fonksiyonu
+     * 4 için tıklanılan sayfa son sayfa ise return ediliyor
+     * Tıklanılan sayfa 1 ve 2 ise ilk olması gereken değerler set ediliyor.
+     * Onun haricinde tıkladığımız değer orta değişken -1 yani 2.değişken olarak kabul ediliyor ve
+     * ona göre dizilim yapılmış olarak set ediliyor.
      * @param e
      * @param {Array<any>} pageCount
      */
@@ -283,6 +291,11 @@ export default class Pagination extends React.Component<PaginationProps,any>{
 
     /**
      * Propsu 5 sayfa görünsün için değerler.
+     * Props Page 3 için ayarlama fonksiyonu
+     * 5 için tıklanılan sayfa son sayfa ise return ediliyor
+     * Tıklanılan sayfa 1 ise ilk olması gereken değerler set ediliyor.
+     * Onun haricinde tıkladığımız değer orta değişken olarak kabul ediliyor ve
+     * 1 eksiği, 2 eksiği ve 1 fazlası, 2 fazlası olarak set ediliyor.
      * @param e
      * @param {Array<any>} pageCount
      */

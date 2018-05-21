@@ -976,3 +976,9 @@ notify color
 a[href='http://www.amcharts.com/javascript-maps/'] {
     display: none !important;
 }
+
+button-square-to-radius{
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+}
