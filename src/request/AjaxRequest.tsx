@@ -1,9 +1,14 @@
 import axios from 'axios';
 import Application from '../applications/Applications';
 
+export interface basicObject {
+    [key: string] : string | any
+}
+
+
 export default class AjaxRequest {
 
-    props: object = {
+    props: basicObject = {
 
         // `url` is the server URL that will be used for the request
         url: '',
@@ -21,15 +26,14 @@ export default class AjaxRequest {
         // The last function in the array must return a string or an instance of Buffer, ArrayBuffer,
         // FormData or Stream
         // You may modify the headers object.
-        transformRequest: [function (data, headers) {
+        transformRequest: [function (data:any, headers:any) {
             // Do whatever you want to transform the data
-
             return data;
         }],
 
         // `transformResponse` allows changes to the response data to be made before
         // it is passed to then/catch
-        transformResponse: [function (data) {
+        transformResponse: [function (data:any) {
             // Do whatever you want to transform the data
 
             return data;
@@ -46,7 +50,7 @@ export default class AjaxRequest {
 
         // `paramsSerializer` is an optional function in charge of serializing `params`
         // (e.g. https://www.npmjs.com/package/qs, http://api.jquery.com/jquery.param/)
-        paramsSerializer: function (params) {
+        paramsSerializer: function (params:any) {
         },
 
         // `data` is the data to be sent as the request body
@@ -89,12 +93,12 @@ export default class AjaxRequest {
         xsrfHeaderName: 'X-XSRF-TOKEN', // default
 
         // `onUploadProgress` allows handling of progress events for uploads
-        onUploadProgress: function (progressEvent) {
+        onUploadProgress: function (progressEvent:any) {
             // Do whatever you want with the native progress event
         },
 
         // `onDownloadProgress` allows handling of progress events for downloads
-        onDownloadProgress: function (progressEvent) {
+        onDownloadProgress: function (progressEvent:any) {
             // Do whatever you want with the native progress event
         },
 

@@ -11,8 +11,8 @@ export default class Store {
         endPoint: null
     };
 
-    __dataMap:any[];
-    callback:any;
+    __dataMap?:any[];
+    callback?:any;
 
     constructor(props:object, callback?:any){
         this.props = Application.mergeObject(this.props, props);
@@ -25,7 +25,7 @@ export default class Store {
         if(this.props.data.length > 0){
             this.props.endPoint = new LocalEndPoint({
                 data : this.props.data
-            }, (response)=>{this.endPointCallback(response)});
+            }, (response:any)=>{this.endPointCallback(response)});
         }else if(this.props.url !== undefined) {
             this.props.endPoint = new RemoteEndPoint({
                 url : this.props.url

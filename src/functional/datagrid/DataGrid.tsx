@@ -4,13 +4,13 @@ import '../../css/karcin-ui.css';
 
 import TableBody from './TableBody';
 import TableHead from './TableHead';
-import Toolbar  from './Toolbar';
+import Toolbar from './Toolbar';
 
 export interface DataGridProps {
     /**
      * Set the array data
      */
-    data?:Array<any>;
+    data?: Array<any>;
     /**
      * Set the data array models
      */
@@ -30,7 +30,7 @@ export interface DataGridProps {
     /**
      * row(tr) renderer
      */
-    rowRenderer?:any;
+    rowRenderer?: any;
 }
 
 export interface DataGridState {
@@ -55,13 +55,14 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
 
     }
 
-    componentWillReceiveProps(props:DataGridProps){
+    componentWillReceiveProps(props: DataGridProps) {
         this.init(props);
     }
+
     /**
      * set the first values
      */
-    private init(props:DataGridProps){
+    private init(props: DataGridProps) {
         this.state = {
             data: props.data,
             fields: props.fields
@@ -71,13 +72,15 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
     /**
      *
      */
-    render():any {
+    render(): any {
         return <div className="karcin-data-grid" id={'karcinDataGrid' + this.dataGridId}>
             <Toolbar data={this.props.toolbar}/>
             <div className="data-grid-body">
                 <table className="table table-bordered dataGrid">
                     <TableHead fields={this.state.fields}/>
-                    <TableBody onSelected={this.props.onSelected} data={this.state.data} cellRenderer={this.props.cellRenderer} rowRenderer={this.props.rowRenderer} fields={this.state.fields}/>
+                    <TableBody onSelected={this.props.onSelected} data={this.state.data}
+                               cellRenderer={this.props.cellRenderer} rowRenderer={this.props.rowRenderer}
+                               fields={this.state.fields}/>
                 </table>
             </div>
             {/*<Toolbar type="footer"/>*/}

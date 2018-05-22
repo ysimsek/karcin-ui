@@ -1,3 +1,8 @@
+
+export interface basicObject {
+    [key: string] : string | any
+}
+
 export default class Applications {
 
     /**
@@ -6,22 +11,24 @@ export default class Applications {
      * @param {object} mergeObj
      * @returns {{}}
      */
-    static mergeObject(mainObj: object, mergeObj: object) {
-        let obj = {};
+    static mergeObject(mainObj: basicObject, mergeObj: basicObject) {
+        let obj:basicObject = {};
 
         if (mainObj !== undefined && mergeObj !== undefined) {
 
             // main object
-            for (let mnObj in mainObj) {
+            let mnObj:any;
+            for (mnObj in mainObj) {
                 obj[mnObj] = mainObj[mnObj];
             }
 
             // merge object
-            for (let mergObj in mergeObj) {
-                if (obj[mergObj] !== undefined) {
-                    obj[mergObj] = mergeObj[mergObj];
+            let mrgObj:any;
+            for (mrgObj in mergeObj) {
+                if (obj[mrgObj] !== undefined) {
+                    obj[mrgObj] = mergeObj[mrgObj];
                 } else {
-                    throw new Error('Tanımsız bir name(' + mergObj + ') kullandınız!');
+                    throw new Error('Tanımsız bir name(' + mrgObj + ') kullandınız!');
                 }
             }
 

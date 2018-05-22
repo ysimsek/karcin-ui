@@ -20,7 +20,7 @@ export default class LocaleEndPoint {
         if(this.props.data !== undefined && this.props.data.length > 0){
             this.reset();
 
-            this.props.data.forEach((value)=>{
+            this.props.data.forEach((value:any)=>{
                this.create(value)
             });
         }

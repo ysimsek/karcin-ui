@@ -1,25 +1,11 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 import 'bootstrap/dist/css/bootstrap.css';
-import {
-    Col,
-    Row,
-    InputGroup,
-    InputGroupAddon,
-    Input,
-    Button,
-    ButtonGroup,
-    Popover,
-    PopoverHeader,
-    PopoverBody
-} from 'reactstrap';
-import FaIcon from '../faicon/FaIcon';
 
 export interface TableBodyProps {
     data: any;
     fields: any;
     onSelected ?: any;
-    cellRenderer?:any;
+    cellRenderer?: any;
     rowRenderer?:any;
 }
 
@@ -86,14 +72,14 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
                 }
 
                 Cell.push(<td key={j} style={style}>
-                    {(self.props.cellRenderer !== undefined) ? value[valueField.value] : self.props.cellRenderer()}
+                    {(self.props.cellRenderer !== undefined) ?  self.props.cellRenderer(value, valueField) : value[valueField.value]}
                     </td>);
             }
 
             Rows.push(<tr key={i} className={(self.state.clickActive.indexOf(getId) !== -1) ? 'active' : ''}
                           onClick={(e) => {
                               this.onClickRow(e, getId, this.props.data[i])
-                          }}>{(self.props.rowRenderer !== undefined) ? Cell : self.props.rowRenderer()}</tr>);
+                          }}>{(self.props.rowRenderer !== undefined) ? self.props.rowRenderer(value, this.props.fields) : Cell}</tr>);
         }
         return <tbody>{Rows}</tbody>;
     }
