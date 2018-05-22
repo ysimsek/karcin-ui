@@ -17,7 +17,7 @@ export default class NotifyExample extends React.Component<any,any>{
         this.state = {
             position : "",
             message:"Default message",
-            second:null
+            second: 5
         }
     }
 

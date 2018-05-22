@@ -108,7 +108,7 @@ export default class Panel extends React.Component<PanelProps, PanelState> {
                }else {
                 if(this.props.onClosed !== undefined){
                     this.props.onClosed();
-                }
+                  }
                }
            }
 

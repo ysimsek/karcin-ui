@@ -146,7 +146,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         let returnHtml:any[] = [];
 
         if(this.props.placeholder !== false) {
-            returnHtml.push(<option key={0} value={0}>{this.props.placeholder}</option>);
+            returnHtml.push(<option key={-1} value={0}>{this.props.placeholder}</option>);
         }
         this.props.items.forEach((value:any, index:number) => {
             let id = value[this.props.id];
@@ -297,7 +297,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         }
 
         getPropsItems.forEach((value:any, index:number) => {
-            itemsList.push(<div className={`item ${(this.state.active.arrowActive === index) ? 'active' : ''}`} key={index} onClick={() => {this.addSelectedItem(value)}}>{(this.props.renderer !== undefined) ? this.props.renderer(value) : value[this.props.value]}</div>);
+            itemsList.push(<div className={`item ${(this.state.active.arrowActive === index) ? 'active' : ''}`} key={index+1} onClick={() => {this.addSelectedItem(value)}}>{(this.props.renderer !== undefined) ? this.props.renderer(value) : value[this.props.value]}</div>);
         });
 
         this.state.dropDownItems.data = getPropsItems.slice(0);

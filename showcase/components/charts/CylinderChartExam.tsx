@@ -31,6 +31,7 @@ export default class CylinderChartExam extends React.Component{
                         <Panel title={"Two Data Cylinder Chart Example"}>
                             <CylinderChart
                                 data={data2}
+                                height={400}
                                 categoryField={"data"}
                                 categoryTitle={"category"}
                                 categoryValue={"value"}/>
