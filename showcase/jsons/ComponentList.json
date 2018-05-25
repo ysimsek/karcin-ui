@@ -151,6 +151,16 @@
       "description":"<Progress/>"
     },
     {
+      "id":13,
+      "name":"CheckList",
+      "title":"CheckList",
+      "icon":"fa-percent",
+      "href":"#/Components/CheckList",
+      "samples":"components/examples/CheckListExam",
+      "library":"functional/list/CheckList",
+      "description":"<CheckList/>"
+    },
+    {
       "id":2,
       "name":"input",
       "title":"Input",
