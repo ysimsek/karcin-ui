@@ -1167,6 +1167,72 @@ button-square-to-radius{
     height: 140px;
     border-radius: 50%;
 }
+/*************************CHECKLIST COMPONENT*******************/
+/* The container */
+.check-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.check-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 22px;
+    width: 22px;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 1px #d6d6d6;
+    overflow: hidden;
+    transition: all .2s ease;
+}
+
+/* On mouse-over, add a grey background color */
+.check-container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.check-container input:checked ~ .checkmark {
+    background-color: #ffffff;
+    overflow: initial;
+}
+
+.check-container input:checked ~ .checkmark:after {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+}
+
+/* Style the checkmark/indicator */
+.check-container .checkmark:after {
+    content: "\F00C";
+    font-family: 'FontAwesome';
+    color: #505050;
+    font-size: 15px;
+    transform: scale(4) rotate(62deg);
+    transition: all .3s ease;
+    opacity: 0;
+}
+
+/*****************CHECKLİST END********************/
 
 
 /**  Loading */

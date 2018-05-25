@@ -152,13 +152,23 @@
     },
     {
       "id":13,
+      "name":"CheckList",
+      "title":"CheckList",
+      "icon":"fa-percent",
+      "href":"#/Components/CheckList",
+      "samples":"components/examples/CheckListExam",
+      "library":"functional/list/CheckList",
+      "description":"<CheckList/>"
+    },
+    {
+      "id":13,
       "name":"BigCalendar",
       "title":"Big Calendar",
       "icon":"fa-calendar",
       "href":"#/Components/Calendar",
       "samples":"components/examples/CalendarExample",
-      "library":"functional/calendar/Calendar", 
-      "description":"<BigCalendar/>" 
+      "library":"functional/calendar/Calendar",
+      "description":"<BigCalendar/>"
     },
     {
       "id":14,

@@ -15,6 +15,7 @@ import Pagination from "./functional/paging/Pagination";
 import List from "./functional/list/List";
 import ListItem from "./functional/list/ListItem";
 import Progress from "./functional/progress/Progress";
+import CheckList from "./functional/list/CheckList";
 
 
 import NumericInput from "./inputs/NumericInput";
@@ -64,6 +65,7 @@ export {
     ToolTip,
     List,
     ListItem,
+    CheckList,
     SelectInput,
     TextInput,
     TextArea,
