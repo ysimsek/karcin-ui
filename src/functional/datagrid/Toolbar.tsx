@@ -9,24 +9,19 @@ import {
     ButtonGroup
 } from 'reactstrap';
 import FaIcon from '../faicon/FaIcon';
+import Pagination from '../paging/Pagination';
 
 
 export interface ToolbarProps {
-    type?: string;
-    data?:Array<DataArray>;
+    type?: string | any;
+    store?:Array<any> | any;
+    data?:Array<any>;
 }
 
 export interface ToolbarState {
 
 }
 
-export interface DataArray {
-    name : string;
-    icon? : string;
-    url? : string;
-    onClick?: any;
-    disabled?: boolean;
-}
 
 export default class Toolbar extends React.Component<ToolbarProps, ToolbarState>{
     /**
@@ -73,8 +68,7 @@ export default class Toolbar extends React.Component<ToolbarProps, ToolbarState>
                         </div>
                     </Col>
                     <Col xs="4" className="data-grid-detail">
-                        {/*<div className="showing-text"><strong>Gösterilen : </strong> <span>10</span></div>*/}
-                        {/*<div className="pagination-text"><strong>Sayfa : </strong> <span>1/10</span></div>*/}
+                        <Pagination pageCount={3}  data={(this.props.store !== undefined) ? this.props.store.props.data : []} selectedValue={(e:any) => {console.log(e)}}/>
                     </Col>
                 </Row>
             </div>;

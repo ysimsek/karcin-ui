@@ -13,6 +13,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var reactstrap_1 = require("reactstrap");
 var FaIcon_1 = require("../faicon/FaIcon");
+var Pagination_1 = require("../paging/Pagination");
 var Toolbar = /** @class */ (function (_super) {
     __extends(Toolbar, _super);
     /**
@@ -33,7 +34,8 @@ var Toolbar = /** @class */ (function (_super) {
                         React.createElement("div", { className: "showing" })),
                     React.createElement(reactstrap_1.Col, { xs: "4" },
                         React.createElement("div", { className: "pagination" })),
-                    React.createElement(reactstrap_1.Col, { xs: "4", className: "data-grid-detail" })));
+                    React.createElement(reactstrap_1.Col, { xs: "4", className: "data-grid-detail" },
+                        React.createElement(Pagination_1.default, null))));
         }
         else {
             // header Html Elements

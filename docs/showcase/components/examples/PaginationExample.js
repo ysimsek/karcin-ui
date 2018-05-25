@@ -58,6 +58,7 @@ var PaginationExample = /** @class */ (function (_super) {
     };
     PaginationExample.prototype.getClick = function (e) {
         this.setState({ selectedPage: e.page });
+        console.log(e);
     };
     PaginationExample.prototype.getClick2 = function (e) {
         this.setState({ selectedPage2: e.page });

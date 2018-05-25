@@ -83,7 +83,7 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
                                fields={this.state.fields}/>
                 </table>
             </div>
-            {/*<Toolbar type="footer"/>*/}
+            <Toolbar type="footer" store={this.state.store}/>
         </div>;
     }
 

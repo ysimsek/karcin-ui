@@ -17,7 +17,7 @@ export default class PaginationExample extends React.Component<any,any> {
         {id:110, name:"ToolTip", link:"#/Components/Pagination"},
         {id:111, name:"PopOver", link:"#/Components/Pagination"},
         {id:112, name:"Pagination", link:"#/Components/Pagination"},
-    ]
+    ];
 
     constructor(props:any){
         super(props);
@@ -51,6 +51,7 @@ export default class PaginationExample extends React.Component<any,any> {
 
     getClick(e){
         this.setState({selectedPage:e.page})
+        console.log(e);
     }
 
     getClick2(e){
