@@ -43,6 +43,8 @@ import LineChartTrend from "./chart/linechart/LineChartTrend";
 import MapChart from "./chart/mapchart/MapChart";
 import ContextMenu from "./functional/contextmenu/contextMenu";
 import Store from "./store/Store";
+import Calendar from "./functional/calendar/Calendar";
+import Loading from "./functional/loading/Loading";
 
 import "./css/karcin-ui.css";
 
@@ -85,6 +87,8 @@ export {
     PyramidChart,
     LineChartTrend,
     Store,
-    ContextMenu
+    ContextMenu,
+    Calendar,
+    Loading
 };
 export default Button;

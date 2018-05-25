@@ -10,7 +10,7 @@ export interface DataGridProps {
     /**
      * Set the array data
      */
-    data?: Array<any>;
+    store?: any;
     /**
      * Set the data array models
      */
@@ -34,7 +34,7 @@ export interface DataGridProps {
 }
 
 export interface DataGridState {
-    data?: Array<any>;
+    store?: any;
     fields?: Array<any>;
     toolbar?: Array<any>;
 }
@@ -64,7 +64,7 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
      */
     private init(props: DataGridProps) {
         this.state = {
-            data: props.data,
+            store: props.store,
             fields: props.fields
         }
     }
@@ -78,7 +78,7 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
             <div className="data-grid-body">
                 <table className="table table-bordered dataGrid">
                     <TableHead fields={this.state.fields}/>
-                    <TableBody onSelected={this.props.onSelected} data={this.state.data}
+                    <TableBody onSelected={this.props.onSelected} store={this.state.store}
                                cellRenderer={this.props.cellRenderer} rowRenderer={this.props.rowRenderer}
                                fields={this.state.fields}/>
                 </table>
