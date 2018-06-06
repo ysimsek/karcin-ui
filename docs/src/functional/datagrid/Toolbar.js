@@ -20,22 +20,32 @@ var Toolbar = /** @class */ (function (_super) {
      * Initial values
      */
     function Toolbar(props) {
-        return _super.call(this, props) || this;
+        var _this = _super.call(this, props) || this;
+        _this.state = {
+            paginationSelected: []
+        };
+        return _this;
     }
     /**
      * return any
      */
     Toolbar.prototype.render = function () {
+        var _this = this;
         if (this.props.type == "footer") {
             // footer Html Elements
             return React.createElement("div", { className: "data-grid-footer" },
                 React.createElement(reactstrap_1.Row, null,
                     React.createElement(reactstrap_1.Col, { xs: "4" },
                         React.createElement("div", { className: "showing" })),
-                    React.createElement(reactstrap_1.Col, { xs: "4" },
-                        React.createElement("div", { className: "pagination" })),
-                    React.createElement(reactstrap_1.Col, { xs: "4", className: "data-grid-detail" },
-                        React.createElement(Pagination_1.default, null))));
+                    (this.props.options.pagination !== undefined && this.props.options.pagination) ?
+                        React.createElement(reactstrap_1.Col, { xs: "4" },
+                            React.createElement("div", { className: "pagination" },
+                                React.createElement(Pagination_1.default, { pageCount: 5, type: "simple", typeShowLength: 5, data: (this.props.store !== undefined) ? this.props.store.props.data.length : [], selectedValue: function (e) {
+                                        _this.setState({
+                                            paginationSelected: e.selectData
+                                        });
+                                    } })))
+                        : ''));
         }
         else {
             // header Html Elements
@@ -88,7 +98,8 @@ var Toolbar = /** @class */ (function (_super) {
      * Initial props value
      */
     Toolbar.defaultProps = {
-        type: "header"
+        type: "header",
+        options: {}
     };
     return Toolbar;
 }(React.Component));

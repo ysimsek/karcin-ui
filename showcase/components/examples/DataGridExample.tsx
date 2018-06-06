@@ -1,5 +1,6 @@
 import * as React from "react";
 import {DataGrid, Store} from 'karcin-ui';
+import Axios from 'axios';
 
 
 export default class DataGridExample extends React.Component<any, any> {
@@ -16,52 +17,55 @@ export default class DataGridExample extends React.Component<any, any> {
                 },
                 {
                     "property": "string",
-                    "value": "name",
-                    "name": "İsim"
-                },
-                {
-                    "property": "string",
-                    "value": "surname",
-                    "name": "Soyisim"
-                },
-                {
-                    "property": "string",
                     "value": "title",
-                    "name": "Uzmanlık Alanı"
+                    "name": "isim"
+                },
+                {
+                    "property": "string",
+                    "value": "body",
+                    "name": "açıklama",
+                    "width" : 200
+                },
+                {
+                    "property": "string",
+                    "value" : "url",
+                    "name" : "image",
+                    "width" : 500
                 }
             ],
             store: new Store({
                 idField: 'id',
-                data: [{
-                    'id': '1',
-                    'name': 'Deniz',
-                    'surname': 'DALKILIÇ',
-                    'title': 'Yazılım Uzmanı'
-                }, {
-                    'id': '2',
-                    'name': 'Yunus',
-                    'surname': 'ŞİMŞEK',
-                    'title': 'Yazılım Uzmanı'
-                }, {
-                    'id': '3',
-                    'name': 'Tayyip',
-                    'surname': 'DEMİRCAN',
-                    'title': 'Yazılım Uzmanı'
-                }, {
-                    'id': '4',
-                    'name': 'Mustafa',
-                    'surname': 'GÜNGÖR',
-                    'title': 'Yazılım Uzmanı'
-                }, {
-                    'id': '5',
-                    'name': 'Bora',
-                    'surname': 'AVCI',
-                    'title': 'Yazılım Uzmanı'
-                }]
+                url: 'https://jsonplaceholder.typicode.com/photos',
+                responseData:'data'
             })
         };
 
-
+        // data: [{
+        //     'id': '1',
+        //     'name': 'Deniz',
+        //     'surname': 'DALKILIÇ',
+        //     'title': 'Yazılım Uzmanı'
+        // }, {
+        //     'id': '2',
+        //     'name': 'Yunus',
+        //     'surname': 'ŞİMŞEK',
+        //     'title': 'Yazılım Uzmanı'
+        // }, {
+        //     'id': '3',
+        //     'name': 'Tayyip',
+        //     'surname': 'DEMİRCAN',
+        //     'title': 'Yazılım Uzmanı'
+        // }, {
+        //     'id': '4',
+        //     'name': 'Mustafa',
+        //     'surname': 'GÜNGÖR',
+        //     'title': 'Yazılım Uzmanı'
+        // }, {
+        //     'id': '5',
+        //     'name': 'Bora',
+        //     'surname': 'AVCI',
+        //     'title': 'Yazılım Uzmanı'
+        // }]
     }
 
     render() {
@@ -77,7 +81,7 @@ export default class DataGridExample extends React.Component<any, any> {
             name: 'Düzenle', icon: 'fa-minus', onClick: () => {
                 this.clickEdit()
             }
-        }]}/></div>);
+        }]} pagination={true}/></div>);
     }
 
 

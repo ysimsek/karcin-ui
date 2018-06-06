@@ -7,7 +7,7 @@ export interface PaginationProps{
     /**
      * Array Data
      */
-    data : Array<any>;
+    data?: Array<any> | any;
     /**
      * Set the link
      */
@@ -41,6 +41,14 @@ export interface PaginationProps{
      * sm, lg
      */
     size ?: any;
+    /**
+     * Set the type, normal and simple
+     */
+    type ?: string;
+    /**
+     * Show the count data
+     */
+    typeShowLength ?: any;
 }
 
 export default class Pagination extends React.Component<PaginationProps,any>{
@@ -51,7 +59,8 @@ export default class Pagination extends React.Component<PaginationProps,any>{
     static defaultProps={
         toBegin : "«",
         toEnd : "»",
-        pageCount :3
+        pageCount :3,
+        type : "normal"
     }
 
     id :any;
@@ -110,10 +119,17 @@ export default class Pagination extends React.Component<PaginationProps,any>{
         let cmp : any = <span/>;
         if(this.props.pageCount != undefined) {
             cmp = <Page onClick={this.handleChange.bind(this)} size={this.props.size}>
-                {this.renderPageFunctions(this.props.data)}
+                {this.props.type == "normal" ? this.renderPageFunctions(this.props.data,"normal") : (this.props.type == "simple" ? this.returnSimpleData(this.props.data) :"")}
             </Page>;
         }
         return cmp;
+    }
+
+    returnSimpleData(data:any){
+        //data, type, typeShowLength gönderilecek
+        let pageCount = parseInt(data)/this.props.typeShowLength;
+
+        return this.renderPageFunctions(this.props.data,"simple");
     }
 
     /**
@@ -121,7 +137,7 @@ export default class Pagination extends React.Component<PaginationProps,any>{
      * @param {Array<any>} data
      * @returns {JSX.Element[]}
      */
-    renderPageFunctions(data:Array<any>):JSX.Element[]{
+    renderPageFunctions(data:any,type:string):JSX.Element[]{
 
         let numb :any = this.props.pageCount;
         if(this.showPage.length <= 0) {
@@ -135,20 +151,34 @@ export default class Pagination extends React.Component<PaginationProps,any>{
         let i:any = 0;
         let firstPage: JSX.Element = this.decreaseElement(i);
         let goToTheBegin: JSX.Element = this.firstPageElement();
+        let x = false;
         /**
-         * Array içerisinde data ayıklanıyor
+         * Dolu data ve boş string için data ayıklanıyor Array içerisinde data ayıklanıyor
          */
-        data.forEach(function (val : any, idx: number) {
-            i++;
-            component.push(<PaginationItem active={parseInt(me.selectPage) == idx+1 ? true : false} key={i}>
-                <PaginationLink id={i} href={val[me.props.hrefValue]}>
-                    {idx+1}
-                </PaginationLink>
-            </PaginationItem>)
-        })
+        type == "normal" ?
+            data.forEach(function (val : any, idx: number) {
+                i++;
+                component.push(<PaginationItem active={parseInt(me.selectPage) == idx+1 ? true : false} key={i}>
+                    <PaginationLink id={i} href={val[me.props.hrefValue]}>
+                        {idx+1}
+                    </PaginationLink>
+                </PaginationItem>)
+            }) : (x=true);
+
+        if(x==true){
+            for(let j:any=0; j< parseInt(data)/me.props.typeShowLength; j++){
+                i++;
+                component.push(<PaginationItem active={parseInt(me.selectPage) == j+1 ? true : false} key={j+1}>
+                    <PaginationLink id={j+1} key={j+1}>
+                        {j+1}
+                    </PaginationLink>
+                </PaginationItem>)
+            }
+        }
+
         let lastPage: JSX.Element = this.increaseElement(i);
         let goToTheEnd: JSX.Element = this.lastPageElement();
-        me.lastIndex = data.length;
+        x == false ? me.lastIndex = data.length : me.lastIndex = Math.ceil(parseInt(data)/this.props.typeShowLength);
         me.firstPage = this.showPage[0];
 
         /**
@@ -182,7 +212,6 @@ export default class Pagination extends React.Component<PaginationProps,any>{
         if(me.showPage.indexOf(1) == -1){
             showData.push(this.blablaElement(-3))
         }
-
         data.forEach(function (comp: any, i: number) {
             me.showPage.forEach(function (show: any,j: number) {
                 if(show == parseInt(comp.key)){
@@ -222,18 +251,22 @@ export default class Pagination extends React.Component<PaginationProps,any>{
             return;
         }else {
             if(this.props.pageCount == 3){
-                    this.propsCountWhenThreeSelectPosition(e,pageCount);
+                this.propsCountWhenThreeSelectPosition(e,pageCount);
             }else if(this.props.pageCount == 4){
                 this.propsCountWhenFourSelectPosition(e,pageCount);
 
             }else if(this.props.pageCount == 5){
                 this.propsCountWhenFiveSelectPosition(e,pageCount);
             }
-            this.selectPage = parseInt(e.target.text);
+            this.selectPage = e.target.text;
         }
 
         if(this.props.selectedValue != undefined){
-            this.props.selectedValue({page : this.selectPage, href : e.target.href, selectData:this.props.data[this.selectPage-1]});
+            this.props.type == "normal" ?
+                this.props.selectedValue({page : this.selectPage, href : e.target.href, selectData:this.props.data[this.selectPage-1]})
+                :
+                this.props.selectedValue({page : this.selectPage})
+
         }
 
     }
@@ -248,7 +281,7 @@ export default class Pagination extends React.Component<PaginationProps,any>{
      * @param {Array<any>} pageCount
      */
     propsCountWhenThreeSelectPosition(e:any,pageCount:Array<any>){
-        this.selectPage = parseInt(e.target.text);
+        this.selectPage = e.target.text;
         if(parseInt(this.selectPage) == this.lastIndex){
             return;
         }

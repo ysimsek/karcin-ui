@@ -19,6 +19,32 @@ var ButtonExample = /** @class */ (function (_super) {
     }
     ButtonExample.prototype.render = function () {
         var _this = this;
+        var deneme = [{
+                'id': '1',
+                'name': 'Deniz',
+                'surname': 'DALKILIÇ',
+                'title': 'Yazılım Uzmanı'
+            }, {
+                'id': '2',
+                'name': 'Yunus',
+                'surname': 'ŞİMŞEK',
+                'title': 'Yazılım Uzmanı'
+            }, {
+                'id': '3',
+                'name': 'Tayyip',
+                'surname': 'DEMİRCAN',
+                'title': 'Yazılım Uzmanı'
+            }, {
+                'id': '4',
+                'name': 'Mustafa',
+                'surname': 'GÜNGÖR',
+                'title': 'Yazılım Uzmanı'
+            }, {
+                'id': '5',
+                'name': 'Bora',
+                'surname': 'AVCI',
+                'title': 'Yazılım Uzmanı'
+            }];
         return (React.createElement("div", null,
             React.createElement(karcin_ui_1.Button, { color: "primary", onClick: function () {
                     _this.onClick();

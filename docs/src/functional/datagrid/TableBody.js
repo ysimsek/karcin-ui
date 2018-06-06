@@ -42,13 +42,20 @@ var TableBody = /** @class */ (function (_super) {
      * @returns {any}
      */
     TableBody.prototype.render = function () {
+        return React.createElement("tbody", null, this.getItems());
+    };
+    /**
+     * get renderer items
+     * @returns {any[]}
+     */
+    TableBody.prototype.getItems = function () {
         var _this = this;
         var Rows = [];
         var self = this;
-        if (this.props.store.props.data !== undefined) {
-            var data_1 = this.props.store.props.data;
+        var data = this.props.store.props.data;
+        if (data !== undefined) {
             var _loop_1 = function (i) {
-                var value = data_1[i];
+                var value = data[i];
                 var getId = i;
                 if (value.id !== undefined) {
                     getId = parseInt(value.id);
@@ -56,23 +63,27 @@ var TableBody = /** @class */ (function (_super) {
                 var Cell = [];
                 for (var j = 0; j < this_1.state.fields.length; j++) {
                     var valueField = this_1.state.fields[j];
+                    var scrolWid = 0;
                     // style
                     var style = {};
                     if (valueField.visibility !== undefined && !valueField.visibility) {
                         style['display'] = 'none';
                     }
+                    if (this_1.props.fieldOption !== undefined) {
+                        style['width'] = this_1.props.fieldOption[valueField.value] + "px";
+                    }
                     Cell.push(React.createElement("td", { key: j, style: style }, (self.props.cellRenderer !== undefined) ? self.props.cellRenderer(value, valueField) : value[valueField.value]));
                 }
                 Rows.push(React.createElement("tr", { key: i, className: (self.state.clickActive.indexOf(getId) !== -1) ? 'active' : '', onClick: function (e) {
-                        _this.onClickRow(e, getId, data_1[i]);
+                        _this.onClickRow(e, getId, data[i]);
                     } }, (self.props.rowRenderer !== undefined) ? self.props.rowRenderer(value, this_1.props.fields) : Cell));
             };
             var this_1 = this;
-            for (var i = 0; i < data_1.length; i++) {
+            for (var i = 0; i < data.length; i++) {
                 _loop_1(i);
             }
         }
-        return React.createElement("tbody", null, Rows);
+        return Rows;
     };
     /**
      * @param e

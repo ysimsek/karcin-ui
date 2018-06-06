@@ -7,6 +7,7 @@ var LocaleEndPoint = /** @class */ (function () {
         this.props = {
             data: [],
             idField: 'id',
+            endPoint: 'localEndPoint'
         };
         this.props = Applications_1.default.mergeObject(this.props, props);
         this.__callback = callback;
@@ -66,6 +67,36 @@ var LocaleEndPoint = /** @class */ (function () {
             }
         }
         return this.__dataMap;
+    };
+    LocaleEndPoint.prototype.orderSort = function (fieldName) {
+        this.__dataMap.sort(function (first, last) {
+            var firstName = first[fieldName].toUpperCase();
+            var lastName = last[fieldName].toUpperCase();
+            //
+            if (firstName < lastName) {
+                return -1;
+            }
+            //
+            if (firstName > lastName) {
+                return 1;
+            }
+            return 0;
+        });
+        return this.__dataMap;
+    };
+    ;
+    LocaleEndPoint.prototype.orderReverse = function (fieldName) {
+        this.__dataMap = this.orderSort(fieldName);
+        this.__dataMap.reverse();
+        return this.__dataMap;
+    };
+    LocaleEndPoint.prototype.filter = function (fieldName, value) {
+        var data = this.__dataMap.filter(function (val, index) {
+            if (val[fieldName].toUpperCase().indexOf(value.toUpperCase()) !== -1) {
+                return val;
+            }
+        });
+        return data;
     };
     return LocaleEndPoint;
 }());

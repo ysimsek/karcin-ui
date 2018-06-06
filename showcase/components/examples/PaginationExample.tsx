@@ -17,7 +17,7 @@ export default class PaginationExample extends React.Component<any,any> {
         {id:110, name:"ToolTip", link:"#/Components/Pagination"},
         {id:111, name:"PopOver", link:"#/Components/Pagination"},
         {id:112, name:"Pagination", link:"#/Components/Pagination"},
-    ];
+    ]
 
     constructor(props:any){
         super(props);
@@ -31,27 +31,33 @@ export default class PaginationExample extends React.Component<any,any> {
 
     render(){
         return <div>
-                    <Label>Selected Page: {this.state.selectedPage}</Label>
-                    <Pagination data={this.data} hrefValue={"link"} selectedValue={this.getClick.bind(this)}/>
+            <Label>Selected Page: {this.state.selectedPage}</Label>
+            <Pagination data={this.data} hrefValue={"link"} selectedValue={this.getClick.bind(this)}/>
 
-                    <br/>
+            <br/>
 
-                    <Label>sm Size ,Selected Page: {this.state.selectedPage2}</Label>
-                    <Pagination data={this.data} hrefValue={"link"} size={"sm"} pageCount={4} selectedValue={this.getClick2.bind(this)}/>
+            <Label>sm Size ,Selected Page: {this.state.selectedPage2}</Label>
+            <Pagination data={this.data} hrefValue={"link"} size={"sm"} pageCount={4} selectedValue={this.getClick2.bind(this)}/>
 
-                    <br/>
+            <br/>
 
-                    <Label>lg Size , Selected Page: {this.state.selectedPage3}</Label>
-                    <Pagination data={this.data} hrefValue={"link"} size={"lg"} pageCount={5} selectedValue={this.getClick3.bind(this)}/>
+            <Label>lg Size , Selected Page: {this.state.selectedPage3}</Label>
+            <Pagination data={this.data} hrefValue={"link"} size={"lg"} pageCount={5} selectedValue={this.getClick3.bind(this)}/>
+
+            <br/>
+            <Label>Total Data and Show Count lg Size, Selected page: {this.state.selectedPage4} </Label>
+            <Pagination data={400}
+                        type={"simple"}
+                        typeShowLength={22}
+                        size={"lg"} pageCount={5} selectedValue={this.getClick4.bind(this)}/>
 
 
 
-                </div>
+        </div>
     }
 
     getClick(e){
         this.setState({selectedPage:e.page})
-        console.log(e);
     }
 
     getClick2(e){
@@ -61,6 +67,13 @@ export default class PaginationExample extends React.Component<any,any> {
     getClick3(e) {
         this.setState({selectedPage3: e.page})
     }
+
+    getClick4(e) {
+        console.log(e.page)
+        this.setState({selectedPage4: e.page})
+    }
+
+
 
 
 }

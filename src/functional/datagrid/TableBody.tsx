@@ -7,6 +7,7 @@ export interface TableBodyProps {
     onSelected ?: any;
     cellRenderer?: any;
     rowRenderer?:any;
+    fieldOption?:any;
 }
 
 export interface TableBodyState {
@@ -50,10 +51,20 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
      * @returns {any}
      */
     render():any {
+        return <tbody>{this.getItems()}</tbody>;
+    }
+
+    /**
+     * get renderer items
+     * @returns {any[]}
+     */
+    getItems(){
         let Rows = [];
         let self = this;
-        if(this.props.store.props.data !== undefined){
-            let data = this.props.store.props.data;
+        let data = this.props.store.props.data;
+
+
+        if(data !== undefined){
             for (let i = 0; i < data.length; i++) {
                 let value = data[i];
 
@@ -66,26 +77,32 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
                 let Cell = [];
                 for (let j = 0; j < this.state.fields.length; j++) {
                     let valueField = this.state.fields[j];
-
+                    let scrolWid = 0;
                     // style
                     let style: standartObject = {};
                     if(valueField.visibility !== undefined && !valueField.visibility){
                         style['display'] = 'none';
                     }
 
+                    if(this.props.fieldOption !== undefined){
+                        style['width'] = this.props.fieldOption[valueField.value] + "px";
+                    }
+
                     Cell.push(<td key={j} style={style}>
                         {(self.props.cellRenderer !== undefined) ?  self.props.cellRenderer(value, valueField) : value[valueField.value]}
-                        </td>);
+                    </td>);
                 }
 
                 Rows.push(<tr key={i} className={(self.state.clickActive.indexOf(getId) !== -1) ? 'active' : ''}
-                            onClick={(e) => {
-                                this.onClickRow(e, getId, data[i])
-                            }}>{(self.props.rowRenderer !== undefined) ? self.props.rowRenderer(value, this.props.fields) : Cell}</tr>);
+                              onClick={(e) => {
+                                  this.onClickRow(e, getId, data[i])
+                              }}>{(self.props.rowRenderer !== undefined) ? self.props.rowRenderer(value, this.props.fields) : Cell}</tr>);
             }
         }
-        return <tbody>{Rows}</tbody>;
+
+        return Rows;
     }
+
 
     /**
      * @param e

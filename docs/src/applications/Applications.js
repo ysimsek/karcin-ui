@@ -10,21 +10,20 @@ var Applications = /** @class */ (function () {
      * @returns {{}}
      */
     Applications.mergeObject = function (mainObj, mergeObj) {
-        var obj = {};
         if (mainObj !== undefined && mergeObj !== undefined) {
-            // main object
-            var mnObj = void 0;
-            for (mnObj in mainObj) {
-                obj[mnObj] = mainObj[mnObj];
-            }
+            var obj = mainObj;
             // merge object
             var mrgObj = void 0;
             for (mrgObj in mergeObj) {
-                if (obj[mrgObj] !== undefined) {
+                if (mergeObj[mrgObj] !== undefined && mergeObj[mrgObj] !== null) {
                     obj[mrgObj] = mergeObj[mrgObj];
                 }
-                else {
-                    throw new Error('Tanımsız bir name(' + mrgObj + ') kullandınız!');
+            }
+            // main object
+            var mnObj = void 0;
+            for (mnObj in obj) {
+                if (obj[mnObj] === undefined || obj[mnObj] === null) {
+                    delete obj[mnObj];
                 }
             }
             return obj;

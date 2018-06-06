@@ -54,17 +54,26 @@ var PaginationExample = /** @class */ (function (_super) {
             React.createElement(karcin_ui_1.Label, null,
                 "lg Size , Selected Page: ",
                 this.state.selectedPage3),
-            React.createElement(karcin_ui_1.Pagination, { data: this.data, hrefValue: "link", size: "lg", pageCount: 5, selectedValue: this.getClick3.bind(this) }));
+            React.createElement(karcin_ui_1.Pagination, { data: this.data, hrefValue: "link", size: "lg", pageCount: 5, selectedValue: this.getClick3.bind(this) }),
+            React.createElement("br", null),
+            React.createElement(karcin_ui_1.Label, null,
+                "Total Data and Show Count lg Size, Selected page: ",
+                this.state.selectedPage4,
+                " "),
+            React.createElement(karcin_ui_1.Pagination, { data: 400, type: "simple", typeShowLength: 22, size: "lg", pageCount: 5, selectedValue: this.getClick4.bind(this) }));
     };
     PaginationExample.prototype.getClick = function (e) {
         this.setState({ selectedPage: e.page });
-        console.log(e);
     };
     PaginationExample.prototype.getClick2 = function (e) {
         this.setState({ selectedPage2: e.page });
     };
     PaginationExample.prototype.getClick3 = function (e) {
         this.setState({ selectedPage3: e.page });
+    };
+    PaginationExample.prototype.getClick4 = function (e) {
+        console.log(e.page);
+        this.setState({ selectedPage4: e.page });
     };
     return PaginationExample;
 }(React.Component));

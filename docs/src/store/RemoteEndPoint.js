@@ -10,7 +10,9 @@ var RemoteEndPoint = /** @class */ (function () {
         this.props = {
             url: null,
             idField: 'id',
-            method: 'POST'
+            method: 'GET',
+            endPoint: 'remoteEndPoint',
+            responseData: ''
         };
         this.props = Applications_1.default.mergeObject(this.props, props);
         this.__callback = callback;
@@ -18,18 +20,23 @@ var RemoteEndPoint = /** @class */ (function () {
     }
     ;
     RemoteEndPoint.prototype.call = function () {
-        if (this.props.url !== null && !this.requestStatus) {
+        var _this = this;
+        if (this.props.url !== null && this.requestStatus) {
             this.requestStatus = false;
-            new AjaxRequest_1.default({
+            var getData = new AjaxRequest_1.default({
                 url: this.props.url,
                 method: this.props.method
-            }, this.callbackReady);
+            }, function (response) {
+                _this.callbackReady(response);
+            });
+            getData.call();
         }
     };
     RemoteEndPoint.prototype.callbackReady = function (response) {
         this.requestStatus = false;
-        if (response !== undefined) {
-            this.__callback(response);
+        if (this.__callback !== undefined && response !== undefined) {
+            this.__dataMap = response[this.props.responseData];
+            this.__callback(response[this.props.responseData]);
         }
     };
     RemoteEndPoint.prototype.read = function () {
@@ -49,6 +56,57 @@ var RemoteEndPoint = /** @class */ (function () {
     RemoteEndPoint.prototype.create = function (item, successCallback, errorCallback) {
     };
     RemoteEndPoint.prototype.update = function (items, successCallback, errorCallback) {
+    };
+    RemoteEndPoint.prototype.orderSort = function (fieldName, callback) {
+        var _this = this;
+        if (fieldName !== undefined) {
+            var getAjax = new AjaxRequest_1.default({
+                url: this.props.url,
+                type: this.props.method,
+                data: { orders: { "property": fieldName, "orderType": 'ASC' } }
+            }, function (response) {
+                _this.callbackReady(response);
+                callback(response[_this.props.responseData], fieldName, 'asc');
+            });
+            getAjax.call();
+        }
+        else {
+            throw new Error('Field name empty');
+        }
+    };
+    RemoteEndPoint.prototype.orderReverse = function (fieldName, callback) {
+        var _this = this;
+        if (fieldName !== undefined) {
+            var getAjax = new AjaxRequest_1.default({
+                url: this.props.url,
+                type: this.props.method,
+                data: { orders: { "property": fieldName, "orderType": 'DESC' } }
+            }, function (response) {
+                _this.callbackReady(response);
+                callback(response[_this.props.responseData], fieldName, 'desc');
+            });
+            getAjax.call();
+        }
+        else {
+            throw new Error('Field name empty');
+        }
+    };
+    RemoteEndPoint.prototype.filter = function (fieldName, value, callback) {
+        var _this = this;
+        if (fieldName != undefined && value !== undefined) {
+            var getAjax = new AjaxRequest_1.default({
+                url: this.props.url,
+                method: this.props.method,
+                params: { filters: { "property": fieldName, "orderType": 'DESC' } }
+            }, function (response) {
+                _this.callbackReady(response);
+                callback(response[_this.props.responseData], fieldName, 'desc');
+            });
+            getAjax.call();
+        }
+        else {
+            throw new Error('Field name or value empty');
+        }
     };
     return RemoteEndPoint;
 }());

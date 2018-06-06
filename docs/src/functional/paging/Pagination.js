@@ -63,16 +63,21 @@ var Pagination = /** @class */ (function (_super) {
     Pagination.prototype.render = function () {
         var cmp = React.createElement("span", null);
         if (this.props.pageCount != undefined) {
-            cmp = React.createElement(reactstrap_1.Pagination, { onClick: this.handleChange.bind(this), size: this.props.size }, this.renderPageFunctions(this.props.data));
+            cmp = React.createElement(reactstrap_1.Pagination, { onClick: this.handleChange.bind(this), size: this.props.size }, this.props.type == "normal" ? this.renderPageFunctions(this.props.data, "normal") : (this.props.type == "simple" ? this.returnSimpleData(this.props.data) : ""));
         }
         return cmp;
+    };
+    Pagination.prototype.returnSimpleData = function (data) {
+        //data, type, typeShowLength gönderilecek
+        var pageCount = parseInt(data) / this.props.typeShowLength;
+        return this.renderPageFunctions(this.props.data, "simple");
     };
     /**
      *
      * @param {Array<any>} data
      * @returns {JSX.Element[]}
      */
-    Pagination.prototype.renderPageFunctions = function (data) {
+    Pagination.prototype.renderPageFunctions = function (data, type) {
         var numb = this.props.pageCount;
         if (this.showPage.length <= 0) {
             for (var i_1 = 1; i_1 < numb + 1; i_1++) {
@@ -84,17 +89,26 @@ var Pagination = /** @class */ (function (_super) {
         var i = 0;
         var firstPage = this.decreaseElement(i);
         var goToTheBegin = this.firstPageElement();
+        var x = false;
         /**
-         * Array içerisinde data ayıklanıyor
+         * Dolu data ve boş string için data ayıklanıyor Array içerisinde data ayıklanıyor
          */
-        data.forEach(function (val, idx) {
-            i++;
-            component.push(React.createElement(reactstrap_1.PaginationItem, { active: parseInt(me.selectPage) == idx + 1 ? true : false, key: i },
-                React.createElement(reactstrap_1.PaginationLink, { id: i, href: val[me.props.hrefValue] }, idx + 1)));
-        });
+        type == "normal" ?
+            data.forEach(function (val, idx) {
+                i++;
+                component.push(React.createElement(reactstrap_1.PaginationItem, { active: parseInt(me.selectPage) == idx + 1 ? true : false, key: i },
+                    React.createElement(reactstrap_1.PaginationLink, { id: i, href: val[me.props.hrefValue] }, idx + 1)));
+            }) : (x = true);
+        if (x == true) {
+            for (var j = 0; j < parseInt(data) / me.props.typeShowLength; j++) {
+                i++;
+                component.push(React.createElement(reactstrap_1.PaginationItem, { active: parseInt(me.selectPage) == j + 1 ? true : false, key: j + 1 },
+                    React.createElement(reactstrap_1.PaginationLink, { id: j + 1, key: j + 1 }, j + 1)));
+            }
+        }
         var lastPage = this.increaseElement(i);
         var goToTheEnd = this.lastPageElement();
-        me.lastIndex = data.length;
+        x == false ? me.lastIndex = data.length : me.lastIndex = Math.ceil(parseInt(data) / this.props.typeShowLength);
         me.firstPage = this.showPage[0];
         /**
          * Gösterilmek istenene sayı kadar page görünüyor
@@ -174,7 +188,10 @@ var Pagination = /** @class */ (function (_super) {
             this.selectPage = e.target.text;
         }
         if (this.props.selectedValue != undefined) {
-            this.props.selectedValue({ page: this.selectPage, href: e.target.href, selectData: this.props.data[this.selectPage - 1] });
+            this.props.type == "normal" ?
+                this.props.selectedValue({ page: this.selectPage, href: e.target.href, selectData: this.props.data[this.selectPage - 1] })
+                :
+                    this.props.selectedValue({ page: this.selectPage });
         }
     };
     /**
@@ -403,7 +420,8 @@ var Pagination = /** @class */ (function (_super) {
     Pagination.defaultProps = {
         toBegin: "«",
         toEnd: "»",
-        pageCount: 3
+        pageCount: 3,
+        type: "normal"
     };
     return Pagination;
 }(React.Component));
