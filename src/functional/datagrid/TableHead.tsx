@@ -102,7 +102,9 @@ export default class TableHead extends React.Component<TableHeadProps, TableHead
             }
 
             Cell.push(<th key={i} style={style}>
-                <span>{value.name}</span>
+                <span onClick={() => {
+                    this.orderData(value.value);
+                }}>{value.name}</span>
                 <div className="title-option">
                     <span className="filter" id={'Popover' + i} onClick={() => {
                         self.popoverOpen(i)
