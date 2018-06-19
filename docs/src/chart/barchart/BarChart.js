@@ -42,6 +42,7 @@ var SimpleLineChart = /** @class */ (function (_super) {
             "gridAboveGraphs": true,
             "depth3D": (this.props.threeD == true ? 40 : null),
             "angle": (this.props.threeD == true ? 30 : null),
+            "chartScrollbar": (this.props.scroll == true ? {} : undefined),
             "graphs": [{
                     "balloonText": "[[category]]: <b>[[value]]</b>",
                     "fillColorsField": this.props.colorField,
@@ -79,7 +80,8 @@ var SimpleLineChart = /** @class */ (function (_super) {
         theme: "light",
         threeD: false,
         inline: false,
-        height: 200
+        height: 200,
+        scroll: false
     };
     return SimpleLineChart;
 }(React.Component));

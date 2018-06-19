@@ -32,14 +32,14 @@ var DataFilter = /** @class */ (function (_super) {
          * @type {{label: string; name: string}[]}
          */
         _this.operators = [
-            { label: '=', name: 'equal' },
-            { label: '!=', name: 'not equal' },
-            { label: '<', name: 'less' },
-            { label: '<=', name: 'less or equal' },
-            { label: '>', name: 'greater' },
-            { label: '>=', name: 'greater or equal' },
-            { label: '~=', name: 'like' },
-            { label: '|=', name: 'in(use | to separate)' }
+            (_a = {}, _a[_this.props.labelFieldName] = '=', _a[_this.props.nameFieldName] = 'equal', _a),
+            (_b = {}, _b[_this.props.labelFieldName] = '!=', _b[_this.props.nameFieldName] = 'not equal', _b),
+            (_c = {}, _c[_this.props.labelFieldName] = '<', _c[_this.props.nameFieldName] = 'less', _c),
+            (_d = {}, _d[_this.props.labelFieldName] = '<=', _d[_this.props.nameFieldName] = 'less or equal', _d),
+            (_e = {}, _e[_this.props.labelFieldName] = '>', _e[_this.props.nameFieldName] = 'greater', _e),
+            (_f = {}, _f[_this.props.labelFieldName] = '>=', _f[_this.props.nameFieldName] = 'greater or equal', _f),
+            (_g = {}, _g[_this.props.labelFieldName] = '~=', _g[_this.props.nameFieldName] = 'like', _g),
+            (_h = {}, _h[_this.props.labelFieldName] = '|=', _h[_this.props.nameFieldName] = 'in(use | to separate)', _h)
         ];
         _this.state = {
             inputText: { value: "" },
@@ -65,6 +65,7 @@ var DataFilter = /** @class */ (function (_super) {
             }
         });
         return _this;
+        var _a, _b, _c, _d, _e, _f, _g, _h;
     }
     /**
      * @returns {any}
@@ -98,6 +99,7 @@ var DataFilter = /** @class */ (function (_super) {
      * @param e
      */
     DataFilter.prototype.handleChange = function (e) {
+        console.log(e.target.value);
         this.state.inputText.value = e.target.value;
         this.forceUpdate();
         this.fieldShowingControl();
@@ -158,12 +160,12 @@ var DataFilter = /** @class */ (function (_super) {
                 this.props.field.forEach(function (value, index) {
                     if (_this.state.inputText.value !== "") {
                         if (!_this.props.labelCase) {
-                            if (value.label.search(_this.state.inputText.value) !== -1) {
+                            if (value[_this.props.labelFieldName].search(_this.state.inputText.value) !== -1) {
                                 getArray.push(value);
                             }
                         }
                         else {
-                            if (value.label.toLowerCase().search(_this.state.inputText.value.toLowerCase()) !== -1) {
+                            if (value[_this.props.labelFieldName].toLowerCase().search(_this.state.inputText.value.toLowerCase()) !== -1) {
                                 getArray.push(value);
                             }
                         }
@@ -176,7 +178,7 @@ var DataFilter = /** @class */ (function (_super) {
                     var returnHtml = React.createElement("div", { key: index, className: "item " + ((_this.state.active.arrowActive === index) ? 'active' : ''), onClick: function () {
                             _this.setName(value);
                         } },
-                        React.createElement("span", null, value.label));
+                        React.createElement("span", null, value[_this.props.labelFieldName]));
                     getLists.push(returnHtml);
                     getListResultData.push(value);
                 });
@@ -187,12 +189,12 @@ var DataFilter = /** @class */ (function (_super) {
                 this.operators.forEach(function (value, index) {
                     if (_this.state.inputText.value !== "") {
                         if (!_this.props.labelCase) {
-                            if (value.label.search(_this.state.inputText.value) !== -1) {
+                            if (value[_this.props.labelFieldName].search(_this.state.inputText.value) !== -1) {
                                 getArray.push(value);
                             }
                         }
                         else {
-                            if (value.label.toLowerCase().search(_this.state.inputText.value.toLowerCase()) !== -1) {
+                            if (value[_this.props.labelFieldName].search(_this.state.inputText.value.toLowerCase()) !== -1) {
                                 getArray.push(value);
                             }
                         }
@@ -205,7 +207,7 @@ var DataFilter = /** @class */ (function (_super) {
                     var returnHtml = React.createElement("div", { key: index, className: "item " + ((_this.state.active.arrowActive === index) ? 'active' : ''), onClick: function () {
                             _this.setOperator(value);
                         } },
-                        React.createElement("span", null, value.label + " " + value.name));
+                        React.createElement("span", null, value[_this.props.labelFieldName] + " " + value[_this.props.nameFieldName]));
                     getLists.push(returnHtml);
                     getListResultData.push(value);
                 });
@@ -220,12 +222,12 @@ var DataFilter = /** @class */ (function (_super) {
                     getItems.forEach(function (value, index) {
                         if (_this.state.inputText.value !== "") {
                             if (!_this.props.labelCase) {
-                                if (value.label.search(_this.state.inputText.value) !== -1) {
+                                if (value[_this.props.labelFieldName].toLowerCase().search(_this.state.inputText.value) !== -1) {
                                     getArray.push(value);
                                 }
                             }
                             else {
-                                if (value.label.toLowerCase().search(_this.state.inputText.value.toLowerCase()) !== -1) {
+                                if (value[_this.props.labelFieldName].toLowerCase().search(_this.state.inputText.value.toLowerCase()) !== -1) {
                                     getArray.push(value);
                                 }
                             }
@@ -238,7 +240,7 @@ var DataFilter = /** @class */ (function (_super) {
                         var returnHtml = React.createElement("div", { key: index, className: "item " + ((_this.state.active.arrowActive === index) ? 'active' : ''), onClick: function () {
                                 _this.setValue(value);
                             } },
-                            React.createElement("span", null, value.label));
+                            React.createElement("span", null, value[_this.props.labelFieldName]));
                         getLists.push(returnHtml);
                         getListResultData.push(value);
                     });
@@ -258,18 +260,18 @@ var DataFilter = /** @class */ (function (_super) {
         var getLists = [];
         var inputType = "text";
         this.props.field.forEach(function (value, index) {
-            if (_this.state.selectText.length > 0 && _this.state.selectText[0].name === value.name) {
-                if (value.type === "password") {
+            if (_this.state.selectText.length > 0 && _this.state.selectText[0][_this.props.nameFieldName] === value[_this.props.nameFieldName]) {
+                if (value[_this.props.typeFieldName] === "password") {
                     getLists = [];
                     inputType = "password";
                 }
-                else if (value.type === "number") {
+                else if (value[_this.props.typeFieldName] === "number") {
                     getLists = [];
                     inputType = "number";
                 }
-                else if (value.type === "select" || value.type === "radio") {
-                    if (value.items !== undefined) {
-                        getLists = value.items;
+                else if (value[_this.props.typeFieldName] === "select" || value[_this.props.typeFieldName] === "radio") {
+                    if (value[_this.props.itemsFieldName] !== undefined) {
+                        getLists = value[_this.props.itemsFieldName];
                     }
                     inputType = "text";
                 }
@@ -331,7 +333,7 @@ var DataFilter = /** @class */ (function (_super) {
             // items value print
             var itemsName = [];
             value.forEach(function (val, id) {
-                itemsName.push(val.label);
+                itemsName.push(val[_this.props.labelFieldName]);
             });
             getList.push(React.createElement("div", { className: "item", key: index },
                 React.createElement("span", null, itemsName.join(' ')),
@@ -368,10 +370,11 @@ var DataFilter = /** @class */ (function (_super) {
      * @returns {JSX.Element[]}
      */
     DataFilter.prototype.getSelectText = function () {
+        var _this = this;
         var getLists = [];
         if (this.state.selectText.length > 0) {
             this.state.selectText.forEach(function (val, index) {
-                getLists.push(React.createElement("span", { key: index }, val.label));
+                getLists.push(React.createElement("span", { key: index }, val[_this.props.labelFieldName]));
             });
         }
         return getLists;
@@ -395,11 +398,12 @@ var DataFilter = /** @class */ (function (_super) {
      * @param event
      */
     DataFilter.prototype.inputKeyControl = function (event) {
+        console.log(event.keyCode, this.state.inputText, this.state.selectedItem.length, this.state.selectText.length);
         // "enter" key code
         if (event.keyCode === 13) {
             // value select item 
             if (this.state.getListResult.data.length <= 0 && this.state.selectText.length >= 2 && this.state.inputText.value !== "" && !this.state.showing.dropValue) {
-                this.setValue({ label: this.state.inputText.value });
+                this.setValue((_a = {}, _a[this.props.labelFieldName] = this.state.inputText.value, _a));
             }
             if (this.state.active.arrowActive !== null) {
                 this.enterSelectArrowItem();
@@ -414,6 +418,7 @@ var DataFilter = /** @class */ (function (_super) {
         else if (event.keyCode == 40) {
             this.arrowSelectFieldDown();
         }
+        var _a;
     };
     /**
      * backspace bastığımızda itemları ve karakterleri silen method
@@ -459,7 +464,7 @@ var DataFilter = /** @class */ (function (_super) {
             });
         }
         this.state.active.arrowActive = null;
-        this.state.inputText.value = inItemLast['label'];
+        this.state.inputText.value = inItemLast[this.props.labelFieldName];
         this.forceUpdate();
     };
     /**
@@ -530,7 +535,11 @@ var DataFilter = /** @class */ (function (_super) {
      */
     DataFilter.defaultProps = {
         labelPosition: 'up',
-        labelCase: true
+        labelCase: true,
+        nameFieldName: 'name',
+        typeFieldName: 'type',
+        labelFieldName: 'label',
+        itemsFieldName: 'items'
     };
     return DataFilter;
 }(React.Component));

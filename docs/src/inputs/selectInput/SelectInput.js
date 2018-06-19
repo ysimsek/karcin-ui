@@ -294,26 +294,24 @@ var SelectInput = /** @class */ (function (_super) {
     SelectInput.prototype.onChangeProps = function () {
         var _this = this;
         if (this.props.onChange !== undefined) {
-            var value = void 0;
             var target_1 = {};
             if (this.props.type === "multi") {
-                value = this.state.itemActive;
+                var newArray = this.state.itemActive.slice(0);
                 target_1['id'] = [];
                 target_1['name'] = this.props.name;
                 target_1['value'] = [];
-                target_1['object'] = [];
-                value.forEach(function (val) {
+                target_1['object'] = newArray;
+                newArray.forEach(function (val) {
                     target_1['id'].push(val[_this.props.id]);
                     target_1['value'].push(val[_this.props.value]);
-                    target_1['object'].push(val);
                 });
             }
             else {
-                value = this.state.itemActive[0];
-                target_1['id'] = value[this.props.id];
+                var newArray = this.state.itemActive[0].slice(0);
+                target_1['id'] = newArray[this.props.id];
                 target_1['name'] = this.props.name;
-                target_1['value'] = value[this.props.value];
-                target_1['object'] = value;
+                target_1['value'] = newArray[this.props.value];
+                target_1['object'] = newArray;
             }
             this.props.onChange({ target: target_1 });
         }

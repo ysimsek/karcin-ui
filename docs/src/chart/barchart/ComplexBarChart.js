@@ -89,6 +89,7 @@ var ComplexBarChart = /** @class */ (function (_super) {
                     }
                 }],
             "graphs": this.returnGrapsData(this.props.type),
+            "chartScrollbar": (this.props.scroll == true ? {} : undefined),
             "chartCursor": {
                 "zoomable": false,
                 "categoryBalloonDateFormat": "DD",
@@ -162,7 +163,8 @@ var ComplexBarChart = /** @class */ (function (_super) {
      */
     ComplexBarChart.defaultProps = {
         height: 300,
-        theme: "none"
+        theme: "none",
+        scroll: false
     };
     return ComplexBarChart;
 }(React.Component));

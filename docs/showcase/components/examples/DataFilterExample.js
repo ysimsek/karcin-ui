@@ -26,68 +26,68 @@ var DataFilterExample = /** @class */ (function (_super) {
         var _this = this;
         var field = [
             {
-                "label": "Id",
-                "type": "number",
-                "name": "id"
+                "labels": "Id",
+                "types": "number",
+                "names": "id"
             },
             {
-                "label": "Name",
-                "type": "string",
-                "name": "name"
+                "labels": "Name",
+                "types": "string",
+                "names": "name"
             },
             {
-                "label": "Surname",
-                "type": "string",
-                "name": "surname"
+                "labels": "Surname",
+                "types": "string",
+                "names": "surname"
             },
             {
-                "label": "E-Mail",
-                "type": "string",
-                "name": "email"
+                "labels": "E-Mail",
+                "types": "string",
+                "names": "email"
             },
             {
-                "label": "Password",
-                "type": "password",
-                "name": "password"
+                "labels": "Password",
+                "types": "password",
+                "names": "password"
             },
             {
-                "label": "Birthdate",
-                "type": "date",
-                "name": "birthdate"
+                "labels": "Birthdate",
+                "types": "date",
+                "names": "birthdate"
             },
             {
-                "label": "Job Title",
-                "type": "select",
-                "name": "job",
+                "labels": "Job Title",
+                "types": "select",
+                "names": "job",
                 "items": [
                     {
-                        name: "sd",
-                        label: "Software Developer"
+                        names: "sd",
+                        labels: "Software Developer"
                     },
                     {
-                        name: "sa",
-                        label: "Software Architect"
+                        names: "sa",
+                        labels: "Software Architect"
                     }
                 ]
             },
             {
-                "label": "Gender",
-                "type": "radio",
-                "name": "gender",
+                "labels": "Gender",
+                "types": "radio",
+                "names": "gender",
                 "items": [
                     {
-                        name: "male",
-                        label: "Male"
+                        names: "male",
+                        labels: "Male"
                     },
                     {
-                        name: "female",
-                        label: "Female"
+                        names: "female",
+                        labels: "Female"
                     }
                 ]
             }
         ];
         return React.createElement("div", null,
-            React.createElement(karcin_ui_1.DataFilter, { field: field, label: "Data Filter Example", onChange: function (e) {
+            React.createElement(karcin_ui_1.DataFilter, { field: field, label: "Data Filter Example", labelFieldName: "labels", nameFieldName: "names", typeFieldName: "types", onChange: function (e) {
                     _this.getList(e);
                 } }),
             React.createElement("div", { style: { marginTop: 20 } }, (this.state.writeCode.data.length > 0) ? React.createElement(Highlight, { className: 'json', innerHtml: true }, JSON.stringify(this.state.writeCode.data)) : ''));
@@ -97,7 +97,7 @@ var DataFilterExample = /** @class */ (function (_super) {
         val.forEach(function (value) {
             var itemVal = [];
             value.forEach(function (val) {
-                itemVal.push(val.label);
+                itemVal.push(val.labels);
             });
             getList.push(itemVal);
         });

@@ -68,7 +68,9 @@ var TableHead = /** @class */ (function (_super) {
                 style['width'] = this_1.props.fieldOption[value.value] + "px";
             }
             Cell.push(React.createElement("th", { key: i, style: style },
-                React.createElement("span", null, value.name),
+                React.createElement("span", { onClick: function () {
+                        _this.orderData(value.value);
+                    } }, value.name),
                 React.createElement("div", { className: "title-option" },
                     React.createElement("span", { className: "filter", id: 'Popover' + i, onClick: function () {
                             self.popoverOpen(i);

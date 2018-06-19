@@ -394,27 +394,26 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
      */
     onChangeProps(){
         if(this.props.onChange !== undefined){
-            let value:any;
             let target:any = {};
 
             if(this.props.type === "multi"){
-                value = this.state.itemActive;
+                let newArray:any = this.state.itemActive.slice(0);
                 target['id'] = [];
                 target['name'] = this.props.name;
                 target['value'] = [];
-                target['object'] = [];
+                target['object'] = newArray;
 
-                value.forEach((val:any) => {
+                newArray.forEach((val:any) => {
                     target['id'].push(val[this.props.id]);
                     target['value'].push(val[this.props.value]);
-                    target['object'].push(val);
                 });
+
             }else {
-                value = this.state.itemActive[0];
-                target['id'] = value[this.props.id];
+                let newArray = this.state.itemActive[0].slice(0);
+                target['id'] = newArray[this.props.id];
                 target['name'] = this.props.name;
-                target['value'] = value[this.props.value];
-                target['object'] = value;
+                target['value'] = newArray[this.props.value];
+                target['object'] = newArray;
             }
 
             this.props.onChange({target});

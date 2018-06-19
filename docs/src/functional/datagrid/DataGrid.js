@@ -31,9 +31,6 @@ var DataGrid = /** @class */ (function (_super) {
         _this.props.store.__callback = function () {
             _this.resetData();
         };
-        window.addEventListener('load', function () {
-            //this.columnStyle();
-        });
         return _this;
     }
     DataGrid.prototype.UNSAFE_componentWillReceiveProps = function (props) {
@@ -56,10 +53,11 @@ var DataGrid = /** @class */ (function (_super) {
         var _this = this;
         return React.createElement("div", { className: "karcin-data-grid", id: 'karcinDataGrid' + this.dataGridId, ref: function (e) {
                 _this.eventDataGrid = e;
-                _this.columnStyle();
-            }, onLoad: function () {
-                console.log('yüklendi');
-            } },
+            } }, this.returnComponent);
+    };
+    DataGrid.prototype.dataGridLoadComponent = function () {
+        var _this = this;
+        this.returnComponent = React.createElement("div", null,
             React.createElement(Toolbar_1.default, { data: this.props.toolbar, store: this.props.store }),
             React.createElement("div", { className: "data-grid-body" },
                 React.createElement("table", { className: "table table-bordered dataGrid" },
@@ -67,7 +65,18 @@ var DataGrid = /** @class */ (function (_super) {
                             _this.resetData();
                         } }),
                     React.createElement(TableBody_1.default, { onSelected: this.props.onSelected, fieldOption: this.fieldOption, store: this.props.store, cellRenderer: this.props.cellRenderer, rowRenderer: this.props.rowRenderer, fields: this.state.fields }))),
-            React.createElement(Toolbar_1.default, { type: "footer", store: this.props.store, options: { 'pagination': this.props.pagination }, paginationData: this.getPagesData }));
+            React.createElement(Toolbar_1.default, { type: "footer", store: this.props.store, options: { 'pagination': this.props.pagination } }));
+    };
+    DataGrid.prototype.componentDidMount = function () {
+        var _this = this;
+        setTimeout(function () {
+            _this.columnStyle();
+            _this.dataGridLoadComponent();
+        }, 200);
+        window.addEventListener('load', function () {
+            _this.columnStyle();
+            _this.dataGridLoadComponent();
+        });
     };
     DataGrid.prototype.resetData = function () {
         this.forceUpdate();
