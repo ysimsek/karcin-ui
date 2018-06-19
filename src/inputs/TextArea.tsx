@@ -59,8 +59,12 @@ export default class TextArea extends React.Component<TextAreaProps,any>{
                 disabled={this.props.properties.disabled}
                 cols={this.props.properties.cols}
                 rows={this.props.properties.rows}
+                onChange={this.onChange.bind(this)}
             />
             </div>
+    }
+    onChange(e:any){
+        this.props.onChange(e);
     }
 
 }

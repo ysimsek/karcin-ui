@@ -15,7 +15,9 @@ export default class CheckListExam extends React.Component<any,any>{
         this.state = {
             data : [],
             data2 : [],
-            data3 : [1,2,3,4]
+            data3 : [{id:1,name:"Mustafa",job:"Computer Engineer", age: 26},
+                {id:2,name:"Zeynep",job:"Business Manager", age:24},
+                {id:3,name:"Meral",job:"Software Specialist", age:29}]
         }
     }
 
@@ -41,7 +43,7 @@ export default class CheckListExam extends React.Component<any,any>{
                     items={this.data}
                     id={"id"}
                     value={"name"}
-                    checkIds={this.state.data3}
+                    checkObjects={this.state.data3}
                     onChange={(values) => this.onChange('data3', values)}/>
             </Col>
         </Row>)

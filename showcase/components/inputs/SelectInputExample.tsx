@@ -50,7 +50,7 @@ export default class SelectInputExample extends React.Component<any,any>{
                     items={items}
                     id={"id"}
                     value={"project"}
-                    onChange={this.handleChange.bind(this)}
+                    onChange={this.handleChange2.bind(this)}
                     type={"multi"}
                     renderer={this.rendererDropDown}
                 />
@@ -69,6 +69,10 @@ export default class SelectInputExample extends React.Component<any,any>{
     }
     handleChange(e){
         
+    }
+
+    handleChange2(){
+        console.log(arguments);
     }
 
     rendererDropDown(value:any){

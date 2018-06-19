@@ -154,7 +154,7 @@
       "id":13,
       "name":"CheckList",
       "title":"CheckList",
-      "icon":"fa-percent",
+      "icon":"fa-check",
       "href":"#/Components/CheckList",
       "samples":"components/examples/CheckListExam",
       "library":"functional/list/CheckList",

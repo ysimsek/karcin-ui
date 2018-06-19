@@ -10,7 +10,7 @@ export interface CheckListProps{
     /**
      * Set the Selected checked elements id
      */
-    checkIds ?: Array<any>;
+    checkObjects ?: Array<any>;
     /**
      * Set the show value
      */
@@ -64,14 +64,14 @@ export default class CheckList extends React.Component<CheckListProps,any>{
     }
 
     /**
-     * CheckIds varsa checked ile kontrol sağlanıyor,
+     * CheckObjects varsa checked ile kontrol sağlanıyor,
      * Eğer ki yoksa inputun kendinden kontrol sağlanıyor
      * @param value
      * @returns {any}
      */
     childInputElements(value:any){
         let me = this;
-        return this.props.checkIds != undefined ?
+        return this.props.checkObjects != undefined ?
             <input
                 className={"checkbox"}
                 onChange={(e:any) => this.onChange(value[me.props.id], e.target.checked)}
@@ -147,9 +147,9 @@ export default class CheckList extends React.Component<CheckListProps,any>{
     returnTrueOrFalseChecked(value:any){
         let me = this;
         let bool = false;
-        me.props.checkIds != undefined ?
-        me.props.checkIds.forEach(function (val:any, idx:number) {
-            if(val == value[me.props.id]){
+        me.props.checkObjects != undefined ?
+        me.props.checkObjects.forEach(function (val:any, idx:number) {
+            if(val[me.props.id] == value[me.props.id]){
                 bool = true;
                 me.state[value[me.props.id]] = true;
             }
