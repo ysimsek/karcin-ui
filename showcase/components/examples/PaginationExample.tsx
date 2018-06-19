@@ -31,7 +31,7 @@ export default class PaginationExample extends React.Component<any,any> {
 
     render(){
         return <div>
-                    <Label>Selected Page: {this.state.selectedPage}</Label>
+            <Label>Selected Page: {this.state.selectedPage}</Label>
             <Pagination data={this.data} hrefValue={"link"} selectedValue={this.getClick.bind(this)}/>
 
             <br/>
@@ -50,7 +50,7 @@ export default class PaginationExample extends React.Component<any,any> {
                         type={"simple"}
                         typeShowLength={22}
                         size={"lg"} pageCount={5} selectedValue={this.getClick4.bind(this)}/>
-                </div>
+        </div>
     }
 
     getClick(e){

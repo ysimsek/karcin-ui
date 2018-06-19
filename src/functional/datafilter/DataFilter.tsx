@@ -7,7 +7,7 @@ export interface DataFilterProps {
     /**
      * Set the fields model (Array)
      */
-    field: Array<FieldArray> | any;
+    field: Array<any> | any;
     /**
      * Manage the values (function)
      */
@@ -27,6 +27,26 @@ export interface DataFilterProps {
      * label case boolean (default:true)
      */
     labelCase?: boolean | any;
+
+    /**
+     * data name get field name
+     */
+    nameFieldName?: string | any;
+
+    /**
+     * data name get field type
+     */
+    typeFieldName?: string | any;
+
+    /**
+     * data name get field label
+     */
+    labelFieldName?: string | any;
+
+    /**
+     * data child items name
+     */
+    itemsFieldName?: string | any
 }
 
 export interface DataFilterState {
@@ -40,12 +60,6 @@ export interface DataFilterState {
     focusControl ?: object | any
 }
 
-export interface FieldArray {
-    label?: string,
-    type?: string,
-    name?: string,
-    filter?: boolean
-}
 
 export default class DataFilter extends React.Component<DataFilterProps, DataFilterState> {
     /**
@@ -56,19 +70,7 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
      * @type {string}
      */
     inputType:string =  "text";
-    /**
-     * @type {{label: string; name: string}[]}
-     */
-    operators:any[] = [
-        {label: '=', name: 'equal'},
-        {label: '!=', name: 'not equal'},
-        {label: '<', name: 'less'},
-        {label: '<=', name: 'less or equal'},
-        {label: '>', name: 'greater'},
-        {label: '>=', name: 'greater or equal'},
-        {label: '~=', name: 'like'},
-        {label: '|=', name: 'in(use | to separate)'}
-    ];
+
 
     /**
      * Default props
@@ -76,8 +78,26 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
      */
     static defaultProps: Partial<DataFilterProps> = {
         labelPosition : 'up',
-        labelCase : true
+        labelCase : true,
+        nameFieldName: 'name',
+        typeFieldName: 'type',
+        labelFieldName: 'label',
+        itemsFieldName : 'items'
     };
+
+    /**
+     * @type {{label: string; name: string}[]}
+     */
+    operators:any[] = [
+        {[this.props.labelFieldName]: '=', [this.props.nameFieldName]: 'equal'},
+        {[this.props.labelFieldName]: '!=', [this.props.nameFieldName]: 'not equal'},
+        {[this.props.labelFieldName]: '<', [this.props.nameFieldName]: 'less'},
+        {[this.props.labelFieldName]: '<=', [this.props.nameFieldName]: 'less or equal'},
+        {[this.props.labelFieldName]: '>', [this.props.nameFieldName]: 'greater'},
+        {[this.props.labelFieldName]: '>=', [this.props.nameFieldName]: 'greater or equal'},
+        {[this.props.labelFieldName]: '~=', [this.props.nameFieldName]: 'like'},
+        {[this.props.labelFieldName]: '|=', [this.props.nameFieldName]: 'in(use | to separate)'}
+    ];
 
     /**
      * Initial values
@@ -186,6 +206,7 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
         });
         this.inputText.focus();
         this.fieldShowingControl();
+        this.forceUpdate();
     }
 
     /**
@@ -229,11 +250,11 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
                 this.props.field.forEach((value:any, index:number)=>{
                     if (this.state.inputText.value !== "") {
                         if(!this.props.labelCase) {
-                            if (value.label.search(this.state.inputText.value) !== -1) {
+                            if (value[this.props.labelFieldName].search(this.state.inputText.value) !== -1) {
                                 getArray.push(value);
                             }
                         }else {
-                            if (value.label.toLowerCase().search(this.state.inputText.value.toLowerCase()) !== -1) {
+                            if (value[this.props.labelFieldName].toLowerCase().search(this.state.inputText.value.toLowerCase()) !== -1) {
                                 getArray.push(value);
                             }
                         }
@@ -245,7 +266,7 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
                 getArray.forEach((value: any, index: number) => {
                     let returnHtml: JSX.Element = <div key={index} className={`item ${(this.state.active.arrowActive === index) ? 'active' : ''}`} onClick={() => {
                         this.setName(value)
-                    }}><span>{value.label}</span></div>;
+                    }}><span>{value[this.props.labelFieldName]}</span></div>;
 
                     getLists.push(returnHtml);
                     getListResultData.push(value);
@@ -258,11 +279,11 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
                 this.operators.forEach((value:any, index:number)=>{
                     if (this.state.inputText.value !== "") {
                         if(!this.props.labelCase) {
-                            if (value.label.search(this.state.inputText.value) !== -1) {
+                            if (value[this.props.labelFieldName].search(this.state.inputText.value) !== -1) {
                                 getArray.push(value);
                             }
                         }else {
-                            if (value.label.toLowerCase().search(this.state.inputText.value.toLowerCase()) !== -1) {
+                            if (value[this.props.labelFieldName].search(this.state.inputText.value.toLowerCase()) !== -1) {
                                 getArray.push(value);
                             }
                         }
@@ -274,7 +295,7 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
                 getArray.forEach((value: any, index: number) => {
                     let returnHtml: JSX.Element = <div key={index} className={`item ${(this.state.active.arrowActive === index) ? 'active' : ''}`} onClick={() => {
                         this.setOperator(value)
-                    }}><span>{value.label + " " + value.name}</span></div>;
+                    }}><span>{value[this.props.labelFieldName] + " " + value[this.props.nameFieldName]}</span></div>;
                     getLists.push(returnHtml);
                     getListResultData.push(value);
                 });
@@ -290,11 +311,11 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
                     getItems.forEach((value:any, index:number)=>{
                         if (this.state.inputText.value !== "") {
                             if(!this.props.labelCase) {
-                                if (value.label.search(this.state.inputText.value) !== -1) {
+                                if (value[this.props.labelFieldName].toLowerCase().search(this.state.inputText.value) !== -1) {
                                     getArray.push(value);
                                 }
                             }else {
-                                if (value.label.toLowerCase().search(this.state.inputText.value.toLowerCase()) !== -1) {
+                                if (value[this.props.labelFieldName].toLowerCase().search(this.state.inputText.value.toLowerCase()) !== -1) {
                                     getArray.push(value);
                                 }
                             }
@@ -306,7 +327,7 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
                     getArray.forEach((value: any, index: number) => {
                         let returnHtml: JSX.Element = <div key={index} className={`item ${(this.state.active.arrowActive === index) ? 'active' : ''}`} onClick={() => {
                             this.setValue(value)
-                        }}><span>{value.label}</span></div>;
+                        }}><span>{value[this.props.labelFieldName]}</span></div>;
                         getLists.push(returnHtml);
                         getListResultData.push(value);
                     });
@@ -327,17 +348,18 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
     fieldValueShowing():JSX.Element[] {
         let getLists: any[] = [];
         let inputType: any = "text";
+
         this.props.field.forEach((value: any, index: number) => {
-            if (this.state.selectText.length > 0 && this.state.selectText[0].name === value.name) {
-                if (value.type === "password") {
+            if (this.state.selectText.length > 0 && this.state.selectText[0][this.props.nameFieldName] === value[this.props.nameFieldName]) {
+                if (value[this.props.typeFieldName] === "password") {
                     getLists = [];
                     inputType = "password";
-                } else if (value.type === "number") {
+                } else if (value[this.props.typeFieldName] === "number") {
                     getLists = [];
                     inputType = "number";
-                } else if (value.type === "select" || value.type === "radio") {
-                    if (value.items !== undefined) {
-                        getLists = value.items;
+                } else if (value[this.props.typeFieldName] === "select" || value[this.props.typeFieldName] === "radio") {
+                    if (value[this.props.itemsFieldName] !== undefined) {
+                        getLists = value[this.props.itemsFieldName];
                     }
                     inputType = "text";
                 } else {
@@ -404,7 +426,7 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
             // items value print
             let itemsName: any[] = [];
             value.forEach((val: any, id: number) => {
-                itemsName.push(val.label);
+                itemsName.push(val[this.props.labelFieldName]);
             });
 
             getList.push(<div className="item" key={index}>
@@ -450,7 +472,7 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
 
         if (this.state.selectText.length > 0) {
             this.state.selectText.forEach((val: any, index:number) => {
-                getLists.push(<span key={index}>{val.label}</span>);
+                getLists.push(<span key={index}>{val[this.props.labelFieldName]}</span>);
             });
         }
         return getLists;
@@ -482,7 +504,7 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
         if (event.keyCode === 13) {
             // value select item 
             if(this.state.getListResult.data.length <= 0 && this.state.selectText.length >= 2 && this.state.inputText.value !== "" && !this.state.showing.dropValue){
-                this.setValue({label: this.state.inputText.value});
+                this.setValue({[this.props.labelFieldName]: this.state.inputText.value});
             }
 
             if(this.state.active.arrowActive !== null){
@@ -545,7 +567,7 @@ export default class DataFilter extends React.Component<DataFilterProps, DataFil
         }
 
         this.state.active.arrowActive = null;
-        this.state.inputText.value = inItemLast['label'];
+        this.state.inputText.value = inItemLast[this.props.labelFieldName];
         this.forceUpdate();
     }
 

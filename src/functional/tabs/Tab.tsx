@@ -45,6 +45,7 @@ export default class Tab extends React.Component<TabProps,any> {
 
     componentWillReceiveProps(nextProps:any){
         this.setState(nextProps);
+        this.forceUpdate();
     }
 
     render() {

@@ -41,7 +41,7 @@ export default class SelectInputExample extends React.Component<any,any>{
                     items={items}
                     id={"id"}
                     value={"project"}
-                    onChange={this.handleChange.bind(this)}
+                    onChange={(e)=>{this.handleChange(e)}}
                     type={"multi"}
                 />
                 <span className="example-reagent">Multi Select Renderer</span>
@@ -68,7 +68,12 @@ export default class SelectInputExample extends React.Component<any,any>{
             </div>;
     }
     handleChange(e){
-        
+        let news = e.target.object.slice();
+        news.map(function(val:any){
+            return val.project = 'deniz';
+        });
+
+        console.log(news);
     }
 
     handleChange2(){

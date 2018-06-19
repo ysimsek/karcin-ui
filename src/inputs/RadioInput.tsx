@@ -67,15 +67,15 @@ export default class RadioInput extends React.Component<any,RadioInputProps>{
         value.forEach(function (v:any) {
             let isChecked = v.id == checkValue ? true: false ;
             if(inline == true){
-                component.push(<label style={{paddingLeft: "2px"}}><label><input
+                component.push(<label key={v.id+'lbl'} style={{paddingLeft: "2px"}}><label><input
                     className={"radio"}
                     type="radio"
                     defaultChecked={isChecked}
-                    key={v.id}
+                    key={v.id+'inl'}
                     name={e.props.name}
                     value={v.id} />{v.value}</label></label>)
             }else{
-                component.push(<div key={v.id}><label><input
+                component.push(<div key={v.id+"hrz"}><label><input
                     className={"radio"}
                     type="radio"
                     defaultChecked={isChecked}

@@ -876,22 +876,20 @@ New Reactstrap CSS
 .karcin-data-grid .table thead {
     background-color: #f1efef;
     overflow: hidden;
-    display: block;
     border: solid 1px #dee2e6;
 }
 
 .karcin-data-grid .table thead tr {
     overflow: hidden;
-    display: flex;
 }
 
-.karcin-data-grid .table thead tr td, .karcin-data-grid .table thead tr th {
+.karcin-data-grid .table thead tr td,
+.karcin-data-grid .table thead tr th {
     font-size: 15px;
     font-weight: 600;
     color: #8e8a8a;
     border-bottom: 0;
     padding: 8px 15px;
-    flex: 1;
     overflow: hidden;
     min-height: 36px;
     border-color: #dee2e6;
@@ -901,17 +899,20 @@ New Reactstrap CSS
     position: relative;
 }
 
-.karcin-data-grid .table thead tr td:last-child, .karcin-data-grid .table thead tr th:last-child {
+.karcin-data-grid .table thead tr td:last-child,
+.karcin-data-grid .table thead tr th:last-child {
     border-right: 0;
 }
 
-.karcin-data-grid .table thead tr td .title-option, .karcin-data-grid .table thead tr th .title-option {
+.karcin-data-grid .table thead tr td .title-option,
+.karcin-data-grid .table thead tr th .title-option {
     position: absolute;
     right: 5px;
     top: 7px;
 }
 
-.karcin-data-grid .table thead tr td span, .karcin-data-grid .table thead tr th span {
+.karcin-data-grid .table thead tr td span,
+.karcin-data-grid .table thead tr th span {
     float: right;
     cursor: pointer;
     -webkit-transition: all .3s ease;
@@ -920,8 +921,13 @@ New Reactstrap CSS
     transition: all .3s ease;
 }
 
-.karcin-data-grid .table thead tr td span:hover, .karcin-data-grid .table thead tr th span:hover {
+.karcin-data-grid .table thead tr td span:hover,
+.karcin-data-grid .table thead tr th span:hover {
     color: #636161;
+}
+
+.karcin-data-grid .table thead tr th span.order.active {
+    color: #4e9dfb;
 }
 
 .karcin-data-grid .table tbody {
@@ -930,6 +936,20 @@ New Reactstrap CSS
     display: block;
     border: solid 1px #dee2e6;
     border-top: 0;
+}
+
+.karcin-data-grid .table tbody::-webkit-scrollbar {
+    width: 6px;
+}
+
+.karcin-data-grid .table tbody::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.karcin-data-grid .table tbody::-webkit-scrollbar-thumb {
+    background-color: #363636;
+    outline: 1px solid slategrey;
+    border-radius: 7px;
 }
 
 .karcin-data-grid .table tbody tr {
@@ -955,17 +975,15 @@ New Reactstrap CSS
 }
 
 .karcin-data-grid .table tbody tr td {
-    vertical-align: middle;
     padding: 5px 12px;
-    flex: 1;
     overflow: hidden;
-    min-height: 36px;
     border-bottom: 0;
     border-left: 0;
     -webkit-transition: all .3s ease;
     -moz-transition: all .3s ease;
     -ms-transition: all .3s ease;
     transition: all .3s ease;
+    display: inline-block;
 }
 
 .karcin-data-grid .table tbody tr td:last-child {
@@ -1155,18 +1173,20 @@ a[href='http://www.amcharts.com/javascript-maps/'] {
     width: 200px;
     right: -200px;
     top: 0;
-    left:auto;
+    left: auto;
     margin: 0;
 }
 
 .karcin-context-menu .dropdown-menu .dropdown-item:hover > .dropdown-menu {
     display: block;
 }
-button-square-to-radius{
+
+button-square-to-radius {
     width: 140px;
     height: 140px;
     border-radius: 50%;
 }
+
 /*************************CHECKLIST COMPONENT*******************/
 /* The container */
 .check-container {
@@ -1233,3 +1253,58 @@ button-square-to-radius{
 }
 
 /*****************CHECKLİST END********************/
+
+/**  Loading */
+.pre-loading {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: none;
+}
+
+.pre-loading.inset {
+    position: absolute;
+}
+
+.pre-loading.show {
+    display: block;
+}
+
+.glyphicon.spinning {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: solid 5px #fff;
+    border-top-color: #0b5f75;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    animation: spin 2s infinite linear;
+    -webkit-animation: spin2 2s infinite linear;
+    margin-left: -5%;
+    border-radius: 50%;
+    margin: auto;
+}
+
+@keyframes spin {
+    from {
+        transform: scale(1) rotate(0deg);
+    }
+    to {
+        transform: scale(1) rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin2 {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}

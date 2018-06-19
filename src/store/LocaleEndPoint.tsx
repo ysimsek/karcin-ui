@@ -8,6 +8,7 @@ export default class LocaleEndPoint {
     props:any = {
         data: [],
         idField: 'id',
+        endPoint:'localEndPoint'
     };
 
     constructor(props:Object, callback:any){
@@ -80,5 +81,42 @@ export default class LocaleEndPoint {
         }
 
         return this.__dataMap;
+    }
+
+    orderSort(fieldName:any){
+         this.__dataMap.sort((first:any, last:any) => {
+            let firstName = first[fieldName].toUpperCase();
+            let lastName = last[fieldName].toUpperCase();
+
+            //
+            if(firstName < lastName){
+                return -1;
+            }
+
+            //
+            if(firstName > lastName){
+                return 1;
+            }
+
+            return 0;
+        });
+
+        return this.__dataMap;
+    };
+
+    orderReverse(fieldName:any){
+        this.__dataMap = this.orderSort(fieldName);
+        this.__dataMap.reverse();
+
+        return this.__dataMap;
+    }
+
+    filter(fieldName:any, value:any){
+        let data:any = this.__dataMap.filter((val:any, index:any)=>{
+            if(val[fieldName].toUpperCase().indexOf(value.toUpperCase()) !== -1){
+                return val;
+            }
+        });
+        return data;
     }
 }

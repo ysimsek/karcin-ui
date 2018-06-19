@@ -39,7 +39,7 @@ export interface NumericInputProps extends React.InputHTMLAttributes<HTMLInputEl
 
 
 
-export default class NumericInput extends React.Component<NumericInputProps,any>{
+export default class NumericInput extends React.Component<NumericInputProps>{
     /**
      * Initial props value
      * @type {{disabled: boolean; readOnly: boolean; hidden: boolean; type: string}}
@@ -66,7 +66,7 @@ export default class NumericInput extends React.Component<NumericInputProps,any>
         let { ...newProps } = this.props;
         //todo: label için sağ sol üst seçenekleri konulsun, hatta button ile birlikte beraber kullanılabilir.
         //selectinput için yapıldı
-        let label = this.props.label != null ? <Label className={"label-properties"}>{this.props.label}</Label> : null;
+        let label:any = this.props.label != null ? <Label className={"label-properties"}>{this.props.label}</Label> : "";
         return <div>{label}<Input
             {...newProps}
             onChange={this.__onChange.bind(this)}

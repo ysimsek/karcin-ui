@@ -156,14 +156,14 @@ export default class Pagination extends React.Component<PaginationProps,any>{
          * Dolu data ve boş string için data ayıklanıyor Array içerisinde data ayıklanıyor
          */
         type == "normal" ?
-        data.forEach(function (val : any, idx: number) {
-            i++;
-            component.push(<PaginationItem active={parseInt(me.selectPage) == idx+1 ? true : false} key={i}>
-                <PaginationLink id={i} href={val[me.props.hrefValue]}>
-                    {idx+1}
-                </PaginationLink>
-            </PaginationItem>)
-        }) : (x=true);
+            data.forEach(function (val : any, idx: number) {
+                i++;
+                component.push(<PaginationItem active={parseInt(me.selectPage) == idx+1 ? true : false} key={i}>
+                    <PaginationLink id={i} href={val[me.props.hrefValue]}>
+                        {idx+1}
+                    </PaginationLink>
+                </PaginationItem>)
+            }) : (x=true);
 
         if(x==true){
             for(let j:any=0; j< parseInt(data)/me.props.typeShowLength; j++){
@@ -252,21 +252,21 @@ export default class Pagination extends React.Component<PaginationProps,any>{
             return;
         }else {
             if(this.props.pageCount == 3){
-                    this.propsCountWhenThreeSelectPosition(e,pageCount);
+                this.propsCountWhenThreeSelectPosition(e,pageCount);
             }else if(this.props.pageCount == 4){
                 this.propsCountWhenFourSelectPosition(e,pageCount);
 
             }else if(this.props.pageCount == 5){
                 this.propsCountWhenFiveSelectPosition(e,pageCount);
             }
-            this.selectPage = e.target.text;
+            this.selectPage = e.target.text != undefined ? e.target.text : e.target.id;
         }
 
         if(this.props.selectedValue != undefined){
             this.props.type == "normal" ?
-                        this.props.selectedValue({page : this.selectPage, href : e.target.href, selectData:this.props.data[this.selectPage-1]})
-                        :
-                        this.props.selectedValue({page : this.selectPage})
+                this.props.selectedValue({page : this.selectPage, href : e.target.href, selectData:this.props.data[this.selectPage-1]})
+                :
+                this.props.selectedValue({page : this.selectPage})
 
         }
 
@@ -282,7 +282,7 @@ export default class Pagination extends React.Component<PaginationProps,any>{
      * @param {Array<any>} pageCount
      */
     propsCountWhenThreeSelectPosition(e:any,pageCount:Array<any>){
-        this.selectPage = e.target.text;
+        this.selectPage = e.target.text != undefined ? e.target.text : e.target.id;
         if(parseInt(this.selectPage) == this.lastIndex){
             return;
         }
@@ -307,7 +307,7 @@ export default class Pagination extends React.Component<PaginationProps,any>{
      * @param {Array<any>} pageCount
      */
     propsCountWhenFourSelectPosition(e:any, pageCount:Array<any>){
-        this.selectPage = e.target.text;
+        this.selectPage = e.target.text != undefined ? e.target.text : e.target.id;
         if(parseInt(this.selectPage) == this.lastIndex || parseInt(this.selectPage) == this.lastIndex - 1){
             return;
         }
@@ -334,7 +334,7 @@ export default class Pagination extends React.Component<PaginationProps,any>{
      * @param {Array<any>} pageCount
      */
     propsCountWhenFiveSelectPosition(e:any, pageCount:Array<any>){
-        this.selectPage = e.target.text;
+        this.selectPage = e.target.text != undefined ? e.target.text : e.target.id;
         if(parseInt(this.selectPage) == this.lastIndex || parseInt(this.selectPage) == this.lastIndex - 1){
             return;
         }

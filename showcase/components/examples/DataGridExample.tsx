@@ -1,12 +1,9 @@
 import * as React from "react";
-import {DataGrid} from 'karcin-ui';
+import {DataGrid, Store} from 'karcin-ui';
+import Axios from 'axios';
 
-export interface dataGridState {
-    fields: Array<any>,
-    data: Array<any>
-}
 
-export default class DataGridExample extends React.Component<any, dataGridState> {
+export default class DataGridExample extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
 
@@ -20,53 +17,60 @@ export default class DataGridExample extends React.Component<any, dataGridState>
                 },
                 {
                     "property": "string",
-                    "value": "name",
-                    "name": "İsim"
-                },
-                {
-                    "property": "string",
-                    "value": "surname",
-                    "name": "Soyisim"
-                },
-                {
-                    "property": "string",
                     "value": "title",
-                    "name": "Uzmanlık Alanı"
+                    "name": "isim"
+                },
+                {
+                    "property": "string",
+                    "value": "body",
+                    "name": "açıklama",
+                    "width" : 200
+                },
+                {
+                    "property": "string",
+                    "value" : "url",
+                    "name" : "image",
+                    "width" : 500
                 }
             ],
-            data : [{
-                'id': '1',
-                'name': 'Deniz',
-                'surname': 'DALKILIÇ',
-                'title': 'Yazılım Uzmanı'
-            }, {
-                'id': '2',
-                'name': 'Yunus',
-                'surname': 'ŞİMŞEK',
-                'title': 'Yazılım Uzmanı'
-            }, {
-                'id': '3',
-                'name': 'Tayyip',
-                'surname': 'DEMİRCAN',
-                'title': 'Yazılım Uzmanı'
-            }, {
-                'id': '4',
-                'name': 'Mustafa',
-                'surname': 'GÜNGÖR',
-                'title': 'Yazılım Uzmanı'
-            }, {
-                'id': '5',
-                'name': 'Bora',
-                'surname': 'AVCI',
-                'title': 'Yazılım Uzmanı'
-            }]
+            store: new Store({
+                idField: 'id',
+                url: 'https://jsonplaceholder.typicode.com/photos',
+                responseData:'data'
+            })
         };
 
+        // data: [{
+        //     'id': '1',
+        //     'name': 'Deniz',
+        //     'surname': 'DALKILIÇ',
+        //     'title': 'Yazılım Uzmanı'
+        // }, {
+        //     'id': '2',
+        //     'name': 'Yunus',
+        //     'surname': 'ŞİMŞEK',
+        //     'title': 'Yazılım Uzmanı'
+        // }, {
+        //     'id': '3',
+        //     'name': 'Tayyip',
+        //     'surname': 'DEMİRCAN',
+        //     'title': 'Yazılım Uzmanı'
+        // }, {
+        //     'id': '4',
+        //     'name': 'Mustafa',
+        //     'surname': 'GÜNGÖR',
+        //     'title': 'Yazılım Uzmanı'
+        // }, {
+        //     'id': '5',
+        //     'name': 'Bora',
+        //     'surname': 'AVCI',
+        //     'title': 'Yazılım Uzmanı'
+        // }]
     }
 
     render() {
 
-        return (<div><DataGrid data={this.state.data} fields={this.state.fields} onSelected={(e, b) => {
+        return (<div><DataGrid store={this.state.store} fields={this.state.fields} onSelected={(e, b) => {
             this.getSelectData(e, b)
         }} toolbar={[{
             name: 'Ekle',
@@ -77,7 +81,7 @@ export default class DataGridExample extends React.Component<any, dataGridState>
             name: 'Düzenle', icon: 'fa-minus', onClick: () => {
                 this.clickEdit()
             }
-        }]}/></div>);
+        }]} pagination={true}/></div>);
     }
 
 

@@ -73,7 +73,7 @@ export default class List extends React.Component<ListProps,any>{
         if(this.props.children != undefined){
             renderList = this.renderShowChilds(this.props.children);
         }else{
-            renderList.push(<ListGroup>{this.childsReturn(this.props.data)}</ListGroup>);
+            renderList.push(<ListGroup key={"list"}>{this.childsReturn(this.props.data)}</ListGroup>);
         }
         return renderList;
     }
@@ -86,7 +86,7 @@ export default class List extends React.Component<ListProps,any>{
     renderShowChilds(childs:any):JSX.Element[]{
         let renderElements:any[] = [];
         childs.forEach(function (child:any,index:number) {
-           renderElements.push(<ListGroupItem>{child}</ListGroupItem>)
+           renderElements.push(<ListGroupItem key={index + 'lgi'}>{child}</ListGroupItem>)
         });
         return renderElements;
     }
@@ -104,6 +104,7 @@ export default class List extends React.Component<ListProps,any>{
                             active={me.props.active == true && (child[me.props.activeValue] == me.props.activeId) ? true : false}
                             color={me.props.color}
                             tag={me.props.tag}
+                            key={idx+'lgc'}
                             href={child[me.props.tagValue]}
                             action={me.props.action}
                         >

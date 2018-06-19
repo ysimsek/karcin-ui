@@ -21,10 +21,10 @@ export default class NumericInputExample extends React.Component<any,any>{
     }
 
     handleChange(e){
-        let name = e.target.name;
         let state = [];
         state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
         this.setState(state);
+        this.forceUpdate();
     }
 
 }

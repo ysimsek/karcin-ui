@@ -12,24 +12,24 @@ export default class Applications {
      * @returns {{}}
      */
     static mergeObject(mainObj: basicObject, mergeObj: basicObject) {
-        let obj:basicObject = {};
-
         if (mainObj !== undefined && mergeObj !== undefined) {
-
-            // main object
-            let mnObj:any;
-            for (mnObj in mainObj) {
-                obj[mnObj] = mainObj[mnObj];
-            }
+            let obj:basicObject = mainObj;
 
             // merge object
             let mrgObj:any;
             for (mrgObj in mergeObj) {
-                if (obj[mrgObj] !== undefined) {
+                if (mergeObj[mrgObj] !== undefined && mergeObj[mrgObj] !== null) {
                     obj[mrgObj] = mergeObj[mrgObj];
-                } else {
-                    throw new Error('Tanımsız bir name(' + mrgObj + ') kullandınız!');
                 }
+            }
+
+            // main object
+            let mnObj:any;
+            for (mnObj in obj) {
+                if(obj[mnObj] === undefined || obj[mnObj] === null) {
+                    delete obj[mnObj];
+                }
+
             }
 
             return obj;
