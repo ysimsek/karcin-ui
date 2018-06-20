@@ -31,6 +31,7 @@ var DataGrid = /** @class */ (function (_super) {
         _this.props.store.__callback = function () {
             _this.resetData();
         };
+        _this.pageChange();
         return _this;
     }
     DataGrid.prototype.UNSAFE_componentWillReceiveProps = function (props) {
@@ -43,7 +44,8 @@ var DataGrid = /** @class */ (function (_super) {
         this.state = {
             store: props.store,
             fields: props.fields,
-            eventDataGrid: null
+            eventDataGrid: null,
+            pageShowData: { 'start': 0, 'finis': this.props.pageShow }
         };
     };
     /**
@@ -57,6 +59,7 @@ var DataGrid = /** @class */ (function (_super) {
     };
     DataGrid.prototype.dataGridLoadComponent = function () {
         var _this = this;
+        var self = this;
         this.returnComponent = React.createElement("div", null,
             React.createElement(Toolbar_1.default, { data: this.props.toolbar, store: this.props.store }),
             React.createElement("div", { className: "data-grid-body" },
@@ -64,8 +67,15 @@ var DataGrid = /** @class */ (function (_super) {
                     React.createElement(TableHead_1.default, { fields: this.state.fields, fieldOption: this.fieldOption, store: this.props.store, resetData: function () {
                             _this.resetData();
                         } }),
-                    React.createElement(TableBody_1.default, { onSelected: this.props.onSelected, fieldOption: this.fieldOption, store: this.props.store, cellRenderer: this.props.cellRenderer, rowRenderer: this.props.rowRenderer, fields: this.state.fields }))),
-            React.createElement(Toolbar_1.default, { type: "footer", store: this.props.store, options: { 'pagination': this.props.pagination } }));
+                    React.createElement(TableBody_1.default, { onSelected: this.props.onSelected, fieldOption: this.fieldOption, store: this.props.store, cellRenderer: this.props.cellRenderer, rowRenderer: this.props.rowRenderer, fields: this.state.fields, showingPageData: this.state.pageShowData }))),
+            React.createElement(Toolbar_1.default, { type: "footer", store: this.props.store, options: {
+                    'pagination': this.props.pagination,
+                    'pageShow': this.props.pageShow,
+                    'changePageFunc': function (e) {
+                        self.pageChange(e);
+                    }
+                } }));
+        this.forceUpdate();
     };
     DataGrid.prototype.componentDidMount = function () {
         var _this = this;
@@ -80,9 +90,6 @@ var DataGrid = /** @class */ (function (_super) {
     };
     DataGrid.prototype.resetData = function () {
         this.forceUpdate();
-    };
-    DataGrid.prototype.getPagesData = function (data) {
-        console.log(data);
     };
     DataGrid.prototype.columnStyle = function () {
         if (this.eventDataGrid !== null) {
@@ -111,6 +118,15 @@ var DataGrid = /** @class */ (function (_super) {
             }
             this.fieldOption = fieldWidth_1;
         }
+    };
+    DataGrid.prototype.pageChange = function (event) {
+        if (event !== undefined) {
+            var start = this.state.pageShowData.finis;
+            var finis = event.page * this.props.pageShow;
+            this.state.pageShowData.start = start;
+            this.state.pageShowData.finis = finis;
+        }
+        this.dataGridLoadComponent();
     };
     DataGrid.defaultProps = {
         pagination: false

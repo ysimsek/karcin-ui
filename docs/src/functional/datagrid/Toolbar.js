@@ -40,10 +40,8 @@ var Toolbar = /** @class */ (function (_super) {
                     (this.props.options.pagination !== undefined && this.props.options.pagination) ?
                         React.createElement(reactstrap_1.Col, { xs: "4" },
                             React.createElement("div", { className: "pagination" },
-                                React.createElement(Pagination_1.default, { pageCount: 5, type: "simple", typeShowLength: 5, data: (this.props.store !== undefined) ? this.props.store.props.data.length : [], selectedValue: function (e) {
-                                        _this.setState({
-                                            paginationSelected: e.selectData
-                                        });
+                                React.createElement(Pagination_1.default, { pageCount: 5, type: "simple", typeShowLength: this.props.options.pageShow, data: (this.props.store !== undefined) ? this.props.store.props.data.length : [], selectedValue: function (e) {
+                                        _this.props.options.changePageFunc(e);
                                     } })))
                         : ''));
         }

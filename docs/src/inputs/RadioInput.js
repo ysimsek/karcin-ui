@@ -42,13 +42,13 @@ var RadioInput = /** @class */ (function (_super) {
         value.forEach(function (v) {
             var isChecked = v.id == checkValue ? true : false;
             if (inline == true) {
-                component.push(React.createElement("label", { style: { paddingLeft: "2px" } },
+                component.push(React.createElement("label", { key: v.id + 'lbl', style: { paddingLeft: "2px" } },
                     React.createElement("label", null,
-                        React.createElement("input", { className: "radio", type: "radio", defaultChecked: isChecked, key: v.id, name: e.props.name, value: v.id }),
+                        React.createElement("input", { className: "radio", type: "radio", defaultChecked: isChecked, key: v.id + 'inl', name: e.props.name, value: v.id }),
                         v.value)));
             }
             else {
-                component.push(React.createElement("div", { key: v.id },
+                component.push(React.createElement("div", { key: v.id + "hrz" },
                     React.createElement("label", null,
                         React.createElement("input", { className: "radio", type: "radio", defaultChecked: isChecked, key: v.id, name: e.props.name, value: v.id }),
                         v.value)));

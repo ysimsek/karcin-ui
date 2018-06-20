@@ -44,37 +44,13 @@ var DataGridExample = /** @class */ (function (_super) {
             ],
             store: new karcin_ui_1.Store({
                 idField: 'id',
-                url: 'https://jsonplaceholder.typicode.com/photos',
+                data: [],
+                //url: 'https://jsonplaceholder.typicode.com/photos',
                 responseData: 'data'
             })
         };
+        _this.dataUpdate();
         return _this;
-        // data: [{
-        //     'id': '1',
-        //     'name': 'Deniz',
-        //     'surname': 'DALKILIÇ',
-        //     'title': 'Yazılım Uzmanı'
-        // }, {
-        //     'id': '2',
-        //     'name': 'Yunus',
-        //     'surname': 'ŞİMŞEK',
-        //     'title': 'Yazılım Uzmanı'
-        // }, {
-        //     'id': '3',
-        //     'name': 'Tayyip',
-        //     'surname': 'DEMİRCAN',
-        //     'title': 'Yazılım Uzmanı'
-        // }, {
-        //     'id': '4',
-        //     'name': 'Mustafa',
-        //     'surname': 'GÜNGÖR',
-        //     'title': 'Yazılım Uzmanı'
-        // }, {
-        //     'id': '5',
-        //     'name': 'Bora',
-        //     'surname': 'AVCI',
-        //     'title': 'Yazılım Uzmanı'
-        // }]
     }
     DataGridExample.prototype.render = function () {
         var _this = this;
@@ -90,7 +66,14 @@ var DataGridExample = /** @class */ (function (_super) {
                         name: 'Düzenle', icon: 'fa-minus', onClick: function () {
                             _this.clickEdit();
                         }
-                    }], pagination: true })));
+                    }], pagination: true, pageShow: 1 })));
+    };
+    DataGridExample.prototype.dataUpdate = function () {
+        var _this = this;
+        setTimeout(function () {
+            _this.state.store.props.data = [{ id: 1, title: 'deniz', body: 'denememe', url: 'dededede' }];
+            _this.state.store.read();
+        }, 1000);
     };
     DataGridExample.prototype.clickEdit = function () {
     };

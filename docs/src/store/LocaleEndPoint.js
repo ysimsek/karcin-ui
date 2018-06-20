@@ -13,11 +13,12 @@ var LocaleEndPoint = /** @class */ (function () {
         this.__callback = callback;
         this.read();
     }
-    LocaleEndPoint.prototype.read = function () {
+    LocaleEndPoint.prototype.read = function (data) {
         var _this = this;
-        if (this.props.data !== undefined && this.props.data.length > 0) {
+        var datas = data !== undefined ? data : this.props.data;
+        if (datas !== undefined) {
             this.reset();
-            this.props.data.forEach(function (value) {
+            datas.forEach(function (value) {
                 _this.create(value);
             });
         }

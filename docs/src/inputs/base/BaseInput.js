@@ -25,7 +25,10 @@ var BaseInput = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     BaseInput.prototype.render = function () {
-        return React.createElement("input", __assign({ className: "form-control" }, this.props));
+        return React.createElement("input", __assign({ onChange: this.onChange.bind(this), className: "form-control" }, this.props, { value: this.props.value || '' }));
+    };
+    BaseInput.prototype.onChange = function (e) {
+        this.props.onChange(e);
     };
     BaseInput.defaultProps = {
         type: "text",

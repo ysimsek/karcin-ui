@@ -24,7 +24,7 @@ var Store = /** @class */ (function () {
     }
     Store.prototype.endPoint = function () {
         var _this = this;
-        if (this.props.data.length > 0) {
+        if (this.props.data !== undefined) {
             this.props.endPoint = new LocaleEndPoint_1.default({
                 data: this.props.data
             }, function (response) {
@@ -40,13 +40,13 @@ var Store = /** @class */ (function () {
             });
         }
     };
-    Store.prototype.ready = function () {
-        this.props.data = this.props.oldData.slice(0);
+    Store.prototype.read = function () {
+        this.props.data = this.props.endPoint.read(this.props.data);
+        this.__callback(this.props.data);
     };
     Store.prototype.endPointCallback = function (response) {
         if (response !== undefined) {
             this.props.data = response;
-            //this.__component.forceUpdate();
         }
         if (this.__callback !== undefined) {
             this.__callback(response);

@@ -24,7 +24,8 @@ var TableBody = /** @class */ (function (_super) {
             store: _this.props.store,
             fields: _this.props.fields,
             clickActive: [],
-            clickActiveRow: []
+            clickActiveRow: [],
+            showingPageData: null
         };
         return _this;
     }
@@ -34,8 +35,9 @@ var TableBody = /** @class */ (function (_super) {
      */
     TableBody.prototype.componentWillReceiveProps = function (props) {
         this.setState({
-            store: this.props.store,
-            fields: this.props.fields
+            store: props.store,
+            fields: props.fields,
+            showingPageData: props.showingPageData
         });
     };
     /**

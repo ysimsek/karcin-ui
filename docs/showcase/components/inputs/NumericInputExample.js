@@ -28,10 +28,10 @@ var NumericInputExample = /** @class */ (function (_super) {
                 React.createElement("i", null, this.state.numericInput))));
     };
     NumericInputExample.prototype.handleChange = function (e) {
-        var name = e.target.name;
         var state = [];
         state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
         this.setState(state);
+        this.forceUpdate();
     };
     return NumericInputExample;
 }(React.Component));

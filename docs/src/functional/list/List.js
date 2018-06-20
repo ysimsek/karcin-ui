@@ -35,7 +35,7 @@ var List = /** @class */ (function (_super) {
             renderList = this.renderShowChilds(this.props.children);
         }
         else {
-            renderList.push(React.createElement(reactstrap_1.ListGroup, null, this.childsReturn(this.props.data)));
+            renderList.push(React.createElement(reactstrap_1.ListGroup, { key: "list" }, this.childsReturn(this.props.data)));
         }
         return renderList;
     };
@@ -47,7 +47,7 @@ var List = /** @class */ (function (_super) {
     List.prototype.renderShowChilds = function (childs) {
         var renderElements = [];
         childs.forEach(function (child, index) {
-            renderElements.push(React.createElement(reactstrap_1.ListGroupItem, null, child));
+            renderElements.push(React.createElement(reactstrap_1.ListGroupItem, { key: index + 'lgi' }, child));
         });
         return renderElements;
     };
@@ -60,7 +60,7 @@ var List = /** @class */ (function (_super) {
         var childs = [];
         var me = this;
         list.forEach(function (child, idx) {
-            childs.push(React.createElement(reactstrap_1.ListGroupItem, { active: me.props.active == true && (child[me.props.activeValue] == me.props.activeId) ? true : false, color: me.props.color, tag: me.props.tag, href: child[me.props.tagValue], action: me.props.action },
+            childs.push(React.createElement(reactstrap_1.ListGroupItem, { active: me.props.active == true && (child[me.props.activeValue] == me.props.activeId) ? true : false, color: me.props.color, tag: me.props.tag, key: idx + 'lgc', href: child[me.props.tagValue], action: me.props.action },
                 child[me.props.value] + ' ',
                 " ",
                 me.props.badge == true ? React.createElement(reactstrap_1.Badge, { pill: true }, child[me.props.badgeValue]) : ""));

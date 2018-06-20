@@ -40,7 +40,7 @@ var CheckList = /** @class */ (function (_super) {
             this.isChecked = true);
     };
     /**
-     * CheckIds varsa checked ile kontrol sağlanıyor,
+     * CheckObjects varsa checked ile kontrol sağlanıyor,
      * Eğer ki yoksa inputun kendinden kontrol sağlanıyor
      * @param value
      * @returns {any}
@@ -48,7 +48,7 @@ var CheckList = /** @class */ (function (_super) {
     CheckList.prototype.childInputElements = function (value) {
         var _this = this;
         var me = this;
-        return this.props.checkIds != undefined ?
+        return this.props.checkObjects != undefined ?
             React.createElement("input", { className: "checkbox", onChange: function (e) { return _this.onChange(value[me.props.id], e.target.checked); }, type: 'checkbox', value: this.state[value[me.props.value]], checked: this.isChecked == false ?
                     this.returnTrueOrFalseChecked(value) :
                     this.isCheckedControl(value) }) :
@@ -111,9 +111,9 @@ var CheckList = /** @class */ (function (_super) {
     CheckList.prototype.returnTrueOrFalseChecked = function (value) {
         var me = this;
         var bool = false;
-        me.props.checkIds != undefined ?
-            me.props.checkIds.forEach(function (val, idx) {
-                if (val == value[me.props.id]) {
+        me.props.checkObjects != undefined ?
+            me.props.checkObjects.forEach(function (val, idx) {
+                if (val[me.props.id] == value[me.props.id]) {
                     bool = true;
                     me.state[value[me.props.id]] = true;
                 }

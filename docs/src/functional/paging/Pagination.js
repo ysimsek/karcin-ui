@@ -185,14 +185,15 @@ var Pagination = /** @class */ (function (_super) {
             else if (this.props.pageCount == 5) {
                 this.propsCountWhenFiveSelectPosition(e, pageCount);
             }
-            this.selectPage = e.target.text;
+            this.selectPage = e.target.text != undefined ? e.target.text : e.target.id;
         }
         if (this.props.selectedValue != undefined) {
             this.props.type == "normal" ?
-                this.props.selectedValue({ page: this.selectPage, href: e.target.href, selectData: this.props.data[this.selectPage - 1] })
+                this.props.selectedValue({ page: parseInt(this.selectPage), href: e.target.href, selectData: this.props.data[this.selectPage - 1] })
                 :
-                    this.props.selectedValue({ page: this.selectPage });
+                    this.props.selectedValue({ page: parseInt(this.selectPage) });
         }
+        this.forceUpdate();
     };
     /**
      * Props Page 3 için ayarlama fonksiyonu
@@ -204,7 +205,7 @@ var Pagination = /** @class */ (function (_super) {
      * @param {Array<any>} pageCount
      */
     Pagination.prototype.propsCountWhenThreeSelectPosition = function (e, pageCount) {
-        this.selectPage = e.target.text;
+        this.selectPage = e.target.text != undefined ? e.target.text : e.target.id;
         if (parseInt(this.selectPage) == this.lastIndex) {
             return;
         }
@@ -230,7 +231,7 @@ var Pagination = /** @class */ (function (_super) {
      * @param {Array<any>} pageCount
      */
     Pagination.prototype.propsCountWhenFourSelectPosition = function (e, pageCount) {
-        this.selectPage = e.target.text;
+        this.selectPage = e.target.text != undefined ? e.target.text : e.target.id;
         if (parseInt(this.selectPage) == this.lastIndex || parseInt(this.selectPage) == this.lastIndex - 1) {
             return;
         }
@@ -259,7 +260,7 @@ var Pagination = /** @class */ (function (_super) {
      * @param {Array<any>} pageCount
      */
     Pagination.prototype.propsCountWhenFiveSelectPosition = function (e, pageCount) {
-        this.selectPage = e.target.text;
+        this.selectPage = e.target.text != undefined ? e.target.text : e.target.id;
         if (parseInt(this.selectPage) == this.lastIndex || parseInt(this.selectPage) == this.lastIndex - 1) {
             return;
         }

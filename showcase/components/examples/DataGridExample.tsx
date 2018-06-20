@@ -35,37 +35,17 @@ export default class DataGridExample extends React.Component<any, any> {
             ],
             store: new Store({
                 idField: 'id',
-                url: 'https://jsonplaceholder.typicode.com/photos',
+                data: [],
+                //url: 'https://jsonplaceholder.typicode.com/photos',
                 responseData:'data'
             })
         };
 
-        // data: [{
-        //     'id': '1',
-        //     'name': 'Deniz',
-        //     'surname': 'DALKILIÇ',
-        //     'title': 'Yazılım Uzmanı'
-        // }, {
-        //     'id': '2',
-        //     'name': 'Yunus',
-        //     'surname': 'ŞİMŞEK',
-        //     'title': 'Yazılım Uzmanı'
-        // }, {
-        //     'id': '3',
-        //     'name': 'Tayyip',
-        //     'surname': 'DEMİRCAN',
-        //     'title': 'Yazılım Uzmanı'
-        // }, {
-        //     'id': '4',
-        //     'name': 'Mustafa',
-        //     'surname': 'GÜNGÖR',
-        //     'title': 'Yazılım Uzmanı'
-        // }, {
-        //     'id': '5',
-        //     'name': 'Bora',
-        //     'surname': 'AVCI',
-        //     'title': 'Yazılım Uzmanı'
-        // }]
+
+
+        this.dataUpdate();
+
+
     }
 
     render() {
@@ -81,7 +61,14 @@ export default class DataGridExample extends React.Component<any, any> {
             name: 'Düzenle', icon: 'fa-minus', onClick: () => {
                 this.clickEdit()
             }
-        }]} pagination={true}/></div>);
+        }]} pagination={true} pageShow={1}/></div>);
+    }
+
+    dataUpdate(){
+        setTimeout(()=>{
+            this.state.store.props.data = [{id:1, title:'deniz', body:'denememe', url:'dededede'}];
+            this.state.store.read();
+        },1000);
     }
 
 

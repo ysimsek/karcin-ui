@@ -33,7 +33,7 @@ export default class Store {
 
 
     endPoint() {
-        if (this.props.data.length > 0) {
+        if (this.props.data !== undefined) {
             this.props.endPoint = new LocalEndPoint({
                 data: this.props.data
             }, (response: any) => {
@@ -49,14 +49,14 @@ export default class Store {
         }
     }
 
-    ready() {
-        this.props.data = this.props.oldData.slice(0);
+    read() {
+        this.props.data = this.props.endPoint.read(this.props.data);
+        this.__callback(this.props.data);
     }
 
     endPointCallback(response: any) {
         if (response !== undefined) {
             this.props.data = response;
-            //this.__component.forceUpdate();
         }
 
         if (this.__callback !== undefined) {

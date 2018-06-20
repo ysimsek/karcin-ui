@@ -214,7 +214,6 @@ export default class Pagination extends React.Component<PaginationProps,any>{
         }
         data.forEach(function (comp: any, i: number) {
             me.showPage.forEach(function (show: any,j: number) {
-                debugger
                 if(show == parseInt(comp.key)){
                     showData.push(comp);
                 }
@@ -264,11 +263,13 @@ export default class Pagination extends React.Component<PaginationProps,any>{
 
         if(this.props.selectedValue != undefined){
             this.props.type == "normal" ?
-                this.props.selectedValue({page : this.selectPage, href : e.target.href, selectData:this.props.data[this.selectPage-1]})
+                this.props.selectedValue({page : parseInt(this.selectPage), href : e.target.href, selectData:this.props.data[this.selectPage-1]})
                 :
-                this.props.selectedValue({page : this.selectPage})
+                this.props.selectedValue({page : parseInt(this.selectPage)})
 
         }
+
+        this.forceUpdate();
 
     }
 

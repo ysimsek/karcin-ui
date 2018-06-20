@@ -8,13 +8,15 @@ export interface TableBodyProps {
     cellRenderer?: any;
     rowRenderer?:any;
     fieldOption?:any;
+    showingPageData?:any;
 }
 
 export interface TableBodyState {
     store: any,
     fields: any,
     clickActive: Array<any>,
-    clickActiveRow: Array<any>
+    clickActiveRow: Array<any>,
+    showingPageData: any
 }
 
 export interface standartObject {
@@ -32,7 +34,8 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
             store: this.props.store,
             fields: this.props.fields,
             clickActive: [],
-            clickActiveRow: []
+            clickActiveRow: [],
+            showingPageData: null
         }
     }
 
@@ -42,9 +45,10 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
      */
     componentWillReceiveProps(props: any) {
         this.setState({
-            store: this.props.store,
-            fields: this.props.fields
-        })
+            store: props.store,
+            fields: props.fields,
+            showingPageData:props.showingPageData
+        });
     }
 
     /**

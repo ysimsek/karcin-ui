@@ -17,11 +17,12 @@ export default class LocaleEndPoint {
         this.read();
     }
 
-    read(){
-        if(this.props.data !== undefined && this.props.data.length > 0){
+    read(data?:any){
+        let datas:any = data !== undefined ? data : this.props.data;
+        if(datas !== undefined){
             this.reset();
 
-            this.props.data.forEach((value:any)=>{
+            datas.forEach((value:any)=>{
                this.create(value)
             });
         }

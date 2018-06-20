@@ -32,6 +32,7 @@ var Tab = /** @class */ (function (_super) {
     }
     Tab.prototype.componentWillReceiveProps = function (nextProps) {
         this.setState(nextProps);
+        this.forceUpdate();
     };
     Tab.prototype.render = function () {
         return (React.createElement("div", { className: "karcin-tab " + ((this.props.className !== undefined) ? this.props.className : '') + " " + this.props.color },

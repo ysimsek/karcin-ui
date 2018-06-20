@@ -99,7 +99,6 @@ var DataFilter = /** @class */ (function (_super) {
      * @param e
      */
     DataFilter.prototype.handleChange = function (e) {
-        console.log(e.target.value);
         this.state.inputText.value = e.target.value;
         this.forceUpdate();
         this.fieldShowingControl();
@@ -123,6 +122,7 @@ var DataFilter = /** @class */ (function (_super) {
         });
         this.inputText.focus();
         this.fieldShowingControl();
+        this.forceUpdate();
     };
     /**
      * dropdown ' u ve itemlarını aktifliğini sıfırlayan methos
@@ -398,7 +398,6 @@ var DataFilter = /** @class */ (function (_super) {
      * @param event
      */
     DataFilter.prototype.inputKeyControl = function (event) {
-        console.log(event.keyCode, this.state.inputText, this.state.selectedItem.length, this.state.selectText.length);
         // "enter" key code
         if (event.keyCode === 13) {
             // value select item 

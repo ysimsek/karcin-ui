@@ -28,7 +28,7 @@ var RadioInputExample = /** @class */ (function (_super) {
             { id: 2, value: "Samsung", des: "D1" },
             { id: 3, value: "Huawei", des: "D1" },
             { id: 4, value: "Lg", des: "D1" },
-            { id: 4, value: "Lenovo", des: "D1" }
+            { id: 5, value: "Lenovo", des: "D1" }
         ];
         return React.createElement("div", null,
             React.createElement("label", null, "Inline RadioInput Example"),

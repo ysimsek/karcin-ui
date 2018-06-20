@@ -43,7 +43,7 @@ var SelectInputExample = /** @class */ (function (_super) {
             React.createElement("span", { className: "example-reagent" }, "Multi Select"),
             React.createElement(karcin_ui_1.SelectInput, { name: "selectInput", items: items, id: "id", value: "project", onChange: function (e) { _this.handleChange(e); }, type: "multi" }),
             React.createElement("span", { className: "example-reagent" }, "Multi Select Renderer"),
-            React.createElement(karcin_ui_1.SelectInput, { name: "selectInput", items: items, id: "id", value: "project", onChange: this.handleChange.bind(this), type: "multi", renderer: this.rendererDropDown }),
+            React.createElement(karcin_ui_1.SelectInput, { name: "selectInput", items: items, id: "id", value: "project", onChange: this.handleChange2.bind(this), type: "multi", renderer: this.rendererDropDown }),
             React.createElement("span", { className: "example-reagent" }, "Multi Select SelectRenderer"),
             React.createElement(karcin_ui_1.SelectInput, { name: "selectInput", items: items, id: "id", value: "project", onChange: this.handleChange.bind(this), type: "multi", renderer: this.rendererDropDown, selectedRenderer: this.selectRenderer }));
     };
@@ -53,6 +53,9 @@ var SelectInputExample = /** @class */ (function (_super) {
             return val.project = 'deniz';
         });
         console.log(news);
+    };
+    SelectInputExample.prototype.handleChange2 = function () {
+        console.log(arguments);
     };
     SelectInputExample.prototype.rendererDropDown = function (value) {
         return React.createElement("div", null,
