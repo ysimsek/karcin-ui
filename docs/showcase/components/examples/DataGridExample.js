@@ -21,8 +21,7 @@ var DataGridExample = /** @class */ (function (_super) {
                 {
                     "property": "int",
                     "value": "id",
-                    "name": "ID",
-                    "visibility": false
+                    "name": "ID"
                 },
                 {
                     "property": "string",
@@ -33,13 +32,11 @@ var DataGridExample = /** @class */ (function (_super) {
                     "property": "string",
                     "value": "body",
                     "name": "açıklama",
-                    "width": 200
                 },
                 {
                     "property": "string",
                     "value": "url",
                     "name": "image",
-                    "width": 500
                 }
             ],
             store: new karcin_ui_1.Store({
@@ -66,12 +63,12 @@ var DataGridExample = /** @class */ (function (_super) {
                         name: 'Düzenle', icon: 'fa-minus', onClick: function () {
                             _this.clickEdit();
                         }
-                    }], pagination: true, pageShow: 1 })));
+                    }], pagination: true, pageShow: 3 })));
     };
     DataGridExample.prototype.dataUpdate = function () {
         var _this = this;
         setTimeout(function () {
-            _this.state.store.props.data = [{ id: 1, title: 'deniz', body: 'denememe', url: 'dededede' }];
+            _this.state.store.props.data = [{ id: 1, title: 'deniz', body: 'denememe', url: 'dededede' }, { id: 1, title: 'deniz2', body: 'denememe', url: 'dededede' }, { id: 1, title: 'deniz3', body: 'denememe', url: 'dededede' }, { id: 1, title: 'deniz4', body: 'denememe', url: 'dededede' }, { id: 1, title: 'deniz5', body: 'denememe', url: 'dededede' }];
             _this.state.store.read();
         }, 1000);
     };

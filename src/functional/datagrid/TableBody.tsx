@@ -97,14 +97,27 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
                     </td>);
                 }
 
-                Rows.push(<tr key={i} className={(self.state.clickActive.indexOf(getId) !== -1) ? 'active' : ''}
-                              onClick={(e) => {
-                                  this.onClickRow(e, getId, data[i])
-                              }}>{(self.props.rowRenderer !== undefined) ? self.props.rowRenderer(value, this.props.fields) : Cell}</tr>);
+
+                    Rows.push(<tr key={i} className={(self.state.clickActive.indexOf(getId) !== -1) ? 'active' : ''}
+                                  onClick={(e) => {
+                                      this.onClickRow(e, getId, data[i])
+                                  }}>{(self.props.rowRenderer !== undefined) ? self.props.rowRenderer(value, this.props.fields) : Cell}</tr>);
+
             }
         }
 
-        return Rows;
+        if(this.props.showingPageData.pagination !== true) {
+            return Rows;
+        }else {
+            let pagesData = [];
+            for(let i = 0; i < Rows.length; i++){
+                if(i >= this.props.showingPageData.start && i < this.props.showingPageData.finis){
+                    pagesData.push(Rows[i]);
+                }
+            }
+
+            return pagesData;
+        }
     }
 
 

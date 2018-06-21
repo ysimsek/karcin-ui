@@ -77,9 +77,8 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
 
         this.props.store.__callback = () => {
             this.resetData();
+            this.columnStyle();
         };
-
-        this.pageChange();
     }
 
     UNSAFE_componentWillReceiveProps(props: DataGridProps) {
@@ -94,7 +93,7 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
             store: props.store,
             fields: props.fields,
             eventDataGrid: null,
-            pageShowData: {'start':0, 'finis': this.props.pageShow}
+            pageShowData: {'start':0, 'finis': this.props.pageShow, pagination:this.props.pagination}
         }
     }
 
@@ -140,19 +139,18 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
                         }
                     }}/>
         </div>;
-         this.forceUpdate();
+
+        this.forceUpdate();
     }
 
 
     componentDidMount() {
         setTimeout(() => {
             this.columnStyle();
-            this.dataGridLoadComponent();
         }, 200);
 
         window.addEventListener('load', () => {
             this.columnStyle();
-            this.dataGridLoadComponent();
         })
     }
 
@@ -163,13 +161,14 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
 
     columnStyle() {
         if (this.eventDataGrid !== null) {
-
+    //debugger;
             // field width
             let fieldWidth: any = {};
-            let dataGridWidth = this.eventDataGrid.offsetWidth;
+            let dataGridWidth = this.eventDataGrid.clientWidth;
             let totalWidth: number = 0;
             let emptyFieldCount: number = 0;
             let newField: any[] = [];
+
 
             this.state.fields.forEach((value: any) => {
                 if (value.visibility === undefined || value.visibility) {
@@ -180,18 +179,19 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
                 }
             });
 
-            if (dataGridWidth >= totalWidth && newField.length <= 3) {
+            if (dataGridWidth >= totalWidth) {
                 let newCount = (newField.length - emptyFieldCount);
-                let newWid = (dataGridWidth - 2) - totalWidth;
+                let newWid = ((dataGridWidth - 2) - totalWidth) - 8;
 
                 for (let item in fieldWidth) {
                     if (fieldWidth[item] === 0) {
-                        fieldWidth[item] = (newWid / newCount) - 8;
+                        fieldWidth[item] = (newWid / newCount);
                     }
                 }
             }
 
             this.fieldOption = fieldWidth;
+            this.dataGridLoadComponent();
 
         }
 
@@ -201,14 +201,13 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
     pageChange(event?: any) {
 
         if(event !== undefined){
-            let start = this.state.pageShowData.finis;
+            let start = (event.page * this.props.pageShow) - this.props.pageShow;
             let finis = event.page * this.props.pageShow;
 
             this.state.pageShowData.start = start;
             this.state.pageShowData.finis = finis;
 
         }
-
         this.dataGridLoadComponent();
     }
 }

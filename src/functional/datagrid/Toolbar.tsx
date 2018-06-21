@@ -106,11 +106,11 @@ export default class Toolbar extends React.Component<ToolbarProps, ToolbarState>
             return <div className="data-grid-header">
                 <Row>
                     <Col xs="2" className="data-grid-search">
-                        <InputGroup>
-                            <Input placeholder="Arama"/>
-                            <InputGroupAddon addonType="append"><Button><FaIcon
-                                code="fa-search"/></Button></InputGroupAddon>
-                        </InputGroup>
+                        {/*<InputGroup>*/}
+                            {/*<Input placeholder="Arama"/>*/}
+                            {/*<InputGroupAddon addonType="append"><Button><FaIcon*/}
+                                {/*code="fa-search"/></Button></InputGroupAddon>*/}
+                        {/*</InputGroup>*/}
                     </Col>
                     <Col xs={{size: 4, offset: 6}} className="header-buttons">
                         <ButtonGroup>

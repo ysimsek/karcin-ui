@@ -85,7 +85,18 @@ var TableBody = /** @class */ (function (_super) {
                 _loop_1(i);
             }
         }
-        return Rows;
+        if (this.props.showingPageData.pagination !== true) {
+            return Rows;
+        }
+        else {
+            var pagesData = [];
+            for (var i = 0; i < Rows.length; i++) {
+                if (i >= this.props.showingPageData.start && i < this.props.showingPageData.finis) {
+                    pagesData.push(Rows[i]);
+                }
+            }
+            return pagesData;
+        }
     };
     /**
      * @param e

@@ -75,12 +75,7 @@ var Toolbar = /** @class */ (function (_super) {
             }
             return React.createElement("div", { className: "data-grid-header" },
                 React.createElement(reactstrap_1.Row, null,
-                    React.createElement(reactstrap_1.Col, { xs: "2", className: "data-grid-search" },
-                        React.createElement(reactstrap_1.InputGroup, null,
-                            React.createElement(reactstrap_1.Input, { placeholder: "Arama" }),
-                            React.createElement(reactstrap_1.InputGroupAddon, { addonType: "append" },
-                                React.createElement(reactstrap_1.Button, null,
-                                    React.createElement(FaIcon_1.default, { code: "fa-search" }))))),
+                    React.createElement(reactstrap_1.Col, { xs: "2", className: "data-grid-search" }),
                     React.createElement(reactstrap_1.Col, { xs: { size: 4, offset: 6 }, className: "header-buttons" },
                         React.createElement(reactstrap_1.ButtonGroup, null, buttons))));
         }

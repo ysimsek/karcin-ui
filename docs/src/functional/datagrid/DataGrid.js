@@ -30,8 +30,8 @@ var DataGrid = /** @class */ (function (_super) {
         _this.init(props);
         _this.props.store.__callback = function () {
             _this.resetData();
+            _this.columnStyle();
         };
-        _this.pageChange();
         return _this;
     }
     DataGrid.prototype.UNSAFE_componentWillReceiveProps = function (props) {
@@ -45,7 +45,7 @@ var DataGrid = /** @class */ (function (_super) {
             store: props.store,
             fields: props.fields,
             eventDataGrid: null,
-            pageShowData: { 'start': 0, 'finis': this.props.pageShow }
+            pageShowData: { 'start': 0, 'finis': this.props.pageShow, pagination: this.props.pagination }
         };
     };
     /**
@@ -81,11 +81,9 @@ var DataGrid = /** @class */ (function (_super) {
         var _this = this;
         setTimeout(function () {
             _this.columnStyle();
-            _this.dataGridLoadComponent();
         }, 200);
         window.addEventListener('load', function () {
             _this.columnStyle();
-            _this.dataGridLoadComponent();
         });
     };
     DataGrid.prototype.resetData = function () {
@@ -93,9 +91,10 @@ var DataGrid = /** @class */ (function (_super) {
     };
     DataGrid.prototype.columnStyle = function () {
         if (this.eventDataGrid !== null) {
+            //debugger;
             // field width
             var fieldWidth_1 = {};
-            var dataGridWidth = this.eventDataGrid.offsetWidth;
+            var dataGridWidth = this.eventDataGrid.clientWidth;
             var totalWidth_1 = 0;
             var emptyFieldCount_1 = 0;
             var newField_1 = [];
@@ -109,19 +108,20 @@ var DataGrid = /** @class */ (function (_super) {
             });
             if (dataGridWidth >= totalWidth_1 && newField_1.length <= 3) {
                 var newCount = (newField_1.length - emptyFieldCount_1);
-                var newWid = (dataGridWidth - 2) - totalWidth_1;
+                var newWid = ((dataGridWidth - 2) - totalWidth_1) - 8;
                 for (var item in fieldWidth_1) {
                     if (fieldWidth_1[item] === 0) {
-                        fieldWidth_1[item] = (newWid / newCount) - 8;
+                        fieldWidth_1[item] = (newWid / newCount);
                     }
                 }
             }
             this.fieldOption = fieldWidth_1;
+            this.dataGridLoadComponent();
         }
     };
     DataGrid.prototype.pageChange = function (event) {
         if (event !== undefined) {
-            var start = this.state.pageShowData.finis;
+            var start = (event.page * this.props.pageShow) - this.props.pageShow;
             var finis = event.page * this.props.pageShow;
             this.state.pageShowData.start = start;
             this.state.pageShowData.finis = finis;

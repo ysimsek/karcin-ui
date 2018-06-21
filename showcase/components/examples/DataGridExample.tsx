@@ -12,8 +12,7 @@ export default class DataGridExample extends React.Component<any, any> {
                 {
                     "property": "int",
                     "value": "id",
-                    "name": "ID",
-                    "visibility": false
+                    "name": "ID"
                 },
                 {
                     "property": "string",
@@ -24,13 +23,11 @@ export default class DataGridExample extends React.Component<any, any> {
                     "property": "string",
                     "value": "body",
                     "name": "açıklama",
-                    "width" : 200
                 },
                 {
                     "property": "string",
                     "value" : "url",
                     "name" : "image",
-                    "width" : 500
                 }
             ],
             store: new Store({
@@ -61,12 +58,12 @@ export default class DataGridExample extends React.Component<any, any> {
             name: 'Düzenle', icon: 'fa-minus', onClick: () => {
                 this.clickEdit()
             }
-        }]} pagination={true} pageShow={1}/></div>);
+        }]} pagination={true} pageShow={3}/></div>);
     }
 
     dataUpdate(){
         setTimeout(()=>{
-            this.state.store.props.data = [{id:1, title:'deniz', body:'denememe', url:'dededede'}];
+            this.state.store.props.data = [{id:1, title:'deniz', body:'denememe', url:'dededede'},{id:1, title:'deniz2', body:'denememe', url:'dededede'},{id:1, title:'deniz3', body:'denememe', url:'dededede'},{id:1, title:'deniz4', body:'denememe', url:'dededede'},{id:1, title:'deniz5', body:'denememe', url:'dededede'}];
             this.state.store.read();
         },1000);
     }
