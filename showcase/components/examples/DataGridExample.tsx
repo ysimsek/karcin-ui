@@ -4,6 +4,8 @@ import Axios from 'axios';
 
 
 export default class DataGridExample extends React.Component<any, any> {
+    show = true;
+
     constructor(props: any) {
         super(props);
 
@@ -16,44 +18,63 @@ export default class DataGridExample extends React.Component<any, any> {
                 },
                 {
                     "property": "string",
-                    "value": "title",
+                    "value": "name",
                     "name": "isim"
                 },
                 {
                     "property": "string",
-                    "value": "body",
-                    "name": "açıklama",
+                    "value": "surname",
+                    "name": "Soyisim",
                 },
                 {
                     "property": "string",
-                    "value" : "url",
-                    "name" : "image",
+                    "value": "title",
+                    "name": "Görevi",
                 }
             ],
             store: new Store({
                 idField: 'id',
-                data: [],
-                //url: 'https://jsonplaceholder.typicode.com/photos',
-                responseData:'data'
-            })
+                data: [{
+                    'id': '1',
+                    'name': 'Deniz',
+                    'surname': 'DALKILIÇ',
+                    'title': 'Yazılım Uzmanı'
+                }, {
+                    'id': '2',
+                    'name': 'Yunus',
+                    'surname': 'ŞİMŞEK',
+                    'title': 'Yazılım Uzmanı'
+                }, {
+                    'id': '3',
+                    'name': 'Tayyip',
+                    'surname': 'DEMİRCAN',
+                    'title': 'Yazılım Uzmanı'
+                }, {
+                    'id': '4',
+                    'name': 'Mustafa',
+                    'surname': 'GÜNGÖR',
+                    'title': 'Yazılım Uzmanı'
+                }, {
+                    'id': '5',
+                    'name': 'Bora',
+                    'surname': 'AVCI',
+                    'title': 'Yazılım Uzmanı'
+                }]
+            }),
+            page:1,
         };
-
-
-
-        this.dataUpdate();
-
 
     }
 
     render() {
-
-        return (<div><DataGrid store={this.state.store} fields={this.state.fields} onSelected={(e, b) => {
-            this.getSelectData(e, b)
+        console.log(this.state.page);
+        return (<div><DataGrid store={this.state.store} fields={this.state.fields} page={this.state.page} changePage={(page:any)=>{
+            this.pageChange(page);
         }} toolbar={[{
             name: 'Ekle',
             icon: 'fa-plus',
             url: 'https://www.google.com',
-            disabled: true
+            disabled: this.show
         }, {
             name: 'Düzenle', icon: 'fa-minus', onClick: () => {
                 this.clickEdit()
@@ -61,19 +82,13 @@ export default class DataGridExample extends React.Component<any, any> {
         }]} pagination={true} pageShow={3}/></div>);
     }
 
-    dataUpdate(){
-        setTimeout(()=>{
-            this.state.store.props.data = [{id:1, title:'deniz', body:'denememe', url:'dededede'},{id:1, title:'deniz2', body:'denememe', url:'dededede'},{id:1, title:'deniz3', body:'denememe', url:'dededede'},{id:1, title:'deniz4', body:'denememe', url:'dededede'},{id:1, title:'deniz5', body:'denememe', url:'dededede'}];
-            this.state.store.read();
-        },1000);
-    }
-
-
-    clickEdit() {
+    clickEdit(){
 
     }
 
-    getSelectData(e, b) {
 
+    pageChange(pages) {
+        let state = {page:pages};
+        this.setState(state);;
     }
 }

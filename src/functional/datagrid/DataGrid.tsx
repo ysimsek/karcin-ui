@@ -24,15 +24,15 @@ export interface DataGridProps {
     /**
      * Set the selected data returned func
      */
-    onSelected?: any;
+    onSelected?: React.EventHandler<any> | any;
     /**
      * cell(td) renderer
      */
-    cellRenderer?: any;
+    cellRenderer?: React.EventHandler<any> | any;
     /**
      * row(tr) renderer
      */
-    rowRenderer?: any;
+    rowRenderer?: React.EventHandler<any> | any;
     /**
      * pagination control
      */
@@ -42,6 +42,17 @@ export interface DataGridProps {
      * show page data
      */
     pageShow?: number | any;
+
+    /**
+     * change page 
+     */
+    changePage?: React.EventHandler<any> | any;
+
+    /**
+     * page size
+     */
+
+     page?: number | any;
 }
 
 export interface DataGridState {
@@ -62,9 +73,11 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
     eventDataGrid: any;
     fieldOption: any;
     returnComponent: any;
+    tbodyRef:any;
 
     static defaultProps: Partial<DataGridProps> = {
-        pagination: false
+        pagination: false,
+        page:1
     };
 
     /**
@@ -78,22 +91,25 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
         this.props.store.__callback = () => {
             this.resetData();
             this.columnStyle();
+            this.resetSelected()
         };
     }
 
     UNSAFE_componentWillReceiveProps(props: DataGridProps) {
         this.init(props);
+        this.forceUpdate();
     }
 
     /**
      * set the first values
      */
     init(props: DataGridProps) {
+        this.props = props;
         this.state = {
             store: props.store,
             fields: props.fields,
             eventDataGrid: null,
-            pageShowData: {'start':0, 'finis': this.props.pageShow, pagination:this.props.pagination}
+            pageShowData: {page: this.props.page, pageShow:this.props.pageShow, pagination:this.props.pagination}
         }
     }
 
@@ -101,10 +117,11 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
      *
      */
     render(): any {
+
         return <div className="karcin-data-grid" id={'karcinDataGrid' + this.dataGridId} ref={(e) => {
             this.eventDataGrid = e;
         }}>
-            {this.returnComponent}
+            {this.dataGridLoadComponent()}
         </div>;
     }
 
@@ -120,13 +137,14 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
                                resetData={() => {
                                    this.resetData()
                                }}/>
-                    <TableBody onSelected={this.props.onSelected}
+                    <TableBody ref={ref => {this.tbodyRef = ref; }}
+                                onSelected={this.props.onSelected}
                                fieldOption={this.fieldOption}
                                store={this.props.store}
                                cellRenderer={this.props.cellRenderer}
                                rowRenderer={this.props.rowRenderer}
                                fields={this.state.fields}
-                                showingPageData={this.state.pageShowData}/>
+                               showingPageData={this.state.pageShowData}/>
                 </table>
             </div>
             <Toolbar type="footer"
@@ -140,7 +158,7 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
                     }}/>
         </div>;
 
-        this.forceUpdate();
+        return this.returnComponent;
     }
 
 
@@ -159,15 +177,27 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
         this.forceUpdate();
     }
 
+    resetSelected(){
+        this.tbodyRef.resetSelected();
+    }
+
     columnStyle() {
         if (this.eventDataGrid !== null) {
-    //debugger;
+            this.fieldOption = {};
             // field width
             let fieldWidth: any = {};
-            let dataGridWidth = this.eventDataGrid.clientWidth;
+            let dataGridWidth = this.eventDataGrid.offsetWidth;
+            let dataGridHeight = this.eventDataGrid.offsetHeight;
+            let tableBodyHeight = this.eventDataGrid.querySelector('tbody') !== null ? this.eventDataGrid.querySelector('tbody').offsetHeight : 0;
             let totalWidth: number = 0;
             let emptyFieldCount: number = 0;
             let newField: any[] = [];
+
+
+            let scrollSize = 0;
+            if(tableBodyHeight <= 0 && tableBodyHeight > dataGridHeight){
+                scrollSize = 8;
+            }
 
 
             this.state.fields.forEach((value: any) => {
@@ -181,17 +211,20 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
 
             if (dataGridWidth >= totalWidth) {
                 let newCount = (newField.length - emptyFieldCount);
-                let newWid = ((dataGridWidth - 2) - totalWidth) - 8;
+                let newWid = ((dataGridWidth - 2) - totalWidth) - scrollSize;
 
                 for (let item in fieldWidth) {
                     if (fieldWidth[item] === 0) {
-                        fieldWidth[item] = (newWid / newCount);
+                        fieldWidth[item] = ((newWid - 1) / newCount);
                     }
                 }
             }
 
+    
+
             this.fieldOption = fieldWidth;
-            this.dataGridLoadComponent();
+            this.eventDataGrid = null;
+            this.forceUpdate();
 
         }
 
@@ -199,16 +232,9 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
 
 
     pageChange(event?: any) {
-
-        if(event !== undefined){
-            let start = (event.page * this.props.pageShow) - this.props.pageShow;
-            let finis = event.page * this.props.pageShow;
-
-            this.state.pageShowData.start = start;
-            this.state.pageShowData.finis = finis;
-
+        if(event !== undefined && this.props.changePage){
+            this.props.changePage(event.page);
         }
-        this.dataGridLoadComponent();
     }
 }
 

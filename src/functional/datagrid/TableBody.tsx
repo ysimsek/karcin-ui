@@ -44,6 +44,7 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
      * @param props
      */
     componentWillReceiveProps(props: any) {
+        this.props = props;
         this.setState({
             store: props.store,
             fields: props.fields,
@@ -81,7 +82,7 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
                 let Cell = [];
                 for (let j = 0; j < this.state.fields.length; j++) {
                     let valueField = this.state.fields[j];
-                    let scrolWid = 0;
+
                     // style
                     let style: standartObject = {};
                     if(valueField.visibility !== undefined && !valueField.visibility){
@@ -106,12 +107,16 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
             }
         }
 
+    console.log(this.props.showingPageData);
         if(this.props.showingPageData.pagination !== true) {
             return Rows;
         }else {
             let pagesData = [];
+            let start = this.props.showingPageData.pageShow * (this.props.showingPageData.page - 1);
+            let finis = this.props.showingPageData.pageShow * this.props.showingPageData.page;
+
             for(let i = 0; i < Rows.length; i++){
-                if(i >= this.props.showingPageData.start && i < this.props.showingPageData.finis){
+                if(i >= start && i < finis){
                     pagesData.push(Rows[i]);
                 }
             }
@@ -170,6 +175,13 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
         if (this.props.onSelected !== undefined) {
             this.props.onSelected(this.state.clickActiveRow, this.state.clickActive);
         }
+    }
+
+    resetSelected(){
+        this.setState({
+            clickActive: [],
+            clickActiveRow: []
+        });
     }
 
 }

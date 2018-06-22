@@ -68,9 +68,9 @@ var Store = /** @class */ (function () {
     Store.prototype.orderSort = function (fieldName, callback) {
         var _this = this;
         if (fieldName !== undefined) {
-            this.props.endPoint.orderSort(fieldName, function (data, fieldName, order) {
-                _this.orderCallback(data, order, fieldName);
+            this.props.endPoint.orderSort(fieldName, function (data, order, fieldName) {
                 callback(data, order, fieldName);
+                _this.orderCallback(data, order, fieldName);
             });
         }
         else {
@@ -80,7 +80,7 @@ var Store = /** @class */ (function () {
     Store.prototype.orderReverse = function (fieldName, callback) {
         var _this = this;
         if (fieldName !== undefined) {
-            this.props.endPoint.orderReverse(fieldName, function (data, fieldName, order) {
+            this.props.endPoint.orderReverse(fieldName, function (data, order, fieldName) {
                 _this.orderCallback(data, order, fieldName);
                 callback(data, order, fieldName);
             });

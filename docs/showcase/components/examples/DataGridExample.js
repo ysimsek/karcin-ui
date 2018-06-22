@@ -16,6 +16,7 @@ var DataGridExample = /** @class */ (function (_super) {
     __extends(DataGridExample, _super);
     function DataGridExample(props) {
         var _this = _super.call(this, props) || this;
+        _this.show = true;
         _this.state = {
             fields: [
                 {
@@ -25,28 +26,50 @@ var DataGridExample = /** @class */ (function (_super) {
                 },
                 {
                     "property": "string",
-                    "value": "title",
+                    "value": "name",
                     "name": "isim"
                 },
                 {
                     "property": "string",
-                    "value": "body",
-                    "name": "açıklama",
+                    "value": "surname",
+                    "name": "Soyisim",
                 },
                 {
                     "property": "string",
-                    "value": "url",
-                    "name": "image",
+                    "value": "title",
+                    "name": "Görevi",
                 }
             ],
             store: new karcin_ui_1.Store({
                 idField: 'id',
-                data: [],
-                //url: 'https://jsonplaceholder.typicode.com/photos',
-                responseData: 'data'
+                data: [{
+                        'id': '1',
+                        'name': 'Deniz',
+                        'surname': 'DALKILIÇ',
+                        'title': 'Yazılım Uzmanı'
+                    }, {
+                        'id': '2',
+                        'name': 'Yunus',
+                        'surname': 'ŞİMŞEK',
+                        'title': 'Yazılım Uzmanı'
+                    }, {
+                        'id': '3',
+                        'name': 'Tayyip',
+                        'surname': 'DEMİRCAN',
+                        'title': 'Yazılım Uzmanı'
+                    }, {
+                        'id': '4',
+                        'name': 'Mustafa',
+                        'surname': 'GÜNGÖR',
+                        'title': 'Yazılım Uzmanı'
+                    }, {
+                        'id': '5',
+                        'name': 'Bora',
+                        'surname': 'AVCI',
+                        'title': 'Yazılım Uzmanı'
+                    }]
             })
         };
-        _this.dataUpdate();
         return _this;
     }
     DataGridExample.prototype.render = function () {
@@ -58,23 +81,18 @@ var DataGridExample = /** @class */ (function (_super) {
                         name: 'Ekle',
                         icon: 'fa-plus',
                         url: 'https://www.google.com',
-                        disabled: true
+                        disabled: this.show
                     }, {
                         name: 'Düzenle', icon: 'fa-minus', onClick: function () {
                             _this.clickEdit();
                         }
                     }], pagination: true, pageShow: 3 })));
     };
-    DataGridExample.prototype.dataUpdate = function () {
-        var _this = this;
-        setTimeout(function () {
-            _this.state.store.props.data = [{ id: 1, title: 'deniz', body: 'denememe', url: 'dededede' }, { id: 1, title: 'deniz2', body: 'denememe', url: 'dededede' }, { id: 1, title: 'deniz3', body: 'denememe', url: 'dededede' }, { id: 1, title: 'deniz4', body: 'denememe', url: 'dededede' }, { id: 1, title: 'deniz5', body: 'denememe', url: 'dededede' }];
-            _this.state.store.read();
-        }, 1000);
-    };
     DataGridExample.prototype.clickEdit = function () {
     };
     DataGridExample.prototype.getSelectData = function (e, b) {
+        this.show = !this.show;
+        this.forceUpdate();
     };
     return DataGridExample;
 }(React.Component));

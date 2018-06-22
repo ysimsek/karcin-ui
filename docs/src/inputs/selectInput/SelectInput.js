@@ -43,6 +43,10 @@ var SelectInput = /** @class */ (function (_super) {
         _this.itemActive();
         return _this;
     }
+    SelectInput.prototype.UNSAFE_componentWillReceiveProps = function (props) {
+        this.props = props;
+        this.forceUpdate();
+    };
     SelectInput.prototype.render = function () {
         var _this = this;
         var selectInputType = null;
@@ -77,7 +81,7 @@ var SelectInput = /** @class */ (function (_super) {
                 returnHtml.push(React.createElement("option", { key: index, value: id }, val));
             }
         });
-        return React.createElement("select", { className: "form-control karcin-select " + this.props.className, name: this.props.name, onChange: function (e) { _this.singleHandleChange(e); } }, returnHtml);
+        return React.createElement("select", { className: "form-control karcin-select " + this.props.className, value: this.state.selectedItem[0][this.props.id], name: this.props.name, onChange: function (e) { _this.singleHandleChange(e); } }, returnHtml);
     };
     /**
      * single select input ' un değiştiğinde value atama
@@ -296,7 +300,7 @@ var SelectInput = /** @class */ (function (_super) {
         if (this.props.onChange !== undefined) {
             var target_1 = {};
             if (this.props.type === "multi") {
-                var newArray = this.state.itemActive.slice(0);
+                var newArray = this.state.itemActive;
                 target_1['id'] = [];
                 target_1['name'] = this.props.name;
                 target_1['value'] = [];
@@ -307,7 +311,7 @@ var SelectInput = /** @class */ (function (_super) {
                 });
             }
             else {
-                var newArray = this.state.itemActive[0].slice(0);
+                var newArray = this.state.itemActive[0];
                 target_1['id'] = newArray[this.props.id];
                 target_1['name'] = this.props.name;
                 target_1['value'] = newArray[this.props.value];
@@ -322,10 +326,15 @@ var SelectInput = /** @class */ (function (_super) {
     SelectInput.prototype.itemActive = function () {
         var _this = this;
         if (this.props.activeItem !== undefined && this.props.activeItem !== "") {
-            this.props.activeItem.forEach(function (value, index) {
-                _this.state.selectedItem.push(value);
-            });
-            this.forceUpdate();
+            if (Array.isArray(this.props.activeItem)) {
+                this.props.activeItem.forEach(function (value, index) {
+                    _this.state.selectedItem.push(value);
+                });
+            }
+            else {
+                this.state.selectedItem.push(this.props.activeItem);
+            }
+            this.render();
         }
     };
     SelectInput.defaultProps = {

@@ -39,7 +39,9 @@ var SelectInputExample = /** @class */ (function (_super) {
         var _this = this;
         return React.createElement("div", null,
             React.createElement("span", { className: "example-reagent first" }, "Single Select"),
-            React.createElement(karcin_ui_1.SelectInput, { name: "selectInput", items: items, id: "id", value: "project", onChange: this.handleChange.bind(this) }),
+            React.createElement(karcin_ui_1.SelectInput, { name: "selectInput", items: items, id: "id", value: "project", onChange: this.handleChange2.bind(this), activeItem: [{
+                        id: 3, name: "karcin-ui", userName: "karcin-ui", project: "KARÇİN-Uİ", img: "https://img.wikinut.com/img/anxidmiwlv2yy1ar/jpeg/36x36/Author-profile-image.jpeg"
+                    }] }),
             React.createElement("span", { className: "example-reagent" }, "Multi Select"),
             React.createElement(karcin_ui_1.SelectInput, { name: "selectInput", items: items, id: "id", value: "project", onChange: function (e) { _this.handleChange(e); }, type: "multi" }),
             React.createElement("span", { className: "example-reagent" }, "Multi Select Renderer"),

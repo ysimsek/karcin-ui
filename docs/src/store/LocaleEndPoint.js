@@ -69,7 +69,7 @@ var LocaleEndPoint = /** @class */ (function () {
         }
         return this.__dataMap;
     };
-    LocaleEndPoint.prototype.orderSort = function (fieldName) {
+    LocaleEndPoint.prototype.orderSort = function (fieldName, callback) {
         this.__dataMap.sort(function (first, last) {
             var firstName = first[fieldName].toUpperCase();
             var lastName = last[fieldName].toUpperCase();
@@ -83,12 +83,16 @@ var LocaleEndPoint = /** @class */ (function () {
             }
             return 0;
         });
+        if (callback !== undefined)
+            callback(this.__dataMap, 'asc', fieldName);
         return this.__dataMap;
     };
     ;
-    LocaleEndPoint.prototype.orderReverse = function (fieldName) {
+    LocaleEndPoint.prototype.orderReverse = function (fieldName, callback) {
         this.__dataMap = this.orderSort(fieldName);
         this.__dataMap.reverse();
+        if (callback !== undefined)
+            callback(this.__dataMap, 'desc', fieldName);
         return this.__dataMap;
     };
     LocaleEndPoint.prototype.filter = function (fieldName, value) {

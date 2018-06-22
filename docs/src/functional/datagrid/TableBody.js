@@ -34,6 +34,7 @@ var TableBody = /** @class */ (function (_super) {
      * @param props
      */
     TableBody.prototype.componentWillReceiveProps = function (props) {
+        this.props = props;
         this.setState({
             store: props.store,
             fields: props.fields,

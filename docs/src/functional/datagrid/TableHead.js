@@ -27,7 +27,7 @@ var TableHead = /** @class */ (function (_super) {
             fields: _this.props.fields,
             clickActive: [],
             popover: [],
-            order: '',
+            order: { order: '', value: '' },
             filterRemoteTimeOut: 3000,
             filterRemoteInterval: 1000
         };
@@ -76,10 +76,10 @@ var TableHead = /** @class */ (function (_super) {
                             self.popoverOpen(i);
                         } },
                         React.createElement(FaIcon_1.default, { code: "fa-filter" })),
-                    React.createElement("span", { className: "order " + ((this_1.state.order !== '' && this_1.state.order.value === value.value) ? 'active' : ''), onClick: function () {
+                    React.createElement("span", { className: "order " + ((this_1.state.order.order !== '' && this_1.state.order.value === value.value) ? 'active' : ''), onClick: function () {
                             _this.orderData(value.value);
                         } },
-                        React.createElement(FaIcon_1.default, { code: "fa-sort" + ((this_1.state.order !== '' && this_1.state.order.value === value.value) ? '-' + this_1.state.order.order : '') })),
+                        React.createElement(FaIcon_1.default, { code: "fa-sort" + ((this_1.state.order.order !== '' && this_1.state.order.value === value.value) ? '-' + this_1.state.order.order : '') })),
                     React.createElement(reactstrap_1.Popover, { placement: "bottom", isOpen: self.state.popover[i], target: "Popover" + i, toggle: function () {
                             self.popoverOpen(i);
                         }, className: "popup-over-search" },
@@ -109,21 +109,28 @@ var TableHead = /** @class */ (function (_super) {
     TableHead.prototype.orderData = function (fieldName) {
         var _this = this;
         var order = this.state.order;
-        if (this.state.order.value !== undefined && fieldName !== this.state.order.value) {
-            order = '';
+        if (this.state.order.value !== ('' || undefined) && fieldName !== this.state.order.value) {
+            order = { order: '', value: '' };
         }
-        if (order === '') {
-            this.props.store.orderSort(fieldName, function () {
+        if (order.order === '') {
+            this.props.store.orderSort(fieldName, function (data, order) {
+                _this.state.order.order = order;
+                _this.state.order.value = fieldName;
                 _this.orderCallback();
             });
         }
         else if (order.order === 'asc') {
-            this.props.store.orderSort(fieldName, function () {
+            this.props.store.orderReverse(fieldName, function (data, order) {
+                _this.state.order.order = order;
+                _this.state.order.value = fieldName;
                 _this.orderCallback();
+                console.log(_this.state.order, data);
             });
         }
         else if (order.order === 'desc') {
-            this.props.store.ready();
+            this.state.order.order = '';
+            this.state.order.value = fieldName;
+            this.props.store.read();
         }
     };
     TableHead.prototype.orderCallback = function () {
@@ -131,6 +138,7 @@ var TableHead = /** @class */ (function (_super) {
     };
     TableHead.prototype.filterData = function (fieldName, element) {
         var _this = this;
+        debugger;
         var data = [];
         var value = element.target.value;
         this._filterDelay = 0;

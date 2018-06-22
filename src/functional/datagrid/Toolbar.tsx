@@ -46,6 +46,11 @@ export default class Toolbar extends React.Component<ToolbarProps, ToolbarState>
 
     }
 
+    UNSAFE_componentWillReceiveProps(props:ToolbarProps){
+        this.props = props;
+        this.forceUpdate();
+    }
+
     /**
      * return any
      */

@@ -162,13 +162,13 @@
     },
     {
       "id":13,
-      "name":"BigCalendar",
-      "title":"Big Calendar",
+      "name":"Calendar",
+      "title":"Calendar",
       "icon":"fa-calendar",
       "href":"#/Components/Calendar",
       "samples":"components/examples/CalendarExample",
       "library":"functional/calendar/Calendar",
-      "description":"<BigCalendar/>"
+      "description":"<Calendar/>"
     },
     {
       "id":14,

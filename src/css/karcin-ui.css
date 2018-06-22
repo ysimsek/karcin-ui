@@ -815,8 +815,10 @@ New Reactstrap CSS
 .karcin-data-grid .data-grid-header {
     width: 100%;
     padding: 10px;
-    background-color: #8cb753;
+    background-color: #f5f2f2;
     border-radius: 5px 5px 0px 0px;
+    border: solid 1px #c7c7c7;
+    border-bottom: 0;
 }
 
 .karcin-data-grid .data-grid-header .data-grid-search .btn {
@@ -850,9 +852,9 @@ New Reactstrap CSS
 }
 
 .karcin-data-grid .data-grid-header .header-buttons .btn {
-    background-color: #779c45;
+    background-color: #afacac;
     color: #fff;
-    border-right: solid 2px #70943f;
+    border-right: solid 2px #a5a5a5;
 }
 
 .karcin-data-grid .data-grid-header .header-buttons .btn:last-child {
@@ -865,18 +867,22 @@ New Reactstrap CSS
 }
 
 .karcin-data-grid .data-grid-header .header-buttons .btn:hover:not(:disabled) {
-    background-color: #9dbf6e;
+    background-color: #848181;
 }
 
 .karcin-data-grid .table {
     border: 0;
     margin-bottom: 0;
+    display: block;
+    border:0;
 }
 
 .karcin-data-grid .table thead {
-    background-color: #f1efef;
+    background-color: #f5f2f2;
     overflow: hidden;
-    border: solid 1px #dee2e6;
+    border: solid 1px #c7c7c7;
+    display: block;
+    width: 100%;
 }
 
 .karcin-data-grid .table thead tr {
@@ -887,16 +893,29 @@ New Reactstrap CSS
 .karcin-data-grid .table thead tr th {
     font-size: 15px;
     font-weight: 600;
-    color: #8e8a8a;
+    color: #5a5858;
     border-bottom: 0;
     padding: 8px 15px;
     overflow: hidden;
     min-height: 36px;
-    border-color: #dee2e6;
+    border-color: #c7c7c7;
     border-bottom: 0;
     border-left: 0;
     border-top: 0;
     position: relative;
+    transition: all .3s ease;
+    -webkit-transition: background .3s ease;
+    -moz-transition: background .3s ease;
+    -ms-transition: background .3s ease;
+}
+
+.karcin-data-grid .table thead tr th.order-active {
+    background-color: #4e9dfb;
+    color:#ffffff;
+}
+
+.karcin-data-grid .table thead tr th.order-active span:not(.filter):hover {
+    color:#ffffff;
 }
 
 .karcin-data-grid .table thead tr td:last-child,
@@ -934,7 +953,7 @@ New Reactstrap CSS
     height: 350px;
     overflow-y: auto;
     display: block;
-    border: solid 1px #dee2e6;
+    border: solid 1px #c7c7c7;
     border-top: 0;
 }
 
@@ -998,8 +1017,10 @@ New Reactstrap CSS
 .karcin-data-grid .data-grid-footer {
     width: 100%;
     padding: 10px;
-    background-color: #8cb753;
+    background-color: #f5f2f2;
     border-radius: 0px 0px 5px 5px;
+    border: solid 1px #c7c7c7;
+    border-top: 0;
 }
 
 .karcin-data-grid .data-grid-footer .btn {
@@ -1029,6 +1050,7 @@ New Reactstrap CSS
 
 .karcin-data-grid .data-grid-footer .pagination {
     justify-content: center;
+    margin-bottom: 0;
 }
 
 .karcin-data-grid .data-grid-footer .data-grid-detail {

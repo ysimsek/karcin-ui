@@ -2,7 +2,7 @@ import * as React from "react";
 import {Calendar} from 'karcin-ui';
 import {Row, Col} from 'reactstrap';
 
-export default class BigCalendarExample extends React.Component<any, any> {
+export default class CalendarExample extends React.Component<any, any> {
 
     render() {
         const events = [

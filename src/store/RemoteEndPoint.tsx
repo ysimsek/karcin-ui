@@ -10,11 +10,14 @@ export default class RemoteEndPoint {
     requestStatus = true;
 
     props: any = {
-        url: null,
         idField: 'id',
-        method: 'GET',
+        processor: null,
+        type: 'GET',
+        originUrl: null,
+        method: '',
         endPoint: 'remoteEndPoint',
-        responseData: ''
+        responseData: '',
+        data: null
     };
 
     constructor(props: Object, callback: any) {
@@ -24,7 +27,7 @@ export default class RemoteEndPoint {
         this.call();
     };
 
-    call() {
+    call(callback?:any) {
         if (this.props.url !== null && this.requestStatus) {
             this.requestStatus = false;
 
@@ -33,6 +36,10 @@ export default class RemoteEndPoint {
                 method: this.props.method
             }, (response: any) => {
                 this.callbackReady(response)
+
+                if(callback !== undefined) {
+                    callback();
+                }
             });
 
             getData.call();
@@ -47,11 +54,11 @@ export default class RemoteEndPoint {
         }
     }
 
-    read() {
+    read(callback?:any) {
         if (this.props.url !== undefined) {
             this.reset();
 
-            this.call();
+            this.call(callback);
         }
         return this.__dataMap;
     }
@@ -106,6 +113,10 @@ export default class RemoteEndPoint {
         } else {
             throw new Error('Field name empty');
         }
+    }
+
+    oldDataSort(callback?:any){
+        this.read(callback);
     }
 
     filter(fieldName: any, value: any, callback:any) {

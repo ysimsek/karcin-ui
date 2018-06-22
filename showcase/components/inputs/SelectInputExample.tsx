@@ -33,7 +33,10 @@ export default class SelectInputExample extends React.Component<any,any>{
                     items={items}
                     id={"id"}
                     value={"project"}
-                    onChange={this.handleChange.bind(this)}
+                    onChange={this.handleChange2.bind(this)}
+                    activeItem={[{
+                        id:3,name:"karcin-ui",userName:"karcin-ui",project:"KARÇİN-Uİ", img:"https://img.wikinut.com/img/anxidmiwlv2yy1ar/jpeg/36x36/Author-profile-image.jpeg"
+                    }]}
                 />
                 <span className="example-reagent">Multi Select</span>
                 <SelectInput

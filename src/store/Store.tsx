@@ -19,6 +19,7 @@ export default class Store {
     __callback?: any;
     __updated?: boolean = false;
     __component?: any;
+    __order?:any;
 
     constructor(props: object, selfComponent?: any, callback?: any, updated?: boolean) {
         this.props = Application.mergeObject(this.props, props);
@@ -49,9 +50,12 @@ export default class Store {
         }
     }
 
-    read() {
+    read(callback?:any) {
         this.props.data = this.props.endPoint.read(this.props.data);
         this.__callback(this.props.data);
+
+        if(callback !== undefined)
+            callback(this.props.data);
     }
 
     endPointCallback(response: any) {
@@ -66,7 +70,7 @@ export default class Store {
 
     create(item: any, successCallback?: any, errorCallback?: any) {
         if (item !== undefined) {
-            return this.props.endPoint.create(item, successCallback, errorCallback);
+            this.props.endPoint.create(item, successCallback, errorCallback);
         }
     }
 
@@ -76,15 +80,14 @@ export default class Store {
 
     update(items: any, successCallback?: any, errorCallback?: any) {
         if (items !== undefined && items.length > 0) {
-            return this.props.endPoint.update(items, successCallback, errorCallback);
+            this.props.endPoint.update(items, successCallback, errorCallback);
         }
     }
 
     orderSort(fieldName: any, callback?:any) {
         if (fieldName !== undefined) {
-            this.props.endPoint.orderSort(fieldName, (data: any, fieldName: any, order: any) => {
-                this.orderCallback(data, order, fieldName);
-                callback(data, order, fieldName);
+            this.props.endPoint.orderSort(fieldName, (data: any) => {
+                this.orderCallback(data, 'ASC', fieldName, callback);
             });
         } else {
             throw new Error('Field name empty');
@@ -93,26 +96,41 @@ export default class Store {
 
     orderReverse(fieldName: any, callback?:any) {
         if (fieldName !== undefined) {
-            this.props.endPoint.orderReverse(fieldName, (data: any, fieldName: any, order: any) => {
-                this.orderCallback(data, order, fieldName);
-                callback(data, order, fieldName);
+            this.props.endPoint.orderReverse(fieldName, (data: any, order: any, fieldName: any) => {
+                this.orderCallback(data, 'DESC', fieldName, callback);
             });
         } else {
             throw new Error('Field name empty');
         }
     }
 
-    orderCallback(data: any, order: any, fieldName: any) {
+    oldDataSort(fieldName:any, callback?:any){
+        this.props.endPoint.oldDataSort((data:any)=>{
+            this.orderCallback(data, '', fieldName, callback);
+
+            if(callback !== undefined) {
+                callback(data);
+            }
+        });
+    }
+
+    orderCallback(data: any, order: any, fieldName: any, callback?:any) {
         if (data !== undefined && data.length > 0) {
             this.props.data = data;
-            this.props.order = {order: order, value: fieldName};
-            return this.props;
+            this.__order = {order: order, value: fieldName};
+            this.__dataMap = data;
+            this.__callback();
+
+            if(callback !== undefined)
+                callback(data);
         }
     }
 
-    filter(fieldName: any, value: any) {
+    filter(fieldName: any, value: any, callback?:any) {
         if (fieldName !== undefined) {
-            this.props.data = this.props.endPoint.filter(fieldName, value);
+            this.props.endPoint.filter(fieldName, value, (data:any)=>{
+                this.props.data = data;
+            });
         } else {
             throw new Error('Field name empty')
         }

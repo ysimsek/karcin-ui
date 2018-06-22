@@ -27,10 +27,11 @@ export interface TableHeadState {
     fields: any,
     clickActive: any[],
     popover: any[],
-    order: any,
+    orderActive: any,
     filterRemoteTimeOut: number | any,
     filterRemoteInterval: number | any,
-    filterDelay?: any
+    filterDelay?: any,
+    orders: any[]
 }
 
 export interface standartObject {
@@ -49,9 +50,10 @@ export default class TableHead extends React.Component<TableHeadProps, TableHead
             fields: this.props.fields,
             clickActive: [],
             popover: [],
-            order: '',
+            orders: ["", "asc", "desc"],
             filterRemoteTimeOut: 3000,
-            filterRemoteInterval: 1000
+            filterRemoteInterval: 1000,
+            orderActive: {active:0, value:''}
         };
     }
 
@@ -101,7 +103,7 @@ export default class TableHead extends React.Component<TableHeadProps, TableHead
                 style['width'] = this.props.fieldOption[value.value] + "px";
             }
 
-            Cell.push(<th key={i} style={style}>
+            Cell.push(<th key={i} className={(this.state.orders[this.state.orderActive.active] !== "" && this.state.orderActive.value === value.value) ? 'order-active' : ''} style={style}>
                 <span onClick={() => {
                     this.orderData(value.value);
                 }}>{value.name}</span>
@@ -110,11 +112,11 @@ export default class TableHead extends React.Component<TableHeadProps, TableHead
                         self.popoverOpen(i)
                     }}><FaIcon code="fa-filter"/></span>
                     <span
-                        className={`order ${(this.state.order !== '' && this.state.order.value === value.value) ? 'active' : ''}`}
+                        className='order'
                         onClick={() => {
                             this.orderData(value.value)
                         }}><FaIcon
-                        code={`fa-sort${(this.state.order !== '' && this.state.order.value === value.value) ? '-' + this.state.order.order : ''}`}/></span>
+                        code={`fa-sort${(this.state.orders[this.state.orderActive.active] !== "" && this.state.orderActive.value === value.value) ? '-' + this.state.orders[this.state.orderActive.active] : ''}`}/></span>
 
                     <Popover placement="bottom" isOpen={self.state.popover[i]} target={`Popover${i}`}
                              toggle={() => {
@@ -147,23 +149,32 @@ export default class TableHead extends React.Component<TableHeadProps, TableHead
     }
 
     orderData(fieldName: any) {
-        let order = this.state.order;
+        
 
-        if (this.state.order.value !== undefined && fieldName !== this.state.order.value) {
-            order = '';
+        // active size limit control
+        if(this.state.orderActive.active >= (this.state.orders.length - 1)){
+            this.state.orderActive.active = 0;
+        }else {
+            this.state.orderActive.active += 1;
         }
 
-        if (order === '') {
-            this.props.store.orderSort(fieldName, () => {
-                this.orderCallback()
-            });
-        } else if (order.order === 'asc') {
-            this.props.store.orderSort(fieldName, () => {
-                this.orderCallback()
-            });
-        } else if (order.order === 'desc') {
-            this.props.store.ready();
+        // change column control
+        if(this.state.orderActive.value !== '' && this.state.orderActive.value !== fieldName){
+            this.state.orderActive.active = 1;
         }
+
+        this.state.orderActive.value = fieldName;
+
+        // orders control
+        if(this.state.orders[this.state.orderActive.active] === 'asc'){
+            this.props.store.orderSort(fieldName);
+        }else if(this.state.orders[this.state.orderActive.active] === 'desc'){
+            this.props.store.orderReverse(fieldName);
+        }else {
+            this.props.store.oldDataSort(fieldName);
+        }
+
+        this.forceUpdate();
     }
 
     orderCallback() {
@@ -176,10 +187,15 @@ export default class TableHead extends React.Component<TableHeadProps, TableHead
         this._filterDelay = 0;
 
 
+        // local endpoint options
         if (this.props.store.props.endPoint.props.endPoint === 'localEndPoint') {
-            data = this.props.store.filter(fieldName, value);
-        } else {
+            this.props.store.filter(fieldName, value, (response:any) => {
+                data = response;
+            });
 
+        } 
+        // remote endpoint options
+        else {
             if (this._filterInterval !== undefined) {
                 clearInterval(this._filterInterval);
             }
@@ -187,12 +203,15 @@ export default class TableHead extends React.Component<TableHeadProps, TableHead
             this._filterInterval = setInterval(() => {
                 this._filterDelay += this.state.filterRemoteInterval;
                 if (this._filterDelay >= this.state.filterRemoteTimeOut) {
-                    data = this.props.store.filter(fieldName, value);
+                    this.props.store.filter(fieldName, value, (response:any) => {
+                        data = response;
+                    });
                     clearInterval(this._filterInterval);
                 }
             }, this.state.filterRemoteInterval);
         }
 
+        // datagrid force render method
         if (this.props.resetData !== undefined) {
             this.props.resetData(data);
         }

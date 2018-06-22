@@ -12,12 +12,12 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var karcin_ui_1 = require("karcin-ui");
-var BigCalendarExample = /** @class */ (function (_super) {
-    __extends(BigCalendarExample, _super);
-    function BigCalendarExample() {
+var CalendarExample = /** @class */ (function (_super) {
+    __extends(CalendarExample, _super);
+    function CalendarExample() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    BigCalendarExample.prototype.render = function () {
+    CalendarExample.prototype.render = function () {
         var events = [
             // Upper Calendar
             {
@@ -55,7 +55,7 @@ var BigCalendarExample = /** @class */ (function (_super) {
         return (React.createElement("div", null,
             React.createElement(karcin_ui_1.Calendar, { events: events, step: 60, showMultiDayTimes: true, defaultDate: new Date(2015, 3, 1), style: { height: 700 } })));
     };
-    return BigCalendarExample;
+    return CalendarExample;
 }(React.Component));
-exports.default = BigCalendarExample;
+exports.default = CalendarExample;
 //# sourceMappingURL=CalendarExample.js.map

@@ -2,6 +2,7 @@ import * as React from 'react';
 import {Input} from 'reactstrap';
 import FaIcon from '../../functional/faicon/FaIcon'
 import '../../css/karcin-ui.css';
+import {DataGridProps} from "../../functional/datagrid/DataGrid";
 
 export interface SelectInputProps {
     /**
@@ -41,7 +42,7 @@ export interface SelectInputProps {
     /**
      * item active item or items
      */
-    activeItem?:Object | any;
+    activeItem?:Array<any> | any;
 
     /**
      * select div className
@@ -119,6 +120,12 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
     }
 
 
+    UNSAFE_componentWillReceiveProps(props: SelectInputProps) {
+        this.props = props;
+        this.forceUpdate();
+    }
+
+
     render(){
         let selectInputType = null;
 
@@ -156,7 +163,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
             }
         });
 
-        return <select className={`form-control karcin-select ${this.props.className}`} name={this.props.name} onChange={(e)=>{ this.singleHandleChange(e); }}>{returnHtml}</select>
+        return <select className={`form-control karcin-select ${this.props.className}`} value={this.state.selectedItem[0][this.props.id]} name={this.props.name} onChange={(e)=>{ this.singleHandleChange(e); }}>{returnHtml}</select>
     }
 
     /**
@@ -397,7 +404,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
             let target:any = {};
 
             if(this.props.type === "multi"){
-                let newArray:any = this.state.itemActive.slice(0);
+                let newArray:any = this.state.itemActive;
                 target['id'] = [];
                 target['name'] = this.props.name;
                 target['value'] = [];
@@ -409,7 +416,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
                 });
 
             }else {
-                let newArray = this.state.itemActive[0].slice(0);
+                let newArray = this.state.itemActive[0];
                 target['id'] = newArray[this.props.id];
                 target['name'] = this.props.name;
                 target['value'] = newArray[this.props.value];
@@ -425,10 +432,14 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
      */
     itemActive(){
         if(this.props.activeItem !== undefined && this.props.activeItem !== ""){
-            this.props.activeItem.forEach((value:any, index:number) => {
-                this.state.selectedItem.push(value);
-            });
-            this.forceUpdate();
+            if(Array.isArray(this.props.activeItem)) {
+                this.props.activeItem.forEach((value: any, index: number) => {
+                    this.state.selectedItem.push(value);
+                });
+            }else {
+                this.state.selectedItem.push(this.props.activeItem);
+            }
+            this.render();
         }
     }
 }

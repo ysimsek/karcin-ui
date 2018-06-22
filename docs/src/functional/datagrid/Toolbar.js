@@ -26,6 +26,10 @@ var Toolbar = /** @class */ (function (_super) {
         };
         return _this;
     }
+    Toolbar.prototype.UNSAFE_componentWillReceiveProps = function (props) {
+        this.props = props;
+        this.forceUpdate();
+    };
     /**
      * return any
      */

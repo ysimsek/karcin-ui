@@ -35,12 +35,15 @@ var DataGrid = /** @class */ (function (_super) {
         return _this;
     }
     DataGrid.prototype.UNSAFE_componentWillReceiveProps = function (props) {
+        debugger;
         this.init(props);
+        this.dataGridLoadComponent();
     };
     /**
      * set the first values
      */
     DataGrid.prototype.init = function (props) {
+        this.props = props;
         this.state = {
             store: props.store,
             fields: props.fields,
@@ -91,13 +94,18 @@ var DataGrid = /** @class */ (function (_super) {
     };
     DataGrid.prototype.columnStyle = function () {
         if (this.eventDataGrid !== null) {
-            //debugger;
             // field width
             var fieldWidth_1 = {};
-            var dataGridWidth = this.eventDataGrid.clientWidth;
+            var dataGridWidth = this.eventDataGrid.offsetWidth;
+            var dataGridHeight = this.eventDataGrid.offsetHeight;
+            var tableBodyHeight = this.eventDataGrid.querySelector('tbody') !== null ? this.eventDataGrid.querySelector('tbody').offsetHeight : 0;
             var totalWidth_1 = 0;
             var emptyFieldCount_1 = 0;
             var newField_1 = [];
+            var scrollSize = 8;
+            if (tableBodyHeight > 0 && tableBodyHeight < dataGridHeight) {
+                scrollSize = 0;
+            }
             this.state.fields.forEach(function (value) {
                 if (value.visibility === undefined || value.visibility) {
                     newField_1.push(value);
@@ -106,9 +114,9 @@ var DataGrid = /** @class */ (function (_super) {
                     emptyFieldCount_1 += (value.width <= 0 || value.width === undefined ? 0 : 1);
                 }
             });
-            if (dataGridWidth >= totalWidth_1 && newField_1.length <= 3) {
+            if (dataGridWidth >= totalWidth_1) {
                 var newCount = (newField_1.length - emptyFieldCount_1);
-                var newWid = ((dataGridWidth - 2) - totalWidth_1) - 8;
+                var newWid = ((dataGridWidth - 2) - totalWidth_1) - scrollSize;
                 for (var item in fieldWidth_1) {
                     if (fieldWidth_1[item] === 0) {
                         fieldWidth_1[item] = (newWid / newCount);

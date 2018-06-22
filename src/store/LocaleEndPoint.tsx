@@ -3,6 +3,7 @@ import Application from '../applications/Applications'
 export default class LocaleEndPoint {
 
     __dataMap:any[] = [];
+    __oldDataMap:any[] = [];
     __callback:any;
 
     props:any = {
@@ -14,21 +15,26 @@ export default class LocaleEndPoint {
     constructor(props:Object, callback:any){
         this.props = Application.mergeObject(this.props, props);
         this.__callback = callback;
+
         this.read();
     }
 
-    read(data?:any){
-        let datas:any = data !== undefined ? data : this.props.data;
-        if(datas !== undefined){
+    read(callback?:any){
+        let newData:any = this.props.data;
+        if(newData !== undefined){
             this.reset();
 
-            datas.forEach((value:any)=>{
+            newData.forEach((value:any)=>{
                this.create(value)
             });
         }
 
         this.__callback(this.__dataMap);
-        return this.__dataMap;
+        this.__oldDataMap = this.__dataMap.slice(0);
+
+        if(callback !== undefined){
+            callback(this.__dataMap);
+        }
     }
 
     reset(successCallback?:any){
@@ -37,8 +43,6 @@ export default class LocaleEndPoint {
         if(successCallback !== undefined) {
             successCallback()
         }
-
-        return this.__dataMap;
     }
 
 
@@ -58,8 +62,6 @@ export default class LocaleEndPoint {
                 errorCallback('item not undefined');
             }
         }
-
-        return this.__dataMap;
     }
 
     update(items:any, successCallback?:any, errorCallback?:any){
@@ -80,12 +82,12 @@ export default class LocaleEndPoint {
                 errorCallback('item not undefined');
             }
         }
-
-        return this.__dataMap;
     }
 
-    orderSort(fieldName:any){
-         this.__dataMap.sort((first:any, last:any) => {
+    orderSort(fieldName:any, callback?:any){
+        let orderData = this.__dataMap.slice();
+
+        orderData.sort((first:any, last:any) => {
             let firstName = first[fieldName].toUpperCase();
             let lastName = last[fieldName].toUpperCase();
 
@@ -102,22 +104,36 @@ export default class LocaleEndPoint {
             return 0;
         });
 
-        return this.__dataMap;
+        if(callback !== undefined)
+            callback(orderData);
     };
 
-    orderReverse(fieldName:any){
-        this.__dataMap = this.orderSort(fieldName);
-        this.__dataMap.reverse();
-
-        return this.__dataMap;
+    oldDataSort(callback?:any){
+        if(callback !== undefined)
+            callback(this.__oldDataMap);
     }
 
-    filter(fieldName:any, value:any){
+    orderReverse(fieldName:any, callback?:any){
+        let orderData:any[] = [];
+
+        this.orderSort(fieldName, (data:any)=>{
+            orderData = data.reverse();
+
+        });
+
+        if(callback !== undefined)
+            callback(orderData, 'desc', fieldName);
+    }
+
+    filter(fieldName:any, value:any, callback?:any){
+
         let data:any = this.__dataMap.filter((val:any, index:any)=>{
             if(val[fieldName].toUpperCase().indexOf(value.toUpperCase()) !== -1){
                 return val;
             }
         });
-        return data;
+
+        if(callback !== undefined)
+            callback(data);
     }
 }
