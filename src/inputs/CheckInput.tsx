@@ -11,6 +11,10 @@ export interface CheckListProps{
      */
     item ?: object;
     /**
+     * Set the default component name
+     */
+    name ?: string;
+    /**
      * Set the Selected checked elements id
      */
     checkObjects ?: Array<any>;
@@ -136,6 +140,7 @@ export default class CheckInput extends React.Component<CheckListProps,any>{
     onChange(key:any, value:any) {
         this.setState({ [key]: value }, () => {
             let state = [];
+            let name = this.props.name;
             for(let i in this.state){
                 if(this.state.hasOwnProperty(i)) {
                     let idx = parseInt(i);
@@ -146,7 +151,13 @@ export default class CheckInput extends React.Component<CheckListProps,any>{
                     }
                 }
             }
-            this.props.onChange(state)
+            let returnValue = {
+                    target : {
+                        name: this.props.name,
+                        value: state
+                    }
+            }
+            this.props.onChange(returnValue)
         })
     }
 

@@ -24,29 +24,36 @@ export default class CheckInputExample extends React.Component<any,any>{
         return <div><CheckInput
             items={this.data}
             label={"Simple CheckInput Example"}
+            name = "data"
             id={"id"}
             value={"name"}
-            onChange={(values) => this.onChange('data', values)}/>
+            // onChange={(values) => this.onChange('data', values)}
+            onChange={this.handleChange.bind(this)}
+
+        />
             <CheckInput
                 item={this.data[0]}
                 label={"Simple CheckInput Example2"}
+                name={"data2"}
                 id={"id"}
                 value={"name"}
-                onChange={(values) => this.onChange('data', values)}/>
+                onChange={this.handleChange.bind(this)}/>
             <CheckInput
                 items={this.data}
                 label={"Simple CheckInput Example3"}
                 id={"id"}
                 value={"name"}
+                name={"data3"}
                 checkObjects={this.state.data}
-                onChange={(values) => this.onChange('data3', values)}/>
+                onChange={this.handleChange.bind(this)}/>
             <CheckInput
                 item={this.data[0]}
                 label={"Simple CheckInput Example4"}
                 id={"id"}
+                name={"data4"}
                 value={"name"}
                 checkObjects={this.state.dataSelect}
-                onChange={(values) => this.onChange('data3', values)}/>
+                onChange={this.handleChange.bind(this)}/>
         </div>
     }
     handleChange(e){
@@ -55,7 +62,5 @@ export default class CheckInputExample extends React.Component<any,any>{
         this.setState(state);
         this.forceUpdate();
     }
-    onChange(key:string | number,values:any){
-        this.setState({ [key]: values })
-    }
+
 }
