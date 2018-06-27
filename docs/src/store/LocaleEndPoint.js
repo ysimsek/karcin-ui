@@ -98,6 +98,8 @@ var LocaleEndPoint = /** @class */ (function () {
         });
         return data;
     };
+    LocaleEndPoint.prototype.paging = function (page) {
+    };
     return LocaleEndPoint;
 }());
 exports.default = LocaleEndPoint;

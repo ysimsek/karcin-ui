@@ -104,6 +104,11 @@ var Store = /** @class */ (function () {
             throw new Error('Field name empty');
         }
     };
+    Store.prototype.pagination = function (page) {
+        if (page !== undefined) {
+            this.props.endPoint.paging();
+        }
+    };
     return Store;
 }());
 exports.default = Store;

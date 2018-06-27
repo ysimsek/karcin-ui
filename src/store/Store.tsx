@@ -118,5 +118,11 @@ export default class Store {
         }
     }
 
+    pagination(page:any){
+        if(page !== undefined){
+            this.props.endPoint.paging()
+        }
+    }
+
 
 }

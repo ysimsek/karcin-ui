@@ -119,4 +119,8 @@ export default class LocaleEndPoint {
         });
         return data;
     }
+
+    paging(page:any){
+
+    }
 }

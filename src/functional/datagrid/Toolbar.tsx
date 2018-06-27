@@ -68,7 +68,7 @@ export default class Toolbar extends React.Component<ToolbarProps, ToolbarState>
                             <div className="pagination">
                                 <Pagination pageCount={5}
                                             type={"simple"}
-                                            typeShowLength={5}
+                                            typeShowLength={this.props.options.showPage}
                                             data={(this.props.store !== undefined) ? this.props.store.props.data.length : []}
                                             selectedValue={(e: any) => {
                                                 this.setState({

@@ -36,7 +36,12 @@ export interface DataGridProps {
     /**
      * pagination control
      */
-    pagination?: boolean;
+    pagination?: boolean | any;
+
+    /**
+     * page show list
+     */
+    showPage?: number | any
 }
 
 export interface DataGridState {
@@ -55,27 +60,26 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
 
     eventDataGrid: any;
     fieldOption: any;
+    returnComponent: any;
 
     static defaultProps: Partial<DataGridProps> = {
-        pagination: false
+        pagination: false,
+        showPage: 10
     };
 
     /**
      * Initial values
      */
-    constructor(props: DataGridProps) {
+    constructor(props: DataGridProps) { 
         super(props);
 
         this.init(props);
 
+        debugger;
+
         this.props.store.__callback = () => {
             this.resetData();
         };
-
-
-        window.addEventListener('load', () => {
-            //this.columnStyle();
-        });
     }
 
     UNSAFE_componentWillReceiveProps(props: DataGridProps) {
@@ -85,7 +89,7 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
     /**
      * set the first values
      */
-    private init(props: DataGridProps) {
+    init(props: DataGridProps) {
         this.state = {
             store: props.store,
             fields: props.fields,
@@ -99,35 +103,47 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
     render(): any {
         return <div className="karcin-data-grid" id={'karcinDataGrid' + this.dataGridId} ref={(e) => {
             this.eventDataGrid = e;
-            this.columnStyle();
-        }} onLoad={() => {
-            console.log('yüklendi')
         }}>
+            {this.returnComponent}
+        </div>;
+    }
+
+    dataGridLoadComponent() {
+        this.returnComponent = <div>
             <Toolbar data={this.props.toolbar} store={this.props.store}/>
             <div className="data-grid-body">
                 <table className="table table-bordered dataGrid">
                     <TableHead fields={this.state.fields} fieldOption={this.fieldOption} store={this.props.store}
                                resetData={() => {
                                    this.resetData()
-                               }} />
+                               }}/>
                     <TableBody onSelected={this.props.onSelected} fieldOption={this.fieldOption}
                                store={this.props.store}
                                cellRenderer={this.props.cellRenderer} rowRenderer={this.props.rowRenderer}
                                fields={this.state.fields}/>
                 </table>
             </div>
-            <Toolbar type="footer" store={this.props.store} options={{'pagination': this.props.pagination}}
-                     paginationData={this.getPagesData}/>
+            <Toolbar type="footer" store={this.props.store} options={{'pagination': this.props.pagination, 'showPage': this.props.showPage}}/>
         </div>;
+        this.forceUpdate();
+    }
+
+
+    componentDidMount() {
+        setTimeout(() => {
+            this.columnStyle();
+            this.dataGridLoadComponent();
+        }, 200);
+
+        window.addEventListener('load', () => {
+            this.columnStyle();
+            this.dataGridLoadComponent();
+        })
     }
 
 
     resetData() {
         this.forceUpdate();
-    }
-
-    getPagesData(data: any) {
-        console.log(data);
     }
 
     columnStyle() {
@@ -166,4 +182,3 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
 
     }
 }
-
