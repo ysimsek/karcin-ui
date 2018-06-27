@@ -1,6 +1,7 @@
-import Application from '../applications/Applications'
+import Application from '../applications/Applications';
+import BaseClass from '../applications/BaseClass';
 
-export default class LocaleEndPoint {
+export default class LocaleEndPoint extends BaseClass {
 
     __dataMap:any[] = [];
     __oldDataMap:any[] = [];
@@ -13,77 +14,100 @@ export default class LocaleEndPoint {
     };
 
     constructor(props:Object, callback:any){
-        this.props = Application.mergeObject(this.props, props);
+        super(props);
+        this.mergeProps(props);
         this.__callback = callback;
-
-        this.read();
+        this.read(props);
     }
 
-    read(callback?:any){
-        let newData:any = this.props.data;
-        if(newData !== undefined){
-            this.reset();
 
-            newData.forEach((value:any)=>{
-               this.create(value)
-            });
-        }
+    mergeProps(props:any){
+        this.props = Application.mergeObject(this.props, props);
+    }
 
-        this.__callback(this.__dataMap);
+    /**
+     * read data
+     * @param callback 
+     */
+    read(props:any, callback?:any){
         this.__oldDataMap = this.__dataMap.slice(0);
-
-        if(callback !== undefined){
-            callback(this.__dataMap);
-        }
+        this.mergeProps(props);
+        return this.response(callback);
     }
 
-    reset(successCallback?:any){
+    /**
+     * reset data
+     * @param callback 
+     */
+    reset(callback?:any){
         this.__dataMap = [];
-
-        if(successCallback !== undefined) {
-            successCallback()
+        if(callback !== undefined) {
+            callback()
         }
+        return this.response(callback);
     }
 
 
-    create(item:any, successCallback?:any, errorCallback?:any){
-        if(item !== undefined){
-            this.__dataMap.push(item);
-            let result = {
-                data : this.__dataMap,
-                totalCount: this.__dataMap.length
-            };
-
-            if(successCallback !== undefined) {
-                successCallback(result);
-            }
-        }else {
-            if(errorCallback !== undefined) {
-                errorCallback('item not undefined');
-            }
-        }
-    }
-
-    update(items:any, successCallback?:any, errorCallback?:any){
+    /**
+     * create data
+     * @param item 
+     * @param successCallback 
+     * @param errorCallback 
+     */
+    create(items:any, callback?:any){
         if(items !== undefined && items.length > 0){
-            this.reset();
-
-            this.__dataMap = items;
-            let result = {
-                data : this.__dataMap,
-                totalCount: this.__dataMap.length
-            };
-
-            if(successCallback !== undefined) {
-                successCallback(result);
-            }
-        }else {
-            if(errorCallback !== undefined) {
-                errorCallback('item not undefined');
-            }
+            items.forEach((value:any)=>{
+                this.__dataMap.push(value);
+            });
+            
+            return this.response(callback);
         }
+
     }
 
+    /**
+     * update data
+     * @param items 
+     * @param successCallback 
+     * @param errorCallback 
+     */
+    update(items:any, callback?:any){
+        if(items !== undefined && items.length > 0){
+
+            this.__dataMap.forEach((value:any, index:number)=>{
+                items.forEach((values:any) => {
+                    if(value[this.props.idField] === values[this.props.idField]){
+                        this.__dataMap[index] = values;
+                    }
+                });
+            });
+            
+            return this.response(callback);
+        }
+
+    }
+
+
+    delete(items:any, callback?:any){
+        if(items !== undefined && items.length > 0){
+            this.__dataMap.forEach((value:any, index:number) => {
+                items.forEach((values:any) => {
+                    if(value[this.props.idField] === values[this.props.idField]){
+                        this.__dataMap.splice(index, 1);
+                    }
+                });
+            });
+
+            return this.response(callback);
+        }
+
+    }
+
+    /**
+     * order sort data
+     * @param fieldName 
+     * @param callback 
+     */
     orderSort(fieldName:any, callback?:any){
         let orderData = this.__dataMap.slice();
 
@@ -104,27 +128,41 @@ export default class LocaleEndPoint {
             return 0;
         });
 
-        if(callback !== undefined)
-            callback(orderData);
+        return this.response(callback, orderData);
     };
 
+    /**
+     * old data 
+     * @param callback 
+     */
     oldDataSort(callback?:any){
-        if(callback !== undefined)
+        if(callback !== undefined){
             callback(this.__oldDataMap);
+        }
+
+        return this.response(callback);
     }
 
+    /**
+     * order reverse data
+     * @param fieldName 
+     * @param callback 
+     */
     orderReverse(fieldName:any, callback?:any){
         let orderData:any[] = [];
-
         this.orderSort(fieldName, (data:any)=>{
             orderData = data.reverse();
-
         });
 
-        if(callback !== undefined)
-            callback(orderData, 'desc', fieldName);
+        return this.response(callback, orderData);
     }
 
+    /**
+     * filter data
+     * @param fieldName 
+     * @param value 
+     * @param callback 
+     */
     filter(fieldName:any, value:any, callback?:any){
 
         let data:any = this.__dataMap.filter((val:any, index:any)=>{
@@ -133,7 +171,6 @@ export default class LocaleEndPoint {
             }
         });
 
-        if(callback !== undefined)
-            callback(data);
+        return this.response(callback, data);
     }
 }

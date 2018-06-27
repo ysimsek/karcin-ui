@@ -53,15 +53,8 @@ export default class DateInputExample extends React.Component<any,any> {
         this.setState(state);
         this.forceUpdate();
 
-        // this.setState({value : e.date._d})
-        // this.forceUpdate();
     }
-    ahandleChange(e){
-        let state = [];
-        state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
-        this.setState(state);
-        this.forceUpdate();
-    }
+
 
 
 }

@@ -11,12 +11,12 @@ export default class AjaxRequest {
     props: basicObject = {
         type: 'GET',
         url: null,
-        data: null,
+        params: null,
         originUrl: window.location.origin + '/restApi',
         processor: null,
         method: null,
-        success: null,
-        error: null,
+        successCallback: null,
+        errorCallback: null,
         callback: null
     };
 
@@ -53,8 +53,8 @@ export default class AjaxRequest {
     call() {
         axios(this.ajaxProps).then((response) => {
             // props success control
-            if (this.props['success'] !== undefined) {
-                this.props['success'](response);
+            if (this.props['successCallback'] !== undefined) {
+                this.props['successCallback'](response);
             }
 
             // props error callback function
@@ -64,8 +64,8 @@ export default class AjaxRequest {
 
         }).catch((error) => {
             // props error control
-            if (this.props['error'] !== undefined) {
-                this.props['error'](error);
+            if (this.props['errorCallback'] !== undefined) {
+                this.props['errorCallback'](error);
             }
 
             // props error callback function

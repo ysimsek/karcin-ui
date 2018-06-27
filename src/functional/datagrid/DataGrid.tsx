@@ -184,6 +184,7 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
     columnStyle() {
         if (this.eventDataGrid !== null) {
             this.fieldOption = {};
+
             // field width
             let fieldWidth: any = {};
             let dataGridWidth = this.eventDataGrid.offsetWidth;
@@ -192,7 +193,6 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
             let totalWidth: number = 0;
             let emptyFieldCount: number = 0;
             let newField: any[] = [];
-
 
             let scrollSize = 0;
             if(tableBodyHeight <= 0 && tableBodyHeight > dataGridHeight){
@@ -219,8 +219,6 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
                     }
                 }
             }
-
-    
 
             this.fieldOption = fieldWidth;
             this.eventDataGrid = null;
