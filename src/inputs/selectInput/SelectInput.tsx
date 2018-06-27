@@ -3,6 +3,7 @@ import {Input} from 'reactstrap';
 import FaIcon from '../../functional/faicon/FaIcon'
 import '../../css/karcin-ui.css';
 import {DataGridProps} from "../../functional/datagrid/DataGrid";
+import { active } from 'glamor';
 
 export interface SelectInputProps {
     /**
@@ -152,6 +153,18 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
     singleSelectResult(){
         let returnHtml:any[] = [];
 
+        let activeId:any = '';
+
+        if(this.state.selectedItem !== undefined && this.state.selectedItem.length > 0 && this.state.itemActive.length <= 0){
+            activeId = this.state.selectedItem[0][this.props.id];
+        }else {
+            if(this.state.itemActive.length > 0){
+                activeId = this.state.itemActive[0][this.props.id];
+            }else {
+                activeId = '';
+            }
+        }
+
         if(this.props.placeholder !== false) {
             returnHtml.push(<option key={-1} value={0}>{this.props.placeholder}</option>);
         }
@@ -163,7 +176,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
             }
         });
 
-        return <select className={`form-control karcin-select ${this.props.className}`} value={this.state.selectedItem[0][this.props.id]} name={this.props.name} onChange={(e)=>{ this.singleHandleChange(e); }}>{returnHtml}</select>
+        return <select className={`form-control karcin-select ${this.props.className}`} value={activeId} name={this.props.name} onChange={(e)=>{ this.singleHandleChange(e); }}>{returnHtml}</select>
     }
 
     /**
@@ -408,11 +421,11 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
                 target['id'] = [];
                 target['name'] = this.props.name;
                 target['value'] = [];
-                target['object'] = newArray;
+                target['parsedValue'] = newArray;
 
                 newArray.forEach((val:any) => {
                     target['id'].push(val[this.props.id]);
-                    target['value'].push(val[this.props.value]);
+                    target['parsedValue'].push(val[this.props.value]);
                 });
 
             }else {
@@ -420,7 +433,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
                 target['id'] = newArray[this.props.id];
                 target['name'] = this.props.name;
                 target['value'] = newArray[this.props.value];
-                target['object'] = newArray;
+                target['parsedValue'] = newArray;
             }
 
             this.props.onChange({target});

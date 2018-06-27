@@ -71,16 +71,11 @@ export default class SelectInputExample extends React.Component<any,any>{
             </div>;
     }
     handleChange(e){
-        let news = e.target.object.slice();
-        news.map(function(val:any){
-            return val.project = 'deniz';
-        });
-
-        console.log(news);
+        console.log(e);
     }
 
-    handleChange2(){
-        console.log(arguments);
+    handleChange2(e){
+        console.log(e);
     }
 
     rendererDropDown(value:any){

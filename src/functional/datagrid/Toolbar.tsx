@@ -136,11 +136,4 @@ export default class Toolbar extends React.Component<ToolbarProps, ToolbarState>
     }
 
 
-    /*paginationResult(data:any) {
-        if(data.selectData.length > 0){
-            this.props.paginationData(this.state.paginationSelected);
-        }
-    }*/
-
-
 }
