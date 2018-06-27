@@ -21,6 +21,10 @@ export interface TextAreaProps{
      * Return function
      */
     onChange?: any;
+    /**
+     * Set the string title
+     */
+    label ?: string;
 }
 
 
@@ -48,7 +52,7 @@ export default class TextArea extends React.Component<TextAreaProps,any>{
      */
     render():any{
         return <div>
-            <Label className={"label-properties"}>TextArea Label</Label>
+            <Label className={"label-properties"}>{this.props.label}</Label>
             <textarea
                 className={this.props.className+ " form-control"}
                 name={this.props.name}

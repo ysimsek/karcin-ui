@@ -24,10 +24,11 @@ import SelectInput from "./inputs/selectInput/SelectInput";
 import TextInput from "./inputs/TextInput";
 import TextArea from "./inputs/TextArea";
 import RadioInput from "./inputs/RadioInput";
+import CheckInput from "./inputs/CheckInput";
 import ToggleButton from "./input/ToggleButton";
 
 
-import DatePicker from "./datepicker/DatePicker";
+import DateInput from "./datepicker/DateInput";
 
 
 import AreaChart from "./chart/areachart/SimpleAreaChart";
@@ -70,10 +71,11 @@ export {
     TextInput,
     TextArea,
     RadioInput,
+    CheckInput,
     DataGrid,
     Notify,
     Panel,
-    DatePicker,
+    DateInput,
     ToggleButton,
     DataFilter,
     AreaChart,

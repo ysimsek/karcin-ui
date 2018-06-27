@@ -174,7 +174,7 @@
       "id":14,
       "name":"Loading",
       "title":"Loading",
-      "icon":"fa-calendar",
+      "icon":"fa-spinner",
       "href":"#/Components/Loading",
       "samples":"components/examples/LoadingExample",
       "library":"functional/loading/Loading",
@@ -258,6 +258,14 @@
           "href":"#/Components/ToggleButton",
           "samples":"components/inputs/ToggleButtonExample",
           "library":"input/ToggleButton"
+        },
+        {
+          "id":8,
+          "name":"CheckInput",
+          "title":"CheckInput",
+          "href":"#/Components/CheckInput",
+          "samples":"components/inputs/CheckInputExample",
+          "library":"inputs/CheckInput"
         }
 
       ]

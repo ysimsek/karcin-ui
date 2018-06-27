@@ -12,6 +12,7 @@ export default class RadioInputExample extends React.Component<any,any>{
         return <TextArea
             name={"textArea"}
             value={this.state.textArea}
+            label={"TextArea Example"}
             onChange={this.handleChange.bind(this)}
         />
     }

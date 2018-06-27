@@ -2,7 +2,7 @@ import * as React from "react";
 
 export interface RadioInputProps{
     /**
-     * Default value false(horizontal)
+     * Default value false
      */
     inline?:boolean;
     /**
@@ -33,6 +33,10 @@ export interface RadioInputProps{
      * Default false
      */
     checked?:boolean;
+    /**
+     * Set the string title
+     */
+    label?:string;
 }
 
 export default class RadioInput extends React.Component<any,RadioInputProps>{
@@ -48,7 +52,7 @@ export default class RadioInput extends React.Component<any,RadioInputProps>{
      * @returns {any}
      */
     render():any{
-         return <form><div onChange={this.onChange.bind(this)} className={"form-control radio-properties"}>{this.returnRadioElements(this,this.props.items)}</div></form>
+        return <form><div onChange={this.onChange.bind(this)} className={"form-control radio-properties"}><div><b>{this.props.label}</b></div>{this.returnRadioElements(this,this.props.items)}</div></form>
     }
 
     /**
