@@ -1,7 +1,8 @@
 import Application from '../applications/Applications';
 import AjaxRequest from '../request/AjaxRequest';
+import BaseClass from '../applications/BaseClass';
 
-export default class RemoteEndPoint {
+export default class RemoteEndPoint extends BaseClass {
 
     __dataMap: any[] = [];
     __callback: any;
@@ -10,104 +11,139 @@ export default class RemoteEndPoint {
     requestStatus = true;
 
     props: any = {
-        url: null,
         idField: 'id',
-        method: 'GET',
+        processor: null,
+        type: null,
+        url: null,
+        method: 'findAll',
         endPoint: 'remoteEndPoint',
-        responseData: ''
+        responseData: '',
+        data: null
     };
 
     constructor(props: Object, callback: any) {
+        super(props);
         this.props = Application.mergeObject(this.props, props);
         this.__callback = callback;
 
         this.call();
     };
 
-    call() {
-        if (this.props.url !== null && this.requestStatus) {
+    /**
+     * Remote ajax call 
+     * @param callback 
+     */
+    call(callback?:any) {
+        if (this.props.processor !== undefined && this.requestStatus) {
             this.requestStatus = false;
-
-            let getData = new AjaxRequest({
-                url: this.props.url,
-                method: this.props.method
-            }, (response: any) => {
-                this.callbackReady(response)
+            let getData = new AjaxRequest(this.props, (response: any) => {
+                this.callbackReady(response, callback);
             });
-
             getData.call();
         }
     }
 
-    callbackReady(response: any) {
+    /**
+     * General callback ready 
+     * @param response 
+     */
+    callbackReady(response: any, callback?:any) {
         this.requestStatus = false;
-        if (this.__callback !== undefined && response !== undefined) {
-            this.__dataMap = response[this.props.responseData];
-            this.__callback(response[this.props.responseData]);
+        if (response !== undefined) {
+            return this.response(callback, response);
         }
     }
 
-    read() {
+    /**
+     * Data read
+     * @param callback 
+     */
+    read(callback?:any) {
         if (this.props.url !== undefined) {
-            this.reset();
-
-            this.call();
+            this.call(callback);
         }
-        return this.__dataMap;
     }
 
-    reset(successCallback?: any) {
-        this.__dataMap = [];
+    /**
+     * reset 
+     * @param successCallback 
+     */
+    reset(callback?: any) {
+        this.props.data = [];
 
-        if (successCallback !== undefined) {
-            successCallback()
+        return this.response(callback);
+    }
+
+
+    create(items: any, callback?:any) {
+        if(items !== undefined && items.length > 0){
+            this.requestStatus = false;
+            this.props.data = items;
+
+            this.call(callback);
         }
-
-        return this.__dataMap;
     }
 
+    update(items: any, callback?:any) {
+        if(items !== undefined && items.length > 0){
+            this.requestStatus = false;
+            this.props.data = items;
 
-    create(item: any, successCallback?: any, errorCallback?: any) {
-
+            this.call(callback);
+        }
     }
 
-    update(items: any, successCallback?: any, errorCallback?: any) {
+    delete(items: any, callback?:any) {
+        if(items !== undefined && items.length > 0){
+            this.requestStatus = false;
+            this.props.data = items;
 
+            this.call(callback);
+        }
     }
 
+    /**
+     * order sort 
+     * @param fieldName 
+     * @param callback 
+     */
     orderSort(fieldName: any, callback: any) {
         if (fieldName !== undefined) {
-            let getAjax = new AjaxRequest({
-                url: this.props.url,
-                type: this.props.method,
-                data: {orders: {"property": fieldName, "orderType": 'ASC'}}
-            }, (response: any) => {
-                this.callbackReady(response);
-                callback(response[this.props.responseData], fieldName, 'asc');
-            });
-            getAjax.call();
+            this.props.data = {orders: {"property": fieldName, "orderType": 'ASC'}};
+            this.call(callback);
         } else {
             throw new Error('Field name empty');
         }
     }
 
+    /**
+     * order reverse
+     * @param fieldName 
+     * @param callback 
+     */
     orderReverse(fieldName: any, callback: any) {
         if (fieldName !== undefined) {
-            let getAjax = new AjaxRequest({
-                url: this.props.url,
-                type: this.props.method,
-                data: {orders: {"property": fieldName, "orderType": 'DESC'}}
-            }, (response: any) => {
-                this.callbackReady(response);
-                callback(response[this.props.responseData], fieldName, 'desc');
-            });
-
-            getAjax.call();
+            this.props.data = {orders: {"property": fieldName, "orderType": 'DESC'}};
+            this.call(callback);
         } else {
             throw new Error('Field name empty');
         }
     }
 
+    /**
+     * old data
+     * @param callback 
+     */
+    oldDataSort(callback?:any){
+        this.read(callback);
+    }
+
+    /**
+     * filters 
+     * @param fieldName 
+     * @param value 
+     * @param callback 
+     */
     filter(fieldName: any, value: any, callback:any) {
         if(fieldName != undefined && value !== undefined){
             let getAjax = new AjaxRequest({

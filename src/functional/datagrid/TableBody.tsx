@@ -8,13 +8,15 @@ export interface TableBodyProps {
     cellRenderer?: any;
     rowRenderer?:any;
     fieldOption?:any;
+    showingPageData?:any;
 }
 
 export interface TableBodyState {
     store: any,
     fields: any,
     clickActive: Array<any>,
-    clickActiveRow: Array<any>
+    clickActiveRow: Array<any>,
+    showingPageData: any
 }
 
 export interface standartObject {
@@ -32,7 +34,8 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
             store: this.props.store,
             fields: this.props.fields,
             clickActive: [],
-            clickActiveRow: []
+            clickActiveRow: [],
+            showingPageData: null
         }
     }
 
@@ -41,10 +44,12 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
      * @param props
      */
     componentWillReceiveProps(props: any) {
+        this.props = props;
         this.setState({
-            store: this.props.store,
-            fields: this.props.fields
-        })
+            store: props.store,
+            fields: props.fields,
+            showingPageData:props.showingPageData
+        });
     }
 
     /**
@@ -77,7 +82,7 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
                 let Cell = [];
                 for (let j = 0; j < this.state.fields.length; j++) {
                     let valueField = this.state.fields[j];
-                    let scrolWid = 0;
+
                     // style
                     let style: standartObject = {};
                     if(valueField.visibility !== undefined && !valueField.visibility){
@@ -93,14 +98,29 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
                     </td>);
                 }
 
-                Rows.push(<tr key={i} className={(self.state.clickActive.indexOf(getId) !== -1) ? 'active' : ''}
-                              onClick={(e) => {
-                                  this.onClickRow(e, getId, data[i])
-                              }}>{(self.props.rowRenderer !== undefined) ? self.props.rowRenderer(value, this.props.fields) : Cell}</tr>);
+
+                    Rows.push(<tr key={i} className={(self.state.clickActive.indexOf(getId) !== -1) ? 'active' : ''}
+                                  onClick={(e) => {
+                                      this.onClickRow(e, getId, data[i])
+                                  }}>{(self.props.rowRenderer !== undefined) ? self.props.rowRenderer(value, this.props.fields) : Cell}</tr>);
+
             }
         }
+        if(this.props.showingPageData.pagination !== true) {
+            return Rows;
+        }else {
+            let pagesData = [];
+            let start = this.props.showingPageData.pageShow * (this.props.showingPageData.page - 1);
+            let finis = this.props.showingPageData.pageShow * this.props.showingPageData.page;
 
-        return Rows;
+            for(let i = 0; i < Rows.length; i++){
+                if(i >= start && i < finis){
+                    pagesData.push(Rows[i]);
+                }
+            }
+
+            return pagesData;
+        }
     }
 
 
@@ -153,6 +173,13 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
         if (this.props.onSelected !== undefined) {
             this.props.onSelected(this.state.clickActiveRow, this.state.clickActive);
         }
+    }
+
+    resetSelected(){
+        this.setState({
+            clickActive: [],
+            clickActiveRow: []
+        });
     }
 
 }

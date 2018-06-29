@@ -1,6 +1,7 @@
 import * as React from "react";
 import {Button} from 'karcin-ui';
 import Pagination from '../../../src/functional/paging/Pagination';
+import AjaxRequest from '../../../src/request/AjaxRequest';
 
 export default class ButtonExample extends React.Component<any, any> {
 
@@ -67,5 +68,10 @@ export default class ButtonExample extends React.Component<any, any> {
     }
 
     onClick() {
+        let getData = new AjaxRequest({processor:'menus', url:'https://jsonplaceholder.typicode.com/posts'}, () => {
+            debugger;
+        }); 
+
+        getData.call();
     }
 }

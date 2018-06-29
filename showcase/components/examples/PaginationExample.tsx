@@ -50,9 +50,6 @@ export default class PaginationExample extends React.Component<any,any> {
                         type={"simple"}
                         typeShowLength={22}
                         size={"lg"} pageCount={5} selectedValue={this.getClick4.bind(this)}/>
-
-
-
         </div>
     }
 

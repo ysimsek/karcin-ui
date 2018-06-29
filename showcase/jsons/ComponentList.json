@@ -154,7 +154,7 @@
       "id":13,
       "name":"CheckList",
       "title":"CheckList",
-      "icon":"fa-percent",
+      "icon":"fa-check",
       "href":"#/Components/CheckList",
       "samples":"components/examples/CheckListExam",
       "library":"functional/list/CheckList",
@@ -162,19 +162,19 @@
     },
     {
       "id":13,
-      "name":"BigCalendar",
-      "title":"Big Calendar",
+      "name":"Calendar",
+      "title":"Calendar",
       "icon":"fa-calendar",
       "href":"#/Components/Calendar",
       "samples":"components/examples/CalendarExample",
       "library":"functional/calendar/Calendar",
-      "description":"<BigCalendar/>"
+      "description":"<Calendar/>"
     },
     {
       "id":14,
       "name":"Loading",
       "title":"Loading",
-      "icon":"fa-calendar",
+      "icon":"fa-spinner",
       "href":"#/Components/Loading",
       "samples":"components/examples/LoadingExample",
       "library":"functional/loading/Loading",
@@ -258,6 +258,14 @@
           "href":"#/Components/ToggleButton",
           "samples":"components/inputs/ToggleButtonExample",
           "library":"input/ToggleButton"
+        },
+        {
+          "id":8,
+          "name":"CheckInput",
+          "title":"CheckInput",
+          "href":"#/Components/CheckInput",
+          "samples":"components/inputs/CheckInputExample",
+          "library":"inputs/CheckInput"
         }
 
       ]

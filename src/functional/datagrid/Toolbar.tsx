@@ -46,6 +46,11 @@ export default class Toolbar extends React.Component<ToolbarProps, ToolbarState>
 
     }
 
+    UNSAFE_componentWillReceiveProps(props:ToolbarProps){
+        this.props = props;
+        this.forceUpdate();
+    }
+
     /**
      * return any
      */
@@ -68,12 +73,10 @@ export default class Toolbar extends React.Component<ToolbarProps, ToolbarState>
                             <div className="pagination">
                                 <Pagination pageCount={5}
                                             type={"simple"}
-                                            typeShowLength={this.props.options.showPage}
+                                            typeShowLength={this.props.options.pageShow}
                                             data={(this.props.store !== undefined) ? this.props.store.props.data.length : []}
-                                            selectedValue={(e: any) => {
-                                                this.setState({
-                                                    paginationSelected:e.selectData
-                                                });
+                                            selectedValue={(e:any) => {
+                                                this.props.options.changePageFunc(e);
                                             }}/>
                             </div>
                         </Col>
@@ -108,11 +111,11 @@ export default class Toolbar extends React.Component<ToolbarProps, ToolbarState>
             return <div className="data-grid-header">
                 <Row>
                     <Col xs="2" className="data-grid-search">
-                        <InputGroup>
-                            <Input placeholder="Arama"/>
-                            <InputGroupAddon addonType="append"><Button><FaIcon
-                                code="fa-search"/></Button></InputGroupAddon>
-                        </InputGroup>
+                        {/*<InputGroup>*/}
+                            {/*<Input placeholder="Arama"/>*/}
+                            {/*<InputGroupAddon addonType="append"><Button><FaIcon*/}
+                                {/*code="fa-search"/></Button></InputGroupAddon>*/}
+                        {/*</InputGroup>*/}
                     </Col>
                     <Col xs={{size: 4, offset: 6}} className="header-buttons">
                         <ButtonGroup>
@@ -131,13 +134,6 @@ export default class Toolbar extends React.Component<ToolbarProps, ToolbarState>
     urlDirectory(url: any) {
         window.location.href = url;
     }
-
-
-    /*paginationResult(data:any) {
-        if(data.selectData.length > 0){
-            this.props.paginationData(this.state.paginationSelected);
-        }
-    }*/
 
 
 }

@@ -1,79 +1,60 @@
 import * as React from "react";
-import {Row,Col, Label} from 'reactstrap';
-import {DatePicker} from "karcin-ui"
-import moment = require('moment');
+import {Row,Col} from 'reactstrap';
+import {DateInput} from "karcin-ui";
 
-export interface dataGridState {
-    startDate1: moment.Moment;
-    startDate2: moment.Moment;
-    startDate3: moment.Moment;
-    displayName: string;
-}
 
-export default class DateInputExample extends React.Component<{}, dataGridState> {
+export default class DateInputExample extends React.Component<any,any> {
     constructor(props: any) {
         super(props);
-
         this.state = {
-            startDate1 : moment(),
-            startDate2 : moment(),
-            startDate3 : moment(),
-            displayName: 'Example'
-        };
-
-        this.handleChange = this.handleChange.bind(this);
+            value : new Date()
+        }
     }
 
 
     render() {
         return (<Row>
-                <Col xs={4}>
-                    <Label style={{fontWeight:'bold'}}>Input focus DatePicker</Label>
-                    <div>
-                        <DatePicker
-                            selected={this.state.startDate1}
-                            onChange={(e)=>{this.handleChange(e, 1)}}
-                            onYearChange={this.handleYearChange}
-                            className="form-control"
-                        />
-                    </div>
-                </Col>
-                <Col xs={4}>
-                    <Label style={{fontWeight:'bold'}}>Inline DatePicker</Label>
-                    <div>
-                        <DatePicker
+                    <Col md={4}>
+                        <DateInput
+                            name={"value"}
+                            label={"Focus DateInput"}
+                            value={this.state.value}
+                            handleChange={this.handleChange.bind(this)}
+                         />
+                    </Col>
+                    <Col md={4}>
+                        <DateInput
+                            name={"value2"}
+                            label={"Inline DateInput"}
+                            value={this.state.value2}
                             inline
-                            selected={this.state.startDate2}
-                            onChange={(e)=>{this.handleChange(e, 2)}}
-                            onYearChange={this.handleYearChange}
+                            handleChange={this.handleChange.bind(this)}
                         />
-                    </div>
-                </Col>
-                <Col>
-                    <Label style={{fontWeight:'bold'}}>Time DatePicker</Label>
-                    <div>
-                        <DatePicker
-                            selected={this.state.startDate3}
-                            onChange={(e)=>{this.handleChange(e, 3)}}
-                            showTimeSelect
+                    </Col>
+                    <Col md={4}>
+                        <DateInput
+                            name={"value2"}
+                            label={"Time DatePicker"}
+                            value={this.state.value2}
+                            showTime
                             timeFormat="HH:mm"
-                            timeIntervals={15}
+                            timeInterval={15}
                             dateFormat="LLL"
-                            className="form-control"
+                            handleChange={this.handleChange.bind(this)}
                         />
-                    </div>
-                </Col>
+                    </Col>
+
             </Row>
         );
     }
-
-    handleChange(date?: moment.Moment | null, getId?: any) {
-        this.state['startDate' + getId] = date;
+    handleChange(e:any){
+        let state = [];
+        state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
+        this.setState(state);
         this.forceUpdate();
-    };
 
-    handleYearChange(date: moment.Moment, getId?: any | null) {
-        this.state['startDate' + getId] = date;
-        this.forceUpdate();
     }
+
+
+
 }

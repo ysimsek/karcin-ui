@@ -35,7 +35,7 @@ export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
 // 'HelloProps' describes the shape of props.
 // State is never set so we use the '{}' type.
 
-export default class Button extends React.Component<ButtonProps> {
+export default class Button extends React.Component<any,ButtonProps> {
     /**
      * @returns {any}
      */

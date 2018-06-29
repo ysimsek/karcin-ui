@@ -1,9 +1,11 @@
 import * as React from "react";
-import {DataGrid, Store} from 'karcin-ui';
+import {DataGrid, Store, Button} from 'karcin-ui';
 import Axios from 'axios';
 
 
 export default class DataGridExample extends React.Component<any, any> {
+    show = true;
+
     constructor(props: any) {
         super(props);
 
@@ -12,25 +14,22 @@ export default class DataGridExample extends React.Component<any, any> {
                 {
                     "property": "int",
                     "value": "id",
-                    "name": "ID",
-                    "visibility": false
+                    "name": "ID"
                 },
                 {
                     "property": "string",
-                    "value": "title",
+                    "value": "name",
                     "name": "isim"
                 },
                 {
                     "property": "string",
-                    "value": "body",
-                    "name": "açıklama",
-                    "width" : 200
+                    "value": "surname",
+                    "name": "Soyisim",
                 },
                 {
                     "property": "string",
-                    "value" : "url",
-                    "name" : "image",
-                    "width" : 500
+                    "value": "title",
+                    "name": "Görevi",
                 }
             ],
             store: new Store({
@@ -61,32 +60,85 @@ export default class DataGridExample extends React.Component<any, any> {
                     'surname': 'AVCI',
                     'title': 'Yazılım Uzmanı'
                 }]
-            })
+
+            }),
+            page:1,
         };
     }
 
     render() {
-
-        return (<div><DataGrid store={this.state.store} fields={this.state.fields} onSelected={(e, b) => {
-            this.getSelectData(e, b)
+        return (<div><DataGrid store={this.state.store} fields={this.state.fields} page={this.state.page} changePage={(page:any)=>{
+            this.pageChange(page);
         }} toolbar={[{
             name: 'Ekle',
             icon: 'fa-plus',
             url: 'https://www.google.com',
-            disabled: true
+            disabled: this.show
         }, {
             name: 'Düzenle', icon: 'fa-minus', onClick: () => {
                 this.clickEdit()
             }
-        }]} pagination={true} showPage={2}/></div>);
+
+        }]} pagination={true} pageShow={3}/>
+        <Button color="danger" onClick={()=>{this.deleteData();}}>Delete Deniz</Button>
+        <Button color="info" onClick={()=>{this.updateData();}}>Update Bora</Button>
+        <Button color="success" onClick={()=>{this.addData();}}>Insert Ayça</Button>
+        <Button color="success" onClick={()=>{this.deneme();}}>Deneme</Button>
+        </div>);
+    }
+
+    clickEdit(){
+
+    }
+
+    deleteData(){
+        this.state.store.delete([{
+            'id': '1',
+            'name': 'Deniz',
+            'surname': 'DALKILIÇ',
+            'title': 'Yazılım Uzmanı'
+        }],(data:any)=>{
+            console.log(data);
+        })
+    }
+
+    updateData(){
+        this.state.store.update([{
+            'id': '5',
+            'name': 'Bora',
+            'surname': 'AVCI',
+            'title': 'Project Manager'
+        }],(data:any)=>{
+            console.log(data);
+        })
+    }
+
+    addData(){
+        this.state.store.create([{
+            'id': '6',
+            'name': 'Ayça',
+            'surname': 'DEMİRBİLEK',
+            'title': 'İnsan Kaynakları'
+        }],(data:any)=>{
+            console.log(data);
+        })
+    }
+
+    deneme(){
+        setTimeout(()=>{
+            this.state.store.props.data = [{
+                'id': '6',
+                'name': 'Ayça',
+                'surname': 'DEMİRBİLEK',
+                'title': 'İnsan Kaynakları'
+            }];
+            this.state.store.read();
+        },3000);
     }
 
 
-    clickEdit() {
-
-    }
-
-    getSelectData(e, b) {
-
+    pageChange(pages) {
+        let state = {page:pages};
+        this.setState(state);;
     }
 }

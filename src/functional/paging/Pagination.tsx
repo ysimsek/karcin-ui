@@ -7,7 +7,7 @@ export interface PaginationProps{
     /**
      * Array Data
      */
-    data?: Array<any> | any;
+    data : Array<any> | any;
     /**
      * Set the link
      */
@@ -258,16 +258,18 @@ export default class Pagination extends React.Component<PaginationProps,any>{
             }else if(this.props.pageCount == 5){
                 this.propsCountWhenFiveSelectPosition(e,pageCount);
             }
-            this.selectPage = e.target.text;
+            this.selectPage = e.target.text != undefined ? e.target.text : e.target.id;
         }
 
         if(this.props.selectedValue != undefined){
             this.props.type == "normal" ?
-                this.props.selectedValue({page : this.selectPage, href : e.target.href, selectData:this.props.data[this.selectPage-1]})
+                this.props.selectedValue({page : parseInt(this.selectPage), href : e.target.href, selectData:this.props.data[this.selectPage-1]})
                 :
-                this.props.selectedValue({page : this.selectPage})
+                this.props.selectedValue({page : parseInt(this.selectPage)})
 
         }
+
+        this.forceUpdate();
 
     }
 
@@ -281,7 +283,7 @@ export default class Pagination extends React.Component<PaginationProps,any>{
      * @param {Array<any>} pageCount
      */
     propsCountWhenThreeSelectPosition(e:any,pageCount:Array<any>){
-        this.selectPage = e.target.text;
+        this.selectPage = e.target.text != undefined ? e.target.text : e.target.id;
         if(parseInt(this.selectPage) == this.lastIndex){
             return;
         }
@@ -306,7 +308,7 @@ export default class Pagination extends React.Component<PaginationProps,any>{
      * @param {Array<any>} pageCount
      */
     propsCountWhenFourSelectPosition(e:any, pageCount:Array<any>){
-        this.selectPage = e.target.text;
+        this.selectPage = e.target.text != undefined ? e.target.text : e.target.id;
         if(parseInt(this.selectPage) == this.lastIndex || parseInt(this.selectPage) == this.lastIndex - 1){
             return;
         }
@@ -333,7 +335,7 @@ export default class Pagination extends React.Component<PaginationProps,any>{
      * @param {Array<any>} pageCount
      */
     propsCountWhenFiveSelectPosition(e:any, pageCount:Array<any>){
-        this.selectPage = e.target.text;
+        this.selectPage = e.target.text != undefined ? e.target.text : e.target.id;
         if(parseInt(this.selectPage) == this.lastIndex || parseInt(this.selectPage) == this.lastIndex - 1){
             return;
         }

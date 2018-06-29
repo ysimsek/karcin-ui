@@ -12,14 +12,14 @@ export default class RadioInputExample extends React.Component<any,any>{
         return <TextArea
             name={"textArea"}
             value={this.state.textArea}
-            properties={{disabled:false,autoFocus:false}}
+            label={"TextArea Example"}
             onChange={this.handleChange.bind(this)}
         />
     }
     handleChange(e){
-        let name = e.target.name;
         let state = [];
         state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
         this.setState(state);
+        this.forceUpdate();
     }
 }

@@ -8,23 +8,18 @@ export interface basicObject {
 
 export default class AjaxRequest {
 
+    ajaxCallControl = true;
+
     props: basicObject = {
-        type: 'GET',
-        url: null,
-        data: null,
-        originUrl: window.location.origin + '/restApi',
-        processor: null,
-        method: null,
-        success: null,
-        error: null,
-        callback: null
+        type :'post',
+        method : 'findAll',
+        processor : '',
+        url : window.location.origin + '/karcin-auth/rest-api',
+        headers : {},
+        data:[]
     };
 
-    ajaxProps: basicObject = {
-        method: 'GET',
-        responseType: 'stream',
-        params: null,
-    };
+    ajaxProps: basicObject;
 
     constructor(props?: Object, callback?: any) {
         // get object props control
@@ -37,43 +32,83 @@ export default class AjaxRequest {
         if (callback !== undefined) {
             this.props['callback'] = callback;
         }
-
     }
 
     ajaxPropsMerge() {
-        this.ajaxProps = Application.mergeObject(this.ajaxProps, this.props);
-        this.ajaxProps.params = {
-            'processor': this.props.processor,
-            'method': this.props.method,
-            'data': this.props.data
-        };
+        if(this.props.processor !== undefined && this.props.processor !== ''){
+            this.ajaxCallControl = true;
+            this.ajaxProps = {
+                method : this.props.type,
+                url : this.props.url,
+                headers : this.props.headers,
+                data : {
+                    'processor': this.props.processor,
+                    'method': this.props.method,
+                    'data': this.props.data
+                }
+            };
+        }else {
+            this.ajaxCallControl = false;
+        }
     }
 
 
     call() {
-        axios(this.ajaxProps).then((response) => {
-            // props success control
-            if (this.props['success'] !== undefined) {
-                this.props['success'](response);
-            }
+        if(this.ajaxCallControl){
+            // token control method
+            this.tokenControl();
+            debugger;
+            axios(this.ajaxProps).then((response) => {
+                // props success control
+                if (this.props['successCallback'] !== undefined) {
+                    this.props['successCallback'](response);
+                }
 
-            // props error callback function
-            if (this.props['callback'] !== undefined) {
-                this.props['callback'](response);
-            }
+                // props error callback function
+                if (this.props['callback'] !== undefined) {
+                    this.props['callback'](response);
+                }
 
-        }).catch((error) => {
-            // props error control
-            if (this.props['error'] !== undefined) {
-                this.props['error'](error);
-            }
+                // token control method
+                this.tokenControl(response['token']);
 
-            // props error callback function
-            if (this.props['callback'] !== undefined) {
-                this.props['callback'](error);
-            }
-        });
+            }).catch((error) => {
+                // props error control
+                if (this.props['errorCallback'] !== undefined) {
+                    this.props['errorCallback'](error);
+                }
 
+                // props error callback function
+                if (this.props['callback'] !== undefined) {
+                    this.props['callback'](error);
+                }
+            });
+        }else {
+            throw new Error('Lütfen zorunlu olan (processor ve method) giriniz.');
+        }
+
+    }
+
+
+
+    tokenControl(token?:any){
+        let returnToken:any;
+
+        if(token !== undefined){
+            localStorage.setItem('token', token);
+            returnToken = token;
+        }else {
+            if(this.props.headers.token !== undefined) {
+                returnToken = this.props.header.token;
+            } else if(localStorage.getItem('token') !==  null){
+                returnToken = localStorage.getItem('token');
+            }
+        }
+
+        if(returnToken !== undefined){
+            this.props['headers']['token'] = returnToken;
+            return returnToken;
+        }
     }
 
 }

@@ -1,6 +1,6 @@
 {
   "name": "karcin-ui",
-  "version": "0.0.3-new",
+  "version": "0.0.19",
   "description": "Karçin UI - React & Typescript",
   "repository": "https://github.com/ysimsek/karcin-ui",
   "main": "index.tsx",
@@ -20,13 +20,13 @@
   "dependencies": {
     "@amcharts/amcharts3-react": "^3.1.0",
     "@types/axios": "^0.14.0",
-    "@types/react": "^16.0.36",
+    "@types/moment": "^2.13.0",
+    "@types/react": "16.4.2",
     "@types/react-big-calendar": "^0.18.0",
     "@types/react-datepicker": "^1.1.2",
     "@types/react-dom": "^16.0.3",
     "@types/react-transition-group": "^2.0.7",
     "@types/reactstrap": "^5.0.12",
-    "@types/moment": "^2.13.0",
     "amcharts3": "^3.21.12",
     "ammap3": "^3.21.12",
     "amstock3": "^3.21.12",
