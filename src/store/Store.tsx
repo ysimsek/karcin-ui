@@ -11,8 +11,9 @@ export default class Store {
         endPoint: null,
         responseData: null,
         processor: null,
-        type: 'GET',
+        type: 'POST',
         method: null,
+        totalCount:0
     };
 
     __dataMap?: any[];
@@ -52,6 +53,25 @@ export default class Store {
     }
 
     /**
+     * Endpoint callback
+     * @param response 
+     */
+    endPointCallback(response: any) {
+        if (response !== undefined) {
+            this.props.data = response[this.props.responseData];
+            this.updateProps(response);
+        }
+
+        if (this.__callback !== undefined) {
+            this.__callback(response);
+        }
+    }
+
+    updateProps(response:any){
+        this.props.totalCount = (response.totalCount !== undefined) ? response.totalCount : 100; 
+    }
+
+    /**
      * Store read
      * @param callback 
      */
@@ -63,20 +83,6 @@ export default class Store {
 
         if(callback !== undefined)
             callback(this.props.data);
-    }
-
-    /**
-     * Endpoint callback
-     * @param response 
-     */
-    endPointCallback(response: any) {
-        if (response !== undefined) {
-            this.props.data = response;
-        }
-
-        if (this.__callback !== undefined) {
-            this.__callback(response);
-        }
     }
 
     /**
@@ -208,9 +214,19 @@ export default class Store {
         }
     }
 
-    pagination(page:any){
+    /**
+     * data page
+     * @param page 
+     * @param pageShow 
+     */
+    pagination(page:any, pageShow:any){
         if(page !== undefined){
-            this.props.endPoint.paging()
+            let pageData:any = {};
+            pageData['start'] = pageShow * (page - 1);
+            pageData['limit'] = pageShow;   
+            this.props.endPoint.paging(pageData, ()=>{
+                debugger;
+            });
         }
     }
 

@@ -88,12 +88,10 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
 
         this.init(props);
 
-        debugger;
-
         this.props.store.__callback = () => {
             this.resetData();
             this.columnStyle();
-            this.resetSelected()
+            this.resetSelected();
         };
     }
 
@@ -238,7 +236,7 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
 
     pageChange(event?: any) {
         if(event !== undefined && this.props.changePage){
-            this.props.changePage(event.page);
+            this.props.store.pagination(event.page, this.props.pageShow);
         }
     }
 }

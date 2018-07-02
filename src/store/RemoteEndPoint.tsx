@@ -18,7 +18,7 @@ export default class RemoteEndPoint extends BaseClass {
         method: 'findAll',
         endPoint: 'remoteEndPoint',
         responseData: '',
-        data: null
+        data: []
     };
 
     constructor(props: Object, callback: any) {
@@ -48,8 +48,9 @@ export default class RemoteEndPoint extends BaseClass {
      * @param response 
      */
     callbackReady(response: any, callback?:any) {
-        this.requestStatus = false;
+        this.requestStatus = true;
         if (response !== undefined) {
+            this.__dataMap = response[this.props.responseData];
             return this.response(callback, response);
         }
     }
@@ -78,6 +79,7 @@ export default class RemoteEndPoint extends BaseClass {
     create(items: any, callback?:any) {
         if(items !== undefined && items.length > 0){
             this.requestStatus = false;
+            this.props.method = "add";
             this.props.data = items;
 
             this.call(callback);
@@ -87,6 +89,7 @@ export default class RemoteEndPoint extends BaseClass {
     update(items: any, callback?:any) {
         if(items !== undefined && items.length > 0){
             this.requestStatus = false;
+            this.props.method = "update";
             this.props.data = items;
 
             this.call(callback);
@@ -109,7 +112,7 @@ export default class RemoteEndPoint extends BaseClass {
      */
     orderSort(fieldName: any, callback: any) {
         if (fieldName !== undefined) {
-            this.props.data = {orders: {"property": fieldName, "orderType": 'ASC'}};
+            this.props.data.data['orders'] = [{"property": fieldName, "orderType": 'ASC'}];
             this.call(callback);
         } else {
             throw new Error('Field name empty');
@@ -123,7 +126,7 @@ export default class RemoteEndPoint extends BaseClass {
      */
     orderReverse(fieldName: any, callback: any) {
         if (fieldName !== undefined) {
-            this.props.data = {orders: {"property": fieldName, "orderType": 'DESC'}};
+            this.props.data.data['orders'] = [{"property": fieldName, "orderType": 'DESC'}];
             this.call(callback);
         } else {
             throw new Error('Field name empty');
@@ -157,6 +160,15 @@ export default class RemoteEndPoint extends BaseClass {
             getAjax.call();
         }else {
             throw new Error('Field name or value empty');
+        }
+    }
+
+    paging(pageData:any, callback?:any){
+        if(pageData !== undefined){
+            for(let item in pageData){
+                this.props.s
+            }
+            this.call(callback);
         }
     }
 }

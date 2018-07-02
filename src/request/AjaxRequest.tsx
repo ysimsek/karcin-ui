@@ -11,7 +11,7 @@ export default class AjaxRequest {
     ajaxCallControl = true;
 
     props: basicObject = {
-        type :'post',
+        type :'get',
         method : 'findAll',
         processor : '',
         url : window.location.origin + '/karcin-auth/rest-api',
@@ -57,7 +57,6 @@ export default class AjaxRequest {
         if(this.ajaxCallControl){
             // token control method
             this.tokenControl();
-            debugger;
             axios(this.ajaxProps).then((response) => {
                 // props success control
                 if (this.props['successCallback'] !== undefined) {

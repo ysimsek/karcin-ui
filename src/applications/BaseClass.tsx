@@ -35,18 +35,19 @@ export default class BaseClass {
 
         //this.props.data = this.__dataMap;
         let parentClass = Object.assign(this);
+        let callData = (callbackData !== undefined) ? callbackData : parentClass.__dataMap;
         
         parentClass.__dataMap = parentClass.props.data;
 
         if(parentClass.__callback !== undefined){
-            parentClass.__callback(parentClass.__dataMap);
+            parentClass.__callback(callData);
         }
 
         if(callback !== undefined){
             if(callbackData !== undefined){
-                callback(callbackData);
+                callback(callData);
             }else {
-                callback(parentClass.__dataMap); 
+                callback(callData); 
             }
         }
 
