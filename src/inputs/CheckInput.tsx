@@ -74,15 +74,22 @@ export default class CheckInput extends React.Component<CheckListProps,any>{
 
     returnItems(){
         let me:any = this;
-        return me.props.items.map((value:any, i:number) => (
-            <div key={i}>
+
+        return me.props.items.length > 0 ?
+            me.props.items.map((value:any, i:number) => (
+                <div key={i}>
+                    <label className={"check-container"}>
+                        {this.props.onRenderer != undefined ? this.props.onRenderer(value) : value[me.props.value] }
+                        {this.childInputElements(value)}
+                        <span className={"checkmark"}></span>
+                    </label>
+                </div>
+            )) : <div key={-1}>
                 <label className={"check-container"}>
-                    {this.props.onRenderer != undefined ? this.props.onRenderer(value) : value[me.props.value] }
-                    {this.childInputElements(value)}
+                    {this.childInputElements(null)}
                     <span className={"checkmark"}></span>
                 </label>
-            </div>
-        ))
+            </div>;
     }
     returnItem(){
         let me : any = this;
@@ -103,7 +110,7 @@ export default class CheckInput extends React.Component<CheckListProps,any>{
      */
     childInputElements(value:any){
         let me = this;
-        return this.props.checkObjects != undefined ?
+        return value != null ? (this.props.checkObjects != undefined ?
             <input
                 className={"checkbox"}
                 onChange={(e:any) => this.onChange(value[me.props.id], e.target.checked)}
@@ -118,7 +125,7 @@ export default class CheckInput extends React.Component<CheckListProps,any>{
                 onChange={(e:any) => this.onChange(value[me.props.id], e.target.checked)}
                 type='checkbox'
                 value={this.state[value[me.props.value]]}
-            />;
+            />) : "item undefined";
     }
 
     /**

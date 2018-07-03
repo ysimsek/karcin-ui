@@ -102,6 +102,15 @@
     },
     {
       "id":9,
+      "name":"DataForm",
+      "title":"DataForm",
+      "icon":"fa-filter",
+      "href":"#/Components/DataForm",
+      "samples":"components/examples/DataFormExample",
+      "library":"functional/dataform/DataForm"
+    },
+    {
+      "id":9,
       "name":"List",
       "title":"List",
       "icon":"fa-list",
