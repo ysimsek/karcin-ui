@@ -16,7 +16,7 @@ import List from "./functional/list/List";
 import ListItem from "./functional/list/ListItem";
 import Progress from "./functional/progress/Progress";
 import CheckList from "./functional/list/CheckList";
-
+import DataForm from "./functional/dataform/DataForm";
 
 import NumericInput from "./inputs/NumericInput";
 import PasswordInput from "./inputs/PasswordInput";
@@ -71,6 +71,7 @@ export {
     TextInput,
     TextArea,
     RadioInput,
+    DataForm,
     CheckInput,
     DataGrid,
     Notify,
