@@ -71,6 +71,18 @@ var SelectInput = /** @class */ (function (_super) {
     SelectInput.prototype.singleSelectResult = function () {
         var _this = this;
         var returnHtml = [];
+        var activeId = '';
+        if (this.state.selectedItem !== undefined && this.state.selectedItem.length > 0 && this.state.itemActive.length <= 0) {
+            activeId = this.state.selectedItem[0][this.props.id];
+        }
+        else {
+            if (this.state.itemActive.length > 0) {
+                activeId = this.state.itemActive[0][this.props.id];
+            }
+            else {
+                activeId = '';
+            }
+        }
         if (this.props.placeholder !== false) {
             returnHtml.push(React.createElement("option", { key: -1, value: 0 }, this.props.placeholder));
         }
@@ -81,7 +93,7 @@ var SelectInput = /** @class */ (function (_super) {
                 returnHtml.push(React.createElement("option", { key: index, value: id }, val));
             }
         });
-        return React.createElement("select", { className: "form-control karcin-select " + this.props.className, value: this.state.selectedItem[0][this.props.id], name: this.props.name, onChange: function (e) { _this.singleHandleChange(e); } }, returnHtml);
+        return React.createElement("select", { className: "form-control karcin-select " + this.props.className, value: activeId, name: this.props.name, onChange: function (e) { _this.singleHandleChange(e); } }, returnHtml);
     };
     /**
      * single select input ' un değiştiğinde value atama
@@ -253,8 +265,8 @@ var SelectInput = /** @class */ (function (_super) {
     SelectInput.prototype.arrowSelectFieldUp = function () {
         this.inputFocus();
         if (this.state.active.arrowActive > 0 && this.state.active.arrowActive !== null) {
-            var active = this.state.active.arrowActive;
-            this.state.active.arrowActive = active - 1;
+            var active_1 = this.state.active.arrowActive;
+            this.state.active.arrowActive = active_1 - 1;
             this.forceUpdate();
         }
     };
@@ -264,15 +276,15 @@ var SelectInput = /** @class */ (function (_super) {
     SelectInput.prototype.arrowSelectFieldDown = function () {
         this.inputFocus();
         if (this.state.dropDownItems.data.length >= 0) {
-            var active = 0;
+            var active_2 = 0;
             if (this.state.active.arrowActive !== null) {
-                active = this.state.active.arrowActive;
-                if (active < this.state.dropDownItems.data.length - 1) {
-                    this.state.active.arrowActive = active + 1;
+                active_2 = this.state.active.arrowActive;
+                if (active_2 < this.state.dropDownItems.data.length - 1) {
+                    this.state.active.arrowActive = active_2 + 1;
                 }
             }
             else {
-                this.state.active.arrowActive = active;
+                this.state.active.arrowActive = active_2;
             }
             this.forceUpdate();
         }
@@ -304,10 +316,10 @@ var SelectInput = /** @class */ (function (_super) {
                 target_1['id'] = [];
                 target_1['name'] = this.props.name;
                 target_1['value'] = [];
-                target_1['object'] = newArray;
+                target_1['parsedValue'] = newArray;
                 newArray.forEach(function (val) {
                     target_1['id'].push(val[_this.props.id]);
-                    target_1['value'].push(val[_this.props.value]);
+                    target_1['parsedValue'].push(val[_this.props.value]);
                 });
             }
             else {
@@ -315,7 +327,7 @@ var SelectInput = /** @class */ (function (_super) {
                 target_1['id'] = newArray[this.props.id];
                 target_1['name'] = this.props.name;
                 target_1['value'] = newArray[this.props.value];
-                target_1['object'] = newArray;
+                target_1['parsedValue'] = newArray;
             }
             this.props.onChange({ target: target_1 });
         }

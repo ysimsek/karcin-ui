@@ -26,6 +26,11 @@ export interface ToolbarState {
 
 
 export default class Toolbar extends React.Component<ToolbarProps, ToolbarState> {
+
+    /**
+     * general variable
+     */
+    paginationControl = true;
     /**
      * Initial props value
      */
@@ -55,26 +60,26 @@ export default class Toolbar extends React.Component<ToolbarProps, ToolbarState>
      * return any
      */
     render(): any {
+         // pagination control 
+         if(this.props.options.pagination !== undefined && this.props.options.pagination && this.props.store !== undefined && this.props.store.props.totalCount !== 0){
+             this.paginationControl = true;
+            }else {
+                this.paginationControl = false;
+            }
+            console.log(this.props.store.props.totalCount);
+
+
         if (this.props.type == "footer") {
             // footer Html Elements
             return <div className="data-grid-footer">
                 <Row>
-                    <Col xs="4">
-                        <div className="showing">
-                            {/*<ButtonGroup>*/}
-                            {/*<Button color="defaults" active><span>10</span></Button>*/}
-                            {/*<Button color="defaults"><span>20</span></Button>*/}
-                            {/*<Button color="defaults"><span>30</span></Button>*/}
-                            {/*</ButtonGroup>*/}
-                        </div>
-                    </Col>
-                    {(this.props.options.pagination !== undefined && this.props.options.pagination) ?
+                    {(this.paginationControl) ?
                         <Col xs="4">
                             <div className="pagination">
                                 <Pagination pageCount={5}
                                             type={"simple"}
                                             typeShowLength={this.props.options.pageShow}
-                                            data={(this.props.store !== undefined) ? this.props.store.props.data.length : []}
+                                            data={this.props.store.props.totalCount}
                                             selectedValue={(e:any) => {
                                                 this.props.options.changePageFunc(e);
                                             }}/>
@@ -84,13 +89,13 @@ export default class Toolbar extends React.Component<ToolbarProps, ToolbarState>
                 </Row>
             </div>;
         } else {
-            // header Html Elements
 
+            // header Html Elements
             let data = this.props.data;
             let buttons = [];
             let self = this;
-            if (data === undefined) {
-            } else {
+
+            if (data !== undefined) {
                 for (let i = 0; i < data.length; i++) {
                     let value = data[i];
                     buttons.push(<Button key={i} color="defaults"
@@ -110,13 +115,6 @@ export default class Toolbar extends React.Component<ToolbarProps, ToolbarState>
 
             return <div className="data-grid-header">
                 <Row>
-                    <Col xs="2" className="data-grid-search">
-                        {/*<InputGroup>*/}
-                            {/*<Input placeholder="Arama"/>*/}
-                            {/*<InputGroupAddon addonType="append"><Button><FaIcon*/}
-                                {/*code="fa-search"/></Button></InputGroupAddon>*/}
-                        {/*</InputGroup>*/}
-                    </Col>
                     <Col xs={{size: 4, offset: 6}} className="header-buttons">
                         <ButtonGroup>
                             {buttons}

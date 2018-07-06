@@ -106,7 +106,9 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
 
             }
         }
-        if(this.props.showingPageData.pagination !== true) {
+
+        
+        if(this.props.showingPageData.pagination !== true || this.props.store.props.totalCount <= 0) {
             return Rows;
         }else {
             let pagesData = [];
@@ -121,6 +123,7 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
 
             return pagesData;
         }
+
     }
 
 

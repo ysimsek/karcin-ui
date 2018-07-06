@@ -50,14 +50,10 @@ var SelectInputExample = /** @class */ (function (_super) {
             React.createElement(karcin_ui_1.SelectInput, { name: "selectInput", items: items, id: "id", value: "project", onChange: this.handleChange.bind(this), type: "multi", renderer: this.rendererDropDown, selectedRenderer: this.selectRenderer }));
     };
     SelectInputExample.prototype.handleChange = function (e) {
-        var news = e.target.object.slice();
-        news.map(function (val) {
-            return val.project = 'deniz';
-        });
-        console.log(news);
+        console.log(e);
     };
-    SelectInputExample.prototype.handleChange2 = function () {
-        console.log(arguments);
+    SelectInputExample.prototype.handleChange2 = function (e) {
+        console.log(e);
     };
     SelectInputExample.prototype.rendererDropDown = function (value) {
         return React.createElement("div", null,

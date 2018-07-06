@@ -66,7 +66,6 @@ var TableBody = /** @class */ (function (_super) {
                 var Cell = [];
                 for (var j = 0; j < this_1.state.fields.length; j++) {
                     var valueField = this_1.state.fields[j];
-                    var scrolWid = 0;
                     // style
                     var style = {};
                     if (valueField.visibility !== undefined && !valueField.visibility) {
@@ -86,13 +85,15 @@ var TableBody = /** @class */ (function (_super) {
                 _loop_1(i);
             }
         }
-        if (this.props.showingPageData.pagination !== true) {
+        if (this.props.showingPageData.pagination !== true || this.props.store.props.totalCount <= 0) {
             return Rows;
         }
         else {
             var pagesData = [];
+            var start = this.props.showingPageData.pageShow * (this.props.showingPageData.page - 1);
+            var finis = this.props.showingPageData.pageShow * this.props.showingPageData.page;
             for (var i = 0; i < Rows.length; i++) {
-                if (i >= this.props.showingPageData.start && i < this.props.showingPageData.finis) {
+                if (i >= start && i < finis) {
                     pagesData.push(Rows[i]);
                 }
             }
@@ -142,6 +143,12 @@ var TableBody = /** @class */ (function (_super) {
         if (this.props.onSelected !== undefined) {
             this.props.onSelected(this.state.clickActiveRow, this.state.clickActive);
         }
+    };
+    TableBody.prototype.resetSelected = function () {
+        this.setState({
+            clickActive: [],
+            clickActiveRow: []
+        });
     };
     return TableBody;
 }(React.Component));

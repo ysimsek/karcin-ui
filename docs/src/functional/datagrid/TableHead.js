@@ -27,9 +27,10 @@ var TableHead = /** @class */ (function (_super) {
             fields: _this.props.fields,
             clickActive: [],
             popover: [],
-            order: { order: '', value: '' },
+            orders: ["", "asc", "desc"],
             filterRemoteTimeOut: 3000,
-            filterRemoteInterval: 1000
+            filterRemoteInterval: 1000,
+            orderActive: { active: 0, value: '' }
         };
         return _this;
     }
@@ -67,7 +68,7 @@ var TableHead = /** @class */ (function (_super) {
             if (this_1.props.fieldOption !== undefined) {
                 style['width'] = this_1.props.fieldOption[value.value] + "px";
             }
-            Cell.push(React.createElement("th", { key: i, style: style },
+            Cell.push(React.createElement("th", { key: i, className: (this_1.state.orders[this_1.state.orderActive.active] !== "" && this_1.state.orderActive.value === value.value) ? 'order-active' : '', style: style },
                 React.createElement("span", { onClick: function () {
                         _this.orderData(value.value);
                     } }, value.name),
@@ -76,10 +77,10 @@ var TableHead = /** @class */ (function (_super) {
                             self.popoverOpen(i);
                         } },
                         React.createElement(FaIcon_1.default, { code: "fa-filter" })),
-                    React.createElement("span", { className: "order " + ((this_1.state.order.order !== '' && this_1.state.order.value === value.value) ? 'active' : ''), onClick: function () {
+                    React.createElement("span", { className: 'order', onClick: function () {
                             _this.orderData(value.value);
                         } },
-                        React.createElement(FaIcon_1.default, { code: "fa-sort" + ((this_1.state.order.order !== '' && this_1.state.order.value === value.value) ? '-' + this_1.state.order.order : '') })),
+                        React.createElement(FaIcon_1.default, { code: "fa-sort" + ((this_1.state.orders[this_1.state.orderActive.active] !== "" && this_1.state.orderActive.value === value.value) ? '-' + this_1.state.orders[this_1.state.orderActive.active] : '') })),
                     React.createElement(reactstrap_1.Popover, { placement: "bottom", isOpen: self.state.popover[i], target: "Popover" + i, toggle: function () {
                             self.popoverOpen(i);
                         }, className: "popup-over-search" },
@@ -107,44 +108,45 @@ var TableHead = /** @class */ (function (_super) {
         this.forceUpdate();
     };
     TableHead.prototype.orderData = function (fieldName) {
-        var _this = this;
-        var order = this.state.order;
-        if (this.state.order.value !== ('' || undefined) && fieldName !== this.state.order.value) {
-            order = { order: '', value: '' };
+        // active size limit control
+        if (this.state.orderActive.active >= (this.state.orders.length - 1)) {
+            this.state.orderActive.active = 0;
         }
-        if (order.order === '') {
-            this.props.store.orderSort(fieldName, function (data, order) {
-                _this.state.order.order = order;
-                _this.state.order.value = fieldName;
-                _this.orderCallback();
-            });
+        else {
+            this.state.orderActive.active += 1;
         }
-        else if (order.order === 'asc') {
-            this.props.store.orderReverse(fieldName, function (data, order) {
-                _this.state.order.order = order;
-                _this.state.order.value = fieldName;
-                _this.orderCallback();
-                console.log(_this.state.order, data);
-            });
+        // change column control
+        if (this.state.orderActive.value !== '' && this.state.orderActive.value !== fieldName) {
+            this.state.orderActive.active = 1;
         }
-        else if (order.order === 'desc') {
-            this.state.order.order = '';
-            this.state.order.value = fieldName;
-            this.props.store.read();
+        this.state.orderActive.value = fieldName;
+        // orders control
+        if (this.state.orders[this.state.orderActive.active] === 'asc') {
+            this.props.store.orderSort(fieldName);
         }
+        else if (this.state.orders[this.state.orderActive.active] === 'desc') {
+            this.props.store.orderReverse(fieldName);
+        }
+        else {
+            this.props.store.oldDataSort(fieldName);
+        }
+        this.forceUpdate();
     };
     TableHead.prototype.orderCallback = function () {
         this.forceUpdate();
     };
     TableHead.prototype.filterData = function (fieldName, element) {
         var _this = this;
-        debugger;
         var data = [];
         var value = element.target.value;
         this._filterDelay = 0;
+        // local endpoint options
         if (this.props.store.props.endPoint.props.endPoint === 'localEndPoint') {
-            data = this.props.store.filter(fieldName, value);
+            this.props.store.filter(fieldName, value, function (response) {
+                data = response;
+            });
         }
+        // remote endpoint options
         else {
             if (this._filterInterval !== undefined) {
                 clearInterval(this._filterInterval);
@@ -152,11 +154,14 @@ var TableHead = /** @class */ (function (_super) {
             this._filterInterval = setInterval(function () {
                 _this._filterDelay += _this.state.filterRemoteInterval;
                 if (_this._filterDelay >= _this.state.filterRemoteTimeOut) {
-                    data = _this.props.store.filter(fieldName, value);
+                    _this.props.store.filter(fieldName, value, function (response) {
+                        data = response;
+                    });
                     clearInterval(_this._filterInterval);
                 }
             }, this.state.filterRemoteInterval);
         }
+        // datagrid force render method
         if (this.props.resetData !== undefined) {
             this.props.resetData(data);
         }

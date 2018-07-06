@@ -13,43 +13,30 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var reactstrap_1 = require("reactstrap");
 var karcin_ui_1 = require("karcin-ui");
-var moment = require("moment");
 var DateInputExample = /** @class */ (function (_super) {
     __extends(DateInputExample, _super);
     function DateInputExample(props) {
         var _this = _super.call(this, props) || this;
         _this.state = {
-            startDate1: moment(),
-            startDate2: moment(),
-            startDate3: moment(),
-            displayName: 'Example'
+            value: new Date()
         };
-        _this.handleChange = _this.handleChange.bind(_this);
         return _this;
     }
     DateInputExample.prototype.render = function () {
-        var _this = this;
         return (React.createElement(reactstrap_1.Row, null,
-            React.createElement(reactstrap_1.Col, { xs: 4 },
-                React.createElement(reactstrap_1.Label, { style: { fontWeight: 'bold' } }, "Input focus DatePicker"),
-                React.createElement("div", null,
-                    React.createElement(karcin_ui_1.DatePicker, { selected: this.state.startDate1, onChange: function (e) { _this.handleChange(e, 1); }, onYearChange: this.handleYearChange, className: "form-control" }))),
-            React.createElement(reactstrap_1.Col, { xs: 4 },
-                React.createElement(reactstrap_1.Label, { style: { fontWeight: 'bold' } }, "Inline DatePicker"),
-                React.createElement("div", null,
-                    React.createElement(karcin_ui_1.DatePicker, { inline: true, selected: this.state.startDate2, onChange: function (e) { _this.handleChange(e, 2); }, onYearChange: this.handleYearChange }))),
-            React.createElement(reactstrap_1.Col, null,
-                React.createElement(reactstrap_1.Label, { style: { fontWeight: 'bold' } }, "Time DatePicker"),
-                React.createElement("div", null,
-                    React.createElement(karcin_ui_1.DatePicker, { selected: this.state.startDate3, onChange: function (e) { _this.handleChange(e, 3); }, showTimeSelect: true, timeFormat: "HH:mm", timeIntervals: 15, dateFormat: "LLL", className: "form-control" })))));
+            React.createElement(reactstrap_1.Col, { md: 4 },
+                React.createElement(karcin_ui_1.DateInput, { name: "value", label: "Focus DateInput", value: this.state.value, handleChange: this.handleChange.bind(this) })),
+            React.createElement(reactstrap_1.Col, { md: 4 },
+                React.createElement(karcin_ui_1.DateInput, { name: "value2", label: "Inline DateInput", value: this.state.value2, inline: true, handleChange: this.handleChange.bind(this) })),
+            React.createElement(reactstrap_1.Col, { md: 4 },
+                React.createElement(karcin_ui_1.DateInput, { name: "value2", label: "Time DatePicker", value: this.state.value2, showTime: true, timeFormat: "HH:mm", timeInterval: 15, dateFormat: "LLL", handleChange: this.handleChange.bind(this) })),
+            React.createElement(reactstrap_1.Col, { md: 4 },
+                React.createElement(DatePicker, { name: "value3", selected: this.state.value3, onChange: this.handleChange, showTimeSelect: true, showTimeSelectOnly: true, timeIntervals: 20, dateFormat: "LT", timeCaption: "Time" }))));
     };
-    DateInputExample.prototype.handleChange = function (date, getId) {
-        this.state['startDate' + getId] = date;
-        this.forceUpdate();
-    };
-    ;
-    DateInputExample.prototype.handleYearChange = function (date, getId) {
-        this.state['startDate' + getId] = date;
+    DateInputExample.prototype.handleChange = function (e) {
+        var state = [];
+        state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
+        this.setState(state);
         this.forceUpdate();
     };
     return DateInputExample;

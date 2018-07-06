@@ -52,29 +52,36 @@ export default class Store {
     }
 
     /**
-     * Store read
-     * @param callback 
-     */
-    read(callback?:any) {
-        this.props.data = this.props.endPoint.read(this.props.data);
-        this.__callback(this.props.data);
-
-        if(callback !== undefined)
-            callback(this.props.data);
-    }
-
-    /**
      * Endpoint callback
-     * @param response 
+     * @param response
      */
     endPointCallback(response: any) {
         if (response !== undefined) {
-            this.props.data = response;
+            this.props.data = response[this.props.responseData];
+            this.updateProps(response);
         }
 
         if (this.__callback !== undefined) {
             this.__callback(response);
         }
+    }
+
+    updateProps(response:any){
+        this.props.totalCount = (response.totalCount !== undefined) ? response.totalCount : 100;
+    }
+
+    /**
+     * Store read
+     * @param callback 
+     */
+    read(callback?:any) {
+        this.props.endPoint.read(this.props, (data:any)=>{
+            console.log(data);
+        });
+        this.__callback(this.props.data);
+
+        if(callback !== undefined)
+            callback(this.props.data);
     }
 
     /**
@@ -203,6 +210,22 @@ export default class Store {
             });
         } else {
             throw new Error('Field name empty')
+        }
+    }
+
+    /**
+     * data page
+     * @param page
+     * @param pageShow
+     */
+    pagination(page:any, pageShow:any){
+        if(page !== undefined){
+            let pageData:any = {};
+            pageData['start'] = pageShow * (page - 1);
+            pageData['limit'] = pageShow;
+            this.props.endPoint.paging(pageData, ()=>{
+                debugger;
+            });
         }
     }
 

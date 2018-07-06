@@ -84,6 +84,8 @@ export interface DatePickerProps {
     minTime?: moment.Moment;
     maxTime?: moment.Moment;
     excludeTimes?: any[];
+    showTimeSelectOnly?:any;
+    timeCaption?:any;
 }
 
 export default class DatePicker extends React.Component<DatePickerProps, {}> {

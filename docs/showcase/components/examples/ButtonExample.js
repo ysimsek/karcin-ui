@@ -18,7 +18,6 @@ var ButtonExample = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     ButtonExample.prototype.render = function () {
-        var _this = this;
         var deneme = [{
                 'id': '1',
                 'name': 'Deniz',
@@ -46,9 +45,7 @@ var ButtonExample = /** @class */ (function (_super) {
                 'title': 'Yazılım Uzmanı'
             }];
         return (React.createElement("div", null,
-            React.createElement(karcin_ui_1.Button, { color: "primary", onClick: function () {
-                    _this.onClick();
-                } }, "primary"),
+            React.createElement(karcin_ui_1.Button, { color: "primary" }, "primary"),
             ' ',
             React.createElement(karcin_ui_1.Button, { color: "secondary" }, "secondary"),
             ' ',
@@ -93,8 +90,6 @@ var ButtonExample = /** @class */ (function (_super) {
             React.createElement("hr", null),
             React.createElement(karcin_ui_1.Button, { color: "primary", size: "lg", block: true }, "Block level button"),
             React.createElement(karcin_ui_1.Button, { color: "secondary", size: "lg", block: true }, "Block level button")));
-    };
-    ButtonExample.prototype.onClick = function () {
     };
     return ButtonExample;
 }(React.Component));

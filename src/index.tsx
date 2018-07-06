@@ -24,9 +24,11 @@ import SelectInput from "./inputs/selectInput/SelectInput";
 import TextInput from "./inputs/TextInput";
 import TextArea from "./inputs/TextArea";
 import RadioInput from "./inputs/RadioInput";
+import CheckInput from "./inputs/CheckInput";
 import ToggleButton from "./input/ToggleButton";
 
 
+import DateInput from "./datepicker/DateInput";
 import DatePicker from "./datepicker/DatePicker";
 
 
@@ -46,6 +48,8 @@ import ContextMenu from "./functional/contextmenu/contextMenu";
 import Store from "./store/Store";
 import Calendar from "./functional/calendar/Calendar";
 import Loading from "./functional/loading/Loading";
+import AutoComplate from "./functional/autocomplate/AutoComplate";
+
 
 import "./css/karcin-ui.css";
 
@@ -70,10 +74,11 @@ export {
     TextInput,
     TextArea,
     RadioInput,
+    CheckInput,
     DataGrid,
     Notify,
     Panel,
-    DatePicker,
+    DateInput,
     ToggleButton,
     DataFilter,
     AreaChart,
@@ -91,6 +96,8 @@ export {
     Store,
     ContextMenu,
     Calendar,
-    Loading
+    Loading,
+    DatePicker,
+    AutoComplate
 };
 export default Button;

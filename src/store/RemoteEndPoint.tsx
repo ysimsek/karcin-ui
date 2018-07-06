@@ -6,6 +6,9 @@ export default class RemoteEndPoint extends BaseClass {
 
     __dataMap: any[] = [];
     __callback: any;
+    __filters:any[] = [];
+    __orders:any[] = [];
+    __paging:any = {start:0, limit:0};
 
     // request
     requestStatus = true;
@@ -13,12 +16,12 @@ export default class RemoteEndPoint extends BaseClass {
     props: any = {
         idField: 'id',
         processor: null,
-        type: 'POST',
-        originUrl: null,
-        method: '',
+        type: null,
+        url: null,
+        method: 'findAll',
         endPoint: 'remoteEndPoint',
-        responseData: '',
-        params: null
+        responseData: 'data',
+        data: []
     };
 
     constructor(props: Object, callback: any) {
@@ -34,14 +37,31 @@ export default class RemoteEndPoint extends BaseClass {
      * @param callback 
      */
     call(callback?:any) {
-        if (this.props.url !== null && this.requestStatus) {
+        if (this.props.processor !== undefined && this.requestStatus) {
             this.requestStatus = false;
-            let getData = new AjaxRequest(this.props, (response: any) => {
-                this.callbackReady(response)
 
-                if(callback !== undefined) {
-                    callback();
-                }
+            let data:any = {};
+
+            // filters object
+            if(this.__filters.length > 0){
+                data['filters'] = this.__filters;
+            }
+
+            // orders object
+            if(this.__orders.length > 0){
+                data['orders'] = this.__orders;
+            }
+
+            // pagination object
+            for(let item in this.__paging){
+                data[item] = this.__paging[item];
+            }
+
+            this.props.data = [];
+            this.props.data.push(data);
+
+            let getData = new AjaxRequest(this.props, (response: any) => {
+                this.callbackReady(response, callback);
             });
             getData.call();
         }
@@ -51,11 +71,11 @@ export default class RemoteEndPoint extends BaseClass {
      * General callback ready 
      * @param response 
      */
-    callbackReady(response: any) {
-        this.requestStatus = false;
-        if (this.__callback !== undefined && response !== undefined) {
+    callbackReady(response: any, callback?:any) {
+        this.requestStatus = true;
+        if (response !== undefined) {
             this.__dataMap = response[this.props.responseData];
-            this.__callback(response[this.props.responseData]);
+            return this.response(callback, response);
         }
     }
 
@@ -65,11 +85,8 @@ export default class RemoteEndPoint extends BaseClass {
      */
     read(callback?:any) {
         if (this.props.url !== undefined) {
-            this.reset();
-
             this.call(callback);
         }
-        return this.__dataMap;
     }
 
     /**
@@ -78,79 +95,40 @@ export default class RemoteEndPoint extends BaseClass {
      */
     reset(callback?: any) {
         this.__dataMap = [];
-
-        if (callback !== undefined) {
-            callback();
-        }
-
-        return this.__dataMap;
+        this.__orders  = [];
+        this.__filters = [];
+        return this.response(callback);
     }
 
 
-    create(item: any, props:any, successCallback?: any, errorCallback?: any) {
-        if(item !== undefined && item.length > 0){
+    create(items: any, callback?:any) {
+        if(items !== undefined && items.length > 0){
             this.requestStatus = false;
-            this.props['params'] = item;
+            this.props.method = "add";
+            this.props.data = items;
 
-            if(successCallback !== undefined){
-                this.props['successCallback'] = successCallback;
-            }
-
-            if(errorCallback !== undefined){
-                this.props['errorCallback'] = successCallback;
-            }
-
-            let getData = new AjaxRequest(this.props, (response: any) => {
-                this.callbackReady(response)
-            });
-            getData.call();
+            this.call(callback);
         }
     }
 
-    update(item: any, successCallback?: any, errorCallback?: any) {
-
-        if(item !== undefined && item.length > 0){
+    update(items: any, callback?:any) {
+        if(items !== undefined && items.length > 0){
             this.requestStatus = false;
-            this.props['params'] = item;
+            this.props.method = "update";
+            this.props.data = items;
 
-            if(successCallback !== undefined){
-                this.props['successCallback'] = successCallback;
-            }
-
-            if(errorCallback !== undefined){
-                this.props['errorCallback'] = successCallback;
-            }
-
-            let getData = new AjaxRequest(this.props, (response: any) => {
-                this.callbackReady(response)
-            });
-            getData.call();
+            this.call(callback);
         }
     }
 
-    delete(item: any, props:any, successCallback?: any, errorCallback?: any) {
-        if(props !== undefined){
-            this.props = Application.mergeObject(this.props, props);
-        }else if(props['type'] === undefined && props === undefined) {
-            this.props['type'] = 'DELETE';
-        }
-
-        if(item !== undefined && item.length > 0){
+    delete(items: any, callback?:any) {
+        if(items !== undefined && items.length > 0){
             this.requestStatus = false;
-            this.props['params'] = item;
-
-            if(successCallback !== undefined){
-                this.props['successCallback'] = successCallback;
+            this.props.method = "deleteById";
+            for(let item in items){
+                this.props.data.push(item);
             }
-
-            if(errorCallback !== undefined){
-                this.props['errorCallback'] = successCallback;
-            }
-
-            let getData = new AjaxRequest(this.props, (response: any) => {
-                this.callbackReady(response)
-            });
-            getData.call();
+            this.call(callback);
         }
     }
 
@@ -161,15 +139,25 @@ export default class RemoteEndPoint extends BaseClass {
      */
     orderSort(fieldName: any, callback: any) {
         if (fieldName !== undefined) {
-            let getAjax = new AjaxRequest({
-                url: this.props.url,
-                type: this.props.method,
-                data: {orders: {"property": fieldName, "orderType": 'ASC'}}
-            }, (response: any) => {
-                this.callbackReady(response);
-                callback(response[this.props.responseData], fieldName, 'asc');
-            });
-            getAjax.call();
+            this.props.method = "findByFilters";
+
+            if(this.__orders.length > 0){
+                let control = false;
+                this.__orders.forEach((value:any, index:any)=>{
+                    if(value['property'] === fieldName){
+                        control = true;
+                        value['orderType'] = 'ASC';
+                    }
+                    this.__orders[index] = value;
+                })
+
+                if(!control){
+                    this.__orders.push({"property": fieldName, "orderType": 'ASC'});
+                }
+            }else {
+                this.__orders.push({"property": fieldName, "orderType": 'ASC'});
+            }
+            this.call(callback);
         } else {
             throw new Error('Field name empty');
         }
@@ -182,16 +170,25 @@ export default class RemoteEndPoint extends BaseClass {
      */
     orderReverse(fieldName: any, callback: any) {
         if (fieldName !== undefined) {
-            let getAjax = new AjaxRequest({
-                url: this.props.url,
-                type: this.props.method,
-                data: {orders: {"property": fieldName, "orderType": 'DESC'}}
-            }, (response: any) => {
-                this.callbackReady(response);
-                callback(response[this.props.responseData], fieldName, 'desc');
-            });
+            this.props.method = "findByFilters";
 
-            getAjax.call();
+            if(this.__orders.length > 0){
+                let control = false;
+                this.__orders.forEach((value:any, index:any)=>{
+                    if(value['property'] === fieldName){
+                        control = true;
+                        value['orderType'] = 'DESC';
+                    }
+                    this.__orders[index] = value;
+                })
+
+                if(!control){
+                    this.__orders.push({"property": fieldName, "orderType": 'DESC'});
+                }
+            }else {
+                this.__orders.push({"property": fieldName, "orderType": 'DESC'});
+            }
+            this.call(callback);
         } else {
             throw new Error('Field name empty');
         }
@@ -202,6 +199,7 @@ export default class RemoteEndPoint extends BaseClass {
      * @param callback 
      */
     oldDataSort(callback?:any){
+        this.reset();
         this.read(callback);
     }
 
@@ -211,19 +209,34 @@ export default class RemoteEndPoint extends BaseClass {
      * @param value 
      * @param callback 
      */
-    filter(fieldName: any, value: any, callback:any) {
-        if(fieldName != undefined && value !== undefined){
-            let getAjax = new AjaxRequest({
-                url: this.props.url,
-                method: this.props.method,
-                params: {filters: {"property": fieldName, "orderType": 'DESC'}}
-            }, (response: any) => {
-                this.callbackReady(response);
-                callback(response[this.props.responseData], fieldName, 'desc');
-            });
-            getAjax.call();
-        }else {
-            throw new Error('Field name or value empty');
+    filter(fieldName: any, value: any, operator: any, callback:any) {
+        if (fieldName !== undefined && value !== undefined && operator !== undefined) {
+            this.props.method = "findByFilters";
+            if(this.__filters.length > 0){
+                let control = false;
+                this.__filters.forEach((value:any)=>{
+                    if(value['property'] === fieldName && value['value'] === value && value['operator'] === operator){
+                        control = true;
+                    }
+                })
+                if(!control){
+                    this.__filters.push({"property": fieldName, "value": value, "operator" : operator});
+                }
+            }else {
+                this.__filters.push({"property": fieldName, "value": value, "operator" : operator});
+            }
+            this.call(callback);
+        } else {
+            throw new Error('Field name empty');
+        }
+    }
+
+    paging(pageData:any, callback?:any){
+        if(pageData !== undefined){
+            for(let item in pageData){
+                this.__paging[item] = pageData[item];
+            }
+            this.call(callback);
         }
     }
 }

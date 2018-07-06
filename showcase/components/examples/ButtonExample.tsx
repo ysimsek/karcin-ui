@@ -1,6 +1,7 @@
 import * as React from "react";
 import {Button} from 'karcin-ui';
 import Pagination from '../../../src/functional/paging/Pagination';
+import AjaxRequest from '../../../src/request/AjaxRequest';
 
 export default class ButtonExample extends React.Component<any, any> {
 
@@ -33,9 +34,7 @@ export default class ButtonExample extends React.Component<any, any> {
         }];
         return (
             <div>
-                <Button color="primary" onClick={() => {
-                    this.onClick()
-                }}>primary</Button>{' '}
+                <Button color="primary">primary</Button>{' '}
                 <Button color="secondary">secondary</Button>{' '}
                 <Button color="success">success</Button>{' '}
                 <Button color="info">info</Button>{' '}
@@ -64,8 +63,5 @@ export default class ButtonExample extends React.Component<any, any> {
                 <Button color="secondary" size="lg" block>Block level button</Button>
             </div>
         );
-    }
-
-    onClick() {
     }
 }

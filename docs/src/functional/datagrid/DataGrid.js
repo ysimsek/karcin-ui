@@ -31,13 +31,13 @@ var DataGrid = /** @class */ (function (_super) {
         _this.props.store.__callback = function () {
             _this.resetData();
             _this.columnStyle();
+            _this.resetSelected();
         };
         return _this;
     }
     DataGrid.prototype.UNSAFE_componentWillReceiveProps = function (props) {
-        debugger;
         this.init(props);
-        this.dataGridLoadComponent();
+        this.forceUpdate();
     };
     /**
      * set the first values
@@ -48,7 +48,7 @@ var DataGrid = /** @class */ (function (_super) {
             store: props.store,
             fields: props.fields,
             eventDataGrid: null,
-            pageShowData: { 'start': 0, 'finis': this.props.pageShow, pagination: this.props.pagination }
+            pageShowData: { page: this.props.page, pageShow: this.props.pageShow, pagination: this.props.pagination }
         };
     };
     /**
@@ -58,7 +58,7 @@ var DataGrid = /** @class */ (function (_super) {
         var _this = this;
         return React.createElement("div", { className: "karcin-data-grid", id: 'karcinDataGrid' + this.dataGridId, ref: function (e) {
                 _this.eventDataGrid = e;
-            } }, this.returnComponent);
+            } }, this.dataGridLoadComponent());
     };
     DataGrid.prototype.dataGridLoadComponent = function () {
         var _this = this;
@@ -70,7 +70,7 @@ var DataGrid = /** @class */ (function (_super) {
                     React.createElement(TableHead_1.default, { fields: this.state.fields, fieldOption: this.fieldOption, store: this.props.store, resetData: function () {
                             _this.resetData();
                         } }),
-                    React.createElement(TableBody_1.default, { onSelected: this.props.onSelected, fieldOption: this.fieldOption, store: this.props.store, cellRenderer: this.props.cellRenderer, rowRenderer: this.props.rowRenderer, fields: this.state.fields, showingPageData: this.state.pageShowData }))),
+                    React.createElement(TableBody_1.default, { ref: function (ref) { _this.tbodyRef = ref; }, onSelected: this.props.onSelected, fieldOption: this.fieldOption, store: this.props.store, cellRenderer: this.props.cellRenderer, rowRenderer: this.props.rowRenderer, fields: this.state.fields, showingPageData: this.state.pageShowData }))),
             React.createElement(Toolbar_1.default, { type: "footer", store: this.props.store, options: {
                     'pagination': this.props.pagination,
                     'pageShow': this.props.pageShow,
@@ -78,7 +78,7 @@ var DataGrid = /** @class */ (function (_super) {
                         self.pageChange(e);
                     }
                 } }));
-        this.forceUpdate();
+        return this.returnComponent;
     };
     DataGrid.prototype.componentDidMount = function () {
         var _this = this;
@@ -92,8 +92,12 @@ var DataGrid = /** @class */ (function (_super) {
     DataGrid.prototype.resetData = function () {
         this.forceUpdate();
     };
+    DataGrid.prototype.resetSelected = function () {
+        this.tbodyRef.resetSelected();
+    };
     DataGrid.prototype.columnStyle = function () {
         if (this.eventDataGrid !== null) {
+            this.fieldOption = {};
             // field width
             var fieldWidth_1 = {};
             var dataGridWidth = this.eventDataGrid.offsetWidth;
@@ -102,9 +106,9 @@ var DataGrid = /** @class */ (function (_super) {
             var totalWidth_1 = 0;
             var emptyFieldCount_1 = 0;
             var newField_1 = [];
-            var scrollSize = 8;
-            if (tableBodyHeight > 0 && tableBodyHeight < dataGridHeight) {
-                scrollSize = 0;
+            var scrollSize = 0;
+            if (tableBodyHeight <= 0 && tableBodyHeight > dataGridHeight) {
+                scrollSize = 8;
             }
             this.state.fields.forEach(function (value) {
                 if (value.visibility === undefined || value.visibility) {
@@ -119,25 +123,23 @@ var DataGrid = /** @class */ (function (_super) {
                 var newWid = ((dataGridWidth - 2) - totalWidth_1) - scrollSize;
                 for (var item in fieldWidth_1) {
                     if (fieldWidth_1[item] === 0) {
-                        fieldWidth_1[item] = (newWid / newCount);
+                        fieldWidth_1[item] = ((newWid - 1) / newCount);
                     }
                 }
             }
             this.fieldOption = fieldWidth_1;
-            this.dataGridLoadComponent();
+            this.eventDataGrid = null;
+            this.forceUpdate();
         }
     };
     DataGrid.prototype.pageChange = function (event) {
-        if (event !== undefined) {
-            var start = (event.page * this.props.pageShow) - this.props.pageShow;
-            var finis = event.page * this.props.pageShow;
-            this.state.pageShowData.start = start;
-            this.state.pageShowData.finis = finis;
+        if (event !== undefined && this.props.changePage) {
+            this.props.store.pagination(event.page, this.props.pageShow);
         }
-        this.dataGridLoadComponent();
     };
     DataGrid.defaultProps = {
-        pagination: false
+        pagination: false,
+        page: 1
     };
     return DataGrid;
 }(React.Component));
