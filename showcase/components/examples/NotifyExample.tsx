@@ -29,7 +29,6 @@ export default class NotifyExample extends React.Component<any,any>{
                     <SelectInput
                         name="position"
                         label={"Notify pozisyonunun seçiniz"}
-                        activeItem={this.state.position}
                         value="value"
                         id="position"
                         items={items}
@@ -89,6 +88,7 @@ export default class NotifyExample extends React.Component<any,any>{
     }
 
     selectOnChange(e){
+        debugger
         let name = e.target.name;
         let state = [];
         state[e.target.name] = e.target.id;

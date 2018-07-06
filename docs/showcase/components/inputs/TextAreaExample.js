@@ -22,7 +22,7 @@ var RadioInputExample = /** @class */ (function (_super) {
         return _this;
     }
     RadioInputExample.prototype.render = function () {
-        return React.createElement(karcin_ui_1.TextArea, { name: "textArea", value: this.state.textArea, onChange: this.handleChange.bind(this) });
+        return React.createElement(karcin_ui_1.TextArea, { name: "textArea", value: this.state.textArea, label: "TextArea Example", onChange: this.handleChange.bind(this) });
     };
     RadioInputExample.prototype.handleChange = function (e) {
         var state = [];

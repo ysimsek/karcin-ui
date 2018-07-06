@@ -25,7 +25,10 @@ var RadioInput = /** @class */ (function (_super) {
      */
     RadioInput.prototype.render = function () {
         return React.createElement("form", null,
-            React.createElement("div", { onChange: this.onChange.bind(this), className: "form-control radio-properties" }, this.returnRadioElements(this, this.props.items)));
+            React.createElement("div", { onChange: this.onChange.bind(this), className: "form-control radio-properties" },
+                React.createElement("div", null,
+                    React.createElement("b", null, this.props.label)),
+                this.returnRadioElements(this, this.props.items)));
     };
     /**
      * @param e

@@ -31,7 +31,7 @@ var DateInputExample = /** @class */ (function (_super) {
             React.createElement(reactstrap_1.Col, { md: 4 },
                 React.createElement(karcin_ui_1.DateInput, { name: "value2", label: "Time DatePicker", value: this.state.value2, showTime: true, timeFormat: "HH:mm", timeInterval: 15, dateFormat: "LLL", handleChange: this.handleChange.bind(this) })),
             React.createElement(reactstrap_1.Col, { md: 4 },
-                React.createElement(DatePicker, { name: "value3", selected: this.state.value3, onChange: this.handleChange, showTimeSelect: true, showTimeSelectOnly: true, timeIntervals: 20, dateFormat: "LT", timeCaption: "Time" }))));
+                React.createElement(karcin_ui_1.DatePicker, { name: "value3", selected: this.state.value3, onChange: this.handleChange, showTimeSelect: true, showTimeSelectOnly: true, timeIntervals: 20, dateFormat: "LT", timeCaption: "Time" }))));
     };
     DateInputExample.prototype.handleChange = function (e) {
         var state = [];

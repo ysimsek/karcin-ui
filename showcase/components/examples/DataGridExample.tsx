@@ -82,6 +82,7 @@ export default class DataGridExample extends React.Component<any, any> {
         <Button color="danger" onClick={()=>{this.deleteData();}}>Delete Deniz</Button>
         <Button color="info" onClick={()=>{this.updateData();}}>Update Bora</Button>
         <Button color="success" onClick={()=>{this.addData();}}>Insert Ayça</Button>
+        <Button color="success" onClick={()=>{this.deneme();}}>Deneme</Button>
         </div>);
     }
 
@@ -120,6 +121,18 @@ export default class DataGridExample extends React.Component<any, any> {
         }],(data:any)=>{
             console.log(data);
         })
+    }
+
+    deneme(){
+        setTimeout(()=>{
+            this.state.store.props.data = [{
+                'id': '6',
+                'name': 'Ayça',
+                'surname': 'DEMİRBİLEK',
+                'title': 'İnsan Kaynakları'
+            }];
+            this.state.store.read();
+        },3000);
     }
 
 

@@ -15,18 +15,23 @@ export default class LocaleEndPoint extends BaseClass {
 
     constructor(props:Object, callback:any){
         super(props);
-        this.props = Application.mergeObject(this.props, props);
+        this.mergeProps(props);
         this.__callback = callback;
-        this.read(); 
+        this.read(props);
+    }
+
+
+    mergeProps(props:any){
+        this.props = Application.mergeObject(this.props, props);
     }
 
     /**
      * read data
      * @param callback 
      */
-    read(callback?:any){
+    read(props:any, callback?:any){
         this.__oldDataMap = this.__dataMap.slice(0);
-
+        this.mergeProps(props);
         return this.response(callback);
     }
 
@@ -36,11 +41,9 @@ export default class LocaleEndPoint extends BaseClass {
      */
     reset(callback?:any){
         this.__dataMap = [];
-
         if(callback !== undefined) {
             callback()
         }
-
         return this.response(callback);
     }
 

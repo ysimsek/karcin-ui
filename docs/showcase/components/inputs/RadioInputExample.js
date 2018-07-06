@@ -31,10 +31,8 @@ var RadioInputExample = /** @class */ (function (_super) {
             { id: 5, value: "Lenovo", des: "D1" }
         ];
         return React.createElement("div", null,
-            React.createElement("label", null, "Inline RadioInput Example"),
-            React.createElement(karcin_ui_1.RadioInput, { name: "radioInputInline", value: this.state.radioInputInline, inline: true, items: value, idField: "id", textField: "value", onChange: this.handleChange.bind(this) }),
-            React.createElement("label", null, "Horizontal RadioInput Example"),
-            React.createElement(karcin_ui_1.RadioInput, { name: "radioInputHori", value: this.state.radioInputHori, items: value, idField: "id", textField: "value", onChange: this.handleChange.bind(this) }));
+            React.createElement(karcin_ui_1.RadioInput, { name: "radioInputInline", value: this.state.radioInputInline, label: "Inline RadioInput Example", inline: true, items: value, idField: "id", textField: "value", onChange: this.handleChange.bind(this) }),
+            React.createElement(karcin_ui_1.RadioInput, { name: "radioInputHori", label: "Horizontal RadioInput Example", value: this.state.radioInputHori, items: value, idField: "id", textField: "value", onChange: this.handleChange.bind(this) }));
     };
     RadioInputExample.prototype.handleChange = function (e) {
         var name = e.target.name;

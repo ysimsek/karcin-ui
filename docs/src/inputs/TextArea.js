@@ -26,7 +26,7 @@ var TextArea = /** @class */ (function (_super) {
      */
     TextArea.prototype.render = function () {
         return React.createElement("div", null,
-            React.createElement(reactstrap_1.Label, { className: "label-properties" }, "TextArea Label"),
+            React.createElement(reactstrap_1.Label, { className: "label-properties" }, this.props.label),
             React.createElement("textarea", { className: this.props.className + " form-control", name: this.props.name, value: this.props.value, autoFocus: this.props.properties.autoFocus, readOnly: this.props.properties.readOnly, required: this.props.properties.required, disabled: this.props.properties.disabled, cols: this.props.properties.cols, rows: this.props.properties.rows, onChange: this.onChange.bind(this) }));
     };
     TextArea.prototype.onChange = function (e) {

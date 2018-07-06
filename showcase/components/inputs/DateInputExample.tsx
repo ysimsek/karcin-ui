@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Row,Col} from 'reactstrap';
-import {DateInput} from "karcin-ui";
+import {DateInput, DatePicker} from "karcin-ui";
 
 
 export default class DateInputExample extends React.Component<any,any> {
@@ -56,7 +56,6 @@ export default class DateInputExample extends React.Component<any,any> {
                             timeCaption="Time"
                         />
                     </Col>
-
             </Row>
         );
     }

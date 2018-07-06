@@ -23,17 +23,21 @@ var LocaleEndPoint = /** @class */ (function (_super) {
             idField: 'id',
             endPoint: 'localEndPoint'
         };
-        _this.props = Applications_1.default.mergeObject(_this.props, props);
+        _this.mergeProps(props);
         _this.__callback = callback;
-        _this.read();
+        _this.read(props);
         return _this;
     }
+    LocaleEndPoint.prototype.mergeProps = function (props) {
+        this.props = Applications_1.default.mergeObject(this.props, props);
+    };
     /**
      * read data
      * @param callback
      */
-    LocaleEndPoint.prototype.read = function (callback) {
+    LocaleEndPoint.prototype.read = function (props, callback) {
         this.__oldDataMap = this.__dataMap.slice(0);
+        this.mergeProps(props);
         return this.response(callback);
     };
     /**

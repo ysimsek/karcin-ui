@@ -116,7 +116,7 @@ var SelectInput = /** @class */ (function (_super) {
     SelectInput.prototype.labelResult = function () {
         var returnLabel = null;
         if (this.props.label !== undefined) {
-            returnLabel = React.createElement("label", { className: "karcin-label" }, this.props.label);
+            returnLabel = React.createElement("label", { className: "label-properties" }, this.props.label);
         }
         return returnLabel;
     };

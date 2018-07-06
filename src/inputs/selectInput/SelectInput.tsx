@@ -200,7 +200,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
     labelResult(){
         let returnLabel:any = null;
         if(this.props.label !== undefined){
-            returnLabel = <label className="karcin-label">{this.props.label}</label>
+            returnLabel = <label className={"label-properties"}>{this.props.label}</label>
         }
         return returnLabel;
     }

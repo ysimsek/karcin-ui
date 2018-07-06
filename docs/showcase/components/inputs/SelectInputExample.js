@@ -38,19 +38,21 @@ var SelectInputExample = /** @class */ (function (_super) {
     SelectInputExample.prototype.render = function () {
         var _this = this;
         return React.createElement("div", null,
-            React.createElement("span", { className: "example-reagent first" }, "Single Select"),
-            React.createElement(karcin_ui_1.SelectInput, { name: "selectInput", items: items, id: "id", value: "project", onChange: this.handleChange2.bind(this), activeItem: [{
-                        id: 3, name: "karcin-ui", userName: "karcin-ui", project: "KARÇİN-Uİ", img: "https://img.wikinut.com/img/anxidmiwlv2yy1ar/jpeg/36x36/Author-profile-image.jpeg"
+            React.createElement(karcin_ui_1.SelectInput, { name: "selectInput", items: items, label: "Single Select", id: "id", value: "project", onChange: this.handleChange2.bind(this), activeItem: [{
+                        id: 3, name: "karcin-skeleton", userName: "karcin-skeleton", project: "KARÇİN-SKELETON", img: "http://worldonline.media.clients.ellingtoncms.com/img/profiles/2010/Feb/19/lee-head-avatar-small_r48x48.jpg?5dda7ebe3a0a47b731bc018fa5259827222aab62"
                     }] }),
-            React.createElement("span", { className: "example-reagent" }, "Multi Select"),
-            React.createElement(karcin_ui_1.SelectInput, { name: "selectInput", items: items, id: "id", value: "project", onChange: function (e) { _this.handleChange(e); }, type: "multi" }),
-            React.createElement("span", { className: "example-reagent" }, "Multi Select Renderer"),
-            React.createElement(karcin_ui_1.SelectInput, { name: "selectInput", items: items, id: "id", value: "project", onChange: this.handleChange2.bind(this), type: "multi", renderer: this.rendererDropDown }),
-            React.createElement("span", { className: "example-reagent" }, "Multi Select SelectRenderer"),
-            React.createElement(karcin_ui_1.SelectInput, { name: "selectInput", items: items, id: "id", value: "project", onChange: this.handleChange.bind(this), type: "multi", renderer: this.rendererDropDown, selectedRenderer: this.selectRenderer }));
+            React.createElement("br", null),
+            React.createElement(karcin_ui_1.SelectInput, { name: "selectInput2", items: items, label: "Multi Select", id: "id", value: "project", onChange: function (e) { _this.handleChange(e); }, type: "multi" }),
+            React.createElement("br", null),
+            React.createElement(karcin_ui_1.SelectInput, { name: "selectInput3", items: items, id: "id", label: "Multi Select Renderer", value: "project", onChange: this.handleChange2.bind(this), type: "multi", renderer: this.rendererDropDown }),
+            React.createElement("br", null),
+            React.createElement(karcin_ui_1.SelectInput, { name: "selectInput4", items: items, label: "Multi Select SelectRenderer", id: "id", value: "project", onChange: this.handleChange.bind(this), type: "multi", renderer: this.rendererDropDown, selectedRenderer: this.selectRenderer }));
     };
     SelectInputExample.prototype.handleChange = function (e) {
-        console.log(e);
+        var state = [];
+        state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
+        this.setState(state);
+        this.forceUpdate();
     };
     SelectInputExample.prototype.handleChange2 = function (e) {
         console.log(e);

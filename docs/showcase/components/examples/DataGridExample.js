@@ -90,7 +90,8 @@ var DataGridExample = /** @class */ (function (_super) {
                     }], pagination: true, pageShow: 3 }),
             React.createElement(karcin_ui_1.Button, { color: "danger", onClick: function () { _this.deleteData(); } }, "Delete Deniz"),
             React.createElement(karcin_ui_1.Button, { color: "info", onClick: function () { _this.updateData(); } }, "Update Bora"),
-            React.createElement(karcin_ui_1.Button, { color: "success", onClick: function () { _this.addData(); } }, "Insert Ay\u00E7a")));
+            React.createElement(karcin_ui_1.Button, { color: "success", onClick: function () { _this.addData(); } }, "Insert Ay\u00E7a"),
+            React.createElement(karcin_ui_1.Button, { color: "success", onClick: function () { _this.deneme(); } }, "Deneme")));
     };
     DataGridExample.prototype.clickEdit = function () {
     };
@@ -123,6 +124,18 @@ var DataGridExample = /** @class */ (function (_super) {
             }], function (data) {
             console.log(data);
         });
+    };
+    DataGridExample.prototype.deneme = function () {
+        var _this = this;
+        setTimeout(function () {
+            _this.state.store.props.data = [{
+                    'id': '6',
+                    'name': 'Ayça',
+                    'surname': 'DEMİRBİLEK',
+                    'title': 'İnsan Kaynakları'
+                }];
+            _this.state.store.read();
+        }, 3000);
     };
     DataGridExample.prototype.pageChange = function (pages) {
         var state = { page: pages };

@@ -27,40 +27,43 @@ export default class SelectInputExample extends React.Component<any,any>{
     }
     render(){
         return <div>
-                <span className="example-reagent first">Single Select</span>
                 <SelectInput
                     name={"selectInput"}
                     items={items}
+                    label={"Single Select"}
                     id={"id"}
                     value={"project"}
                     onChange={this.handleChange2.bind(this)}
                     activeItem={[{
-                        id:3,name:"karcin-ui",userName:"karcin-ui",project:"KARÇİN-Uİ", img:"https://img.wikinut.com/img/anxidmiwlv2yy1ar/jpeg/36x36/Author-profile-image.jpeg"
+                        id:3,name:"karcin-skeleton",userName:"karcin-skeleton",project:"KARÇİN-SKELETON", img: "http://worldonline.media.clients.ellingtoncms.com/img/profiles/2010/Feb/19/lee-head-avatar-small_r48x48.jpg?5dda7ebe3a0a47b731bc018fa5259827222aab62"
                     }]}
                 />
-                <span className="example-reagent">Multi Select</span>
+                <br/>
                 <SelectInput
-                    name={"selectInput"}
+                    name={"selectInput2"}
                     items={items}
+                    label={"Multi Select"}
                     id={"id"}
                     value={"project"}
                     onChange={(e)=>{this.handleChange(e)}}
                     type={"multi"}
                 />
-                <span className="example-reagent">Multi Select Renderer</span>
+                <br/>
                 <SelectInput
-                    name={"selectInput"}
+                    name={"selectInput3"}
                     items={items}
                     id={"id"}
+                    label={"Multi Select Renderer"}
                     value={"project"}
                     onChange={this.handleChange2.bind(this)}
                     type={"multi"}
                     renderer={this.rendererDropDown}
                 />
-                <span className="example-reagent">Multi Select SelectRenderer</span>
+                <br/>
                 <SelectInput
-                    name={"selectInput"}
+                    name={"selectInput4"}
                     items={items}
+                    label={"Multi Select SelectRenderer"}
                     id={"id"}
                     value={"project"}
                     onChange={this.handleChange.bind(this)}
@@ -71,7 +74,10 @@ export default class SelectInputExample extends React.Component<any,any>{
             </div>;
     }
     handleChange(e){
-        console.log(e);
+        let state = [];
+        state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
+        this.setState(state);
+        this.forceUpdate();
     }
 
     handleChange2(e){
