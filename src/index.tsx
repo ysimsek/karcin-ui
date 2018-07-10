@@ -29,7 +29,6 @@ import ToggleButton from "./input/ToggleButton";
 
 
 import DateInput from "./datepicker/DateInput";
-import DatePicker from "./datepicker/DatePicker";
 
 import AreaChart from "./chart/areachart/SimpleAreaChart";
 import BarChart from "./chart/barchart/BarChart";
@@ -97,7 +96,6 @@ export {
     ContextMenu,
     Calendar,
     Loading,
-    DatePicker,
     AutoComplate
 };
 export default Button;

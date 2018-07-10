@@ -39,7 +39,7 @@ var Toolbar = /** @class */ (function (_super) {
      */
     Toolbar.prototype.render = function () {
         var _this = this;
-        // pagination control
+        // pagination control 
         if (this.props.options.pagination !== undefined && this.props.options.pagination && this.props.store !== undefined && this.props.store.props.totalCount !== 0) {
             this.paginationControl = true;
         }

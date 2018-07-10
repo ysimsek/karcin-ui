@@ -122,7 +122,7 @@ export default class DataForm extends React.Component<any,any>{
             name={value.name}
             label={value.label}
             value={this.state[value.name]}
-            handleChange={this.handleChange.bind(this)}
+            onChange={this.handleChange.bind(this)}
         />
     }
 

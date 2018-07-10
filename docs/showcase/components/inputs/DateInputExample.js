@@ -25,19 +25,22 @@ var DateInputExample = /** @class */ (function (_super) {
     DateInputExample.prototype.render = function () {
         return (React.createElement(reactstrap_1.Row, null,
             React.createElement(reactstrap_1.Col, { md: 4 },
-                React.createElement(karcin_ui_1.DateInput, { name: "value", label: "Focus DateInput", value: this.state.value, handleChange: this.handleChange.bind(this) })),
+                React.createElement(karcin_ui_1.DateInput, { name: "value", label: "Focus DateInput", value: this.state.value, onChange: this.handleChange.bind(this) })),
             React.createElement(reactstrap_1.Col, { md: 4 },
-                React.createElement(karcin_ui_1.DateInput, { name: "value2", label: "Inline DateInput", value: this.state.value2, inline: true, handleChange: this.handleChange.bind(this) })),
+                React.createElement(karcin_ui_1.DateInput, { name: "value2", label: "Inline DateInput", value: this.state.value2, inline: true, onChange: this.handleChange.bind(this) })),
             React.createElement(reactstrap_1.Col, { md: 4 },
-                React.createElement(karcin_ui_1.DateInput, { name: "value2", label: "Time DatePicker", value: this.state.value2, showTime: true, timeFormat: "HH:mm", timeInterval: 15, dateFormat: "LLL", handleChange: this.handleChange.bind(this) })),
+                React.createElement(karcin_ui_1.DateInput, { name: "value2", label: "Time DatePicker", value: this.state.value2, showTime: true, timeFormat: "HH:mm", timeInterval: 15, dateFormat: "LLL", onChange: this.handleChange.bind(this) })),
             React.createElement(reactstrap_1.Col, { md: 4 },
-                React.createElement(karcin_ui_1.DatePicker, { name: "value3", selected: this.state.value3, onChange: this.handleChange, showTimeSelect: true, showTimeSelectOnly: true, timeIntervals: 20, dateFormat: "LT", timeCaption: "Time" }))));
+                React.createElement(karcin_ui_1.DateInput, { name: "value3", label: "", value: this.state.value3, onChange: this.handleChange2.bind(this), showTimeSelect: true, showTimeSelectOnly: true, timeIntervals: 15, dateFormat: "LT", timeCaption: "Time" }))));
     };
     DateInputExample.prototype.handleChange = function (e) {
         var state = [];
         state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
         this.setState(state);
         this.forceUpdate();
+    };
+    DateInputExample.prototype.handleChange2 = function (e) {
+        console.log(e);
     };
     return DateInputExample;
 }(React.Component));

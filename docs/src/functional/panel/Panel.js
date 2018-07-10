@@ -75,9 +75,15 @@ var Panel = /** @class */ (function (_super) {
                     openedIcon));
         }
         else {
-            panelTitle = React.createElement("div", { className: "panel-title" },
-                React.createElement("span", null, this.props.title),
-                openButton);
+            if (this.props.title !== undefined && this.props.title !== "") {
+                panelTitle = React.createElement("div", { className: "panel-title" },
+                    " ",
+                    React.createElement("span", null, this.props.title),
+                    openButton);
+            }
+            else if (this.props.titleRenderer !== undefined) {
+                panelTitle = React.createElement("div", { className: "panel-title" }, this.props.titleRenderer());
+            }
         }
         return (React.createElement("div", { className: "panel-main " + this.props.color },
             panelTitle,

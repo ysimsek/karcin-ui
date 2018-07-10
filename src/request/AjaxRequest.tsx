@@ -55,7 +55,7 @@ export default class AjaxRequest {
 
     call() {
         if (this.props.processor !== undefined && this.props.method) {
-            axios(this.ajaxProps).then((response) => {
+            axios(this.ajaxProps).then((response:any) => {
                 // props success control
                 if (this.props['successCallback'] !== undefined) {
                     this.props['successCallback'](response);
@@ -69,7 +69,7 @@ export default class AjaxRequest {
                 // token control method
                 this.tokenControl(response['token']);
 
-            }).catch((error) => {
+            }).catch((error:any) => {
                 // props error control
                 if (this.props['errorCallback'] !== undefined) {
                     this.props['errorCallback'](error);

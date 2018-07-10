@@ -82,7 +82,7 @@ var DataForm = /** @class */ (function (_super) {
         return React.createElement(SelectInput_1.default, { name: value.name, items: this.props.values[value.name], label: value.label, id: value.idField, value: value.valueField, onChange: this.handleChange.bind(this) });
     };
     DataForm.prototype.getDateInput = function (value) {
-        return React.createElement(DateInput_1.default, { name: value.name, label: value.label, value: this.state[value.name], handleChange: this.handleChange.bind(this) });
+        return React.createElement(DateInput_1.default, { name: value.name, label: value.label, value: this.state[value.name], onChange: this.handleChange.bind(this) });
     };
     /**
      * TODO : RadioInput , SelectInput , CheckInput için sabit dataların olması sağlanacak

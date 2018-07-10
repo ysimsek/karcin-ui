@@ -8,7 +8,7 @@ export interface PanelProps {
     /**
      * Add the panel title is required
      */
-    title: string | any;
+    title?: string | any;
     /**
      * Change the Panel color
      * primary, info, warning, danger, success, secondary
@@ -37,7 +37,12 @@ export interface PanelProps {
     /**
      * Default value false
      */
-    accordion   ?: boolean | any,
+    accordion   ?: boolean | any;
+
+    /**
+     * title renderer method 
+     */
+    titleRenderer ?: any;
 }
 
 export interface PanelState {
@@ -115,7 +120,11 @@ export default class Panel extends React.Component<PanelProps, PanelState> {
            if(this.state.accordion) {
                panelTitle = <div className={`accordion-title ${(this.state.collapse ? 'active' : '')}`}><Button onClick={this.props.onClick}><span>{this.props.title}</span>{openedIcon}</Button></div>;
            }else {
-               panelTitle = <div className="panel-title"><span>{this.props.title}</span>{openButton}</div>;
+               if(this.props.title !== undefined && this.props.title !== ""){
+                    panelTitle = <div className="panel-title"> <span>{this.props.title}</span>{openButton}</div>;
+               }else if(this.props.titleRenderer !== undefined){
+                    panelTitle = <div className="panel-title">{this.props.titleRenderer()}</div>;
+               }
            }
 
 

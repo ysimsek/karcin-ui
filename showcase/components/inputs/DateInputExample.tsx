@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Row,Col} from 'reactstrap';
-import {DateInput, DatePicker} from "karcin-ui";
+import {DateInput} from "karcin-ui";
 
 
 export default class DateInputExample extends React.Component<any,any> {
@@ -19,7 +19,7 @@ export default class DateInputExample extends React.Component<any,any> {
                             name={"value"}
                             label={"Focus DateInput"}
                             value={this.state.value}
-                            handleChange={this.handleChange.bind(this)}
+                            onChange={this.handleChange.bind(this)}
                          />
                     </Col>
                     <Col md={4}>
@@ -28,7 +28,7 @@ export default class DateInputExample extends React.Component<any,any> {
                             label={"Inline DateInput"}
                             value={this.state.value2}
                             inline
-                            handleChange={this.handleChange.bind(this)}
+                            onChange={this.handleChange.bind(this)}
                         />
                     </Col>
                     <Col md={4}>
@@ -40,18 +40,19 @@ export default class DateInputExample extends React.Component<any,any> {
                             timeFormat="HH:mm"
                             timeInterval={15}
                             dateFormat="LLL"
-                            handleChange={this.handleChange.bind(this)}
+                            onChange={this.handleChange.bind(this)}
                         />
                     </Col>
 
                     <Col md={4}>
-                        <DatePicker
+                    <DateInput
                             name={"value3"}
-                            selected={this.state.value3}
-                            onChange={this.handleChange}
+                            label=""
+                            value={this.state.value3}
+                            onChange={this.handleChange2.bind(this)}
                             showTimeSelect
                             showTimeSelectOnly
-                            timeIntervals={20}
+                            timeIntervals={15}
                             dateFormat="LT"
                             timeCaption="Time"
                         />
@@ -64,7 +65,10 @@ export default class DateInputExample extends React.Component<any,any> {
         state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
         this.setState(state);
         this.forceUpdate();
+    }
 
+    handleChange2(e:any){
+        console.log(e); 
     }
 
 

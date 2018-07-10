@@ -1,7 +1,8 @@
 import * as React from "react";
 import {Row,Col, Label} from 'reactstrap';
-import DatePicker from "./DatePicker";
+import DatePickerX from 'react-datepicker';
 import moment = require('moment');
+import "react-datepicker/dist/react-datepicker.css";
 
 export interface dateInputState {
     startDate: moment.Moment;
@@ -9,10 +10,10 @@ export interface dateInputState {
 }
 
 export interface DateInputProps{
-    value ?: string | number;
+    value ?: string | any;
     name ?: string;
     handleYearChange ?: any;
-    handleChange ?: any;
+    onChange ?: any;
     inline ?: boolean;
     showTime ?: boolean;
     startDate ?: moment.Moment;
@@ -21,6 +22,10 @@ export interface DateInputProps{
     timeInterval ?: number;
     dateFormat ?: string;
     className ?: string;
+    showTimeSelect ?: any;
+    showTimeSelectOnly ?:any;
+    timeIntervals?:any;
+    timeCaption?:any;
 }
 
 export default class DateInput extends React.Component<DateInputProps, dateInputState> {
@@ -45,9 +50,10 @@ export default class DateInput extends React.Component<DateInputProps, dateInput
                 <div>
                      <Label className={"label-properties"}>{this.props.label}</Label>
                     <div>
-                        <DatePicker
+                        <DatePickerX
+                            {...this.props}
                             selected={this.state.startDate}
-                            onChange={(e)=>{this.handleChange(e, 1)}}
+                            onChange={this.handleChange}
                             onYearChange={this.handleYearChange}
                             className="form-control"
                             timeFormat={this.props.timeFormat}
@@ -68,10 +74,11 @@ export default class DateInput extends React.Component<DateInputProps, dateInput
      * @param getId
      */
     handleChange(date?: moment.Moment | null | any, getId?: any) {
+        debugger;
         let me : any = this;
         me.state['startDate'] = date;
         me.forceUpdate();
-        this.props.handleChange({date : date,target : {parsedValue : date._d, name : me.props.name}, id : getId});
+        this.props.onChange({date : date,target : {parsedValue : moment(date._d).format(this.props.dateFormat), name : me.props.name}, id : getId});
     };
 
     handleYearChange(date: moment.Moment, getId?: any | null) {
