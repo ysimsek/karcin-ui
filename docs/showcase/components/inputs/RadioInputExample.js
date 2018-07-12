@@ -11,7 +11,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var RadioInput_1 = require("../../../src/inputs/RadioInput");
+var karcin_ui_1 = require("karcin-ui");
 var RadioInputExample = /** @class */ (function (_super) {
     __extends(RadioInputExample, _super);
     function RadioInputExample(props) {
@@ -24,16 +24,15 @@ var RadioInputExample = /** @class */ (function (_super) {
     }
     RadioInputExample.prototype.render = function () {
         var value = [
-            { id: 1, value: "XxxX", des: "D1" },
-            { id: 2, value: "XyyX", des: "D1" },
-            { id: 3, value: "XzzX", des: "D1" },
-            { id: 4, value: "XaaX", des: "D1" },
+            { id: 1, value: "Apple", des: "D1" },
+            { id: 2, value: "Samsung", des: "D1" },
+            { id: 3, value: "Huawei", des: "D1" },
+            { id: 4, value: "Lg", des: "D1" },
+            { id: 5, value: "Lenovo", des: "D1" }
         ];
         return React.createElement("div", null,
-            React.createElement("label", null, "Inline RadioInput Example"),
-            React.createElement(RadioInput_1.default, { name: "radioInputInline", value: this.state.radioInputInline, inline: true, items: value, idField: "id", textField: "value", onChange: this.handleChange.bind(this) }),
-            React.createElement("label", null, "Horizontal RadioInput Example"),
-            React.createElement(RadioInput_1.default, { name: "radioInputHori", value: this.state.radioInputHori, items: value, idField: "id", textField: "value", onChange: this.handleChange.bind(this) }));
+            React.createElement(karcin_ui_1.RadioInput, { name: "radioInputInline", value: this.state.radioInputInline, label: "Inline RadioInput Example", inline: true, items: value, idField: "id", textField: "value", onChange: this.handleChange.bind(this) }),
+            React.createElement(karcin_ui_1.RadioInput, { name: "radioInputHori", label: "Horizontal RadioInput Example", value: this.state.radioInputHori, items: value, idField: "id", textField: "value", onChange: this.handleChange.bind(this) }));
     };
     RadioInputExample.prototype.handleChange = function (e) {
         var name = e.target.name;

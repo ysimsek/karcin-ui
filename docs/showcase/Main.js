@@ -24,15 +24,46 @@ var Main = /** @class */ (function (_super) {
         var _this = _super.call(this, props) || this;
         _this.toggle = _this.toggle.bind(_this);
         _this.state = {
-            isOpen: false
+            isOpen: false,
+            sideMenuOpen: false,
+            responsiveMenu: false,
+            menuResponsiveSize: 900
         };
+        if (_this.state.menuResponsiveSize >= window.innerWidth) {
+            _this.setState({
+                responsiveMenu: true,
+                sideMenuOpen: true
+            });
+        }
+        window.addEventListener('resize', function () {
+            if (window.innerWidth <= _this.state.menuResponsiveSize) {
+                _this.setState({
+                    responsiveMenu: true,
+                    sideMenuOpen: true
+                });
+            }
+            else {
+                _this.setState({
+                    responsiveMenu: false,
+                    sideMenuOpen: false
+                });
+            }
+        });
         return _this;
     }
     Main.prototype.render = function () {
+        var _this = this;
         return React.createElement("div", { id: "showcase-content" },
             React.createElement(reactstrap_1.Navbar, { className: "main-menu " + ((window.location.hash == "#/") ? "active-menu" : ""), expand: "md" },
-                React.createElement(reactstrap_1.NavbarBrand, { href: "#", className: "mr-auto" },
-                    React.createElement("img", { src: "./img/logo-reverse.png", height: "50" })),
+                React.createElement("div", { className: "header-logo" },
+                    React.createElement("a", { href: "#", className: "logo-img" },
+                        React.createElement("img", { src: "./img/logo-reverse.png", height: "50" })),
+                    (window.location.hash !== "#/" && window.location.hash.search("#/Components") !== -1) ?
+                        React.createElement("div", { className: "side-menu-button " + (this.state.sideMenuOpen ? 'active' : ''), onClick: function () { return _this.sideMenuToggle(); } },
+                            React.createElement("span", null),
+                            React.createElement("span", null),
+                            React.createElement("span", null))
+                        : ''),
                 React.createElement(reactstrap_1.NavbarToggler, { onClick: this.toggle },
                     React.createElement(karcin_ui_1.FaIcon, { code: "" + ((this.state.isOpen) ? "fa-times" : "fa-bars") })),
                 React.createElement(reactstrap_1.Collapse, { isOpen: this.state.isOpen, navbar: true },
@@ -55,7 +86,7 @@ var Main = /** @class */ (function (_super) {
             React.createElement("div", { className: "" + ((window.location.hash == "#/") ? "main-content" : "subpage-content") },
                 React.createElement(react_router_dom_1.Switch, null,
                     React.createElement(react_router_dom_1.Route, { exact: true, path: "/", component: HomePage_1.default }),
-                    React.createElement(react_router_dom_1.Route, { path: "/Components", component: Components_1.default }),
+                    React.createElement(react_router_dom_1.Route, { path: "/Components", render: function () { return React.createElement(Components_1.default, { menuToggle: _this.state.sideMenuOpen, responsiveMenu: _this.state.responsiveMenu }); } }),
                     React.createElement(react_router_dom_1.Route, { path: "/Docs", component: Docs_1.default }),
                     React.createElement(react_router_dom_1.Route, { component: NotFound_1.default }))),
             React.createElement("div", { className: "footer" },
@@ -70,6 +101,11 @@ var Main = /** @class */ (function (_super) {
     Main.prototype.toggle = function () {
         this.setState({
             isOpen: !this.state.isOpen
+        });
+    };
+    Main.prototype.sideMenuToggle = function () {
+        this.setState({
+            sideMenuOpen: !this.state.sideMenuOpen
         });
     };
     return Main;

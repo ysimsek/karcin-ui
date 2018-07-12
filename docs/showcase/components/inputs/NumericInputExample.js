@@ -11,7 +11,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var NumericInput_1 = require("../../../src/inputs/NumericInput");
+var karcin_ui_1 = require("karcin-ui");
 var NumericInputExample = /** @class */ (function (_super) {
     __extends(NumericInputExample, _super);
     function NumericInputExample(props) {
@@ -23,15 +23,15 @@ var NumericInputExample = /** @class */ (function (_super) {
     }
     NumericInputExample.prototype.render = function () {
         return (React.createElement("div", null,
-            React.createElement(NumericInput_1.default, { name: "numericInput", value: this.state.numericInput, label: "NumericInput Example", onChange: this.handleChange.bind(this) }),
+            React.createElement(karcin_ui_1.NumericInput, { name: "numericInput", value: this.state.numericInput, label: "NumericInput Example", onChange: this.handleChange.bind(this) }),
             React.createElement("span", null,
                 React.createElement("i", null, this.state.numericInput))));
     };
     NumericInputExample.prototype.handleChange = function (e) {
-        var name = e.target.name;
         var state = [];
         state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
         this.setState(state);
+        this.forceUpdate();
     };
     return NumericInputExample;
 }(React.Component));

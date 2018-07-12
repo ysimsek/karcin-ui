@@ -12,8 +12,9 @@ var Store = /** @class */ (function () {
             endPoint: null,
             responseData: null,
             processor: null,
-            type: 'GET',
+            type: 'POST',
             method: null,
+            totalCount: 0
         };
         this.__updated = false;
         this.props = Applications_1.default.mergeObject(this.props, props);
@@ -42,6 +43,22 @@ var Store = /** @class */ (function () {
         }
     };
     /**
+     * Endpoint callback
+     * @param response
+     */
+    Store.prototype.endPointCallback = function (response) {
+        if (response !== undefined) {
+            this.props.data = response[this.props.responseData];
+            this.updateProps(response);
+        }
+        if (this.__callback !== undefined) {
+            this.__callback(response);
+        }
+    };
+    Store.prototype.updateProps = function (response) {
+        this.props.totalCount = (response.totalCount !== undefined) ? response.totalCount : 100;
+    };
+    /**
      * Store read
      * @param callback
      */
@@ -52,18 +69,6 @@ var Store = /** @class */ (function () {
         this.__callback(this.props.data);
         if (callback !== undefined)
             callback(this.props.data);
-    };
-    /**
-     * Endpoint callback
-     * @param response
-     */
-    Store.prototype.endPointCallback = function (response) {
-        if (response !== undefined) {
-            this.props.data = response;
-        }
-        if (this.__callback !== undefined) {
-            this.__callback(response);
-        }
     };
     /**
      * Create
@@ -189,9 +194,19 @@ var Store = /** @class */ (function () {
             throw new Error('Field name empty');
         }
     };
-    Store.prototype.pagination = function (page) {
+    /**
+     * data page
+     * @param page
+     * @param pageShow
+     */
+    Store.prototype.pagination = function (page, pageShow) {
         if (page !== undefined) {
-            this.props.endPoint.paging();
+            var pageData = {};
+            pageData['start'] = pageShow * (page - 1);
+            pageData['limit'] = pageShow;
+            this.props.endPoint.paging(pageData, function () {
+                debugger;
+            });
         }
     };
     return Store;

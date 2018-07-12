@@ -6,7 +6,7 @@ var AjaxRequest = /** @class */ (function () {
     function AjaxRequest(props, callback) {
         this.ajaxCallControl = true;
         this.props = {
-            type: 'post',
+            type: 'get',
             method: 'findAll',
             processor: '',
             url: window.location.origin + '/karcin-auth/rest-api',
@@ -46,7 +46,6 @@ var AjaxRequest = /** @class */ (function () {
         if (this.ajaxCallControl) {
             // token control method
             this.tokenControl();
-            debugger;
             axios_1.default(this.ajaxProps).then(function (response) {
                 // props success control
                 if (_this.props['successCallback'] !== undefined) {

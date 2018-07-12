@@ -14,52 +14,97 @@ var React = require("react");
 require("bootstrap/dist/css/bootstrap.css");
 var TableBody = /** @class */ (function (_super) {
     __extends(TableBody, _super);
+    /**
+     * Initial values
+     * @param {TableBodyProps} props
+     */
     function TableBody(props) {
         var _this = _super.call(this, props) || this;
         _this.state = {
-            data: _this.props.data,
+            store: _this.props.store,
             fields: _this.props.fields,
             clickActive: [],
-            clickActiveRow: []
+            clickActiveRow: [],
+            showingPageData: null
         };
         return _this;
     }
+    /**
+     * Rerender props values
+     * @param props
+     */
     TableBody.prototype.componentWillReceiveProps = function (props) {
+        this.props = props;
         this.setState({
-            data: this.props.data,
-            fields: this.props.fields
+            store: props.store,
+            fields: props.fields,
+            showingPageData: props.showingPageData
         });
     };
+    /**
+     * @returns {any}
+     */
     TableBody.prototype.render = function () {
+        return React.createElement("tbody", null, this.getItems());
+    };
+    /**
+     * get renderer items
+     * @returns {any[]}
+     */
+    TableBody.prototype.getItems = function () {
         var _this = this;
         var Rows = [];
         var self = this;
-        var _loop_1 = function (i) {
-            var value = this_1.props.data[i];
-            var getId = i;
-            if (value.id !== undefined) {
-                getId = parseInt(value.id);
-            }
-            var Cell = [];
-            for (var j = 0; j < this_1.state.fields.length; j++) {
-                var valueField = this_1.state.fields[j];
-                // style
-                var style = {};
-                if (valueField.visibility !== undefined && !valueField.visibility) {
-                    style['display'] = 'none';
+        var data = this.props.store.props.data;
+        if (data !== undefined) {
+            var _loop_1 = function (i) {
+                var value = data[i];
+                var getId = i;
+                if (value.id !== undefined) {
+                    getId = parseInt(value.id);
                 }
-                Cell.push(React.createElement("td", { key: j, style: style }, value[valueField.value]));
+                var Cell = [];
+                for (var j = 0; j < this_1.state.fields.length; j++) {
+                    var valueField = this_1.state.fields[j];
+                    // style
+                    var style = {};
+                    if (valueField.visibility !== undefined && !valueField.visibility) {
+                        style['display'] = 'none';
+                    }
+                    if (this_1.props.fieldOption !== undefined) {
+                        style['width'] = this_1.props.fieldOption[valueField.value] + "px";
+                    }
+                    Cell.push(React.createElement("td", { key: j, style: style }, (self.props.cellRenderer !== undefined) ? self.props.cellRenderer(value, valueField) : value[valueField.value]));
+                }
+                Rows.push(React.createElement("tr", { key: i, className: (self.state.clickActive.indexOf(getId) !== -1) ? 'active' : '', onClick: function (e) {
+                        _this.onClickRow(e, getId, data[i]);
+                    } }, (self.props.rowRenderer !== undefined) ? self.props.rowRenderer(value, this_1.props.fields) : Cell));
+            };
+            var this_1 = this;
+            for (var i = 0; i < data.length; i++) {
+                _loop_1(i);
             }
-            Rows.push(React.createElement("tr", { key: i, className: (self.state.clickActive.indexOf(getId) !== -1) ? 'active' : '', onClick: function (e) {
-                    _this.onClickRow(e, getId, _this.props.data[i]);
-                } }, Cell));
-        };
-        var this_1 = this;
-        for (var i = 0; i < this.props.data.length; i++) {
-            _loop_1(i);
         }
-        return React.createElement("tbody", null, Rows);
+        if (this.props.showingPageData.pagination !== true || this.props.store.props.totalCount <= 0) {
+            return Rows;
+        }
+        else {
+            var pagesData = [];
+            var start = this.props.showingPageData.pageShow * (this.props.showingPageData.page - 1);
+            var finis = this.props.showingPageData.pageShow * this.props.showingPageData.page;
+            for (var i = 0; i < Rows.length; i++) {
+                if (i >= start && i < finis) {
+                    pagesData.push(Rows[i]);
+                }
+            }
+            return pagesData;
+        }
     };
+    /**
+     * @param e
+     * @param active
+     * @param data
+     */
     TableBody.prototype.onClickRow = function (e, active, data) {
         if (e.metaKey || e.ctrlKey) {
             if (this.state.clickActive.indexOf(active) !== -1) {
@@ -98,6 +143,12 @@ var TableBody = /** @class */ (function (_super) {
         if (this.props.onSelected !== undefined) {
             this.props.onSelected(this.state.clickActiveRow, this.state.clickActive);
         }
+    };
+    TableBody.prototype.resetSelected = function () {
+        this.setState({
+            clickActive: [],
+            clickActiveRow: []
+        });
     };
     return TableBody;
 }(React.Component));

@@ -26,48 +26,21 @@ var DataGridExample = /** @class */ (function (_super) {
                 },
                 {
                     "property": "string",
-                    "value": "name",
-                    "name": "isim"
-                },
-                {
-                    "property": "string",
-                    "value": "surname",
-                    "name": "Soyisim",
-                },
-                {
-                    "property": "string",
                     "value": "title",
-                    "name": "Görevi",
+                    "name": "Başlık"
+                },
+                {
+                    "property": "string",
+                    "value": "body",
+                    "name": "Açıklama",
                 }
             ],
             store: new karcin_ui_1.Store({
                 idField: 'id',
-                data: [{
-                        'id': '1',
-                        'name': 'Deniz',
-                        'surname': 'DALKILIÇ',
-                        'title': 'Yazılım Uzmanı'
-                    }, {
-                        'id': '2',
-                        'name': 'Yunus',
-                        'surname': 'ŞİMŞEK',
-                        'title': 'Yazılım Uzmanı'
-                    }, {
-                        'id': '3',
-                        'name': 'Tayyip',
-                        'surname': 'DEMİRCAN',
-                        'title': 'Yazılım Uzmanı'
-                    }, {
-                        'id': '4',
-                        'name': 'Mustafa',
-                        'surname': 'GÜNGÖR',
-                        'title': 'Yazılım Uzmanı'
-                    }, {
-                        'id': '5',
-                        'name': 'Bora',
-                        'surname': 'AVCI',
-                        'title': 'Yazılım Uzmanı'
-                    }]
+                processor: 'post',
+                method: 'deneme',
+                url: 'https://jsonplaceholder.typicode.com/posts',
+                responseData: 'data'
             }),
             page: 1,
         };

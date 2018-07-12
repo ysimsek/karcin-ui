@@ -28,7 +28,7 @@ var RemoteEndPoint = /** @class */ (function (_super) {
             method: 'findAll',
             endPoint: 'remoteEndPoint',
             responseData: '',
-            data: null
+            data: []
         };
         _this.props = Applications_1.default.mergeObject(_this.props, props);
         _this.__callback = callback;
@@ -55,8 +55,9 @@ var RemoteEndPoint = /** @class */ (function (_super) {
      * @param response
      */
     RemoteEndPoint.prototype.callbackReady = function (response, callback) {
-        this.requestStatus = false;
+        this.requestStatus = true;
         if (response !== undefined) {
+            this.__dataMap = response[this.props.responseData];
             return this.response(callback, response);
         }
     };
@@ -80,6 +81,7 @@ var RemoteEndPoint = /** @class */ (function (_super) {
     RemoteEndPoint.prototype.create = function (items, callback) {
         if (items !== undefined && items.length > 0) {
             this.requestStatus = false;
+            this.props.method = "add";
             this.props.data = items;
             this.call(callback);
         }
@@ -87,6 +89,7 @@ var RemoteEndPoint = /** @class */ (function (_super) {
     RemoteEndPoint.prototype.update = function (items, callback) {
         if (items !== undefined && items.length > 0) {
             this.requestStatus = false;
+            this.props.method = "update";
             this.props.data = items;
             this.call(callback);
         }
@@ -105,7 +108,7 @@ var RemoteEndPoint = /** @class */ (function (_super) {
      */
     RemoteEndPoint.prototype.orderSort = function (fieldName, callback) {
         if (fieldName !== undefined) {
-            this.props.data = { orders: { "property": fieldName, "orderType": 'ASC' } };
+            this.props.data.data['orders'] = [{ "property": fieldName, "orderType": 'ASC' }];
             this.call(callback);
         }
         else {
@@ -119,7 +122,7 @@ var RemoteEndPoint = /** @class */ (function (_super) {
      */
     RemoteEndPoint.prototype.orderReverse = function (fieldName, callback) {
         if (fieldName !== undefined) {
-            this.props.data = { orders: { "property": fieldName, "orderType": 'DESC' } };
+            this.props.data.data['orders'] = [{ "property": fieldName, "orderType": 'DESC' }];
             this.call(callback);
         }
         else {
@@ -154,6 +157,14 @@ var RemoteEndPoint = /** @class */ (function (_super) {
         }
         else {
             throw new Error('Field name or value empty');
+        }
+    };
+    RemoteEndPoint.prototype.paging = function (pageData, callback) {
+        if (pageData !== undefined) {
+            for (var item in pageData) {
+                this.props.s;
+            }
+            this.call(callback);
         }
     };
     return RemoteEndPoint;

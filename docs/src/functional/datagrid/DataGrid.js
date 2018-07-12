@@ -28,7 +28,6 @@ var DataGrid = /** @class */ (function (_super) {
          */
         _this.dataGridId = Math.floor(Math.random() * 20);
         _this.init(props);
-        debugger;
         _this.props.store.__callback = function () {
             _this.resetData();
             _this.columnStyle();
@@ -137,7 +136,7 @@ var DataGrid = /** @class */ (function (_super) {
     };
     DataGrid.prototype.pageChange = function (event) {
         if (event !== undefined && this.props.changePage) {
-            this.props.changePage(event.page);
+            this.props.store.pagination(event.page, this.props.pageShow);
         }
     };
     DataGrid.defaultProps = {

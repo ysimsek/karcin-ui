@@ -36,12 +36,19 @@ var FaIcon = /** @class */ (function (_super) {
     function FaIcon() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    /**
+     * @returns {any}
+     */
     FaIcon.prototype.render = function () {
         var classNameProps = this.props.className === undefined ? "" : this.props.className;
         var className = "fa " + (this.props.fixed ? "fa-fw" : "") + " " + this.props.code + " " + this.props.size + " " + classNameProps;
         var _a = this.props, fixed = _a.fixed, code = _a.code, size = _a.size, props = __rest(_a, ["fixed", "code", "size"]);
         return React.createElement("i", __assign({}, props, { className: className, "aria-hidden": "true" }));
     };
+    /**
+     * Initial props value
+     * @type {{size: string; fixed: boolean}}
+     */
     FaIcon.defaultProps = {
         size: "fa-sm",
         fixed: true

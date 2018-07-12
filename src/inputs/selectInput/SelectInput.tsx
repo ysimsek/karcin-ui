@@ -186,7 +186,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
     singleHandleChange(event:any){
         this.props.items.forEach((value:any, index:number) => {
             if(value[this.props.id].toString() === event.target.value){
-                this.state.itemActive.length = 0;
+                this.state.itemActive.splice(0);
                 this.state.itemActive.push(value);
                 this.forceUpdate();
                 this.onChangeProps();
@@ -417,19 +417,19 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
             let target:any = {};
 
             if(this.props.type === "multi"){
-                let newArray:any = this.state.itemActive;
+                let newArray:any = this.state.selectedItem;
                 target['id'] = [];
-                target['name'] = this.props.name;
+                target['name'] = this.props.name; 
                 target['value'] = [];
                 target['parsedValue'] = newArray;
 
                 newArray.forEach((val:any) => {
                     target['id'].push(val[this.props.id]);
-                    target['parsedValue'].push(val[this.props.value]);
+                    target['value'].push(val[this.props.value]);
                 });
 
             }else {
-                let newArray = this.state.itemActive[0];
+                let newArray = this.state.selectedItem[0];
                 target['id'] = newArray[this.props.id];
                 target['name'] = this.props.name;
                 target['value'] = newArray[this.props.value];

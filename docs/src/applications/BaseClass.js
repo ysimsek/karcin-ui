@@ -26,16 +26,17 @@ var BaseClass = /** @class */ (function () {
     BaseClass.prototype.response = function (callback, callbackData) {
         //this.props.data = this.__dataMap;
         var parentClass = Object.assign(this);
+        var callData = (callbackData !== undefined) ? callbackData : parentClass.__dataMap;
         parentClass.__dataMap = parentClass.props.data;
         if (parentClass.__callback !== undefined) {
-            parentClass.__callback(parentClass.__dataMap);
+            parentClass.__callback(callData);
         }
         if (callback !== undefined) {
             if (callbackData !== undefined) {
-                callback(callbackData);
+                callback(callData);
             }
             else {
-                callback(parentClass.__dataMap);
+                callback(callData);
             }
         }
         return parentClass.__dataMap;

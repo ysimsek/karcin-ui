@@ -38,7 +38,7 @@ var RenderComponent = /** @class */ (function (_super) {
                 ' />'),
             React.createElement("p", { className: "description" }, this.props.item.description),
             React.createElement("div", { style: { marginTop: 20 } },
-                React.createElement(karcin_ui_1.Tab, { activeTab: this.state.activeTab },
+                React.createElement(karcin_ui_1.Tab, { activeTab: this.state.activeTab, className: "component-props" },
                     React.createElement(karcin_ui_1.TabPanel, { title: "Example" }, this.getReactElement()),
                     properties,
                     React.createElement(karcin_ui_1.TabPanel, { className: "source", title: React.createElement("span", null,
@@ -76,14 +76,16 @@ var RenderComponent = /** @class */ (function (_super) {
                     nameCmp.push(React.createElement("span", { key: 2, className: "opt" }, "(optional)"));
                 }
                 propsArr_1.push(React.createElement("tr", { key: i },
-                    React.createElement("td", { key: 1 }, nameCmp),
-                    React.createElement("td", { key: 2 }, v.value)));
+                    React.createElement("td", { style: { width: "25%" }, key: 1 }, nameCmp),
+                    React.createElement("td", { style: { width: "35%" }, key: 2 }, v.value),
+                    React.createElement("td", { key: 3 }, v.description)));
             });
             return (React.createElement(reactstrap_1.Table, { className: "prop-table" },
                 React.createElement("thead", null,
                     React.createElement("tr", null,
                         React.createElement("th", null, "Properties"),
-                        React.createElement("th", null, "Type"))),
+                        React.createElement("th", null, "Type"),
+                        React.createElement("th", null, "Description"))),
                 React.createElement("tbody", null, propsArr_1)));
         }
         catch (e) {
@@ -100,8 +102,14 @@ var RenderComponent = /** @class */ (function (_super) {
                     if (text.split(";").length > 0) {
                         text.split(";").forEach(function (v, i) {
                             if (v != "") {
-                                var value = v.replace(v.split(":")[0].trim() + ":", "");
-                                arr.push({ name: v.split(":")[0].trim(), value: value });
+                                if (v.split('/*')[1] != undefined) {
+                                    var value = v.split('*/')[1].split(':')[1].trim();
+                                    arr.push({ name: v.split('*/')[1].split(':')[0].trim(), value: value, description: v.split('/**')[1].split('*/')[0].trim() });
+                                }
+                                else {
+                                    var value = v.replace(v.split(":")[0].trim() + ":", "");
+                                    arr.push({ name: v.split(":")[0].trim(), value: value });
+                                }
                             }
                         });
                     }

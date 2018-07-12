@@ -21,9 +21,17 @@ var Notify = /** @class */ (function (_super) {
         _this.state = {};
         return _this;
     }
+    /**
+     * @returns {any}
+     */
     Notify.prototype.render = function () {
         return this.__returnAlerts();
     };
+    /**
+     * defaul toastcontainer
+     * @returns {any}
+     * @private
+     */
     Notify.prototype.__returnAlerts = function () {
         return React.createElement(react_toastify_1.ToastContainer, { autoClose: 8000 });
     };
@@ -39,6 +47,10 @@ var Notify = /** @class */ (function (_super) {
         Notify.position = data["position"] != undefined ? data["position"] : Notify.position;
         Notify.time = data["time"] != undefined ? data["time"] : Notify.time;
     };
+    /**
+     * Set the reactdom render
+     * @returns {any}
+     */
     Notify.configuration = function () {
         ReactDOM.render(React.createElement(react_toastify_1.ToastContainer, { autoClose: 5000, hideProgressBar: false, newestOnTop: true }), this.containerNode);
     };
@@ -47,9 +59,21 @@ var Notify = /** @class */ (function (_super) {
         time: 5,
         message: "Notify Message"
     };
+    /**
+     * Default message
+     * @type {string}
+     */
     Notify.message = "Notify Message";
+    /**
+     * Default time 5 second
+     * @type {number}
+     */
     Notify.time = 5;
-    Notify.position = "top-center";
+    /**
+     * Default position top-right
+     * @type {string}
+     */
+    Notify.position = "top-right";
     /**
      *
      * @param {string} message
@@ -149,11 +173,14 @@ var Notify = /** @class */ (function (_super) {
         });
     };
     /**
-     * Todo :
+     * All alert position
+     * top-right, top-center, top-left and bottom-right, bottom-center, bottom-left
+     * @param {Object} data
+     * @returns {any}
      */
     Notify.notify = function (data) {
         Notify.renderScreenData(data);
-        react_toastify_1.toast("Default Notification !");
+        react_toastify_1.toast("Default Notification!");
         react_toastify_1.toast.success(Notify.message, {
             position: react_toastify_1.toast.POSITION.TOP_CENTER,
             autoClose: Notify.time * 1000

@@ -14,17 +14,22 @@ var React = require("react");
 var reactstrap_1 = require("reactstrap");
 var Button_1 = require("../button/Button");
 var FaIcon_1 = require("../faicon/FaIcon");
-require("../../css/sass/Panel.scss");
+require("../../css/karcin-ui.css");
 var Panel = /** @class */ (function (_super) {
     __extends(Panel, _super);
+    /**
+     * Intial values
+     * @param {PanelProps} props
+     */
     function Panel(props) {
         var _this = _super.call(this, props) || this;
         _this.init(props);
         return _this;
     }
-    Panel.prototype.componentWillReceiveProps = function (props) {
-        this.init(props);
-    };
+    /**
+     * Set the first state
+     * @param {PanelProps} props
+     */
     Panel.prototype.init = function (props) {
         this.state = {
             contentStyle: {},
@@ -34,6 +39,9 @@ var Panel = /** @class */ (function (_super) {
             accordion: props.accordion,
         };
     };
+    /**
+     * @returns {Object}
+     */
     Panel.prototype.render = function () {
         var _this = this;
         var childHtmlElement = this.props.children;
@@ -49,6 +57,16 @@ var Panel = /** @class */ (function (_super) {
                     else {
                         _this.openPanel();
                     } } }, openedIcon));
+            if (this.state.collapse) {
+                if (this.props.onOpened !== undefined) {
+                    this.props.onOpened();
+                }
+            }
+            else {
+                if (this.props.onClosed !== undefined) {
+                    this.props.onClosed();
+                }
+            }
         }
         if (this.state.accordion) {
             panelTitle = React.createElement("div", { className: "accordion-title " + (this.state.collapse ? 'active' : '') },
@@ -63,9 +81,12 @@ var Panel = /** @class */ (function (_super) {
         }
         return (React.createElement("div", { className: "panel-main " + this.props.color },
             panelTitle,
-            React.createElement(reactstrap_1.Collapse, { isOpen: this.state.collapse, onOpened: this.onOpened, onClosed: this.onClosed },
+            React.createElement(reactstrap_1.Collapse, { isOpen: this.state.collapse },
                 React.createElement("div", { className: "panel-content" }, childHtmlElement))));
     };
+    /**
+     * Props function returned
+     */
     Panel.prototype.onOpened = function () {
         if (this.props.onOpened !== undefined) {
             this.props.onOpened(event);
@@ -90,6 +111,10 @@ var Panel = /** @class */ (function (_super) {
             }
         }
     };
+    /**
+     * Initial props value
+     * @type {{title: string; color: string; collapsible: boolean; collapse: boolean; accordion: boolean}}
+     */
     Panel.defaultProps = {
         title: "",
         color: "default",

@@ -21,6 +21,10 @@ var Toolbar = /** @class */ (function (_super) {
      */
     function Toolbar(props) {
         var _this = _super.call(this, props) || this;
+        /**
+         * general variable
+         */
+        _this.paginationControl = true;
         _this.state = {
             paginationSelected: []
         };
@@ -35,28 +39,31 @@ var Toolbar = /** @class */ (function (_super) {
      */
     Toolbar.prototype.render = function () {
         var _this = this;
+        // pagination control 
+        if (this.props.options.pagination !== undefined && this.props.options.pagination && this.props.store !== undefined && this.props.store.props.totalCount !== 0) {
+            this.paginationControl = true;
+        }
+        else {
+            this.paginationControl = false;
+        }
+        console.log(this.props.store.props.totalCount);
         if (this.props.type == "footer") {
             // footer Html Elements
             return React.createElement("div", { className: "data-grid-footer" },
-                React.createElement(reactstrap_1.Row, null,
+                React.createElement(reactstrap_1.Row, null, (this.paginationControl) ?
                     React.createElement(reactstrap_1.Col, { xs: "4" },
-                        React.createElement("div", { className: "showing" })),
-                    (this.props.options.pagination !== undefined && this.props.options.pagination) ?
-                        React.createElement(reactstrap_1.Col, { xs: "4" },
-                            React.createElement("div", { className: "pagination" },
-                                React.createElement(Pagination_1.default, { pageCount: 5, type: "simple", typeShowLength: this.props.options.pageShow, data: (this.props.store !== undefined) ? this.props.store.props.data.length : [], selectedValue: function (e) {
-                                        _this.props.options.changePageFunc(e);
-                                    } })))
-                        : ''));
+                        React.createElement("div", { className: "pagination" },
+                            React.createElement(Pagination_1.default, { pageCount: 5, type: "simple", typeShowLength: this.props.options.pageShow, data: this.props.store.props.totalCount, selectedValue: function (e) {
+                                    _this.props.options.changePageFunc(e);
+                                } })))
+                    : ''));
         }
         else {
             // header Html Elements
             var data = this.props.data;
             var buttons = [];
             var self_1 = this;
-            if (data === undefined) {
-            }
-            else {
+            if (data !== undefined) {
                 var _loop_1 = function (i) {
                     var value = data[i];
                     buttons.push(React.createElement(reactstrap_1.Button, { key: i, color: "defaults", disabled: (value.disabled !== undefined ? value.disabled : false), onClick: function () {
@@ -79,7 +86,6 @@ var Toolbar = /** @class */ (function (_super) {
             }
             return React.createElement("div", { className: "data-grid-header" },
                 React.createElement(reactstrap_1.Row, null,
-                    React.createElement(reactstrap_1.Col, { xs: "2", className: "data-grid-search" }),
                     React.createElement(reactstrap_1.Col, { xs: { size: 4, offset: 6 }, className: "header-buttons" },
                         React.createElement(reactstrap_1.ButtonGroup, null, buttons))));
         }
