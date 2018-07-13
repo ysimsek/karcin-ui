@@ -54,6 +54,7 @@ export default class CheckInputExample extends React.Component<any,any>{
                 value={"name"}
                 checkObjects={this.state.dataSelect}
                 onChange={this.handleChange.bind(this)}/>
+
         </div>
     }
     handleChange(e){

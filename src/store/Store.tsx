@@ -223,9 +223,9 @@ export default class Store {
         if(page !== undefined){
             let pageData:any = {};
             pageData['start'] = pageShow * (page - 1);
-            pageData['limit'] = pageShow;   
+            pageData['limit'] = pageShow;
             this.props.endPoint.paging(pageData, ()=>{
-                debugger;
+                
             });
         }
     }

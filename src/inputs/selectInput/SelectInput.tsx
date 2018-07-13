@@ -429,7 +429,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
                 });
 
             }else {
-                let newArray = this.state.selectedItem[0];
+                let newArray = this.state.itemActive[0];
                 target['id'] = newArray[this.props.id];
                 target['name'] = this.props.name;
                 target['value'] = newArray[this.props.value];

@@ -11,15 +11,15 @@ export default class AjaxRequest {
     ajaxCallControl = true;
 
     props: basicObject = {
-        type :'get',
-        method : 'findAll',
-        processor : '',
-        url : window.location.origin + '/karcin-auth/rest-api',
-        headers : {},
-        data:[]
+        type: 'post',
+        method: 'findAll',
+        processor: '',
+        url: window.location.origin + '/karcin-auth/rest-api',
+        headers: {},
+        data: []
     };
 
-    ajaxProps: basicObject;
+    ajaxProps: basicObject = {};
 
     constructor(props?: Object, callback?: any) {
         // get object props control
@@ -35,29 +35,27 @@ export default class AjaxRequest {
     }
 
     ajaxPropsMerge() {
-        if(this.props.processor !== undefined && this.props.processor !== ''){
+        if (this.props.processor !== undefined && this.props.processor !== '') {
             this.ajaxCallControl = true;
             this.ajaxProps = {
-                method : this.props.type,
-                url : this.props.url,
-                headers : this.props.headers,
-                data : {
+                method: this.props.type,
+                url: this.props.url,
+                headers: this.props.headers,
+                data: {
                     'processor': this.props.processor,
                     'method': this.props.method,
                     'data': this.props.data
                 }
             };
-        }else {
+        } else {
             this.ajaxCallControl = false;
         }
     }
 
 
     call() {
-        if(this.ajaxCallControl){
-            // token control method
-            this.tokenControl();
-            axios(this.ajaxProps).then((response) => {
+        if (this.props.processor !== undefined && this.props.method) {
+            axios(this.ajaxProps).then((response:any) => {
                 // props success control
                 if (this.props['successCallback'] !== undefined) {
                     this.props['successCallback'](response);
@@ -71,7 +69,7 @@ export default class AjaxRequest {
                 // token control method
                 this.tokenControl(response['token']);
 
-            }).catch((error) => {
+            }).catch((error:any) => {
                 // props error control
                 if (this.props['errorCallback'] !== undefined) {
                     this.props['errorCallback'](error);
@@ -82,29 +80,28 @@ export default class AjaxRequest {
                     this.props['callback'](error);
                 }
             });
-        }else {
+        } else {
             throw new Error('Lütfen zorunlu olan (processor ve method) giriniz.');
         }
 
     }
 
 
+    tokenControl(token: any) {
+        let returnToken: any;
 
-    tokenControl(token?:any){
-        let returnToken:any;
-
-        if(token !== undefined){
+        if (token !== undefined) {
             localStorage.setItem('token', token);
             returnToken = token;
-        }else {
-            if(this.props.headers.token !== undefined) {
+        } else {
+            if (this.props.headers.token !== undefined) {
                 returnToken = this.props.header.token;
-            } else if(localStorage.getItem('token') !==  null){
+            } else if (localStorage.getItem('token') !== null) {
                 returnToken = localStorage.getItem('token');
             }
         }
 
-        if(returnToken !== undefined){
+        if (returnToken !== undefined) {
             this.props['headers']['token'] = returnToken;
             return returnToken;
         }

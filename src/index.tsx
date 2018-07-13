@@ -16,7 +16,7 @@ import List from "./functional/list/List";
 import ListItem from "./functional/list/ListItem";
 import Progress from "./functional/progress/Progress";
 import CheckList from "./functional/list/CheckList";
-
+import DataForm from "./functional/dataform/DataForm";
 
 import NumericInput from "./inputs/NumericInput";
 import PasswordInput from "./inputs/PasswordInput";
@@ -30,7 +30,6 @@ import ToggleButton from "./input/ToggleButton";
 
 import DateInput from "./datepicker/DateInput";
 
-
 import AreaChart from "./chart/areachart/SimpleAreaChart";
 import BarChart from "./chart/barchart/BarChart";
 import ComplexBarChart from "./chart/barchart/ComplexBarChart";
@@ -43,10 +42,17 @@ import CylinderChart from "./chart/extrachart/CylinderChart";
 import PyramidChart from "./chart/extrachart/PyramidChart";
 import LineChartTrend from "./chart/linechart/LineChartTrend";
 import MapChart from "./chart/mapchart/MapChart";
+import DynamicChart from "./chart/linechart/DynamicChart";
+
+
+
+
 import ContextMenu from "./functional/contextmenu/contextMenu";
 import Store from "./store/Store";
 import Calendar from "./functional/calendar/Calendar";
 import Loading from "./functional/loading/Loading";
+import AutoComplate from "./functional/autocomplate/AutoComplate";
+
 
 import "./css/karcin-ui.css";
 
@@ -71,6 +77,7 @@ export {
     TextInput,
     TextArea,
     RadioInput,
+    DataForm,
     CheckInput,
     DataGrid,
     Notify,
@@ -90,9 +97,11 @@ export {
     CylinderChart,
     PyramidChart,
     LineChartTrend,
+    DynamicChart,
     Store,
     ContextMenu,
     Calendar,
-    Loading
+    Loading,
+    AutoComplate
 };
 export default Button;

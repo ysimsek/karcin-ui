@@ -102,6 +102,15 @@
     },
     {
       "id":9,
+      "name":"DataForm",
+      "title":"DataForm",
+      "icon":"fa-filter",
+      "href":"#/Components/DataForm",
+      "samples":"components/examples/DataFormExample",
+      "library":"functional/dataform/DataForm"
+    },
+    {
+      "id":9,
       "name":"List",
       "title":"List",
       "icon":"fa-list",
@@ -179,6 +188,16 @@
       "samples":"components/examples/LoadingExample",
       "library":"functional/loading/Loading",
       "description":"<Loading/>"
+    },
+    {
+      "id":17,
+      "name":"AutoComplate",
+      "title":"AutoComplate",
+      "icon":"fa-spinner",
+      "href":"#/Components/AutoComplate",
+      "samples":"components/examples/AutoComplateExample",
+      "library":"functional/autocomplate/AutoComplate",
+      "description":"<AutoComplate/>"
     },
     {
       "id":2,
@@ -389,6 +408,14 @@
           "href":"#/Components/MapChart",
           "samples":"components/charts/MapChartExam",
           "library":"chart/mapchart/MapChart"
+        },
+        {
+          "id":13,
+          "name":"DynamicChart",
+          "title":"DynamicChart",
+          "href":"#/Components/Dynamic",
+          "samples":"components/charts/DynamicChartExam",
+          "library":"chart/linechart/DynamicChart"
         }
 
       ]
