@@ -175,6 +175,6 @@ export default class LocaleEndPoint extends BaseClass {
     }
 
     paging(page:any){
-
+        
     }
 }

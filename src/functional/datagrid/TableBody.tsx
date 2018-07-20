@@ -35,7 +35,7 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
             fields: this.props.fields,
             clickActive: [],
             clickActiveRow: [],
-            showingPageData: null
+            showingPageData: props.showingPageData
         }
     }
 
@@ -43,12 +43,12 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
      * Rerender props values
      * @param props
      */
-    componentWillReceiveProps(props: any) {
+    UNSAFE_componentWillReceiveProps(props: TableBodyProps) {
         this.props = props;
         this.setState({
-            store: props.store,
-            fields: props.fields,
-            showingPageData:props.showingPageData
+            store : props.store,
+            fields : props.fields,
+            showingPageData : props.showingPageData
         });
     }
 

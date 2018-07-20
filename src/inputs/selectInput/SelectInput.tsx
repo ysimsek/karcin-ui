@@ -93,7 +93,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
 
         this.state = {
             itemActive : [],
-            selectedItem : [],
+            selectedItem : this.props.activeItem,
             inputText : {value:""},
             showing : {multiDrop:false},
             dropDownItems: {data:[]},
@@ -116,14 +116,14 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
             }
         });
 
-        this.itemActive();
-
     }
 
 
     UNSAFE_componentWillReceiveProps(props: SelectInputProps) {
         this.props = props;
-        this.forceUpdate();
+        this.setState({
+            selectedItem:this.props.activeItem
+        });
     }
 
 
@@ -155,7 +155,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
 
         let activeId:any = '';
 
-        if(this.state.selectedItem !== undefined && this.state.selectedItem.length > 0 && this.state.itemActive.length <= 0){
+        /*if(this.state.selectedItem !== undefined && this.state.selectedItem.length > 0 && this.state.itemActive.length <= 0){
             activeId = this.state.selectedItem[0][this.props.id];
         }else {
             if(this.state.itemActive.length > 0){
@@ -163,6 +163,11 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
             }else {
                 activeId = '';
             }
+        }*/
+        if(this.props.activeItem !== (undefined || null)){
+            activeId = this.props.activeItem;
+        }else {
+            activeId = '';
         }
 
         if(this.props.placeholder !== false) {
@@ -244,7 +249,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
     getMultiSelectItem(){
         let getSelectItem:any = [];
 
-        if(this.state.selectedItem.length > 0){
+        if(this.state.selectedItem !== undefined && this.state.selectedItem.length > 0){
             this.state.selectedItem.forEach((value:any, index:number) => {
                 getSelectItem.push(<div className="select-item" key={index}><span>{(this.props.selectedRenderer !== undefined) ? this.props.selectedRenderer(value) : value[this.props.value]}</span><i className="close-button" onClick={() => {this.removeSelectItem(index)}}><FaIcon code="fa-times"/></i></div>);
             });
@@ -331,12 +336,12 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
      * @param value
      */
     addSelectedItem(value:any){
-        this.state.selectedItem.push(value);
-        this.state.itemActive.push(value);
+        let items = this.state.selectedItem.slice(0);
+        items.push(value);
         this.state.inputText.value = "";
         this.state.active.arrowActive = null;
         this.forceUpdate();
-        this.onChangeProps();
+        this.onChangeProps(items);
     }
 
     /**
@@ -412,27 +417,23 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
     /**
      * props onChange methodu çalıştırma
      */
-    onChangeProps(){
+    onChangeProps(items?:any){
         if(this.props.onChange !== undefined){
             let target:any = {};
 
             if(this.props.type === "multi"){
-                let newArray:any = this.state.selectedItem;
-                target['id'] = [];
                 target['name'] = this.props.name; 
                 target['value'] = [];
-                target['parsedValue'] = newArray;
+                target['parsedValue'] = items;
 
-                newArray.forEach((val:any) => {
-                    target['id'].push(val[this.props.id]);
-                    target['value'].push(val[this.props.value]);
+                items.forEach((val:any) => {
+                    target['value'].push(val[this.props.id]);
                 });
 
             }else {
                 let newArray = this.state.itemActive[0];
-                target['id'] = newArray[this.props.id];
                 target['name'] = this.props.name;
-                target['value'] = newArray[this.props.value];
+                target['value'] = newArray[this.props.id];
                 target['parsedValue'] = newArray;
             }
 
@@ -450,9 +451,9 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
                     this.state.selectedItem.push(value);
                 });
             }else {
-                this.state.selectedItem.push(this.props.activeItem);
+                //this.state.selectedItem = this.props.activeItemactiveItem
             }
-            this.render();
+            this.forceUpdate();
         }
     }
 }

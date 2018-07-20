@@ -27,7 +27,6 @@ import RadioInput from "./inputs/RadioInput";
 import CheckInput from "./inputs/CheckInput";
 import ToggleButton from "./input/ToggleButton";
 
-
 import DateInput from "./datepicker/DateInput";
 
 import AreaChart from "./chart/areachart/SimpleAreaChart";
@@ -45,14 +44,14 @@ import MapChart from "./chart/mapchart/MapChart";
 import DynamicChart from "./chart/linechart/DynamicChart";
 
 
-
-
 import ContextMenu from "./functional/contextmenu/contextMenu";
 import Store from "./store/Store";
 import Calendar from "./functional/calendar/Calendar";
 import Loading from "./functional/loading/Loading";
 import AutoComplate from "./functional/autocomplate/AutoComplate";
 
+import FileExport from './functional/fileExport/FileExport';
+import AjaxRequest from './request/AjaxRequest';
 
 import "./css/karcin-ui.css";
 
@@ -102,6 +101,8 @@ export {
     ContextMenu,
     Calendar,
     Loading,
-    AutoComplate
+    AutoComplate,
+    FileExport,
+    AjaxRequest
 };
 export default Button;

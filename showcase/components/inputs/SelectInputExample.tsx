@@ -22,7 +22,8 @@ export default class SelectInputExample extends React.Component<any,any>{
     constructor(props:any){
         super(props);
         this.state = {
-            selectInput : ""
+            selectInput : "",
+            singleActive: 3
         }
     }
     render(){
@@ -34,9 +35,7 @@ export default class SelectInputExample extends React.Component<any,any>{
                     id={"id"}
                     value={"project"}
                     onChange={this.handleChange2.bind(this)}
-                    activeItem={[{
-                        id:3,name:"karcin-skeleton",userName:"karcin-skeleton",project:"KARÇİN-SKELETON", img: "http://worldonline.media.clients.ellingtoncms.com/img/profiles/2010/Feb/19/lee-head-avatar-small_r48x48.jpg?5dda7ebe3a0a47b731bc018fa5259827222aab62"
-                    }]}
+                    activeItem={this.state.singleActive}
                 />
                 <br/>
                 <SelectInput
@@ -74,14 +73,17 @@ export default class SelectInputExample extends React.Component<any,any>{
             </div>;
     }
     handleChange(e){
+        debugger;
         let state = [];
         state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
         this.setState(state);
         this.forceUpdate();
     }
 
-    handleChange2(e){
-        console.log(e);
+    handleChange2(e:any){
+        this.setState({
+            singleActive: e.target.value
+        })
     }
 
     rendererDropDown(value:any){

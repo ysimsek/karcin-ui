@@ -58,7 +58,7 @@ export default class Store {
      */
     endPointCallback(response: any) {
         if (response !== undefined) {
-            this.props.data = response[this.props.responseData];
+            this.props.data = this.props.responseData !== undefined ? response[this.props.responseData] : response;
             this.updateProps(response);
         }
 
@@ -77,7 +77,7 @@ export default class Store {
      */
     read(callback?:any) {
         this.props.endPoint.read(this.props, (data:any)=>{
-            console.log(data);
+            this.endPointCallback(data);
         });
         this.__callback(this.props.data);
 
@@ -224,8 +224,9 @@ export default class Store {
             let pageData:any = {};
             pageData['start'] = pageShow * (page - 1);
             pageData['limit'] = pageShow;
+
             this.props.endPoint.paging(pageData, ()=>{
-                
+                debugger;    
             });
         }
     }

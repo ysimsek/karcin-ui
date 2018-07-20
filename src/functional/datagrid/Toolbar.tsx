@@ -61,12 +61,19 @@ export default class Toolbar extends React.Component<ToolbarProps, ToolbarState>
      */
     render(): any {
          // pagination control 
-         if(this.props.options.pagination !== undefined && this.props.options.pagination && this.props.store !== undefined && this.props.store.props.totalCount !== 0){
+         let countData = 0;
+         if(this.props.options.pagination !== undefined && this.props.options.pagination && this.props.store !== undefined){
              this.paginationControl = true;
-            }else {
+
+             if(this.props.store.props.endPoint.props.endPoint === 'localEndPoint'){
+                 countData = this.props.store.props.data.length;
+             }else {
+                 countData = this.props.store.props.totalCount;
+             }
+
+        }else {
                 this.paginationControl = false;
-            }
-            console.log(this.props.store.props.totalCount);
+        }
 
 
         if (this.props.type == "footer") {
@@ -79,7 +86,7 @@ export default class Toolbar extends React.Component<ToolbarProps, ToolbarState>
                                 <Pagination pageCount={5}
                                             type={"simple"}
                                             typeShowLength={this.props.options.pageShow}
-                                            data={this.props.store.props.totalCount}
+                                            data={countData}
                                             selectedValue={(e:any) => {
                                                 this.props.options.changePageFunc(e);
                                             }}/>
