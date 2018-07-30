@@ -42,6 +42,7 @@ import PyramidChart from "./chart/extrachart/PyramidChart";
 import LineChartTrend from "./chart/linechart/LineChartTrend";
 import MapChart from "./chart/mapchart/MapChart";
 import DynamicChart from "./chart/linechart/DynamicChart";
+import GetInput from "./functional/getInput/GetInput";
 
 
 import ContextMenu from "./functional/contextmenu/contextMenu";
@@ -103,6 +104,7 @@ export {
     Loading,
     AutoComplate,
     FileExport,
-    AjaxRequest
+    AjaxRequest,
+    GetInput
 };
 export default Button;

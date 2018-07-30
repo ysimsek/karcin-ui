@@ -46,6 +46,7 @@ export default class SelectInputExample extends React.Component<any,any>{
                     value={"project"}
                     onChange={(e)=>{this.handleChange(e)}}
                     type={"multi"}
+                    activeItem={this.state.selectInput2}
                 />
                 <br/>
                 <SelectInput
@@ -73,9 +74,8 @@ export default class SelectInputExample extends React.Component<any,any>{
             </div>;
     }
     handleChange(e){
-        debugger;
         let state = [];
-        state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
+        state[e.target.name] = e.target.value;
         this.setState(state);
         this.forceUpdate();
     }

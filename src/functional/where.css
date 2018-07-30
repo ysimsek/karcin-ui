@@ -1,0 +1,122 @@
+.condition {
+}
+
+.condition .box-group {
+    width: 100%;
+    padding: 7px;
+    background-color: #ffffff;
+    border: solid 1px #d3d3d3;
+    position: relative;
+    border-radius: 5px;
+}
+
+
+.condition .box-group .box-head {overflow: hidden;}
+.condition .box-group .box-head .where-buttons {float: left;}
+.condition .box-group .box-head .costom-buttons {float: right;}
+
+.condition .box-group .box-group {
+    margin-top: 8px;
+}
+
+.condition .box {
+    width: 100%;
+    display: inline-table;
+    background-color: #e2e5e7;
+    border:solid 1px #ccc;
+    padding: 10px;
+    position: relative;
+    margin-top: 7px;
+    border-radius: 3px;
+}
+.condition .box .box-field {width: 30%;float: left;padding-right:10px;}
+.condition .box .box-field:first-child {padding-left: 0px;} 
+.condition .box .box-delete {width: 10%;float: right;text-align: right;}
+.condition .box-content {
+    padding-left: 20px;
+    position: relative;
+}
+.condition .box-content .box:first-child {
+    margin-top: 7px;
+}
+
+.condition .box:before, .condition .box-group:before {
+    content:"";
+    position: absolute;
+    width: 2px;
+    height: calc(50% + 15px);
+    background: #b4b2b2;
+    top:-16px;
+    left:-15px;
+
+}
+
+.condition > .box-group:after, 
+.condition > .box-group:before { 
+    content:initial !important;
+}
+
+.condition .box:after, .condition .box-group:after {
+    content:"";
+    position: absolute;
+    width: 2px;
+    height: calc(50% + 15px);
+    background: #b4b2b2;
+    top:50%;
+    left:-15px;
+}
+
+
+.condition .box-content .box:last-child:after, .condition .box-content .box-group:last-child:after {
+    content:initial;
+}
+
+.condition .box .line, .condition .box-group .line {
+    width: 15px;
+    height: 2px;
+    position: absolute;
+    top:calc(50% - 2px);
+    left:-15px;
+    background-color: #b4b2b2;
+}
+
+.condition .box .karcin-select-input .form-group {
+    margin-bottom: 0;
+    display: block;
+}
+
+.condition .box .karcin-select-input .form-group select, .condition .box .form-control {
+    font-size: 13px;
+    padding: 5px;
+    height: auto;
+}
+.condition .box .form-control label {
+    margin-bottom: 0;
+}
+
+.condition .box .form-control.radio-properties {
+    padding: 3px;
+}
+
+.condition .box .box-field .listBox {}
+.condition .box .box-field .listBox .listInput {width: 80%;display: inline-block;}
+.condition .box .box-field .listBox .listButton {width: 20%;display: inline-block;text-align: right;}
+.condition .box .box-field .listBox .selectedItems {}
+.condition .box .box-field .listBox .selectedItems .item {
+    padding: 1px 3px;
+    background-color: #fff;
+    border: solid 1px #cccccc;
+    display: inline-block;
+    margin-right: 2px;
+    font-size: 11px;
+    border-radius: 5px;
+}
+.condition .box .box-field .listBox .selectedItems .item span {
+    display: inline-block;
+}
+.condition .box .box-field .listBox .selectedItems .item .removeItem {
+    cursor: pointer;
+    display: inline-block;
+    color: #dc3545;
+    margin-left: 2px;
+}
