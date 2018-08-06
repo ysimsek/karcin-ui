@@ -1,5 +1,6 @@
 import * as React from "react";
 import 'bootstrap/dist/css/bootstrap.css';
+import TypeFormating from '../../applications/TypeFormating';
 
 export interface TableBodyProps {
     store: any;
@@ -56,7 +57,15 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
      * @returns {any}
      */
     render():any {
-        return <tbody>{this.getItems()}</tbody>;
+        let showingControl = true;
+        if(this.props.showingPageData.pagination){
+            if(this.props.store.props.pageData.start !== undefined){
+                showingControl = true;
+            }else {
+                showingControl = false;
+            }
+        }
+        return <tbody>{(showingControl ? this.getItems() : "")}</tbody>;
     }
 
     /**
@@ -81,7 +90,15 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
 
                 let Cell = [];
                 for (let j = 0; j < this.state.fields.length; j++) {
+
                     let valueField = this.state.fields[j];
+
+                    new TypeFormating({
+                        data: value[valueField.value],
+                        property: valueField.property
+                    }, (data:any)=>{
+                        value[valueField.value] = data;
+                    });
 
                     // style
                     let style: standartObject = {};
@@ -98,30 +115,27 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
                     </td>);
                 }
 
-
-                    Rows.push(<tr key={i} className={(self.state.clickActive.indexOf(getId) !== -1) ? 'active' : ''}
-                                  onClick={(e) => {
-                                      this.onClickRow(e, getId, data[i])
-                                  }}>{(self.props.rowRenderer !== undefined) ? self.props.rowRenderer(value, this.props.fields) : Cell}</tr>);
+                Rows.push(<tr key={i} className={(self.state.clickActive.indexOf(getId) !== -1) ? 'active' : ''}
+                                onClick={(e) => {
+                                    this.onClickRow(e, getId, data[i])
+                                }}>{(self.props.rowRenderer !== undefined) ? self.props.rowRenderer(value, this.props.fields) : Cell}</tr>);
 
             }
         }
 
-        
-        if(this.props.showingPageData.pagination !== true || this.props.store.props.totalCount <= 0) {
+        if(!this.props.showingPageData.pagination) {
             return Rows;
         }else {
-            let pagesData = [];
-            let start = this.props.showingPageData.pageShow * (this.props.showingPageData.page - 1);
-            let finis = this.props.showingPageData.pageShow * this.props.showingPageData.page;
+            let pageData = [];
+            let pages = this.props.store.props.pageData;
 
             for(let i = 0; i < Rows.length; i++){
-                if(i >= start && i < finis){
-                    pagesData.push(Rows[i]);
+                if(i >= pages.start && i < (pages.start + pages.limit)){
+                    pageData.push(Rows[i]);
                 }
             }
 
-            return pagesData;
+            return pageData;
         }
 
     }

@@ -909,13 +909,23 @@ New Reactstrap CSS
     -ms-transition: background .3s ease;
 }
 
-.karcin-data-grid .table thead tr th.order-active {
+.karcin-data-grid .table thead tr th.order-active,
+.karcin-data-grid .table thead tr th.filter-active {
     background-color: #4e9dfb;
     color:#ffffff;
 }
 
-.karcin-data-grid .table thead tr th.order-active span:not(.filter):hover {
-    color:#ffffff;
+.karcin-data-grid .table thead tr th.order-active span:hover,
+.karcin-data-grid .table thead tr th.filter-active span:hover {
+    color: #ffffff;
+}
+
+.karcin-data-grid .table thead tr th.filter-active .filter {
+    color: #274b75 !important;
+}
+
+.karcin-data-grid .table thead tr th.order-active .order {
+    color: #274b75 !important;
 }
 
 .karcin-data-grid .table thead tr td:last-child,
@@ -943,6 +953,10 @@ New Reactstrap CSS
 .karcin-data-grid .table thead tr td span:hover,
 .karcin-data-grid .table thead tr th span:hover {
     color: #636161;
+} 
+
+.karcin-data-grid .table thead tr th span.filter-active {
+    color: #4e9dfb;
 }
 
 .karcin-data-grid .table thead tr th span.order.active {

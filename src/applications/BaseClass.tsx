@@ -31,14 +31,15 @@ export default class BaseClass {
     }
 
 
-    response(callback?:any, callbackData?:any){
+    response(callback?:any, callbackData?:any, count?:any){
 
         //this.props.data = this.__dataMap;
         let parentClass = Object.assign(this);
         
         parentClass.__dataMap = parentClass.props.data;
+        parentClass.__totalCount = count !== undefined ? count : parentClass.__dataMap.length;
         
-        let callData = (callbackData !== undefined) ? callbackData : parentClass.__dataMap;
+        let callData = (callbackData !== undefined) ? callbackData : {'data' : parentClass.__dataMap, 'totalCount':parentClass.__totalCount};
 
         if(parentClass.__callback !== undefined){
             parentClass.__callback(callData);
@@ -53,5 +54,14 @@ export default class BaseClass {
         }
 
         return parentClass.__dataMap;
+    }
+
+
+    mappingDataFind(response:any,mapping:any) {
+        return this.findResponseData(response,mapping.split('.'))
+    }
+
+    findResponseData(response:any,mapping:any) { 
+        return mapping.length ? this.findResponseData(response[mapping[0]],mapping.slice(1)) : response;
     }
 }

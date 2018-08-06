@@ -3,16 +3,6 @@
   "data": [
     {
       "id":1,
-      "name":"Where",
-      "title":"Where",
-      "icon":"fa-hand-pointer-o",
-      "href":"#/Components/Where",
-      "samples":"components/WhereTemplateExample",
-      "library":"functional/WhereTemplate",
-      "description":"Use karcin-ui custom button styles for actions in forms, dialogs, and more. Includes support for a handful of contextual variations, sizes, states, and more."
-    },
-    {
-      "id":1,
       "name":"Button",
       "title":"Button",
       "icon":"fa-hand-pointer-o",
@@ -315,6 +305,16 @@
           "description":"<DataGrid> is a smart grid with filter, sort, Crud operations, search capabilities. Manage the all array data."
         }
       ]
+    },
+    {
+      "id":5,
+      "name":"Condition",
+      "title":"Condition",
+      "icon":"fa-hand-pointer-o",
+      "href":"#/Components/Condition",
+      "samples":"components/examples/ConditionExample",
+      "library":"functional/condition/Condition",
+      "description":""
     },
     {
       "id":4,

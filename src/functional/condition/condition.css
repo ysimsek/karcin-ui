@@ -12,7 +12,11 @@
 
 
 .condition .box-group .box-head {overflow: hidden;}
-.condition .box-group .box-head .where-buttons {float: left;}
+.condition .box-group .box-head .where-buttons {
+    float: left;
+    position: relative;
+    z-index: 999;
+}
 .condition .box-group .box-head .costom-buttons {float: right;}
 
 .condition .box-group .box-group {

@@ -4,8 +4,10 @@ import BaseClass from '../applications/BaseClass';
 export default class LocaleEndPoint extends BaseClass {
 
     __dataMap:any[] = [];
+    __totalCount:any = 0;
     __oldDataMap:any[] = [];
     __callback:any;
+    __paging:any = {start:0, limit:0};
 
     props:any = {
         data: [],
@@ -30,7 +32,7 @@ export default class LocaleEndPoint extends BaseClass {
      * @param callback 
      */
     read(props:any, callback?:any){
-        this.__oldDataMap = this.__dataMap.slice(0);
+        this.__oldDataMap = this.props.data.slice(0);
         this.mergeProps(props);
         return this.response(callback);
     }
@@ -163,18 +165,30 @@ export default class LocaleEndPoint extends BaseClass {
      * @param value 
      * @param callback 
      */
-    filter(fieldName:any, value:any, callback?:any){
-
-        let data:any = this.__dataMap.filter((val:any, index:any)=>{
-            if(val[fieldName].toUpperCase().indexOf(value.toUpperCase()) !== -1){
-                return val;
-            }
-        });
+    filter(fieldName:any, value:any, operator:any, callback?:any){
+        let data:any;
+        if(value !== "" && value !== null){
+            data = this.__dataMap.filter((val:any, index:any)=>{
+                if(val[fieldName].toUpperCase().indexOf(value.toUpperCase()) !== -1){
+                    return val;
+                }
+            });
+        }else {
+            data = this.__oldDataMap.slice(0);
+        }
+        
+        this.props.data = data;
 
         return this.response(callback, data);
     }
 
-    paging(page:any){
-        
+    paging(type?:any){
+        if(this.props.pageData !== undefined){
+            for(let item in this.props.pageData){
+                this.__paging[item] = this.props.pageData[item];
+            }
+
+            this.__callback();
+        }
     }
 }

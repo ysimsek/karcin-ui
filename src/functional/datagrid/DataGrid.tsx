@@ -6,7 +6,6 @@ import '../../css/karcin-ui.css';
 import TableBody from './TableBody';
 import TableHead from './TableHead';
 import Toolbar from './Toolbar';
-import {Data} from "reactstrap/lib/Popper";
 
 export interface DataGridProps {
     /**
@@ -113,6 +112,11 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
         }
     }
 
+    storeRun(){
+        this.props.store.pagination(this.props.page, this.props.pageShow);
+        this.props.store.storeRead();
+    }
+
     /**
      *
      */
@@ -151,13 +155,10 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
 
             <Toolbar type="footer"
                      store={this.props.store}
-                     options={{
-                        'pagination': this.props.pagination,
-                        'pageShow': this.props.pageShow,
-                        'changePageFunc': (e: any) => {
-                            self.pageChange(e)
-                        }
-                    }}/>
+                     {...this.props}
+                     changePage={(e)=>{
+                            this.pageChange(e);
+                        }}/>
         </div>;
 
         return this.returnComponent;
@@ -167,6 +168,8 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
 
 
     componentDidMount() {
+        this.storeRun();
+
         setTimeout(() => {
             this.columnStyle();
             this.dataGridLoadComponent();
@@ -175,7 +178,12 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
         window.addEventListener('load', () => {
             this.columnStyle();
             this.dataGridLoadComponent();
-        })
+        });
+
+        window.addEventListener('resize', () => {
+            this.columnStyle();
+            this.dataGridLoadComponent();
+        });
     }
 
     resetData() {
@@ -235,7 +243,7 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
 
 
     pageChange(event?: any) {
-        if(event !== undefined && this.props.changePage){
+        if(event !== undefined){
             this.props.store.pagination(event.page, this.props.pageShow);
         }
     }

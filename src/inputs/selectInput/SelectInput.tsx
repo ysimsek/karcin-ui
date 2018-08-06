@@ -102,18 +102,20 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         };
 
         // boş alana tıklanıldığını kontol eden method
-        window.addEventListener('click', (event:any) => {
-            let control = false;
-            event.path.forEach((value:any)=>{
-                if(value.className !== undefined && value.className !== "" && value.className.indexOf("karcin-select-input") !== -1 && value.className.indexOf('select-' + this.state.randomId) !== -1){
-                    control = true;
+        if(this.props.type === 'single'){
+            window.addEventListener('click', (event:any) => {
+                let control = false;
+                event.path.forEach((value:any)=>{
+                    if(value.className !== undefined && value.className !== "" && value.className.indexOf("karcin-select-input") !== -1 && value.className.indexOf('select-' + this.state.randomId) !== -1){
+                        control = true;
+                    }
+                });
+
+                if(!control){
+                    this.inputFocusOut();
                 }
             });
-
-            if(!control){
-                this.inputFocusOut();
-            }
-        });
+        }
 
     }
 

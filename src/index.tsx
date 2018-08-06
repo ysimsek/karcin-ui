@@ -54,6 +54,8 @@ import AutoComplate from "./functional/autocomplate/AutoComplate";
 import FileExport from './functional/fileExport/FileExport';
 import AjaxRequest from './request/AjaxRequest';
 
+import Condition from './functional/condition/Condition';
+
 import "./css/karcin-ui.css";
 
 export {
@@ -105,6 +107,7 @@ export {
     AutoComplate,
     FileExport,
     AjaxRequest,
-    GetInput
+    GetInput,
+    Condition
 };
 export default Button;

@@ -8,15 +8,14 @@ import {
     Button,
     ButtonGroup
 } from 'reactstrap';
-import FaIcon from '../faicon/FaIcon';
-import Pagination from '../paging/Pagination';
+import {FaIcon, Pagination} from 'karcin-ui';
 
 
 export interface ToolbarProps {
     type?: string | any;
     store?: Array<any> | any;
     data?: Array<any>;
-    options?: object | any;
+    changePage?: any;
     paginationData?:React.EventHandler<any>;
 }
 
@@ -35,8 +34,7 @@ export default class Toolbar extends React.Component<ToolbarProps, ToolbarState>
      * Initial props value
      */
     static defaultProps: Partial<ToolbarProps> = {
-        type: "header",
-        options: {}
+        type: "header"
     };
 
     /**
@@ -61,11 +59,11 @@ export default class Toolbar extends React.Component<ToolbarProps, ToolbarState>
      */
     render(): any {
          // pagination control 
-         let countData = 0;
+         /*let countData = 0;
          if(this.props.options.pagination !== undefined && this.props.options.pagination && this.props.store !== undefined){
              this.paginationControl = true;
 
-             if(this.props.store.props.endPoint.props.endPoint === 'localEndPoint'){
+             if(this.props.store.__endPoint === 'localEndPoint'){
                  countData = this.props.store.props.data.length;
              }else {
                  countData = this.props.store.props.totalCount;
@@ -73,22 +71,22 @@ export default class Toolbar extends React.Component<ToolbarProps, ToolbarState>
 
         }else {
                 this.paginationControl = false;
-        }
+        }*/
 
 
         if (this.props.type == "footer") {
             // footer Html Elements
             return <div className="data-grid-footer">
                 <Row>
-                    {(this.paginationControl) ?
+                    {(this.props['pageShow'] !== undefined && this.props.store !== undefined && this.props.store.props.totalCount > 0) ?
                         <Col xs="4">
                             <div className="pagination">
                                 <Pagination pageCount={5}
                                             type={"simple"}
-                                            typeShowLength={this.props.options.pageShow}
-                                            data={countData}
+                                            typeShowLength={this.props['pageShow']}
+                                            data={this.props.store.props.totalCount}
                                             selectedValue={(e:any) => {
-                                                this.props.options.changePageFunc(e);
+                                                this.props.changePage(e);
                                             }}/>
                             </div>
                         </Col>
@@ -122,7 +120,7 @@ export default class Toolbar extends React.Component<ToolbarProps, ToolbarState>
 
             return <div className="data-grid-header">
                 <Row>
-                    <Col xs={{size: 4, offset: 6}} className="header-buttons">
+                    <Col xs={{size: 4, offset: 8}} className="header-buttons">
                         <ButtonGroup>
                             {buttons}
                         </ButtonGroup>

@@ -1,41 +1,25 @@
 import * as React from "react";
 import {Row, Col, ButtonGroup, Button} from "reactstrap";
-import SelectInput from '../inputs/selectInput/SelectInput';
-import './where.css';
-import FaIcon from '../functional/faicon/FaIcon';
-import Component from '../functional/getInput/GetInput';
+import SelectInput from '../../inputs/selectInput/SelectInput';
+import './condition.css';
+import FaIcon from '../../functional/faicon/FaIcon';
+import Component from '../../functional/getInput/GetInput';
 
-export interface WhereTemplateProps {
+export interface ConditionProps {
     data?:any[] | any;
+    field?:any[] | any;
     onChange?:React.EventHandler<any> | any;
 }
 // 'HelloProps' describes the shape of props.
 // State is never set so we use the '{}' type.
 
-export default class WhereTemplate extends React.Component<WhereTemplateProps, any> {
+export default class Condition extends React.Component<ConditionProps, any> {
     
     
     
-    data:any[] = [
-        {id:1, where:0, box:"group", children:[
-            {id:2, field:null, operator:null, value:null, box:'box'},
-            {id:3, field:null, operator:null, value:null, box:'box'},
-            {id:4, field:null, operator:null, value:null, box:'box'},
-        ]},
-        {id:6, where:0, box:"group", children:[
-            {id:7, field:null, operator:null, value:null, box:'box'},
-            {id:8, field:null, operator:null, value:null, box:'box'},
-            {id:9, field:null, operator:null, value:null, box:'box'},
-        ]},
-        {id:11, field:null, operator:null, value:null, box:'box'}
-    ];
+    data:any[] = [];
 
-    field:any = [
-        {id:1, field:'Deneme', fieldFullName:'deneme12.Asd'},
-        {id:2, field:'Denemes', fieldFullName:'deneme12.dsds'},
-        {id:3, field:'Denemeq', fieldFullName:'deneme12.wewew'},
-        {id:4, field:'Denemer', fieldFullName:'deneme12.bklklk'}
-    ];
+    field:any[] = [];
 
     likeOperator:any = [
         {id:1, value:'Başlangıç'},
@@ -62,12 +46,23 @@ export default class WhereTemplate extends React.Component<WhereTemplateProps, a
 
     whereData:any = [];
 
-    constructor(props:WhereTemplateProps){
+    constructor(props:ConditionProps){
         super(props);
 
         this.state = {
             startWhere: 0
         }
+
+        this.init(props);
+    }
+
+    UNSAFE_componentWillReceiveProps(props:ConditionProps){
+        this.init(props);
+    }
+
+    init(props:ConditionProps){
+        this.data = props.data;
+        this.field = props.field;
     }
 
     /**

@@ -1,6 +1,7 @@
 import Application from '../applications/Applications';
 import AjaxRequest from '../request/AjaxRequest';
 import BaseClass from '../applications/BaseClass';
+import { error } from 'util';
 
 export default class RemoteEndPoint extends BaseClass {
 
@@ -9,6 +10,7 @@ export default class RemoteEndPoint extends BaseClass {
     __filters:any[] = [];
     __orders:any[] = [];
     __paging:any = {start:0, limit:0};
+    __totalCount:any = null;
 
     // request
     requestStatus = true;
@@ -20,7 +22,8 @@ export default class RemoteEndPoint extends BaseClass {
         url: null,
         method: 'findAll',
         endPoint: 'remoteEndPoint',
-        responseData: 'data',
+        responseData: 'data.resultMap.data.data',
+        pageTotalData: 'data.resultMap.data.count',
         data: []
     };
 
@@ -29,6 +32,7 @@ export default class RemoteEndPoint extends BaseClass {
         this.props = Application.mergeObject(this.props, props);
         this.__callback = callback;
 
+        this.paging();
         this.call();
     };
 
@@ -73,18 +77,35 @@ export default class RemoteEndPoint extends BaseClass {
      */
     callbackReady(response: any, callback?:any) {
         this.requestStatus = true;
-        if (response !== undefined) {
-            this.__dataMap = response[this.props.responseData];
-            return this.response(callback, response);
+        let dataFind = this.mappingDataFind(response, this.props.responseData);
+        let totalCount = this.mappingDataFind(response, this.props.pageTotalData);
+
+        if(response !== undefined){
+            try{
+                if(dataFind !== undefined){
+                    this.props.data = dataFind;
+                    this.__totalCount = totalCount;
+                    return this.response(callback, undefined, totalCount);
+                }else {
+                    throw "reponse or responseData not undefined";
+                }
+            }catch(err){
+                throw new Error(err);
+            }
+        }else {
+            throw new Error('response empty!');
         }
+        
     }
+
+    
 
     /**
      * Data read
      * @param callback 
      */
     read(callback?:any) {
-        if (this.props.url !== undefined) {
+        if (this.props.processor !== undefined && this.props.method !== undefined) {
             this.call(callback);
         }
     }
@@ -95,8 +116,6 @@ export default class RemoteEndPoint extends BaseClass {
      */
     reset(callback?: any) {
         this.__dataMap = [];
-        this.__orders  = [];
-        this.__filters = [];
         return this.response(callback);
     }
 
@@ -199,7 +218,7 @@ export default class RemoteEndPoint extends BaseClass {
      * @param callback 
      */
     oldDataSort(callback?:any){
-        this.reset();
+        this.__orders = [];
         this.read(callback);
     }
 
@@ -212,31 +231,38 @@ export default class RemoteEndPoint extends BaseClass {
     filter(fieldName: any, value: any, operator: any, callback:any) {
         if (fieldName !== undefined && value !== undefined && operator !== undefined) {
             this.props.method = "findByFilters";
+
             if(this.__filters.length > 0){
                 let control = false;
-                this.__filters.forEach((value:any)=>{
-                    if(value['property'] === fieldName && value['value'] === value && value['operator'] === operator){
+                this.__filters.forEach((val:any, index:number)=>{
+                    if(val['property'] === fieldName && val['operator'] === operator){
                         control = true;
+                        this.__filters[index]['value'] = value;
                     }
-                })
+                });
+
                 if(!control){
                     this.__filters.push({"property": fieldName, "value": value, "operator" : operator});
                 }
             }else {
                 this.__filters.push({"property": fieldName, "value": value, "operator" : operator});
             }
+
             this.call(callback);
         } else {
             throw new Error('Field name empty');
         }
     }
 
-    paging(pageData:any, callback?:any){
-        if(pageData !== undefined){
-            for(let item in pageData){
-                this.__paging[item] = pageData[item];
+    paging(type?:any){
+        if(this.props.pageData !== undefined){
+            for(let item in this.props.pageData){
+                this.__paging[item] = this.props.pageData[item];
             }
-            this.call(callback);
+
+            if(type !== undefined && type){
+                this.call();
+            }
         }
     }
 }
