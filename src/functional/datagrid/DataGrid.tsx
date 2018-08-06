@@ -155,10 +155,10 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
 
             <Toolbar type="footer"
                      store={this.props.store}
-                     {...this.props}
-                     changePage={(e)=>{
-                            this.pageChange(e);
-                        }}/>
+                     changePage={(e:any)=> {
+                        this.pageChange(e);
+                    }}
+                     {...this.props} />
         </div>;
 
         return this.returnComponent;
@@ -242,7 +242,7 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
     }
 
 
-    pageChange(event?: any) {
+    pageChange(event: any) {
         if(event !== undefined){
             this.props.store.pagination(event.page, this.props.pageShow);
         }

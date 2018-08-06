@@ -15,12 +15,16 @@ import {Row,Col} from "reactstrap";
 
 
 
+
+
+
 export interface DataFormProps{
     col ?: number;
     fields ?: Array<any> | any;
     returnData ?: any;
     nameText?:any,
-    labelText?:any
+    labelText?:any,
+    visibilityText?:any
 }
 
 export default class DataForm extends React.Component<any,any>{
@@ -32,7 +36,8 @@ export default class DataForm extends React.Component<any,any>{
         col : 2,
         buttonName : "Kaydet",
         nameText: "name",
-        labelText:"label"
+        labelText:"label",
+        visibilityText: "visibility"
     }
 
     constructor(props:any){
@@ -54,40 +59,42 @@ export default class DataForm extends React.Component<any,any>{
         let components:Array<any> = [];
         let me:any = this;
         this.fieldLength = fields.length;
-        fields.map(function (val:any,idx:number | string) {
-            switch (val.type){
-                case "string" :
-                    components.push(<Col key={idx} md={12/me.props.col}>{me.getTextInput(val)}</Col>);
-                    break;
-                case "password" :
-                    components.push(<Col key={idx} md={12/me.props.col}>{me.getPasswordInput(val)}</Col>);
-                    break;
-                case "int" :
-                    components.push(<Col key={idx} md={12/me.props.col}>{me.getNumericInput(val)}</Col>);
-                    break;
-                case "select" :
-                    components.push(<Col key={idx} md={12/me.props.col}>{me.getSelectInput(val)}</Col>);
-                    break;
-                case "date" :
-                    components.push(<Col key={idx} md={12/me.props.col}>{me.getDateInput(val)}</Col>);
-                    break;
-                case "radio" :
-                    components.push(<Col key={idx} md={12/me.props.col}>{me.getRadioInput(val)}</Col>);
-                    break;
-                case "check" :
-                    components.push(<Col key={idx} md={12/me.props.col}>{me.getCheckInput(val)}</Col>);
-                    break;
-                case "textarea" :
-                    components.push(<Col key={idx} md={12/me.props.col}>{me.getTextArea(val)}</Col>);
-                    break;
-
+        fields.map((val:any,idx:number | string) =>  {
+            if(val[this.props.visibilityText] || val[this.props.visibilityText] === undefined){
+                console.log(val[this.props.visibilityText])
+                switch (val.type){
+                    case "string" :
+                        components.push(<Col key={idx} md={12/me.props.col}>{me.getTextInput(val)}</Col>);
+                        break;
+                    case "password" :
+                        components.push(<Col key={idx} md={12/me.props.col}>{me.getPasswordInput(val)}</Col>);
+                        break;
+                    case "int" :
+                        components.push(<Col key={idx} md={12/me.props.col}>{me.getNumericInput(val)}</Col>);
+                        break;
+                    case "select" :
+                        components.push(<Col key={idx} md={12/me.props.col}>{me.getSelectInput(val)}</Col>);
+                        break;
+                    case "date" :
+                        components.push(<Col key={idx} md={12/me.props.col}>{me.getDateInput(val)}</Col>);
+                        break;
+                    case "radio" :
+                        components.push(<Col key={idx} md={12/me.props.col}>{me.getRadioInput(val)}</Col>);
+                        break;
+                    case "check" :
+                        components.push(<Col key={idx} md={12/me.props.col}>{me.getCheckInput(val)}</Col>);
+                        break;
+                    case "textarea" :
+                        components.push(<Col key={idx} md={12/me.props.col}>{me.getTextArea(val)}</Col>);
+                        break;
+                }
             }
         });
         return components;
     }
     getTextInput(value:any){
         return <TextInput
-            name={value[this.props.name]}
+            name={value[this.props.nameText]}
             label={value[this.props.labelText]}
             value={this.state[value[this.props.nameText]]}
             onChange={this.handleChange.bind(this)}
@@ -95,7 +102,7 @@ export default class DataForm extends React.Component<any,any>{
     }
     getPasswordInput(value:any){
         return <PasswordInput
-            name={value[this.props.name]}
+            name={value[this.props.nameText]}
             label={value[this.props.labelText]}
             value={this.state[value[this.props.nameText]]}
             onChange={this.handleChange.bind(this)}
@@ -103,7 +110,7 @@ export default class DataForm extends React.Component<any,any>{
     }
     getNumericInput(value:any){
         return <NumericInput
-            name={value[this.props.name]}
+            name={value[this.props.nameText]}
             value={this.state[value[this.props.nameText]]}
             label={value[this.props.labelText]}
             onChange={this.handleChange.bind(this)}
@@ -111,7 +118,7 @@ export default class DataForm extends React.Component<any,any>{
     }
     getSelectInput(value:any){
         return <SelectInput
-            name={value[this.props.name]}
+            name={value[this.props.nameText]}
             items={this.props.values[value[this.props.nameText]]}
             label={value[this.props.labelText]}
             id={value.idField}
@@ -121,7 +128,7 @@ export default class DataForm extends React.Component<any,any>{
     }
     getDateInput(value:any){
         return <DateInput
-            name={value[this.props.name]}
+            name={value[this.props.nameText]}
             label={value[this.props.labelText]}
             value={this.state[value[this.props.nameText]]}
             onChange={this.handleChange.bind(this)}
@@ -175,12 +182,7 @@ export default class DataForm extends React.Component<any,any>{
      * TODO : POPOVER AND TOOLTIP EKLE
      */
     getChangeData() {
-        let data:any[] = [];
-        this.props.fields.forEach((value:any)=>{
-            value['formText'] = this.state[value[this.props.nameText]];
-            data.push(value);
-        });
-        
+        let data:any = this.state;
         return data;    
     }
 

@@ -13,7 +13,8 @@ import {
     PopoverHeader,
     PopoverBody
 } from 'reactstrap';
-import {FaIcon, TextInput, GetInput} from 'karcin-ui';
+import FaIcon from '../faicon/FaIcon';
+import GetInput from '../getInput/GetInput';
 
 export interface TableHeadProps {
     fields: any;
@@ -135,7 +136,7 @@ export default class TableHead extends React.Component<TableHeadProps, TableHead
                         <PopoverHeader>Adı</PopoverHeader>
                         <PopoverBody>
                             <InputGroup>
-                                <GetInput type={value.type} value={this.state.filterOption.value} onChange={(e)=>{
+                                <GetInput type={value.type} value={this.state.filterOption.value} onChange={(e:any)=>{
                                     this.filterData(value.value, e)
                                 }}/>
                                 <InputGroupAddon addonType="append"><Button><FaIcon

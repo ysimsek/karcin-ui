@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Row, Col, ButtonGroup, Button} from "reactstrap";
 import SelectInput from '../../inputs/selectInput/SelectInput';
-import './condition.css';
+import '../../css/condition.css';
 import FaIcon from '../../functional/faicon/FaIcon';
 import Component from '../../functional/getInput/GetInput';
 

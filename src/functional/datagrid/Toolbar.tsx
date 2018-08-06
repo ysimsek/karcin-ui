@@ -8,7 +8,9 @@ import {
     Button,
     ButtonGroup
 } from 'reactstrap';
-import {FaIcon, Pagination} from 'karcin-ui';
+import FaIcon from '../faicon/FaIcon';
+import Pagination from '../paging/Pagination';
+
 
 
 export interface ToolbarProps {
@@ -17,6 +19,7 @@ export interface ToolbarProps {
     data?: Array<any>;
     changePage?: any;
     paginationData?:React.EventHandler<any>;
+    pageShow?:any;
 }
 
 export interface ToolbarState {
@@ -58,21 +61,6 @@ export default class Toolbar extends React.Component<ToolbarProps, ToolbarState>
      * return any
      */
     render(): any {
-         // pagination control 
-         /*let countData = 0;
-         if(this.props.options.pagination !== undefined && this.props.options.pagination && this.props.store !== undefined){
-             this.paginationControl = true;
-
-             if(this.props.store.__endPoint === 'localEndPoint'){
-                 countData = this.props.store.props.data.length;
-             }else {
-                 countData = this.props.store.props.totalCount;
-             }
-
-        }else {
-                this.paginationControl = false;
-        }*/
-
 
         if (this.props.type == "footer") {
             // footer Html Elements
