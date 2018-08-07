@@ -1,14 +1,6 @@
 import * as React from "react";
 
-import  Button from "../../functional/button/Button";
-import DateInput from "../../datepicker/DateInput";
-import NumericInput from "../../inputs/NumericInput";
-import PasswordInput from "../../inputs/PasswordInput";
-import SelectInput from "../../inputs/selectInput/SelectInput";
-import TextInput from "../../inputs/TextInput";
-import TextArea from "../../inputs/TextArea";
-import RadioInput from "../../inputs/RadioInput";
-import CheckInput from "../../inputs/CheckInput";
+import {Button ,DateInput, NumericInput, PasswordInput, SelectInput, TextInput, TextArea, RadioInput, CheckInput} from 'karcin-ui';
 
 import {Row,Col} from "reactstrap";
 
@@ -59,6 +51,7 @@ export default class DataForm extends React.Component<any,any>{
         this.fieldLength = fields.length;
         fields.map((val:any,idx:number | string) =>  {
             if(val[this.props.visibilityText] || val[this.props.visibilityText] === undefined){
+                console.log(val[this.props.visibilityText])
                 switch (val.type){
                     case "string" :
                         components.push(<Col key={idx} md={12/me.props.col}>{me.getTextInput(val)}</Col>);
@@ -204,7 +197,7 @@ export default class DataForm extends React.Component<any,any>{
                 //bir şey yapılmasın
             }
             else{
-                state[val[this.props.nameText]] = values[val[this.props.nameText]];
+                state[val[this.props.nameText]] = values[val[this.props.nameText]] || null;
             }
         });
         this.setState(state);
