@@ -57,11 +57,15 @@ export default class BaseClass {
     }
 
 
-    mappingDataFind(response:any, mapping:any) {
-        return this.findResponseData(response, mapping.split('.'))
+    mappingDataFind(response:any,mapping:any) {
+        return this.findResponseData(response,mapping.split('.'))
     }
 
-    findResponseData(response:any, mapping:any):any { 
-        return mapping.length ? this.findResponseData(response[mapping[0]],mapping.slice(1)) : response;
+    findResponseData(response:any,mapping:any):any { 
+        if(response[mapping[0]] !== undefined){
+            return mapping.length ? this.findResponseData(response[mapping[0]],mapping.slice(1)) : response;
+        }else {
+            return response;
+        }
     }
 }

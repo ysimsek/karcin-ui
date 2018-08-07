@@ -52,6 +52,11 @@ export interface DataGridProps {
      * page size
      */
      page?: number | any;
+
+     /**
+      * grud operation (update, add, remove) 
+      */
+     grud?:Array<any> | any;
 }
 
 export interface DataGridState {
@@ -69,10 +74,13 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
      */
     private dataGridId = Math.floor(Math.random() * 20);
 
+
     eventDataGrid: any;
     fieldOption: any;
     returnComponent: any;
     tbodyRef:any;
+
+    _selectedRow:Array<any> = [];
 
     static defaultProps: Partial<DataGridProps> = {
         pagination: false,
@@ -130,10 +138,15 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
     }
 
     dataGridLoadComponent() {
-
         let self = this;
         this.returnComponent = <div>
-            <Toolbar data={this.props.toolbar} store={this.props.store}/>
+            <Toolbar 
+                data={this.props.toolbar}
+                store={this.props.store}
+                type="header"
+                selectedRow={this._selectedRow}
+                {...this.props}
+                />
             <div className="data-grid-body">
                 <table className="table table-bordered dataGrid">
                     <TableHead fields={this.state.fields}
@@ -143,7 +156,10 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
                                    this.resetData()
                                }}/>
                     <TableBody ref={ref => {this.tbodyRef = ref; }}
-                                onSelected={this.props.onSelected}
+                                onSelected={(data:any, select:any)=>{
+                                    this._selectedRow = data;
+                                    this.props.onSelected(data, select);
+                                }}
                                fieldOption={this.fieldOption}
                                store={this.props.store}
                                cellRenderer={this.props.cellRenderer}
@@ -153,18 +169,15 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
                 </table>
             </div>
 
-            <Toolbar type="footer"
-                     store={this.props.store}
-                     changePage={(e:any)=> {
-                        this.pageChange(e);
-                    }}
-                     {...this.props} />
+            <Toolbar store={this.props.store}
+                     {...this.props}
+                     changePage={(e:any)=>{
+                            this.pageChange(e);
+                        }}/>
         </div>;
 
         return this.returnComponent;
     }
-
-
 
 
     componentDidMount() {
@@ -242,7 +255,7 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
     }
 
 
-    pageChange(event: any) {
+    pageChange(event?: any) {
         if(event !== undefined){
             this.props.store.pagination(event.page, this.props.pageShow);
         }

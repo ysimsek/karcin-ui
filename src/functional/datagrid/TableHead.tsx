@@ -13,6 +13,7 @@ import {
     PopoverHeader,
     PopoverBody
 } from 'reactstrap';
+
 import FaIcon from '../faicon/FaIcon';
 import GetInput from '../getInput/GetInput';
 
@@ -31,7 +32,7 @@ export interface TableHeadState {
     filterRemote: any,
     filterDelay?: any,
     orders: any[],
-    filterOption:any
+    filterOption:any;
 }
 
 export interface standartObject {
@@ -117,7 +118,7 @@ export default class TableHead extends React.Component<TableHeadProps, TableHead
             Cell.push(<th key={i} className={cellClass} style={style}>
                 <span onClick={() => {
                     this.orderData(value.value);
-                }}>{value.name}</span>
+                }}>{value.label}</span>
                 <div className="title-option">
                     <span className="filter" id={'Popover' + i} onClick={() => {
                         self.popoverOpen(i)

@@ -101,7 +101,7 @@ export default class Store {
      * @param errorCallback 
      */
     create(items: any, successCallback?: any, errorCallback?: any) {
-        if (items !== undefined && items.length > 0) {
+        if (items !== undefined) {
             this.props.endPoint.create(items, successCallback, errorCallback);
             this.__callback(this.__dataMap);
         }
@@ -114,7 +114,7 @@ export default class Store {
      * @param errorCallback 
      */
     update(items: any, callback?: any) {
-        if (items !== undefined && items.length > 0) {
+        if (items !== undefined) {
             this.props.endPoint.update(items, callback);
             this.__callback(this.__dataMap);
         }
@@ -128,7 +128,7 @@ export default class Store {
      * @param errorCallback 
      */
     delete(items: any, callback?: any) {
-        if (items !== undefined && items.length > 0) {
+        if (items !== undefined) {
             this.props.endPoint.delete(items, callback);
             this.__callback(this.__dataMap);
         }

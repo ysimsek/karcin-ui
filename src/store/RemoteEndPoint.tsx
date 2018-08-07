@@ -14,13 +14,14 @@ export default class RemoteEndPoint extends BaseClass {
 
     // request
     requestStatus = true;
+    standartMethod = "findByFilters";
 
     props: any = {
         idField: 'id',
         processor: null,
         type: null,
         url: null,
-        method: 'findAll',
+        method: 'findByFilters',
         endPoint: 'remoteEndPoint',
         responseData: 'data.resultMap.data.data',
         pageTotalData: 'data.resultMap.data.count',
@@ -40,29 +41,36 @@ export default class RemoteEndPoint extends BaseClass {
      * Remote ajax call 
      * @param callback 
      */
-    call(callback?:any) {
+    call(callback?:any, item?:any) {
         if (this.props.processor !== undefined && this.requestStatus) {
             this.requestStatus = false;
 
             let data:any = {};
 
-            // filters object
-            if(this.__filters.length > 0){
-                data['filters'] = this.__filters;
-            }
+            if(item !== undefined){
 
-            // orders object
-            if(this.__orders.length > 0){
-                data['orders'] = this.__orders;
-            }
+                data = item;
 
-            // pagination object
-            for(let item in this.__paging){
-                data[item] = this.__paging[item];
+            }else{
+                // filters object
+                if(this.__filters.length > 0){
+                    data['filters'] = this.__filters;
+                }
+
+                // orders object
+                if(this.__orders.length > 0){
+                    data['orders'] = this.__orders;
+                }
+
+                // pagination object
+                for(let item in this.__paging){
+                    data[item] = this.__paging[item];
+                }
             }
 
             this.props.data = [];
             this.props.data.push(data);
+            this.props.method = (this.props.method !== null ? this.props.method : this.standartMethod);
 
             let getData = new AjaxRequest(this.props, (response: any) => {
                 this.callbackReady(response, callback);
@@ -77,8 +85,8 @@ export default class RemoteEndPoint extends BaseClass {
      */
     callbackReady(response: any, callback?:any) {
         this.requestStatus = true;
-        let dataFind = this.mappingDataFind(response, this.props.responseData);
-        let totalCount = this.mappingDataFind(response, this.props.pageTotalData);
+        let dataFind    = this.mappingDataFind(response, this.props.responseData);
+        let totalCount  = this.mappingDataFind(response, this.props.pageTotalData);
 
         if(response !== undefined){
             try{
@@ -106,6 +114,7 @@ export default class RemoteEndPoint extends BaseClass {
      */
     read(callback?:any) {
         if (this.props.processor !== undefined && this.props.method !== undefined) {
+            this.props.method = null;
             this.call(callback);
         }
     }
@@ -121,33 +130,32 @@ export default class RemoteEndPoint extends BaseClass {
 
 
     create(items: any, callback?:any) {
-        if(items !== undefined && items.length > 0){
-            this.requestStatus = false;
+        if(items !== undefined){
             this.props.method = "add";
-            this.props.data = items;
-
-            this.call(callback);
+            this.call(() => {
+                this.read();
+                callback();
+            }, items);
         }
     }
 
     update(items: any, callback?:any) {
-        if(items !== undefined && items.length > 0){
-            this.requestStatus = false;
+        if(items !== undefined){
             this.props.method = "update";
-            this.props.data = items;
-
-            this.call(callback);
+            this.call(() => {
+                this.read();
+                callback();
+            }, items);
         }
     }
 
     delete(items: any, callback?:any) {
-        if(items !== undefined && items.length > 0){
-            this.requestStatus = false;
+        if(items !== undefined){
             this.props.method = "deleteById";
-            for(let item in items){
-                this.props.data.push(item);
-            }
-            this.call(callback);
+            this.call(() => {
+                this.read();
+                callback();
+            }, items);
         }
     }
 

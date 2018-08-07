@@ -1,5 +1,6 @@
 import * as React from "react";
 import 'bootstrap/dist/css/bootstrap.css';
+import GetInput from '../getInput/GetInput';
 import TypeFormating from '../../applications/TypeFormating';
 
 export interface TableBodyProps {
@@ -95,7 +96,7 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
 
                     new TypeFormating({
                         data: value[valueField.value],
-                        property: valueField.property
+                        type: valueField.type
                     }, (data:any)=>{
                         value[valueField.value] = data;
                     });
@@ -123,7 +124,7 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
             }
         }
 
-        if(!this.props.showingPageData.pagination) {
+        if(!this.props.showingPageData.pagination || this.props.store.__endPoint === 'remoteEndPoint') {
             return Rows;
         }else {
             let pageData = [];
@@ -146,7 +147,7 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
      * @param active
      * @param data
      */
-    public onClickRow(e: any, active: any, data: any): void {
+    onClickRow(e: any, active: any, data: any): void {
         if (e.metaKey || e.ctrlKey) {
             if (this.state.clickActive.indexOf(active) !== -1) {
 
