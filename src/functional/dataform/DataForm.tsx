@@ -1,11 +1,16 @@
 import * as React from "react";
 
-import {Button ,DateInput, NumericInput, PasswordInput, SelectInput, TextInput, TextArea, RadioInput, CheckInput} from 'karcin-ui';
+import  Button from "../../functional/button/Button";
+import DateInput from "../../datepicker/DateInput";
+import NumericInput from "../../inputs/NumericInput";
+import PasswordInput from "../../inputs/PasswordInput";
+import SelectInput from "../../inputs/selectInput/SelectInput";
+import TextInput from "../../inputs/TextInput";
+import TextArea from "../../inputs/TextArea";
+import RadioInput from "../../inputs/RadioInput";
+import CheckInput from "../../inputs/CheckInput";
 
 import {Row,Col} from "reactstrap";
-
-
-
 
 
 export interface DataFormProps{
