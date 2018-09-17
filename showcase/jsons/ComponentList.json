@@ -307,6 +307,16 @@
       ]
     },
     {
+      "id":4,
+      "name":"LookUp",
+      "title":"LookUp",
+      "icon":"fa-hand-pointer-o",
+      "href":"#/Components/lookup",
+      "samples":"components/examples/LookUpExample",
+      "library":"functional/lookup/LookUp",
+      "description":""
+    },
+    {
       "id":5,
       "name":"Condition",
       "title":"Condition",

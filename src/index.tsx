@@ -55,6 +55,7 @@ import FileExport from './functional/fileExport/FileExport';
 import AjaxRequest from './request/AjaxRequest';
 
 import Condition from './functional/condition/Condition';
+import LookUp from './functional/lookup/LookUp';
 
 import "./css/karcin-ui.css";
 
@@ -108,6 +109,7 @@ export {
     FileExport,
     AjaxRequest,
     GetInput,
-    Condition
+    Condition,
+    LookUp
 };
 export default Button;

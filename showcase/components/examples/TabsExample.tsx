@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Tab, TabPanel, Panel} from 'karcin-ui';
+import {Tab, TabPanel, Button} from 'karcin-ui';
 
 export default class ButtonExample extends React.Component<any, any> {
     render() {
@@ -24,6 +24,14 @@ export default class ButtonExample extends React.Component<any, any> {
                     <TabPanel title="Tab2">Tab 2 Example</TabPanel>
                     <TabPanel title="Tab3">Tab 3 Example</TabPanel>
                     <TabPanel title="Tab4">Tab 4 Example</TabPanel>
+                </Tab>
+                <span className="example-reagent first">Custom Tab</span>
+                <Tab>
+                    <TabPanel title="Tab1">Tab 1 Example</TabPanel>
+                    <TabPanel title="Tab2">Tab 2 Example</TabPanel>
+                    <TabPanel title="Tab3" action={{title:"close", icon:"fa fa-times", handler:()=>{
+                        alert('deneme');
+                    }}}>Tab 3 Example</TabPanel>
                 </Tab>
         </div>);
     }

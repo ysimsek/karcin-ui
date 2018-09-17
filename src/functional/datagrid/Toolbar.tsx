@@ -27,6 +27,8 @@ export interface ToolbarProps {
     pageShow?:any;
     grud?:any;
     fields?:any;
+    dataFormLabelText?:any;
+    dataFormNameText?:any;
 }
 
 
@@ -45,7 +47,9 @@ export default class Toolbar extends React.Component<ToolbarProps, any> {
      */
     static defaultProps: Partial<ToolbarProps> = {
         type: "footer",
-        data: []
+        data: [],
+        dataFormLabelText:'label',
+        dataFormNameText:'name' 
     };
 
     /**
@@ -204,7 +208,7 @@ export default class Toolbar extends React.Component<ToolbarProps, any> {
                             <ModalHeader toggle={this.toggleModal}>DataGrid İşlemleri</ModalHeader>
                             <ModalBody>
                                 <div>
-                                    <DataForm fields={this.props['fields']} ref={(e:any)=>{
+                                    <DataForm nameText={this.props.dataFormNameText} labelText={this.props.dataFormLabelText} fields={this.props['fields']} ref={(e:any)=>{
                                         this.dataForm = e;
                                     }} values={this.editValues} col={2} />
                                 </div>

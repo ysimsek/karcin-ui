@@ -30,10 +30,8 @@ export default class BaseClass {
         
     }
 
-
     response(callback?:any, callbackData?:any, count?:any){
 
-        //this.props.data = this.__dataMap;
         let parentClass = Object.assign(this);
         
         parentClass.__dataMap = parentClass.props.data;
@@ -58,12 +56,12 @@ export default class BaseClass {
 
 
     mappingDataFind(response:any,mapping:any) {
-        return this.findResponseData(response,mapping.split('.'))
+        return this.findResponseData(response, mapping.split('.'))
     }
 
-    findResponseData(response:any,mapping:any):any { 
-        if(response[mapping[0]] !== undefined){
-            return mapping.length ? this.findResponseData(response[mapping[0]],mapping.slice(1)) : response;
+    findResponseData(response:any,mapping:any):any {
+        if(response !== (undefined || null) && mapping !== undefined && mapping.length > 0){
+            return mapping.length > 0 ? this.findResponseData(response[mapping[0]], mapping.slice(1)) : response;
         }else {
             return response;
         }

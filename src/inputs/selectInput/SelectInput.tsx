@@ -102,7 +102,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         };
 
         // boş alana tıklanıldığını kontol eden method
-        if(this.props.type === 'single'){
+        if(this.props.type === 'multi'){
             window.addEventListener('click', (event:any) => {
                 let control = false;
                 event.path.forEach((value:any)=>{
@@ -186,7 +186,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
             let id = value[this.props.id];
             let val = value[this.props.value];
             if(id !== undefined &&  val !== undefined){
-                returnHtml.push(<option key={index} value={id}>{val}</option>);
+                returnHtml.push(<option key={index} value={id}>{this.props.renderer !== undefined ? this.props.renderer(val) : val}</option>);
             }
         });
 

@@ -23,7 +23,7 @@ export interface DataGridProps {
     /**
      * Set the selected data returned func
      */
-    onSelected?: React.EventHandler<any> | any;
+    onSelected?: any;
     /**
      * cell(td) renderer
      */
@@ -57,6 +57,22 @@ export interface DataGridProps {
       * grud operation (update, add, remove) 
       */
      grud?:Array<any> | any;
+
+     /***
+      * data form label text
+      */
+     dataFormLabelText?:any;
+
+     /**
+      * data form name text
+      */
+
+     dataFormNameText?:any;
+
+     /**
+      * multi selected option
+      */
+     multiSelect?:boolean
 }
 
 export interface DataGridState {
@@ -84,7 +100,8 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
 
     static defaultProps: Partial<DataGridProps> = {
         pagination: false,
-        page:1
+        page:1,
+        multiSelect:false
     };
 
     /**
@@ -145,6 +162,8 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
                 store={this.props.store}
                 type="header"
                 selectedRow={this._selectedRow}
+                dataFormLabelText={this.props.dataFormLabelText}
+                dataFormNameText={this.props.dataFormNameText}
                 {...this.props}
                 />
             <div className="data-grid-body">
@@ -156,16 +175,19 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
                                    this.resetData()
                                }}/>
                     <TableBody ref={ref => {this.tbodyRef = ref; }}
-                                onSelected={(data:any, select:any)=>{
+                                onSelected={(this.props.onSelected !== false ? (data:any, select:any)=>{
                                     this._selectedRow = data;
-                                    this.props.onSelected(data, select);
-                                }}
+                                    if(this.props.onSelected !== undefined){
+                                        this.props.onSelected(data, select);
+                                    }
+                                } : this.props.onSelected)}
                                fieldOption={this.fieldOption}
                                store={this.props.store}
                                cellRenderer={this.props.cellRenderer}
                                rowRenderer={this.props.rowRenderer}
                                fields={this.state.fields}
-                               showingPageData={this.state.pageShowData}/>
+                               showingPageData={this.state.pageShowData}
+                               multiSelect={this.props.multiSelect}/>
                 </table>
             </div>
 
@@ -204,7 +226,9 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
     }
 
     resetSelected(){
-        this.tbodyRef.resetSelected();
+        if(this.tbodyRef !== null){
+            this.tbodyRef.resetSelected();
+        }
     }
 
     columnStyle() {

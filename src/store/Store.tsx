@@ -10,6 +10,7 @@ export default class Store {
         originUrl: null,
         endPoint: null,
         responseData: null,
+        pageTotalData:null,
         processor: null,
         type: 'POST',
         method: null,
@@ -100,9 +101,9 @@ export default class Store {
      * @param successCallback 
      * @param errorCallback 
      */
-    create(items: any, successCallback?: any, errorCallback?: any) {
+    create(items: any, callback?: any) {
         if (items !== undefined) {
-            this.props.endPoint.create(items, successCallback, errorCallback);
+            this.props.endPoint.create(items, callback);
             this.__callback(this.__dataMap);
         }
     }

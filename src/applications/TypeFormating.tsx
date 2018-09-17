@@ -1,4 +1,5 @@
 import Application from '../applications/Applications';
+const moment = require('moment');
 export default class TypeFormating {
 
     props:any = {
@@ -36,7 +37,7 @@ export default class TypeFormating {
                     format = "DD.MM.YYYY";
                 }
 
-                returnValue = new Date(this.props.data, format);
+                returnValue = moment(this.props.data).format(format);
             break;
 
             case 'dateTime':
@@ -44,10 +45,10 @@ export default class TypeFormating {
                 if(this.props.data.format){
                     formatTime = this.props.format;
                 }else {
-                    formatTime = "DD.MM.YYYY";
+                    formatTime = "DD.MM.YYYY HH:mm:ss";
                 }
 
-                returnValue = new Date(this.props.data, formatTime);
+                returnValue = moment(this.props.data).format(formatTime);
             break;
 
             default:

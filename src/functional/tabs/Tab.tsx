@@ -86,16 +86,19 @@ export default class Tab extends React.Component<TabProps,any> {
                     if (v.props.className){
                         className = className + " " + v.props.className;
                     }
-                    header.push(<NavItem key={i}>
+                    
+                    header.push(<NavItem className={v.props.action !== undefined && v.props.action.icon ? 'closible' : ""} key={i}>
                         <NavLink
                             className={className}
-                            onClick={() => { this.toggle(i); }}
+                            onClick={() => { if(v.props.action !== undefined) { v.props.action.handler(i) } else {this.toggle(i);} }}
                         >
-                            {v.props.title}
+                            {v.props.action !== undefined ? v.props.action.title : v.props.title}
+                        {(v.props.action !== undefined && v.props.action.icon ? <div className="close-tab"><i className={v.props.action.icon}></i></div> : "")}
                         </NavLink>
                     </NavItem>);
+                    
                     body.push(<TabPane {...v.props} tabId={i} key={i}>
-                        {v}
+                        {v.props.children}
                     </TabPane>);
                 }
             });

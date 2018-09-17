@@ -272,6 +272,26 @@ textarea {
     float: right
 }
 
+.karcin-tab .nav-item.closible a {
+    position: relative;
+    padding-right: 40px;
+}
+
+.karcin-tab .nav-item .close-tab {
+    width: 16px;
+    height: 16px;
+    background-color: #f54646;
+    border-radius: 50%;
+    font-size: 11px;
+    position: absolute;
+    right: 10px;
+    top: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
 /**
     * data filter css
  */
@@ -1344,3 +1364,10 @@ button-square-to-radius {
         -webkit-transform: rotate(360deg);
     }
 }
+
+
+.karcin-look-up {}
+.karcin-look-up .look-up-wrapper {}
+.karcin-look-up .look-up-wrapper .selected-value {position: relative;}
+.karcin-look-up .look-up-wrapper .selected-value .input-val {}
+.karcin-look-up .look-up-wrapper .selected-value .show-button {position: absolute;right: 0;top:0;}

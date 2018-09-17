@@ -20,6 +20,7 @@ export interface DataFormProps{
     nameText?:any,
     labelText?:any,
     visibilityText?:any
+    typeText?:any;
 }
 
 export default class DataForm extends React.Component<any,any>{
@@ -32,6 +33,7 @@ export default class DataForm extends React.Component<any,any>{
         buttonName : "Kaydet",
         nameText: "name",
         labelText:"label",
+        typeText:"type",
         visibilityText: "visibility"
     }
 
@@ -56,8 +58,7 @@ export default class DataForm extends React.Component<any,any>{
         this.fieldLength = fields.length;
         fields.map((val:any,idx:number | string) =>  {
             if(val[this.props.visibilityText] || val[this.props.visibilityText] === undefined){
-                console.log(val[this.props.visibilityText])
-                switch (val.type){
+                switch (val[this.props.typeText]){
                     case "string" :
                         components.push(<Col key={idx} md={12/me.props.col}>{me.getTextInput(val)}</Col>);
                         break;
@@ -198,7 +199,7 @@ export default class DataForm extends React.Component<any,any>{
         this.props.fields.map((val:any,idx:string | number) => {
             if(typeof values[val[this.props.nameText]] == "string"){
                 state[val[this.props.nameText]] = values[val[this.props.nameText]];
-            }else if(val.type == "date"){
+            }else if(val[this.props.typeText] == "date"){
                 //bir şey yapılmasın
             }
             else{

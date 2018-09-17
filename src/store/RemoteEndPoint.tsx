@@ -73,7 +73,7 @@ export default class RemoteEndPoint extends BaseClass {
             this.props.method = (this.props.method !== null ? this.props.method : this.standartMethod);
 
             let getData = new AjaxRequest(this.props, (response: any) => {
-                this.callbackReady(response, callback);
+                this.callbackReady(response, callback, item);
             });
             getData.call();
         }
@@ -83,25 +83,30 @@ export default class RemoteEndPoint extends BaseClass {
      * General callback ready 
      * @param response 
      */
-    callbackReady(response: any, callback?:any) {
+    callbackReady(response: any, callback?:any, items?:any) {
         this.requestStatus = true;
-        let dataFind    = this.mappingDataFind(response, this.props.responseData);
-        let totalCount  = this.mappingDataFind(response, this.props.pageTotalData);
+        if(items === undefined){
+            let dataFind    = this.mappingDataFind(response, this.props.responseData);
+            let totalCount  = this.mappingDataFind(response, this.props.pageTotalData);
 
-        if(response !== undefined){
-            try{
-                if(dataFind !== undefined){
-                    this.props.data = dataFind;
-                    this.__totalCount = totalCount;
-                    return this.response(callback, undefined, totalCount);
-                }else {
-                    throw "reponse or responseData not undefined";
+            if(response !== undefined){
+                try{
+                    if(dataFind !== undefined){
+                        this.props.data = dataFind;
+                        this.__totalCount = totalCount;
+                        
+                        return this.response(callback, undefined, totalCount);
+                    }else {
+                        throw "reponse or responseData not undefined";
+                    }
+                }catch(err){
+                    throw new Error(err);
                 }
-            }catch(err){
-                throw new Error(err);
+            }else {
+                throw new Error('response empty!');
             }
         }else {
-            throw new Error('response empty!');
+            return this.response(callback);
         }
         
     }
@@ -134,7 +139,10 @@ export default class RemoteEndPoint extends BaseClass {
             this.props.method = "add";
             this.call(() => {
                 this.read();
-                callback();
+                
+                if(callback !== undefined){
+                    callback();
+                }
             }, items);
         }
     }

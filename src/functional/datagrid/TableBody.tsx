@@ -2,6 +2,7 @@ import * as React from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import GetInput from '../getInput/GetInput';
 import TypeFormating from '../../applications/TypeFormating';
+import BaseClass from "../../applications/BaseClass";
 
 export interface TableBodyProps {
     store: any;
@@ -11,6 +12,7 @@ export interface TableBodyProps {
     rowRenderer?:any;
     fieldOption?:any;
     showingPageData?:any;
+    multiSelect?:boolean;
 }
 
 export interface TableBodyState {
@@ -94,11 +96,20 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
 
                     let valueField = this.state.fields[j];
 
+                    let fieldValData = '';
+
+                    if(valueField.mapping !== undefined){
+                        fieldValData = this.mappingDataFind(value, valueField.mapping);
+                    }else {
+                        fieldValData = value[valueField.value];
+                    }
+                    
+
                     new TypeFormating({
-                        data: value[valueField.value],
-                        type: valueField.type
+                        data: fieldValData,
+                        type: (valueField.type !== undefined ? valueField.type : valueField.property)
                     }, (data:any)=>{
-                        value[valueField.value] = data;
+                        fieldValData = data;
                     });
 
                     // style
@@ -112,14 +123,17 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
                     }
 
                     Cell.push(<td key={j} style={style}>
-                        {(self.props.cellRenderer !== undefined) ?  self.props.cellRenderer(value, valueField) : value[valueField.value]}
+                        {(self.props.cellRenderer !== undefined) ?  self.props.cellRenderer(value, valueField) !== undefined ? self.props.cellRenderer(value, valueField) : fieldValData : fieldValData}
                     </td>);
+
                 }
 
                 Rows.push(<tr key={i} className={(self.state.clickActive.indexOf(getId) !== -1) ? 'active' : ''}
                                 onClick={(e) => {
-                                    this.onClickRow(e, getId, data[i])
-                                }}>{(self.props.rowRenderer !== undefined) ? self.props.rowRenderer(value, this.props.fields) : Cell}</tr>);
+                                    if(this.props.onSelected !== false){
+                                        this.onClickRow(e, getId, data[i])
+                                    }
+                                }}>{(self.props.rowRenderer !== undefined) ? self.props.rowRenderer(value, this.props.fields) !== undefined ? self.props.rowRenderer(value, this.props.fields) : Cell : Cell}</tr>);
 
             }
         }
@@ -148,7 +162,7 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
      * @param data
      */
     onClickRow(e: any, active: any, data: any): void {
-        if (e.metaKey || e.ctrlKey) {
+        if (e.metaKey || e.ctrlKey && this.props.multiSelect) {
             if (this.state.clickActive.indexOf(active) !== -1) {
 
                 // change rows id remove
@@ -198,6 +212,20 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
             clickActive: [],
             clickActiveRow: []
         });
+    }
+
+    mappingDataFind(response:any,mapping:any) {
+        if(response !== undefined && mapping !== undefined){
+            return this.findResponseData(response, mapping.split('.'))
+        }
+    }
+
+    findResponseData(response:any,mapping:any):any {
+        if(response !== undefined && response !== null && mapping !== undefined && mapping.length > 0 && response[mapping[0]] !== undefined){
+            return mapping.length > 0 ? this.findResponseData(response[mapping[0]], mapping.slice(1)) : response;
+        }else {
+            return response;
+        }
     }
 
 }
