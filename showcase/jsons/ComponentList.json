@@ -2,6 +2,16 @@
   "name": "ComponentList",
   "data": [
     {
+      "id":0,
+      "name":"DynamicQuery",
+      "title":"DynamicQuery",
+      "icon":"fa-hand-pointer-o",
+      "href":"#/Components/DynamicQuery",
+      "samples":"dynamicQuery/DynamicQuery.tsx",
+      "library":"dynamicQuery/DynamicQuery.tsx",
+      "description":"Use karcin-ui custom button styles for actions in forms, dialogs, and more. Includes support for a handful of contextual variations, sizes, states, and more."
+    },
+    {
       "id":1,
       "name":"Button",
       "title":"Button",

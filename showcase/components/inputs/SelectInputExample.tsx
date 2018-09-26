@@ -46,6 +46,7 @@ export default class SelectInputExample extends React.Component<any,any>{
                     value={"project"}
                     onChange={(e)=>{this.handleChange(e)}}
                     type={"multi"}
+                    activeItem={this.state.selectInput2}
                 />
                 <br/>
                 <SelectInput
@@ -54,9 +55,10 @@ export default class SelectInputExample extends React.Component<any,any>{
                     id={"id"}
                     label={"Multi Select Renderer"}
                     value={"project"}
-                    onChange={this.handleChange2.bind(this)}
+                    onChange={this.handleChange.bind(this)}
                     type={"multi"}
                     renderer={this.rendererDropDown}
+                    activeItem={this.state.selectInput3}
                 />
                 <br/>
                 <SelectInput
@@ -69,13 +71,14 @@ export default class SelectInputExample extends React.Component<any,any>{
                     type={"multi"}
                     renderer={this.rendererDropDown}
                     selectedRenderer={this.selectRenderer}
+                    activeItem={this.state.selectInput4}
                 />
             </div>;
     }
     handleChange(e){
-        debugger;
         let state = [];
-        state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
+        state[e.target.name] = e.target.value;
+        debugger;
         this.setState(state);
         this.forceUpdate();
     }

@@ -3,7 +3,6 @@ import {Input} from 'reactstrap';
 import FaIcon from '../../functional/faicon/FaIcon'
 import '../../css/karcin-ui.css';
 import {DataGridProps} from "../../functional/datagrid/DataGrid";
-import { active } from 'glamor';
 
 export interface SelectInputProps {
     /**
@@ -92,8 +91,8 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         super(props);
 
         this.state = {
-            itemActive : [],
-            selectedItem : this.props.activeItem,
+            itemActive : this.props.activeItem,
+            selectedItem : {val:[], ids:[]},
             inputText : {value:""},
             showing : {multiDrop:false},
             dropDownItems: {data:[]},
@@ -122,7 +121,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
     UNSAFE_componentWillReceiveProps(props: SelectInputProps) {
         this.props = props;
         this.setState({
-            selectedItem:this.props.activeItem
+            itemActive:this.props.activeItem
         });
     }
 
@@ -131,6 +130,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         let selectInputType = null;
 
         if(this.props.type === "multi"){
+            this.setSelectedItem();
             selectInputType = this.multiSelectResult();
         }else {
             selectInputType = this.singleSelectResult();
@@ -145,6 +145,22 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
                 </div>
             </div>
         </div>;
+    }
+
+    setSelectedItem(){
+        this.state.selectedItem.val = [];
+        this.state.selectedItem.ids = [];
+
+        if(this.props.items !== undefined && this.state.itemActive !== undefined){
+            this.props.items.forEach((value:any)=>{
+                this.state.itemActive.forEach((val:any)=>{
+                    if(value[this.props.id] === val){
+                        this.state.selectedItem.val.push(value);
+                        this.state.selectedItem.ids.push(val);
+                    }
+                })
+            });
+        }
     }
 
     /**
@@ -181,7 +197,9 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
             }
         });
 
-        return <select className={`form-control karcin-select ${this.props.className}`} value={activeId} name={this.props.name} onChange={(e)=>{ this.singleHandleChange(e); }}>{returnHtml}</select>
+        return <select className={`form-control karcin-select ${this.props.className}`} value={activeId} name={this.props.name} onChange={(e)=>{ 
+            this.singleHandleChange(e);
+         }}>{returnHtml}</select>
     }
 
     /**
@@ -191,10 +209,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
     singleHandleChange(event:any){
         this.props.items.forEach((value:any, index:number) => {
             if(value[this.props.id].toString() === event.target.value){
-                this.state.itemActive.splice(0);
-                this.state.itemActive.push(value);
-                this.forceUpdate();
-                this.onChangeProps();
+                this.onChangeProps(value);
             }
         });
     }
@@ -235,7 +250,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
     multiSelectResult(){
         let returnHtml = <div className={`multi-select-input ${(this.state.focusControl.control) ? 'input-focus' : ''}`}>
             {this.getMultiSelectItem()}
-            <input type="text" placeholder={(this.state.selectedItem.length <= 0 ? this.props.placeholder !== false ? this.props.placeholder : '' : '')} value={this.state.inputText.value} onKeyDown={(event)=>{
+            <input type="text" placeholder={(this.state.selectedItem.val.length <= 0 ? this.props.placeholder !== false ? this.props.placeholder : '' : '')} value={this.state.inputText.value} onKeyDown={(event)=>{
                 this.inputKeyControl(event);
             }} className="multi-input" ref={(e) => { this.selectInput = e; }} onChange={(e)=>{this.multiHandleChangeInput(e);}}/>
         </div>;
@@ -249,8 +264,8 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
     getMultiSelectItem(){
         let getSelectItem:any = [];
 
-        if(this.state.selectedItem !== undefined && this.state.selectedItem.length > 0){
-            this.state.selectedItem.forEach((value:any, index:number) => {
+        if(this.state.selectedItem.val !== undefined && this.state.selectedItem.val.length > 0){
+            this.state.selectedItem.val.forEach((value:any, index:number) => {
                 getSelectItem.push(<div className="select-item" key={index}><span>{(this.props.selectedRenderer !== undefined) ? this.props.selectedRenderer(value) : value[this.props.value]}</span><i className="close-button" onClick={() => {this.removeSelectItem(index)}}><FaIcon code="fa-times"/></i></div>);
             });
         }
@@ -263,9 +278,10 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
      * @param id
      */
     removeSelectItem(id:any){
-        this.state.selectedItem.splice(id,1);
+        let items = this.state.selectedItem.val.slice(0); 
+        items.splice(id, 1);
         this.forceUpdate();
-        this.onChangeProps();
+        this.onChangeProps(items);
     }
 
     /**
@@ -288,11 +304,10 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         let getPropsItems:any = this.props.items.slice(0);
 
         // selected item filter data
-        if(this.state.selectedItem.length > 0){
-            newArray.length = 0;
+        if(this.state.selectedItem.val.length > 0){
             getPropsItems.forEach((value:any) => {
                 let itemControl:Boolean = false;
-                this.state.selectedItem.forEach((val:any)=>{
+                this.state.selectedItem.val.forEach((val:any)=>{
                     if(value[this.props.id] === val[this.props.id] && value[this.props.value] === val[this.props.value]){
                         itemControl = true;
                     }
@@ -336,10 +351,11 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
      * @param value
      */
     addSelectedItem(value:any){
-        let items = this.state.selectedItem.slice(0);
+        let items = this.state.selectedItem.val.slice(0); 
         items.push(value);
         this.state.inputText.value = "";
         this.state.active.arrowActive = null;
+
         this.forceUpdate();
         this.onChangeProps(items);
     }
@@ -410,7 +426,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
      * kalvyeden back space' e basınca çalışacak method
      */
     backSpaceRemove(){
-        this.removeSelectItem(this.state.selectedItem.length - 1);
+        this.removeSelectItem(this.state.itemActive.length - 1); 
     }
 
 
@@ -431,10 +447,9 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
                 });
 
             }else {
-                let newArray = this.state.itemActive[0];
                 target['name'] = this.props.name;
-                target['value'] = newArray[this.props.id];
-                target['parsedValue'] = newArray;
+                target['value'] = items[this.props.id];
+                target['parsedValue'] = items;
             }
 
             this.props.onChange({target});

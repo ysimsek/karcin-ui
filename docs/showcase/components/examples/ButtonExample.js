@@ -1,0 +1,104 @@
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = require("react");
+var karcin_ui_1 = require("karcin-ui");
+var AjaxRequest_1 = require("../../../src/request/AjaxRequest");
+var ButtonExample = /** @class */ (function (_super) {
+    __extends(ButtonExample, _super);
+    function ButtonExample() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ButtonExample.prototype.render = function () {
+        var deneme = [{
+                'id': '1',
+                'name': 'Deniz',
+                'surname': 'DALKILIÇ',
+                'title': 'Yazılım Uzmanı'
+            }, {
+                'id': '2',
+                'name': 'Yunus',
+                'surname': 'ŞİMŞEK',
+                'title': 'Yazılım Uzmanı'
+            }, {
+                'id': '3',
+                'name': 'Tayyip',
+                'surname': 'DEMİRCAN',
+                'title': 'Yazılım Uzmanı'
+            }, {
+                'id': '4',
+                'name': 'Mustafa',
+                'surname': 'GÜNGÖR',
+                'title': 'Yazılım Uzmanı'
+            }, {
+                'id': '5',
+                'name': 'Bora',
+                'surname': 'AVCI',
+                'title': 'Yazılım Uzmanı'
+            }];
+        return (React.createElement("div", null,
+            React.createElement(karcin_ui_1.Button, { color: "primary" }, "primary"),
+            ' ',
+            React.createElement(karcin_ui_1.Button, { color: "secondary" }, "secondary"),
+            ' ',
+            React.createElement(karcin_ui_1.Button, { color: "success" }, "success"),
+            ' ',
+            React.createElement(karcin_ui_1.Button, { color: "info" }, "info"),
+            ' ',
+            React.createElement(karcin_ui_1.Button, { color: "warning" }, "warning"),
+            ' ',
+            React.createElement(karcin_ui_1.Button, { color: "danger" }, "danger"),
+            ' ',
+            React.createElement(karcin_ui_1.Button, { color: "dark" }, "dark"),
+            ' ',
+            React.createElement(karcin_ui_1.Button, { color: "light" }, "light"),
+            ' ',
+            React.createElement(karcin_ui_1.Button, { color: "link" }, "link"),
+            React.createElement("hr", null),
+            React.createElement(karcin_ui_1.Button, { outline: true, color: "primary" }, "primary"),
+            ' ',
+            React.createElement(karcin_ui_1.Button, { outline: true, color: "secondary" }, "secondary"),
+            ' ',
+            React.createElement(karcin_ui_1.Button, { outline: true, color: "success" }, "success"),
+            ' ',
+            React.createElement(karcin_ui_1.Button, { outline: true, color: "info" }, "info"),
+            ' ',
+            React.createElement(karcin_ui_1.Button, { outline: true, color: "warning" }, "warning"),
+            ' ',
+            React.createElement(karcin_ui_1.Button, { outline: true, color: "danger" }, "danger"),
+            ' ',
+            React.createElement(karcin_ui_1.Button, { outline: true, color: "dark" }, "dark"),
+            ' ',
+            React.createElement(karcin_ui_1.Button, { outline: true, color: "light" }, "light"),
+            ' ',
+            React.createElement("hr", null),
+            React.createElement(karcin_ui_1.Button, { color: "primary", size: "lg" }, "Large Button"),
+            ' ',
+            React.createElement(karcin_ui_1.Button, { color: "secondary", size: "lg" }, "Large Button"),
+            React.createElement("hr", null),
+            React.createElement(karcin_ui_1.Button, { color: "primary", size: "sm" }, "Small Button"),
+            ' ',
+            React.createElement(karcin_ui_1.Button, { color: "secondary", size: "sm" }, "Small Button"),
+            React.createElement("hr", null),
+            React.createElement(karcin_ui_1.Button, { color: "primary", size: "lg", block: true }, "Block level button"),
+            React.createElement(karcin_ui_1.Button, { color: "secondary", size: "lg", block: true }, "Block level button")));
+    };
+    ButtonExample.prototype.onClick = function () {
+        var getData = new AjaxRequest_1.default({ processor: 'menus', url: 'https://jsonplaceholder.typicode.com/posts' }, function () {
+            debugger;
+        });
+        getData.call();
+    };
+    return ButtonExample;
+}(React.Component));
+exports.default = ButtonExample;
+//# sourceMappingURL=ButtonExample.js.map
