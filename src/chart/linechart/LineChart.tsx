@@ -51,6 +51,10 @@ export interface LineChartProps{
      * default false
      */
     scroll?: boolean;
+    /**
+     * Set the height value
+     */
+    height?: number;
 }
 
 export default class LineChart extends React.Component<LineChartProps,any>{
@@ -60,7 +64,8 @@ export default class LineChart extends React.Component<LineChartProps,any>{
      */
     static defaultProps:Partial<LineChartProps> = {
         theme : "none",
-        inline : false
+        inline : false,
+        height: 200
     }
 
     /**
@@ -126,6 +131,6 @@ export default class LineChart extends React.Component<LineChartProps,any>{
             "dataProvider": this.props.data
         }
 
-        return <AmCharts.React options={data} style={{width:"100%",height:"200px"}}/>
+        return <AmCharts.React options={data} style={{width:"100%",height:this.props.height+"px"}}/>
     }
 }

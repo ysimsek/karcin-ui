@@ -175,7 +175,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
                                 {(value.icon !== undefined) ? <FaIcon code={value.icon} className="menu-icon"/> : ''}
                                 <strong>{value.title}{(value.badge !== undefined) ?
                                     <Badge color={value.badgeColor}>{value.badge}</Badge> : ''}</strong>
-                                {(value.items !== undefined) ? (actives ?
+                                {(value.items !== undefined && value.items.length > 0) ? (actives ?
                                     <FaIcon code="fa-angle-down" className="open-icon"/> :
                                     <FaIcon code="fa-angle-right" className="open-icon"/>) : ''}
                             </NavLink>

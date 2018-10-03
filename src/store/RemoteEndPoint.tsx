@@ -21,6 +21,7 @@ export default class RemoteEndPoint extends BaseClass {
         processor: null,
         type: null,
         url: null,
+        param: [],
         method: 'findByFilters',
         endPoint: 'remoteEndPoint',
         responseData: 'data.resultMap.data.data',
@@ -46,12 +47,14 @@ export default class RemoteEndPoint extends BaseClass {
             this.requestStatus = false;
 
             let data:any = {};
+            let param:any = this.props.param.length > 0 ? this.props.param[0] : null;
 
             if(item !== undefined){
 
                 data = item;
 
             }else{
+
                 // filters object
                 if(this.__filters.length > 0){
                     data['filters'] = this.__filters;
@@ -62,10 +65,21 @@ export default class RemoteEndPoint extends BaseClass {
                     data['orders'] = this.__orders;
                 }
 
+                if(param !== null){
+                    for(let col in param){
+                        if(data[col] !== undefined){
+                            data[col].concat(param[col]);
+                        }else {
+                            data[col] = param[col];
+                        }
+                    }
+                }
+
                 // pagination object
                 for(let item in this.__paging){
                     data[item] = this.__paging[item];
                 }
+
             }
 
             this.props.data = [];
@@ -85,28 +99,24 @@ export default class RemoteEndPoint extends BaseClass {
      */
     callbackReady(response: any, callback?:any, items?:any) {
         this.requestStatus = true;
-        if(items === undefined){
+        if(response.status !== undefined && response.status === 200 && items === undefined){
             let dataFind    = this.mappingDataFind(response, this.props.responseData);
             let totalCount  = this.mappingDataFind(response, this.props.pageTotalData);
 
-            if(response !== undefined){
-                try{
-                    if(dataFind !== undefined){
-                        this.props.data = dataFind;
-                        this.__totalCount = totalCount;
-                        
-                        return this.response(callback, undefined, totalCount);
-                    }else {
-                        throw "reponse or responseData not undefined";
-                    }
-                }catch(err){
-                    throw new Error(err);
+            try{
+                if(dataFind !== undefined){
+                    this.props.data = dataFind;
+                    this.__totalCount = totalCount;
+                    
+                    return this.response(callback, undefined, totalCount);
+                }else {
+                    throw "reponse or responseData not undefined";
                 }
-            }else {
-                throw new Error('response empty!');
+            }catch(err){
+                throw new Error(err);
             }
         }else {
-            return this.response(callback);
+            throw new Error('Response Error!');
         }
         
     }
@@ -258,10 +268,10 @@ export default class RemoteEndPoint extends BaseClass {
                 });
 
                 if(!control){
-                    this.__filters.push({"property": fieldName, "value": value, "operator" : operator});
+                    this.__filters.push({"property": fieldName, "value": value, "operator" : operator, "index": 1});
                 }
             }else {
-                this.__filters.push({"property": fieldName, "value": value, "operator" : operator});
+                this.__filters.push({"property": fieldName, "value": value, "operator" : operator, "index": 1});
             }
 
             this.call(callback);

@@ -7,6 +7,7 @@ export default class Store {
     props: object | any = {
         idField: "oid",
         data: [],
+        param: [],
         originUrl: null,
         endPoint: null,
         responseData: null,

@@ -1,10 +1,10 @@
 import * as React from "react";
-import {Row,Col, Label} from 'reactstrap';
+import {Label} from 'reactstrap';
 import DatePickerX from 'react-datepicker';
 import moment = require('moment');
 import "react-datepicker/dist/react-datepicker.css";
 
-export interface dateInputState {
+export interface DateInputState {
     startDate: any;
     displayName: string;
 }
@@ -12,7 +12,6 @@ export interface dateInputState {
 export interface DateInputProps{
     value ?: string | any;
     name ?: string;
-    handleYearChange ?: any;
     onChange ?: any;
     inline ?: boolean;
     showTime ?: boolean;
@@ -28,7 +27,7 @@ export interface DateInputProps{
     timeCaption?:any;
 }
 
-export default class DateInput extends React.Component<DateInputProps, dateInputState> {
+export default class DateInput extends React.Component<DateInputProps, DateInputState> {
 
     static defaultProps: Partial<DateInputProps> = {
         startDate : moment(),
@@ -38,10 +37,9 @@ export default class DateInput extends React.Component<DateInputProps, dateInput
     constructor(props: any) {
         super(props);
         this.state = {
-            startDate : (this.props.inline !== undefined ? moment(props.value) : moment(props.value, this.props.dateFormat)),
+            startDate : props.value !== (null && undefined) ? moment(props.value) : null,
             displayName: 'Example'
         };
-        this.handleChange = this.handleChange.bind(this);
     }
 
 
@@ -53,8 +51,7 @@ export default class DateInput extends React.Component<DateInputProps, dateInput
                         <DatePickerX
                             {...this.props}
                             selected={this.state.startDate}
-                            onChange={this.handleChange}
-                            onYearChange={this.handleYearChange}
+                            onChange={(e,id)=>{this.handleChange(e,id)}}
                             className="form-control"
                             timeFormat={this.props.timeFormat}
                             timeIntervals={this.props.timeInterval}
@@ -73,17 +70,10 @@ export default class DateInput extends React.Component<DateInputProps, dateInput
      * @param {moment.Moment | any | null} date
      * @param getId
      */
-    handleChange(date?: moment.Moment | null | any, getId?: any) {
-        let me : any = this;
-        me.state['startDate'] = date;
-        me.forceUpdate();
-        this.props.onChange({date : date,target : {parsedValue : moment(date._d).format(this.props.dateFormat), name : me.props.name}, id : getId});
+    handleChange(date?: any, getId?: any){
+        this.setState({
+            startDate : date
+        })
+        this.props.onChange({date : date,target : {parsedValue : moment(date._d).format(this.props.dateFormat), name : this.props.name}, id : getId});
     };
-
-    handleYearChange(date: moment.Moment, getId?: any | null) {
-        let me : any = this;
-        // me.state['startDate' + getId] = date;
-        // me.forceUpdate();
-        this.props.handleYearChange({date:date,id:getId});
-    }
 }

@@ -6,6 +6,7 @@ import '../../css/karcin-ui.css';
 import TableBody from './TableBody';
 import TableHead from './TableHead';
 import Toolbar from './Toolbar';
+import Loading from '../loading/Loading';
 
 export interface DataGridProps {
     /**
@@ -72,7 +73,12 @@ export interface DataGridProps {
      /**
       * multi selected option
       */
-     multiSelect?:boolean
+     multiSelect?:boolean;
+
+     /**
+      * datagrid Title 
+      */
+     title?:string | any;
 }
 
 export interface DataGridState {
@@ -95,6 +101,7 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
     fieldOption: any;
     returnComponent: any;
     tbodyRef:any;
+    loadingShow:any = {show:false}
 
     _selectedRow:Array<any> = [];
 
@@ -133,7 +140,7 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
             store: props.store,
             fields: props.fields,
             eventDataGrid: null,
-            pageShowData: {page: this.props.page, pageShow:this.props.pageShow, pagination:this.props.pagination}
+            pageShowData: {page: this.props.page, pageShow:this.props.pageShow, pagination:this.props.pagination},
         }
     }
 
@@ -155,7 +162,14 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
     }
 
     dataGridLoadComponent() {
-        let self = this;
+
+        // loading control 
+        if(this.props.store.props.endPoint !== undefined && this.props.store.props.endPoint.props.endPoint === 'remoteEndPoint' && this.loadingShow.response === undefined){
+            this.loadingShow.show = true;
+        }else {
+            this.loadingShow.show = false;
+        }
+
         this.returnComponent = <div>
             <Toolbar 
                 data={this.props.toolbar}
@@ -174,6 +188,7 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
                                resetData={() => {
                                    this.resetData()
                                }}/>
+                    <Loading show={this.loadingShow.show} size={'inset'} />
                     <TableBody ref={ref => {this.tbodyRef = ref; }}
                                 onSelected={(this.props.onSelected !== false ? (data:any, select:any)=>{
                                     this._selectedRow = data;
@@ -222,6 +237,8 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
     }
 
     resetData() {
+        this.loadingShow.show = false;
+        this.loadingShow['response'] = true;
         this.forceUpdate();
     }
 
