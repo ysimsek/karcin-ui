@@ -13,8 +13,9 @@ import {
     PopoverHeader,
     PopoverBody
 } from 'reactstrap';
+
 import FaIcon from '../faicon/FaIcon';
-import {valid} from "glamor";
+import GetInput from '../getInput/GetInput';
 
 export interface TableHeadProps {
     fields: any;
@@ -28,10 +29,10 @@ export interface TableHeadState {
     clickActive: any[],
     popover: any[],
     orderActive: any,
-    filterRemoteTimeOut: number | any,
-    filterRemoteInterval: number | any,
+    filterRemote: any,
     filterDelay?: any,
-    orders: any[]
+    orders: any[],
+    filterOption:any;
 }
 
 export interface standartObject {
@@ -51,9 +52,9 @@ export default class TableHead extends React.Component<TableHeadProps, TableHead
             clickActive: [],
             popover: [],
             orders: ["", "asc", "desc"],
-            filterRemoteTimeOut: 3000,
-            filterRemoteInterval: 1000,
-            orderActive: {active:0, value:''}
+            filterRemote:{interval:500, timeout:1000},
+            orderActive: {active:0, value:''},
+            filterOption: {value:null, fieldName:null}
         };
     }
 
@@ -87,6 +88,7 @@ export default class TableHead extends React.Component<TableHeadProps, TableHead
 
         for (let i = 0; i < this.state.fields.length; i++) {
             let value = this.state.fields[i];
+            let cellClass = "";
 
             // popup over control
             if (self.state.popover[i] === undefined) {
@@ -103,10 +105,20 @@ export default class TableHead extends React.Component<TableHeadProps, TableHead
                 style['width'] = this.props.fieldOption[value.value] + "px";
             }
 
-            Cell.push(<th key={i} className={(this.state.orders[this.state.orderActive.active] !== "" && this.state.orderActive.value === value.value) ? 'order-active' : ''} style={style}>
+
+            // style class 
+            if(this.state.filterOption.value !== ("" && null) && this.state.filterOption.fieldName === value.value){
+                cellClass += " filter-active";
+            }
+
+            if(this.state.orders[this.state.orderActive.active] !== "" && this.state.orderActive.value === value.value){
+                cellClass += " order-active";
+            }
+
+            Cell.push(<th key={i} className={cellClass} style={style}>
                 <span onClick={() => {
                     this.orderData(value.value);
-                }}>{value.name}</span>
+                }}>{value.label}</span>
                 <div className="title-option">
                     <span className="filter" id={'Popover' + i} onClick={() => {
                         self.popoverOpen(i)
@@ -125,7 +137,7 @@ export default class TableHead extends React.Component<TableHeadProps, TableHead
                         <PopoverHeader>Adı</PopoverHeader>
                         <PopoverBody>
                             <InputGroup>
-                                <Input placeholder="Arama" onKeyUp={(e) => {
+                                <GetInput type={value.type} value={this.state.filterOption.value} onChange={(e:any)=>{
                                     this.filterData(value.value, e)
                                 }}/>
                                 <InputGroupAddon addonType="append"><Button><FaIcon
@@ -183,9 +195,11 @@ export default class TableHead extends React.Component<TableHeadProps, TableHead
 
     filterData(fieldName: any, element: any) {
         let data: any[] = [];
-        let value = element.target.value;
+        let value = element;
         this._filterDelay = 0;
 
+        this.state.filterOption.value = value;
+        this.state.filterOption.fieldName = fieldName;
 
         // local endpoint options
         if (this.props.store.props.endPoint.props.endPoint === 'localEndPoint') {
@@ -201,20 +215,22 @@ export default class TableHead extends React.Component<TableHeadProps, TableHead
             }
 
             this._filterInterval = setInterval(() => {
-                this._filterDelay += this.state.filterRemoteInterval;
-                if (this._filterDelay >= this.state.filterRemoteTimeOut) {
-                    this.props.store.filter(fieldName, value, (response:any) => {
-                        data = response;
-                    });
+                this._filterDelay += this.state.filterRemote.interval;
+                if (this._filterDelay >= this.state.filterRemote.timeout) {
+                    this.props.store.filter(fieldName, "%" + value + "%", "LIKE", (response:any) => {
+                        data = response; 
+                    }); 
                     clearInterval(this._filterInterval);
                 }
-            }, this.state.filterRemoteInterval);
+            }, this.state.filterRemote.interval);
         }
 
         // datagrid force render method
         if (this.props.resetData !== undefined) {
             this.props.resetData(data);
         }
+
+        this.forceUpdate();
     }
 
 

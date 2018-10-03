@@ -42,7 +42,7 @@ export default class DataGridExample extends React.Component<any, any> {
     }
 
     render() {
-        return (<div><DataGrid store={this.state.store} fields={this.state.fields} page={this.state.page} changePage={(page:any)=>{
+        return (<div><DataGrid store={this.state.store} fields={this.state.fields} onSelected={false} page={this.state.page} changePage={(page:any)=>{
             this.pageChange(page);
         }} toolbar={[{
             name: 'Ekle',

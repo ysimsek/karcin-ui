@@ -1,6 +1,6 @@
 import Application from '../applications/Applications';
-import LocalEndPoint from '../store/LocaleEndPoint';
-import RemoteEndPoint from '../store/RemoteEndPoint';
+import LocalEndPoint from './LocaleEndPoint';
+import RemoteEndPoint from './RemoteEndPoint';
 
 export default class Store {
 
@@ -10,10 +10,12 @@ export default class Store {
         originUrl: null,
         endPoint: null,
         responseData: null,
+        pageTotalData:null,
         processor: null,
         type: 'POST',
         method: null,
-        totalCount:0
+        totalCount:0,
+        pageData: {},
     };
 
     __dataMap?: any[];
@@ -21,15 +23,23 @@ export default class Store {
     __updated?: boolean = false;
     __component?: any;
     __order?:any;
+    __page:any = {page:0, pageShow:0};
     __oldData?:any[];
+    __endPoint:any = null;
 
     constructor(props: object, selfComponent?: any, callback?: any, updated?: boolean) {
         this.props = Application.mergeObject(this.props, props);
 
         this.__callback = callback;
         this.__component = selfComponent;
-        this.endPoint();
 
+    }
+
+    /**
+     * component load run
+     */
+    storeRead(){
+        this.endPoint();
     }
 
     /**
@@ -41,6 +51,8 @@ export default class Store {
             this.props.endPoint = new RemoteEndPoint(this.props, (response: any) => {
                 this.endPointCallback(response)
             });
+
+            this.__endPoint = 'remoteEndPoint';
         }else {
             // old data
             this.__oldData = this.props.data.slice(0);
@@ -49,6 +61,8 @@ export default class Store {
             this.props.endPoint = new LocalEndPoint(this.props, (response: any) => {
                 this.endPointCallback(response);
             });
+
+            this.__endPoint = 'localeEndPoint';
         }
     }
 
@@ -58,17 +72,13 @@ export default class Store {
      */
     endPointCallback(response: any) {
         if (response !== undefined) {
-            this.props.data = this.props.responseData !== undefined ? response[this.props.responseData] : response;
-            this.updateProps(response);
+            this.props.data = response.data !== undefined ? response.data : [];
+            this.props.totalCount = response.totalCount !== undefined ? response.totalCount : 0;
         }
 
         if (this.__callback !== undefined) {
             this.__callback(response);
         }
-    }
-
-    updateProps(response:any){
-        this.props.totalCount = (response.totalCount !== undefined) ? response.totalCount : 100; 
     }
 
     /**
@@ -91,9 +101,9 @@ export default class Store {
      * @param successCallback 
      * @param errorCallback 
      */
-    create(items: any, successCallback?: any, errorCallback?: any) {
-        if (items !== undefined && items.length > 0) {
-            this.props.endPoint.create(items, successCallback, errorCallback);
+    create(items: any, callback?: any) {
+        if (items !== undefined) {
+            this.props.endPoint.create(items, callback);
             this.__callback(this.__dataMap);
         }
     }
@@ -105,7 +115,7 @@ export default class Store {
      * @param errorCallback 
      */
     update(items: any, callback?: any) {
-        if (items !== undefined && items.length > 0) {
+        if (items !== undefined) {
             this.props.endPoint.update(items, callback);
             this.__callback(this.__dataMap);
         }
@@ -119,7 +129,7 @@ export default class Store {
      * @param errorCallback 
      */
     delete(items: any, callback?: any) {
-        if (items !== undefined && items.length > 0) {
+        if (items !== undefined) {
             this.props.endPoint.delete(items, callback);
             this.__callback(this.__dataMap);
         }
@@ -204,9 +214,9 @@ export default class Store {
      * @param value 
      * @param callback 
      */
-    filter(fieldName: any, value: any, callback?:any) {
+    filter(fieldName: any, value: any, operator?:any, callback?:any) {
         if (fieldName !== undefined) {
-            this.props.endPoint.filter(fieldName, value, (data:any)=>{
+            this.props.endPoint.filter(fieldName, value, operator, (data:any)=>{
                 this.props.data = data;
             });
         } else {
@@ -220,14 +230,16 @@ export default class Store {
      * @param pageShow 
      */
     pagination(page:any, pageShow:any){
-        if(page !== undefined){
-            let pageData:any = {};
-            pageData['start'] = pageShow * (page - 1);
-            pageData['limit'] = pageShow;
+        let pages = (page !== undefined) ? page : this.__page.page;
+        let pagesShow = (pageShow !== undefined) ? pageShow : this.__page.pageShow;
 
-            this.props.endPoint.paging(pageData, ()=>{
-                debugger;    
-            });
+        if(pages !== undefined && pageShow !== undefined && pageShow > 0){
+            this.props.pageData['start'] = pagesShow * (pages - 1);
+            this.props.pageData['limit'] = pagesShow;
+
+            if(this.props.endPoint !== undefined){
+                this.props.endPoint.paging(true);
+            }
         }
     }
 

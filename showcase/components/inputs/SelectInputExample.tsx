@@ -78,7 +78,6 @@ export default class SelectInputExample extends React.Component<any,any>{
     handleChange(e){
         let state = [];
         state[e.target.name] = e.target.value;
-        debugger;
         this.setState(state);
         this.forceUpdate();
     }

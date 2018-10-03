@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import  Button from "../../functional/button/Button";
 import DateInput from "../../datepicker/DateInput";
 import NumericInput from "../../inputs/NumericInput";
@@ -12,13 +13,14 @@ import CheckInput from "../../inputs/CheckInput";
 import {Row,Col} from "reactstrap";
 
 
-
-
-
 export interface DataFormProps{
     col ?: number;
     fields ?: Array<any> | any;
     returnData ?: any;
+    nameText?:any,
+    labelText?:any,
+    visibilityText?:any
+    typeText?:any;
 }
 
 export default class DataForm extends React.Component<any,any>{
@@ -28,7 +30,11 @@ export default class DataForm extends React.Component<any,any>{
 
     static defaultProps = {
         col : 2,
-        buttonName : "Kaydet"
+        buttonName : "Kaydet",
+        nameText: "name",
+        labelText:"label",
+        typeText:"type",
+        visibilityText: "visibility"
     }
 
     constructor(props:any){
@@ -39,12 +45,10 @@ export default class DataForm extends React.Component<any,any>{
     }
     render(){
 
-        return <div><Row>
-            {this.returnElements(this.props.fields)}
-        </Row>
-            <div style={{textAlign : "right", paddingTop : 10}}>
-                <Button name={""} onClick={this.getReturnStateObject.bind(this)}>{this.props.buttonName}</Button>
-            </div>
+        return <div className={"karcin-dataform"}>
+            <Row>
+                {this.returnElements(this.props.fields)}
+            </Row>
         </div>
     }
 
@@ -52,66 +56,67 @@ export default class DataForm extends React.Component<any,any>{
         let components:Array<any> = [];
         let me:any = this;
         this.fieldLength = fields.length;
-        fields.map(function (val:any,idx:number | string) {
-            switch (val.type){
-                case "string" :
-                    components.push(<Col key={idx} md={12/me.props.col}>{me.getTextInput(val)}</Col>);
-                    break;
-                case "password" :
-                    components.push(<Col key={idx} md={12/me.props.col}>{me.getPasswordInput(val)}</Col>);
-                    break;
-                case "int" :
-                    components.push(<Col key={idx} md={12/me.props.col}>{me.getNumericInput(val)}</Col>);
-                    break;
-                case "select" :
-                    components.push(<Col key={idx} md={12/me.props.col}>{me.getSelectInput(val)}</Col>);
-                    break;
-                case "date" :
-                    components.push(<Col key={idx} md={12/me.props.col}>{me.getDateInput(val)}</Col>);
-                    break;
-                case "radio" :
-                    components.push(<Col key={idx} md={12/me.props.col}>{me.getRadioInput(val)}</Col>);
-                    break;
-                case "check" :
-                    components.push(<Col key={idx} md={12/me.props.col}>{me.getCheckInput(val)}</Col>);
-                    break;
-                case "textarea" :
-                    components.push(<Col key={idx} md={12/me.props.col}>{me.getTextArea(val)}</Col>);
-                    break;
-
+        fields.map((val:any,idx:number | string) =>  {
+            if(val[this.props.visibilityText] || val[this.props.visibilityText] === undefined){
+                switch (val[this.props.typeText]){
+                    case "string" :
+                        components.push(<Col key={idx} md={12/me.props.col}>{me.getTextInput(val)}</Col>);
+                        break;
+                    case "password" :
+                        components.push(<Col key={idx} md={12/me.props.col}>{me.getPasswordInput(val)}</Col>);
+                        break;
+                    case "int" :
+                        components.push(<Col key={idx} md={12/me.props.col}>{me.getNumericInput(val)}</Col>);
+                        break;
+                    case "select" :
+                        components.push(<Col key={idx} md={12/me.props.col}>{me.getSelectInput(val)}</Col>);
+                        break;
+                    case "date" :
+                        components.push(<Col key={idx} md={12/me.props.col}>{me.getDateInput(val)}</Col>);
+                        break;
+                    case "radio" :
+                        components.push(<Col key={idx} md={12/me.props.col}>{me.getRadioInput(val)}</Col>);
+                        break;
+                    case "check" :
+                        components.push(<Col key={idx} md={12/me.props.col}>{me.getCheckInput(val)}</Col>);
+                        break;
+                    case "textarea" :
+                        components.push(<Col key={idx} md={12/me.props.col}>{me.getTextArea(val)}</Col>);
+                        break;
+                }
             }
         });
         return components;
     }
     getTextInput(value:any){
         return <TextInput
-            name={value.name}
-            label={value.label}
-            value={this.state[value.name]}
+            name={value[this.props.nameText]}
+            label={value[this.props.labelText]}
+            value={this.state[value[this.props.nameText]]}
             onChange={this.handleChange.bind(this)}
         />
     }
     getPasswordInput(value:any){
         return <PasswordInput
-            name={value.name}
-            label={value.label}
-            value={this.state[value.name]}
+            name={value[this.props.nameText]}
+            label={value[this.props.labelText]}
+            value={this.state[value[this.props.nameText]]}
             onChange={this.handleChange.bind(this)}
         />
     }
     getNumericInput(value:any){
         return <NumericInput
-            name={value.name}
-            value={this.state[value.name]}
-            label={value.label}
+            name={value[this.props.nameText]}
+            value={this.state[value[this.props.nameText]]}
+            label={value[this.props.labelText]}
             onChange={this.handleChange.bind(this)}
         />
     }
     getSelectInput(value:any){
         return <SelectInput
-            name={value.name}
-            items={this.props.values[value.name]}
-            label={value.label}
+            name={value[this.props.nameText]}
+            items={this.props.values[value[this.props.nameText]]}
+            label={value[this.props.labelText]}
             id={value.idField}
             value={value.valueField}
             onChange={this.handleChange.bind(this)}
@@ -119,9 +124,9 @@ export default class DataForm extends React.Component<any,any>{
     }
     getDateInput(value:any){
         return <DateInput
-            name={value.name}
-            label={value.label}
-            value={this.state[value.name]}
+            name={value[this.props.nameText]}
+            label={value[this.props.labelText]}
+            value={this.state[value[this.props.nameText]]}
             onChange={this.handleChange.bind(this)}
         />
     }
@@ -134,21 +139,21 @@ export default class DataForm extends React.Component<any,any>{
      */
     getRadioInput(value:any){
         return <RadioInput
-            name={value.name}
-            value={this.state[value.name]}
-            label={value.label}
+            name={value[this.props.nameText]}
+            value={this.state[value[this.props.nameText]]}
+            label={value[this.props.labelText]}
             inline
-            items={this.props.values[value.name]}
+            items={this.props.values[value[this.props.nameText]]}
             idField={value.idField}
             textField={value.valueField}
             onChange={this.handleChange.bind(this)}/>
     }
     getCheckInput(value:any){
         return <CheckInput
-            name={value.name}
+            name={value[this.props.nameText]}
             // item={this.items[0]}
-            items={this.props.values[value.name]}
-            label={value.label}
+            items={this.props.values[value[this.props.nameText]]}
+            label={value[this.props.labelText]}
             id={value.idField}
             value={value.valueField}
             onChange={this.handleChange.bind(this)}/>
@@ -161,9 +166,9 @@ export default class DataForm extends React.Component<any,any>{
      */
     getTextArea(value:any){
         return <TextArea
-            name={value.name}
-            label={value.label}
-            value={this.state[value.name]}
+            name={value[this.props.nameText]}
+            label={value[this.props.labelText]}
+            value={this.state[value[this.props.nameText]]}
             onChange={this.handleChange.bind(this)}
         />
     }
@@ -171,15 +176,10 @@ export default class DataForm extends React.Component<any,any>{
 
     /**
      * TODO : POPOVER AND TOOLTIP EKLE
-     * @param e
      */
-    getReturnStateObject(e:any){
-        let a = this.state;
-        this.props.fields.map(function (val:any,idx: number) {
-            console.log(a);
-            debugger;
-        });
-        this.props.returnData(this.state);
+    getChangeData() {
+        let data:any = this.state;
+        return data;    
     }
 
     handleChange(e:any){
@@ -196,15 +196,14 @@ export default class DataForm extends React.Component<any,any>{
     UNSAFE_componentWillMount(){
         let state:any = {};
         let values  =  this.props.values;
-        this.props.fields.map(function (val:any,idx:string | number) {
-            debugger;
-            if(typeof values[val.name] == "string"){
-                state[val.name] = values[val.name];
-            }else if(val.type == "date"){
+        this.props.fields.map((val:any,idx:string | number) => {
+            if(typeof values[val[this.props.nameText]] == "string"){
+                state[val[this.props.nameText]] = values[val[this.props.nameText]];
+            }else if(val[this.props.typeText] == "date"){
                 //bir şey yapılmasın
             }
             else{
-                state[val.name] = null;
+                state[val[this.props.nameText]] = values[val[this.props.nameText]] || null;
             }
         });
         this.setState(state);

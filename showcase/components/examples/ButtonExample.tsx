@@ -64,12 +64,4 @@ export default class ButtonExample extends React.Component<any, any> {
             </div>
         );
     }
-
-    onClick() {
-        let getData = new AjaxRequest({processor:'menus', url:'https://jsonplaceholder.typicode.com/posts'}, () => {
-            debugger;
-        }); 
-
-        getData.call();
-    }
 }

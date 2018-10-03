@@ -5,7 +5,7 @@ import moment = require('moment');
 import "react-datepicker/dist/react-datepicker.css";
 
 export interface dateInputState {
-    startDate: moment.Moment;
+    startDate: any;
     displayName: string;
 }
 
@@ -31,14 +31,14 @@ export interface DateInputProps{
 export default class DateInput extends React.Component<DateInputProps, dateInputState> {
 
     static defaultProps: Partial<DateInputProps> = {
-        startDate : moment()
+        startDate : moment(),
+        dateFormat: "DD.MM.YYYY"
     }
 
     constructor(props: any) {
         super(props);
-
         this.state = {
-            startDate : moment(props.value),
+            startDate : (this.props.inline !== undefined ? moment(props.value) : moment(props.value, this.props.dateFormat)),
             displayName: 'Example'
         };
         this.handleChange = this.handleChange.bind(this);
@@ -74,7 +74,6 @@ export default class DateInput extends React.Component<DateInputProps, dateInput
      * @param getId
      */
     handleChange(date?: moment.Moment | null | any, getId?: any) {
-        debugger;
         let me : any = this;
         me.state['startDate'] = date;
         me.forceUpdate();

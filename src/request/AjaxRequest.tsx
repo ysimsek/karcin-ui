@@ -55,31 +55,33 @@ export default class AjaxRequest {
 
     call() {
         if (this.props.processor !== undefined && this.props.method) {
-            axios(this.ajaxProps).then((response:any) => {
-                // props success control
-                if (this.props['successCallback'] !== undefined) {
-                    this.props['successCallback'](response);
-                }
+            if(this.beforeRequest()){
+                axios(this.ajaxProps).then((response:any) => {
+                    // props success control
+                    if (this.props['successCallback'] !== undefined) {
+                        this.props['successCallback'](response);
+                    }
 
-                // props error callback function
-                if (this.props['callback'] !== undefined) {
-                    this.props['callback'](response);
-                }
+                    // props error callback function
+                    if (this.props['callback'] !== undefined) {
+                        this.props['callback'](response);
+                    }
 
-                // token control method
-                this.tokenControl(response['token']);
+                    // token control method
+                    this.tokenControl(response['token']);
 
-            }).catch((error:any) => {
-                // props error control
-                if (this.props['errorCallback'] !== undefined) {
-                    this.props['errorCallback'](error);
-                }
+                }).catch((error:any) => {
+                    // props error control
+                    if (this.props['errorCallback'] !== undefined) {
+                        this.props['errorCallback'](error);
+                    }
 
-                // props error callback function
-                if (this.props['callback'] !== undefined) {
-                    this.props['callback'](error);
-                }
-            });
+                    // props error callback function
+                    if (this.props['callback'] !== undefined) {
+                        this.props['callback'](error);
+                    }
+                });
+            }
         } else {
             throw new Error('Lütfen zorunlu olan (processor ve method) giriniz.');
         }
@@ -90,7 +92,7 @@ export default class AjaxRequest {
     tokenControl(token: any) {
         let returnToken: any;
 
-        if (token !== undefined) {
+        if (token !== (undefined && null)) {
             localStorage.setItem('token', token);
             returnToken = token;
         } else {
@@ -105,6 +107,17 @@ export default class AjaxRequest {
             this.props['headers']['token'] = returnToken;
             return returnToken;
         }
+    }
+
+    beforeRequest(){
+        let returnControl = true;
+        if(localStorage.getItem('token')){
+            this.ajaxProps.headers['Authorization'] = localStorage.getItem('token'); 
+        }else {
+            returnControl = false;
+        }
+
+        return returnControl;
     }
 
 }

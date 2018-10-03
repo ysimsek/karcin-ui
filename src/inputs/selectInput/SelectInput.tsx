@@ -102,18 +102,20 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         };
 
         // boş alana tıklanıldığını kontol eden method
-        window.addEventListener('click', (event:any) => {
-            let control = false;
-            event.path.forEach((value:any)=>{
-                if(value.className !== undefined && value.className !== "" && value.className.indexOf("karcin-select-input") !== -1 && value.className.indexOf('select-' + this.state.randomId) !== -1){
-                    control = true;
+        if(this.props.type === 'multi'){
+            window.addEventListener('click', (event:any) => {
+                let control = false;
+                event.path.forEach((value:any)=>{
+                    if(value.className !== undefined && value.className !== "" && value.className.indexOf("karcin-select-input") !== -1 && value.className.indexOf('select-' + this.state.randomId) !== -1){
+                        control = true;
+                    }
+                });
+
+                if(!control){
+                    this.inputFocusOut();
                 }
             });
-
-            if(!control){
-                this.inputFocusOut();
-            }
-        });
+        }
 
     }
 
@@ -171,15 +173,6 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
 
         let activeId:any = '';
 
-        /*if(this.state.selectedItem !== undefined && this.state.selectedItem.length > 0 && this.state.itemActive.length <= 0){
-            activeId = this.state.selectedItem[0][this.props.id];
-        }else {
-            if(this.state.itemActive.length > 0){
-                activeId = this.state.itemActive[0][this.props.id];
-            }else {
-                activeId = '';
-            }
-        }*/
         if(this.props.activeItem !== (undefined || null)){
             activeId = this.props.activeItem;
         }else {
@@ -193,7 +186,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
             let id = value[this.props.id];
             let val = value[this.props.value];
             if(id !== undefined &&  val !== undefined){
-                returnHtml.push(<option key={index} value={id}>{val}</option>);
+                returnHtml.push(<option key={index} value={id}>{this.props.renderer !== undefined ? this.props.renderer(val) : val}</option>);
             }
         });
 
@@ -453,22 +446,6 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
             }
 
             this.props.onChange({target});
-        }
-    }
-
-    /**
-     * props ' tan gelen active objesini atama
-     */
-    itemActive(){
-        if(this.props.activeItem !== undefined && this.props.activeItem !== ""){
-            if(Array.isArray(this.props.activeItem)) {
-                this.props.activeItem.forEach((value: any, index: number) => {
-                    this.state.selectedItem.push(value);
-                });
-            }else {
-                //this.state.selectedItem = this.props.activeItemactiveItem
-            }
-            this.forceUpdate();
         }
     }
 }

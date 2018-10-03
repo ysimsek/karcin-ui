@@ -1,5 +1,6 @@
 import * as React from "react";
-import {DataForm} from "karcin-ui";
+import {Button} from "karcin-ui";
+import DataForm from '../../../src/functional/dataform/DataForm';
 
 
 
@@ -49,6 +50,8 @@ const fields = [
 
 export default class DataFormExample extends React.Component<any,any>{
 
+    dataFormRef:any;
+
     constructor(props:any){
         super(props);
         this.state = {
@@ -71,14 +74,16 @@ export default class DataFormExample extends React.Component<any,any>{
             <DataForm
                     values={this.state.values}
                     fields={fields}
-                    ref={"dataform1"}
-                    col={3}
-                    returnData={this.returnData.bind(this)}/>
+                    ref={(e)=>{
+                        this.dataFormRef = e;
+                    }}
+                    col={3} />
+            <Button onClick={()=>{this.returnData()}}>Deneme</Button>
         </div>
     }
 
-    returnData(e){
-        //return all fields in state
-        console.log(e);
+    returnData(){
+        //return all fields in state 
+       console.log(this.dataFormRef.getChangeData());
     }
 }

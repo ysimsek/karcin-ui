@@ -1,5 +1,8 @@
 import * as React from "react";
 import 'bootstrap/dist/css/bootstrap.css';
+import GetInput from '../getInput/GetInput';
+import TypeFormating from '../../applications/TypeFormating';
+import BaseClass from "../../applications/BaseClass";
 
 export interface TableBodyProps {
     store: any;
@@ -9,6 +12,7 @@ export interface TableBodyProps {
     rowRenderer?:any;
     fieldOption?:any;
     showingPageData?:any;
+    multiSelect?:boolean;
 }
 
 export interface TableBodyState {
@@ -56,7 +60,15 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
      * @returns {any}
      */
     render():any {
-        return <tbody>{this.getItems()}</tbody>;
+        let showingControl = true;
+        if(this.props.showingPageData.pagination){
+            if(this.props.store.props.pageData.start !== undefined){
+                showingControl = true;
+            }else {
+                showingControl = false;
+            }
+        }
+        return <tbody>{(showingControl ? this.getItems() : "")}</tbody>;
     }
 
     /**
@@ -81,7 +93,24 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
 
                 let Cell = [];
                 for (let j = 0; j < this.state.fields.length; j++) {
+
                     let valueField = this.state.fields[j];
+
+                    let fieldValData = '';
+
+                    if(valueField.mapping !== undefined){
+                        fieldValData = this.mappingDataFind(value, valueField.mapping);
+                    }else {
+                        fieldValData = value[valueField.value];
+                    }
+                    
+
+                    new TypeFormating({
+                        data: fieldValData,
+                        type: (valueField.type !== undefined ? valueField.type : valueField.property)
+                    }, (data:any)=>{
+                        fieldValData = data;
+                    });
 
                     // style
                     let style: standartObject = {};
@@ -94,34 +123,34 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
                     }
 
                     Cell.push(<td key={j} style={style}>
-                        {(self.props.cellRenderer !== undefined) ?  self.props.cellRenderer(value, valueField) : value[valueField.value]}
+                        {(self.props.cellRenderer !== undefined) ?  self.props.cellRenderer(value, valueField) !== undefined ? self.props.cellRenderer(value, valueField) : fieldValData : fieldValData}
                     </td>);
+
                 }
 
-
-                    Rows.push(<tr key={i} className={(self.state.clickActive.indexOf(getId) !== -1) ? 'active' : ''}
-                                  onClick={(e) => {
-                                      this.onClickRow(e, getId, data[i])
-                                  }}>{(self.props.rowRenderer !== undefined) ? self.props.rowRenderer(value, this.props.fields) : Cell}</tr>);
+                Rows.push(<tr key={i} className={(self.state.clickActive.indexOf(getId) !== -1) ? 'active' : ''}
+                                onClick={(e) => {
+                                    if(this.props.onSelected !== false){
+                                        this.onClickRow(e, getId, data[i])
+                                    }
+                                }}>{(self.props.rowRenderer !== undefined) ? self.props.rowRenderer(value, this.props.fields) !== undefined ? self.props.rowRenderer(value, this.props.fields) : Cell : Cell}</tr>);
 
             }
         }
 
-        
-        if(this.props.showingPageData.pagination !== true || this.props.store.props.totalCount <= 0) {
+        if(!this.props.showingPageData.pagination || this.props.store.__endPoint === 'remoteEndPoint') {
             return Rows;
         }else {
-            let pagesData = [];
-            let start = this.props.showingPageData.pageShow * (this.props.showingPageData.page - 1);
-            let finis = this.props.showingPageData.pageShow * this.props.showingPageData.page;
+            let pageData = [];
+            let pages = this.props.store.props.pageData;
 
             for(let i = 0; i < Rows.length; i++){
-                if(i >= start && i < finis){
-                    pagesData.push(Rows[i]);
+                if(i >= pages.start && i < (pages.start + pages.limit)){
+                    pageData.push(Rows[i]);
                 }
             }
 
-            return pagesData;
+            return pageData;
         }
 
     }
@@ -132,8 +161,8 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
      * @param active
      * @param data
      */
-    public onClickRow(e: any, active: any, data: any): void {
-        if (e.metaKey || e.ctrlKey) {
+    onClickRow(e: any, active: any, data: any): void {
+        if (e.metaKey || e.ctrlKey && this.props.multiSelect) {
             if (this.state.clickActive.indexOf(active) !== -1) {
 
                 // change rows id remove
@@ -183,6 +212,20 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
             clickActive: [],
             clickActiveRow: []
         });
+    }
+
+    mappingDataFind(response:any,mapping:any) {
+        if(response !== undefined && mapping !== undefined){
+            return this.findResponseData(response, mapping.split('.'))
+        }
+    }
+
+    findResponseData(response:any,mapping:any):any {
+        if(response !== undefined && response !== null && mapping !== undefined && mapping.length > 0 && response[mapping[0]] !== undefined){
+            return mapping.length > 0 ? this.findResponseData(response[mapping[0]], mapping.slice(1)) : response;
+        }else {
+            return response;
+        }
     }
 
 }

@@ -42,6 +42,7 @@ import PyramidChart from "./chart/extrachart/PyramidChart";
 import LineChartTrend from "./chart/linechart/LineChartTrend";
 import MapChart from "./chart/mapchart/MapChart";
 import DynamicChart from "./chart/linechart/DynamicChart";
+import GetInput from "./functional/getInput/GetInput";
 
 
 import ContextMenu from "./functional/contextmenu/contextMenu";
@@ -52,6 +53,10 @@ import AutoComplate from "./functional/autocomplate/AutoComplate";
 
 import FileExport from './functional/fileExport/FileExport';
 import AjaxRequest from './request/AjaxRequest';
+
+import Condition from './functional/condition/Condition';
+import LookUp from './functional/lookup/LookUp';
+import FileUpload from './functional/fileUpload/FileUpload';
 
 import "./css/karcin-ui.css";
 
@@ -103,6 +108,10 @@ export {
     Loading,
     AutoComplate,
     FileExport,
-    AjaxRequest
+    AjaxRequest,
+    GetInput,
+    Condition,
+    LookUp,
+    FileUpload
 };
 export default Button;

@@ -318,6 +318,36 @@
     },
     {
       "id":4,
+      "name":"LookUp",
+      "title":"LookUp",
+      "icon":"fa-hand-pointer-o",
+      "href":"#/Components/lookup",
+      "samples":"components/examples/LookUpExample",
+      "library":"functional/lookup/LookUp",
+      "description":""
+    },
+    {
+      "id":5,
+      "name":"Condition",
+      "title":"Condition",
+      "icon":"fa-hand-pointer-o",
+      "href":"#/Components/Condition",
+      "samples":"components/examples/ConditionExample",
+      "library":"functional/condition/Condition",
+      "description":""
+    },
+    {
+      "id":5,
+      "name":"File Upload",
+      "title":"fileUpload",
+      "icon":"fa-upload",
+      "href":"#/Components/fileUpload",
+      "samples":"components/examples/FileUploadExample",
+      "library":"functional/fileUpload/FileUpload",
+      "description":""
+    },
+    {
+      "id":4,
       "name":"charts",
       "title":"Charts",
       "icon":"fa-pie-chart",

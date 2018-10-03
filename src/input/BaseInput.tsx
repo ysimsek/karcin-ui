@@ -1,5 +1,6 @@
 import * as React from "react";
-import {Form,FormGroup,Input,Label,Tooltip} from "reactstrap";
+import {Form,FormGroup,Input,Label,Tooltip, InputGroupAddon} from "reactstrap";
+import InputGroup from "reactstrap/lib/InputGroup";
 
 export interface BaseInputProps extends React.InputHTMLAttributes<HTMLInputElement>{
     /**
@@ -16,6 +17,8 @@ export interface BaseInputProps extends React.InputHTMLAttributes<HTMLInputEleme
     onChange?:any;
     value?:string;
     valueField?:string;
+    inputAddon?:any;
+    inputAddonType?:any;
 }
 
 
@@ -27,7 +30,8 @@ export default class BaseInput extends React.Component<BaseInputProps,any>{
      */
     static propTypes:Partial<BaseInputProps> = {
         valueField : "valueField",
-        value :"value"
+        value :"value",
+        inputAddonType: "append"
     }
 
     /**
@@ -45,9 +49,15 @@ export default class BaseInput extends React.Component<BaseInputProps,any>{
      * @returns {any}
      */
     render():any{
+        let getInput:any = this.returnInput();
+        let returnInput:any = getInput;
+        if(this.props.inputAddon !== undefined){
+            returnInput = <InputGroup>{getInput}<InputGroupAddon addonType={this.props.inputAddonType}>{this.props.inputAddon}</InputGroupAddon></InputGroup>
+        }
+
         return <FormGroup tag={this.props.tag}>
                 <Label for={this.props.id}><b>{this.props.label}</b></Label>
-                {this.returnInput()}
+                {returnInput}
             </FormGroup>
     }
 

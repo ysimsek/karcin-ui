@@ -6,7 +6,6 @@ import '../../css/karcin-ui.css';
 import TableBody from './TableBody';
 import TableHead from './TableHead';
 import Toolbar from './Toolbar';
-import {Data} from "reactstrap/lib/Popper";
 
 export interface DataGridProps {
     /**
@@ -24,7 +23,7 @@ export interface DataGridProps {
     /**
      * Set the selected data returned func
      */
-    onSelected?: React.EventHandler<any> | any;
+    onSelected?: any;
     /**
      * cell(td) renderer
      */
@@ -53,6 +52,27 @@ export interface DataGridProps {
      * page size
      */
      page?: number | any;
+
+     /**
+      * grud operation (update, add, remove) 
+      */
+     grud?:Array<any> | any;
+
+     /***
+      * data form label text
+      */
+     dataFormLabelText?:any;
+
+     /**
+      * data form name text
+      */
+
+     dataFormNameText?:any;
+
+     /**
+      * multi selected option
+      */
+     multiSelect?:boolean
 }
 
 export interface DataGridState {
@@ -70,14 +90,18 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
      */
     private dataGridId = Math.floor(Math.random() * 20);
 
+
     eventDataGrid: any;
     fieldOption: any;
     returnComponent: any;
     tbodyRef:any;
 
+    _selectedRow:Array<any> = [];
+
     static defaultProps: Partial<DataGridProps> = {
         pagination: false,
-        page:1
+        page:1,
+        multiSelect:false
     };
 
     /**
@@ -113,6 +137,11 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
         }
     }
 
+    storeRun(){
+        this.props.store.pagination(this.props.page, this.props.pageShow);
+        this.props.store.storeRead();
+    }
+
     /**
      *
      */
@@ -126,10 +155,17 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
     }
 
     dataGridLoadComponent() {
-
         let self = this;
         this.returnComponent = <div>
-            <Toolbar data={this.props.toolbar} store={this.props.store}/>
+            <Toolbar 
+                data={this.props.toolbar}
+                store={this.props.store}
+                type="header"
+                selectedRow={this._selectedRow}
+                dataFormLabelText={this.props.dataFormLabelText}
+                dataFormNameText={this.props.dataFormNameText}
+                {...this.props}
+                />
             <div className="data-grid-body">
                 <table className="table table-bordered dataGrid">
                     <TableHead fields={this.state.fields}
@@ -139,34 +175,36 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
                                    this.resetData()
                                }}/>
                     <TableBody ref={ref => {this.tbodyRef = ref; }}
-                                onSelected={this.props.onSelected}
+                                onSelected={(this.props.onSelected !== false ? (data:any, select:any)=>{
+                                    this._selectedRow = data;
+                                    if(this.props.onSelected !== undefined){
+                                        this.props.onSelected(data, select);
+                                    }
+                                } : this.props.onSelected)}
                                fieldOption={this.fieldOption}
                                store={this.props.store}
                                cellRenderer={this.props.cellRenderer}
                                rowRenderer={this.props.rowRenderer}
                                fields={this.state.fields}
-                               showingPageData={this.state.pageShowData}/>
+                               showingPageData={this.state.pageShowData}
+                               multiSelect={this.props.multiSelect}/>
                 </table>
             </div>
 
-            <Toolbar type="footer"
-                     store={this.props.store}
-                     options={{
-                        'pagination': this.props.pagination,
-                        'pageShow': this.props.pageShow,
-                        'changePageFunc': (e: any) => {
-                            self.pageChange(e)
-                        }
-                    }}/>
+            <Toolbar store={this.props.store}
+                     {...this.props}
+                     changePage={(e:any)=>{
+                            this.pageChange(e);
+                        }}/>
         </div>;
 
         return this.returnComponent;
     }
 
 
-
-
     componentDidMount() {
+        this.storeRun();
+
         setTimeout(() => {
             this.columnStyle();
             this.dataGridLoadComponent();
@@ -175,7 +213,12 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
         window.addEventListener('load', () => {
             this.columnStyle();
             this.dataGridLoadComponent();
-        })
+        });
+
+        window.addEventListener('resize', () => {
+            this.columnStyle();
+            this.dataGridLoadComponent();
+        });
     }
 
     resetData() {
@@ -183,7 +226,9 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
     }
 
     resetSelected(){
-        this.tbodyRef.resetSelected();
+        if(this.tbodyRef !== null){
+            this.tbodyRef.resetSelected();
+        }
     }
 
     columnStyle() {
@@ -235,7 +280,7 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
 
 
     pageChange(event?: any) {
-        if(event !== undefined && this.props.changePage){
+        if(event !== undefined){
             this.props.store.pagination(event.page, this.props.pageShow);
         }
     }
