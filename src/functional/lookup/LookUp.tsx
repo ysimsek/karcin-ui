@@ -11,6 +11,7 @@ export interface LookUpProp {
     textField?:any;
     renderer?:any;
     onChange?:any;
+    dataGridOption?:any;
 }
 
 export interface LookUpState {
@@ -52,7 +53,7 @@ export default class LookUp extends React.Component<LookUpProp,LookUpState> {
         return (<Modal size='lg' isOpen={this.state.modalShow} toggle={this.toggle}>
             <ModalHeader toggle={this.toggle}>Seçim İşlemleri</ModalHeader>
             <ModalBody>
-                <DataGrid fields={this.props.field} store={this.props.store} onSelected={this.dataSelected} />
+                <DataGrid fields={this.props.field} store={this.props.store} onSelected={this.dataSelected} {...this.props.dataGridOption} />
             </ModalBody>
             <ModalFooter>
                 <Button color="success" onClick={this.selectedSave}>Seç</Button>

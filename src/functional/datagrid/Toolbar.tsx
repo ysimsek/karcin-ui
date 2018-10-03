@@ -29,6 +29,7 @@ export interface ToolbarProps {
     fields?:any;
     dataFormLabelText?:any;
     dataFormNameText?:any;
+    title?:any;
 }
 
 
@@ -106,6 +107,7 @@ export default class Toolbar extends React.Component<ToolbarProps, any> {
  
              returnHtml = <div className="data-grid-header">
                  <Row>
+                     {this.props.title !== undefined ? <Col className={'datagridTitle'}>{this.props.title}</Col> : ''}
                      <Col xs={{size: 4, offset: 8}} className="header-buttons">
                          <ButtonGroup>
                              {buttons}
@@ -121,7 +123,7 @@ export default class Toolbar extends React.Component<ToolbarProps, any> {
              returnHtml = <div className="data-grid-footer">
              <Row>
                  {(this.props['pageShow'] !== undefined && this.props.store !== undefined && this.props.store.props.totalCount > 0) ?
-                     <Col xs="4">
+                     <Col className="pagination-main">
                          <div className="pagination">
                              <Pagination pageCount={5}
                                          type={"simple"}

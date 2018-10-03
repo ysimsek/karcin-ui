@@ -832,6 +832,10 @@ New Reactstrap CSS
     dataGrid css
  */
 
+.karcin-data-grid {
+    background-color: #ffffff;
+}
+
 .karcin-data-grid .data-grid-header {
     width: 100%;
     padding: 10px;
@@ -839,6 +843,7 @@ New Reactstrap CSS
     border-radius: 5px 5px 0px 0px;
     border: solid 1px #c7c7c7;
     border-bottom: 0;
+    position: relative;
 }
 
 .karcin-data-grid .data-grid-header .data-grid-search .btn {
@@ -865,6 +870,19 @@ New Reactstrap CSS
 
 .karcin-data-grid .data-grid-header .data-grid-search .form-control:focus {
     box-shadow: none;
+}
+
+.karcin-data-grid .data-grid-header .datagridTitle {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: auto;
+    left: 0;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 17px;
 }
 
 .karcin-data-grid .data-grid-header .header-buttons {
@@ -895,6 +913,7 @@ New Reactstrap CSS
     margin-bottom: 0;
     display: block;
     border:0;
+    position: relative;
 }
 
 .karcin-data-grid .table thead {
@@ -1055,6 +1074,7 @@ New Reactstrap CSS
     border-radius: 0px 0px 5px 5px;
     border: solid 1px #c7c7c7;
     border-top: 0;
+    min-height: 60px;
 }
 
 .karcin-data-grid .data-grid-footer .btn {
@@ -1063,6 +1083,8 @@ New Reactstrap CSS
     border-right: solid 2px #70943f;
     padding: 3px 10px;
     font-size: 15px;
+    position: relative;
+    min-height: 60px;
 }
 
 .karcin-data-grid .data-grid-footer .btn.arrow {
@@ -1080,6 +1102,13 @@ New Reactstrap CSS
 
 .karcin-data-grid .data-grid-footer .btn:hover:not(:disabled), .karcin-data-grid .data-grid-footer .btn.active {
     background-color: #9dbf6e;
+}
+
+.karcin-data-grid .data-grid-footer .pagination-main {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
 
 .karcin-data-grid .data-grid-footer .pagination {

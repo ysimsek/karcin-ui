@@ -113,9 +113,12 @@ export default class AjaxRequest {
         let returnControl = true;
         if(localStorage.getItem('token')){
             this.ajaxProps.headers['Authorization'] = localStorage.getItem('token'); 
-        }else {
-            returnControl = false;
         }
+
+        // karcin ui için comment'e alındı.
+        /*else {
+            returnControl = false;
+        }*/
 
         return returnControl;
     }

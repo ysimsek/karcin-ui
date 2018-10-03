@@ -70,7 +70,7 @@ export default class GetInput extends React.Component<GetInputProps,any> {
                     }}/>
                 </div>
                 <div className="listButton">
-                    <Button color="primary" size="sm" onClick={(e)=>{
+                    <Button color="primary" size="sm" onClick={()=>{
                         this.listAddItem();
                     }}>Ekle</Button>
                 </div>
