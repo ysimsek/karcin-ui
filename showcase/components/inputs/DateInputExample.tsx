@@ -7,7 +7,7 @@ export default class DateInputExample extends React.Component<any,any> {
     constructor(props: any) {
         super(props);
         this.state = {
-            value : new Date()
+            value : null
         }
     }
 
@@ -63,8 +63,7 @@ export default class DateInputExample extends React.Component<any,any> {
     handleChange(e:any){
         let state = [];
         state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
-        this.setState(state);
-        this.forceUpdate();
+        this.setState(state); 
     }
 
     handleChange2(e:any){

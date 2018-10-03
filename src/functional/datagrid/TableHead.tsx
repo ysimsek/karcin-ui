@@ -22,6 +22,8 @@ export interface TableHeadProps {
     store?: any;
     resetData?: React.EventHandler<any>;
     fieldOption?: any;
+    filter?:boolean;
+    order?:boolean;
 }
 
 export interface TableHeadState {
@@ -40,10 +42,17 @@ export interface standartObject {
 }
 
 export default class TableHead extends React.Component<TableHeadProps, TableHeadState> {
+    
+    static defaultProps:Partial<TableHeadProps> = {
+        filter:true,
+        order:true
+    }
+
     /**
      * Initial values
      * @param {TableHeadProps} props
      */
+     
     constructor(props: TableHeadProps) {
         super(props);
 
@@ -77,7 +86,7 @@ export default class TableHead extends React.Component<TableHeadProps, TableHead
     render(): any {
 
         return <thead>
-        <tr>{this.returnItems()}</tr>
+            <tr>{this.returnItems()}</tr>
         </thead>;
     }
 
@@ -120,17 +129,15 @@ export default class TableHead extends React.Component<TableHeadProps, TableHead
                     this.orderData(value.value);
                 }}>{value.label}</span>
                 <div className="title-option">
-                    <span className="filter" id={'Popover' + i} onClick={() => {
-                        self.popoverOpen(i)
-                    }}><FaIcon code="fa-filter"/></span>
-                    <span
-                        className='order'
+                    {(this.props.filter === true ? <span 
+                        className="filter" 
+                        id={'Popover' + i} 
                         onClick={() => {
-                            this.orderData(value.value)
-                        }}><FaIcon
-                        code={`fa-sort${(this.state.orders[this.state.orderActive.active] !== "" && this.state.orderActive.value === value.value) ? '-' + this.state.orders[this.state.orderActive.active] : ''}`}/></span>
+                            self.popoverOpen(i)
+                        }}><FaIcon code="fa-filter"/></span> : '')}
 
-                    <Popover placement="bottom" isOpen={self.state.popover[i]} target={`Popover${i}`}
+
+                    {(this.props.filter === true ? <Popover placement="bottom" isOpen={self.state.popover[i]} target={`Popover${i}`}
                              toggle={() => {
                                  self.popoverOpen(i)
                              }} className="popup-over-search">
@@ -144,7 +151,16 @@ export default class TableHead extends React.Component<TableHeadProps, TableHead
                                     code="fa-search"/></Button></InputGroupAddon>
                             </InputGroup>
                         </PopoverBody>
-                    </Popover>
+                    </Popover> : '')}
+
+                    {(this.props.order === true ?  
+                        <span
+                        className='order'
+                        onClick={() => {
+                            this.orderData(value.value)
+                        }}><FaIcon
+                        code={`fa-sort${(this.state.orders[this.state.orderActive.active] !== "" && this.state.orderActive.value === value.value) ? '-' + this.state.orders[this.state.orderActive.active] : ''}`}/></span> 
+                        : '')}
                 </div>
             </th>);
         }
