@@ -143,10 +143,11 @@ export default class DataForm extends React.Component<any,any>{
             value={this.state[value[this.props.nameText]]}
             label={value[this.props.labelText]}
             inline
+            formControl={true}
             items={this.props.values[value[this.props.nameText]]}
             idField={value.idField}
             textField={value.valueField}
-            onChange={this.handleChange.bind(this)}/>
+            onChange={this.handleChangeRadio.bind(this)}/>
     }
     getCheckInput(value:any){
         return <CheckInput
@@ -178,14 +179,37 @@ export default class DataForm extends React.Component<any,any>{
      * TODO : POPOVER AND TOOLTIP EKLE
      */
     getChangeData() {
+        debugger
         let data:any = this.state;
-        return data;    
+        return data;
     }
 
     handleChange(e:any){
         let name = e.target.name;
         let state = [];
         state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
+        this.setState(state);
+    }
+
+    handleChangeRadio(e:any){
+        let name = e.target.name;
+        let state = [];
+        let fields = this.props.fields;
+        let values = this.props.values;
+        let ffRadio = e.target.classList.value;
+        if(fields.length>0) {
+            fields.map((field) => {
+                if (field.type == "radio") {
+                    if (values[field.name] != undefined) {
+                        values[field.name].map((value) => {
+                            if (value.id == Number(e.target.value)) {
+                                state[e.target.name] = value
+                            }
+                        })
+                    }
+                }
+            })
+        }
         this.setState(state);
     }
 
@@ -201,8 +225,7 @@ export default class DataForm extends React.Component<any,any>{
                 state[val[this.props.nameText]] = values[val[this.props.nameText]];
             }else if(val[this.props.typeText] == "date"){
                 //bir şey yapılmasın
-            }
-            else{
+            } else{
                 state[val[this.props.nameText]] = values[val[this.props.nameText]] || null;
             }
         });

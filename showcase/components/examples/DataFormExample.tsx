@@ -45,6 +45,18 @@ const fields = [
         name : "location",
         label :"Location",
         isRequired : true
+    },
+    {
+        id: "id",
+        type : "radio",
+        name : "opened",
+        label : "Yapıldı mı?"
+    },
+    {
+        id:"id",
+        type:"date",
+        name : "startDate",
+        label : "Başlangıç Zamanı"
     }
 ];
 
@@ -63,8 +75,10 @@ export default class DataFormExample extends React.Component<any,any>{
                     {id:4,value:"Lg",des:"D1"},
                     {id:5,value:"Lenovo",des:"D1"}
                 ],
+                opened : [{id:1,value:"Açık"},{id:2,value:"Kapalı"}],
                 location : "Ankara",
-                job : "Engineer"
+                job : "Engineer",
+                startDate : new Date()
             }
         }
     }
@@ -83,7 +97,8 @@ export default class DataFormExample extends React.Component<any,any>{
     }
 
     returnData(){
-        //return all fields in state 
-       console.log(this.dataFormRef.getChangeData());
+        //return all fields in state
+        debugger
+        console.log(this.dataFormRef.getChangeData());
     }
 }
