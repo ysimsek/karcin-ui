@@ -14,6 +14,10 @@ export interface LookUpProp {
     dataGridOption?:any;
     name?:any;
     label?:any;
+    /**
+     * Fa icon code exam fa-pie-chart
+     */
+    icon?:string;
 }
 
 export interface LookUpState {
@@ -24,6 +28,10 @@ export interface LookUpState {
 }
 
 export default class LookUp extends React.Component<LookUpProp,LookUpState> {
+
+    static defaultProps = {
+        icon : "fa-search-plus"
+    }
 
     selectedResult:any = [];
     constructor(props:LookUpProp){
@@ -49,7 +57,7 @@ export default class LookUp extends React.Component<LookUpProp,LookUpState> {
                                     : '')}
                                     </span>}
                                     </div>
-                        <div className="show-button"><Button onClick={this.toggle}><FaIcon code="fa-search-plus"/></Button></div>
+                        <div className="show-button"><Button onClick={this.toggle}><FaIcon code={this.props.icon}/></Button></div>
                     </div>
                 </div>
                 {this.returnModal()}
