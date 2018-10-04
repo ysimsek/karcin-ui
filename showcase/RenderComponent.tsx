@@ -37,9 +37,6 @@ export default class RenderComponent extends React.Component<any, any> {
                     <TabPanel className="source" title={<span><FaIcon code="fa-code"/> Source</span>}>
                         {this.getReactTxt()}
                     </TabPanel>
-                    <TabPanel className={""} title={<span>Using</span>}>
-                        {this.getUsing()}
-                    </TabPanel>
                 </Tab>
             </div>
         </div>);
@@ -128,7 +125,4 @@ export default class RenderComponent extends React.Component<any, any> {
         return arr;
     }
 
-    getUsing(){
-        return "using"
-    }
 }
