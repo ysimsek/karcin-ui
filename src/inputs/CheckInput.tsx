@@ -66,7 +66,7 @@ export default class CheckInput extends React.Component<CheckListProps,any>{
     render():any{
         let me:any = this;
         return <div className="list-group-item form-group">
-            <b>{this.props.label != undefined ? this.props.label : ""}</b>
+            {this.props.label != undefined ? <b>{this.props.label}</b> : ""}
             {me.props.items != undefined ? this.returnItems() : this.returnItem()}
             {this.isChecked = true}
         </div>
