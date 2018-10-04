@@ -32,9 +32,9 @@ export default class ListExample extends React.Component{
                    <Col md={4}>
                         <Panel title={"Simple Child List"}>
                             <List>
-                                <ListItem>Lorem</ListItem>
-                                <ListItem>Ipsum</ListItem>
-                                <ListItem>is simply</ListItem>
+                                <ListItem color={"primary"}>Lorem</ListItem>
+                                <ListItem color={"success"}>Ipsum</ListItem>
+                                <ListItem color={"warning"}>is simply</ListItem>
                                 <div>Dummy Text</div>
                                 <span>Of the printing</span>
                             </List>

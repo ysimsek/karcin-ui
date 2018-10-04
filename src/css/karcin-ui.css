@@ -1663,3 +1663,28 @@ button-square-to-radius {
 .faicon_light{
     color:#f8f9fa;
 }
+
+.list_primary{
+    color:#007bff;
+}
+.list_secondary{
+    color:#6c757d;
+}
+.list_success{
+    color:#28a745;
+}
+.list_info{
+    color:#17a2b8;
+}
+.list_warning{
+    color:#ffc107;
+}
+.list_danger{
+    color:#dc3545;
+}
+.list_dark{
+    color:#343a40;
+}
+.list_light{
+    color:#f8f9fa;
+}
