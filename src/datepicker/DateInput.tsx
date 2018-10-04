@@ -31,8 +31,7 @@ export default class DateInput extends React.Component<DateInputProps, DateInput
 
     static defaultProps: Partial<DateInputProps> = {
         startDate : moment(),
-        dateFormat: "DD.MM.YYYY",
-        label : null
+        dateFormat: "DD.MM.YYYY"
     }
 
     constructor(props: any) {
@@ -47,7 +46,7 @@ export default class DateInput extends React.Component<DateInputProps, DateInput
     render() {
         return (
                 <div>
-                    {this.props.label != null ? <Label className={"label-properties"}>{this.props.label}</Label> : null}
+                    {this.props.label != undefined ? <Label className={"label-properties"}>{this.props.label}</Label> : null}
                     <div>
                         <DatePickerX
                             {...this.props}

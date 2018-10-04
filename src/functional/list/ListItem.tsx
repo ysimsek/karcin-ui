@@ -16,7 +16,7 @@ export default class ListItem extends React.Component<any,any>{
         light : "list_light"
     };
     render():any{
-        let color = this.props.color!= undefined ? this.getColor(this.props.color) : null;
+        let color:string = this.props.color!= undefined ? this.getColor(this.props.color) : "";
         return <div className={color}>{this.props.children}</div>
     }
 

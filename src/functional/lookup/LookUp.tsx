@@ -29,7 +29,7 @@ export interface LookUpState {
 
 export default class LookUp extends React.Component<LookUpProp,LookUpState> {
 
-    static defaultProps = {
+    public static defaultProps:Partial<LookUpProp> = {
         icon : "fa-search-plus"
     }
 
@@ -57,7 +57,7 @@ export default class LookUp extends React.Component<LookUpProp,LookUpState> {
                                     : '')}
                                     </span>}
                                     </div>
-                        <div className="show-button"><Button onClick={this.toggle}><FaIcon code={this.props.icon}/></Button></div>
+                        <div className="show-button"><Button onClick={this.toggle}><FaIcon code={this.props.icon != undefined ? this.props.icon : "fa-search-plus"}/></Button></div>
                     </div>
                 </div>
                 {this.returnModal()}
