@@ -28,7 +28,7 @@ export interface DataFormProps{
 export default class DataForm extends React.Component<any,any>{
 
 
-    fieldLength = 0;
+    fieldLength:number = 0;
 
     static defaultProps = {
         col : 2,
@@ -38,15 +38,12 @@ export default class DataForm extends React.Component<any,any>{
         typeText:"type",
         visibilityText: "visibility"
     }
-
+    state:any = {}
     constructor(props:any){
         super(props);
-        this.state = {
-        }
 
     }
     render(){
-
         return <div className={"karcin-dataform"}>
             <Row>
                 {this.returnElements(this.props.fields)}
@@ -96,6 +93,7 @@ export default class DataForm extends React.Component<any,any>{
         });
         return components;
     }
+
     getTextInput(value:any){
         return <TextInput
             name={value[this.props.nameText]}
@@ -104,6 +102,7 @@ export default class DataForm extends React.Component<any,any>{
             onChange={this.handleChange.bind(this)}
         />
     }
+
     getPasswordInput(value:any){
         return <PasswordInput
             name={value[this.props.nameText]}
@@ -112,6 +111,7 @@ export default class DataForm extends React.Component<any,any>{
             onChange={this.handleChange.bind(this)}
         />
     }
+
     getNumericInput(value:any){
         return <NumericInput
             name={value[this.props.nameText]}
@@ -120,6 +120,7 @@ export default class DataForm extends React.Component<any,any>{
             onChange={this.handleChange.bind(this)}
         />
     }
+
     getSelectInput(value:any){
         return <SelectInput
             name={value[this.props.nameText]}
@@ -130,6 +131,7 @@ export default class DataForm extends React.Component<any,any>{
             onChange={this.handleChange.bind(this)}
         />
     }
+
     getDateInput(value:any){
         return <DateInput
             name={value[this.props.nameText]}
@@ -157,6 +159,7 @@ export default class DataForm extends React.Component<any,any>{
             textField={value.valueField}
             onChange={this.handleChangeRadio.bind(this)}/>
     }
+
     getCheckInput(value:any){
         return <CheckInput
             name={value[this.props.nameText]}
@@ -215,7 +218,7 @@ export default class DataForm extends React.Component<any,any>{
     }
 
     onChange(e:any,f:any){
-        let state={};
+        let state:any={};
         state[f] = e;
         this.setState(state);
     }
@@ -241,23 +244,23 @@ export default class DataForm extends React.Component<any,any>{
     }
 
     handleChange(e:any){
-        let name = e.target.name;
-        let state = [];
+        let name:any = e.target.name;
+        let state:any = [];
         state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
         this.setState(state);
     }
 
     handleChangeRadio(e:any){
-        let name = e.target.name;
-        let state = [];
-        let fields = this.props.fields;
-        let values = this.props.values;
-        let ffRadio = e.target.classList.value;
+        let name:string = e.target.name;
+        let state:any = [];
+        let fields:any = this.props.fields;
+        let values:any = this.props.values;
+        let ffRadio:any = e.target.classList.value;
         if(fields.length>0) {
-            fields.map((field) => {
+            fields.map((field:any) => {
                 if (field.type == "radio") {
                     if (values[field.name] != undefined) {
-                        values[field.name].map((value) => {
+                        values[field.name].map((value:any) => {
                             if (value.id == Number(e.target.value)) {
                                 state[e.target.name] = value
                             }
@@ -275,7 +278,7 @@ export default class DataForm extends React.Component<any,any>{
      */
     UNSAFE_componentWillMount(){
         let state:any = {};
-        let values  =  this.props.values;
+        let values:any  =  this.props.values;
         this.props.fields.map((val:any,idx:string | number) => {
             if(typeof values[val[this.props.nameText]] == "string"){
                 state[val[this.props.nameText]] = values[val[this.props.nameText]];

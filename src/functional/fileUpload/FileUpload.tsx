@@ -12,7 +12,7 @@ export interface FileUploadState {
 export default class FileUpload extends React.Component <FileUploadProps,FileUploadState> {
     constructor(props:FileUploadProps){
         super(props);
-        
+
     }
 
     fileInput:any;
@@ -41,7 +41,7 @@ export default class FileUpload extends React.Component <FileUploadProps,FileUpl
 
             reader.readAsDataURL(file);
             reader.addEventListener('load', () => {
-                this.getImage(reader.result, file); 
+                this.getImage(reader.result, file);
             })
         }
     }
@@ -72,11 +72,11 @@ export default class FileUpload extends React.Component <FileUploadProps,FileUpl
             </div>);
         });
 
-        return items; 
+        return items;
     }
 
     getRenderImage(value:any){
-        let extensions = value.filesOption.type.split('/')[1];
+        let extensions:any = value.filesOption.type.split('/')[1];
         if(extensions !== undefined) {
             let showImageExtensions = ['jpg', 'jpg', 'jpeg', 'gif', 'png'];
             if(showImageExtensions.indexOf(extensions) !== -1){
@@ -85,6 +85,7 @@ export default class FileUpload extends React.Component <FileUploadProps,FileUpl
                 return <span className="file-icon file-icon-lg" data-type={extensions}></span>
             }
         }
+        return null;
     }
 
     removeItems(id:any){

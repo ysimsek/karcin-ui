@@ -1409,6 +1409,7 @@ button-square-to-radius {
 .karcin-look-up .look-up-wrapper .selected-value .show-button {position: absolute;right: 0;top:0;}
 
 
+
 /* file upload */
 .karcin-file-upload {
     width: 100%;
@@ -1637,4 +1638,3 @@ button-square-to-radius {
 .file-icon[data-type=png] {
   background: #f4b400;
 }
-

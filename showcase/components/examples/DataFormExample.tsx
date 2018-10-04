@@ -77,7 +77,7 @@ const fields = [
         id:"id",
         type: "alert",
         title:"Lütfen Okuyunuz!",
-        message:"Bu form çok manyak abi :)",
+        message:"Verilerini Konsol'da kontrol ediniz :)",
         color:"warning"
     }
 
