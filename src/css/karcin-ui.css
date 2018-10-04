@@ -1638,3 +1638,28 @@ button-square-to-radius {
 .file-icon[data-type=png] {
   background: #f4b400;
 }
+
+.faicon_primary{
+    color:#007bff;
+}
+.faicon_secondary{
+    color:#6c757d;
+}
+.faicon_success{
+    color:#28a745;
+}
+.faicon_info{
+    color:#17a2b8;
+}
+.faicon_warning{
+    color:#ffc107;
+}
+.faicon_danger{
+    color:#dc3545;
+}
+.faicon_dark{
+    color:#343a40;
+}
+.faicon_light{
+    color:#f8f9fa;
+}
