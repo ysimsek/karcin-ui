@@ -1688,3 +1688,7 @@ button-square-to-radius {
 .list_light{
     color:#f8f9fa;
 }
+.color .form-control{
+    height: 39px !important;
+    padding: 0px !important;
+}

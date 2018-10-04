@@ -17,15 +17,16 @@ import {Row,Col,Alert} from "reactstrap";
 
 export interface DataFormProps{
     col ?: number;
-    fields ?: Array<any> | any;
+    fields : Array<any> | any;
     returnData ?: any;
     nameText?:any,
     labelText?:any,
     visibilityText?:any
     typeText?:any;
+    values : Array<any> |any;
 }
 
-export default class DataForm extends React.Component<any,any>{
+export default class DataForm extends React.Component<DataFormProps,any>{
 
 
     fieldLength:number = 0;

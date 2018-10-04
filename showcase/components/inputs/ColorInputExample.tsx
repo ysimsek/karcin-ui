@@ -1,26 +1,25 @@
 import * as React from "react";
-import {PasswordInput} from "karcin-ui";
+import {ColorInput} from "karcin-ui";
 
 
-export default class PasswordInputExample extends React.Component<any,any>{
+export default class ColorInputExample extends React.Component<any,any>{
     constructor(props:any){
         super(props);
         this.state = {
-            passwordInput : ""
+            colorInput : "#ffaa11"
         }
     }
     render(){
         return <div>
-            <PasswordInput
-                name={"passwordInput"}
-                label={"PasswordInput Example"}
-                value={this.state.passwordInput}
+            <ColorInput
+                name={"colorInput"}
+                label={"ColortInput Example"}
+                value={this.state.colorInput}
                 onChange={this.handleChange.bind(this)}
             />
-            <span><i>{this.state.passwordInput}</i></span>
+            <span><i>{this.state.colorInput}</i></span>
         </div>
     }
-
     handleChange(e){
         let name = e.target.name;
         let state = [];

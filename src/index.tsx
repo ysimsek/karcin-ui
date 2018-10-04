@@ -26,6 +26,7 @@ import TextArea from "./inputs/TextArea";
 import RadioInput from "./inputs/RadioInput";
 import CheckInput from "./inputs/CheckInput";
 import ToggleButton from "./input/ToggleButton";
+import ColorInput from "./inputs/ColorInput";
 
 import DateInput from "./datepicker/DateInput";
 
@@ -58,6 +59,8 @@ import Condition from './functional/condition/Condition';
 import LookUp from './functional/lookup/LookUp';
 import FileUpload from './functional/fileUpload/FileUpload';
 
+import PropertyGrid from "./functional/propertygrid/PropertyGrid";
+
 import "./css/karcin-ui.css";
 
 export {
@@ -81,6 +84,7 @@ export {
     TextInput,
     TextArea,
     RadioInput,
+    ColorInput,
     DataForm,
     CheckInput,
     DataGrid,
@@ -104,6 +108,7 @@ export {
     DynamicChart,
     Store,
     ContextMenu,
+    PropertyGrid,
     Calendar,
     Loading,
     AutoComplate,

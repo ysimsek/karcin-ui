@@ -200,6 +200,16 @@
       "description":"<AutoComplate/>"
     },
     {
+      "id":18,
+      "name":"PropertyGrid",
+      "title":"PropertyGrid",
+      "icon":"fas fa-align-center",
+      "href":"#/Components/PropertyGrid",
+      "samples":"components/examples/PropertyGridExample",
+      "library":"functional/propertygrid/PropertyGrid",
+      "description":"<ProperyGrid/>"
+    },
+    {
       "id":2,
       "name":"input",
       "title":"Input",
@@ -285,6 +295,14 @@
           "href":"#/Components/CheckInput",
           "samples":"components/inputs/CheckInputExample",
           "library":"inputs/CheckInput"
+        },
+        {
+          "id":9,
+          "name":"ColorInput",
+          "title":"ColorInput",
+          "href":"#/Components/ColorInput",
+          "samples":"components/inputs/ColorInputExample",
+          "library":"inputs/ColorInput"
         }
 
       ]

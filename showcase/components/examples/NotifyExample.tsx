@@ -88,7 +88,6 @@ export default class NotifyExample extends React.Component<any,any>{
     }
 
     selectOnChange(e){
-        debugger
         let name = e.target.name;
         let state = [];
         state[e.target.name] = e.target.id;
