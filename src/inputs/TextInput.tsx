@@ -47,7 +47,7 @@ export default class TextInput extends React.Component<TextInputProps>{
         disabled: false,
         readOnly: false,
         hidden: false,
-        label : "",
+        label : null,
         type:"text",
     }
 
