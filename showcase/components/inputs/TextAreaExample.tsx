@@ -1,7 +1,7 @@
 import * as React from "react";
 import {TextArea} from "karcin-ui";
 
-export default class RadioInputExample extends React.Component<any,any>{
+export default class TextAreaExample extends React.Component<any,any>{
     constructor(props:any){
         super(props);
         this.state = {
