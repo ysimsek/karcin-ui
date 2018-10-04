@@ -47,6 +47,14 @@ const fields = [
         isRequired : true
     },
     {
+        id:"id",
+        type:"check",
+        name : "checkJob",
+        label : "İş Seç",
+        idField : "id",
+        valueField : "job"
+    },
+    {
         id: "id",
         type : "radio",
         name : "opened",
@@ -57,7 +65,22 @@ const fields = [
         type:"date",
         name : "startDate",
         label : "Başlangıç Zamanı"
+    },
+    {
+        id:"id",
+        type:"lookup",
+        name:"lookUpData",
+        label: "Dil Seç",
+        textField : "body"
+    },
+    {
+        id:"id",
+        type: "alert",
+        title:"Lütfen Okuyunuz!",
+        message:"Bu form çok manyak abi :)",
+        color:"warning"
     }
+
 ];
 
 export default class DataFormExample extends React.Component<any,any>{
@@ -78,7 +101,19 @@ export default class DataFormExample extends React.Component<any,any>{
                 opened : [{id:1,value:"Açık"},{id:2,value:"Kapalı"}],
                 location : "Ankara",
                 job : "Engineer",
-                startDate : new Date()
+                checkJob : [{id:1,name:"Mustafa",job:"Computer Engineer", age: 26},
+                    {id:2,name:"Zeynep",job:"Business Manager", age:24},
+                    {id:3,name:"Meral",job:"Software Specialist", age:29}],
+                lookUpData : {
+                    fields: [{"property": "int", "value": "id", "label": "ID"},
+                        {"property": "string", "value": "body", "label": "Başlık"}],
+                    store:{
+                        data : [
+                            {id:1,name:"Java",body:"Java neredeyse her türdeki ağ uygulamalarının temelini oluşturarak gömülü ve mobil uygulamalar, oyunlar, Web tabanlı içerik ve kurumsal yazılım geliştirme ve dağıtımı için küresel standarttır.  " },
+                            {id:2,name:"React",body:"React Virtual Dom , sayfa bütünlüğü ve yönetimini elinde tutarak kolaylık sağlıyor"}
+                        ]
+                    }
+                }
             }
         }
     }
@@ -91,14 +126,13 @@ export default class DataFormExample extends React.Component<any,any>{
                     ref={(e)=>{
                         this.dataFormRef = e;
                     }}
-                    col={3} />
-            <Button onClick={()=>{this.returnData()}}>Deneme</Button>
+            col={3} />
+            <Button onClick={()=>{this.returnData()}}>Console</Button>
         </div>
     }
 
     returnData(){
         //return all fields in state
-        debugger
         console.log(this.dataFormRef.getChangeData());
     }
 }

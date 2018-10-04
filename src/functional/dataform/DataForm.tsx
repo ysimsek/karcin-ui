@@ -9,8 +9,10 @@ import TextInput from "../../inputs/TextInput";
 import TextArea from "../../inputs/TextArea";
 import RadioInput from "../../inputs/RadioInput";
 import CheckInput from "../../inputs/CheckInput";
+import LookUp from "../../functional/lookup/LookUp";
+import Store from "../../store/Store";
 
-import {Row,Col} from "reactstrap";
+import {Row,Col,Alert} from "reactstrap";
 
 
 export interface DataFormProps{
@@ -82,6 +84,12 @@ export default class DataForm extends React.Component<any,any>{
                         break;
                     case "textarea" :
                         components.push(<Col key={idx} md={12/me.props.col}>{me.getTextArea(val)}</Col>);
+                        break;
+                    case "lookup" :
+                        components.push(<Col key={idx} md={12/me.props.col}>{me.getLookUp(val)}</Col>);
+                        break;
+                    case "alert" :
+                        components.push(<Col key={idx} md={12/me.props.col}>{me.getAlert(val)}</Col>);
                         break;
                 }
             }
@@ -161,7 +169,6 @@ export default class DataForm extends React.Component<any,any>{
     }
 
     /**
-     * TODO : TEXTAREA LABEL PROPSUNU YAP
      * @param value
      * @returns {any}
      */
@@ -174,13 +181,62 @@ export default class DataForm extends React.Component<any,any>{
         />
     }
 
+    /**
+     * LookUp component
+     * @param value
+     */
+    getLookUp(value:any){
+        let values:any = this.props.values;
+        let store:any = null, fieldLookup:any = [], textField;
+        if(values[value.name] != undefined){
+            let inStore = values[value.name].store;
+            fieldLookup = values[value.name].fields;
+            store =new Store(
+                inStore
+            )
+        }
+        return <LookUp
+                    field={fieldLookup}
+                    store={store}
+                    label={value.label}
+                    name={value.name}
+                    textField={value.textField}
+                    onChange={this.onChange.bind(this)}/>
+    }
+
+    /**
+     * Alert component
+     * @param value
+     */
+    getAlert(value:any){
+        return <div>
+            <label className={"label-properties"}>{value.title}</label>
+            <Alert color={value.color}>{value.message}</Alert></div>
+    }
+
+    onChange(e:any,f:any){
+        let state={};
+        state[f] = e;
+        this.setState(state);
+    }
+
 
     /**
      * TODO : POPOVER AND TOOLTIP EKLE
      */
     getChangeData() {
-        debugger
         let data:any = this.state;
+        //TODO ilk başta array tipinde items alanlar tüm değerleri state de seçili geliyor,
+        //TODO CHECKİNPUT TA array şeklinde data return ediyor Kontrollerin yapılması lazım
+        // for(let item in data){
+        //     if(typeof(data[item]) == "object"){
+        //         if(data[item].length != undefined) {
+        //             if (data[item].length > 1) {
+        //                 data[item] = null;
+        //             }
+        //         }
+        //     }
+        // }
         return data;
     }
 

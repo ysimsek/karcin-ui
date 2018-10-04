@@ -992,7 +992,7 @@ New Reactstrap CSS
 .karcin-data-grid .table thead tr td span:hover,
 .karcin-data-grid .table thead tr th span:hover {
     color: #636161;
-} 
+}
 
 .karcin-data-grid .table thead tr th span.filter-active {
     color: #4e9dfb;
@@ -1399,4 +1399,11 @@ button-square-to-radius {
 .karcin-look-up .look-up-wrapper {}
 .karcin-look-up .look-up-wrapper .selected-value {position: relative;}
 .karcin-look-up .look-up-wrapper .selected-value .input-val {}
+.karcin-look-up .look-up-wrapper .selected-value .input-val span{
+    position: relative;
+    height: 95%;
+    width: 100%;
+    overflow: hidden;
+    display: block;
+}
 .karcin-look-up .look-up-wrapper .selected-value .show-button {position: absolute;right: 0;top:0;}
