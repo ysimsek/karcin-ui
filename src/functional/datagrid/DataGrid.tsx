@@ -79,6 +79,16 @@ export interface DataGridProps {
       * datagrid Title 
       */
      title?:string | any;
+
+     /**
+      * filter özelliğini kaptmak için kullanılır
+      */
+     filter?: boolean;
+
+     /**
+      * filter özelliğini kaptmak için kullanılır
+      */
+     order?: boolean;
 }
 
 export interface DataGridState {
@@ -187,8 +197,10 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
                                store={this.props.store}
                                resetData={() => {
                                    this.resetData()
-                               }}/>
-                    <Loading show={this.loadingShow.show} size={'inset'} />
+                               }}
+                               {...this.props}
+                               />
+                    <Loading show={false} size={'inset'} />
                     <TableBody ref={ref => {this.tbodyRef = ref; }}
                                 onSelected={(this.props.onSelected !== false ? (data:any, select:any)=>{
                                     this._selectedRow = data;

@@ -50,7 +50,7 @@ export default class Toolbar extends React.Component<ToolbarProps, any> {
         type: "footer",
         data: [],
         dataFormLabelText:'label',
-        dataFormNameText:'name' 
+        dataFormNameText:'value' 
     };
 
     /**
@@ -157,8 +157,8 @@ export default class Toolbar extends React.Component<ToolbarProps, any> {
     getGrudButtons(){
         let buttons:any = [];
         if(this.props['grud'] !== undefined){
-            // add buttons 
-            if(this.props['grud'].indexOf('add') !== -1){
+            // create buttons 
+            if(this.props['grud'].indexOf('create') !== -1){
                 buttons.push({name:"Ekle", icon:"fa-plus",disabled:false, onClick:()=>{
                     this.openModal('create');
                 }});
@@ -167,12 +167,12 @@ export default class Toolbar extends React.Component<ToolbarProps, any> {
             // update buttons
             if(this.props['grud'].indexOf('update') !== -1){
                 buttons.push({name:"Düzenle", icon:"fa-pencil",disabled:(this.state.selectedRow.selected.length > 0 ? false : true), onClick:()=>{
-                    this.openModal('edit');
+                    this.openModal('update');
                 }});
             }
 
             // delete buttons
-            if(this.props['grud'].indexOf('remove') !== -1){
+            if(this.props['grud'].indexOf('delete') !== -1){
                 buttons.push({name:"Sil", icon:"fa-trash",disabled:(this.state.selectedRow.selected.length > 0 ? false : true), onClick:()=>{
                     this.openRemove();
                 }});
@@ -202,23 +202,33 @@ export default class Toolbar extends React.Component<ToolbarProps, any> {
 
     modalHtml = () => {
 
+        console.log(this.state.selectedRow.selected);
+
         if(this.state.selectedRow.selected.length > 0){
             this.editValues = this.state.selectedRow.selected[0];
+        }
+
+        let newField:Array<any> = [];
+        if(this.props['fields'] !== undefined){
+            this.props['fields'].forEach((val:any) => {
+                if(val['visibility'] === undefined || val['visibility'] === true){
+                    newField.push(val);
+                }
+            });
         }
 
         let modalHtml = <Modal isOpen={this.state.isOpen} toggle={this.toggleModal}>
                             <ModalHeader toggle={this.toggleModal}>DataGrid İşlemleri</ModalHeader>
                             <ModalBody>
                                 <div>
-                                    <DataForm nameText={this.props.dataFormNameText} labelText={this.props.dataFormLabelText} fields={this.props['fields']} ref={(e:any)=>{
+                                    <DataForm nameText={this.props.dataFormNameText} labelText={this.props.dataFormLabelText} fields={newField} ref={(e:any)=>{
                                         this.dataForm = e;
-                                    }} values={this.editValues} col={2} />
+                                    }} values={this.editValues} col={1} />
                                 </div>
                             </ModalBody>
                             <ModalFooter>
                                 {(this.state.buttonType === 'create') ? <Button color="primary" onClick={this.openSave}>Kaydet</Button> : ''}
-                                {(this.state.buttonType === 'edit') ? <Button color="success" onClick={this.openEdit}>Düzenle</Button> : ''}
-                                {' '}
+                                {(this.state.buttonType === 'update') ? <Button color="success" onClick={this.openEdit}>Düzenle</Button> : ''}
                                 <Button color="secondary" onClick={this.toggleModal}>Kapat</Button>
                             </ModalFooter>
                         </Modal>;

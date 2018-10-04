@@ -14,19 +14,20 @@ export default class DataGridExample extends React.Component<any, any> {
         this.state = {
             fields: [
                 {
-                    "property": "int",
+                    "type": "int",
                     "value": "id",
-                    "name": "ID"
+                    "label": "ID",
+                    "visibility": false
                 },
                 {
-                    "property": "string",
+                    "type": "string",
                     "value": "title",
-                    "name": "Başlık"
+                    "label": "Başlık"
                 },
                 {
-                    "property": "string",
+                    "type": "textarea",
                     "value": "body",
-                    "name": "Açıklama",
+                    "label": "Açıklama",
                 }
             ],
             store: new Store({
@@ -44,7 +45,7 @@ export default class DataGridExample extends React.Component<any, any> {
     }
 
     render() {
-        return (<div><DataGrid title={"Example Data"} store={this.state.store} fields={this.state.fields} onSelected={false} page={this.state.page}   pagination={true} pageShow={3} />
+        return (<div><DataGrid title={"Example Data"} filter={false} grud={['create', 'update', 'delete']} order={false} store={this.state.store} fields={this.state.fields} onSelected={false} page={this.state.page}   pagination={true} pageShow={3} />
         </div>);
     }
 }
