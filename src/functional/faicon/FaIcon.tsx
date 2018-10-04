@@ -19,7 +19,7 @@ export interface FaIconProps {
      */
     code:string;
     /**
-     *
+     * primary , secondary,  success, info, warning, danger, danger, dark, light
      */
     color?:string;
     style?:object;
