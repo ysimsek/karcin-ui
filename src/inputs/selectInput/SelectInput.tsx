@@ -188,7 +188,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
             let id = value[this.props.id];
             let val = value[this.props.value];
             if(id !== undefined &&  val !== undefined){
-                returnHtml.push(<option key={index} value={id}>{this.props.renderer !== undefined ? this.props.renderer(val) : val}</option>);
+                returnHtml.push(<option key={this.state.randomId + "-" + index} value={id}>{this.props.renderer !== undefined ? this.props.renderer(val) : val}</option>);
             }
         });
 
@@ -261,7 +261,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
 
         if(this.state.selectedItem.val !== undefined && this.state.selectedItem.val.length > 0){
             this.state.selectedItem.val.forEach((value:any, index:number) => {
-                getSelectItem.push(<div className="select-item" key={index}><span>{(this.props.selectedRenderer !== undefined) ? this.props.selectedRenderer(value) : value[this.props.value]}</span><i className="close-button" onClick={() => {this.removeSelectItem(index)}}><FaIcon code="fa-times"/></i></div>);
+                getSelectItem.push(<div className="select-item" key={this.state.randomId + "-" + index}><span>{(this.props.selectedRenderer !== undefined) ? this.props.selectedRenderer(value) : value[this.props.value]}</span><i className="close-button" onClick={() => {this.removeSelectItem(index)}}><FaIcon code="fa-times"/></i></div>);
             });
         }
 
@@ -332,7 +332,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         }
 
         getPropsItems.forEach((value:any, index:number) => {
-            itemsList.push(<div className={`item ${(this.state.active.arrowActive === index) ? 'active' : ''}`} key={index+1} onClick={() => {this.addSelectedItem(value)}}>{(this.props.renderer !== undefined) ? this.props.renderer(value) : value[this.props.value]}</div>);
+            itemsList.push(<div className={`item ${(this.state.active.arrowActive === index) ? 'active' : ''}`} key={this.state.randomId + "-" + index} onClick={() => {this.addSelectedItem(value)}}>{(this.props.renderer !== undefined) ? this.props.renderer(value) : value[this.props.value]}</div>);
         });
 
         this.state.dropDownItems.data = getPropsItems.slice(0);

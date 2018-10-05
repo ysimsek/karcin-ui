@@ -88,9 +88,6 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
         };
     }
 
-    UNSAFE_componentWillReceiveProps() {
-    }
-
     /**
      *
      * @param {MenuProps} props
@@ -100,7 +97,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
             hover: props.hover,
             activeItem: props.active
         });
-
+        
         this.activeFind(props.active);
     }
 
@@ -108,7 +105,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
      * End render finished
      */
     componentDidMount() {
-       // this.activeFind(this.state.activeItem, this.state.menuData);
+       this.activeFind(this.state.activeItem);
     }
 
     /**
@@ -143,7 +140,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
 
             // active control
             let keys = (key !== undefined) ? key + "-" + index : index.toString();
-            let params = {keys: keys, level: level, collapse: false, hover:false};
+            let params = {keys: keys, level: level, collapse: false, hover:false, item:value['itemControl']  = (value.items !== undefined && value.items.length > 0 ? true : false)};
             let activeControlBool = false;
             self.menuData.push(value);
 
@@ -169,17 +166,20 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
                         this.toggleActiveMenu(params, value.items)
                     }
                 }}>
-                    {(this.props.renderer !== undefined ?
-                            <NavLink href={(value.href) ? value.href : "#"}>{this.props.renderer(value)}</NavLink> :
-                            <NavLink href={(value.href) ? value.href : "#"}>
-                                {(value.icon !== undefined) ? <FaIcon code={value.icon} className="menu-icon"/> : ''}
-                                <strong>{value.title}{(value.badge !== undefined) ?
-                                    <Badge color={value.badgeColor}>{value.badge}</Badge> : ''}</strong>
-                                {(value.items !== undefined && value.items.length > 0) ? (actives ?
-                                    <FaIcon code="fa-angle-down" className="open-icon"/> :
-                                    <FaIcon code="fa-angle-right" className="open-icon"/>) : ''}
-                            </NavLink>
-                    )}
+                
+                    <NavLink href={(value.href) ? value.href : "#"}>
+                        {(this.props.renderer !== undefined ? this.props.renderer(value) : 
+                            <div className="menu-centered">
+                                {(value.icon !== undefined ? <FaIcon code={value.icon} className="menu-icon"/> : '')}
+                                <strong>{value.title}
+                                {(value.badge !== undefined) ?<Badge color={value.badgeColor}>{value.badge}</Badge> : ''}</strong>
+                            </div>
+                        )}
+
+                        {(value.items !== undefined && value.items.length > 0) ? (actives ?
+                            <FaIcon code="fa-angle-down" className="open-icon"/> :
+                            <FaIcon code="fa-angle-right" className="open-icon"/>) : ''}
+                    </NavLink>
                 </div>
                 {(value.items !== undefined && value.items.length > 0) ? this.menuLoop(value.items, keys, level + 1, true) : ''}
             </NavItem>);
@@ -208,28 +208,34 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
                         }
                     }
                     else {
-                        val.collapse = false;
-                    }
-
-                    if (self.props.onChange !== undefined) {
-                        let changeMenu = self.menuData.slice(0);
-                        self.props.onChange(changeMenu.filter((v: any) => v.keys === val.keys));
+                        val.collapse = false; 
                     }
                 }
             } else {
-
-                if (param.keys === val.keys && param.level === val.level) {
-                    val.collapse = !val.collapse;
-
-                    if (self.props.onChange !== undefined) {
-                        let changeMenu = self.menuData.slice(0);
-                        self.props.onChange(changeMenu.filter((v: any) => v.keys === val.keys));
+                if(param.item){
+                    if (param.keys === val.keys && param.level === val.level) {
+                        val.collapse = !val.collapse;
+                    }
+                }else {
+                    if(!val.item){
+                        if (param.keys === val.keys && param.level === val.level) {
+                            val.collapse = true;
+                        }else {
+                            val.collapse = false;
+                        }
                     }
                 }
+
             }
 
             return val;
         });
+
+        if (self.props.onChange !== undefined) {
+            let changeMenu = self.menuData.slice(0);
+            self.props.onChange(changeMenu.filter((v: any) => v.keys === param.keys));
+        }
+
         this.forceUpdate();
 
     }
@@ -246,6 +252,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
                 if (val.href === getActive.href && val.name === getActive.name) {
                     for (let i = val.level; i >= 0; i--) {
                         let splitKey = val.keys.split('-');
+
                         this.state.menuActive.map((vals: any) => {
                             let id = splitKey.slice(0, i + 1).join('-');
                             if (this.props.accordion) {
@@ -257,7 +264,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
                             } else {
 
                                 if (vals.level === i && vals.keys === id) {
-                                    vals.collapse = !vals.collapse;
+                                    vals.collapse = true;
                                 }
                             }
 
