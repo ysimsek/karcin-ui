@@ -998,7 +998,7 @@ New Reactstrap CSS
 .karcin-data-grid .table thead tr td span:hover,
 .karcin-data-grid .table thead tr th span:hover {
     color: #636161;
-} 
+}
 
 .karcin-data-grid .table thead tr th span.filter-active {
     color: #4e9dfb;
@@ -1405,7 +1405,15 @@ button-square-to-radius {
 .karcin-look-up .look-up-wrapper {}
 .karcin-look-up .look-up-wrapper .selected-value {position: relative;}
 .karcin-look-up .look-up-wrapper .selected-value .input-val {}
+.karcin-look-up .look-up-wrapper .selected-value .input-val span{
+    position: relative;
+    height: 95%;
+    width: 100%;
+    overflow: hidden;
+    display: block;
+}
 .karcin-look-up .look-up-wrapper .selected-value .show-button {position: absolute;right: 0;top:0;}
+
 
 
 /* file upload */
@@ -1635,4 +1643,54 @@ button-square-to-radius {
 .file-icon[data-type=gif],
 .file-icon[data-type=png] {
   background: #f4b400;
+}
+
+.faicon_primary{
+    color:#007bff;
+}
+.faicon_secondary{
+    color:#6c757d;
+}
+.faicon_success{
+    color:#28a745;
+}
+.faicon_info{
+    color:#17a2b8;
+}
+.faicon_warning{
+    color:#ffc107;
+}
+.faicon_danger{
+    color:#dc3545;
+}
+.faicon_dark{
+    color:#343a40;
+}
+.faicon_light{
+    color:#f8f9fa;
+}
+
+.list_primary{
+    color:#007bff;
+}
+.list_secondary{
+    color:#6c757d;
+}
+.list_success{
+    color:#28a745;
+}
+.list_info{
+    color:#17a2b8;
+}
+.list_warning{
+    color:#ffc107;
+}
+.list_danger{
+    color:#dc3545;
+}
+.list_dark{
+    color:#343a40;
+}
+.list_light{
+    color:#f8f9fa;
 }

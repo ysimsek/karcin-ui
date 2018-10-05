@@ -12,6 +12,12 @@ export interface LookUpProp {
     renderer?:any;
     onChange?:any;
     dataGridOption?:any;
+    name?:any;
+    label?:any;
+    /**
+     * Fa icon code exam fa-pie-chart
+     */
+    icon?:string;
 }
 
 export interface LookUpState {
@@ -22,6 +28,10 @@ export interface LookUpState {
 }
 
 export default class LookUp extends React.Component<LookUpProp,LookUpState> {
+
+    public static defaultProps:Partial<LookUpProp> = {
+        icon : "fa-search-plus"
+    }
 
     selectedResult:any = [];
     constructor(props:LookUpProp){
@@ -36,10 +46,18 @@ export default class LookUp extends React.Component<LookUpProp,LookUpState> {
     render(){
         return(
             <div className="karcin-look-up">
+                <label className={"label-properties"}>{this.props.label}</label>
                 <div className="look-up-wrapper">
                     <div className="selected-value">
-                        <div className="input-val form-control">{this.props.renderer !== undefined && this.selectedResult.length > 0 ? this.props.renderer(this.selectedResult[0]) : <span>{(this.selectedResult.length > 0 ? this.selectedResult[0][this.props.textField] : '')}</span>}</div>
-                        <div className="show-button"><Button onClick={this.toggle}><FaIcon code="fa-search-plus"/></Button></div>
+                        <div className="input-val form-control">
+                            {this.props.renderer !== undefined && this.selectedResult.length > 0 ?
+                                this.props.renderer(this.selectedResult[0]) :
+                                <span>{(this.selectedResult.length > 0 ?
+                                    this.selectedResult[0][this.props.textField]
+                                    : '')}
+                                    </span>}
+                                    </div>
+                        <div className="show-button"><Button onClick={this.toggle}><FaIcon code={this.props.icon != undefined ? this.props.icon : "fa-search-plus"}/></Button></div>
                     </div>
                 </div>
                 {this.returnModal()}
@@ -81,7 +99,7 @@ export default class LookUp extends React.Component<LookUpProp,LookUpState> {
         });
 
         if(this.props.onChange !== undefined){
-            this.props.onChange(this.state.selected[0]);
+            this.props.onChange(this.state.selected[0], this.props.name);
         }
     }
 }

@@ -10,7 +10,7 @@ export default class ListExample extends React.Component{
             {id:2, value:"Of the printing and typesetting ",href:""},
             {id:3, value:"Industry. Lorem Ipsum has been",href:"",badge:"5"},
             {id:4, value:"The industry's standard dummy ",href:""},
-            {id:5, value:"Text ever since the 1500s",href:"",badge:"1299th"},
+            {id:5, value:"Text ever since the 1500s",href:"",badge:"1299th"}
             ];
 
         return <Row>
@@ -32,9 +32,9 @@ export default class ListExample extends React.Component{
                    <Col md={4}>
                         <Panel title={"Simple Child List"}>
                             <List>
-                                <ListItem>Lorem</ListItem>
-                                <ListItem>Ipsum</ListItem>
-                                <ListItem>is simply</ListItem>
+                                <ListItem color={"primary"}>Lorem</ListItem>
+                                <ListItem color={"success"}>Ipsum</ListItem>
+                                <ListItem color={"warning"}>is simply</ListItem>
                                 <div>Dummy Text</div>
                                 <span>Of the printing</span>
                             </List>
@@ -65,10 +65,16 @@ export default class ListExample extends React.Component{
                                 value={"value"}
                                 active={true}
                                 activeValue={"id"}
-                                activeId={4}/>
+                                activeId={4}
+                                onClick={this.Click.bind(this)}
+                            />
                        </Panel>
                    </Col>
 
                </Row>
+    }
+
+    Click(e:any){
+        console.log(e);
     }
 }

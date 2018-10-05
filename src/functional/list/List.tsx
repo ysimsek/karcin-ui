@@ -48,6 +48,10 @@ export interface ListProps extends React.HTMLAttributes<HTMLElement>{
      * Set the activeId
      */
     activeId ?: number;
+    /**
+     * Change state durumu
+     */
+    onClick?:any;
 }
 
 /**
@@ -61,7 +65,7 @@ export default class List extends React.Component<ListProps,any>{
     constructor(props:any){
         super(props);
         this.state = {
-
+            activeId : this.props.activeId
         }
     }
 
@@ -73,7 +77,7 @@ export default class List extends React.Component<ListProps,any>{
         if(this.props.children != undefined){
             renderList = this.renderShowChilds(this.props.children);
         }else{
-            renderList.push(<ListGroup key={"list"}>{this.childsReturn(this.props.data)}</ListGroup>);
+            renderList.push(<ListGroup onClick={this.onClick.bind(this)} key={"list"}>{this.childsReturn(this.props.data)}</ListGroup>);
         }
         return renderList;
     }
@@ -101,9 +105,10 @@ export default class List extends React.Component<ListProps,any>{
         let me:any = this;
         list.forEach(function (child:any,idx:number) {
             childs.push(<ListGroupItem
-                            active={me.props.active == true && (child[me.props.activeValue] == me.props.activeId) ? true : false}
+                            active={me.props.active == true && (child[me.props.activeValue] == me.state.activeId) ? true : false}
                             color={me.props.color}
                             tag={me.props.tag}
+                            id={(idx+1).toString()}
                             key={idx+'lgc'}
                             href={child[me.props.tagValue]}
                             action={me.props.action}
@@ -115,4 +120,15 @@ export default class List extends React.Component<ListProps,any>{
         });
         return childs;
     }
+
+    /**
+     * Change the State
+     * @param f
+     */
+    onClick(f:any){
+        this.setState({activeId : Number(f.target.id)})
+        this.props.onClick != undefined ? this.props.onClick(f) : null;
+    }
+
+
 }

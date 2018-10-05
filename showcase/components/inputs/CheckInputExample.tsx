@@ -27,9 +27,7 @@ export default class CheckInputExample extends React.Component<any,any>{
             name = "data"
             id={"id"}
             value={"name"}
-            // onChange={(values) => this.onChange('data', values)}
             onChange={this.handleChange.bind(this)}
-
         />
             <CheckInput
                 item={this.data[0]}

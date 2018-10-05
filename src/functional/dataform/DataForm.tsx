@@ -9,8 +9,10 @@ import TextInput from "../../inputs/TextInput";
 import TextArea from "../../inputs/TextArea";
 import RadioInput from "../../inputs/RadioInput";
 import CheckInput from "../../inputs/CheckInput";
+import LookUp from "../../functional/lookup/LookUp";
+import Store from "../../store/Store";
 
-import {Row,Col} from "reactstrap";
+import {Row,Col,Alert} from "reactstrap";
 
 
 export interface DataFormProps{
@@ -26,7 +28,7 @@ export interface DataFormProps{
 export default class DataForm extends React.Component<any,any>{
 
 
-    fieldLength = 0;
+    fieldLength:number = 0;
 
     static defaultProps = {
         col : 2,
@@ -36,15 +38,12 @@ export default class DataForm extends React.Component<any,any>{
         typeText:"type",
         visibilityText: "visibility"
     }
-
+    state:any = {}
     constructor(props:any){
         super(props);
-        this.state = {
-        }
 
     }
     render(){
-
         return <div className={"karcin-dataform"}>
             <Row>
                 {this.returnElements(this.props.fields)}
@@ -83,11 +82,18 @@ export default class DataForm extends React.Component<any,any>{
                     case "textarea" :
                         components.push(<Col key={idx} md={12/me.props.col}>{me.getTextArea(val)}</Col>);
                         break;
+                    case "lookup" :
+                        components.push(<Col key={idx} md={12/me.props.col}>{me.getLookUp(val)}</Col>);
+                        break;
+                    case "alert" :
+                        components.push(<Col key={idx} md={12/me.props.col}>{me.getAlert(val)}</Col>);
+                        break;
                 }
             }
         });
         return components;
     }
+
     getTextInput(value:any){
         return <TextInput
             name={value[this.props.nameText]}
@@ -96,6 +102,7 @@ export default class DataForm extends React.Component<any,any>{
             onChange={this.handleChange.bind(this)}
         />
     }
+
     getPasswordInput(value:any){
         return <PasswordInput
             name={value[this.props.nameText]}
@@ -104,6 +111,7 @@ export default class DataForm extends React.Component<any,any>{
             onChange={this.handleChange.bind(this)}
         />
     }
+
     getNumericInput(value:any){
         return <NumericInput
             name={value[this.props.nameText]}
@@ -112,6 +120,7 @@ export default class DataForm extends React.Component<any,any>{
             onChange={this.handleChange.bind(this)}
         />
     }
+
     getSelectInput(value:any){
         return <SelectInput
             name={value[this.props.nameText]}
@@ -122,6 +131,7 @@ export default class DataForm extends React.Component<any,any>{
             onChange={this.handleChange.bind(this)}
         />
     }
+
     getDateInput(value:any){
         return <DateInput
             name={value[this.props.nameText]}
@@ -143,11 +153,13 @@ export default class DataForm extends React.Component<any,any>{
             value={this.state[value[this.props.nameText]]}
             label={value[this.props.labelText]}
             inline
+            formControl={true}
             items={this.props.values[value[this.props.nameText]]}
             idField={value.idField}
             textField={value.valueField}
-            onChange={this.handleChange.bind(this)}/>
+            onChange={this.handleChangeRadio.bind(this)}/>
     }
+
     getCheckInput(value:any){
         return <CheckInput
             name={value[this.props.nameText]}
@@ -160,7 +172,6 @@ export default class DataForm extends React.Component<any,any>{
     }
 
     /**
-     * TODO : TEXTAREA LABEL PROPSUNU YAP
      * @param value
      * @returns {any}
      */
@@ -173,19 +184,91 @@ export default class DataForm extends React.Component<any,any>{
         />
     }
 
+    /**
+     * LookUp component
+     * @param value
+     */
+    getLookUp(value:any){
+        let values:any = this.props.values;
+        let store:any = null, fieldLookup:any = [], textField;
+        if(values[value.name] != undefined){
+            let inStore = values[value.name].store;
+            fieldLookup = values[value.name].fields;
+            store =new Store(
+                inStore
+            )
+        }
+        return <LookUp
+                    field={fieldLookup}
+                    store={store}
+                    label={value.label}
+                    name={value.name}
+                    textField={value.textField}
+                    onChange={this.onChange.bind(this)}/>
+    }
+
+    /**
+     * Alert component
+     * @param value
+     */
+    getAlert(value:any){
+        return <div>
+            <label className={"label-properties"}>{value.title}</label>
+            <Alert color={value.color}>{value.message}</Alert></div>
+    }
+
+    onChange(e:any,f:any){
+        let state:any={};
+        state[f] = e;
+        this.setState(state);
+    }
+
 
     /**
      * TODO : POPOVER AND TOOLTIP EKLE
      */
     getChangeData() {
         let data:any = this.state;
-        return data;    
+        //TODO ilk başta array tipinde items alanlar tüm değerleri state de seçili geliyor,
+        //TODO CHECKİNPUT TA array şeklinde data return ediyor Kontrollerin yapılması lazım
+        // for(let item in data){
+        //     if(typeof(data[item]) == "object"){
+        //         if(data[item].length != undefined) {
+        //             if (data[item].length > 1) {
+        //                 data[item] = null;
+        //             }
+        //         }
+        //     }
+        // }
+        return data;
     }
 
     handleChange(e:any){
-        let name = e.target.name;
-        let state = [];
+        let name:any = e.target.name;
+        let state:any = [];
         state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
+        this.setState(state);
+    }
+
+    handleChangeRadio(e:any){
+        let name:string = e.target.name;
+        let state:any = [];
+        let fields:any = this.props.fields;
+        let values:any = this.props.values;
+        let ffRadio:any = e.target.classList.value;
+        if(fields.length>0) {
+            fields.map((field:any) => {
+                if (field.type == "radio") {
+                    if (values[field.name] != undefined) {
+                        values[field.name].map((value:any) => {
+                            if (value.id == Number(e.target.value)) {
+                                state[e.target.name] = value
+                            }
+                        })
+                    }
+                }
+            })
+        }
         this.setState(state);
     }
 
@@ -195,14 +278,13 @@ export default class DataForm extends React.Component<any,any>{
      */
     UNSAFE_componentWillMount(){
         let state:any = {};
-        let values  =  this.props.values;
+        let values:any  =  this.props.values;
         this.props.fields.map((val:any,idx:string | number) => {
             if(typeof values[val[this.props.nameText]] == "string"){
                 state[val[this.props.nameText]] = values[val[this.props.nameText]];
             }else if(val[this.props.typeText] == "date"){
                 //bir şey yapılmasın
-            }
-            else{
+            } else{
                 state[val[this.props.nameText]] = values[val[this.props.nameText]] || null;
             }
         });

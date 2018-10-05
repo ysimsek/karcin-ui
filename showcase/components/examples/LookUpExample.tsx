@@ -54,11 +54,11 @@ export default class LookUpExample extends React.Component {
             }];
 
         let store = new Store({
-            data: data 
+            data: data
         })
 
-        
-        return <LookUp field={field} store={store} dataGridOption={{cellRenderer:(e, a)=>{
+
+        return <LookUp field={field}  store={store} dataGridOption={{cellRenderer:(e, a)=>{
             console.log(e, a);
         }}} textField={'title'}/>
     }

@@ -37,6 +37,8 @@ export interface RadioInputProps{
      * Set the string title
      */
     label?:string;
+
+    formControl?:boolean;
 }
 
 export default class RadioInput extends React.Component<any,RadioInputProps>{
@@ -52,7 +54,16 @@ export default class RadioInput extends React.Component<any,RadioInputProps>{
      * @returns {any}
      */
     render():any{
-        return <form><div onChange={this.onChange.bind(this)} className={"form-control radio-properties"}><div><b>{this.props.label}</b></div>{this.returnRadioElements(this,this.props.items)}</div></form>
+        return <form>
+                    {this.props.label != undefined ? <div>
+                        <b>{this.props.label}</b>
+                    </div> : null}
+                    <div
+                        onChange={this.onChange.bind(this)}
+                        className={"form-control radio-properties"}>
+                        {this.returnRadioElements(this,this.props.items)}
+                        </div>
+        </form>
     }
 
     /**
@@ -64,6 +75,7 @@ export default class RadioInput extends React.Component<any,RadioInputProps>{
 
         let component:Array<any> = [];
         let inline = false;
+        let control = this.props.formControl;
         if(this.props.inline || this.props.inline == true){
             inline = true;
         }
