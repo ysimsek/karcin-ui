@@ -748,10 +748,16 @@ New Reactstrap CSS
     display: block;
 }
 
+.karcin-menu .nav-item .menu-centered {
+    display: inline-block;
+    width: calc(100% - 23px);
+}
+
 .karcin-menu .nav-item .open-icon {
-    float: right;
     margin-top: 4px;
     text-align: right;
+    width: 20px;
+    display: inline-block;
 }
 
 .karcin-menu .nav-item .menu-icon {
