@@ -35,7 +35,7 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
     constructor(props:any){
         super(props);
         this.state = {
-            showTitle : ["0"]
+
         }
     }
 
@@ -131,11 +131,13 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
     }
 
     getSelectInput(field:any){
+        let nameText:string = this.props.nameText != undefined ? this.props.nameText : "";
+        let input:any = null;
         return <SelectInput
             className={"propertgrid-size-select"}
             margin={true}
-            name={field[this.props.nameText]}
-            items={this.props.values[field[this.props.nameText]]}
+            name={field[nameText]}
+            items={this.props.values[field[nameText]]}
             id={field.idField}
             value={field.valueField}
             onChange={this.handleChange.bind(this)}
@@ -143,71 +145,79 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
     }
 
     getColorInput(field:any){
+        let nameText:string = this.props.nameText != undefined ? this.props.nameText : "";
         return <ColorInput
-            name={field[this.props.nameText]}
-            value={this.state[field[this.props.nameText]]}
+            name={field[nameText]}
+            value={this.state[field[nameText]]}
             onChange={this.handleChange.bind(this)}
         />
     }
 
     getTextInput(field:any){
+        let nameText:string = this.props.nameText != undefined ? this.props.nameText : "";
         return <TextInput
-            name={field[this.props.nameText]}
-            value={this.state[field[this.props.nameText]]}
+            name={field[nameText]}
+            value={this.state[field[nameText]]}
             onChange={this.handleChange.bind(this)}
         />
     }
 
     getNumericInput(field:any){
+        let nameText:string = this.props.nameText != undefined ? this.props.nameText : "";
         return <NumericInput
-            name={field[this.props.nameText]}
-            value={this.state[field[this.props.nameText]]}
+            name={field[nameText]}
+            value={this.state[field[nameText]]}
             onChange={this.handleChange.bind(this)}
         />
     }
 
     getPasswordInput(field:any){
+        let nameText:string = this.props.nameText != undefined ? this.props.nameText : "";
         return <PasswordInput
-            name={field[this.props.nameText]}
-            value={this.state[field[this.props.nameText]]}
+            name={field[nameText]}
+            value={this.state[field[nameText]]}
             onChange={this.handleChange.bind(this)}
         />
     }
 
     getTextArea(field:any){
+        let nameText:string = this.props.nameText != undefined ? this.props.nameText : "";
         return <TextArea
-            name={field[this.props.nameText]}
-            value={this.state[field[this.props.nameText]]}
+            name={field[nameText]}
+            value={this.state[field[nameText]]}
             onChange={this.handleChange.bind(this)}
         />
     }
 
     getRadioInput(field:any){
+        let nameText:string = this.props.nameText != undefined ? this.props.nameText : "";
         return <RadioInput
-            name={field[this.props.nameText]}
-            value={this.state[field[this.props.nameText]]}
+            name={field[nameText]}
+            value={this.state[field[nameText]]}
             inline
             formControl={true}
-            items={this.props.values[field[this.props.nameText]]}
+            items={this.props.values[field[nameText]]}
             idField={field.idField}
             textField={field.valueField}
             onChange={this.handleChangeRadio.bind(this)}/>
     }
 
     getCheckInput(field:any){
+        let nameText:string = this.props.nameText != undefined ? this.props.nameText : "";
         return <CheckInput
-            name={field[this.props.nameText]}
+            name={field[nameText]}
             // item={this.items[0]}
-            items={this.props.values[field[this.props.nameText]]}
+            items={this.props.values[field[nameText]]}
             id={field.idField}
             value={field.valueField}
             onChange={this.handleChange.bind(this)}/>
     }
 
     getDateInput(value:any){
+        let nameText:string = this.props.nameText != undefined ? this.props.nameText : "";
         return <DateInput
-            name={value[this.props.nameText]}
-            value={this.state[value[this.props.nameText]]}
+            name={value[nameText]}
+            value={this.state[value[nameText]]}
             onChange={this.handleChange.bind(this)}
         />
     }
