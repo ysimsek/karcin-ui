@@ -1,0 +1,19 @@
+{
+  "model":[
+    {
+      "id":1,"name":"piechart","value":"PieChart"
+    },
+    {
+      "id":2,"name":"linechart","value":"LineChart"
+    },
+    {
+      "id":3,"name":"areachart","value":"AreaChart"
+    },
+    {
+      "id":4,"name":"barchart","value":"BarChart"
+    },
+    {
+      "id":5,"name":"pyramidchart","value":"PyramidChart"
+    }
+  ]
+}

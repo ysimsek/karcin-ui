@@ -1,0 +1,31 @@
+{
+  "commonchart": {
+    "theme" : ["light","dark","chalk","black","patterns"],
+    "height" : 300
+  },
+  "piechart": {
+    "deepth" : {"id":1, "name": "Derinlik"},
+    "threeD" : {"id":1, "name": "3 Boyut"}
+  },
+  "linechart" : {
+    "formatting" : {"id":1, "name":"date"},
+    "textColor" : {"id":1, "name" :"red"},
+    "negativeColor" : {"id":1, "name": "red"},
+    "positiveColor" : {"id":1, "name": "blue"}
+  },
+  "areachart" : {
+    "formatting" : {"id":1, "name":"date"},
+    "textColor" : {"id":1, "name" :"red"},
+    "inline" : {"id":1, "name": "Inline"}
+  },
+  "barchart" : {
+    "inline" : {"id":1, "name": "inline"},
+    "valueLine" : {"id":1, "name": "Çizgi"},
+    "threeD" : {"id":1, "name": "3 Boyut"},
+    "ovalColumn" : {"id":1, "name": "Oval Column"}
+  },
+  "pyramidchart" : {
+    "rotate" : {"id":1, "name":"Rotasyon"},
+    "threeD" : {"id":1,"name":"3 Boyut"}
+  }
+}

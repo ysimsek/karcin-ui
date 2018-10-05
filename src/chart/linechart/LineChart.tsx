@@ -55,6 +55,10 @@ export interface LineChartProps{
      * Set the height value
      */
     height?: number;
+    /**
+     * date or undefined
+     */
+    formatting ?: string;
 }
 
 export default class LineChart extends React.Component<LineChartProps,any>{
@@ -116,11 +120,11 @@ export default class LineChart extends React.Component<LineChartProps,any>{
                 "balloonText": "<span style='font-size:18px;'>[[value]]</span>"
             }],
             "categoryField": this.props.categoryField,
-            "categoryAxis": {
+            "categoryAxis": this.props.formatting == "date" ? {
                 "parseDates": true,
                 "dashLength": 1,
                 "minorGridEnabled": true
-            },
+            } : {"gridPosition": "start"},
             "chartCursor": {
                 "valueLineEnabled": true,
                 "valueLineBalloonEnabled": true

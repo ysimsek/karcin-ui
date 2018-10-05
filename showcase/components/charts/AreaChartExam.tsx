@@ -83,6 +83,7 @@ export default class AreaChartExam extends React.Component<any,any>{
                         data={data}
                         categoryValue={"value"}
                         categoryField={"date"}
+                        formatting={"date"}
                     />
                 </Panel>
             </Col>
@@ -94,6 +95,7 @@ export default class AreaChartExam extends React.Component<any,any>{
                         textColor={"#aabbcc"}
                         categoryValue={"value"}
                         categoryField={"date"}
+                        formatting={"date"}
                     />
                 </Panel>
             </Col>
@@ -105,6 +107,7 @@ export default class AreaChartExam extends React.Component<any,any>{
                         textColor={"red"}
                         categoryValue={"value"}
                         categoryField={"date"}
+                        formatting={"date"}
                     />
                 </Panel>
             </Col>
@@ -115,6 +118,7 @@ export default class AreaChartExam extends React.Component<any,any>{
                         categoryValue={"value"}
                         categoryField={"date"}
                         cutOffColor={"lineColor"}
+                        formatting={"date"}
                     />
                 </Panel>
             </Col>
@@ -126,6 +130,7 @@ export default class AreaChartExam extends React.Component<any,any>{
                         categoryValue={"value"}
                         categoryField={"date"}
                         cutOffColor={"lineColor"}
+                        formatting={"date"}
                     />
                 </Panel>
             </Col>

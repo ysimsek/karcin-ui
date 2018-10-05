@@ -24,6 +24,7 @@ export interface DataFormProps{
     visibilityText?:any
     typeText?:any;
     values : Array<any> |any;
+    label?:boolean;
 }
 
 export default class DataForm extends React.Component<DataFormProps,any>{
@@ -98,7 +99,7 @@ export default class DataForm extends React.Component<DataFormProps,any>{
     getTextInput(value:any){
         return <TextInput
             name={value[this.props.nameText]}
-            label={value[this.props.labelText]}
+            label={this.props.label != false ? value[this.props.labelText] : undefined}
             value={this.state[value[this.props.nameText]]}
             onChange={this.handleChange.bind(this)}
         />
@@ -107,7 +108,7 @@ export default class DataForm extends React.Component<DataFormProps,any>{
     getPasswordInput(value:any){
         return <PasswordInput
             name={value[this.props.nameText]}
-            label={value[this.props.labelText]}
+            label={this.props.label != false ? value[this.props.labelText] : undefined}
             value={this.state[value[this.props.nameText]]}
             onChange={this.handleChange.bind(this)}
         />
@@ -117,7 +118,7 @@ export default class DataForm extends React.Component<DataFormProps,any>{
         return <NumericInput
             name={value[this.props.nameText]}
             value={this.state[value[this.props.nameText]]}
-            label={value[this.props.labelText]}
+            label={this.props.label != false ? value[this.props.labelText] : undefined}
             onChange={this.handleChange.bind(this)}
         />
     }
@@ -126,7 +127,7 @@ export default class DataForm extends React.Component<DataFormProps,any>{
         return <SelectInput
             name={value[this.props.nameText]}
             items={this.props.values[value[this.props.nameText]]}
-            label={value[this.props.labelText]}
+            label={this.props.label != false ? value[this.props.labelText] : undefined}
             id={value.idField}
             value={value.valueField}
             onChange={this.handleChange.bind(this)}
@@ -136,7 +137,7 @@ export default class DataForm extends React.Component<DataFormProps,any>{
     getDateInput(value:any){
         return <DateInput
             name={value[this.props.nameText]}
-            label={value[this.props.labelText]}
+            label={this.props.label != false ? value[this.props.labelText] : undefined}
             value={this.state[value[this.props.nameText]]}
             onChange={this.handleChange.bind(this)}
         />
@@ -152,7 +153,7 @@ export default class DataForm extends React.Component<DataFormProps,any>{
         return <RadioInput
             name={value[this.props.nameText]}
             value={this.state[value[this.props.nameText]]}
-            label={value[this.props.labelText]}
+            label={this.props.label != false ? value[this.props.labelText] : undefined}
             inline
             formControl={true}
             items={this.props.values[value[this.props.nameText]]}
@@ -166,7 +167,7 @@ export default class DataForm extends React.Component<DataFormProps,any>{
             name={value[this.props.nameText]}
             // item={this.items[0]}
             items={this.props.values[value[this.props.nameText]]}
-            label={value[this.props.labelText]}
+            label={this.props.label != false ? value[this.props.labelText] : undefined}
             id={value.idField}
             value={value.valueField}
             onChange={this.handleChange.bind(this)}/>
@@ -179,7 +180,7 @@ export default class DataForm extends React.Component<DataFormProps,any>{
     getTextArea(value:any){
         return <TextArea
             name={value[this.props.nameText]}
-            label={value[this.props.labelText]}
+            label={this.props.label != false ? value[this.props.labelText] : undefined}
             value={this.state[value[this.props.nameText]]}
             onChange={this.handleChange.bind(this)}
         />
@@ -202,7 +203,7 @@ export default class DataForm extends React.Component<DataFormProps,any>{
         return <LookUp
                     field={fieldLookup}
                     store={store}
-                    label={value.label}
+                    label={this.props.label != false ? value.label : undefined}
                     name={value.name}
                     textField={value.textField}
                     onChange={this.onChange.bind(this)}/>
@@ -214,7 +215,7 @@ export default class DataForm extends React.Component<DataFormProps,any>{
      */
     getAlert(value:any){
         return <div>
-            <label className={"label-properties"}>{value.title}</label>
+            {this.props.label == false ? undefined : <label className={"label-properties"}>{value.title}</label>}
             <Alert color={value.color}>{value.message}</Alert></div>
     }
 

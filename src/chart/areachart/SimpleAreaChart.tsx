@@ -43,6 +43,10 @@ export interface SimpleAreaChartProps{
      * Line changes true or false
      */
     inline ?:boolean;
+    /**
+     * date or undefined
+     */
+    formatting ?: string;
 }
 
 export default class SimleAreaChart extends React.Component<SimpleAreaChartProps,any>{
@@ -109,11 +113,11 @@ export default class SimleAreaChart extends React.Component<SimpleAreaChartProps
                 "valueLineAlpha": 0.5
             },
             "categoryField": this.props.categoryField,
-            "categoryAxis": {
+            "categoryAxis": this.props.formatting == "date" ? {
                 "parseDates": true,
                 "dashLength": 1,
                 "minorGridEnabled": true
-            },
+            } : {"gridPosition": "start"},
             "export": {
                 "enabled": true
             },

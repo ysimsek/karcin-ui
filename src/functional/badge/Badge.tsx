@@ -13,6 +13,10 @@ export interface LabelProps {
      * Label text Size
      */
     size?:number | string;
+    /**
+     * Set the style
+     */
+    className?: any;
 }
 
 
@@ -41,6 +45,7 @@ export default class Badge extends React.Component<LabelProps,any>{
     render():any{
         return <BadgeX
             color={this.props.color}
+            className={this.props.className}
             style={{fontSize: this.props.size+"px"}}
         >{this.props.children}</BadgeX>;
     }

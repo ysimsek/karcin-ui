@@ -62,6 +62,8 @@ export interface SelectInputProps {
      * Select placeholder show text and disabled = false
      */
     placeholder?: string | any;
+
+    margin?:boolean;
 }
 
 export interface SelectInputState {
@@ -139,7 +141,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         }
 
         return <div className={`karcin-select-input select-${this.state.randomId}`} onClick={() => { if(this.props.type !== "single") { this.inputFocus();} }}>
-            <div className={`form-group ${this.props.labelPosition}`}>
+            <div className={this.props.margin == true ? "propertygrid-select": `form-group ${this.props.labelPosition}`}>
                 {this.labelResult()}
                 <div className="select-input-result">
                     {selectInputType}
@@ -190,7 +192,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
             }
         });
 
-        return <select className={`form-control karcin-select ${this.props.className}`} value={activeId} name={this.props.name} onChange={(e)=>{ 
+        return <select className={`form-control karcin-select ${this.props.className}`} value={activeId} name={this.props.name} onChange={(e)=>{
             this.singleHandleChange(e);
          }}>{returnHtml}</select>
     }
@@ -271,7 +273,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
      * @param id
      */
     removeSelectItem(id:any){
-        let items = this.state.selectedItem.val.slice(0); 
+        let items = this.state.selectedItem.val.slice(0);
         items.splice(id, 1);
         this.forceUpdate();
         this.onChangeProps(items);
@@ -344,7 +346,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
      * @param value
      */
     addSelectedItem(value:any){
-        let items = this.state.selectedItem.val.slice(0); 
+        let items = this.state.selectedItem.val.slice(0);
         items.push(value);
         this.state.inputText.value = "";
         this.state.active.arrowActive = null;
@@ -419,7 +421,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
      * kalvyeden back space' e basınca çalışacak method
      */
     backSpaceRemove(){
-        this.removeSelectItem(this.state.itemActive.length - 1); 
+        this.removeSelectItem(this.state.itemActive.length - 1);
     }
 
 
@@ -431,7 +433,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
             let target:any = {};
 
             if(this.props.type === "multi"){
-                target['name'] = this.props.name; 
+                target['name'] = this.props.name;
                 target['value'] = [];
                 target['parsedValue'] = items;
 

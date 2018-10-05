@@ -1278,6 +1278,7 @@ button-square-to-radius {
     display: block;
     position: relative;
     padding-left: 35px;
+    color:#495057;
     margin-bottom: 12px;
     cursor: pointer;
     font-size: 16px;
@@ -1691,4 +1692,23 @@ button-square-to-radius {
 .color .form-control{
     height: 39px !important;
     padding: 0px !important;
+}
+.propertygrid-full{
+    width: 100%;
+    text-align: left;
+}
+.propertygrid-size-select{
+    display: block;
+}
+.karcin-select-input .form-group .propertgrid-size-select{
+    width: 100%;
+    position: relative;
+}
+.propertygrid-select{
+    width: 100%;
+    position: relative;
+}
+.propertygrid-head{
+    width: 100%;
+    display: inline-block;
 }

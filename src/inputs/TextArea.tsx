@@ -36,7 +36,7 @@ export default class TextArea extends React.Component<TextAreaProps,any>{
     public static defaultProps:Partial<TextAreaProps> = {
         properties : {},
         name:"textArea",
-        value: "Text Area!",
+        value: "",
         label : null
     }
 

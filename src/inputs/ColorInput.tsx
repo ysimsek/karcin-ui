@@ -75,7 +75,6 @@ export default class ColorInput extends React.Component<ColorInputProps>{
         disabled: false,
         readOnly: false,
         hidden: false,
-        label : "",
         type:"color",
         value:"#ffffff"
     }
@@ -91,7 +90,7 @@ export default class ColorInput extends React.Component<ColorInputProps>{
 
     render(){
         //label için sağ sol üst seçenekleri konulsun, hatta button ile birlikte beraber kullanılabilir.
-        let label = this.props.label != null ? <Label className={"label-properties"}>{this.props.label}</Label> : null;
+        let label = this.props.label != undefined ? <Label className={"label-properties"}>{this.props.label}</Label> : null;
         return <div className={"color"}>{label}<Input
             {...this.props}
             onChange={this.___onChange.bind(this)}

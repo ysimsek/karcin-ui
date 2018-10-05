@@ -54,6 +54,7 @@ export default class SimpleLineChartExam extends React.Component<any,any>{
                         theme={"none"}
                         categoryField={"date"}
                         categoryValue={"value"}
+                        formatting={"date"}
                     />
                 </Panel>
             </Col>
@@ -65,6 +66,7 @@ export default class SimpleLineChartExam extends React.Component<any,any>{
                         textColor={"red"}
                         categoryField={"date"}
                         categoryValue={"value"}
+                        formatting={"date"}
                     />
                 </Panel>
             </Col>
@@ -76,6 +78,7 @@ export default class SimpleLineChartExam extends React.Component<any,any>{
                         textColor={"blue"}
                         categoryField={"date"}
                         categoryValue={"value"}
+                        formatting={"date"}
                     />
                 </Panel>
             </Col>
@@ -87,6 +90,7 @@ export default class SimpleLineChartExam extends React.Component<any,any>{
                         positiveColor={"blue"}
                         categoryField={"date"}
                         categoryValue={"value"}
+                        formatting={"date"}
                     />
                 </Panel>
             </Col>
