@@ -36,8 +36,7 @@ export default class TextArea extends React.Component<TextAreaProps,any>{
     public static defaultProps:Partial<TextAreaProps> = {
         properties : {},
         name:"textArea",
-        value: "",
-        label : null
+        value: ""
     }
 
     /**
@@ -53,7 +52,7 @@ export default class TextArea extends React.Component<TextAreaProps,any>{
      */
     render():any{
         return <div>
-            {this.props.label != null ? <Label className={"label-properties"}>{this.props.label}</Label> : null}
+            {this.props.label != undefined ? <Label className={"label-properties"}>{this.props.label}</Label> : null}
             <textarea
                 className={this.props.className+ " form-control"}
                 name={this.props.name}
