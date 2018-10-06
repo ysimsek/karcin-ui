@@ -15,8 +15,8 @@ import DataForm from "../../functional/dataform/DataForm";
 import Badge from "../../functional/badge/Badge"
 
 export interface  PropertyGridProps{
-    fields:Array<any> ;
-    values:Array<any> ;
+    fields:Array<any>;
+    values:Array<any>;
     nameText?:string;
     labelText?:string;
     typeText?:string;
@@ -25,9 +25,9 @@ export interface  PropertyGridProps{
 
 export default class PropertyGrid extends React.Component<PropertyGridProps,any>{
 
-    public static defaultProps:Partial<PropertyGridProps> = {
+    static defaultProps:Partial<PropertyGridProps> = {
         nameText: "name",
-        labelText:"label",
+        labelText:"label", 
         typeText:"type",
         titleColor:"success"
     }
