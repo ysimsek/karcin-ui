@@ -24,7 +24,7 @@ export interface TextAreaProps{
     /**
      * Set the string title
      */
-    label ?: string;
+    label?: string | any;
 }
 
 
