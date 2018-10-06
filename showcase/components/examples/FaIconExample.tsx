@@ -21,7 +21,9 @@ export default class FaIconExample extends React.Component<any, any> {
     getFaIconList(iconList:any){
         let component = [];
         iconList.fields.map((icon,idx)=>{
-            component.push( <FaIcon code={icon} key={icon} onClick={this.onClick.bind(this)}></FaIcon>)
+            component.push( <FaIcon code={icon} key={icon}
+                                    onMouseOver={this.onMouseOver.bind(this)}
+            ></FaIcon>)
         })
         return component
     }
@@ -57,7 +59,7 @@ export default class FaIconExample extends React.Component<any, any> {
         </div>
     }
 
-    onClick(e){
+    onMouseOver(e){
         this.setState({icon : e.target.classList[2]});
     }
 }

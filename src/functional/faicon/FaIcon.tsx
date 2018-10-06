@@ -1,8 +1,10 @@
+///<reference path="../../../node_modules/@types/react/index.d.ts"/>
 import * as React from "react";
 import "font-awesome/css/font-awesome.min.css";
 import "@fortawesome/fontawesome-free/css/fontawesome.css";
+import {DOMAttributes} from "react";
 
-export interface FaIconProps {
+export interface FaIconProps extends DOMAttributes<any>{
     /**
      * Default fa-sm
      * Another fa-2x , fa-3x, fa-4x, fa-5x, fa-6x, fa-7x, fa-8x , fa-9x
@@ -24,6 +26,7 @@ export interface FaIconProps {
     color?:string;
     style?:object;
     onClick?():void;
+    onMouseOver?():void;
 }
 
 // 'HelloProps' describes the shape of props.
@@ -57,10 +60,11 @@ export default class FaIcon extends React.Component<FaIconProps> {
         let className = `fa ${(this.props.fixed ? "fa-fw" : "")} ${this.props.code} ${this.props.size} ${classNameProps}`;
         let color = this.props.color != undefined ? this.getColor(this.props.color) : "";
         const { fixed, code, size, ...props } = this.props;
-        return <i {...props}  className={className+ " "+color} aria-hidden="true" />;
+        return <i {...props} className={className+ " "+color} aria-hidden="true" />;
     }
 
     getColor(color:string):string{
         return this.colorArr[color] != undefined ? this.colorArr[color] : "";
     }
+
 }

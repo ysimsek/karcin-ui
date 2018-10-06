@@ -27,7 +27,7 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
 
     static defaultProps:Partial<PropertyGridProps> = {
         nameText: "name",
-        labelText:"label", 
+        labelText:"label",
         typeText:"type",
         titleColor:"success"
     }
@@ -39,18 +39,24 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
         }
     }
 
-    render(){
+    render():any{
         return <div>
             {this.returnElements(this.props.fields, this.props.values)}
         </div>
     }
 
-    getData(){
+    /**
+     * Get the state values ref method
+     * @returns {Readonly<any>}
+     */
+    getData():object{
         let data = this.state ;
         return data;
     }
-
-    returnElements(fields:any,values:any){
+    /**
+     * Return roperty grid elements
+     **/
+    returnElements(fields:any,values:any):JSX.Element[]{
         let components:Array<any> = [];
         fields.map((field:any, idx:number)=>{
             if(field.divTitle != undefined){
@@ -67,7 +73,7 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
     }
 
 
-    returnFields(fields:any,values:any){
+    returnFields(fields:any,values:any):JSX.Element[]{
         let componentFields:Array<any> = [],me:any = this;
         fields.map((field:any, idx:number)=>{
             let v:any= null;
@@ -89,7 +95,7 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
     }
 
 
-    getComponentSelect(field:any,value:any){
+    getComponentSelect(field:any,value:any):JSX.Element[]{
         let component:any = [];
         switch (field.type){
             case "select":
@@ -130,7 +136,12 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
         return component;
     }
 
-    getSelectInput(field:any){
+    /**
+     * Return the SelectInput component
+     * @param field
+     * @returns :JSX.Element
+     */
+    getSelectInput(field:any):JSX.Element{
         let nameText:string = this.props.nameText != undefined ? this.props.nameText : "";
         let input:any = null;
         return <SelectInput
@@ -144,7 +155,12 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
         />
     }
 
-    getColorInput(field:any){
+    /**
+     * Return the ColorInput component
+     * @param field
+     * @returns :JSX.Element
+     */
+    getColorInput(field:any):JSX.Element{
         let nameText:string = this.props.nameText != undefined ? this.props.nameText : "";
         return <ColorInput
             name={field[nameText]}
@@ -153,7 +169,12 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
         />
     }
 
-    getTextInput(field:any){
+    /**
+     * Return the TextInput Component
+     * @param field
+     * @returns :JSX.Element
+     */
+    getTextInput(field:any):JSX.Element{
         let nameText:string = this.props.nameText != undefined ? this.props.nameText : "";
         return <TextInput
             name={field[nameText]}
@@ -162,7 +183,12 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
         />
     }
 
-    getNumericInput(field:any){
+    /**
+     * Return the NumericInput component
+     * @param field
+     * @returns :JSX.Element
+     */
+    getNumericInput(field:any):JSX.Element{
         let nameText:string = this.props.nameText != undefined ? this.props.nameText : "";
         return <NumericInput
             name={field[nameText]}
@@ -171,7 +197,12 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
         />
     }
 
-    getPasswordInput(field:any){
+    /**
+     * Return the PasswordInput component
+     * @param field
+     * @returns :JSX.Element
+     */
+    getPasswordInput(field:any):JSX.Element{
         let nameText:string = this.props.nameText != undefined ? this.props.nameText : "";
         return <PasswordInput
             name={field[nameText]}
@@ -180,7 +211,12 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
         />
     }
 
-    getTextArea(field:any){
+    /**
+     * Return the TextArea component
+     * @param field
+     * @returns :JSX.Element
+     */
+    getTextArea(field:any):JSX.Element{
         let nameText:string = this.props.nameText != undefined ? this.props.nameText : "";
         return <TextArea
             name={field[nameText]}
@@ -189,7 +225,12 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
         />
     }
 
-    getRadioInput(field:any){
+    /**
+     * Return the RadioInput component
+     * @param field
+     * @returns :JSX.Element
+     */
+    getRadioInput(field:any):JSX.Element{
         let nameText:string = this.props.nameText != undefined ? this.props.nameText : "";
         return <RadioInput
             name={field[nameText]}
@@ -202,7 +243,12 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
             onChange={this.handleChangeRadio.bind(this)}/>
     }
 
-    getCheckInput(field:any){
+    /**
+     * Return the CheckInput component
+     * @param field
+     * @returns :JSX.Element
+     */
+    getCheckInput(field:any):JSX.Element{
         let nameText:string = this.props.nameText != undefined ? this.props.nameText : "";
         return <CheckInput
             name={field[nameText]}
@@ -213,7 +259,12 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
             onChange={this.handleChange.bind(this)}/>
     }
 
-    getDateInput(value:any){
+    /**
+     * Return the DateInput component
+     * @param value
+     * @returns :JSX.Element
+     */
+    getDateInput(value:any):JSX.Element{
         let nameText:string = this.props.nameText != undefined ? this.props.nameText : "";
         return <DateInput
             name={value[nameText]}
@@ -222,7 +273,12 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
         />
     }
 
-    getLookUp(value:any){
+    /**
+     * Return the LookUp component
+     * @param value
+     * @returns :JSX.Element
+     */
+    getLookUp(value:any):JSX.Element{
         let values:any = this.props.values;
         let store:any = null, fieldLookup:any = [];
         if(values[value.name] != undefined){
@@ -240,14 +296,19 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
             onChange={this.lookupOnChange.bind(this)}/>
     }
 
-    getAlert(value:any){
+    /**
+     * Return the get Alert component
+     * @param value
+     * @returns {any}
+     */
+    getAlert(value:any):JSX.Element{
         return <div>
             {value.title != undefined ? <label className={"label-properties"}>{value.title}</label> : null}
             <Alert color={value.color}>{value.message}</Alert></div>
     }
 
     /**
-     *
+     * Change the State
      * @param e
      * @param f
      */
@@ -257,6 +318,11 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
         this.setState(state);
     }
 
+    /**
+     * Change the State
+     * All input but radioinput not
+     * @param e
+     */
     handleChange(e:any){
         let name:any = e.target.name;
         let state:any = [];
@@ -264,6 +330,10 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
         this.setState(state);
     }
 
+    /**
+     * Change the State RadioInput
+     * @param e
+     */
     handleChangeRadio(e:any){
         let name:string = e.target.name;
         let state:any = [];
@@ -293,10 +363,10 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
     }
 
     /**
-     * TODO : OBJEMİ DEĞİL Mİ KONTROLÜ YAP
-     * @constructor
+     * Change the State
+     * Control the object,array,string or number
      */
-    UNSAFE_componentWillMount(){
+    getControl(){
         let state:any = {};
         let values:any  =  this.props.values;
         let me = this;
@@ -325,5 +395,13 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
             console.log("Tanımlanamayan nesne kullanıldı.")
         }
         this.setState(state);
+    }
+
+    /**
+     * Control
+     * @constructor
+     */
+    UNSAFE_componentWillMount(){
+        this.getControl()
     }
 }
