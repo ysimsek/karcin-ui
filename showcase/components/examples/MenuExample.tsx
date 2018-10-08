@@ -41,7 +41,6 @@ export default class MenuExample extends React.Component<any, any> {
                         "id": 3,
                         "name": "ComicSans",
                         "title": "Comic Sans",
-                        "href": null,
                         "badge": "v4",
                         "badgeColor": "warning",
                     },
@@ -118,10 +117,14 @@ export default class MenuExample extends React.Component<any, any> {
                 </Col>
                 <Col sm={6}>
                     <span className="example-reagent">Hover Menu</span>
-                    <Menu data={data} hover={true} onChange={(val)=>{this.handleChange(val)}} />
+                    <Menu data={data} hover={true} renderer={this.renderer} onChange={(val)=>{this.handleChange(val)}} />
                 </Col>
             </Row>
         </div>);
+    }
+
+    renderer(value){
+        return 'deniz';
     }
 
 
