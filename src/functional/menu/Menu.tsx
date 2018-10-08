@@ -2,6 +2,7 @@ import * as React from 'react';
 import {Collapse, Nav, NavItem, Badge, NavLink} from 'reactstrap';
 import FaIcon from '../../functional/faicon/FaIcon'
 import '../../css/karcin-ui.css';
+import { spawn } from 'child_process';
 
 export interface MenuProps {
     /**
@@ -158,7 +159,20 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
 
 
             let actives = this.menuItemActive(keys);
+            let menuDropIcon = (value.items !== undefined && value.items.length > 0) ? (actives ?
+                                <FaIcon code="fa-angle-down" className="open-icon"/> :
+                                <FaIcon code="fa-angle-right" className="open-icon"/>) : '';
 
+            let badgeText = (value.badge !== undefined) ?<Badge color={value.badgeColor}>{value.badge}</Badge> : '';
+            let title = <strong>{value.title}</strong>;
+            let titleIcon = (value.icon !== undefined ? <FaIcon code={value.icon} className="menu-icon"/> : '');
+
+            let menuInHTML = (this.props.renderer !== undefined ? 
+                                this.props.renderer(value) : <div>
+                                <div className="menu-centered">
+                                    {titleIcon} {title} {badgeText}
+                                </div>
+                                {menuDropIcon}</div>);
 
             listMenu.push(<NavItem key={index}  className={`${(actives) ? 'active' : ''} ${value.items !== undefined && value.items.length > 0 ? 'downItem' : ''}`}>
                 <div className="menu-head" onClick={() => {
@@ -167,19 +181,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
                     }
                 }}>
                 
-                    <NavLink href={(value.href) ? value.href : "#"}>
-                        {(this.props.renderer !== undefined ? this.props.renderer(value) : 
-                            <div className="menu-centered">
-                                {(value.icon !== undefined ? <FaIcon code={value.icon} className="menu-icon"/> : '')}
-                                <strong>{value.title}
-                                {(value.badge !== undefined) ?<Badge color={value.badgeColor}>{value.badge}</Badge> : ''}</strong>
-                            </div>
-                        )}
-
-                        {(value.items !== undefined && value.items.length > 0) ? (actives ?
-                            <FaIcon code="fa-angle-down" className="open-icon"/> :
-                            <FaIcon code="fa-angle-right" className="open-icon"/>) : ''}
-                    </NavLink>
+                    {(value.href !== (undefined || null)) ? <NavLink href={(value.href) ? value.href : "#"}>{menuInHTML}</NavLink> : <span className="nav-link">{menuInHTML}</span>}
                 </div>
                 {(value.items !== undefined && value.items.length > 0) ? this.menuLoop(value.items, keys, level + 1, true) : ''}
             </NavItem>);

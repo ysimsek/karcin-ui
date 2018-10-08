@@ -41,7 +41,7 @@ export default class MenuExample extends React.Component<any, any> {
                         "id": 3,
                         "name": "ComicSans",
                         "title": "Comic Sans",
-                        "href": "#/Components/Menu",
+                        "href": null,
                         "badge": "v4",
                         "badgeColor": "warning",
                     },
