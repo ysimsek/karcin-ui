@@ -47,6 +47,11 @@ export interface PieChartProps{
      * Default false
      */
     threeD ?: boolean;
+    /**
+     * Show the list piechart
+     * default false
+     */
+    describeList?:boolean;
 }
 
 export default class PieChart extends React.Component<PieChartProps,any>{
@@ -59,7 +64,8 @@ export default class PieChart extends React.Component<PieChartProps,any>{
         height : 300,
         innerSize : 0,
         deepth : false,
-        threeD : false
+        threeD : false,
+        describeList : false
     }
 
 
@@ -81,7 +87,12 @@ export default class PieChart extends React.Component<PieChartProps,any>{
             },
             "export": {
                 "enabled": true
-            }
+            },
+            "legend":this.props.describeList != false ? {
+                "position":"right",
+                "marginRight":100,
+                "autoMargins":false
+            } : null
         };
         return <AmCharts.React options={data} style={{width:"100%",height:this.props.height+"px"}}/>
     }
