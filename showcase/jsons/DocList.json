@@ -1,6 +1,25 @@
 {
   "name":"DocList",
   "data": [
-    {}
+    {
+      "id":1,
+      "name":"AjaxRequest",
+      "title":"AjaxRequest",
+      "icon":"fa-hand-pointer-o",
+      "href":"#/Components/AjaxRequest",
+      "samples":"AjaxRequest",
+      "library":"request/AjaxRequest",
+      "description":"AjaxRequest"
+    },
+    {
+      "id":1,
+      "name":"Store",
+      "title":"Store",
+      "icon":"fa-hand-pointer-o",
+      "href":"#/Components/Store",
+      "samples":"Store",
+      "library":"store/Store",
+      "description":"Store"
+    }
   ]
 }
