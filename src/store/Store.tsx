@@ -1,7 +1,6 @@
 import Application from '../applications/Applications';
 import LocalEndPoint from './LocaleEndPoint';
 import RemoteEndPoint from './RemoteEndPoint';
-import * as Highlight from "react-highlight";
 export default class Store {
 
     props: object | any = {

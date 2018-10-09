@@ -55,7 +55,7 @@ export default class Badge extends React.Component<LabelProps,any>{
         >{this.props.children}</BadgeX>;
     }
 
-    onClick(e){
+    onClick(e:any){
         this.props.onClick != undefined ? this.props.onClick(e) : null;
     }
 }
