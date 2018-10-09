@@ -13,29 +13,29 @@ export default class AjaxRequestExample extends React.Component<any,any>{
     }
     getAjaxRequest(){
         return <div>
-            &emsp;Kaçin-ui AjaxRequest ile sunucu bilgi alışverişi , ui sayfasının kontrollerinin tutulması ve dinamik olarak sayfa yapılabilmesi,
+            &emsp;Kaçin-ui AjaxRequest ile sunucu bilgi alışverişi , ui sayfasının kontrollerinin tutulması ve dinamik olarak sayfa yapılabilmesi,<br/>
             sunucu ile olan veri trafiğinin kontrol edilebilmesi sağlanır.<br/>
             &emsp;AjaxRequest componenti kullanabilmek için <b>url</b> girilmesi gerekiyor ve sunucu'da yönelmesi istenilen path özellik olarak gönderilir.
-                <br/>
+                <br/><br/>
                     <pre><i>{`url: 'http:localhost:5567/karcin-rest/getList'`}</i></pre>
                 <br/>
             &emsp;AjaxRequest componenti <b>type</b> belirtmek istenirse ilgili özellik AjaxRequest'e parametre olarak verilir. Varsayılan type post methodudur.
-                <br/>
+                <br/><br/>
                     <pre><i>{`type: 'get'`}</i></pre>
                 <br/>
             &emsp;AjaxRequest componenti <b>method</b> ve <b>processor</b> özellikleri karcin-io için özel olarak yapılmıştır ve sunucu'da
             bulunan processor içerisinde yazılan methodun çağırdığı response'u döner. Varsayılan method findAll methodudur. Processor'ün tanımlanması gerekmektedir.
-                <br/>
+                <br/><br/>
                     <pre><i>{`processor: 'UserProcessor',method: 'findById'`}</i></pre>
                 <br/>
             &emsp;AjaxRequest ile sunucumuza gönderdiğimiz istekte <b>header</b> bilgisinide ek olarak gönderebiliriz ve sunucumuza özel methodlar yazmamız sağlanabilir.
             Token kontrolü, özel şifre kontrolü vb. yapılar kullanılarak request sadece uygulamaya özel bir hale getirilebilir.<b>header</b> nesne şeklinde değişkenler alarak kullanılır.
-                <br/>
+                <br/><br/>
                     <pre><i>{`header:{token:'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad',filter:['id'='5',name:'hale']}`}</i></pre>
                 <br/>
             &emsp;AjaxRequest ile sunucumuza <b>data</b> sayesinde sunucunun cevap vereceği formatta veri gönderebiliriz. Örneğin; deleteById methodumuz olsun. Hangi datayı sileneceğini belirtmemiz gerekebilir.
             Bunun için ;
-                <br/>
+                <br/><br/>
                     <pre><i>{`data : ['id':1]`}</i></pre>
                 <br/>
             &emsp;Sunucumuza gönderdiğimiz <b>get</b> methodunun sonucu aşağıdaki gibi bir kod kullanarak çekilebilir.
