@@ -1,7 +1,5 @@
 import * as React from "react";
-import {Button} from 'karcin-ui';
-import Pagination from '../../../src/functional/paging/Pagination';
-import AjaxRequest from '../../../src/request/AjaxRequest';
+import {Button, AjaxRequest, Applications} from 'karcin-ui';
 
 export default class ButtonExample extends React.Component<any, any> {
 
@@ -32,6 +30,18 @@ export default class ButtonExample extends React.Component<any, any> {
             'surname': 'AVCI',
             'title': 'Yazılım Uzmanı'
         }];
+
+        new Applications({
+            ajaxCallback: (res)=>{
+                debugger;
+            }
+        })
+
+        let getAjax = new AjaxRequest({url:'https://jsonplaceholder.typicode.com/posts', type:'get'}, ()=>{
+            debugger;
+        })
+        getAjax.call();
+
         return (
             <div>
                 <Button color="primary">primary</Button>{' '}

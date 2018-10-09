@@ -40,6 +40,11 @@ export interface PanelProps {
     accordion   ?: boolean | any;
 
     /**
+     * title icon
+     */
+    icon ?:any;
+
+    /**
      * title renderer method 
      */
     titleRenderer ?: any;
@@ -121,7 +126,7 @@ export default class Panel extends React.Component<PanelProps, PanelState> {
                panelTitle = <div className={`accordion-title ${(this.state.collapse ? 'active' : '')}`}><Button onClick={this.props.onClick}><span>{this.props.title}</span>{openedIcon}</Button></div>;
            }else {
                if(this.props.title !== undefined && this.props.title !== ""){
-                    panelTitle = <div className="panel-title"> <span>{this.props.title}</span>{openButton}</div>;
+                    panelTitle = <div className="panel-title" onClick={()=>{if(this.props.onClick) { this.props.onClick() }else{ this.openPanel()}}}>{(this.props.icon !== undefined) ? <FaIcon code={this.props.icon}/> : ''} <span>{this.props.title}</span>{openButton}</div>;
                }else if(this.props.titleRenderer !== undefined){
                     panelTitle = <div className="panel-title">{this.props.titleRenderer()}</div>;
                }

@@ -159,20 +159,18 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
 
 
             let actives = this.menuItemActive(keys);
-            let menuDropIcon = (value.items !== undefined && value.items.length > 0) ? (actives ?
+            let menuDropIcon:any = (value.items !== undefined && value.items.length > 0) ? (actives ?
                                 <FaIcon code="fa-angle-down" className="open-icon"/> :
                                 <FaIcon code="fa-angle-right" className="open-icon"/>) : '';
 
             let badgeText = (value.badge !== undefined) ?<Badge color={value.badgeColor}>{value.badge}</Badge> : '';
-            let title = <strong>{value.title}</strong>;
-            let titleIcon = (value.icon !== undefined ? <FaIcon code={value.icon} className="menu-icon"/> : '');
+            let title:any = <strong>{value.title}</strong>;
+            let titleIcon:any = (value.icon !== undefined ? <FaIcon code={value.icon} className="menu-icon"/> : '');
 
-            let menuInHTML = (this.props.renderer !== undefined ? 
-                                this.props.renderer(value) : <div>
-                                <div className="menu-centered">
-                                    {titleIcon} {title} {badgeText}
-                                </div>
-                                {menuDropIcon}</div>);
+            let menuInHTML:any = <div className="menu-centered">
+                                {(this.props.renderer !== undefined) ? 
+                                    this.props.renderer(value) : (<div>{titleIcon} {title}</div>)}
+                                </div>;
 
             listMenu.push(<NavItem key={index}  className={`${(actives) ? 'active' : ''} ${value.items !== undefined && value.items.length > 0 ? 'downItem' : ''}`}>
                 <div className="menu-head" onClick={() => {
@@ -180,8 +178,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
                         this.toggleActiveMenu(params, value.items)
                     }
                 }}>
-                
-                    {(value.href !== (undefined || null)) ? <NavLink href={(value.href) ? value.href : "#"}>{menuInHTML}</NavLink> : <span className="nav-link">{menuInHTML}</span>}
+                    {(value.href !== (undefined && null)) ? <NavLink href={(value.href) ? value.href : "#"}>{menuInHTML}{menuDropIcon}</NavLink> : <a className="nav-link">{menuInHTML}{menuDropIcon}</a>}
                 </div>
                 {(value.items !== undefined && value.items.length > 0) ? this.menuLoop(value.items, keys, level + 1, true) : ''}
             </NavItem>);

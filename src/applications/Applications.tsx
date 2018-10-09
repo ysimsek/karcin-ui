@@ -5,6 +5,19 @@ export interface basicObject {
 
 export default class Applications {
 
+    static ajaxCall:any = null;
+    props: basicObject = {
+        ajaxCallback:null
+    };
+
+    
+    
+    constructor(props?:any){
+        if(props !== undefined && props.ajaxCallback !== undefined){
+            Applications.ajaxCall = props.ajaxCallback;
+        }
+    }
+
     /**
      * merge object 'Object.assign' similar
      * @param {object} mainObj
@@ -35,6 +48,12 @@ export default class Applications {
             return obj;
         } else {
             throw new Error('Lütfen default objeniz ve birleştireceğiniz objeyi boş burakmayınız...');
+        }
+    }
+
+    ajaxCallback(response?:any){
+        if(Applications.ajaxCall !== (undefined && null)){
+            Applications.ajaxCall(response)
         }
     }
 }
