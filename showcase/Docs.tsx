@@ -28,10 +28,15 @@ export default class Docs extends React.Component<any, any> {
             detailCmp = <span>Component Bulunamadı...</span>;
         }
         return (<div className="content-component">
+                <Row>
+                    <Col xs={3}>
                 <div className="side-menu-container">
                     <Menu data={this.state.data} accordion={true} active={this.setActiveMenu()} onChange={(val)=>{this.handleChange(val)}} />
                 </div>
+                    </Col>
+                    <Col xs={9}>
             <div className="container-component content-page">{detailCmp}</div>
+                    </Col></Row>
         </div>);
     }
 

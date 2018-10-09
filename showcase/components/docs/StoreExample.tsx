@@ -1,5 +1,6 @@
 import * as React from "react";
 import {Panel,Store} from "karcin-ui";
+import * as Highlight from "react-highlight";
 
 export default class AjaxRequestExample extends React.Component<any,any>{
     /**
@@ -36,104 +37,76 @@ export default class AjaxRequestExample extends React.Component<any,any>{
     getProperties(){
         return <div>
             Store kaynakları yönetmek için kolaylık sağlar. Store için özellik yönetimi;<br/>
-            &emsp;- <b>idField</b> varsayılan değeri "id" ve çağıracağınız kaynağın id sine göre değiştirebilirsiniz.<br/><br/>
-            <pre>
-                <code>{`idField: 'dataId'`}</code>
-            </pre><br/>
-            &emsp;- <b>data</b> ile istersek kaynaklarımızı sabit veri ile yönetebiliriz.<br/><br/>
-            <pre>
-                <code>{`data: [`}<br/>
-                    &emsp;{`{id:1,name:'Ahmet',surname:'Kurnaz'},`}<br/>
-                    &emsp;{`{id:2,name:'Selma',surname:'Yeryakan'},`}<br/>
-                    &emsp;{`{id:3,name:'Aslı',surname:'Kuzu'}`}<br/>
-                    {`]`}</code>
-            </pre><br/>
-            &emsp;- Store için <b>data</b> ya da <b>url</b> zorunludur.<br/><br/>
-            <pre>
-                <code>
-                {`let store = new Store({`}<br/>
-                    &emsp;&emsp;{`url: 'localhost:5522/karcin-rest/apiUrl'`}<br/>
-                {`});`}
-                </code>
-            </pre>
-            &emsp;- Store için <b>responseData</b> sunucudan dönen verinin mapping yapılmasını sağlar.<br/><br/>
-            <pre>
-                <code>
-                    {`responseData:"response.data.map"`}
-                </code>
-            </pre>
-            &emsp;- Store için <b>processor</b> ve <b>method</b> Karcin.io için yapılan processor ve ilgili method ismini çağırır.<br/><br/>
-            <pre>
-                <code>
-                    {`processor:'user',method:'add'`}
-                </code>
-            </pre>
-            &emsp;- Store için <b>type</b> belirlenebilir. Varsayılan <b>post</b> methodudur.<br/><br/>
-            <pre>
-                <code>
-                    {`type:'get'`}
-                </code>
-            </pre>
+            * <b>idField</b> varsayılan değeri "id" ve çağıracağınız kaynağın id sine göre değiştirebilirsiniz.<br/>
+            <Highlight className='javascript'>{'idField: \'dataId\''}</Highlight>
+            *<b>data</b> ile istersek kaynaklarımızı sabit veri ile yönetebiliriz.<br/>
+            <Highlight className='javascript'>{'data : [\n' +
+            '    {id:1,value:"Apple",des:"D1"},\n' +
+            '    {id:2,value:"Samsung",des:"D1"},\n' +
+            '    {id:3,value:"Huawei",des:"D1"},\n' +
+            '    {id:4,value:"Lg",des:"D1"},\n' +
+            '    {id:5,value:"Lenovo",des:"D1"}\n' +
+            '  ]'}</Highlight>
+            * Store için <b>data</b> ya da <b>url</b> zorunludur.<br/>
+            <Highlight className='javascript'>{'let store = new Store({\n' +
+            '   url: \'localhost:5522/karcin-rest/apiUrl\'\n' +
+            '});'}</Highlight>
+            * Store için <b>responseData</b> sunucudan dönen verinin mapping yapılmasını sağlar.<br/>
+            <Highlight className='javascript'>{'responseData:"response.data.map'}</Highlight>
+            * Store için <b>processor</b> ve <b>method</b> Karcin.io için yapılan processor ve ilgili method ismini çağırır.<br/>
+            <Highlight className='javascript'>{'processor:\'user\',method:\'add\''}</Highlight>
+            * Store için <b>type</b> belirlenebilir. Varsayılan <b>post</b> methodudur.<br/>
+            <Highlight className='javascript'>{'type:\'get\''}</Highlight>
         </div>
     }
     getRead(){
         return <div>
             * Read fonksiyonu ilk okuma ve tekrardan okuma çekmek için kullanılır.
-            <Panel color={"primary"}>
-                {`let store = new Store({`}<br/>
-                    &emsp;&emsp;{`url: 'localhost:5522/karcin-rest/apiUrl'`}<br/>
-                {`});`}<br/>
-                {`store.read()`}
-            </Panel>
+                <Highlight className='javascript'>{'let store = new Store({\n' +
+                '    url: \'localhost:5522/karcin-rest/apiUrl\'\n' +
+                '});\n' +
+                'store.read()'}</Highlight>
         </div>
     }
     getUpdate(){
         return <div>
             * Update fonksiyonu kontrol amacıyla genel bir update sonrası işlemi kontrol eder.
-            <Panel color={"secondary"}>
-                {`let store = new Store({`}<br/>
-                    &emsp;&emsp;{`url: 'localhost:5522/karcin-rest/apiUrl'`}<br/>
-                {`});`}<br/>
-                {`store.update()`}
-            </Panel>
+            <Highlight className='javascript'>{'let store = new Store({\n' +
+            '    url: \'localhost:5522/karcin-rest/apiUrl\'\n' +
+            '});\n' +
+            'store.update()'}</Highlight>
         </div>
     }
     getDelete(){
         return <div>
             * Delete fonksiyonu silme işlemlerini kontrol etmek için kullanılır.
-            <Panel color={"warning"}>
-                {`let store = new Store({`}<br/>
-                    &emsp;&emsp;{`url: 'localhost:5522/karcin-rest/apiUrl'`}<br/>
-                {`});`}<br/>
-                {`store.delete()`}
-            </Panel>
+            <Highlight className='javascript'>{'let store = new Store({\n' +
+            '    url: \'localhost:5522/karcin-rest/apiUrl\'\n' +
+            '});\n' +
+            'store.delete()'}</Highlight>
         </div>
     }
     getReset(){
         return <div>
             * Reset fonksiyonu data veya url değiştiğinde reset kontrollerini ifade eder.
-            <Panel color={"success"}>
-                {`let store = new Store({`}<br/>
-                    &emsp;&emsp;{`url: 'localhost:5522/karcin-rest/apiUrl'`}<br/>
-                {`});`}<br/>
-                {`store.reset()`}
-            </Panel>
+            <Highlight className='javascript'>{'let store = new Store({\n' +
+            '    url: \'localhost:5522/karcin-rest/apiUrl\'\n' +
+            '});\n' +
+            'store.reset()'}</Highlight>
         </div>
     }
     getGeneralUsing(){
         return <div>
             * Genel path bazlı kullanım aşağıdaki gibi olabilir.
-            <Panel color={"info"}>
-                {`let store = new Store({`}<br/>
-                    &emsp;&emsp;{`url: 'localhost:5522/karcin-rest/apiUrl'`}<br/>
-                    &emsp;&emsp;{`idField :'id'`}<br/>
-                    &emsp;&emsp;{`responseData : 'res.data'`}<br/>
-                    &emsp;&emsp;{`processor : 'userProcessor'`}<br/>
-                    &emsp;&emsp;{`method : 'generalFilter'`}<br/>
-                    &emsp;&emsp;{`type :'post'`}<br/>
-                {`});`}<br/>
-                {`store.reset()`}
-            </Panel>
+            <Highlight className='javascript'>{'let store = new Store({\n' +
+            '  url: \'localhost:5522/karcin-rest/apiUrl\'\n' +
+            '  idField :\'id\'\n' +
+            '  responseData : \'res.data\'\n' +
+            '  processor : \'userProcessor\'\n' +
+            '  method : \'generalFilter\'\n' +
+            '  type :\'post\'\n' +
+            '});\n' +
+            'store.reset()'}</Highlight>
         </div>
     }
 }
