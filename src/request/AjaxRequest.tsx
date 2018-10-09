@@ -6,7 +6,7 @@ export interface basicObject {
 }
 
 
-export default class AjaxRequest {
+export default class AjaxRequest extends Application {
 
     ajaxCallControl = true;
 
@@ -22,6 +22,7 @@ export default class AjaxRequest {
     ajaxProps: basicObject = {};
 
     constructor(props?: Object, callback?: any) {
+        super();
 
         // url  control
         let localUrl = localStorage.getItem('url');
@@ -49,6 +50,7 @@ export default class AjaxRequest {
         }
 
         // header control
+        this.ajaxProps['headers'] = {};
         if(this.props.headers !== undefined){
             this.ajaxProps['headers'] = this.props.headers;
         }
@@ -79,6 +81,10 @@ export default class AjaxRequest {
             // before token add 
             this.beforeToken();
             axios(this.ajaxProps).then((response:any) => {
+
+                // application runt method
+                this.ajaxCallback(response);
+
                 // props success control
                 if (this.props['successCallback'] !== undefined) {
                     this.props['successCallback'](response);
@@ -93,6 +99,10 @@ export default class AjaxRequest {
                 this.afterToken(response['token']);
 
             }).catch((error:any) => {
+
+                // application runt method
+                this.ajaxCallback(error);
+
                 // props error control
                 if (this.props['errorCallback'] !== undefined) {
                     this.props['errorCallback'](error);

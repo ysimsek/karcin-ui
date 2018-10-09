@@ -178,7 +178,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
                         this.toggleActiveMenu(params, value.items)
                     }
                 }}>
-                    {(value.href !== (undefined || null)) ? <NavLink href={(value.href) ? value.href : "#"}>{menuInHTML}{menuDropIcon}</NavLink> : <NavLink>{menuInHTML}{menuDropIcon}</NavLink>}
+                    {(value.href !== (undefined && null)) ? <NavLink href={(value.href) ? value.href : "#"}>{menuInHTML}{menuDropIcon}</NavLink> : <a className="nav-link">{menuInHTML}{menuDropIcon}</a>}
                 </div>
                 {(value.items !== undefined && value.items.length > 0) ? this.menuLoop(value.items, keys, level + 1, true) : ''}
             </NavItem>);

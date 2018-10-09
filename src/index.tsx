@@ -60,6 +60,7 @@ import LookUp from './functional/lookup/LookUp';
 import FileUpload from './functional/fileUpload/FileUpload';
 
 import PropertyGrid from "./functional/propertygrid/PropertyGrid";
+import Applications from "./applications/Applications";
 
 import "./css/karcin-ui.css";
 
@@ -117,6 +118,7 @@ export {
     GetInput,
     Condition,
     LookUp,
-    FileUpload
+    FileUpload,
+    Applications
 };
 export default Button;
