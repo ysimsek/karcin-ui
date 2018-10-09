@@ -11,7 +11,7 @@ import "ammap3/ammap/ammap";
 var AmCharts = require("@amcharts/amcharts3-react");
 
 
-export interface DynamicChartProps{
+export interface LineChart2Props{
     /**
      * Views data
      */
@@ -28,9 +28,9 @@ export interface DynamicChartProps{
 
 }
 
-export default class DynamicChart extends React.Component<DynamicChartProps,any>{
+export default class DynamicChart extends React.Component<LineChart2Props,any>{
 
-    static defaultProps:Partial<DynamicChartProps> = {
+    static defaultProps:Partial<LineChart2Props> = {
         theme : "serial"
     }
 

@@ -6,18 +6,18 @@
       "name":"AjaxRequest",
       "title":"AjaxRequest",
       "icon":"fa-hand-pointer-o",
-      "href":"#/Components/AjaxRequest",
-      "samples":"AjaxRequest",
+      "href":"#/Docs/AjaxRequest",
+      "samples":"components/docs/AjaxRequestExample",
       "library":"request/AjaxRequest",
       "description":"AjaxRequest"
     },
     {
-      "id":1,
+      "id":2,
       "name":"Store",
       "title":"Store",
       "icon":"fa-hand-pointer-o",
-      "href":"#/Components/Store",
-      "samples":"Store",
+      "href":"#/Docs/Store",
+      "samples":"components/docs/StoreExample",
       "library":"store/Store",
       "description":"Store"
     }

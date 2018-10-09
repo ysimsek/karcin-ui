@@ -25,6 +25,10 @@ export default class RenderComponent extends React.Component<any, any> {
                 </TabPanel>
             );
         }
+        return this.props.type == "component" ? this.getComponent(properties) : this.getDocs(properties);
+    }
+
+    getComponent(properties){
         return (<div>
             <h2>{'<'}{this.props.item.name}{' />'}</h2>
             <p className="description">{this.props.item.description}</p>
@@ -39,8 +43,23 @@ export default class RenderComponent extends React.Component<any, any> {
                     </TabPanel>
                 </Tab>
             </div>
-        </div>);
+        </div>)
     }
+
+    getDocs(properties){
+        return (<div>
+            <h3>{'<'}{this.props.item.name}{' />'}</h3>
+            <div style={{marginTop:20}}>
+                <Tab activeTab={this.state.activeTab} className="component-props">
+                    <TabPanel title="Example">
+                        {this.getReactElement()}
+                    </TabPanel>
+                    {properties}
+                </Tab>
+            </div>
+        </div>)
+    }
+
 
     getReactElement(){
         try{
