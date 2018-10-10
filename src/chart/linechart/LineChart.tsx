@@ -84,7 +84,6 @@ export default class LineChart extends React.Component<LineChartProps,any>{
             "marginLeft": 40,
             "autoMarginOffset": 20,
             "rotate":this.props.inline,
-            // "mouseWheelZoomEnabled":true,
             "dataDateFormat": "YYYY-MM-DD",
             "valueAxes": [{
                 "id": "v1",

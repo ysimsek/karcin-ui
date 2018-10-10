@@ -1,16 +1,19 @@
 import Application from '../applications/Applications';
 import LocalEndPoint from './LocaleEndPoint';
 import RemoteEndPoint from './RemoteEndPoint';
-
 export default class Store {
 
     props: object | any = {
-        idField: "oid",
+        idField: "id",
         data: [],
         param: [],
         originUrl: null,
         endPoint: null,
+        //obje kontollü denetim için kullanılır
         responseData: null,
+        /**
+         * Sayfalama kontrolü yapmak için kullanılır
+         */
         pageTotalData:null,
         processor: null,
         type: 'POST',
@@ -69,7 +72,7 @@ export default class Store {
 
     /**
      * Endpoint callback
-     * @param response 
+     * @param response
      */
     endPointCallback(response: any) {
         if (response !== undefined) {
@@ -84,7 +87,7 @@ export default class Store {
 
     /**
      * Store read
-     * @param callback 
+     * @param callback
      */
     read(callback?:any) {
         this.props.endPoint.read(this.props, (data:any)=>{
@@ -98,9 +101,9 @@ export default class Store {
 
     /**
      * Create
-     * @param item 
-     * @param successCallback 
-     * @param errorCallback 
+     * @param item
+     * @param successCallback
+     * @param errorCallback
      */
     create(items: any, callback?: any) {
         if (items !== undefined) {
@@ -111,9 +114,9 @@ export default class Store {
 
     /**
      * Update
-     * @param items 
-     * @param successCallback 
-     * @param errorCallback 
+     * @param items
+     * @param successCallback
+     * @param errorCallback
      */
     update(items: any, callback?: any) {
         if (items !== undefined) {
@@ -125,9 +128,9 @@ export default class Store {
 
     /**
      * Delete
-     * @param items 
-     * @param successCallback 
-     * @param errorCallback 
+     * @param items
+     * @param successCallback
+     * @param errorCallback
      */
     delete(items: any, callback?: any) {
         if (items !== undefined) {
@@ -138,7 +141,7 @@ export default class Store {
 
     /**
      * Reset
-     * @param successCallback 
+     * @param successCallback
      */
     reset(callback?: any) {
         this.__callback(this.__dataMap);
@@ -147,8 +150,8 @@ export default class Store {
 
     /**
      * Order sort data
-     * @param fieldName 
-     * @param callback 
+     * @param fieldName
+     * @param callback
      */
     orderSort(fieldName: any, callback?:any) {
         if (fieldName !== undefined) {
@@ -162,13 +165,13 @@ export default class Store {
 
     /**
      * Order reverse data
-     * @param fieldName 
-     * @param callback 
+     * @param fieldName
+     * @param callback
      */
     orderReverse(fieldName: any, callback?:any) {
         if (fieldName !== undefined) {
             this.props.endPoint.orderReverse(fieldName, (data: any) => {
-                this.orderCallback(data, 'DESC', fieldName, callback); 
+                this.orderCallback(data, 'DESC', fieldName, callback);
             });
         } else {
             throw new Error('Field name empty');
@@ -177,8 +180,8 @@ export default class Store {
 
     /**
      * Sort get old data
-     * @param fieldName 
-     * @param callback 
+     * @param fieldName
+     * @param callback
      */
     oldDataSort(fieldName:any, callback?:any){
         this.props.endPoint.oldDataSort((data:any)=>{
@@ -192,10 +195,10 @@ export default class Store {
 
     /**
      * Order callback data
-     * @param data 
-     * @param order 
-     * @param fieldName 
-     * @param callback 
+     * @param data
+     * @param order
+     * @param fieldName
+     * @param callback
      */
     orderCallback(data: any, order: any, fieldName: any, callback?:any) {
         if (data !== undefined && data.length > 0) {
@@ -211,9 +214,9 @@ export default class Store {
 
     /**
      * filters
-     * @param fieldName 
-     * @param value 
-     * @param callback 
+     * @param fieldName
+     * @param value
+     * @param callback
      */
     filter(fieldName: any, value: any, operator?:any, callback?:any) {
         if (fieldName !== undefined) {
@@ -227,8 +230,8 @@ export default class Store {
 
     /**
      * data page
-     * @param page 
-     * @param pageShow 
+     * @param page
+     * @param pageShow
      */
     pagination(page:any, pageShow:any){
         let pages = (page !== undefined) ? page : this.__page.page;

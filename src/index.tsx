@@ -35,6 +35,7 @@ import BarChart from "./chart/barchart/BarChart";
 import ComplexBarChart from "./chart/barchart/ComplexBarChart";
 import ComposedBarChart from "./chart/barchart/ComposedBarChart";
 import LineChart from "./chart/linechart/LineChart";
+import LineChart2 from "./chart/linechart/LineChart2";
 import PieChart from "./chart/piechart/PieChart";
 import ScatterChart from "./chart/scatterchart/ScatterChart";
 import MicroChart from "./chart/extrachart/MicroChart";
@@ -100,6 +101,7 @@ export {
     ComplexBarChart,
     MapChart,
     LineChart,
+    LineChart2,
     PieChart,
     ScatterChart,
     MicroChart,

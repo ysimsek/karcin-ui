@@ -40,7 +40,7 @@ export default class Components extends React.Component<ComponentsProps, Compone
         let item = this.getItem(window.location.hash, this.state.data);
         let detailCmp = null;
         if (item.length > 0){
-            detailCmp = <RenderComponents item={item[0]}/>;
+            detailCmp = <RenderComponents type={"component"} item={item[0]}/>;
         } else {
             detailCmp = <span>Component Bulunamadı...</span>;
         }

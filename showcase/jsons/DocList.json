@@ -1,6 +1,35 @@
 {
   "name":"DocList",
   "data": [
-    {}
+    {
+      "id":1,
+      "name":"AjaxRequest",
+      "title":"AjaxRequest",
+      "icon":"fa-hand-pointer-o",
+      "href":"#/Docs/AjaxRequest",
+      "samples":"components/docs/AjaxRequestExample",
+      "library":"request/AjaxRequest",
+      "description":"AjaxRequest"
+    },
+    {
+      "id":2,
+      "name":"Store",
+      "title":"Store",
+      "icon":"fa-hand-pointer-o",
+      "href":"#/Docs/Store",
+      "samples":"components/docs/StoreExample",
+      "library":"store/Store",
+      "description":"Store"
+    },
+    {
+      "id":2,
+      "name":"Model",
+      "title":"Model",
+      "icon":"fa-hand-pointer-o",
+      "href":"#/Docs/Model",
+      "samples":"components/docs/ModelExample",
+      "library":"store/Store",
+      "description":"Model"
+    }
   ]
 }

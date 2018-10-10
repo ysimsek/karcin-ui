@@ -17,6 +17,10 @@ export interface LabelProps {
      * Set the style
      */
     className?: any;
+    /**
+     * Click the component
+     */
+    onClick?:any;
 }
 
 
@@ -46,7 +50,12 @@ export default class Badge extends React.Component<LabelProps,any>{
         return <BadgeX
             color={this.props.color}
             className={this.props.className}
+            onClick={this.onClick.bind(this)}
             style={{fontSize: this.props.size+"px"}}
         >{this.props.children}</BadgeX>;
+    }
+
+    onClick(e:any){
+        this.props.onClick != undefined ? this.props.onClick(e) : null;
     }
 }

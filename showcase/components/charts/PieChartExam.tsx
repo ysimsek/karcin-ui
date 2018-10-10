@@ -45,6 +45,7 @@ export default class PieChartExam extends React.Component<any,any>{
                             categoryField={"country"}
                             categoryValue={"litres"}
                             height={300}
+                            describeList={true}
                         />
                 </Panel>
             </Col>
@@ -56,6 +57,7 @@ export default class PieChartExam extends React.Component<any,any>{
                             categoryValue={"litres"}
                             height={300}
                             innerSize={40}
+                            describeList={true}
                     />
                 </Panel>
             </Col>

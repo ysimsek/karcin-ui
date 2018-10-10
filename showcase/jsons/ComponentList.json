@@ -363,22 +363,121 @@
       "items":[
         {
           "id":1,
-          "name":"BarChart",
-          "title":"BarChart",
-          "href":"#/Components/BarChart",
-          "samples":"components/charts/SimpleBarChartExam",
-          "library":"chart/barchart/BarChart"
-        },
-        {
-          "id":2,
           "name":"LineChart",
           "title":"LineChart",
-          "href":"#/Components/LineChart",
-          "samples":"components/charts/SimpleLineChartExam",
-          "library":"chart/linechart/LineChart"
+          "icon":"fa-line-chart",
+          "collapse":true,
+          "items":[
+            {
+              "id": 1,
+              "name": "LineChart",
+              "title": "LineChart",
+              "href": "#/Components/LineChart",
+              "samples": "components/charts/SimpleLineChartExam",
+              "library": "chart/linechart/LineChart"
+            },
+            {
+              "id":2,
+              "name":"LineChart2",
+              "title":"LineChart2",
+              "href":"#/Components/LineChart2",
+              "samples":"components/charts/LineChart2Exam",
+              "library":"chart/linechart/LineChart2"
+            },
+            {
+              "id":3,
+              "name":"LineChartTrend",
+              "title":"LineChartTrend",
+              "href":"#/Components/LineChartTrend",
+              "samples":"components/charts/LineTrendChartExam",
+              "library":"chart/linechart/LineChartTrend"
+            }
+          ]
         },
         {
-          "id":3,
+          "id": 2,
+          "name": "BarChart",
+          "title": "BarChart",
+          "icon": "fa-bar-chart",
+          "collapse": true,
+          "items":[
+            {
+              "id":1,
+              "name":"BarChart",
+              "title":"BarChart",
+              "href":"#/Components/BarChart",
+              "samples":"components/charts/SimpleBarChartExam",
+              "library":"chart/barchart/BarChart"
+            },
+            {
+              "id":2,
+              "name":"ComposedBarChart",
+              "title":"ComposedBarChart",
+              "href":"#/Components/ComposedBarChart",
+              "samples":"components/charts/ComposedBarChartExam",
+              "library":"chart/barchart/ComposedBarChart"
+            },
+            {
+              "id":3,
+              "name":"ComplexBarChart",
+              "title":"ComplexBarChart",
+              "href":"#/Components/ComplexBarChart",
+              "samples":"components/charts/ComplexBarChartExam",
+              "library":"chart/barchart/ComplexBarChart"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "ExtraChart",
+          "title": "ExtraChart",
+          "icon": "fa-500px",
+          "collapse": true,
+          "items": [
+            {
+              "id":1,
+              "name":"ScatterChart",
+              "title":"ScatterChart",
+              "href":"#/Components/ScatterChart",
+              "samples":"components/charts/ScatterChartExam",
+              "library":"chart/scatterchart/ScatterChart"
+            },
+            {
+              "id":2,
+              "name":"PyramidChart",
+              "title":"PyramidChart",
+              "href":"#/Components/PyramidChart",
+              "samples":"components/charts/PyramidChartExam",
+              "library":"chart/extrachart/PyramidChart"
+            },
+            {
+              "id":3,
+              "name":"MicroChart",
+              "title":"MicroChart",
+              "href":"#/Components/MicroChart",
+              "samples":"components/charts/MicroChartExam",
+              "library":"chart/extrachart/MicroChart"
+            },
+            {
+              "id":4,
+              "name":"CylinderChart",
+              "title":"CylinderChart",
+              "href":"#/Components/CylinderChart",
+              "samples":"components/charts/CylinderChartExam",
+              "library":"chart/extrachart/CylinderChart"
+            },
+            {
+              "id":5,
+              "name":"DynamicChart",
+              "title":"DynamicChart",
+              "href":"#/Components/Dynamic",
+              "samples":"components/charts/DynamicChartExam",
+              "library":"chart/linechart/DynamicChart"
+            }
+          ]
+        },
+        {
+          "id":4,
           "name":"PieChart",
           "title":"PieChart",
           "href":"#/Components/PieChart",
@@ -386,7 +485,7 @@
           "library":"chart/piechart/PieChart"
         },
         {
-          "id":4,
+          "id":5,
           "name":"AreaChart",
           "title":"AreaChart",
           "href":"#/Components/AreaChart",
@@ -394,78 +493,13 @@
           "library":"chart/areachart/SimpleAreaChart"
         },
         {
-          "id":5,
-          "name":"ScatterChart",
-          "title":"ScatterChart",
-          "href":"#/Components/ScatterChart",
-          "samples":"components/charts/ScatterChartExam",
-          "library":"chart/scatterchart/ScatterChart"
-        },
-        {
           "id":6,
-          "name":"ComposedBarChart",
-          "title":"ComposedBarChart",
-          "href":"#/Components/ComposedBarChart",
-          "samples":"components/charts/ComposedBarChartExam",
-          "library":"chart/barchart/ComposedBarChart"
-        },
-        {
-          "id":7,
-          "name":"ComplexBarChart",
-          "title":"ComplexBarChart",
-          "href":"#/Components/ComplexBarChart",
-          "samples":"components/charts/ComplexBarChartExam",
-          "library":"chart/barchart/ComplexBarChart"
-        },
-        {
-          "id":8,
-          "name":"LineChartTrend",
-          "title":"LineChartTrend",
-          "href":"#/Components/LineChartTrend",
-          "samples":"components/charts/LineTrendChartExam",
-          "library":"chart/linechart/LineChartTrend"
-        },
-        {
-          "id":9,
-          "name":"PyramidChart",
-          "title":"PyramidChart",
-          "href":"#/Components/PyramidChart",
-          "samples":"components/charts/PyramidChartExam",
-          "library":"chart/extrachart/PyramidChart"
-        },
-        {
-          "id":10,
-          "name":"MicroChart",
-          "title":"MicroChart",
-          "href":"#/Components/MicroChart",
-          "samples":"components/charts/MicroChartExam",
-          "library":"chart/extrachart/MicroChart"
-        },
-        {
-          "id":11,
-          "name":"CylinderChart",
-          "title":"CylinderChart",
-          "href":"#/Components/CylinderChart",
-          "samples":"components/charts/CylinderChartExam",
-          "library":"chart/extrachart/CylinderChart"
-        },
-        {
-          "id":12,
           "name":"MapChart",
           "title":"MapChart",
           "href":"#/Components/MapChart",
           "samples":"components/charts/MapChartExam",
           "library":"chart/mapchart/MapChart"
-        },
-        {
-          "id":13,
-          "name":"DynamicChart",
-          "title":"DynamicChart",
-          "href":"#/Components/Dynamic",
-          "samples":"components/charts/DynamicChartExam",
-          "library":"chart/linechart/DynamicChart"
         }
-
       ]
     }
   ]
