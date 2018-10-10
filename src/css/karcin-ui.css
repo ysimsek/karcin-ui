@@ -1719,3 +1719,10 @@ button-square-to-radius {
     width: 100%;
     display: inline-block;
 }
+.property-grid-sizing{
+    display: list-item;
+}
+.propertygrid-tr{
+    display: table-row;
+    border: groove;
+}

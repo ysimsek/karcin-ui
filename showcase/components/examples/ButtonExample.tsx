@@ -1,47 +1,9 @@
 import * as React from "react";
-import {Button, AjaxRequest, Applications} from 'karcin-ui';
+import {Button} from 'karcin-ui';
 
 export default class ButtonExample extends React.Component<any, any> {
 
     render() {
-        let deneme = [{
-            'id': '1',
-            'name': 'Deniz',
-            'surname': 'DALKILIÇ',
-            'title': 'Yazılım Uzmanı'
-        }, {
-            'id': '2',
-            'name': 'Yunus',
-            'surname': 'ŞİMŞEK',
-            'title': 'Yazılım Uzmanı'
-        }, {
-            'id': '3',
-            'name': 'Tayyip',
-            'surname': 'DEMİRCAN',
-            'title': 'Yazılım Uzmanı'
-        }, {
-            'id': '4',
-            'name': 'Mustafa',
-            'surname': 'GÜNGÖR',
-            'title': 'Yazılım Uzmanı'
-        }, {
-            'id': '5',
-            'name': 'Bora',
-            'surname': 'AVCI',
-            'title': 'Yazılım Uzmanı'
-        }];
-
-        new Applications({
-            ajaxCallback: (res)=>{
-                debugger;
-            }
-        })
-
-        let getAjax = new AjaxRequest({url:'https://jsonplaceholder.typicode.com/posts', type:'get'}, ()=>{
-            debugger;
-        })
-        getAjax.call();
-
         return (
             <div>
                 <Button color="primary">primary</Button>{' '}

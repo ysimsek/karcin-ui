@@ -40,7 +40,7 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
     }
 
     render():any{
-        return <div>
+        return <div className={"property-grid-sizing"}>
             {this.returnElements(this.props.fields, this.props.values)}
         </div>
     }
@@ -84,9 +84,9 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
             comp= me.getComponentSelect(field,v);
             if(comp.length > 0) {
                 componentFields.push(
-                    <tr key={idx}>
-                        <td style={{width:"30%"}}>{field.label}</td>
-                        <td>{comp}</td>
+                    <tr className={"propertygrid-tr"} key={idx}>
+                        <td style={{width:"30%",outline:"auto"}}>{field.label}</td>
+                        <td style={{outline:"auto"}}>{comp}</td>
                     </tr>)
             }
         })
