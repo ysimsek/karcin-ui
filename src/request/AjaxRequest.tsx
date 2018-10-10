@@ -58,16 +58,25 @@ export default class AjaxRequest extends Application {
         // ajax post type 
         this.ajaxProps['method'] = this.props.type || 'post';
         
-        // method and processor control 
-        if (this.props.processor !== undefined) {
-            // processor merge
-            this.ajaxProps['processor'] = this.props.processor; 
 
-            // param data merge or findAll and null
-            this.ajaxProps['data'] = {
-                'processor': this.props.processor,
-                'method': this.props.method || 'findAll',
-                'data': this.props.data || [null]
+        // method and processor control 
+        if (this.props.processor !== undefined || this.props.method !== undefined || this.props.data !== undefined) {
+            this.ajaxProps['data'] = {'data': [null]};
+
+            // processor merge
+            if(this.props.processor !== undefined){
+                this.ajaxProps['processor'] = this.props.processor; 
+                this.ajaxProps['method'] = 'findAll';
+            }
+
+            // method merge
+            if(this.props.method !== undefined){
+                this.ajaxProps['method'] = this.props.method; 
+            }
+            
+            // data merge
+            if(this.props.data !== undefined){
+                this.ajaxProps['data'] = this.props.data; 
             }
         }
     }
