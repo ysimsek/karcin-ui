@@ -47,7 +47,7 @@ export default class LookUp extends React.Component<LookUpProp,LookUpState> {
         return(
             <div className="karcin-look-up">
                 {this.props.label != undefined ?  <label className={"label-properties"}>{this.props.label}</label> : null}
-                <div className="look-up-wrapper">
+                <div onClick={this.toggle} className="look-up-wrapper">
                     <div className="selected-value">
                         <div className="input-val form-control">
                             {this.props.renderer !== undefined && this.selectedResult.length > 0 ?

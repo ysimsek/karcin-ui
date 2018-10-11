@@ -22,7 +22,7 @@ export default class FaIconExample extends React.Component<any, any> {
         let component = [];
         iconList.fields.map((icon,idx)=>{
             component.push( <FaIcon code={icon} key={icon}
-                                    onMouseOver={this.onMouseOver.bind(this)}
+                                    onClick={this.onClick.bind(this)}
             ></FaIcon>)
         })
         return component
@@ -32,7 +32,7 @@ export default class FaIconExample extends React.Component<any, any> {
         return <div>
             <hr/>
             <Badge color={"primary"}>{"<FaIcon code='"+this.state.icon+"'/>"}</Badge>
-            <hr/>
+            <hr />
             <FaIcon code={this.state.icon}></FaIcon>
             <FaIcon code={this.state.icon} size="fa-2x"></FaIcon>
             <FaIcon code={this.state.icon} size="fa-3x"></FaIcon>
@@ -52,14 +52,13 @@ export default class FaIconExample extends React.Component<any, any> {
             <FaIcon color={"dark"} code={this.state.icon} size="fa-3x"></FaIcon>
             <FaIcon color={"light"} code={this.state.icon} size="fa-3x"></FaIcon>
             <FaIcon code={this.state.icon} size="fa-3x"></FaIcon>
-            <FaIcon code={this.state.icon} size="fa-3x"></FaIcon>
             <hr />
             <FaIcon color={"primary"} code={this.state.icon+" fa-spin"} size="fa-6x"></FaIcon>
             <FaIcon color={"success"} code={this.state.icon+" fa-spin"} size="fa-6x"></FaIcon>
         </div>
     }
 
-    onMouseOver(e){
+    onClick(e){
         this.setState({icon : e.target.classList[2]});
     }
 }

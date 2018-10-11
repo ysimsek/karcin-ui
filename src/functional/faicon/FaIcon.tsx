@@ -1,4 +1,3 @@
-///<reference path="../../../node_modules/@types/react/index.d.ts"/>
 import * as React from "react";
 import "font-awesome/css/font-awesome.min.css";
 import "@fortawesome/fontawesome-free/css/fontawesome.css";
