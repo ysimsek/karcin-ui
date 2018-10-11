@@ -25,6 +25,7 @@ export interface LookUpState {
     modalShow?:any;
     store?:any;
     save?:boolean;
+    doubleSelected?:any;
 }
 
 export default class LookUp extends React.Component<LookUpProp,LookUpState> {
@@ -71,7 +72,10 @@ export default class LookUp extends React.Component<LookUpProp,LookUpState> {
         return (<Modal size='lg' isOpen={this.state.modalShow} toggle={this.toggle}>
             <ModalHeader toggle={this.toggle}>Seçim İşlemleri</ModalHeader>
             <ModalBody>
-                <DataGrid fields={this.props.field} store={this.props.store} onSelected={this.dataSelected} {...this.props.dataGridOption} />
+                <DataGrid fields={this.props.field}
+                          store={this.props.store}
+                          onDoubleClick={this.onDoubleClick.bind(this)}
+                          onSelected={this.dataSelected} {...this.props.dataGridOption} />
             </ModalBody>
             <ModalFooter>
                 <Button color="success" onClick={this.selectedSave}>Seç</Button>
@@ -82,7 +86,9 @@ export default class LookUp extends React.Component<LookUpProp,LookUpState> {
 
     dataSelected = (val:any, index:any) => {
         let state:any = {};
+        let values:any = val.length> 0 ? JSON.parse(JSON.stringify(val[0])) : this.state.doubleSelected;
         state['selected'] = val;
+        state['doubleSelected'] = values;
         this.setState(state);
     }
 
@@ -90,6 +96,17 @@ export default class LookUp extends React.Component<LookUpProp,LookUpState> {
         this.setState({
             modalShow: !this.state.modalShow
         })
+    }
+
+    onDoubleClick = (e:any) => {
+        this.selectedResult = [this.state.doubleSelected];
+        this.setState({
+            modalShow: false
+        });
+
+        if(this.props.onChange !== undefined){
+            this.props.onChange(this.state.doubleSelected[0], this.props.name);
+        }
     }
 
     selectedSave = () => {

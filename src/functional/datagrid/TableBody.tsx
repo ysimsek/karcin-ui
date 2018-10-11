@@ -13,6 +13,7 @@ export interface TableBodyProps {
     fieldOption?:any;
     showingPageData?:any;
     multiSelect?:boolean;
+    onDoubleClick?:any;
 }
 
 export interface TableBodyState {
@@ -103,7 +104,7 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
                     }else {
                         fieldValData = value[valueField.value];
                     }
-                    
+
 
                     new TypeFormating({
                         data: fieldValData,
@@ -133,7 +134,9 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
                                     if(this.props.onSelected !== false){
                                         this.onClickRow(e, getId, data[i])
                                     }
-                                }}>{(self.props.rowRenderer !== undefined) ? self.props.rowRenderer(value, this.props.fields) !== undefined ? self.props.rowRenderer(value, this.props.fields) : Cell : Cell}</tr>);
+                                }}
+                              onDoubleClick={this.props.onDoubleClick}
+                >{(self.props.rowRenderer !== undefined) ? self.props.rowRenderer(value, this.props.fields) !== undefined ? self.props.rowRenderer(value, this.props.fields) : Cell : Cell}</tr>);
 
             }
         }
