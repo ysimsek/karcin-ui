@@ -63,7 +63,9 @@ let model = [
                 id : "id",
                 type : "select",
                 name : "structuralName",
-                label :"StructuralName"
+                label :"StructuralName",
+                idField : "id",
+                valueField : "value"
             }
         ]
     },
@@ -121,10 +123,10 @@ export default class PropertyGridExample extends React.Component<any,any>{
             values : {
                 behavioralName : [
                     {id:1,value:"Apple",des:"D1"},
-                    {id:2,value:"Samsung",des:"D1"},
-                    {id:3,value:"Huawei",des:"D1"},
-                    {id:4,value:"Lg",des:"D1"},
-                    {id:5,value:"Lenovo",des:"D1"}
+                    {id:2,value:"Samsung",des:"D2"},
+                    {id:3,value:"Huawei",des:"D3"},
+                    {id:4,value:"Lg",des:"D4"},
+                    {id:5,value:"Lenovo",des:"D5"}
                 ],
                 structuralName : [
                     {id:1,value:"Wolswagen",des:"D1"},

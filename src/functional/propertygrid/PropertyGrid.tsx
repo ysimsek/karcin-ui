@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Table , Row, Col, Alert, Collapse } from 'reactstrap';
+import { Table , Row, Col, Alert, Collapse} from 'reactstrap';
 import LookUp from "../../functional/lookup/LookUp";
 import Store from "../../store/Store";
 import SelectInput from "../../inputs/selectInput/SelectInput";
@@ -13,6 +13,8 @@ import CheckInput from "../../inputs/CheckInput";
 import DateInput from "../../datepicker/DateInput";
 import DataForm from "../../functional/dataform/DataForm";
 import Badge from "../../functional/badge/Badge"
+import FaIcon from "../faicon/FaIcon";
+import PopOver from "../tip/PopOver";
 
 export interface  PropertyGridProps{
     fields:Array<any>;
@@ -25,17 +27,18 @@ export interface  PropertyGridProps{
 
 export default class PropertyGrid extends React.Component<PropertyGridProps,any>{
 
+
     static defaultProps:Partial<PropertyGridProps> = {
         nameText: "name",
         labelText:"label",
         typeText:"type",
-        titleColor:"success"
+        titleColor:"primary"
     }
 
     constructor(props:any){
         super(props);
         this.state = {
-
+            showTitleIDs:[]
         }
     }
 
@@ -58,20 +61,47 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
      **/
     returnElements(fields:any,values:any):JSX.Element[]{
         let components:Array<any> = [];
+        this.showBadge(fields);
         fields.map((field:any, idx:number)=>{
             if(field.divTitle != undefined){
-                components.push(<div className={"propertygrid-full"} style={{width:"100%"}}>
-                    <Badge className={"propertygrid-full"} color={this.props.titleColor}>{field.divTitle}</Badge>
+                components.push(<div id={idx.toString()} onClick={()=>{this.titleEventChange(field.divTitle)}} className={"propertygrid-full"} style={{width:"100%"}}>
+                    <Badge id={idx.toString()} className={"propertygrid-full propertygrid-badge"} color={this.props.titleColor}>{field.divTitle}</Badge>
                 </div>)
-                components.push(<table key={idx} style={{width:"100%"}}><tbody id={idx.toString()}>
-                {this.returnFields(field.fields,values)}
+                components.push(<Collapse isOpen={this.getCollapseState(field.divTitle)}>
+                    <table key={idx} style={{width:"100%"}}>
+                    <tbody id={idx.toString()}>
+                        {this.returnFields(field.fields,values)}
                 {/*{this.getDataFormRenderer(field.fields,values)}*/}
-                </tbody></table>)
+                    </tbody></table></Collapse>)
             }
         });
         return components;
     }
 
+    showBadge(fields:any){
+        this.state.showTitleIDs.length == 0 ?
+         fields.map((res:any,idx:number)=>{
+             this.state.showTitleIDs.push({id:idx,show :res.divTitle,value:true})
+         }) : null;
+    }
+
+    getCollapseState(e:any):boolean{
+        let asc:boolean = false;
+        this.state.showTitleIDs.map((res:any,idx:number)=>{
+            if(res.show == e){
+                asc = res.value;
+            }
+        })
+        return asc;
+    }
+
+    titleEventChange(e:any){
+        this.state.showTitleIDs.map((res:any,idx:number)=>{
+            if(res.show == e){
+                res.value = !res.value;
+            }
+        })
+    }
 
     returnFields(fields:any,values:any):JSX.Element[]{
         let componentFields:Array<any> = [],me:any = this;
@@ -82,16 +112,105 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
                 v = values[field.name];
             }
             comp= me.getComponentSelect(field,v);
+            let display = {display:"none"};
+            let display2 = {};
             if(comp.length > 0) {
                 componentFields.push(
-                    <tr className={"propertygrid-tr"} key={idx}>
-                        <td style={{width:"30%",outline:"auto"}}>{field.label}</td>
-                        <td style={{outline:"auto"}}>{comp}</td>
+                    <tr className={"propertygrid-tr"}  key={idx}>
+                        <td style={{width:"30%"}} className={"propertygrid-td-first"}>{field.label}</td>
+                        <td style={me.state.selectedProp == field.name ? display2 : display} className={"propertygrid-td-second"}>{comp}</td>
+                        <td style={me.state.selectedProp == field.name ? display : display2}
+                            id={field.name}
+                            onClick={()=>{me.getLabelActiveToInput(idx,field)}}>
+                            {this.getLabelActiveToLabel(field)}
+                        </td>
                     </tr>)
             }
         })
 
         return componentFields
+    }
+
+    /**
+     * Label ile gösterim
+     * @param e
+     */
+    getLabelActiveToInput(e:any,field:any){
+        this.setState({selectedProp: field.name, selectedId: e});
+    }
+
+    /**
+     * Label separeting
+     * @param field
+     * @returns {any}
+     */
+    getLabelActiveToLabel(field:any){
+        try {
+            if (typeof(this.state[field.name]) == "string") {
+                if(field.type == "password"){
+                    let pass :any = "";
+                    for(let i=0;i<this.state[field.name].length;i++){
+                        pass += "*";
+                    }
+                    return this.provideOfShowLabel(pass,{},"fa-unlock");
+                }
+                if(field.type == "color"){
+                    let color = {color : this.state[field.name]};
+                    return this.provideOfShowLabel(this.state[field.name],color,"fa-square");
+                }
+                if(field.type == "string"){
+                    return this.provideOfShowLabel(this.state[field.name],{},"fa-text-width");
+                }
+                if(field.type == "textarea"){
+                    return this.provideOfShowLabel(this.state[field.name],{},"fa-text-width");
+                }
+                if(field.type == "date"){
+                    return this.provideOfShowLabel(this.state[field.name],{},"fa-calendar");
+                }
+                if(field.type == "int"){
+                    return this.provideOfShowLabel(this.state[field.name],{},"fa-sort-numeric-asc");
+                }
+
+                return this.state[field.name];
+            } else if (typeof(this.state[field.name]) == "number") {
+                return this.provideOfShowLabel(this.state[field.name],{},"fa-sort-numeric-asc");
+            } else if (typeof(this.state[field.name]) == "object") {
+
+                if(field.type == "lookup") {
+                    if ((this.state[field.name])[field.textField] != undefined) {
+                        return this.provideOfShowLabel((this.state[field.name])[field.textField],{},"fa-align-left")
+                    }
+                }
+                if(field.type == "check") {
+                    let arr = this.state[field.name];
+                    let returnName:any = "";
+                    arr.length > 0 ? arr.map((res:any)=>{
+                        returnName += res[field.valueField] != null ? res[field.valueField]+ "," : "" ;
+                    }) : null;
+                    return this.provideOfShowLabel(returnName,{},"fa-list-ol");
+                }
+                if(field.type == "radio"){
+                    if((this.state[field.name])["value"] != undefined || (this.state[field.name])[field.valueField] != undefined ){
+                        return this.provideOfShowLabel((this.state[field.name])["value"] != undefined ? (this.state[field.name])["value"] : (this.state[field.name])[field.valueField],{},"fa-list-ul");
+                    }
+                }
+
+                if((this.state[field.name])["value"] != undefined || (this.state[field.name])[field.valueField] != undefined ){
+                    return this.provideOfShowLabel((this.state[field.name])["value"] != undefined ? (this.state[field.name])["value"] : (this.state[field.name])[field.valueField],{},"fa-align-justify")
+                }
+                return null;
+            } else if (typeof(this.state[field.name]) == "undefined") {
+                debugger
+            }
+        }catch(e){
+
+        }
+        return this.state[field.name]
+    }
+
+    provideOfShowLabel(field:any,color:any,code:string){
+        return <span><FaIcon style={color} code={code}/>
+            <span style={{marginLeft:10}}>{field}</span></span>
     }
 
 
@@ -145,7 +264,7 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
         let nameText:string = this.props.nameText != undefined ? this.props.nameText : "";
         let input:any = null;
         return <SelectInput
-            className={"propertgrid-size-select"}
+            className={"propertgrid-size-select propertygrid-select"}
             margin={true}
             name={field[nameText]}
             items={this.props.values[field[nameText]]}
@@ -164,6 +283,7 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
         let nameText:string = this.props.nameText != undefined ? this.props.nameText : "";
         return <ColorInput
             name={field[nameText]}
+            className={"property-grid-input"}
             value={this.state[field[nameText]]}
             onChange={this.handleChange.bind(this)}
         />
@@ -178,6 +298,7 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
         let nameText:string = this.props.nameText != undefined ? this.props.nameText : "";
         return <TextInput
             name={field[nameText]}
+            className={"property-grid-input"}
             value={this.state[field[nameText]]}
             onChange={this.handleChange.bind(this)}
         />
@@ -192,6 +313,7 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
         let nameText:string = this.props.nameText != undefined ? this.props.nameText : "";
         return <NumericInput
             name={field[nameText]}
+            className={"property-grid-input"}
             value={this.state[field[nameText]]}
             onChange={this.handleChange.bind(this)}
         />
@@ -206,6 +328,7 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
         let nameText:string = this.props.nameText != undefined ? this.props.nameText : "";
         return <PasswordInput
             name={field[nameText]}
+            className={"property-grid-input"}
             value={this.state[field[nameText]]}
             onChange={this.handleChange.bind(this)}
         />
@@ -220,6 +343,7 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
         let nameText:string = this.props.nameText != undefined ? this.props.nameText : "";
         return <TextArea
             name={field[nameText]}
+            className={"property-grid-input-area"}
             value={this.state[field[nameText]]}
             onChange={this.handleChange.bind(this)}
         />
@@ -235,6 +359,7 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
         return <RadioInput
             name={field[nameText]}
             value={this.state[field[nameText]]}
+            className={"property-grid-input"}
             inline
             formControl={true}
             items={this.props.values[field[nameText]]}
@@ -268,6 +393,7 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
         let nameText:string = this.props.nameText != undefined ? this.props.nameText : "";
         return <DateInput
             name={value[nameText]}
+            className={"property-grid-input"}
             value={this.state[value[nameText]]}
             onChange={this.handleChange.bind(this)}
         />
@@ -292,6 +418,7 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
             field={fieldLookup}
             store={store}
             name={value.name}
+            className={"property-grid-input"}
             textField={value.textField}
             onChange={this.lookupOnChange.bind(this)}/>
     }

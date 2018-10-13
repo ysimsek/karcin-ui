@@ -37,6 +37,10 @@ export interface RadioInputProps{
      * Set the string title
      */
     label?:string;
+    /**
+     * Set the css name
+     */
+    className?:string;
 
     formControl?:boolean;
 }
@@ -60,7 +64,7 @@ export default class RadioInput extends React.Component<any,RadioInputProps>{
                     </div> : null}
                     <div
                         onChange={this.onChange.bind(this)}
-                        className={"form-control radio-properties"}>
+                        className={"form-control radio-properties "+this.props.className}>
                         {this.returnRadioElements(this,this.props.items)}
                         </div>
         </form>

@@ -21,6 +21,8 @@ export interface LabelProps {
      * Click the component
      */
     onClick?:any;
+    id?:any;
+
 }
 
 
@@ -52,6 +54,7 @@ export default class Badge extends React.Component<LabelProps,any>{
             className={this.props.className}
             onClick={this.onClick.bind(this)}
             style={{fontSize: this.props.size+"px"}}
+            id={this.props.id}
         >{this.props.children}</BadgeX>;
     }
 

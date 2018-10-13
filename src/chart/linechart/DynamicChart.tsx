@@ -16,11 +16,14 @@ export interface DynamicChartProps{
     * Views data
     */
    data : Array<any>;
-   height : number;
+   height ?: number;
 }
 
 export default class DynamicChart extends React.Component<DynamicChartProps,any>{
 
+   static defaultProps:Partial<DynamicChartProps> = {
+      height : 200
+   }
 
    /**
     * @returns {any}

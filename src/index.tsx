@@ -39,6 +39,7 @@ import LineChart2 from "./chart/linechart/LineChart2";
 import PieChart from "./chart/piechart/PieChart";
 import ScatterChart from "./chart/scatterchart/ScatterChart";
 import MicroChart from "./chart/extrachart/MicroChart";
+import GaugeChart from "./chart/extrachart/GaugeChart";
 import CylinderChart from "./chart/extrachart/CylinderChart";
 import PyramidChart from "./chart/extrachart/PyramidChart";
 import LineChartTrend from "./chart/linechart/LineChartTrend";
@@ -105,6 +106,7 @@ export {
     PieChart,
     ScatterChart,
     MicroChart,
+    GaugeChart,
     CylinderChart,
     PyramidChart,
     LineChartTrend,

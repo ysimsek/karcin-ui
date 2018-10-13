@@ -31,7 +31,6 @@
       "library":"functional/label/Label",
       "description":"<Label/> , allows us to use text properly"
     },
-
     {
       "id":4,
       "name":"Menu",
@@ -46,7 +45,7 @@
       "id":4,
       "name":"ContextMenu",
       "title":"Context Menu",
-      "icon":"fa-bars",
+      "icon":"fa-th-list",
       "href":"#/Components/ContextMenu",
       "samples":"components/examples/ContextMenuExample",
       "library":"functional/contextmenu/ContextMenu",
@@ -95,7 +94,7 @@
       "id":8,
       "name":"DataFilter",
       "title":"DataFilter",
-      "icon":"fa-filter",
+      "icon":"fa-sort-amount-asc",
       "href":"#/Components/DataFilter",
       "samples":"components/examples/DataFilterExample",
       "library":"functional/datafilter/DataFilter"
@@ -338,7 +337,7 @@
       "id":5,
       "name":"Condition",
       "title":"Condition",
-      "icon":"fa-hand-pointer-o",
+      "icon":"fa-fort-awesome",
       "href":"#/Components/Condition",
       "samples":"components/examples/ConditionExample",
       "library":"functional/condition/Condition",
@@ -473,7 +472,16 @@
               "href":"#/Components/Dynamic",
               "samples":"components/charts/DynamicChartExam",
               "library":"chart/linechart/DynamicChart"
+            },
+            {
+              "id":6,
+              "name":"GaugeChart",
+              "title":"GaugeChart",
+              "href":"#/Components/GaugeChart",
+              "samples":"components/charts/GaugeChartExam",
+              "library":"chart/extrachart/GaugeChart"
             }
+
           ]
         },
         {

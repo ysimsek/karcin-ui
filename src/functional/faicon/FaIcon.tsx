@@ -26,6 +26,7 @@ export interface FaIconProps extends DOMAttributes<any>{
     style?:object;
     onClick?():void;
     onMouseOver?():void;
+    id?:any;
 }
 
 // 'HelloProps' describes the shape of props.

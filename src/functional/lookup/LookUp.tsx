@@ -14,6 +14,7 @@ export interface LookUpProp {
     dataGridOption?:any;
     name?:any;
     label?:any;
+    className?:any;
     /**
      * Fa icon code exam fa-pie-chart
      */
@@ -46,7 +47,7 @@ export default class LookUp extends React.Component<LookUpProp,LookUpState> {
 
     render(){
         return(
-            <div className="karcin-look-up">
+            <div className={"karcin-look-up "+this.props.className}>
                 {this.props.label != undefined ?  <label className={"label-properties"}>{this.props.label}</label> : null}
                 <div onClick={this.toggle} className="look-up-wrapper">
                     <div className="selected-value">
@@ -105,7 +106,7 @@ export default class LookUp extends React.Component<LookUpProp,LookUpState> {
         });
 
         if(this.props.onChange !== undefined){
-            this.props.onChange(this.state.doubleSelected[0], this.props.name);
+            this.props.onChange(this.state.doubleSelected, this.props.name);
         }
     }
 

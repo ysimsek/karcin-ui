@@ -12,6 +12,7 @@ export interface PasswordInputProps{
     disabled?: boolean;
     readOnly?: boolean;
     hidden?: boolean;
+    className?:any;
     onChange?:any;
 }
 
