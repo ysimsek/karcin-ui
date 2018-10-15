@@ -5,6 +5,7 @@ import DateInput from "../../datepicker/DateInput";
 import NumericInput from "../../inputs/NumericInput";
 import PasswordInput from "../../inputs/PasswordInput";
 import SelectInput from "../../inputs/selectInput/SelectInput";
+import ColorInput from "../../inputs/ColorInput";
 import TextInput from "../../inputs/TextInput";
 import TextArea from "../../inputs/TextArea";
 import RadioInput from "../../inputs/RadioInput";
@@ -17,6 +18,9 @@ import {Row,Col,Alert} from "reactstrap";
 
 export interface DataFormProps{
     col ?: number;
+    /**
+     * string, password, int, select, date, radio, check, textarea, lookup, alert, color
+     */
     fields : Array<any> | any;
     returnData ?: any;
     nameText?:any,
@@ -90,6 +94,9 @@ export default class DataForm extends React.Component<DataFormProps,any>{
                     case "alert" :
                         components.push(<Col key={idx} md={12/me.props.col}>{me.getAlert(val)}</Col>);
                         break;
+                    case "color" :
+                        components.push(<Col key={idx} md={12/me.props.col}>{me.getColorInput(val)}</Col>);
+                        break;
                 }
             }
         });
@@ -123,6 +130,11 @@ export default class DataForm extends React.Component<DataFormProps,any>{
         />
     }
 
+    /**
+     * SelectInput component
+     * @param value
+     * @returns {any}
+     */
     getSelectInput(value:any){
         return <SelectInput
             name={value[this.props.nameText]}
@@ -134,6 +146,11 @@ export default class DataForm extends React.Component<DataFormProps,any>{
         />
     }
 
+    /**
+     * DateInput
+     * @param value
+     * @returns {any}
+     */
     getDateInput(value:any){
         return <DateInput
             name={value[this.props.nameText]}
@@ -162,6 +179,11 @@ export default class DataForm extends React.Component<DataFormProps,any>{
             onChange={this.handleChangeRadio.bind(this)}/>
     }
 
+    /**
+     * CheckInput Component
+     * @param value
+     * @returns {any}
+     */
     getCheckInput(value:any){
         return <CheckInput
             name={value[this.props.nameText]}
@@ -217,6 +239,20 @@ export default class DataForm extends React.Component<DataFormProps,any>{
         return <div>
             {this.props.label == false ? undefined : <label className={"label-properties"}>{value.title}</label>}
             <Alert color={value.color}>{value.message}</Alert></div>
+    }
+
+    /**
+     * ColorInput component
+     * @param value
+     * @returns {any}
+     */
+    getColorInput(value:any){
+        return <ColorInput
+            name={value[this.props.nameText]}
+            label={this.props.label != false ? value[this.props.labelText] : undefined}
+            value={this.state[value[this.props.nameText]]}
+            onChange={this.handleChange.bind(this)}
+        />
     }
 
     onChange(e:any,f:any){

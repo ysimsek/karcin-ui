@@ -1,0 +1,10 @@
+{
+  "fields":{
+    "tabs":[
+      {"id":1,"name":"React","text":"ReactJS, ya da React.js, kullanıcı arayüzü oluşturmaya yarayan açık kaynak kodlu web uygulama çatısı. Facebook önderliğinde bir geliştirici grubu tarafından geliştirilmekte olan ReactJS, Model-View-Controller prensibine uygun olarak oluşturulmuştur."},
+      {"id":2,"name":"Java","text":"Java, Sun Microsystems mühendislerinden James Gosling tarafından geliştirilmeye başlanmış açık kodlu, nesneye yönelik, zeminden bağımsız, yüksek verimli, çok işlevli, yüksek seviye, adım adım işletilen bir dildir."},
+      {"id":3,"name":"Asp.Net","text":"ASP.NET, Microsoft tarafından geliştirilmiş bir web uygulama gelişimi teknolojisidir. Özdevinimli web sayfaları, web uygulamaları ve XML tabanlı web hizmetleri geliştirilmesine olanak sağlar. "},
+      {"id":4,"name":"Php","text":"PHP: Hypertext Preprocessor, internet için üretilmiş, sunucu taraflı, çok geniş kullanımlı, genel amaçlı, HTML içerisine gömülebilen betik ve programlama dilidir. İlk kez 1995 yılında Rasmus Lerdorf tarafından yaratılan PHP'nin geliştirilmesi bugün PHP topluluğu tarafından sürdürülmektedir."}
+    ]
+  }
+}

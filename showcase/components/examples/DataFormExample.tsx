@@ -1,7 +1,5 @@
 import * as React from "react";
-import {Button} from "karcin-ui";
-import DataForm from '../../../src/functional/dataform/DataForm';
-
+import {Button,DataForm} from "karcin-ui";
 
 
 const fields = [

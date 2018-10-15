@@ -61,47 +61,22 @@ export default class PropertyGrid extends React.Component<PropertyGridProps,any>
      **/
     returnElements(fields:any,values:any):JSX.Element[]{
         let components:Array<any> = [];
-        this.showBadge(fields);
         fields.map((field:any, idx:number)=>{
             if(field.divTitle != undefined){
-                components.push(<div id={idx.toString()} onClick={()=>{this.titleEventChange(field.divTitle)}} className={"propertygrid-full"} style={{width:"100%"}}>
+                components.push(<div id={idx.toString()} className={"propertygrid-full"} style={{width:"100%"}}>
                     <Badge id={idx.toString()} className={"propertygrid-full propertygrid-badge"} color={this.props.titleColor}>{field.divTitle}</Badge>
                 </div>)
-                components.push(<Collapse isOpen={this.getCollapseState(field.divTitle)}>
+                components.push(
                     <table key={idx} style={{width:"100%"}}>
                     <tbody id={idx.toString()}>
                         {this.returnFields(field.fields,values)}
                 {/*{this.getDataFormRenderer(field.fields,values)}*/}
-                    </tbody></table></Collapse>)
+                    </tbody></table>)
             }
         });
         return components;
     }
 
-    showBadge(fields:any){
-        this.state.showTitleIDs.length == 0 ?
-         fields.map((res:any,idx:number)=>{
-             this.state.showTitleIDs.push({id:idx,show :res.divTitle,value:true})
-         }) : null;
-    }
-
-    getCollapseState(e:any):boolean{
-        let asc:boolean = false;
-        this.state.showTitleIDs.map((res:any,idx:number)=>{
-            if(res.show == e){
-                asc = res.value;
-            }
-        })
-        return asc;
-    }
-
-    titleEventChange(e:any){
-        this.state.showTitleIDs.map((res:any,idx:number)=>{
-            if(res.show == e){
-                res.value = !res.value;
-            }
-        })
-    }
 
     returnFields(fields:any,values:any):JSX.Element[]{
         let componentFields:Array<any> = [],me:any = this;
