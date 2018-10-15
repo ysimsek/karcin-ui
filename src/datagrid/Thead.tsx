@@ -1,15 +1,15 @@
 import * as React from "react";
 import 'bootstrap/dist/css/bootstrap.css';
-import {ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
-import CheckInput from '../../src/inputs/CheckInput';
-import Dropdown from "reactstrap/lib/Dropdown";
+import {ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Input} from 'reactstrap';
 import FaIcon from "../../src/functional/faicon/FaIcon";
+import GetInput from "../../src/functional/getInput/GetInput";
 
 export interface TheadProps {
     store: any;
     fields: any;
     fieldShowing?:boolean | any;
     fieldOption?:boolean | any;
+    fieldOptionReset?:any;
 }
 
 export interface TheadState {
@@ -18,13 +18,12 @@ export interface TheadState {
     dropDownMenu?: any,
     orderIng?:any,
     fieldShowing?:boolean | any,
-    fieldOption?:boolean | any
+    fieldOption?:boolean | any,
+    filterShowing?:any
 }
 
 
 export default class Thead extends React.Component<TheadProps, TheadState> {
-
-    _ordering:any = {};
 
     static defaultProps: Partial<TheadProps>  = {
         fieldOption: true,
@@ -40,8 +39,11 @@ export default class Thead extends React.Component<TheadProps, TheadState> {
             dropDownMenu: {},
             orderIng:{},
             fieldShowing: props.fieldShowing,
-            fieldOption: props.fieldOption
+            fieldOption: props.fieldOption,
+            filterShowing:{}
         }
+
+        
     }
 
     UNSAFE_componentWillReceiveProps(props:TheadProps){
@@ -59,9 +61,7 @@ export default class Thead extends React.Component<TheadProps, TheadState> {
 
     render(){
        
-        return(<div className="datagrid-head"> 
-                 {this.getItemControl()}
-            </div>);
+        return(<div className="datagrid-head">{this.getItemControl()}</div>);
     }
 
     getItemControl(){
@@ -77,23 +77,23 @@ export default class Thead extends React.Component<TheadProps, TheadState> {
                     if(value['groupName'] !== undefined && groupItems !== null){
                         if(groupNameCheck.indexOf(value['groupName']) === -1){
                             groupNameCheck.push(value['groupName']);
-                            headItem.push(this.getItems(groupItems[value['groupName']]));
+                            headItem.push(this.getItems(groupItems[value['groupName']], index));
                             
                             if(groupItems !== null){
-                                headItemGroup.push(this.getGroupAdd(groupItems[value['groupName']], value['groupName']));
+                                headItemGroup.push(this.getGroupAdd(groupItems[value['groupName']], value['groupName'], index));
                             }
                         }
                     }else {
-                        headItem.push(this.getItems(value));
+                        headItem.push(this.getItems(value, index));
                         if(groupItems !== null){
-                            headItemGroup.push(this.getGroupAdd(value));
+                            headItemGroup.push(this.getGroupAdd(value, undefined, index));
                         }
                     }
                 }
             });
         }
 
-        return <thead><tr key={0}>{headItemGroup}</tr><tr key={1}>{headItem}</tr></thead>;
+        return <thead><tr>{headItemGroup}</tr><tr>{headItem}</tr></thead>;
     }
 
     groupItems(){
@@ -116,24 +116,34 @@ export default class Thead extends React.Component<TheadProps, TheadState> {
          return groupItems;
     }
 
-    getItems(data:any){
+    getItems(data:any, index?:any){
         let returnItem:any = [];
         if(data !== undefined){
             if(Array.isArray(data)){
                 data.forEach((value:any, index:number)=>{
-                    returnItem.push(<th key={0}
-                    className={`${(this.state.orderIng.name !== null && value.name === this.state.orderIng.name ? 'active': '')}`}>
-                        {value.label}
-                        {this.orderIcon(value)}
-                        {this.dropDownMenu(value)}
+                    let itemRef:any = null;
+                    returnItem.push(<th key={index}
+                    className={`${(this.state.orderIng.name !== null && value.name === this.state.orderIng.name || this.state.filterShowing[value.name] ? 'active': '')}`} ref={(e) => itemRef = e}>
+                            {value.label}
+                            <div className="right-option">
+                                {this.getFilter(value)[0]}
+                                {this.orderIcon(value)}
+                            </div>
+                            {this.getFilter(value)[1]}
+                            {this.dropDownMenu(value)}
+                            <span className={"resizing"} onMouseDown={(e:any)=>{this.resizing(e, itemRef)}} onMouseUp={(e:any)=>{this.removeResizing(e, itemRef)}}></span>
                         </th>)
                 })
             }else {
-                returnItem.push(<th key={0}
+                returnItem.push(<th key={index}
                     className={`${(this.state.orderIng.name !== null && data.name === this.state.orderIng.name ? 'active': '')}`}>
-                    {data.label}
-                    {this.orderIcon(data)}
-                    {this.dropDownMenu(data)}
+                        {data.label}
+                        <div className="right-option">
+                            {this.getFilter(data)[0]}
+                            {this.orderIcon(data)}
+                        </div>
+                        {this.getFilter(data)[1]}
+                        {this.dropDownMenu(data)}
                     </th>);
             }
         }
@@ -141,12 +151,34 @@ export default class Thead extends React.Component<TheadProps, TheadState> {
         return returnItem;
     }
 
-    getGroupAdd(data?:any, groupName?:any){
+    resizing(event:any, itemRef:any){
+        let body:any = document.querySelector('body');
+        body.addEventListener('mousemove',(e:any)=>{this.widthResult(e)}, true);
+
+        body.addEventListener('mouseup', () => {
+            this.removeResizing();
+        })
+    }
+
+    removeResizing(e?:any, itemRef?:any){
+        let body:any = document.querySelector('body');
+        body.removeEventListener('mousemove',this.widthResult, true);
+    }    
+
+    widthResult(event?:any, itemRef?:any, mouse?:any){
+        console.log(event, itemRef, mouse); 
+    }
+
+    getGroupAdd(data?:any, groupName?:any, index?:any){
         let returnItem:any = [];
         if(groupName !== undefined){
-            returnItem.push(<th key={0} colSpan={data.length} className="group">{groupName}</th>)
+            returnItem.push(<th key={index} colSpan={data.length} className="group">{groupName}</th>)
         }else {
-            returnItem.push(<th key={0} className={`empty ${(this.state.orderIng.name !== null && this.state.orderIng.name === data.name ? 'active' : '')}`}></th>);
+            let width:any = null;
+            if(data.width !== undefined){
+                width = {'width': data.width + "px"}; 
+            }
+            returnItem.push(<th key={index} style={width} className={`empty ${(this.state.orderIng.name !== null && this.state.orderIng.name === data.name ? 'active' : '')}`}></th>);
         }
 
         return returnItem;
@@ -167,11 +199,11 @@ export default class Thead extends React.Component<TheadProps, TheadState> {
                 if(value['visibility'] !== undefined && !value['visibility']){
                     fieldButtons.push(<DropdownItem onClick={()=>{
                         this.fieldShowing(index);
-                    }}><input type="checkbox" checked={false}/>{value.label}</DropdownItem>);
+                    }}><Input type="checkbox" defaultChecked={false}/>{value.label}</DropdownItem>);
                 }else {
                     fieldButtons.push(<DropdownItem onClick={()=>{
                         this.fieldShowing(index);
-                    }}><input type="checkbox" checked={true}/>{value.label}</DropdownItem>);
+                    }}><Input type="checkbox" defaultChecked={true}/>{value.label}</DropdownItem>);
                 }
             });
         }
@@ -179,7 +211,7 @@ export default class Thead extends React.Component<TheadProps, TheadState> {
         return (this.state.fieldOption !== undefined && this.state.fieldOption ? <ButtonDropdown isOpen={this.state.dropDownMenu[value.name]} toggle={()=>{this.toggleDropdown(value.name)}}>
             <DropdownToggle caret>
             </DropdownToggle>
-            <DropdownMenu>
+            <DropdownMenu >
                 <DropdownItem onClick={()=>{
                     this.orderIng(value, 'asc');
                 }}><FaIcon code="fa-arrow-down"/> Sırala</DropdownItem>
@@ -202,6 +234,7 @@ export default class Thead extends React.Component<TheadProps, TheadState> {
         }else {
             this.state.fields[index]['visibility'] = false;
         }
+        this.props.fieldOptionReset(this.state.fields);
 
         this.forceUpdate();
     }
@@ -225,18 +258,47 @@ export default class Thead extends React.Component<TheadProps, TheadState> {
     }
 
     orderIcon(value:any) {
-        let returnIcon:any = null;
-        if(this.state.orderIng.name !== null && this.state.orderIng.name === value.name){
+        let returnIcon:any;
+        if(this.state.orderIng.name !== null && value.name === this.state.orderIng.name){
             if(this.state.orderIng.type === 'asc'){
                 returnIcon = "fa-arrow-down";
             }else if(this.state.orderIng.type === 'desc'){
                 returnIcon = "fa-arrow-up";
             }
 
-            returnIcon = <span className={'order-icon'}><FaIcon code={returnIcon}/></span>;
+            returnIcon = <span className={'order-icon'}><FaIcon code={returnIcon}/></span>; 
         }
 
         return returnIcon;
+    }
+
+    getFilter(data:any){
+        let returnFilterHtml:any;
+        let filterContent:any;
+
+        returnFilterHtml = <span className={"filter"} onClick={()=>{
+            this.filterShowing(data);
+        }}><FaIcon code="fa-filter"/></span>;
+        filterContent = <div className={`filter-showing ${(this.state.filterShowing[data.name] !== undefined && this.state.filterShowing[data.name] ? 'show' : '')}`}><GetInput type={data.type} data={(data.data !== undefined ? data : null)}/></div>
+
+        return [returnFilterHtml, filterContent]; 
+    }
+
+    filterShowing(data:any){
+        // all show false
+        for(let item in this.state.filterShowing){
+            if(item !== data.name){
+                this.state.filterShowing[item] = false;
+            }
+        }
+
+        if(this.state.filterShowing[data.name] !== undefined){
+            this.state.filterShowing[data.name] = !this.state.filterShowing[data.name];
+        }else {
+            this.state.filterShowing[data.name] = true;
+        }
+
+        this.forceUpdate(); 
     }
 
 

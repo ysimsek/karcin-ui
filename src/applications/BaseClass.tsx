@@ -1,3 +1,4 @@
+import Applications from "./Applications";
 
 
 export default class BaseClass {
@@ -55,13 +56,13 @@ export default class BaseClass {
     }
 
 
-    mappingDataFind(response:any,mapping:any) {
-        return this.findResponseData(response, mapping.split('.'))
+    static mappingDataFind(response:any,mapping:any) {
+        return BaseClass.findResponseData(response, mapping.split('.'))
     }
 
-    findResponseData(response:any,mapping:any):any {
+    static findResponseData(response:any,mapping:any):any {
         if(response !== (undefined || null) && mapping !== undefined && mapping.length > 0){
-            return mapping.length > 0 ? this.findResponseData(response[mapping[0]], mapping.slice(1)) : response;
+            return mapping.length > 0 ? BaseClass.findResponseData(response[mapping[0]], mapping.slice(1)) : response;
         }else {
             return response;
         }

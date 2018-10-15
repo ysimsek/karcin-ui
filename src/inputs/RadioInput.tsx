@@ -58,7 +58,7 @@ export default class RadioInput extends React.Component<any,RadioInputProps>{
      * @returns {any}
      */
     render():any{
-        return <form>
+        return <form className="karcin-input">
                     {this.props.label != undefined ? <div>
                         <b>{this.props.label}</b>
                     </div> : null}

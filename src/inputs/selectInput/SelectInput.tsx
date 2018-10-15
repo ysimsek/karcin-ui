@@ -140,7 +140,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
             selectInputType = this.singleSelectResult();
         }
 
-        return <div className={`karcin-select-input select-${this.state.randomId}`} onClick={() => { if(this.props.type !== "single") { this.inputFocus();} }}>
+        return <div className={`karcin-select-input select-${this.state.randomId} karcin-input`} onClick={() => { if(this.props.type !== "single") { this.inputFocus();} }}>
             <div className={this.props.margin == true ? "propertygrid-select": `form-group ${this.props.labelPosition}`}>
                 {this.labelResult()}
                 <div className="select-input-result">

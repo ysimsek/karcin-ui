@@ -26,6 +26,7 @@ export default class DataGridExample extends React.Component<any, any> {
                     "type": "string",
                     "name": "title",
                     "label": "Başlık",
+                    "width":600
                 },
                 {
                     "type": "textarea",
@@ -56,6 +57,22 @@ export default class DataGridExample extends React.Component<any, any> {
                     {id:1, title:'Button5', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
                     {id:1, title:'Button6', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
                     {id:1, title:'Button7', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
+                    {id:1, title:'Button8', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
+                    {id:1, title:'Button8', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
+                    {id:1, title:'Button8', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
+                    {id:1, title:'Button8', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
+                    {id:1, title:'Button8', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
+                    {id:1, title:'Button8', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
+                    {id:1, title:'Button8', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
+                    {id:1, title:'Button8', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
+                    {id:1, title:'Button8', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
+                    {id:1, title:'Button8', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
+                    {id:1, title:'Button8', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
+                    {id:1, title:'Button8', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
+                    {id:1, title:'Button8', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
+                    {id:1, title:'Button8', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
+                    {id:1, title:'Button8', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
+                    {id:1, title:'Button8', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
                     {id:1, title:'Button8', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'}
                 ]
             })
@@ -63,7 +80,7 @@ export default class DataGridExample extends React.Component<any, any> {
     }
 
     render() {
-        /*return (<div>
+       /*return (<div>
             <div className="karcin-datagrid">
                 <div className="toolbar head"></div>
                 <table className="datagrid-table table">

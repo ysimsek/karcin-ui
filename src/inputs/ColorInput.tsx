@@ -91,7 +91,7 @@ export default class ColorInput extends React.Component<ColorInputProps>{
     render(){
         //label için sağ sol üst seçenekleri konulsun, hatta button ile birlikte beraber kullanılabilir.
         let label = this.props.label != undefined ? <Label className={"label-properties"}>{this.props.label}</Label> : null;
-        return <div className={"color"}>{label}<Input
+        return <div className="karcin-input">{label}<Input
             {...this.props}
             onChange={this.___onChange.bind(this)}
         /></div>;

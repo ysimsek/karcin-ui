@@ -3,7 +3,7 @@ import * as ReactDom from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../css/karcin-ui.css';
 
-//import TableBody from './Tbody';
+import TableBody from './Tbody';
 import TableHead from './Thead';
 //import Header from './Header';
 //import Footer from './Footer';
@@ -44,13 +44,16 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
 
     }
 
+    tbodyRef:any = null;
+
     constructor(props:DataGridProps){
         super(props);
 
         this._init(props);
 
         this.props.store.__callback = () => {
-            console.log('de');
+            this.resetSelected();
+            this.resetData();
         };
     }
 
@@ -68,8 +71,12 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
     render(){
         return(<div className="karcin-datagrid">
             <table className="datagrid-table table">  
-                <TableHead store={this.state.store} fields={this.state.fields}/>
-
+                <TableHead 
+                    store={this.state.store} 
+                    fields={this.state.fields} 
+                    fieldOptionReset={this.fieldOptionReset.bind(this)} 
+                    ref={(e:any) => this.tbodyRef = e}/> 
+                <TableBody store={this.state.store} fields={this.state.fields}/>
             </table>
         </div>)
     }
@@ -77,6 +84,28 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
     componentDidMount(){
         //this.props.store.pagination(this.props.page, this.props.pageShow);
         this.props.store.storeRead();
+    }
+
+    resetData(){
+        this.forceUpdate();
+    }
+
+    resetSelected(){
+        if(this.tbodyRef !== null){
+           // this.tbodyRef.resetSelected();
+        }
+    }
+
+    storeRun(){
+        this.props.store.storeRead();
+    }
+
+    fieldOptionReset(fields:any){
+        if(fields !== undefined){
+            this.setState({
+                fields:fields
+            });
+        }
     }
 
 

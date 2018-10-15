@@ -52,6 +52,7 @@ export default class FaIconExample extends React.Component<any, any> {
             <FaIcon color={"dark"} code={this.state.icon} size="fa-3x"></FaIcon>
             <FaIcon color={"light"} code={this.state.icon} size="fa-3x"></FaIcon>
             <FaIcon code={this.state.icon} size="fa-3x"></FaIcon>
+            <FaIcon code="fas fa-accessible-icon"/>
             <hr />
             <FaIcon color={"primary"} code={this.state.icon+" fa-spin"} size="fa-6x"></FaIcon>
             <FaIcon color={"success"} code={this.state.icon+" fa-spin"} size="fa-6x"></FaIcon>

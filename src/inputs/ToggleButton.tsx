@@ -7,7 +7,7 @@ export interface ToggleButtonProps {
     onChange?:React.EventHandler<any> | any;
     name ?:string | any;
     label ?:string | any;
-    labelPosition ?:string | any;
+    labelPosition ?:string | any;
 
 }
 

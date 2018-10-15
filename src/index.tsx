@@ -25,7 +25,7 @@ import TextInput from "./inputs/TextInput";
 import TextArea from "./inputs/TextArea";
 import RadioInput from "./inputs/RadioInput";
 import CheckInput from "./inputs/CheckInput";
-import ToggleButton from "./input/ToggleButton";
+import ToggleButton from "./inputs/ToggleButton";
 import ColorInput from "./inputs/ColorInput";
 
 import DateInput from "./datepicker/DateInput";
