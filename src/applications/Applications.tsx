@@ -52,8 +52,8 @@ export default class Applications {
     }
 
     ajaxCallback(response?:any){
-        if(Applications.ajaxCall !== (undefined && null)){
-            Applications.ajaxCall(response)
+        if(Applications.ajaxCall !== null){
+            Applications.ajaxCall(response) 
         }
     }
 }
