@@ -17,7 +17,7 @@ import Components from "./Components";
 import Docs from "./Docs";
 import NotFound from "./NotFound";
 
-  
+
 
 export default class Main extends React.Component<any, any> {
 
