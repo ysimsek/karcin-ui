@@ -113,7 +113,7 @@ export default class MenuExample extends React.Component<any, any> {
                 </Col>
                 <Col sm={6}>
                     <span className="example-reagent first">Collapse Menu</span>
-                    <Menu data={data} active={this.state.active} onChange={(val)=>{this.handleChange(val)}} />
+                    <Menu data={data} active={this.state.active} renderer={this.renderer} onChange={(val)=>{this.handleChange(val)}} />
                 </Col>
                 <Col sm={6}>
                     <span className="example-reagent">Hover Menu</span>
@@ -124,7 +124,7 @@ export default class MenuExample extends React.Component<any, any> {
     }
 
     renderer(value){
-        return 'deniz';
+        return 'Menu Renderer';
     }
 
 

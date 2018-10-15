@@ -54,6 +54,7 @@ export interface MenuState {
     activeControl?: boolean;
     collapseActive?: boolean;
     activeItem?:any;
+    changeActiveItem?:any;
 }
 
 export default class Menu extends React.Component<MenuProps, MenuState> {
@@ -85,7 +86,8 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
             active: null,
             activeControl: false,
             collapseActive: false,
-            activeItem : this.props.active
+            activeItem : this.props.active,
+            changeActiveItem: null
         };
     }
 
@@ -232,7 +234,20 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
 
         if (self.props.onChange !== undefined) {
             let changeMenu = self.menuData.slice(0);
-            self.props.onChange(changeMenu.filter((v: any) => v.keys === param.keys));
+            let changeItem = changeMenu.filter((v: any) => v.keys === param.keys);
+
+            if(this.state.changeActiveItem === null || this.state.changeActiveItem.keys !== changeItem[0].keys){
+                let returnChangeItem = JSON.parse(JSON.stringify(changeItem[0]));
+                
+                delete returnChangeItem['itemControl']
+                delete returnChangeItem['level'];
+                delete returnChangeItem['keys'];
+
+                this.setState({
+                    changeActiveItem: changeItem[0]
+                });
+                self.props.onChange(returnChangeItem);
+            }
         }
 
         this.forceUpdate();
