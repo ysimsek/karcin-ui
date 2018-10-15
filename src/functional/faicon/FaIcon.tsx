@@ -4,7 +4,7 @@ import "@fortawesome/fontawesome-free/css/fontawesome.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as Icons from '@fortawesome/free-solid-svg-icons'
 import {DOMAttributes} from "react";
-import {SizeProp} from "@fortawesome/fontawesome-svg-core";
+import {IconProp, SizeProp} from "@fortawesome/fontawesome-svg-core";
 
 export interface FaIconProps extends DOMAttributes<any>{
     /**
@@ -21,14 +21,14 @@ export interface FaIconProps extends DOMAttributes<any>{
      * fa icon code
      * address : https://fontawesome.com/v4.7.0/icons/
      */
-    code:string;
+    code:any;
     spin?:boolean;
     /**
      * primary , secondary,  success, info, warning, danger, danger, dark, light
      */
     color?:string;
     style?:object;
-    onClick?(e):any;
+    onClick?(e:any):any;
     onMouseOver?():void;
     id?:any;
 }
@@ -65,9 +65,11 @@ export default class FaIcon extends React.Component<FaIconProps> {
         let className = `fa ${(this.props.fixed ? "fa-fw" : "")} ${this.props.code} ${this.props.size} ${classNameProps} ${this.props.spin == true ? " fa-spin" : ""}`;
         let color = this.props.color != undefined ? this.getColor(this.props.color) : "";
         const { fixed, code, size, ...props } = this.props;
+        let iconS :any = Icons;
         return this.props.code != undefined ? (this.props.code.split("-").length >= 2 ?
             <i {...props} id={this.props.id} className={className+ " "+color} aria-hidden="true" onClick={this.onClick.bind(this)} />
-            : <span onClick={this.onClick.bind(this)}><FontAwesomeIcon className={color} {...props} size={this.getSizeProp(this.props.size)} spin={this.props.spin} icon={Icons[this.props.code]}/></span>) : null;
+            : <span onClick={this.onClick.bind(this)}>
+                <FontAwesomeIcon className={color} {...props} size={this.getSizeProp(this.props.size)} spin={this.props.spin} icon={iconS[this.props.code]}/></span>) : null;
     }
 
     getColor(color:string):string{
