@@ -22,7 +22,7 @@ export interface LineChart2Props{
      default = 'light'
      */
     theme?:string;
-    height ?: number;
+    height?: number;
     showValues : Array<any>;
     categoryField ?: string;
 
@@ -31,7 +31,8 @@ export interface LineChart2Props{
 export default class DynamicChart extends React.Component<LineChart2Props,any>{
 
     static defaultProps:Partial<LineChart2Props> = {
-        theme : "serial"
+        theme : "serial",
+        height : 200
     }
 
     /**

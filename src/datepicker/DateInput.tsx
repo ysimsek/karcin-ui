@@ -52,7 +52,7 @@ export default class DateInput extends React.Component<DateInputProps, DateInput
                             {...this.props}
                             selected={this.state.startDate}
                             onChange={(e,id)=>{this.handleChange(e,id)}}
-                            className="form-control"
+                            className={"form-control "+this.props.className}
                             timeFormat={this.props.timeFormat}
                             timeIntervals={this.props.timeInterval}
                             dateFormat={this.props.dateFormat}

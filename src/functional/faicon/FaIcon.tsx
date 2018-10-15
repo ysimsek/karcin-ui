@@ -1,4 +1,3 @@
-///<reference path="../../../node_modules/@types/react/index.d.ts"/>
 import * as React from "react";
 import "font-awesome/css/font-awesome.min.css";
 import "@fortawesome/fontawesome-free/css/fontawesome.css";
@@ -27,6 +26,7 @@ export interface FaIconProps extends DOMAttributes<any>{
     style?:object;
     onClick?():void;
     onMouseOver?():void;
+    id?:any;
 }
 
 // 'HelloProps' describes the shape of props.

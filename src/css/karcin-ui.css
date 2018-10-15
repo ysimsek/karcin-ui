@@ -1722,6 +1722,62 @@ button-square-to-radius {
     display: inline-block;
 }
 
+.property-grid-sizing{
+    display: list-item;
+}
+.propertygrid-tr{
+    display: table-row;
+    border: solid 1px #ccc;;
+    height:31px;
+}
+.propertygrid-tr td{
+    font-size: 13px;
+    border-right: solid 1px #ccc;
+}
+.propertygrid-badge{
+    font-size: 14px;
+    height: 40px;
+    line-height: 40px;
+    border-bottom-color: #333;
+    padding: 0 15px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.propertygrid-td-first{
+    border: 0px transparent;
+    padding: 0px 5px;
+}
+.propertygrid-td-second{
+    padding: 0px 0px;
+    border: solid 0.5px #00a1ff;
+}
+.propertygrid-select{
+    border-radius: 0;
+    border: solid 1px #00a1ff;
+    height: 30px;
+    padding: 0;
+    font-size: 13px;
+}
+.property-grid-input{
+    height: 30px;
+    width: 100%;
+}
+.property-grid-input-area{
+    height: 30px !important;
+    width: 100%;
+    font-size:14px;
+}
+.property-grid-input button{
+    height: 30px;
+    padding: 1px 10px;
+}
+.property-grid-input div div div{
+    height: 30px;
+}
+.propert-grid-second div div div div {
+    font-size: 11px;
+}
+
 /* new datagrid */
 .karcin-datagrid {
     width: 100%;

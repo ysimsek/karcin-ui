@@ -146,7 +146,7 @@ export default class Thead extends React.Component<TheadProps, TheadState> {
         if(groupName !== undefined){
             returnItem.push(<th key={0} colSpan={data.length} className="group">{groupName}</th>)
         }else {
-            returnItem.push(<th key={0} className={`empty ${(this.state.orderIng.name !== null && this.state.orderIng.name === value.name ? 'active' : '')}`}></th>);
+            returnItem.push(<th key={0} className={`empty ${(this.state.orderIng.name !== null && this.state.orderIng.name === data.name ? 'active' : '')}`}></th>);
         }
 
         return returnItem;

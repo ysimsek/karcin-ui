@@ -7,8 +7,9 @@ import TableBody from './TableBody';
 import TableHead from './TableHead';
 import Toolbar from './Toolbar';
 import Loading from '../loading/Loading';
+import {DOMAttributes} from "react";
 
-export interface DataGridProps {
+export interface DataGridProps extends DOMAttributes<any>{
     /**
      * Set the array data
      */
@@ -45,7 +46,7 @@ export interface DataGridProps {
     pageShow?: number | any;
 
     /**
-     * change page 
+     * change page
      */
     changePage?: React.EventHandler<any> | any;
 
@@ -55,7 +56,7 @@ export interface DataGridProps {
      page?: number | any;
 
      /**
-      * grud operation (update, add, remove) 
+      * grud operation (update, add, remove)
       */
      grud?:Array<any> | any;
 
@@ -76,7 +77,7 @@ export interface DataGridProps {
      multiSelect?:boolean;
 
      /**
-      * datagrid Title 
+      * datagrid Title
       */
      title?:string | any;
 
@@ -124,7 +125,7 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
     /**
      * Initial values
      */
-    constructor(props: DataGridProps) { 
+    constructor(props: DataGridProps) {
         super(props);
 
         this.init(props);
@@ -173,7 +174,7 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
 
     dataGridLoadComponent() {
 
-        // loading control 
+        // loading control
         if(this.props.store.props.endPoint !== undefined && this.props.store.props.endPoint.props.endPoint === 'remoteEndPoint' && this.loadingShow.response === undefined){
             this.loadingShow.show = true;
         }else {
@@ -181,7 +182,7 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
         }
 
         this.returnComponent = <div>
-            <Toolbar 
+            <Toolbar
                 data={this.props.toolbar}
                 store={this.props.store}
                 type="header"
@@ -208,6 +209,7 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
                                         this.props.onSelected(data, select);
                                     }
                                 } : this.props.onSelected)}
+                               onDoubleClick={this.onDoubleClick.bind(this)}
                                fieldOption={this.fieldOption}
                                store={this.props.store}
                                cellRenderer={this.props.cellRenderer}
@@ -226,6 +228,10 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
         </div>;
 
         return this.returnComponent;
+    }
+
+    onDoubleClick(e:any){
+        this.props.onDoubleClick != undefined ? this.props.onDoubleClick(e) : null;
     }
 
 
