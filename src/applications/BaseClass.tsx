@@ -37,8 +37,28 @@ export default class BaseClass {
         
         parentClass.__dataMap = parentClass.props.data;
         parentClass.__totalCount = count !== undefined ? count : parentClass.__dataMap.length;
+
+        let pageData:Array<any> | any = [];
+        if(parentClass.props.endPoint === 'localPoint' && parentClass.props.pageData.limit !== undefined &&  parentClass.props.pageData.limit > 0){
+                let pages = parentClass.props.pageData;
+                let datas =  (callbackData !== undefined) ? callbackData : parentClass.__dataMap;
+
+                for(let i = 0; i < datas.length; i++){
+                    if(i >= pages.start && i < (pages.start + pages.limit)){
+                        pageData.push(datas[i]); 
+                    }
+                }
+        }
         
-        let callData = (callbackData !== undefined) ? callbackData : {'data' : parentClass.__dataMap, 'totalCount':parentClass.__totalCount};
+        let callData:any = [];
+
+        if(callbackData !== undefined){
+            let data = (pageData.length > 0) ? pageData : callbackData;
+            callData = {'data': data, 'totalCount': callbackData.length};
+        }else {
+            let data = (pageData.length > 0) ? pageData : parentClass.__dataMap;
+            callData = {'data': data, 'totalCount': parentClass.__dataMap.length};
+        }
 
         if(parentClass.__callback !== undefined){
             parentClass.__callback(callData);
@@ -52,7 +72,7 @@ export default class BaseClass {
             }
         }
 
-        return parentClass.__dataMap;
+        return parentClass.__dataMap; 
     }
 
 

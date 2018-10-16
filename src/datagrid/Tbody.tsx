@@ -1,25 +1,22 @@
 import * as React from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import TypeFormating from '../applications/TypeFormating';
-import Scrollbars from 'react-custom-scrollbars';
+const { Scrollbars } = require('react-custom-scrollbars');
 import BaseClass from '../applications/BaseClass';
 
 export interface TbodyProps {
     store: any;
     fields: any;
     onSelected ?: any;
-    fieldOption?:any;
-    showingPageData?:any;
     multiSelect?:boolean;
-    onDoubleClick?:any;
+    onDoubleSelected?:any;
 }
 
 export interface TbodyState {
     store: any,
     fields: any,
-    clickActive?: Array<any>,
-    clickActiveRow?: Array<any>,
-    showingPageData?: any
+    clickActive?: Array<any> | any,
+    clickActiveRow?: Array<any> | any
 }
 
 
@@ -31,7 +28,9 @@ export default class Tbody extends React.Component<TbodyProps, TbodyState> {
 
         this.state = {
             store:props.store,
-            fields: props.fields
+            fields: props.fields,
+            clickActive: [],
+            clickActiveRow: []
         }
     }
 
@@ -56,7 +55,7 @@ export default class Tbody extends React.Component<TbodyProps, TbodyState> {
         let data = this.props.store.props.data;   
         let Rows:any = [];
 
-        if(data !== undefined){
+        if(data !== undefined && data.length > 0){
             data.forEach((value:any, index:any)=>{
                 let getId:number = index;
                 if (value.id !== undefined) {
@@ -99,26 +98,84 @@ export default class Tbody extends React.Component<TbodyProps, TbodyState> {
 
                 });
 
-                Rows.push(<tr key={index}>{Cell}</tr>);
+                Rows.push(<tr 
+                    key={index}
+                    className={(this.state.clickActive.indexOf(getId) !== -1) ? 'active' : ''}
+                    onClick={(e) => {
+                        if(this.props.onSelected !== undefined){
+                            this.onClickRow(e, getId, data[index])
+                        }
+                    }}
+                  onDoubleClick={()=>{
+                      if(this.props.onDoubleSelected !== undefined){
+                        this.props.onDoubleSelected(data[index]);
+                      }
+                  }}
+                  >{Cell}</tr>);
 
             });
 
-            //if(!this.props.showingPageData.pagination || this.props.store.__endPoint === 'remoteEndPoint') {
-                return Rows;
-            /*}else {
-                let pageData = [];
-                let pages = this.props.store.props.pageData;
-    
-                for(let i = 0; i < Rows.length; i++){
-                    if(i >= pages.start && i < (pages.start + pages.limit)){
-                        pageData.push(Rows[i]);
-                    }
-                }
-    
-                return pageData;
-            }*/
+            return Rows;
 
         }
+    }
+
+    /**
+     * @param e
+     * @param active
+     * @param data
+     */
+    onClickRow(e: any, active: any, data: any): void {
+        if (e.metaKey || e.ctrlKey && this.props.multiSelect) {
+            if (this.state.clickActive.indexOf(active) !== -1) {
+
+                // change rows id remove
+                this.state.clickActive.splice(this.state.clickActive.indexOf(active), 1);
+
+                // change rows json remove
+                for (let i = 0; i < this.state.clickActiveRow.length; i++) {
+                    if (this.state.clickActiveRow[i].id === active) {
+                        this.state.clickActiveRow.splice(i, 1);
+                    }
+                }
+            } else {
+
+                //add row id
+                this.state.clickActive.push(active);
+
+                // add row json data
+                this.state.clickActiveRow.push(data);
+            }
+        } else {
+
+            // id first remove after add new id
+            if(this.state.clickActive[0] !== active) {
+                this.state.clickActive.splice(0, this.state.clickActive.length);
+                this.state.clickActive.push(active);
+
+                // json first remove after add new rows json data
+                this.state.clickActiveRow.splice(0, this.state.clickActiveRow.length);
+                this.state.clickActiveRow.push(data);
+            }else {
+                this.state.clickActive.splice(0, this.state.clickActive.length);
+                this.state.clickActiveRow.splice(0, this.state.clickActiveRow.length);
+            }
+        }
+
+        this.forceUpdate();
+
+
+        // selectedProps
+        if (this.props.onSelected !== undefined) {
+            this.props.onSelected(this.state.clickActiveRow, this.state.clickActive);
+        }
+    }
+
+    resetSelected(){
+        this.setState({
+            clickActive: [],
+            clickActiveRow: []
+        });
     }
 
 

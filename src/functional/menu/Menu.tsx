@@ -260,7 +260,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
                 delete returnChangeItem['level'];
                 delete returnChangeItem['keys'];
 
-                self.props.activeSelected(returnChangeItem);
+                self.props.activeSelected(returnChangeItem); 
             }
         }
 

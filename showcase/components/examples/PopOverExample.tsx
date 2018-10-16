@@ -11,11 +11,13 @@ export default class PopOverExample extends React.Component<any,any>{
     }
     render(){
         return <div>
-                    <Button id={"pop1"} onClick={this.toggle.bind(this)}>Click to Me</Button>
+                    <span className="example-reagent">Button PopOver Example</span>
+                    <Button color={"primary"} id={"pop1"} onClick={this.toggle.bind(this)}>Click to Me</Button>
                     <PopOver id={"pop1"} show={this.state.show} toggle={this.toggle.bind(this)} title={"What is React?"}>
                         <div>React is a declarative, efficient, and flexible JavaScript library for building user interfaces.</div>
                     </PopOver>
-                    <hr/>
+
+                    <span className="example-reagent">Span PopOver Example</span>
                     <span id={"pop2"} onClick={this.toggle2.bind(this)}>Click to Me</span>
                     <PopOver id={"pop2"} show={this.state.show2} toggle={this.toggle2.bind(this)} title={"What is React?"}>
                         <div>React is a declarative, efficient, and flexible JavaScript library for building user interfaces.</div>

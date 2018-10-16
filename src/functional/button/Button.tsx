@@ -1,6 +1,7 @@
 import * as React from "react";
 import {Button as Buttonx} from 'reactstrap';
 import {CSSModule} from "reactstrap";
+import FaIcon from "../faicon/FaIcon";
 
 export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
     /**
@@ -40,7 +41,7 @@ export default class Button extends React.Component<any,ButtonProps> {
      * @returns {any}
      */
     render():any {
-        return <Buttonx {...this.props}>{this.props.children}</Buttonx>
+        return <Buttonx {...this.props}>{this.props.children}<FaIcon code={this.props.icon}/></Buttonx>
     }
 
 }

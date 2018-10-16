@@ -39,7 +39,7 @@ export default class GetInput extends React.Component<GetInputProps,any> {
 
 
     render() {
-        return (<div>
+        return (<div className="karcin-get-input">
             {this.getInput()}
         </div>);
     }

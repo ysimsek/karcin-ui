@@ -1782,9 +1782,9 @@ button-square-to-radius {
 .karcin-datagrid {
     width: 100%;
 }
-.karcin-datagrid .toolbar {width: 100%;}
-.karcin-datagrid .toolbar.head {border-radius: 5px 5px 0px 0px;border-bottom:0;}
-.karcin-datagrid .toolbar.footer {border-radius: 0px 0px 5px 5px;border-top:0;}
+.karcin-datagrid .toolbar {width: 100%;position: relative;border: solid 1px #c7c7c7;background: #f5f2f2;padding: 12px;}
+.karcin-datagrid .toolbar.head {border-radius: 3px 3px 0px 0px;border-bottom:0;}
+.karcin-datagrid .toolbar.footer {border-radius: 0px 0px 3px 3px;border-top:0;text-align: center;}
 .karcin-datagrid .datagrid-table {
     border-top: 0;
     border-collapse: unset;
@@ -1811,50 +1811,90 @@ button-square-to-radius {
     border-top: 0;
     padding: 7px 9px;
     font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: all .3s ease;
 }
 .karcin-datagrid .datagrid-table .datagrid-body tbody tr:first-child td {border-top:0;}
-.karcin-datagrid .datagrid-table .datagrid-body tbody tr:last-child td {border-bottom:0;}
 .karcin-datagrid .datagrid-table .datagrid-body tbody tr td:last-child {border-right: 0;}
 .karcin-datagrid .datagrid-table .datagrid-head tr th.active {background-color: #4c8aca;color:#ffffff;}
 .karcin-datagrid .datagrid-table .datagrid-head tr th.active .btn-group .btn {color:#ffffff;} 
 .karcin-datagrid .datagrid-table .datagrid-head tr th.active .order-icon {
-    float: right;
     padding: 6px 8px;
+    position: absolute;
+    right: 41px;
+    top: 2px;
 }
 .karcin-datagrid .datagrid-table .datagrid-head tr th.active .order-icon i {}
 .karcin-datagrid .datagrid-table .datagrid-head tr th .btn-group {
-    position: absolute;
-    top: 0;
-    right: 0;
     height: 100%;
+    float: right;
+    position: static;
 }
 .karcin-datagrid .datagrid-table .datagrid-head tr th .btn-group .btn {
-    height: 100%;
     border-radius: 0;
     background: transparent;
     color: #5a5858;
     border: 0;
     box-shadow: none;
     padding-left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
 }
 
 .karcin-datagrid .datagrid-table .datagrid-head tr th .resizing {
     position: absolute;
     width: 2px;
-    background-color: red;
+    background-color: #d6d6d6;
     height: 100%;
     right: 0;
     top: 0;
     z-index: 999;
     cursor: col-resize;
+    display: none;
 }
+
+.karcin-datagrid .datagrid-table .datagrid-head tr th:last-child .resizing {
+    display: none !important;
+}
+
 
 .karcin-datagrid .datagrid-table .datagrid-head tr th:hover > .btn-group .btn,
 .karcin-datagrid .datagrid-table .datagrid-head tr th .btn-group:hover > .btn {opacity: 1;}
-.karcin-datagrid .datagrid-table .datagrid-head tr th .filter {
+.karcin-datagrid .datagrid-table .datagrid-head tr th .right-option .btn-group {position: static;}
+.karcin-datagrid .datagrid-table .datagrid-head tr th .right-option .btn-group .btn {
     padding: 6px 8px;
     cursor: pointer;
     float: right;
+    right: 20px;
+}
+.karcin-datagrid .datagrid-table .datagrid-head tr th .right-option .btn-group .dropdown-menu {
+    left: auto;
+    right: 0;
+    width: 100%;
+    transform: none !important;
+    top: calc(100% - 2px) !important;
+    background: #f5f2f2;
+    border-right: 0;
+    border-left: 0;
+    padding: 10px;
+}
+
+.karcin-datagrid .datagrid-table .datagrid-head tr th .right-option .btn-group .dropdown-menu .karcin-get-input {
+    width: calc(100% - 50px);
+    float: left;
+}
+.karcin-datagrid .datagrid-table .datagrid-head tr th .right-option .btn-group .dropdown-menu .btn {
+    position: relative;
+    float: right;
+    background-color: #4e9dfb;
+    right: 0;
+    border-radius: 3px;
+    color: #fff;
+    padding: 7px 12px;
 }
 
 .karcin-datagrid .datagrid-table .dropdown-menu {
@@ -1878,8 +1918,57 @@ button-square-to-radius {
 }
 
 .karcin-datagrid .datagrid-table .datagrid-head .right-option {
+    float: right;
+}
+
+
+.karcin-datagrid .datagrid-table .toolbar.head .datagridTitle {
     position: absolute;
-    right: 23px;
     top: 0;
     height: 100%;
+    width: auto;
+    left: 0;
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+    font-weight: bold;
+    padding-left: 17px;
+}
+
+.karcin-datagrid .datagrid-table .toolbar.head .header-buttons {
+    text-align: right;
+}
+
+.karcin-datagrid .datagrid-table .toolbar.head .header-buttons .btn {
+    background-color: #afacac;
+    color: #fff;
+    border-right: solid 2px #a5a5a5;
+    padding: 5px 10px;
+}
+
+.karcin-datagrid .datagrid-table .toolbar.head .header-buttons .btn:last-child {
+    border: 0;
+}
+
+.karcin-datagrid .datagrid-table .toolbar.head .header-buttons .btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.karcin-datagrid .datagrid-table .toolbar.head .header-buttons .btn:hover:not(:disabled) {
+    background-color: #848181;
+}
+
+.karcin-datagrid .datagrid-table .toolbar.footer .pagination-main {display: inline-block;}
+.karcin-datagrid .datagrid-table .toolbar.footer .pagination {margin-bottom: 0;}
+
+.karcin-datagrid .datagrid-table .datagrid-body tbody tr.active > td {
+    background-color: #4e9dfb;
+    color: #fff;
+}
+
+.form-check-input {
+    position: relative;
+    margin: 0;
+    margin-right: 5px;
 }

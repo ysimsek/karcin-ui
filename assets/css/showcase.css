@@ -383,3 +383,25 @@ span.opt {
 .react-datepicker-wrapper, .react-datepicker__input-container{
     display: block !important;
 }
+
+
+.fa-icons i[class*="fa fa-fw"] , .fa-icons span{
+    display: inline-flex;
+    background: #344f71;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 18px;
+    margin: 5px;
+    width: 35px;
+    height: 35px;
+    justify-content: center;
+    align-items: center;
+}
+
+.showing-icon {
+    margin: 0;
+    padding: 2px 0 0 12px;
+    position: sticky;
+    top: -1px;
+    height: 600px;
+}

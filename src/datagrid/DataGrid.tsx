@@ -5,8 +5,8 @@ import '../css/karcin-ui.css';
 
 import TableBody from './Tbody';
 import TableHead from './Thead';
-//import Header from './Header';
-//import Footer from './Footer';
+import Header from './Header';
+import Footer from './Footer';
 
 export interface DataGridProps {
     /**
@@ -21,6 +21,11 @@ export interface DataGridProps {
      * Set the selected data returned func
      */
     onSelected?: any;
+
+    /**
+     * multi select 
+     */
+    onDoubleSelected?:any;
      /**
       * multi selected option
       */
@@ -29,6 +34,17 @@ export interface DataGridProps {
      * pagination control
      */
     pagination?: boolean;
+
+    /**
+     * show page data
+     */
+    pageShow?: number | any;
+
+    toolbars?:any;
+
+    title?:any;
+
+    fieldShowing?:any;
 
 
 }
@@ -70,19 +86,22 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
 
     render(){
         return(<div className="karcin-datagrid">
-            <table className="datagrid-table table">  
+            <div className="datagrid-table table">
+                {(this.props.title !== undefined && this.props.toolbars !== undefined ? <Header store={this.props.store} fields={this.props.fields} {...this.props}></Header> : '')}  
                 <TableHead 
                     store={this.state.store} 
                     fields={this.state.fields} 
-                    fieldOptionReset={this.fieldOptionReset.bind(this)} 
-                    ref={(e:any) => this.tbodyRef = e}/> 
-                <TableBody store={this.state.store} fields={this.state.fields}/>
-            </table>
+                    fieldOptionReset={this.fieldOptionReset.bind(this)}  
+                    ref={(e:any) => this.tbodyRef = e} {...this.props}/> 
+                <TableBody store={this.state.store} fields={this.state.fields} ref={(e) => this.tbodyRef = e} {...this.props}/>
+                
+                {(this.props.pagination !== undefined && !this.props.pagination ? <Footer store={this.props.store} fields={this.props.fields} {...this.props}></Footer> : '')}
+            </div>
         </div>)
     }
 
     componentDidMount(){
-        //this.props.store.pagination(this.props.page, this.props.pageShow);
+        this.props.store.pagination(this.props.pageShow);
         this.props.store.storeRead();
     }
 
@@ -92,7 +111,7 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
 
     resetSelected(){
         if(this.tbodyRef !== null){
-           // this.tbodyRef.resetSelected();
+           this.tbodyRef.resetSelected();
         }
     }
 

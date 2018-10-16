@@ -1,7 +1,10 @@
 import * as React from "react";
 import "font-awesome/css/font-awesome.min.css";
 import "@fortawesome/fontawesome-free/css/fontawesome.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import * as Icons from '@fortawesome/free-solid-svg-icons'
 import {DOMAttributes} from "react";
+import {IconProp, SizeProp} from "@fortawesome/fontawesome-svg-core";
 
 export interface FaIconProps extends DOMAttributes<any>{
     /**
@@ -16,15 +19,16 @@ export interface FaIconProps extends DOMAttributes<any>{
     className?:string;
     /**
      * fa icon code
-     * address : https://fontawesome.com/v4.7.0/icons/,  https://fontawesome.com/v5.3.1/icons?d=gallery&m=free
+     * address : https://fontawesome.com/v4.7.0/icons/
      */
-    code:string;
+    code:any;
+    spin?:boolean;
     /**
      * primary , secondary,  success, info, warning, danger, danger, dark, light
      */
     color?:string;
     style?:object;
-    onClick?():void;
+    onClick?(e:any):any;
     onMouseOver?():void;
     id?:any;
 }
@@ -38,7 +42,8 @@ export default class FaIcon extends React.Component<FaIconProps> {
      */
     public static defaultProps: Partial<FaIconProps> = {
         size: "fa-sm",
-        fixed: true
+        fixed: true,
+        spin : false
     };
 
     colorArr:any = {
@@ -57,14 +62,28 @@ export default class FaIcon extends React.Component<FaIconProps> {
      */
     render():any {
         let classNameProps = this.props.className === undefined ? "" : this.props.className;
-        let className = `fa ${(this.props.fixed ? "fa-fw" : "")} ${this.props.code} ${this.props.size} ${classNameProps}`;
+        let className = `fa ${(this.props.fixed ? "fa-fw" : "")} ${this.props.code} ${this.props.size} ${classNameProps} ${this.props.spin == true ? " fa-spin" : ""}`;
         let color = this.props.color != undefined ? this.getColor(this.props.color) : "";
         const { fixed, code, size, ...props } = this.props;
-        return <i {...props} className={className+ " "+color} aria-hidden="true" />;
+        let iconS :any = Icons;
+        return this.props.code != undefined ? (this.props.code.split("-").length >= 2 ?
+            <i {...props} id={this.props.id} className={className+ " "+color} aria-hidden="true" onClick={this.onClick.bind(this)} />
+            : <span onClick={this.onClick.bind(this)}>
+                <FontAwesomeIcon className={color} {...props} size={this.getSizeProp(this.props.size)} spin={this.props.spin} icon={iconS[this.props.code]}/></span>) : null;
     }
 
     getColor(color:string):string{
         return this.colorArr[color] != undefined ? this.colorArr[color] : "";
+    }
+
+    getSizeProp(size:any){
+        let dimension :SizeProp = size.substr(3);;
+        return dimension;
+    }
+
+    onClick(e:any){
+        e.name = this.props.code;
+        this.props.onClick != undefined ? this.props.onClick(e) : null;
     }
 
 }

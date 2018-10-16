@@ -25,7 +25,7 @@ export default class ToolTipExample extends React.Component<any, any> {
                         show={this.state.direction.left}
                         toggle={() => {
                             this.toggle('left')
-                        }}>Hello First Tip</ToolTip>
+                        }}>I'M LEFT</ToolTip>
                 </Col>
                 <Col sm={3}>
                     <span id="right">Right Tooltip</span>
@@ -35,7 +35,7 @@ export default class ToolTipExample extends React.Component<any, any> {
                         show={this.state.direction.right}
                         toggle={() => {
                             this.toggle('right')
-                        }}>Hello First Tip</ToolTip>
+                        }}>I'M RIGHT</ToolTip>
                 </Col>
                 <Col sm={3}>
                     <span id="top">Top Tooltip</span>
@@ -45,7 +45,7 @@ export default class ToolTipExample extends React.Component<any, any> {
                         show={this.state.direction.top}
                         toggle={() => {
                             this.toggle('top')
-                        }}>Hello First Tip</ToolTip>
+                        }}>I'M TOP</ToolTip>
                 </Col>
                 <Col sm={3}>
                     <span id="bottom">Bottom Tooltip</span>
@@ -55,7 +55,7 @@ export default class ToolTipExample extends React.Component<any, any> {
                         show={this.state.direction.bottom}
                         toggle={() => {
                             this.toggle('bottom')
-                        }}>Hello First Tip</ToolTip>
+                        }}>I'M BOTTOM</ToolTip>
                 </Col>
 
                 <span className="example-reagent">Link Tooltip</span>
@@ -67,7 +67,7 @@ export default class ToolTipExample extends React.Component<any, any> {
                         show={this.state.direction.links}
                         toggle={() => {
                             this.toggle('links')
-                        }}>Hello First Tip</ToolTip>
+                        }}>I'M RIGHT :)</ToolTip>
                 </Col>
 
                 <span className="example-reagent">Button Tooltip</span>
@@ -79,7 +79,7 @@ export default class ToolTipExample extends React.Component<any, any> {
                         show={this.state.direction.buttons}
                         toggle={() => {
                             this.toggle('buttons')
-                        }}>Hello First Tip</ToolTip>
+                        }}>I'M RIGHT :)</ToolTip>
                 </Col>
             </Row>
         </div>
