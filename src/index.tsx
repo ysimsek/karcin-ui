@@ -5,7 +5,7 @@ import Tab from "./functional/tabs/Tab";
 import TabPanel from "./functional/tabs/TabPanel";
 import Badge from "./functional/badge/Badge";
 import Label from "./functional/label/Label"
-import DataGrid from "./functional/datagrid/DataGrid";
+import DataGrid from "./datagrid/DataGrid";
 import Notify from "./functional/notify/Notify";
 import Panel from "./functional/panel/Panel";
 import DataFilter from "./functional/datafilter/DataFilter";

@@ -1,9 +1,7 @@
 import * as React from "react";
-import {Store, Button} from 'karcin-ui';
+import {Store, Button, DataGrid} from 'karcin-ui';
 import Axios from 'axios';
 import { Scrollbars } from 'react-custom-scrollbars';
-
-import DataGrid from '../../../src/datagrid/DataGrid';
 
 
 export default class DataGridExample extends React.Component<any, any> {
@@ -73,42 +71,6 @@ export default class DataGridExample extends React.Component<any, any> {
     }
 
     render() {
-       /*return (<div>
-            <div className="karcin-datagrid">
-                <div className="toolbar head"></div>
-                <table className="datagrid-table table">
-                    <div className="datagrid-head"> 
-                        <thead>
-                            <tr>
-                                <th colSpan={2} className={'group'}>Deneme</th>
-                                <th className={'empty'}></th>
-                                <th className={'empty'}></th>
-                            </tr>
-                            <tr>
-                                <th>Deneme</th>
-                                <th>Deneme</th>
-                                <th>Deneme</th>
-                                <th>Deneme</th>
-                            </tr>
-                        </thead>
-                    </div>
-                    <div className="datagrid-body">  
-                        <Scrollbars>    
-                        <tbody>
-                            <tr>
-                                <td>Deneme</td>
-                                <td>Deneme</td>
-                                <td>Deneme</td>
-                                <td>Deneme</td>
-                            </tr>
-                            
-                        </tbody>
-                        </Scrollbars>
-                    </div>
-                </table>
-                <div className="toolbar footer"></div>
-            </div>
-        </div>);*/
 
         return (
             <DataGrid store={this.state.store} fields={this.state.fields} pagination={true} pageShow={5} title="Example DataGrid"/>
