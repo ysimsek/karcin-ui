@@ -15,7 +15,7 @@ export default class GaugeChartExam extends React.Component<any,any>{
 
         return <Row>
             <Col md={6}>
-                <GaugeChart value={this.state.kmh}/>
+                <GaugeChart type={"black"} value={this.state.kmh}/>
             </Col>
             <Col md={6}>
                 <GaugeChart value={this.state.kmh} percent={true} endValue={100} height={500}/>
@@ -29,7 +29,7 @@ export default class GaugeChartExam extends React.Component<any,any>{
                 this.getDecreasedKmh()
                 clearTimeout(a)
             }else {
-                this.setState({kmh: this.state.kmh + 1})
+                this.setState({kmh: this.state.kmh + 10})
             }
         },200);
     }
@@ -40,13 +40,35 @@ export default class GaugeChartExam extends React.Component<any,any>{
                 this.getKmh()
                 clearTimeout(a)
             }else {
-                this.setState({kmh: this.state.kmh - 1})
+                this.setState({kmh: this.state.kmh - 10})
             }
         },200);
     }
 
     componentDidMount(){
         this.getKmh()
+        // this.getKmExam()
+    }
+
+    getKmExam(){
+        var ws = new WebSocket("ws://10.230.1.48:9292");
+        let me:any = this;
+        ws.onopen = function() {
+
+            // Web Socket is connected, send data using send()
+            console.log("Message is sent...");
+            setInterval(()=>{
+                    ws.send("data")
+
+                }
+                ,2000)
+        };
+
+        ws.onmessage = function (evt) {
+            var received_msg = evt.data;
+            me.setState({kmh : evt.data.split("|")[0]})
+        };
+
     }
 }
 
