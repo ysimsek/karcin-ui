@@ -123,7 +123,6 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
 
 
     UNSAFE_componentWillReceiveProps(props: SelectInputProps) {
-        this.props = props;
         this.setState({
             itemActive:this.props.activeItem
         });

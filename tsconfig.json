@@ -1,21 +1,29 @@
 {
   "compilerOptions": {
-    "outDir": "./docs/",
-    "sourceMap": true,
-    "noImplicitAny": false,
-    "module": "commonjs",
-    "target": "es5",
-    "jsx": "react",
     "baseUrl": ".",
-    "allowJs":true,
+    "outDir": "./docs/",
+    "target": "es5",
     "lib": ["es6", "dom"],
+    "sourceMap": true,
+    "jsx": "react",
+    "module": "commonjs",
+    "allowJs":true,
+    "noImplicitAny": false,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
     "paths": {
       "karcin-ui/lib": ["src"],
+      "karcin-lib": ["src"],
       "karcin-ui": ["src/index"]
     }
   },
   "reflectionEnabled": true,
   "include": [
     "./**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    ".git"
   ]
 }

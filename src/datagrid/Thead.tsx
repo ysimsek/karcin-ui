@@ -1,8 +1,8 @@
 import * as React from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import {ButtonDropdown, DropdownToggle, Button, DropdownMenu, DropdownItem, Input} from 'reactstrap';
-import FaIcon from '../functional/faicon/FaIcon';
-import GetInput from '../functional/getInput/GetInput';
+import FaIcon from "./../functional/faicon/FaIcon";
+import GetInput from "./../functional/getInput/GetInput";
 
 export interface TheadProps {
     store: any;
