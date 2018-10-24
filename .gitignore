@@ -36,7 +36,6 @@ build/*
 node_modules
 esdoc
 dist
-lib
 *.txt
 !Snippet*.txt
 .hash.json
