@@ -49,7 +49,6 @@ export default class TableBody extends React.Component<TableBodyProps, TableBody
      * @param props
      */
     UNSAFE_componentWillReceiveProps(props: TableBodyProps) {
-        this.props = props;
         this.setState({
             store : props.store,
             fields : props.fields,

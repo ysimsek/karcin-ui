@@ -146,7 +146,6 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
      * set the first values
      */
     init(props: DataGridProps) {
-        this.props = props;
         this.state = {
             store: props.store,
             fields: props.fields,
