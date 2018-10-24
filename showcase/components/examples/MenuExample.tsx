@@ -132,9 +132,7 @@ export default class MenuExample extends React.Component<any, any> {
 
 
     handleChange(val:any){
-        this.setState({
-            active : [val]
-        })
+        
     }
 
 

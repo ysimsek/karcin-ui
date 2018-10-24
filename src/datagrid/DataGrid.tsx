@@ -87,7 +87,7 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
     render(){
         return(<div className="karcin-datagrid">
             <div className="datagrid-table table">
-                {(this.props.title !== undefined && this.props.toolbars !== undefined ? <Header store={this.props.store} fields={this.props.fields} {...this.props}></Header> : '')}  
+                {(this.props.title !== undefined || this.props.toolbars !== undefined ? <Header store={this.props.store} fields={this.props.fields} {...this.props}></Header> : '')}  
                 <TableHead 
                     store={this.state.store} 
                     fields={this.state.fields} 

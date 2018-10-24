@@ -1864,6 +1864,11 @@ button-square-to-radius {
 
 .karcin-datagrid .datagrid-table .datagrid-head tr th:hover > .btn-group .btn,
 .karcin-datagrid .datagrid-table .datagrid-head tr th .btn-group:hover > .btn {opacity: 1;}
+.karcin-datagrid .datagrid-table .datagrid-head tr th .th-title {
+    width: calc(100% - 40px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;}
 .karcin-datagrid .datagrid-table .datagrid-head tr th .right-option .btn-group {position: static;}
 .karcin-datagrid .datagrid-table .datagrid-head tr th .right-option .btn-group .btn {
     padding: 6px 8px;

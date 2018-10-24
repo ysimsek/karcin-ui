@@ -143,10 +143,10 @@ export default class Thead extends React.Component<TheadProps, TheadState> {
 
                     returnItem.push(<th key={indexes}
                     className={`${(this.state.orderIng.name !== null && value.name === this.state.orderIng.name || this.state.filterShowing[value.name] ? 'active': '')}`} style={style} ref={(e) => itemRef = e}>
-                            {value.label}
+                            <div className="th-title">{value.label}</div>
                             <div className="right-option">
-                            {(value.filter === undefined || value.filter ? this.getFilter(value) : '')}
-                            {this.orderIcon(value)}
+                                {(value.filter === undefined || value.filter ? this.getFilter(value) : '')}
+                                {this.orderIcon(value)}
                             </div>
                             {this.dropDownMenu(value)}
                             <span className={"resizing"} onMouseDown={(e:any)=>{this.resizing(value, itemRef, index)}} onMouseUp={(e:any)=>{this.removeResizing(value, itemRef)}}></span>
@@ -160,7 +160,7 @@ export default class Thead extends React.Component<TheadProps, TheadState> {
 
                 returnItem.push(<th key={index} style={style}
                     className={`${(this.state.orderIng.name !== null && data.name === this.state.orderIng.name ? 'active': '')}`} ref={(e) => itemRef = e}>
-                        {data.label}
+                        <div className="th-title">{data.label}</div> 
                         <div className="right-option">
                             {(data.filter === undefined || data.filter ? this.getFilter(data) : '')}
                             {this.orderIcon(data)}
@@ -241,7 +241,7 @@ export default class Thead extends React.Component<TheadProps, TheadState> {
         return (this.state.fieldOption !== undefined && this.state.fieldOption ? <ButtonDropdown isOpen={this.state.dropDownMenu[value.name]} toggle={()=>{this.toggleDropdown(value.name)}}>
             <DropdownToggle caret>
             </DropdownToggle>
-            <DropdownMenu>
+            <DropdownMenu right>
                 {(value.order === undefined || value.order ? <DropdownItem onClick={()=>{
                     this.orderIng(value, 'asc');
                 }}><FaIcon code="fa-arrow-down"/> Sırala</DropdownItem> : '')}
