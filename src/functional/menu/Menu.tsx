@@ -2,7 +2,6 @@ import * as React from 'react';
 import {Collapse, Nav, NavItem, Badge, NavLink} from 'reactstrap';
 import FaIcon from '../../functional/faicon/FaIcon'
 import '../../css/karcin-ui.css';
-import { spawn } from 'child_process';
 
 export interface MenuProps {
     /**
@@ -293,6 +292,8 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
 
                                 if (vals.level === i && vals.keys === id) {
                                     vals.collapse = true;
+                                }else if (vals.level === i) {
+                                    vals.collapse = false;
                                 }
                             }
 

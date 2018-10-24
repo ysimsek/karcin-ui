@@ -6,7 +6,7 @@ import '../css/karcin-ui.css';
 import TableBody from './Tbody';
 import TableHead from './Thead';
 import Header from './Header';
-import Footer from './Footer';
+import Footer from './Footer'; 
 
 export interface DataGridProps {
     /**

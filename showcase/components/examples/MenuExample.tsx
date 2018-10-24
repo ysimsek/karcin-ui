@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Menu} from 'karcin-ui';
-import {Row, Col} from 'reactstrap';
+import {Row, Col, Button} from 'reactstrap';
 
 export default class MenuExample extends React.Component<any, any> {
     constructor(props:any){
@@ -8,9 +8,12 @@ export default class MenuExample extends React.Component<any, any> {
         this.state = {
             active : [{
                 "id": 1,
-                "name": "Arial",
-                "title": "Arial",
-                "href": "#/Components/Menu"
+                "name": "Languages",
+                "title": "Languages",
+                "icon": "fa-cubes",
+                "collapse": true,
+                "badge": "new",
+                "badgeColor": "danger",
             }]
         }
     }
@@ -109,7 +112,7 @@ export default class MenuExample extends React.Component<any, any> {
             <Row className="basic-row">
                 <Col sm={6}>
                     <span className="example-reagent first">Accordion Menü</span>
-                    <Menu data={data} accordion={true} onChange={(val)=>{this.handleChange(val)}} />
+                    <Menu data={data} accordion={true} active={this.state.active} onChange={(val)=>{this.handleChange(val)}} />
                 </Col>
                 <Col sm={6}>
                     <span className="example-reagent first">Collapse Menu</span>
@@ -119,6 +122,15 @@ export default class MenuExample extends React.Component<any, any> {
                     <span className="example-reagent">Hover Menu</span>
                     <Menu data={data} hover={true} renderer={this.renderer} onChange={(val)=>{this.handleChange(val)}} />
                 </Col>
+                <Button onClick={()=>{
+                    this.setState({
+                        active:  [{
+                            "id": 2,
+                            "name": "italic",
+                            "title": "Italic"
+                        }]
+                    })
+                }}></Button>
             </Row>
         </div>);
     }
@@ -129,7 +141,9 @@ export default class MenuExample extends React.Component<any, any> {
 
 
     handleChange(val:any){
-        console.log(val);
+        this.setState({
+            active : [val]
+        })
     }
 
 

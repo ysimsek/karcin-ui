@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Popover, PopoverHeader, PopoverBody } from 'reactstrap';
-import {Popper} from "reactstrap/lib/Popper";
 
 export interface PopOverProps{
     /**

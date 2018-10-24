@@ -9,9 +9,7 @@ import {
     ModalFooter,
     ModalHeader
 } from 'reactstrap';
-import FaIcon from '../functional/faicon/FaIcon';
-import Pagination from '../functional/paging/Pagination';
-import DataForm from '../functional/dataform/DataForm';
+import Pagination from '../functional/paging/Pagination'; 
 
 
 export interface FooterProps {

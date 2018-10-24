@@ -33,8 +33,8 @@ export interface TableHeadState {
     orderActive: any,
     filterRemote: any,
     filterDelay?: any,
+    filterOption:any,
     orders: any[],
-    filterOption:any;
 }
 
 export interface standartObject {
@@ -62,8 +62,8 @@ export default class TableHead extends React.Component<TableHeadProps, TableHead
             popover: [],
             orders: ["", "asc", "desc"],
             filterRemote:{interval:500, timeout:1000},
+            filterOption: {value:null, fieldName:null},
             orderActive: {active:0, value:''},
-            filterOption: {value:null, fieldName:null}
         };
     }
 
