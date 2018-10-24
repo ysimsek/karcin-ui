@@ -122,7 +122,6 @@ export default class AutoComplate extends React.Component<AutoComplateProps, Aut
 
 
     UNSAFE_componentWillReceiveProps(props: AutoComplateProps) {
-        this.props = props;
         this.forceUpdate();
     }
 
