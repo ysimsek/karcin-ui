@@ -50,15 +50,7 @@ export default class Badge extends React.Component<LabelProps,any>{
      */
     render():any{
         return <BadgeX
-            color={this.props.color}
-            className={this.props.className}
-            onClick={this.onClick.bind(this)}
-            style={{fontSize: this.props.size+"px"}}
-            id={this.props.id}
+            {...this.props}
         >{this.props.children}</BadgeX>;
-    }
-
-    onClick(e:any){
-        this.props.onClick != undefined ? this.props.onClick(e) : null;
     }
 }

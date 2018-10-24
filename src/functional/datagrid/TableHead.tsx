@@ -147,7 +147,7 @@ export default class TableHead extends React.Component<TableHeadProps, TableHead
                                 <GetInput type={value.type} value={this.state.filterOption.value} onChange={(e:any)=>{
                                     this.filterData(value.value, e)
                                 }}/>
-                                <InputGroupAddon addonType="append"><Button><FaIcon
+                                <InputGroupAddon><Button><FaIcon
                                     code="fa-search"/></Button></InputGroupAddon>
                             </InputGroup>
                         </PopoverBody>
