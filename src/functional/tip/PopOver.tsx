@@ -3,13 +3,23 @@ import { Popover, PopoverHeader, PopoverBody } from 'reactstrap';
 
 export interface PopOverProps{
     /**
-     * Choose the elements ,
-     * auto , auto-start , auto-end , top , top-end , top-start ,
-     * right , right-start, right-end , bottom , bottom-start , bottom-end ,
-     * left , left-start , left-end,
-     * default value right
+     * 'auto',
+     'auto-start',
+     'auto-end',
+     'top',
+     'top-start',
+     'top-end',
+     'right',
+     'right-start',
+     'right-end',
+     'bottom',
+     'bottom-start',
+     'bottom-end',
+     'left',
+     'left-start',
+     'left-end',
      */
-    position ?: Popper.Placement;
+    position ?: string | any;
     /**
      * Up element id
      */

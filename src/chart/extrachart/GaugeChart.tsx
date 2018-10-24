@@ -6,9 +6,8 @@ import "amcharts3/amcharts/themes/chalk";
 import "amcharts3/amcharts/themes/dark";
 import "amcharts3/amcharts/themes/patterns";
 import "amcharts3/amcharts/themes/black";
-import "amcharts3/amcharts/gantt"
+import "amcharts3/amcharts/gauge";
 import "ammap3/ammap/ammap";
-import {__values} from "tslib";
 var AmCharts = require("@amcharts/amcharts3-react");
 
 export interface GaugeChartProps  {
@@ -55,12 +54,7 @@ export default class GaugeChart extends React.Component<any,any> {
                 "bottomTextYOffset": -20,
                 "endValue": 220
             }],
-            "arrows": [{
-                "alpha": 1,
-                "innerRadius": "15%",
-                "nailRadius": 1,
-                "color":"#f90000a1"
-            }],
+            "arrows": [{}],
             "export": {
                 "enabled": true
             }
@@ -116,7 +110,7 @@ export default class GaugeChart extends React.Component<any,any> {
         let chart = <AmCharts.React options={data} style={{width: "100%", height: this.props.height + "px"}}/>
         chart.props.options.arrows[0]["value"] = this.props.endValue<this.props.value ? this.props.endValue : this.props.value;
         chart.props.options.axes[0].topText =(this.props.endValue<this.props.value ? this.props.endValue : this.props.value)+" %";
-        chart.props.options.axes[0].bands[1].endValue = this.props.endValue<this.props.value ? this.props.endValue : this.props.value
+        chart.props.options.axes[0].bands[1].endValue = this.props.endValue<this.props.value ? this.props.endValue : this.props.value;
         return chart
     }
 

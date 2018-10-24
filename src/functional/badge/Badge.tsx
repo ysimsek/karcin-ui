@@ -20,7 +20,7 @@ export interface LabelProps {
     /**
      * Click the component
      */
-    onClick?:any;
+    onClick:any;
     id?:any;
 
 }

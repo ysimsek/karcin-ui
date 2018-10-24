@@ -122,15 +122,6 @@ export default class MenuExample extends React.Component<any, any> {
                     <span className="example-reagent">Hover Menu</span>
                     <Menu data={data} hover={true} renderer={this.renderer} onChange={(val)=>{this.handleChange(val)}} />
                 </Col>
-                <Button onClick={()=>{
-                    this.setState({
-                        active:  [{
-                            "id": 2,
-                            "name": "italic",
-                            "title": "Italic"
-                        }]
-                    })
-                }}></Button>
             </Row>
         </div>);
     }

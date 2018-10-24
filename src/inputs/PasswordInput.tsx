@@ -2,7 +2,7 @@ import * as React from "react";
 import Input from "./base/BaseInput";
 import {Label,InputGroup, InputGroupAddon} from "reactstrap";
 
-export interface PasswordInputProps{
+export interface PasswordInputProps extends React.InputHTMLAttributes<HTMLInputElement>{
     style?: React.CSSProperties;
     label?: string | JSX.Element;
     name?: string;

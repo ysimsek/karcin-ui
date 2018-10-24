@@ -147,8 +147,14 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
 
             // active control
             let keys = (key !== undefined) ? key + "-" + index : index.toString();
-            let params = {keys: keys, level: level, collapse: false, hover:false, item:value['itemControl']  = (value.items !== undefined && value.items.length > 0 ? true : false)};
+            let params:any = {keys: keys, level: level, collapse: false, hover:false, item:value['itemControl']  = (value.items !== undefined && value.items.length > 0 ? true : false)};
             let activeControlBool = false;
+            
+            // params item add value item
+            for(let item in params){
+                value[item] = params[item];
+            }
+
             self.menuData.push(value);
 
             self.state.menuActive.forEach((val: any) => {
@@ -237,7 +243,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
         });
 
         if (self.props.onChange !== undefined) {
-            let changeMenu = self.menuData.slice(0);
+            let changeMenu = this.state.menuActive.slice(0);
             let changeItem = changeMenu.filter((v: any) => v.keys === param.keys);
 
             if(this.state.changeActiveItem === null || this.state.changeActiveItem.keys !== changeItem[0].keys){
@@ -259,7 +265,9 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
                 delete returnChangeItem['level'];
                 delete returnChangeItem['keys'];
 
-                self.props.activeSelected(returnChangeItem); 
+                if(self.props.activeSelected !== undefined){
+                    self.props.activeSelected(returnChangeItem);
+                } 
             }
         }
 
@@ -275,6 +283,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
     activeFind(getActive: any): any {
         if (this.menuData.length > 0 && getActive !== undefined && getActive !== null && getActive.length > 0 && !this.state.activeControl) {
             getActive = getActive[0];
+            this.menuItemActiveReset(); 
             this.menuData.forEach((val: any) => {
                 if (val.href === getActive.href && val.name === getActive.name) {
                     for (let i = val.level; i >= 0; i--) {
@@ -288,11 +297,11 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
                                 } else if (vals.level === i) {
                                     vals.collapse = false;
                                 }
-                            } else {
+                            } else { 
 
                                 if (vals.level === i && vals.keys === id) {
                                     vals.collapse = true;
-                                }else if (vals.level === i) {
+                                }else if (vals.level < i) {
                                     vals.collapse = false;
                                 }
                             }
@@ -324,6 +333,12 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
         });
 
         return active;
+    }
+
+    menuItemActiveReset(){
+        this.state.menuActive.forEach((value:any, index:number)=>{
+            value.collapse = false;
+        });
     }
 
 

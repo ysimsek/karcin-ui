@@ -3,7 +3,7 @@ import Input from "./base/BaseInput";
 import {Label,InputGroup,InputGroupAddon} from "reactstrap";
 //css de hem veritical hem horizontal olması sağlandı
 
-export interface TextAreaProps{
+export interface TextAreaProps extends React.InputHTMLAttributes<HTMLInputElement>{
     /**
      * css style name describe .class
      */

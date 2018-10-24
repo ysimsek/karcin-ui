@@ -1,5 +1,5 @@
 import * as React from "react";
-import {ToolTip, Button} from "karcin-ui";
+import {ToolTip, Button, Panel} from "karcin-ui";
 import {Row, Col} from "reactstrap";
 
 export default class ToolTipExample extends React.Component<any, any> {
@@ -35,7 +35,7 @@ export default class ToolTipExample extends React.Component<any, any> {
                         show={this.state.direction.right}
                         toggle={() => {
                             this.toggle('right')
-                        }}>I'M RIGHT</ToolTip>
+                        }}>{this.basicPanel()}</ToolTip>
                 </Col>
                 <Col sm={3}>
                     <span id="top">Top Tooltip</span>
@@ -89,5 +89,18 @@ export default class ToolTipExample extends React.Component<any, any> {
         this.state.direction[direction] = !this.state.direction[direction];
         this.forceUpdate();
     }
+
+    basicPanel(){
+        return <div>
+            <Panel collapse={true} collapsible={true} color="success">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed odio eu massa accumsan rhoncus.
+                Cras eu vulputate lacus. Ut consectetur bibendum purus, sit amet euismod velit elementum eget. Nullam
+                id augue dictum, tincidunt enim eget, finibus turpis. Vestibulum vel turpis orci. Nunc a ultrices
+                magna, sed maximus diam. Sed egestas dapibus mi, ut pharetra augue iaculis sit amet. In ut dolor
+                sed urna semper ultricies sed ac turpis. Fusce finibus purus at nisl molestie, id sodales turpis
+                dignissim. In gravida ipsum a risus elementum imperdiet. Maecenas non turpis in ligula efficitur pharetra.</Panel>
+        </div>
+    }
+
 
 }
