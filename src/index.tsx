@@ -5,7 +5,7 @@ import Tab from "./functional/tabs/Tab";
 import TabPanel from "./functional/tabs/TabPanel";
 import Badge from "./functional/badge/Badge";
 import Label from "./functional/label/Label"
-import DataGrid from "./functional/datagrid/DataGrid";
+import DataGrid from "./datagrid/DataGrid";
 import Notify from "./functional/notify/Notify";
 import Panel from "./functional/panel/Panel";
 import DataFilter from "./functional/datafilter/DataFilter";
@@ -25,7 +25,7 @@ import TextInput from "./inputs/TextInput";
 import TextArea from "./inputs/TextArea";
 import RadioInput from "./inputs/RadioInput";
 import CheckInput from "./inputs/CheckInput";
-import ToggleButton from "./input/ToggleButton";
+import ToggleButton from "./inputs/ToggleButton";
 import ColorInput from "./inputs/ColorInput";
 
 import DateInput from "./datepicker/DateInput";

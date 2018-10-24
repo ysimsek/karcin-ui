@@ -51,7 +51,7 @@ export default class TextArea extends React.Component<TextAreaProps,any>{
      * @returns {any}
      */
     render():any{
-        return <div>
+        return <div className="karcin-input">
             {this.props.label != undefined ? <Label className={"label-properties"}>{this.props.label}</Label> : null}
             <textarea
                 className={this.props.className+ " form-control"}

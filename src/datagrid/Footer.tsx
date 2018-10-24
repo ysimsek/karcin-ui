@@ -1,16 +1,93 @@
 import * as React from "react";
-import 'bootstrap/dist/css/bootstrap.css';
-import GetInput from '../functional/getInput/GetInput';
-import TypeFormating from '../applications/TypeFormating';
-import BaseClass from "../applications/BaseClass";
+import {
+    Col,
+    Row,
+    Button,
+    ButtonGroup,
+    Modal,
+    ModalBody,
+    ModalFooter,
+    ModalHeader
+} from 'reactstrap';
+import FaIcon from '../functional/faicon/FaIcon';
+import Pagination from '../functional/paging/Pagination';
+import DataForm from '../functional/dataform/DataForm';
 
-export interface TbodyProps {
+
+export interface FooterProps {
+    type?: string | any;
+    store?: Array<any> | any;
+    changePage?: any;
+    paginationData?:React.EventHandler<any>;
+    selectedRow?:any;
+    pageShow?:any;
+    fields?:any;
 }
 
-export interface TbodyState {
-}
 
 
-export default class Footer extends React.Component<TbodyProps, TbodyState> {
+export default class Footer extends React.Component<FooterProps, any> {
+
+    /**
+     * general variable
+     */
+    paginationControl = true;
+    editValues:any = {};
+    dataForm:any;
+
+    /**
+     * Initial props value
+     */
+    static defaultProps: Partial<FooterProps> = {
+       
+    };
+
+    /**
+     * Initial values
+     */
+    constructor(props: FooterProps) {
+        super(props);
+
+        this.state = {
+            isOpen: false,
+            selectedRow: {selected:this.props.selectedRow},
+            buttonType:null
+        }
+
+    }
+
+    UNSAFE_componentWillReceiveProps(props:FooterProps){
+        this.state.selectedRow.selected = props.selectedRow;
+        this.forceUpdate();
+    }
+
+    /**
+     * return any
+     */
+    render(): any {
+        return <div>
+            <div className="toolbar footer">
+                {(this.props['pageShow'] !== undefined && this.props.store !== undefined && this.props.store.props.totalCount > 0) ?
+                    <div className="pagination-main">
+                        <div className="pagination">
+                            <Pagination pageCount={5}
+                                        type={"simple"}
+                                        typeShowLength={this.props['pageShow']}
+                                        data={this.props.store.props.totalCount}
+                                        selectedValue={(e:any) => {
+                                            this.pageChange(e);
+                                        }}/>
+                        </div>
+                    </div>
+                    : ''}
+            </div>
+        </div>
+    }
+
+    pageChange(event?: any) {
+        if(event !== undefined){
+            this.props.store.pagination(this.props.pageShow, event.page);
+        }
+    }
 
 }

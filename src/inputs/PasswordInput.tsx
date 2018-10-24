@@ -47,7 +47,7 @@ export default class PasswordInput extends React.Component<PasswordInputProps>{
     render():any{
         //todo :label için sağ sol üst seçenekleri konulsun, hatta button ile birlikte beraber kullanılabilir.
         let label = this.props.label != "" ? <Label className={"label-properties"}>{this.props.label}</Label> : null;
-        return <div>{label}<Input {...this.props}/></div>;
+        return <div className="karcin-input">{label}<Input {...this.props}/></div>;
     }
 
 

@@ -12,7 +12,7 @@ export default class LocaleEndPoint extends BaseClass {
     props:any = {
         data: [],
         idField: 'id',
-        endPoint:'localEndPoint'
+        endPoint:'localPoint'
     };
 
     constructor(props:Object, callback:any){
@@ -111,7 +111,7 @@ export default class LocaleEndPoint extends BaseClass {
      * @param callback 
      */
     orderSort(fieldName:any, callback?:any){
-        let orderData = this.__dataMap.slice();
+        let orderData = this.__dataMap.slice(0);
 
         orderData.sort((first:any, last:any) => {
             let firstName = first[fieldName].toUpperCase();
@@ -138,11 +138,7 @@ export default class LocaleEndPoint extends BaseClass {
      * @param callback 
      */
     oldDataSort(callback?:any){
-        if(callback !== undefined){
-            callback(this.__oldDataMap);
-        }
-
-        return this.response(callback);
+        return this.response(callback, this.__oldDataMap);
     }
 
     /**
@@ -153,7 +149,7 @@ export default class LocaleEndPoint extends BaseClass {
     orderReverse(fieldName:any, callback?:any){
         let orderData:any[] = [];
         this.orderSort(fieldName, (data:any)=>{
-            orderData = data.reverse();
+            orderData = this.__dataMap.reverse();
         });
 
         return this.response(callback, orderData);
@@ -175,20 +171,18 @@ export default class LocaleEndPoint extends BaseClass {
             });
         }else {
             data = this.__oldDataMap.slice(0);
-        }
-        
-        this.props.data = data;
+        } 
 
         return this.response(callback, data);
     }
 
-    paging(type?:any){
+    paging(){
         if(this.props.pageData !== undefined){
             for(let item in this.props.pageData){
                 this.__paging[item] = this.props.pageData[item];
             }
 
-            this.__callback();
+            return this.response();
         }
     }
 }

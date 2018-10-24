@@ -25,7 +25,7 @@ export default class SliderCheckbox extends React.Component<SliderCheckboxProps,
         if(this.props.successIcon !== undefined && this.props.rejectIcon !== undefined){
             icon = <span className={`show-icon ${(this.state.checked) ? 'success' : 'reject'}`}><FaIcon code={(this.state.checked) ? this.props.successIcon : this.props.rejectIcon}/></span>
         }
-        return (<div className={`slider-checkbox ${this.state.checked ? 'active' : ''}`}>
+        return (<div className={`slider-checkbox karcin-input ${this.state.checked ? 'active' : ''}`}>
             <label>
                 {icon}
                 <input type="checkbox" checked={this.state.checked} onChange={()=> {this.toggleChange()}}/>

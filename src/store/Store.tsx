@@ -50,9 +50,10 @@ export default class Store {
      * Endpoint control
      */
     endPoint() {
+        let sendProps = JSON.parse(JSON.stringify(this.props));
         if (this.props.processor !== undefined || this.props.originUrl !== undefined) {
             // get endpoint
-            this.props.endPoint = new RemoteEndPoint(this.props, (response: any) => {
+            this.props.endPoint = new RemoteEndPoint(sendProps, (response: any) => {
                 this.endPointCallback(response)
             });
 
@@ -62,7 +63,7 @@ export default class Store {
             this.__oldData = this.props.data.slice(0);
 
             // get endpoint
-            this.props.endPoint = new LocalEndPoint(this.props, (response: any) => {
+            this.props.endPoint = new LocalEndPoint(sendProps, (response: any) => {
                 this.endPointCallback(response);
             });
 
@@ -220,9 +221,7 @@ export default class Store {
      */
     filter(fieldName: any, value: any, operator?:any, callback?:any) {
         if (fieldName !== undefined) {
-            this.props.endPoint.filter(fieldName, value, operator, (data:any)=>{
-                this.props.data = data;
-            });
+            this.props.endPoint.filter(fieldName, value, operator);
         } else {
             throw new Error('Field name empty')
         }
@@ -233,8 +232,8 @@ export default class Store {
      * @param page
      * @param pageShow
      */
-    pagination(page:any, pageShow:any){
-        let pages = (page !== undefined) ? page : this.__page.page;
+    pagination(pageShow:any, page?:any){
+        let pages = (page !== undefined) ? page : 1; 
         let pagesShow = (pageShow !== undefined) ? pageShow : this.__page.pageShow;
 
         if(pages !== undefined && pageShow !== undefined && pageShow > 0){
@@ -242,7 +241,7 @@ export default class Store {
             this.props.pageData['limit'] = pagesShow;
 
             if(this.props.endPoint !== undefined){
-                this.props.endPoint.paging(true);
+                this.props.endPoint.paging();
             }
         }
     }

@@ -30,6 +30,11 @@ export interface MenuProps {
      * menu loop text change method
      */
     renderer?: React.EventHandler<any> | any;
+
+    /**
+     * active selected click
+     */
+    activeSelected?: React.EventHandler<any> | any;
 }
 
 export interface MenuData {
@@ -247,6 +252,15 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
                     changeActiveItem: changeItem[0]
                 });
                 self.props.onChange(returnChangeItem);
+            }else {
+
+                let returnChangeItem = JSON.parse(JSON.stringify(changeItem[0]));
+                
+                delete returnChangeItem['itemControl']
+                delete returnChangeItem['level'];
+                delete returnChangeItem['keys'];
+
+                self.props.activeSelected(returnChangeItem); 
             }
         }
 

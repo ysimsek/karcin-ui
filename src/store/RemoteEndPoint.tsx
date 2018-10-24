@@ -1,7 +1,6 @@
 import Application from '../applications/Applications';
 import AjaxRequest from '../request/AjaxRequest';
 import BaseClass from '../applications/BaseClass';
-import { error } from 'util';
 
 export default class RemoteEndPoint extends BaseClass {
 
@@ -100,8 +99,8 @@ export default class RemoteEndPoint extends BaseClass {
     callbackReady(response: any, callback?:any, items?:any) {
         this.requestStatus = true;
         if(response.status !== undefined && response.status === 200 && items === undefined){
-            let dataFind    = this.mappingDataFind(response, this.props.responseData);
-            let totalCount  = this.mappingDataFind(response, this.props.pageTotalData);
+            let dataFind    = BaseClass.mappingDataFind(response, this.props.responseData);
+            let totalCount  = BaseClass.mappingDataFind(response, this.props.pageTotalData);
 
             try{
                 if(dataFind !== undefined){

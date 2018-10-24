@@ -319,7 +319,7 @@
           "title":"Basic DataGrid",
           "href":"#/Components/dataGrid/SampleDataGrid",
           "samples":"components/examples/DataGridExample",
-          "library":"functional/datagrid/DataGrid",
+          "library":"datagrid/DataGrid",
           "description":"<DataGrid> is a smart grid with filter, sort, Crud operations, search capabilities. Manage the all array data."
         }
       ]

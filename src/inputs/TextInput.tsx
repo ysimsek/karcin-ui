@@ -64,6 +64,6 @@ export default class TextInput extends React.Component<TextInputProps>{
     render():any{
         //label için sağ sol üst seçenekleri konulsun, hatta button ile birlikte beraber kullanılabilir.
         let label = this.props.label != undefined ? <Label className={"label-properties"}>{this.props.label}</Label> : null;
-        return <div>{label}<Input {...this.props}/></div>;
+        return <div className="karcin-input">{label}<Input {...this.props}/></div>;
     }
 }

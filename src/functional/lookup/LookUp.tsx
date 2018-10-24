@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Button, Modal, ModalBody, ModalHeader, ModalFooter, Input, InputGroup, InputGroupAddon, InputGroupText} from 'reactstrap';
 import FaIcon from '../faicon/FaIcon';
-import BaseInput from '../../input/BaseInput';
+import BaseInput from '../../inputs/base/BaseInput';
 import DataGrid from '../datagrid/DataGrid';
 import Store from '../../store/Store';
 
