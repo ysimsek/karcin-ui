@@ -1,8 +1,11 @@
 "use strict";
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -14,7 +17,7 @@ var React = require("react");
 var reactstrap_1 = require("reactstrap");
 var SelectInput_1 = require("../../inputs/selectInput/SelectInput");
 var BaseInput_1 = require("../../inputs/base/BaseInput");
-var DateInput_1 = require("../../datepicker/DateInput");
+var DateInput_1 = require("../../inputs/dateInput/DateInput");
 var FaIcon_1 = require("../faicon/FaIcon");
 var RadioInput_1 = require("../../inputs/RadioInput");
 var GetInput = /** @class */ (function (_super) {

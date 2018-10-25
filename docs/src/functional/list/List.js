@@ -1,8 +1,11 @@
 "use strict";
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -37,7 +40,7 @@ var List = /** @class */ (function (_super) {
             renderList = this.renderShowChilds(this.props.children);
         }
         else {
-            renderList.push(React.createElement(reactstrap_1.ListGroup, { onClick: this.onClick.bind(this), key: "list" }, this.childsReturn(this.props.data)));
+            renderList.push(React.createElement(reactstrap_1.ListGroup, { key: "list" }, this.childsReturn(this.props.data)));
         }
         return renderList;
     };
@@ -62,7 +65,7 @@ var List = /** @class */ (function (_super) {
         var childs = [];
         var me = this;
         list.forEach(function (child, idx) {
-            childs.push(React.createElement(reactstrap_1.ListGroupItem, { active: me.props.active == true && (child[me.props.activeValue] == me.state.activeId) ? true : false, color: me.props.color, tag: me.props.tag, id: (idx + 1).toString(), key: idx + 'lgc', href: child[me.props.tagValue], action: me.props.action },
+            childs.push(React.createElement(reactstrap_1.ListGroupItem, { active: me.props.active == true && (child[me.props.activeValue] == me.state.activeId) ? true : false, color: me.props.color, tag: me.props.tag, key: idx + 'lgc', href: child[me.props.tagValue], action: me.props.action },
                 child[me.props.value] + ' ',
                 " ",
                 me.props.badge == true ? React.createElement(reactstrap_1.Badge, { pill: true }, child[me.props.badgeValue]) : ""));

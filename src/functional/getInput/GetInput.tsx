@@ -2,7 +2,7 @@ import * as React from "react";
 import {Row,Col, Button} from 'reactstrap';
 import Select from '../../inputs/selectInput/SelectInput';
 import BaseInput from '../../inputs/base/BaseInput';
-import DateInput from '../../datepicker/DateInput';
+import DateInput from '../../inputs/dateInput/DateInput';
 import FaIcon from '../faicon/FaIcon';
 import RadioInput from '../../inputs/RadioInput';
 

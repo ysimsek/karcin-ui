@@ -12,6 +12,10 @@ const paths = {
     node_modules: path.join(appRoot.path,"/node_modules")
 };
 const webpackConf = {
+    stats: {
+        errors: false,
+        warnings: false
+    },
     context: paths.app,
     entry: "./index.tsx",
     output: {

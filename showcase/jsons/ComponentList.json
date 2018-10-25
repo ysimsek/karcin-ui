@@ -277,7 +277,7 @@
           "title":"DateInput",
           "href":"#/Components/DateInput",
           "samples":"components/inputs/DateInputExample",
-          "library":"input/DateInput",
+          "library":"inputs/dateInput/DateInput",
           "description":"<DateInput> is the input field for the collection of date data. Day, month, year provide data control."
         },
         {

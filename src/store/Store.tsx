@@ -241,7 +241,7 @@ export default class Store {
             this.props.pageData['limit'] = pagesShow;
 
             if(this.props.endPoint !== undefined){
-                this.props.endPoint.paging();
+                this.props.endPoint.paging(this.props.pageData);
             }
         }
     }

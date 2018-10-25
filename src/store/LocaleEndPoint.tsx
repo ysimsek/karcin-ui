@@ -176,12 +176,12 @@ export default class LocaleEndPoint extends BaseClass {
         return this.response(callback, data);
     }
 
-    paging(){
-        if(this.props.pageData !== undefined){
-            for(let item in this.props.pageData){
-                this.__paging[item] = this.props.pageData[item];
+    paging(pageData:any){
+        if(pageData !== undefined){
+            for(let item in pageData){
+                this.__paging[item] = pageData[item];
+                this.props.pageData[item] = pageData[item]
             }
-
             return this.response();
         }
     }

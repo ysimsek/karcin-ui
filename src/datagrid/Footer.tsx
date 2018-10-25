@@ -69,6 +69,7 @@ export default class Footer extends React.Component<FooterProps, any> {
                     <div className="pagination-main">
                         <div className="pagination">
                             <Pagination pageCount={5}
+                                        size={'sm'}
                                         type={"simple"}
                                         typeShowLength={this.props['pageShow']}
                                         data={this.props.store.props.totalCount}

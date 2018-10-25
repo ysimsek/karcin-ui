@@ -218,7 +218,7 @@ var Store = /** @class */ (function () {
             this.props.pageData['start'] = pagesShow * (pages - 1);
             this.props.pageData['limit'] = pagesShow;
             if (this.props.endPoint !== undefined) {
-                this.props.endPoint.paging();
+                this.props.endPoint.paging(this.props.pageData);
             }
         }
     };

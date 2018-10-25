@@ -1,8 +1,11 @@
 "use strict";
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -44,7 +47,7 @@ var Footer = /** @class */ (function (_super) {
             React.createElement("div", { className: "toolbar footer" }, (this.props['pageShow'] !== undefined && this.props.store !== undefined && this.props.store.props.totalCount > 0) ?
                 React.createElement("div", { className: "pagination-main" },
                     React.createElement("div", { className: "pagination" },
-                        React.createElement(Pagination_1.default, { pageCount: 5, type: "simple", typeShowLength: this.props['pageShow'], data: this.props.store.props.totalCount, selectedValue: function (e) {
+                        React.createElement(Pagination_1.default, { pageCount: 5, size: 'sm', type: "simple", typeShowLength: this.props['pageShow'], data: this.props.store.props.totalCount, selectedValue: function (e) {
                                 _this.pageChange(e);
                             } })))
                 : ''));

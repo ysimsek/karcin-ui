@@ -217,28 +217,27 @@ export default class Thead extends React.Component<TheadProps, TheadState> {
     }
 
     dropDownMenu(value:any){
-        if(this.state.dropDownMenu[value.name] === undefined){
-            this.state.dropDownMenu[value.name] = false;
-        }
         let fieldButtons:any = [];
         
         if(this.state.fieldShowing === undefined || this.state.fieldShowing){
             fieldButtons.push(<DropdownItem header>Field Showing</DropdownItem>);
 
-            this.state.fields.forEach((value:any, index:any)=>{
-                if(value['visibility'] !== undefined && !value['visibility']){
+            this.state.fields.forEach((values:any, index:any)=>{
+                if(values['visibility'] !== undefined && !values['visibility']){
                     fieldButtons.push(<DropdownItem onClick={()=>{
                         this.fieldShowing(index);
-                    }}><Input type="checkbox" defaultChecked={false}/>{value.label}</DropdownItem>);
+                    }}><Input type="checkbox" defaultChecked={false}/>{values.label}</DropdownItem>);
                 }else {
-                    fieldButtons.push(<DropdownItem onClick={()=>{
+                    fieldButtons.push(<DropdownItem onClick={(e)=>{
                         this.fieldShowing(index);
-                    }}><Input type="checkbox" defaultChecked={true}/>{value.label}</DropdownItem>);
+                    }}><Input type="checkbox" defaultChecked={true}/>{values.label}</DropdownItem>);
                 }
             });
         }
 
-        return (this.state.fieldOption !== undefined && this.state.fieldOption ? <ButtonDropdown isOpen={this.state.dropDownMenu[value.name]} toggle={()=>{this.toggleDropdown(value.name)}}>
+        return (this.state.fieldOption !== undefined && this.state.fieldOption ? <ButtonDropdown 
+                isOpen={this.state.dropDownMenu[value.name]} 
+                toggle={()=>{this.toggleDropdown(value.name)}}>
             <DropdownToggle caret>
             </DropdownToggle>
             <DropdownMenu right>
@@ -257,7 +256,7 @@ export default class Thead extends React.Component<TheadProps, TheadState> {
     }
 
     toggleDropdown(name:any){
-        this.state.dropDownMenu[name] = !this.state.dropDownMenu[name];
+        this.state.dropDownMenu[name] = (this.state.dropDownMenu[name] !== undefined ? !this.state.dropDownMenu[name] : true);
         this.forceUpdate(); 
     }
 
@@ -311,7 +310,7 @@ export default class Thead extends React.Component<TheadProps, TheadState> {
         filterContent = <ButtonDropdown isOpen={(this.state.filterShowing[data.name] !== undefined && this.state.filterShowing[data.name]) ? this.state.filterShowing[data.name] : false} toggle={()=>{this.filterToggle(data)}}>
                             <DropdownToggle><FaIcon code="fa-filter"/></DropdownToggle>
                             <DropdownMenu>
-                            <GetInput type={data.type} value={this.state.filterOption.value} onChange={(e:any)=>{
+                                <GetInput type={data.type} value={this.state.filterOption.value} onChange={(e:any)=>{
                                     this.filterData(data.name, e);
                                 }}/>
                                 <Button><FaIcon code="fa-search"/></Button>

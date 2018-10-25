@@ -78,7 +78,7 @@ export default class DataGridExample extends React.Component<any, any> {
             {name:'Delete', icon:'fa-trash', disabled:true, onClick:this.createButton.bind(this)}
         ];
         return (
-            <DataGrid store={this.state.store} toolbars={toolbar} fields={this.state.fields} pagination={true} pageShow={5} title={"Deneme"}/>
+            <DataGrid store={this.state.store} toolbars={toolbar} pageShow={2} fields={this.state.fields} pagination={true} title={"Deneme"}/>
         )
     }
 

@@ -6,6 +6,7 @@ export interface TbodyProps {
     onSelected?: any;
     multiSelect?: boolean;
     onDoubleSelected?: any;
+    select?: boolean | any;
 }
 export interface TbodyState {
     store: any;
@@ -14,6 +15,7 @@ export interface TbodyState {
     clickActiveRow?: Array<any> | any;
 }
 export default class Tbody extends React.Component<TbodyProps, TbodyState> {
+    static defaultProps: Partial<TbodyProps>;
     constructor(props: TbodyProps);
     UNSAFE_componentWillReceiveProps(props: TbodyProps): void;
     render(): JSX.Element;

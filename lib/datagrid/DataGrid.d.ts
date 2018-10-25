@@ -33,6 +33,7 @@ export interface DataGridProps {
     toolbars?: any;
     title?: any;
     fieldShowing?: any;
+    select?: boolean | any;
 }
 export interface DataGridState {
     store?: any;

@@ -28,7 +28,7 @@ import CheckInput from "./inputs/CheckInput";
 import ToggleButton from "./inputs/ToggleButton";
 import ColorInput from "./inputs/ColorInput";
 
-import DateInput from "./datepicker/DateInput";
+import DateInput from "./inputs/dateInput/DateInput";
 
 import AreaChart from "./chart/areachart/SimpleAreaChart";
 import BarChart from "./chart/barchart/BarChart";

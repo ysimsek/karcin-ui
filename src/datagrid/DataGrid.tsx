@@ -46,6 +46,8 @@ export interface DataGridProps {
 
     fieldShowing?:any;
 
+    select?:boolean | any;
+
 
 }
 
@@ -95,7 +97,7 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
                     ref={(e:any) => this.tbodyRef = e} {...this.props}/> 
                 <TableBody store={this.state.store} fields={this.state.fields} ref={(e) => this.tbodyRef = e} {...this.props}/>
                 
-                {(this.props.pagination !== undefined && !this.props.pagination ? <Footer store={this.props.store} fields={this.props.fields} {...this.props}></Footer> : '')}
+                {(this.props.pagination !== undefined && this.props.pagination ) ? <Footer store={this.props.store} fields={this.props.fields} {...this.props}></Footer> : ''}
             </div>
         </div>)
     }

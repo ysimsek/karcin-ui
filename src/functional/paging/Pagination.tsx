@@ -118,7 +118,7 @@ export default class Pagination extends React.Component<PaginationProps,any>{
     render():any{
         let cmp : any = <span/>;
         if(this.props.pageCount != undefined) {
-            cmp = <Page size={this.props.size}>
+            cmp = <Page onClick={this.handleChange.bind(this)} size={this.props.size}>
                 {this.props.type == "normal" ? this.renderPageFunctions(this.props.data,"normal") : (this.props.type == "simple" ? this.returnSimpleData(this.props.data) :"")}
             </Page>;
         }

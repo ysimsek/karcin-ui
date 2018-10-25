@@ -1,8 +1,11 @@
 "use strict";
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -11,37 +14,31 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var reactstrap_1 = require("reactstrap");
+var moment = require("moment");
 var karcin_ui_1 = require("karcin-ui");
-var DateInputExample = /** @class */ (function (_super) {
-    __extends(DateInputExample, _super);
-    function DateInputExample(props) {
+var DateInput = /** @class */ (function (_super) {
+    __extends(DateInput, _super);
+    function DateInput(props) {
         var _this = _super.call(this, props) || this;
         _this.state = {
-            value: null
+            date: moment(),
+            focused: false
         };
         return _this;
     }
-    DateInputExample.prototype.render = function () {
-        return (React.createElement(reactstrap_1.Row, null,
-            React.createElement(reactstrap_1.Col, { md: 4 },
-                React.createElement(karcin_ui_1.DateInput, { name: "value", label: "Focus DateInput", value: this.state.value, onChange: this.handleChange.bind(this) })),
-            React.createElement(reactstrap_1.Col, { md: 4 },
-                React.createElement(karcin_ui_1.DateInput, { name: "value2", label: "Inline DateInput", value: this.state.value2, inline: true, onChange: this.handleChange.bind(this) })),
-            React.createElement(reactstrap_1.Col, { md: 4 },
-                React.createElement(karcin_ui_1.DateInput, { name: "value2", label: "Time DatePicker", value: this.state.value2, showTime: true, timeFormat: "HH:mm", timeInterval: 15, dateFormat: "LLL", onChange: this.handleChange.bind(this) })),
-            React.createElement(reactstrap_1.Col, { md: 4 },
-                React.createElement(karcin_ui_1.DateInput, { name: "value3", label: "", value: this.state.value3, onChange: this.handleChange2.bind(this), showTimeSelect: true, showTimeSelectOnly: true, timeIntervals: 15, dateFormat: "LT", timeCaption: "Time" }))));
+    DateInput.prototype.render = function () {
+        return (React.createElement(karcin_ui_1.DateInput, null));
     };
-    DateInputExample.prototype.handleChange = function (e) {
-        var state = [];
-        state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
-        this.setState(state);
+    DateInput.prototype.toggleFocus = function () {
+        this.setState({
+            focused: !this.state.focused
+        });
     };
-    DateInputExample.prototype.handleChange2 = function (e) {
-        console.log(e);
+    DateInput.prototype.handleChange = function (data) {
+        var getDate = moment(data).format('DD.MM.YYYY');
+        debugger;
     };
-    return DateInputExample;
+    return DateInput;
 }(React.Component));
-exports.default = DateInputExample;
+exports.default = DateInput;
 //# sourceMappingURL=DateInputExample.js.map

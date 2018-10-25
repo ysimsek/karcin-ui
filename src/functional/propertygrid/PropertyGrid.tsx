@@ -10,7 +10,7 @@ import PasswordInput from "../../inputs/PasswordInput";
 import TextArea from "../../inputs/TextArea";
 import RadioInput from "../../inputs/RadioInput";
 import CheckInput from "../../inputs/CheckInput";
-import DateInput from "../../datepicker/DateInput";
+import DateInput from "../../inputs/dateInput/DateInput";
 import DataForm from "../../functional/dataform/DataForm";
 import Badge from "../../functional/badge/Badge"
 import FaIcon from "../faicon/FaIcon";

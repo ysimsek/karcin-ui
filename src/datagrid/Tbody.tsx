@@ -10,6 +10,7 @@ export interface TbodyProps {
     onSelected ?: any;
     multiSelect?:boolean;
     onDoubleSelected?:any;
+    select?:boolean | any;
 }
 
 export interface TbodyState {
@@ -22,6 +23,10 @@ export interface TbodyState {
 
 
 export default class Tbody extends React.Component<TbodyProps, TbodyState> {
+
+    static defaultProps:Partial<TbodyProps> = {
+        select: true
+    }
 
     constructor(props:TbodyProps){
         super(props);
@@ -102,7 +107,7 @@ export default class Tbody extends React.Component<TbodyProps, TbodyState> {
                     key={index}
                     className={(this.state.clickActive.indexOf(getId) !== -1) ? 'active' : ''}
                     onClick={(e) => {
-                        if(this.props.onSelected !== undefined){
+                        if(this.props.select){
                             this.onClickRow(e, getId, data[index])
                         }
                     }}

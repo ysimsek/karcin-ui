@@ -69,7 +69,7 @@ export default class Header extends React.Component<HeaderProps, any> {
         if (data !== undefined) {
             for (let i = 0; i < data.length; i++) {
                 let value = data[i];
-                buttons.push(<Button key={i} color="defaults"
+                buttons.push(<Button key={i} color="defaults" size="sm"
                                     disabled={(value.disabled !== undefined ? value.disabled : false)}
                                     onClick={() => {
                                         if (value.url !== undefined) {

@@ -57,5 +57,5 @@ export default class LocaleEndPoint extends BaseClass {
      * @param callback
      */
     filter(fieldName: any, value: any, operator: any, callback?: any): any;
-    paging(): any;
+    paging(pageData: any): any;
 }
