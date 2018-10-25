@@ -13,6 +13,7 @@ export default class TextAreaExample extends React.Component<any,any>{
             name={"textArea"}
             value={this.state.textArea}
             label={"TextArea Example"}
+            valid
             onChange={this.handleChange.bind(this)}
         />
     }
