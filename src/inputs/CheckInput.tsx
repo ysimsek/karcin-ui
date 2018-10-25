@@ -42,6 +42,10 @@ export interface CheckListProps{
      * Set the unique key
      */
     key ?: string | number;
+    /**
+     * Null or empty control
+     */
+    valid?:boolean | any;
 }
 
 export default class CheckInput extends React.Component<CheckListProps,any>{
@@ -65,18 +69,18 @@ export default class CheckInput extends React.Component<CheckListProps,any>{
      */
     render():any{
         let me:any = this;
+        let validColor:string = this.props.valid != undefined ? (this.props.valid != false ? (this.isValid() == false ? "red" : "") : "") : "";
         return <div className="karcin-input">
             {this.props.label != undefined ? <b>{this.props.label}</b> : ""}
-            <div className="list-group-item form-group">
-            {me.props.items != undefined ? this.returnItems() : this.returnItem()}
-            {this.isChecked = true}
-        </div>
+            <div className="list-group-item form-group" style={{borderColor:validColor}}>
+                {me.props.items != undefined ? this.returnItems() : this.returnItem()}
+                {this.isChecked = true}
+            </div>
         </div>
     }
 
     returnItems(){
         let me:any = this;
-
         return me.props.items.length > 0 ?
             me.props.items.map((value:any, i:number) => (
                 <div key={i}>
@@ -168,6 +172,20 @@ export default class CheckInput extends React.Component<CheckListProps,any>{
             }
             this.props.onChange(returnValue)
         })
+    }
+
+    isValid(){
+        //Kontrol true ise boş değil , false ise boş veya null
+        let control:boolean = true;
+        for(var item in this.state){
+            if(this.state[item] == false){
+                control = false;
+            }else if(this.state[item] == true){
+                control = true;
+                break;
+            }
+        }
+        return control;
     }
 
     /**

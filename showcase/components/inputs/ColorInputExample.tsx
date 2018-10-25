@@ -6,7 +6,7 @@ export default class ColorInputExample extends React.Component<any,any>{
     constructor(props:any){
         super(props);
         this.state = {
-            colorInput : "#ffaa11"
+            colorInput : null
         }
     }
     render(){
@@ -15,6 +15,7 @@ export default class ColorInputExample extends React.Component<any,any>{
                 name={"colorInput"}
                 label={"ColortInput Example"}
                 value={this.state.colorInput}
+                valid
                 onChange={this.handleChange.bind(this)}
             />
             <span><i>{this.state.colorInput}</i></span>

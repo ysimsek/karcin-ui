@@ -60,7 +60,10 @@ export interface ColorInputProps extends React.InputHTMLAttributes<HTMLInputElem
      * Returned props function
      */
     onChange?:any;
-    // validationDisplay: oneOf(["overlay", "block"])
+    /**
+     * Null or empty control
+     */
+    valid?:boolean | any;
 }
 
 
@@ -89,26 +92,23 @@ export default class ColorInput extends React.Component<ColorInputProps>{
 
 
     render(){
+        let validColor:string = this.props.valid != undefined ? (this.props.valid != false ? (this.isValid() == false ? "red" : "") : "") : "";
         //label için sağ sol üst seçenekleri konulsun, hatta button ile birlikte beraber kullanılabilir.
         let label = this.props.label != undefined ? <Label className={"label-properties"}>{this.props.label}</Label> : null;
         return <div className="karcin-input">{label}<Input
             {...this.props}
             onChange={this.___onChange.bind(this)}
+            style={{borderColor:validColor}}
         /></div>;
     }
 
-    isValid(value:any){
-        let name = this.props.name;
-        let control = Object.keys(this.state).length === 0 && this.state.constructor === Object;
-        let control2 = value === "" ? true : false;
-        control == false && control2 == false ? this.errorState =  "form-control" : this.errorState = "form-control error";
-        this.forceUpdate();
-        return control == true && control2 == false ? true : false;
-    }
-
-    emptyControl(value : any){
-        value != "" ?  this.errorState =  "form-control" : this.errorState = "form-control error";
-        this.forceUpdate()
+    isValid(){
+        //Kontrol true ise boş değil , false ise boş veya null
+        let control:boolean = true;
+        if(this.props.value == "" || this.props.value == null){
+            control = false;
+        }
+        return control;
     }
 
     ___onChange(e:any){
@@ -116,10 +116,6 @@ export default class ColorInput extends React.Component<ColorInputProps>{
         let state:any = {};
         state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
         this.setState(state);
-        //Boş mu değilmi kontrolü geri dönülüyor
-        //Boşsa true değilse false
-        //this.isValid(value) == true ? this.color = true : this.color = false;
-        this.emptyControl(value);
         this.props.onChange(e)
     }
 

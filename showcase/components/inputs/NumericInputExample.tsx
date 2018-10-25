@@ -14,6 +14,7 @@ export default class NumericInputExample extends React.Component<any,any>{
                 name={"numericInput"}
                 value={this.state.numericInput}
                 label={"NumericInput Example"}
+                valid
                 onChange={this.handleChange.bind(this)}
             />
             <span><i>{this.state.numericInput}</i></span>

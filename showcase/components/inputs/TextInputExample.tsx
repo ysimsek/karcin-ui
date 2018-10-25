@@ -12,8 +12,11 @@ export default class TextInputExample extends React.Component<any,any>{
     render(){
         return <div>
             <TextInput
+                ref={"text"}
                 name={"textInput"}
                 label={"TextInput Example"}
+                placeholder={"denemeee"}
+                valid
                 value={this.state.textInput}
                 onChange={this.handleChange.bind(this)}
             />
@@ -26,4 +29,5 @@ export default class TextInputExample extends React.Component<any,any>{
         state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
         this.setState(state);
     }
+
 }

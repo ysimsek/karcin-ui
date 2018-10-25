@@ -34,6 +34,10 @@ export interface NumericInputProps extends React.InputHTMLAttributes<HTMLInputEl
      * Return props function
      */
     onChange?: any;
+    /**
+     * Null or empty control
+     */
+    valid?:boolean | any;
 }
 
 
@@ -64,14 +68,25 @@ export default class NumericInput extends React.Component<NumericInputProps>{
      */
     render():any{
         let { ...newProps } = this.props;
+        let validColor:string = this.props.valid != undefined ? (this.props.valid != false ? (this.isValid() == false ? "red" : "") : "") : "";
         //todo: label için sağ sol üst seçenekleri konulsun, hatta button ile birlikte beraber kullanılabilir.
         //selectinput için yapıldı
         let label:any = this.props.label != null ? <Label className={"label-properties"}>{this.props.label}</Label> : "";
         return <div className="karcin-input">{label}<Input
             {...newProps}
             onChange={this.__onChange.bind(this)}
+            style={{borderColor:validColor}}
         />
         </div>;
+    }
+
+    isValid(){
+        //Kontrol true ise boş değil , false ise boş veya null
+        let control:boolean = true;
+        if(this.props.value == "" || this.props.value == null){
+            control = false;
+        }
+        return control;
     }
 
     /**

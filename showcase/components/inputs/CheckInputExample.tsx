@@ -21,14 +21,15 @@ export default class CheckInputExample extends React.Component<any,any>{
         }
     }
     render(){
-        return <div><CheckInput
-            items={this.data}
-            label={"Simple CheckInput Example"}
-            name = "data"
-            id={"id"}
-            value={"name"}
-            onChange={this.handleChange.bind(this)}
-        />
+        return <div>
+            <CheckInput
+                items={this.data}
+                label={"Simple CheckInput Example"}
+                name = "data"
+                id={"id"}
+                valid
+                value={"name"}
+                onChange={this.handleChange.bind(this)}/>
             <CheckInput
                 item={this.data[0]}
                 label={"Simple CheckInput Example2"}

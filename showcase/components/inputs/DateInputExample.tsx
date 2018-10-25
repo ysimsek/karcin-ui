@@ -14,7 +14,7 @@ export default class DateInputExample extends React.Component<any, any>{
     }
 
     render(){
-        return (<DateInput name="deniz" value={'23.01.2019'} onChange={(date:any)=>{this.handleChange(date);}}/>);
+        return (<DateInput name="deniz" value={'23.01.2019'} label={'Example DateInput'} onChange={(date:any)=>{this.handleChange(date);}}/>);
     }
 
     toggleFocus(){

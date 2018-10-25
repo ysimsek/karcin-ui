@@ -11,6 +11,8 @@ export interface DateInputProps {
     onChange?:any;
     label?:string | any;
     format?:string | any;
+    icon?:any;
+    id?:any;
 }
 
 export default class DateInput extends React.Component<DateInputProps, any>{
@@ -26,16 +28,24 @@ export default class DateInput extends React.Component<DateInputProps, any>{
 
         this.state = {
             value: (this.props.value !== undefined ? moment(this.props.value, this.props.format) : moment()),
-            focused: false
+            focused: false,
+            icon: this.props.icon
         }
     }
+
+
+    componentWillReceiveProps(props:any){
+        this.setState({
+            value:props.value
+        })
+    };
 
     render(){
         return (<div className={'karcin-dateInput'}>
             <div className="form-group">
             {(this.props.label !== undefined) ? <label>{this.props.label}</label> : ''}
             <SingleDatePicker
-                id="SingleDatePickerInput"
+                id={this.props.id}
                 date={this.state.value}
                 onDateChange={(e:any)=>{
                     this.handleChange(e);
@@ -43,8 +53,8 @@ export default class DateInput extends React.Component<DateInputProps, any>{
                 focused={this.state.focused}
                 onFocusChange={()=>{this.toggleFocus()}}
                 numberOfMonths={1}
-                showDefaultInputIcon={true}
-                customInputIcon={<FaIcon code={"fa-home"}/>}
+                showDefaultInputIcon={(this.state.icon !== undefined ? true : false)}
+                customInputIcon={(this.state.icon !== undefined ? this.state.icon : '')}
                 hideKeyboardShortcutsPanel={true}
             />
             </div>

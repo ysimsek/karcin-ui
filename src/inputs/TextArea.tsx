@@ -25,6 +25,10 @@ export interface TextAreaProps extends React.InputHTMLAttributes<HTMLInputElemen
      * Set the string title
      */
     label?: string | any;
+    /**
+     * Null or empty control
+     */
+    valid?:boolean | any;
 }
 
 
@@ -51,6 +55,7 @@ export default class TextArea extends React.Component<TextAreaProps,any>{
      * @returns {any}
      */
     render():any{
+        let validColor:string = this.props.valid != undefined ? (this.props.valid != false ? (this.isValid() == false ? "red" : "") : "") : "";
         return <div className="karcin-input">
             {this.props.label != undefined ? <Label className={"label-properties"}>{this.props.label}</Label> : null}
             <textarea
@@ -64,11 +69,19 @@ export default class TextArea extends React.Component<TextAreaProps,any>{
                 cols={this.props.properties.cols}
                 rows={this.props.properties.rows}
                 onChange={this.onChange.bind(this)}
+                style={{borderColor:validColor}}
             />
             </div>
     }
     onChange(e:any){
         this.props.onChange(e);
     }
-
+    isValid(){
+        //Kontrol true ise boş değil , false ise boş veya null
+        let control:boolean = true;
+        if(this.props.value == "" || this.props.value == null){
+            control = false;
+        }
+        return control;
+    }
 }
