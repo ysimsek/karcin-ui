@@ -4,7 +4,7 @@ import {Badge as BadgeX} from 'reactstrap';
 /**
  * Label Properties(interfaces)
  */
-export interface LabelProps {
+export interface BadgeProps {
     /**
      * Label body color
      */
@@ -26,12 +26,12 @@ export interface LabelProps {
 }
 
 
-export default class Badge extends React.Component<LabelProps,any>{
+export default class Badge extends React.Component<BadgeProps,any>{
     /**
      * Initial props value
      * @type {{color: string; size: number}}
      */
-    static defaultProps:Partial<LabelProps> ={
+    static defaultProps:Partial<BadgeProps> ={
         color:"light",
         size:14
     }

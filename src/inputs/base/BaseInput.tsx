@@ -8,6 +8,7 @@ export interface BaseInputProps extends React.InputHTMLAttributes<HTMLInputEleme
     onChange?:any;
     hidden?:boolean;
     disabled?:boolean;
+    isValid?:any;
 }
 
 
@@ -19,7 +20,16 @@ export default class BaseInput extends React.Component<BaseInputProps> {
     };
 
     render() {
-        return <input onChange={this.onChange.bind(this)} className="form-control" {...this.props} value={this.props.value || ''}/>;
+        return <input className="form-control" {...this.props} onChange={this.onChange.bind(this)} value={this.props.value || ''}/>;
+    }
+
+    isValid(){
+        //Kontrol true ise boş değil , false ise boş veya null
+        let control:boolean = true;
+        if(this.props.value == "" || this.props.value == null){
+            control = false;
+        }
+        return control;
     }
 
     onChange(e:any){

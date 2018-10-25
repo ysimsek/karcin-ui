@@ -1,6 +1,5 @@
 import * as React from "react";
 
-import  Button from "../../functional/button/Button";
 import DateInput from "../../datepicker/DateInput";
 import NumericInput from "../../inputs/NumericInput";
 import PasswordInput from "../../inputs/PasswordInput";

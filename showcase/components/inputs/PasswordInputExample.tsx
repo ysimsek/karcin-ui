@@ -15,6 +15,7 @@ export default class PasswordInputExample extends React.Component<any,any>{
                 name={"passwordInput"}
                 label={"PasswordInput Example"}
                 value={this.state.passwordInput}
+                valid
                 onChange={this.handleChange.bind(this)}
             />
             <span><i>{this.state.passwordInput}</i></span>
