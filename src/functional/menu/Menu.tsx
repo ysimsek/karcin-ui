@@ -243,7 +243,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
         });
 
         if (self.props.onChange !== undefined) {
-            let changeMenu = this.state.menuActive.slice(0);
+            let changeMenu = this.menuData.slice(0);
             let changeItem = changeMenu.filter((v: any) => v.keys === param.keys);
 
             if(this.state.changeActiveItem === null || this.state.changeActiveItem.keys !== changeItem[0].keys){

@@ -21,7 +21,7 @@ export interface DataGridProps extends DOMAttributes<any>{
     /**
      * Set the toolbar array models
      */
-    toolbar?: Array<any>;
+    toolbar?: Array<any> | any;
     /**
      * Set the selected data returned func
      */

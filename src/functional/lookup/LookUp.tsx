@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Button, Modal, ModalBody, ModalHeader, ModalFooter, Input, InputGroup, InputGroupAddon, InputGroupText} from 'reactstrap';
+import {Button, Modal, ModalBody, ModalHeader, ModalFooter, Input, InputGroup, InputGroupAddon} from 'reactstrap';
 import FaIcon from '../faicon/FaIcon';
 import BaseInput from '../../inputs/base/BaseInput';
 import DataGrid from '../datagrid/DataGrid';

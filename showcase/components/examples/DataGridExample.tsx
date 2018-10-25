@@ -71,9 +71,18 @@ export default class DataGridExample extends React.Component<any, any> {
     }
 
     render() {
-
+        
+        let toolbar = [
+            {name:'Create', icon:'fa-plus', disabled:false, onClick:this.createButton.bind(this)},
+            {name:'Edit', icon:'fa-edit', disabled:true, onClick:this.createButton.bind(this)},
+            {name:'Delete', icon:'fa-trash', disabled:true, onClick:this.createButton.bind(this)}
+        ];
         return (
-            <DataGrid store={this.state.store} fields={this.state.fields} pagination={true} pageShow={5} title="Example DataGrid"/>
+            <DataGrid store={this.state.store} toolbars={toolbar} fields={this.state.fields} pagination={true} pageShow={5} title={"Deneme"}/>
         )
+    }
+
+    createButton(){
+        debugger;
     }
 }
