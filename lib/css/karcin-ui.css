@@ -1868,7 +1868,7 @@ button-square-to-radius {
     width: calc(100% - 40px);
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;}
+    white-space: nowrap}
 .karcin-datagrid .datagrid-table .datagrid-head tr th .right-option .btn-group {position: static;}
 .karcin-datagrid .datagrid-table .datagrid-head tr th .right-option .btn-group .btn {
     padding: 6px 8px;
@@ -1976,4 +1976,66 @@ button-square-to-radius {
     position: relative;
     margin: 0;
     margin-right: 5px;
+}
+
+.karcin-dateInput .SingleDatePicker {
+    width: 100%;
+    position: relative;
+}
+.karcin-dateInput .SingleDatePickerInput_calendarIcon {
+    background: 0 0;
+    border: 0;
+    color: inherit;
+    font: inherit;
+    line-height: normal;
+    overflow: visible;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 5px 8px;
+    font-size: 20px;
+    color: #656161;
+    margin: 0;
+    position: absolute;
+    right: 2px;
+    top: 0px;
+    z-index: 999;
+    pointer-events: none;
+}
+
+.karcin-dateInput .SingleDatePickerInput__withBorder {
+    border-radius: 3px;
+    width: 100%;
+    border:0;
+}
+
+.karcin-dateInput .DateInput_input {
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.karcin-dateInput .CalendarDay__selected, .CalendarDay__selected:active, .CalendarDay__selected:hover {
+    background: #80bdff;
+    border: 1px double #80bdff;
+    color: #fff;
+}
+
+.karcin-dateInput .DateInput_input:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.karcin-dateInput .DateInput {
+    width: 100%;
 }

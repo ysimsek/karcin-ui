@@ -21,6 +21,10 @@ export interface TextAreaProps extends React.InputHTMLAttributes<HTMLInputElemen
      * Set the string title
      */
     label?: string | any;
+    /**
+     * Null or empty control
+     */
+    valid?: boolean | any;
 }
 export default class TextArea extends React.Component<TextAreaProps, any> {
     /**
@@ -38,4 +42,5 @@ export default class TextArea extends React.Component<TextAreaProps, any> {
      */
     render(): any;
     onChange(e: any): void;
+    isValid(): boolean;
 }

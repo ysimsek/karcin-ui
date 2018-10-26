@@ -228,7 +228,7 @@ export default class Thead extends React.Component<TheadProps, TheadState> {
                         this.fieldShowing(index);
                     }}><Input type="checkbox" defaultChecked={false}/>{values.label}</DropdownItem>);
                 }else {
-                    fieldButtons.push(<DropdownItem onClick={(e)=>{
+                    fieldButtons.push(<DropdownItem onClick={()=>{
                         this.fieldShowing(index);
                     }}><Input type="checkbox" defaultChecked={true}/>{values.label}</DropdownItem>);
                 }

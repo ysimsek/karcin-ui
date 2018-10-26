@@ -8,13 +8,13 @@ export default class DateInputExample extends React.Component<any, any>{
         super(props);
 
         this.state = {
-            date: moment(),
+            date: new Date(),
             focused: false
         }
     }
 
     render(){
-        return (<DateInput name="deniz" value={'23.01.2019'} label={'Example DateInput'} onChange={(date:any)=>{this.handleChange(date);}}/>);
+        return (<DateInput name="deniz" value={this.state.date} label={'Example DateInput'} onChange={(date:any)=>{this.handleChange(date);}}/>);
     }
 
     toggleFocus(){
@@ -24,6 +24,8 @@ export default class DateInputExample extends React.Component<any, any>{
     }
 
     handleChange(data:any){
-        debugger;
+        this.setState({
+            date: data.target.value
+        })
     }
 }

@@ -28,6 +28,11 @@ export interface TextInputProps extends React.InputHTMLAttributes<HTMLInputEleme
      * Returned props function
      */
     onChange?: any;
+    /**
+     * Null or empty control
+     */
+    valid?: boolean | any;
+    ref?: string;
 }
 export default class TextInput extends React.Component<TextInputProps> {
     /**
@@ -44,4 +49,5 @@ export default class TextInput extends React.Component<TextInputProps> {
      * @returns {any}
      */
     render(): any;
+    isValid(): boolean;
 }

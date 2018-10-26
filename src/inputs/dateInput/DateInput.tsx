@@ -6,11 +6,11 @@ import 'react-dates/lib/css/_datepicker.css';
 import FaIcon from '../../functional/faicon/FaIcon';
 
 export interface DateInputProps {
-    name:string | any;
-    value?:string |any;
+    name:any;
+    value?:any;
     onChange?:any;
-    label?:string | any;
-    format?:string | any;
+    label?:any;
+    format?:any;
     icon?:any;
     id?:any;
 }
@@ -36,14 +36,14 @@ export default class DateInput extends React.Component<DateInputProps, any>{
 
     componentWillReceiveProps(props:any){
         this.setState({
-            value:props.value
+            value:moment(props.value, this.state.format)
         })
     };
 
     render(){
         return (<div className={'karcin-dateInput'}>
             <div className="form-group">
-            {(this.props.label !== undefined) ? <label>{this.props.label}</label> : ''}
+            {(this.props.label !== undefined) ? <label className={'label-properties'}>{this.props.label}</label> : ''}
             <SingleDatePicker
                 id={this.props.id}
                 date={this.state.value}
@@ -68,10 +68,10 @@ export default class DateInput extends React.Component<DateInputProps, any>{
     }
 
     handleChange(data:any){
-        let getDate = moment(data).format(this.props.format);
+        let getDate:any = moment(data, this.props.format);
 
         let datas:any = {};
-        datas['target'] = {'name': this.props.name, value:getDate};
+        datas['target'] = {'name': this.props.name, value:new Date(getDate)};
 
         if(this.props.onChange !== undefined){
             this.props.onChange(datas);

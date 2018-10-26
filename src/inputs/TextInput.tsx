@@ -76,7 +76,7 @@ export default class TextInput extends React.Component<TextInputProps>{
         //Kontrol true ise boş değil , false ise boş veya null
         let control:boolean = true;
         if(this.props.value == "" || this.props.value == null){
-            control = false;
+            control = false; 
         }
         return control;
     }

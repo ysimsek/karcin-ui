@@ -40,6 +40,10 @@ export interface CheckListProps {
      * Set the unique key
      */
     key?: string | number;
+    /**
+     * Null or empty control
+     */
+    valid?: boolean | any;
 }
 export default class CheckInput extends React.Component<CheckListProps, any> {
     state: any;
@@ -75,6 +79,7 @@ export default class CheckInput extends React.Component<CheckListProps, any> {
      * @param value
      */
     onChange(key: any, value: any): void;
+    isValid(): boolean;
     /**
      * Return the selectedData
      * @param idx

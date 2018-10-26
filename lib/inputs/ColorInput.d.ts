@@ -57,6 +57,10 @@ export interface ColorInputProps extends React.InputHTMLAttributes<HTMLInputElem
      * Returned props function
      */
     onChange?: any;
+    /**
+     * Null or empty control
+     */
+    valid?: boolean | any;
 }
 export default class ColorInput extends React.Component<ColorInputProps> {
     /**
@@ -68,7 +72,6 @@ export default class ColorInput extends React.Component<ColorInputProps> {
     errorState: string;
     color: boolean;
     render(): JSX.Element;
-    isValid(value: any): boolean;
-    emptyControl(value: any): void;
+    isValid(): boolean;
     ___onChange(e: any): void;
 }

@@ -2,7 +2,7 @@ import * as React from "react";
 /**
  * Label Properties(interfaces)
  */
-export interface LabelProps {
+export interface BadgeProps {
     /**
      * Label body color
      */
@@ -21,12 +21,12 @@ export interface LabelProps {
     onClick: any;
     id?: any;
 }
-export default class Badge extends React.Component<LabelProps, any> {
+export default class Badge extends React.Component<BadgeProps, any> {
     /**
      * Initial props value
      * @type {{color: string; size: number}}
      */
-    static defaultProps: Partial<LabelProps>;
+    static defaultProps: Partial<BadgeProps>;
     /**
      * Initial props
      * @param props

@@ -31,6 +31,10 @@ export interface NumericInputProps extends React.InputHTMLAttributes<HTMLInputEl
      * Return props function
      */
     onChange?: any;
+    /**
+     * Null or empty control
+     */
+    valid?: boolean | any;
 }
 export default class NumericInput extends React.Component<NumericInputProps> {
     /**
@@ -47,6 +51,7 @@ export default class NumericInput extends React.Component<NumericInputProps> {
      * @returns {any}
      */
     render(): any;
+    isValid(): boolean;
     /**
      * number control
      * @param e

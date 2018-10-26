@@ -11,6 +11,10 @@ export interface PasswordInputProps extends React.InputHTMLAttributes<HTMLInputE
     hidden?: boolean;
     className?: any;
     onChange?: any;
+    /**
+     * Null or empty control
+     */
+    valid?: boolean | any;
 }
 /**
  * Varsayılan olarak * işareti var istenilen sembolle geri dönülsün.
@@ -30,4 +34,5 @@ export default class PasswordInput extends React.Component<PasswordInputProps> {
      * @returns {any}
      */
     render(): any;
+    isValid(): boolean;
 }
