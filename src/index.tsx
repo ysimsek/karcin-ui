@@ -63,6 +63,8 @@ import FileUpload from './functional/fileUpload/FileUpload';
 
 import PropertyGrid from "./functional/propertygrid/PropertyGrid";
 import Applications from "./applications/Applications";
+import I18N from "./internalization/I18N";
+import I18NProvider from "./internalization/I18NProvider";
 
 import "./css/karcin-ui.css";
 
@@ -103,6 +105,8 @@ export {
     MapChart,
     LineChart,
     LineChart2,
+    I18N,
+    I18NProvider,
     PieChart,
     ScatterChart,
     MicroChart,

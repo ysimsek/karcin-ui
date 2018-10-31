@@ -26,7 +26,7 @@ export default class FaIconExample extends React.Component<any, any> {
     getFaIconList(iconList:any){
         let component = [];
         iconList.fields.map((icon,idx)=>{
-            component.push( <FaIcon code={icon} key={icon}
+            component.push( <FaIcon code={icon} key={idx+icon}
                                     onClick={this.onClick.bind(this)}
             ></FaIcon>)
         })
@@ -34,7 +34,7 @@ export default class FaIconExample extends React.Component<any, any> {
         component.push(<hr/>);
 
         iconList.fields2.map((icon,idx)=>{
-            component.push( <FaIcon id={icon} code={icon} key={icon}
+            component.push( <FaIcon id={icon} code={icon} key={idx+icon}
                                     onClick={this.onClick.bind(this)}
             ></FaIcon>)
         })

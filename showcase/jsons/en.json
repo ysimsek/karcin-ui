@@ -1,0 +1,20 @@
+{
+  "name":"en",
+  "message": {
+    "title.component": "Components",
+    "title.doc":"Docs",
+    "title.sample":"Samples",
+    "title.about":"About",
+    "title.language":"Language",
+    "title.en":"English",
+    "title.tr":"Turkish",
+    "home.message":"Showcase",
+    "home.started":"Get Started",
+    "home.npm":"Install karcin-ui and peer dependencies via NPM",
+    "home.npm2":"Import the components you need",
+    "home.buildDate":"Build Date",
+    "or":"or",
+    "and":"and",
+    "example":"Example"
+  }
+}

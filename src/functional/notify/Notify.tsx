@@ -84,7 +84,7 @@ class Notify extends React.Component<any,any>{
      * * * * bottom-left,bottom-right,bottom-center
      * @returns {any}
      */
-    static success = (data:any ):any =>{
+    static success = (data:object | any):any =>{
         Notify.renderScreenData(data);
         let autoClose = Notify.time == false ? false : Notify.time*1000;
         // let position =

@@ -355,6 +355,16 @@
       "description":""
     },
     {
+      "id":5,
+      "name":"i18n",
+      "title":"Internationalization",
+      "icon":"fa-upload",
+      "href":"#/Components/I18N",
+      "samples":"components/examples/I18nExample",
+      "library":"application/I18NProvider",
+      "description":""
+    },
+    {
       "id":4,
       "name":"charts",
       "title":"Charts",
