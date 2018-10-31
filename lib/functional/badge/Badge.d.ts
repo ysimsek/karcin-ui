@@ -36,4 +36,5 @@ export default class Badge extends React.Component<BadgeProps, any> {
      * @returns {any}
      */
     render(): any;
+    onClick(e: any): void;
 }

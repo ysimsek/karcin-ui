@@ -1,10 +1,8 @@
 import* as  React from "react";
 import {addLocaleData, FormattedDate, FormattedMessage, FormattedNumber, FormattedTime, IntlProvider, intlShape} from "react-intl";
-const tr = require("./files/TR.json");
-const en = require("./files/EN.json");
 
-import * as trLocalData from "react-intl/locale-data/tr";
-import * as enLocalData from "react-intl/locale-data/en";
+const trLocalData =require("react-intl/locale-data/tr");
+const enLocalData =require("react-intl/locale-data/en");
 
 addLocaleData([...trLocalData, ...enLocalData]);
 
