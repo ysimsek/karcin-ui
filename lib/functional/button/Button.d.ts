@@ -29,6 +29,11 @@ export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
     style?: React.CSSProperties;
     cssModule?: CSSModule;
     async?: boolean;
+    icon?: string;
+    /**
+     * left,right
+     */
+    iconALign?: string;
 }
 export default class Button extends React.Component<any, ButtonProps> {
     /**

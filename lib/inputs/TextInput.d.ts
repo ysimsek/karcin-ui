@@ -34,7 +34,7 @@ export interface TextInputProps extends React.InputHTMLAttributes<HTMLInputEleme
     valid?: boolean | any;
     ref?: string;
 }
-export default class TextInput extends React.Component<TextInputProps> {
+export default class TextInput extends React.Component<TextInputProps, any> {
     /**
      * Initial props value
      * @type {{disabled: boolean; readOnly: boolean; hidden: boolean; label: string; type: string}}
@@ -49,5 +49,6 @@ export default class TextInput extends React.Component<TextInputProps> {
      * @returns {any}
      */
     render(): any;
+    toggle(e: any): void;
     isValid(): boolean;
 }
