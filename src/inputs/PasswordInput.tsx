@@ -49,10 +49,10 @@ export default class PasswordInput extends React.Component<PasswordInputProps>{
      * @returns {any}
      */
     render():any{
-        let validColor:string = this.props.valid != undefined ? (this.props.valid != false ? (this.isValid() == false ? "red" : "") : "") : "";
+        let validColor:string = this.props.valid != undefined ? (this.props.valid != false ? (this.isValid() == false ? " is-invalid" : "") : "") : "";
         //todo :label için sağ sol üst seçenekleri konulsun, hatta button ile birlikte beraber kullanılabilir.
         let label = this.props.label != "" ? <Label className={"label-properties"}>{this.props.label}</Label> : null;
-        return <div className="karcin-input">{label}<Input {...this.props} style={{borderColor:validColor}}/></div>;
+        return <div className="karcin-input">{label}<Input {...this.props} className={validColor} style={{borderColor:validColor}}/></div>;
     }
     isValid(){
         //Kontrol true ise boş değil , false ise boş veya null
