@@ -1,5 +1,5 @@
 import* as  React from "react";
-import {Panel,I18N, I18NProvider,SelectInput} from "karcin-ui";
+import {Panel,i18n,SelectInput} from "karcin-ui";
 
 let langConfig = {
     tr: {
@@ -26,7 +26,7 @@ export default class I18nExample extends React.Component<any,any> {
         }
     }
     render() {
-        let language = langConfig[this.state.language];
+        i18n.addLanguageData(langConfig[this.state.language]);
         return <div>
             <SelectInput
                 name="language"
@@ -39,11 +39,9 @@ export default class I18nExample extends React.Component<any,any> {
                 ]}
                 onChange={this.selectOnChange.bind(this)}/>
 
-            <I18NProvider language={language}>
-                 <Panel title={<I18N id={"title"}/>}>
-                    <I18N id={"panel"}/>
+                 <Panel title={i18n.message("title")}>
+                     {i18n.message("panel")}
                 </Panel>
-            </I18NProvider>
         </div>
     }
 

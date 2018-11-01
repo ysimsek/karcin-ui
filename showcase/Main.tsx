@@ -10,18 +10,17 @@ import { Container, Row, Col, Collapse,
     DropdownToggle,
     DropdownMenu,
     DropdownItem} from 'reactstrap';
-import {FaIcon,I18N,I18NProvider} from "karcin-ui";
+import {FaIcon,i18n} from "karcin-ui";
 import HomePage from "./HomePage";
 import { HashRouter as Router, Route, Link, browserHistory, Switch } from "react-router-dom";
 import Components from "./Components";
 import Docs from "./Docs";
 import NotFound from "./NotFound";
-import {IntlProvider, FormattedMessage,addLocaleData} from 'react-intl';
 const tr = require("./jsons/tr.json");
 const en = require("./jsons/en.json");
 
 
-const lang = {
+const language = {
     tr: tr,
     en:en
 };
@@ -68,8 +67,8 @@ export default class Main extends React.Component<any, any> {
     }
 
     render() {
+        i18n.addLanguageData(language[this.state.lang]);
         return (
-                <I18NProvider language={lang[this.state.lang]}>
                     <div id="showcase-content">
                         <Navbar className={`main-menu ${(window.location.hash == "#/")?"active-menu":""}`} expand="md">
                             <div className="header-logo">
@@ -90,22 +89,22 @@ export default class Main extends React.Component<any, any> {
                                 <Nav className="ml-auto" navbar>
                                     <NavItem>
                                         <NavLink href="#Components">
-                                            <I18N id="title.component"/>
+                                            {i18n.message("title.component")}
                                         </NavLink>
                                     </NavItem>
                                     <NavItem>
                                         <NavLink href="#Docs">
-                                            <I18N id="title.doc"/>
+                                            {i18n.message("title.doc")}
                                         </NavLink>
                                     </NavItem>
                                     <NavItem>
                                         <NavLink href="#Samples">
-                                            <I18N id="title.sample"/>
+                                            {i18n.message("title.sample")}
                                         </NavLink>
                                     </NavItem>
                                     <NavItem>
                                         <NavLink href="#About">
-                                            <I18N id="title.about"/>
+                                            {i18n.message("title.about")}
                                         </NavLink>
                                     </NavItem>
                                     <NavItem>
@@ -113,14 +112,14 @@ export default class Main extends React.Component<any, any> {
                                     </NavItem>
                                     <UncontrolledDropdown nav inNavbar>
                                         <DropdownToggle nav caret>
-                                            <I18N id="title.language"/>
+                                            {i18n.message("title.language")}
                                         </DropdownToggle>
                                         <DropdownMenu right={true}>
                                             <DropdownItem onClick={this.langChange.bind(this,"tr")}>
-                                                <I18N id="title.tr"/>
+                                                {i18n.message("title.tr")}
                                             </DropdownItem>
                                             <DropdownItem onClick={this.langChange.bind(this,"en")}>
-                                                <I18N id="title.en"/>
+                                                {i18n.message("title.en")}
                                             </DropdownItem>
                                         </DropdownMenu>
                                     </UncontrolledDropdown>
@@ -147,7 +146,6 @@ export default class Main extends React.Component<any, any> {
                             </Container>
                         </div>
                     </div>
-                </I18NProvider>
             );
     }
 

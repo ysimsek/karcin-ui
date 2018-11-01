@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Container} from "reactstrap";
-export default class NotFound extends React.Component<any, any> {
+export default class NotFound extends React.Component {
 
     render() {
         return <Container className="content-page">

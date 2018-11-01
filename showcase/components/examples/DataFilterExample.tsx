@@ -19,75 +19,75 @@ export default class DataFilterExample extends React.Component<any, any> {
     render() {
         let field = [
             {
-                "labels": "Id",
-                "types": "number",
-                "names": "id"
+                "label": "Id",
+                "type": "number",
+                "name": "id"
             },
             {
-                "labels": "Name",
-                "types": "string",
-                "names": "name"
+                "label": "Name",
+                "type": "string",
+                "name": "name"
             },
             {
-                "labels": "Surname",
-                "types": "string",
-                "names": "surname"
+                "label": "Surname",
+                "type": "string",
+                "name": "surname"
             },
             {
-                "labels": "E-Mail",
-                "types": "string",
-                "names": "email"
+                "label": "E-Mail",
+                "type": "string",
+                "name": "email"
             },
             {
-                "labels": "Password",
-                "types": "password",
-                "names": "password"
+                "label": "Password",
+                "type": "password",
+                "name": "password"
             },
             {
-                "labels": "Birthdate",
-                "types": "date",
-                "names": "birthdate"
+                "label": "Birthdate",
+                "type": "date",
+                "name": "birthdate"
             },
             {
-                "labels": "Job Title",
-                "types": "select",
-                "names": "job",
+                "label": "Job Title",
+                "type": "select",
+                "name": "job",
                 "items": [
                     {
-                        names: "sd",
-                        labels: "Software Developer"
+                        name: "sd",
+                        label: "Software Developer"
                     },
                     {
-                        names: "sa",
-                        labels: "Software Architect"
+                        name: "sa",
+                        label: "Software Architect"
                     }
                 ]
             },
             {
-                "labels": "Gender",
-                "types": "radio",
-                "names": "gender",
-                "items": [
+                "label": "Gender",
+                "type": "radio",
+                "name": "gender",
+                "item": [
                     {
-                        names: "male",
-                        labels: "Male"
+                        name: "male",
+                        label: "Male"
                     },
                     {
-                        names: "female",
-                        labels: "Female"
+                        name: "female",
+                        label: "Female"
                     }
                 ]
             }
         ];
 
         return <div>
-            <DataFilter field={field} label="Data Filter Example" labelFieldName="labels" nameFieldName="names" typeFieldName="types" onChange={(e)=>{
+            <DataFilter field={field} label="Data Filter Example" labelFieldName="label" nameFieldName="name" typeFieldName="type" onChange={(e)=>{
                 this.getList(e);
             }}/>
             <div style={{marginTop:20}}>
                 {(this.state.writeCode.data.length > 0) ? <Highlight className='json' innerHtml={true}>{JSON.stringify(this.state.writeCode.data)}</Highlight> : ''}
             </div>
-            
+
         </div>;
     }
 
@@ -97,7 +97,7 @@ export default class DataFilterExample extends React.Component<any, any> {
             let itemVal:any[] = [];
 
             value.forEach((val:any)=>{
-                itemVal.push(val.labels);
+                itemVal.push(val.label);
             });
             getList.push(itemVal);
         });

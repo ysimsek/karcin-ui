@@ -41,7 +41,7 @@ export interface TextInputProps extends React.InputHTMLAttributes<HTMLInputEleme
 
 
 
-export default class TextInput extends React.Component<TextInputProps>{
+export default class TextInput extends React.Component<TextInputProps,any>{
 
     /**
      * Initial props value
@@ -60,6 +60,9 @@ export default class TextInput extends React.Component<TextInputProps>{
      */
     constructor(props:any){
         super(props);
+        this.state = {
+            show : true
+        }
     }
 
     /**
@@ -69,7 +72,14 @@ export default class TextInput extends React.Component<TextInputProps>{
         let validColor:string = this.props.valid != undefined ? (this.props.valid != false ? (this.isValid() == false ? " is-invalid" : "") : "") : "";
         //label için sağ sol üst seçenekleri konulsun, hatta button ile birlikte beraber kullanılabilir.
         let label = this.props.label != undefined ? <Label className={"label-properties"}>{this.props.label}</Label> : null;
-        return <div className={"karcin-input"}>{label}<Input {...this.props} className={validColor}/></div>;
+        return <div className={"karcin-input"}>
+                {label}
+                <Input {...this.props} className={validColor}/>
+        </div>;
+    }
+
+    toggle(e:any){
+        this.setState({show:!this.state.show});
     }
 
     isValid(){

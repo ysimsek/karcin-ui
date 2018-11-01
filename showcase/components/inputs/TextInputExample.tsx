@@ -15,7 +15,7 @@ export default class TextInputExample extends React.Component<any,any>{
                 ref={"text"}
                 name={"textInput"}
                 label={"TextInput Example"}
-                placeholder={"denemeee"}
+                placeholder={"Lütfen text giriniz"}
                 valid
                 value={this.state.textInput}
                 onChange={this.handleChange.bind(this)}

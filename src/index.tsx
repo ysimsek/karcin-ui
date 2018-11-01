@@ -63,9 +63,7 @@ import FileUpload from './functional/fileUpload/FileUpload';
 
 import PropertyGrid from "./functional/propertygrid/PropertyGrid";
 import Applications from "./applications/Applications";
-import I18N from "./internalization/I18N";
-import I18NProvider from "./internalization/I18NProvider";
-
+import i18n from "./i18n/i18n";
 import "./css/karcin-ui.css";
 
 export {
@@ -105,14 +103,13 @@ export {
     MapChart,
     LineChart,
     LineChart2,
-    I18N,
-    I18NProvider,
     PieChart,
     ScatterChart,
     MicroChart,
     GaugeChart,
     CylinderChart,
     PyramidChart,
+    i18n,
     LineChartTrend,
     DynamicChart,
     Store,
