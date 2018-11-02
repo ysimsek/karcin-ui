@@ -59,7 +59,8 @@ export default class NotifyExample extends React.Component<any,any>{
                     <Button name={"error"} color="danger" outline onClick={this.error.bind(this)}>Error</Button>{' '}
                     <Button name={"info"} color="info" outline onClick={this.info.bind(this)}>Info</Button>{' '}
                     <Button name={"custom"} color="secondary" outline onClick={this.custom.bind(this)}>Custom modified</Button>{' '}
-                    <Button name={"all"} color={"success"} outline onClick={this.all.bind(this)}>All notify</Button>
+                    <Button name={"all"} color={"success"} outline onClick={this.all.bind(this)}>All notify</Button>{' '}
+                    <Button color="dark" outline onClick={this.successDefault.bind(this)}>Default Message</Button>{' '}
                 </div>
             </div>
             <hr/>
@@ -86,7 +87,9 @@ export default class NotifyExample extends React.Component<any,any>{
     all(e){
         Notify.notify({message:this.state.message,position:this.state.position,time:this.state.second})
     }
-
+    successDefault(e){
+        Notify.success("Only just message : "+ this.state.message)
+    }
     selectOnChange(e){
         let name = e.target.name;
         let state = [];
