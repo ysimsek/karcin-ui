@@ -362,7 +362,7 @@ span.opt {
     font-size: 14px;
     border-bottom: solid 1px #e8e8e8;
     font-weight: 600;
-    margin-top: 60px;
+    margin-top: 20px;
     margin-bottom: 20px;
     padding-bottom: 7px;
     clear: both;
@@ -405,3 +405,6 @@ span.opt {
     top: -1px;
     height: 600px;
 }
+
+
+
