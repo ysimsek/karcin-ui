@@ -9,14 +9,17 @@ import Header from './Header';
 import Footer from './Footer'; 
 
 export interface DataGridProps {
+
     /**
      * Set the array data
      */
     store?: any;
+
     /**
      * Set the data array models
      */
     fields?: Array<any>;
+
     /**
      * Set the selected data returned func
      */
@@ -26,10 +29,12 @@ export interface DataGridProps {
      * multi select 
      */
     onDoubleSelected?:any;
+
      /**
       * multi selected option
       */
      multiSelect?:boolean;
+
      /**
      * pagination control
      */
@@ -40,14 +45,30 @@ export interface DataGridProps {
      */
     pageShow?: number | any;
 
+    /**
+     * header toolbars
+     */
     toolbars?:any;
 
+    /**
+     * header title
+     */
     title?:any;
 
+    /**
+     * column option menu showing
+     */
     fieldShowing?:any;
 
+    /**
+     * row menu select
+     */
     select?:boolean | any;
 
+    /**
+     * context menu 
+     */
+    rowContextData?:any;
 
 }
 
@@ -63,10 +84,8 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
     }
 
     tbodyRef:any = null;
-
     constructor(props:DataGridProps){
         super(props);
-
         this._init(props);
 
         this.props.store.__callback = () => {

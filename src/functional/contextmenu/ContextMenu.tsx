@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {NavLink, Dropdown, DropdownMenu, DropdownToggle, UncontrolledDropdown, DropdownItem} from 'reactstrap';
+import {NavLink, Dropdown, DropdownMenu} from 'reactstrap';
 import FaIcon from '../faicon/FaIcon';
 import '../../css/karcin-ui.css';
 

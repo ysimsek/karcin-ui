@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import TypeFormating from '../applications/TypeFormating';
 const { Scrollbars } = require('react-custom-scrollbars');
 import BaseClass from '../applications/BaseClass';
+import ContextMenu from '../functional/contextmenu/ContextMenu';
 
 export interface TbodyProps {
     store: any;
@@ -11,6 +12,7 @@ export interface TbodyProps {
     multiSelect?:boolean;
     onDoubleSelected?:any;
     select?:boolean | any;
+    rowContextData?:any;
 }
 
 export interface TbodyState {
@@ -67,7 +69,6 @@ export default class Tbody extends React.Component<TbodyProps, TbodyState> {
                     getId = parseInt(value.id);
                 }
 
-
                 let Cell:any = [];
                 this.state.fields.forEach((values:any, indexes:number) => {
 
@@ -78,7 +79,6 @@ export default class Tbody extends React.Component<TbodyProps, TbodyState> {
                     }else {
                         fieldValData = value[values.name];
                     }
-
 
                     new TypeFormating({
                         data: fieldValData,
@@ -106,6 +106,7 @@ export default class Tbody extends React.Component<TbodyProps, TbodyState> {
                 Rows.push(<tr 
                     key={index}
                     className={(this.state.clickActive.indexOf(getId) !== -1) ? 'active' : ''}
+                    id={('row' + index)}
                     onClick={(e) => {
                         if(this.props.select){
                             this.onClickRow(e, getId, data[index])
@@ -116,7 +117,7 @@ export default class Tbody extends React.Component<TbodyProps, TbodyState> {
                         this.props.onDoubleSelected(data[index]);
                       }
                   }}
-                  >{Cell}</tr>);
+                  >{Cell}{(this.props.rowContextData !== undefined) ? <ContextMenu id={'row' + index} data={this.props.rowContextData}></ContextMenu> : ''}</tr>);
 
             });
 
