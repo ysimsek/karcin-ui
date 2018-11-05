@@ -32,15 +32,23 @@ export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
     style?: React.CSSProperties;
     cssModule?: CSSModule;
     async ?:boolean;
+    icon ?: string;
+    /**
+     * left,right
+     */
+    iconALign ?:string;
 }
 // 'HelloProps' describes the shape of props.
 // State is never set so we use the '{}' type.
 
 export default class Button extends React.Component<any,ButtonProps> {
+
+
     /**
      * @returns {any}
      */
     render():any {
+        this.props.iconAlign
         return <Buttonx {...this.props}>{this.props.children}<FaIcon code={this.props.icon}/></Buttonx>
     }
 

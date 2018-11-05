@@ -67,7 +67,7 @@ export default class FaIcon extends React.Component<FaIconProps> {
         const { fixed, code, size, ...props } = this.props;
         let iconS :any = Icons;
         return this.props.code != undefined ? (this.props.code.split("-").length >= 2 ?
-            <i {...props} id={this.props.id} className={className+ " "+color} aria-hidden="true" onClick={this.onClick.bind(this)} />
+            <i {...(props.spin != undefined ? delete props.spin : props)} id={this.props.id} className={className+ " "+color} aria-hidden="true" onClick={this.onClick.bind(this)} />
             : <span onClick={this.onClick.bind(this)}>
                 <FontAwesomeIcon className={color} {...props} size={this.getSizeProp(this.props.size)} spin={this.props.spin} icon={iconS[this.props.code]}/></span>) : null;
     }

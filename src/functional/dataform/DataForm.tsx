@@ -1,8 +1,8 @@
 import * as React from "react";
 import  Button from "../../functional/button/Button";
-import DateInput from "../../inputs/dateInput/DateInput"; 
+import DateInput from "../../inputs/dateInput/DateInput";
 import NumericInput from "../../inputs/NumericInput";
-import PasswordInput from "../../inputs/PasswordInput"; 
+import PasswordInput from "../../inputs/PasswordInput";
 import SelectInput from "../../inputs/selectInput/SelectInput";
 import ColorInput from "../../inputs/ColorInput";
 import TextInput from "../../inputs/TextInput";
@@ -107,6 +107,7 @@ export default class DataForm extends React.Component<DataFormProps,any>{
             name={value[this.props.nameText]}
             label={this.props.label != false ? value[this.props.labelText] : undefined}
             value={this.state[value[this.props.nameText]]}
+            valid={value.isRequired != undefined ? value.isRequired : undefined}
             onChange={this.handleChange.bind(this)}
         />
     }
@@ -116,6 +117,7 @@ export default class DataForm extends React.Component<DataFormProps,any>{
             name={value[this.props.nameText]}
             label={this.props.label != false ? value[this.props.labelText] : undefined}
             value={this.state[value[this.props.nameText]]}
+            valid={value.isRequired != undefined ? value.isRequired : undefined}
             onChange={this.handleChange.bind(this)}
         />
     }
@@ -125,6 +127,7 @@ export default class DataForm extends React.Component<DataFormProps,any>{
             name={value[this.props.nameText]}
             value={this.state[value[this.props.nameText]]}
             label={this.props.label != false ? value[this.props.labelText] : undefined}
+            valid={value.isRequired != undefined ? value.isRequired : undefined}
             onChange={this.handleChange.bind(this)}
         />
     }
@@ -203,6 +206,7 @@ export default class DataForm extends React.Component<DataFormProps,any>{
             name={value[this.props.nameText]}
             label={this.props.label != false ? value[this.props.labelText] : undefined}
             value={this.state[value[this.props.nameText]]}
+            valid={value.isRequired != undefined ? value.isRequired : undefined}
             onChange={this.handleChange.bind(this)}
         />
     }
@@ -250,6 +254,7 @@ export default class DataForm extends React.Component<DataFormProps,any>{
             name={value[this.props.nameText]}
             label={this.props.label != false ? value[this.props.labelText] : undefined}
             value={this.state[value[this.props.nameText]]}
+            valid={value.isRequired != undefined ? value.isRequired : undefined}
             onChange={this.handleChange.bind(this)}
         />
     }

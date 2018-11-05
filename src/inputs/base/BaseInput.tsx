@@ -20,7 +20,7 @@ export default class BaseInput extends React.Component<BaseInputProps> {
     };
 
     render() {
-        return <input className="form-control" {...this.props} onChange={this.onChange.bind(this)} value={this.props.value || ''}/>;
+        return <input {...this.props} className={"form-control"+this.props.className} onChange={this.onChange.bind(this)} value={this.props.value || ''}/>;
     }
 
     isValid(){

@@ -68,14 +68,14 @@ export default class NumericInput extends React.Component<NumericInputProps>{
      */
     render():any{
         let { ...newProps } = this.props;
-        let validColor:string = this.props.valid != undefined ? (this.props.valid != false ? (this.isValid() == false ? "red" : "") : "") : "";
+        let validColor:string = this.props.valid != undefined ? (this.props.valid != false ? (this.isValid() == false ? " is-invalid" : "") : "") : "";
         //todo: label için sağ sol üst seçenekleri konulsun, hatta button ile birlikte beraber kullanılabilir.
         //selectinput için yapıldı
         let label:any = this.props.label != null ? <Label className={"label-properties"}>{this.props.label}</Label> : "";
         return <div className="karcin-input">{label}<Input
             {...newProps}
+            className={validColor}
             onChange={this.__onChange.bind(this)}
-            style={{borderColor:validColor}}
         />
         </div>;
     }

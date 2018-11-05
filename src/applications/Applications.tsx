@@ -10,8 +10,8 @@ export default class Applications {
         ajaxCallback:null
     };
 
-    
-    
+
+
     constructor(props?:any){
         if(props !== undefined && props.ajaxCallback !== undefined){
             Applications.ajaxCall = props.ajaxCallback;
@@ -53,7 +53,7 @@ export default class Applications {
 
     ajaxCallback(response?:any){
         if(Applications.ajaxCall !== null){
-            Applications.ajaxCall(response) 
+            Applications.ajaxCall(response)
         }
     }
 }

@@ -1,0 +1,20 @@
+{
+  "name":"tr",
+  "message": {
+    "title.component": "Bileşenler",
+    "title.doc":"Dökümanlar",
+    "title.sample":"Örnekler",
+    "title.about":"Hakkımızda",
+    "title.language":"Dil",
+    "title.en":"İngilizce",
+    "title.tr":"Türkçe",
+    "home.message":"Arayüz Bileşenleri",
+    "home.started":"Nasıl Kullanılır?",
+    "home.npm":"karcin-ui kullanmak için aşağıdaki kod package.json'a eklenir.",
+    "home.npm2":"İhtiyacınız olan bileşenleri import ederek kullanın",
+    "home.buildDate":"Yayınlanma Tarihi",
+    "or":"veya",
+    "and":"ve",
+    "example":"Örnek"
+  }
+}

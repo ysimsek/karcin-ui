@@ -30,13 +30,13 @@ export default class DataGridExample extends React.Component<any, any> {
                 },
                 {
                     "type": "textarea",
-                    "name": "body",
-                    "label": "Deneme"
+                    "name": "developers",
+                    "label": "Geliştirici"
                 },
                 {
                     "type": "textarea",
-                    "name": "govde",
-                    "label": "Gövde"
+                    "name": "year",
+                    "label": "Çıkış Tarihi"
                 },
                 {
                     "type": "textarea",
@@ -47,31 +47,31 @@ export default class DataGridExample extends React.Component<any, any> {
             store: new Store({
                 idField: 'id',
                 data: [
-                    {id:1, title:'Button', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
-                    {id:2, title:'Button2', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
-                    {id:3, title:'Button3', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
-                    {id:4, title:'Button4', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
-                    {id:5, title:'Button5', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
-                    {id:6, title:'Button6', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
-                    {id:7, title:'Button7', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
-                    {id:8, title:'Button8', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
-                    {id:9, title:'Button9', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
-                    {id:10, title:'Button10', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
-                    {id:11, title:'Button11', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
-                    {id:12, title:'Button12', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
-                    {id:13, title:'Button13', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
-                    {id:14, title:'Button14', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
-                    {id:15, title:'Button15', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
-                    {id:16, title:'Button16', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
-                    {id:17, title:'Button17', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'},
-                    {id:18, title:'Button18', body:'Karçin Button', govde:'Karçin Button', aciklama:'deneme'}
+                    {id:1, title:'Php', developers:'Zeev Suraski ve Andi Gutmans', year:'1997', aciklama:'Programlama Dili'},
+                    {id:2, title:'Java', developers:'James Gosling', year:'1995', aciklama:'Programlama Dili'},
+                    {id:3, title:'JavaScript', developers:'Brendan Eich', year:'1995', aciklama:'Programlama Dili'},
+                    {id:4, title:'Asp', developers:'Microsoft', year:'1996', aciklama:'Programlama Dili'},
+                    {id:5, title:'Python', developers:'Guido Van rossum', year:'1990', aciklama:'Programlama Dili'},
+                    {id:6, title:'Ruby', developers:'Yukihiro Matsumoto ', year:'1993', aciklama:'Programlama Dili'},
+                    {id:7, title:'Go', developers:'Google', year:'2007', aciklama:'Programlama Dili'},
+                    {id:8, title:'C', developers:'Ken Thompson ve Dennis Ritchie', year:'1972', aciklama:'Programlama Dili'},
+                    {id:9, title:'C++', developers:'Bjarne Stroustrup', year:'1979', aciklama:'Programlama Dili'},
+                    {id:10, title:'AngularJS', developers:'Misko Hevery', year:'2009', aciklama:'Programlama Dili'},
+                    {id:11, title:'ReactJS', developers:'Facebook', year:'2013', aciklama:'Programlama Dili'},
+                    {id:12, title:'Vue', developers:'Evan You', year:'2014', aciklama:'Programlama Dili'},
+                    {id:13, title:'Pascal', developers:'Niklaus Wirth', year:'1970', aciklama:'Programlama Dili'},
+                    {id:14, title:'HTML', developers:'W3C ve WHATWG', year:'1993', aciklama:'Programlama Dili'},
+                    {id:15, title:'CSS', developers: 'World Wide Web Consortium', year:'1996', aciklama:'Programlama Dili'},
+                    {id:16, title:'Android', developers:'Google,Open Handset Alliance', year:'2008', aciklama:'Programlama Dili'},
+                    {id:17, title:'D', developers:'Walter Bright, Andrei Alexandrescu', year:'2001', aciklama:'Programlama Dili'},
+                    {id:18, title:'Cobol', developers:'Üniversiteler, Hükümetler ve Ticari Kuruluşlar', year:'1959', aciklama:'Programlama Dili'}
                 ]
             })
         };
     }
 
     render() {
-        
+
         let toolbar = [
             {name:'Create', icon:'fa-plus', disabled:false, onClick:this.createButton.bind(this)},
             {name:'Edit', icon:'fa-edit', disabled:true, onClick:this.createButton.bind(this)},
@@ -86,7 +86,11 @@ export default class DataGridExample extends React.Component<any, any> {
                 ]},
         ];
         return (
+<<<<<<< HEAD
             <DataGrid store={this.state.store} rowContextData={contexData} toolbars={toolbar} pageShow={2} fields={this.state.fields} pagination={true} title={"Deneme"}/>
+=======
+            <DataGrid store={this.state.store} toolbars={toolbar} pageShow={5} fields={this.state.fields} pagination={true} title={"Deneme"}/>
+>>>>>>> 05ce7f74568ec3cf207b101b11dca87946d52767
         )
     }
 

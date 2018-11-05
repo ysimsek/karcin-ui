@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Container, Row, Col} from 'reactstrap';
-import {Button} from "karcin-ui";
+import {Button,i18n} from "karcin-ui";
 import * as Highlight from "react-highlight";
 export default class HomePage extends React.Component<any, any> {
 
@@ -15,19 +15,19 @@ export default class HomePage extends React.Component<any, any> {
         let date = null;
         if (sessionStorage.getItem("date")){
             let dateString = new Date(sessionStorage.getItem("date"));
-            date = <span>Build Date: {dateString.toLocaleDateString()} {dateString.toLocaleTimeString()}</span>
+            date = <span>{i18n.message("home.buildDate")}: {dateString.toLocaleDateString()} {dateString.toLocaleTimeString()}</span>
         }
         return <div>
             <div className="header">
                 <div className="overlay"></div>
                 <div className="header-bg"></div>
                 <Container className="slide-title">
-                    <h3>Karçin UI Showcase</h3>
+                    <h3>Karçin UI {i18n.message("home.message")}</h3>
                     <p>REACT &#38; TYPESCRIPT &#38; BOOTSTRAP</p>
                     <p className="build-text">{version} {date}</p>
                     <div className="buttons">
-                        <Button onClick={this.getStarted} color="primary" size="lg">GET STARTED</Button>{' '}
-                        <Button href="#Components" color="success" size="lg">COMPONENTS</Button>
+                        <Button onClick={this.getStarted} color="primary" size="lg">{i18n.message("home.started")}</Button>{' '}
+                        <Button href="#Components" color="success" size="lg">{i18n.message("title.component")}</Button>
                     </div>
                 </Container>
             </div>
@@ -35,14 +35,16 @@ export default class HomePage extends React.Component<any, any> {
                 <Container>
                     <Row>
                         <Col>
-                            <h2>Get Started</h2>
+                            <h2>{i18n.message("home.started")}</h2>
                             <hr/>
                             <h4>NPM</h4>
-                            <p>Install karcin-ui and peer dependencies via NPM</p>
+                            <p>{i18n.message("home.npm")}</p>
                             <pre><code className="hljs"><span className="hljs-keyword">npm install</span> --save <span className="hljs-string">karcin-ui</span></code></pre>
-                            <p>Import the components you need</p>
+                            <p>{i18n.message("or")}</p>
+                            <pre><code className="hljs"><span className="hljs-keyword">yarn</span> add <span className="hljs-string">karcin-ui</span></code></pre>
+                            <p>{i18n.message("home.npm2")}</p>
                             <div className="example-card">
-                                <p>EXAMPLE</p>
+                                <p>{i18n.message("example")}</p>
                                 <Button color="primary">Hello World!</Button>
                             </div>
                             <Highlight className='javascript'>{'import * as React from \'react\';\n' +
