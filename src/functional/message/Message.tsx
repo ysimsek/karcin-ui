@@ -5,6 +5,30 @@ import Prompt from "./msg/Prompt";
 import Confirm from "./msg/Confirm";
 import Custom from "./msg/Custom";
 
+export interface MessageProps{
+    /**
+     * Set the message string or component values
+     */
+    message ?:any;
+    /**
+     * Click the button returned call back,
+     * alert,prompt,confirm
+     */
+    callBack ?:Function;
+    /**
+     * set the label input only prompt message
+     */
+    label ?:string;
+    /**
+     * set the placeholder input only prompt message
+     */
+    placeholder ?:string;
+    /**
+     * Custom button array
+     */
+    button ?:any;
+}
+
 class message {
     alert(obj:any){
         let div = this.getDiv();
@@ -13,7 +37,7 @@ class message {
         ReactDOM.render(component, div);
     }
 
-    propmt(obj:any){
+    prompt(obj:any){
         let div = this.getDiv();
         let cmp:any = this.standartMethod(obj,div);
         const component = React.createElement(Prompt, obj);

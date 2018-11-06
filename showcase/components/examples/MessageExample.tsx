@@ -26,26 +26,39 @@ export default class MessageExample extends React.Component<any,any>{
 
             <span className="example-reagent">MessageBox Custom</span>
             <Button onClick={this.customClick.bind(this)} color={"primary"}>Custom</Button>
-
-
-
         </div>
     }
+
+    /**
+     * Alert message
+     */
     alertClick(){
         Message.alert({message:this.state.message,callBack:(call)=>{
             console.log(call.response);
             }})
     }
+
+    /**
+     * Confirm message
+     */
     confirmClick(){
         Message.confirm({message:this.state.message,callBack:(call)=>{
                 console.log(call.response);
             }})
     }
+
+    /**
+     * Prompt message
+     */
     promptClick(){
-        Message.propmt({label:"Kullanıcı Adını Giriniz",placeholder:"...",callBack:(call)=>{
+        Message.prompt({label:"Kullanıcı Adını Giriniz",placeholder:"...",callBack:(call)=>{
                 console.log(call.response);
             }})
     }
+
+    /**
+     * Custom message
+     */
     customClick(){
         Message.custom({
             message:this.state.message,
@@ -67,11 +80,4 @@ export default class MessageExample extends React.Component<any,any>{
         })
     }
 
-
-    onClickChange(e:any){
-        Message.propmt({
-            message:"Bu yazacak",
-            title : "Title"
-        })
-    }
 }
