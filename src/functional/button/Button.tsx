@@ -56,9 +56,10 @@ export default class Button extends React.Component<any,any> {
      * @returns {any}
      */
     render():any {
-        let child = this.props.iconAlign == "left" ?
-            <Buttonx {...this.props} onClick={this.onClick.bind(this)}><FaIcon className={"btn-i"} spin={this.state.async} code={this.state.async ? this.state.asyncIcon : this.state.icon}/>{this.props.children}</Buttonx> :
-            <Buttonx {...this.props} onClick={this.onClick.bind(this)}>{this.props.children}<FaIcon spin={this.state.async} code={this.state.async ? this.state.asyncIcon : this.state.icon}/></Buttonx>
+        const {iconAlign,...props} = this.props;
+        let child = iconAlign == "left" ?
+            <Buttonx {...props} onClick={this.onClick.bind(this)}><FaIcon className={"btn-i"} spin={this.state.async} code={this.state.async ? this.state.asyncIcon : this.state.icon}/>{this.props.children}</Buttonx> :
+            <Buttonx {...props} onClick={this.onClick.bind(this)}>{this.props.children}<FaIcon spin={this.state.async} code={this.state.async ? this.state.asyncIcon : this.state.icon}/></Buttonx>
         return child;
     }
 

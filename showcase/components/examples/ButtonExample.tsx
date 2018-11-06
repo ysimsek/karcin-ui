@@ -51,6 +51,8 @@ export default class ButtonExample extends React.Component<any, any> {
             </div>
         );
     }
+
+
     onClick(e:any, finish:Function){
             let me = this;
                 setTimeout(function () {
@@ -59,7 +61,7 @@ export default class ButtonExample extends React.Component<any, any> {
     }
 
     onResponse(finish:Function){
-            Notify.error({message:"Async Button"});
+            Notify.info({message:"Async Button"});
             finish();
     }
 }

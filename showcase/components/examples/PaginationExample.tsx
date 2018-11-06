@@ -31,7 +31,7 @@ export default class PaginationExample extends React.Component<any,any> {
 
     render(){
         return <div>
-            <span className="example-reagent">Selected Page: {this.state.selectedPage}</span>
+            <span className="example-reagent first">Selected Page: {this.state.selectedPage}</span>
             <Pagination
                 data={this.data}
                 hrefValue={"link"}

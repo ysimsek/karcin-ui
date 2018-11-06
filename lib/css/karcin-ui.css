@@ -1794,17 +1794,17 @@ button-square-to-radius {
 .karcin-datagrid .datagrid-table .datagrid-head {background: #f5f2f2;border: solid 1px #c7c7c7;border-bottom:0;}
 .karcin-datagrid .datagrid-table .datagrid-head {display: table;width: 100%;table-layout: fixed;}
 .karcin-datagrid .datagrid-table .datagrid-body {height: 400px;border: solid 1px #c7c7c7;}
-.karcin-datagrid .datagrid-table .datagrid-body tbody {width: 100%;display: table;table-layout: fixed;}  
+.karcin-datagrid .datagrid-table .datagrid-body tbody {width: 100%;display: table;table-layout: fixed;}
 .karcin-datagrid .datagrid-table .datagrid-head tr {}
 
-.karcin-datagrid .datagrid-table .datagrid-head tr th {border:0;padding: 7px 9px;position:relative;border-right:solid 1px #c7c7c7;color: #5a5858;} 
+.karcin-datagrid .datagrid-table .datagrid-head tr th {border:0;padding: 7px 9px;position:relative;border-right:solid 1px #c7c7c7;color: #5a5858;}
 .karcin-datagrid .datagrid-table .datagrid-head tr th.group {border-bottom:solid 1px #c7c7c7;text-align: center;}
 .karcin-datagrid .datagrid-table .datagrid-head tr th.empty {
     border-bottom:none;
 }
 .karcin-datagrid .datagrid-table .datagrid-head tr th.empty.active {background-color: #4c8aca;}
 .karcin-datagrid .datagrid-table .datagrid-head tr th:first-child {border-right:solid 1px #c7c7c7 !important;}
-.karcin-datagrid .datagrid-table .datagrid-head tr th:last-child {border-right: 0;} 
+.karcin-datagrid .datagrid-table .datagrid-head tr th:last-child {border-right: 0;}
 .karcin-datagrid .datagrid-table .datagrid-body tbody tr td {
     border-bottom: solid 1px #c7c7c7;
     border-right: solid 1px #c7c7c7;
@@ -1819,7 +1819,7 @@ button-square-to-radius {
 .karcin-datagrid .datagrid-table .datagrid-body tbody tr:first-child td {border-top:0;}
 .karcin-datagrid .datagrid-table .datagrid-body tbody tr td:last-child {border-right: 0;}
 .karcin-datagrid .datagrid-table .datagrid-head tr th.active {background-color: #4c8aca;color:#ffffff;}
-.karcin-datagrid .datagrid-table .datagrid-head tr th.active .btn-group .btn {color:#ffffff;} 
+.karcin-datagrid .datagrid-table .datagrid-head tr th.active .btn-group .btn {color:#ffffff;}
 .karcin-datagrid .datagrid-table .datagrid-head tr th.active .order-icon {
     padding: 6px 8px;
     position: absolute;
@@ -2038,4 +2038,8 @@ button-square-to-radius {
 
 .karcin-dateInput .DateInput {
     width: 100%;
+}
+
+.show-box{
+    background: rgba(0, 0, 0, 0.5);
 }

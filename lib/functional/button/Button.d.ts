@@ -35,9 +35,12 @@ export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
      */
     iconALign?: string;
 }
-export default class Button extends React.Component<any, ButtonProps> {
+export default class Button extends React.Component<any, any> {
+    constructor(props: any);
     /**
      * @returns {any}
      */
     render(): any;
+    onClick(e: any): void;
+    done(): void;
 }

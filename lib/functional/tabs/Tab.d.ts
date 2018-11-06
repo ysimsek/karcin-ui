@@ -31,4 +31,5 @@ export default class Tab extends React.Component<TabProps, any> {
         header: any;
         body: any;
     };
+    getClickElement(e: any): void;
 }

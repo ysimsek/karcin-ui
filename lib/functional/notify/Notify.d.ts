@@ -3,14 +3,12 @@ import * as React from "react";
  *
  */
 export interface INotify {
-    position?: string;
-    time?: number;
-    onClick?: React.MouseEventHandler<any>;
-    title?: string;
-    message?: string;
+    /**
+     * Set the data {position, message, time} or string
+     */
+    data?: object | string;
 }
 declare class Notify extends React.Component<any, any> {
-    static defaultProps: Partial<INotify>;
     /**
      * Default message
      * @type {string}
