@@ -31,7 +31,7 @@ export default class Main extends React.Component<any, any> {
     constructor(props:any) {
         super(props);
         this.toggle = this.toggle.bind(this);
-        let lang = "tr";
+        let lang = "en";
 
         if (localStorage.getItem("lang") != undefined && localStorage.getItem("lang") != null){
             lang = localStorage.getItem("lang")

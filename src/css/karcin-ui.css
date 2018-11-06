@@ -2043,3 +2043,40 @@ button-square-to-radius {
 .show-box{
     background: rgba(0, 0, 0, 0.5);
 }
+
+.show-box .modal-content {
+    border-radius: 3px;
+    border-color: #f1efef;
+    box-shadow: 0 1px 5px #757373;
+}
+.show-box .modal-content .modal-body {
+    text-align: center;
+}
+.show-box .modal-content .modal-body span {
+    font-size: 60px;
+    line-height: 0;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+.show-box .modal-content .modal-body h3 {
+    font-size: 17px;
+    font-weight: bold;
+    margin: 0;
+    margin-bottom: 15px;
+}
+.show-box .modal-content .modal-body p {
+    font-size: 13px;
+    margin: 0;
+}
+
+.show-box .modal-footer {
+    text-align: center;
+    display: inline-block;
+    border-top: none;
+    padding-top: 0;
+}
+
+.show-box .modal-body .karcin-input label {
+    font-size: 15px;
+    margin-bottom: 5px !important;
+}

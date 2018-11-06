@@ -25,8 +25,21 @@ export interface MessageProps{
     placeholder ?:string;
     /**
      * Custom button array
+     * callBack get close() method is required
      */
     button ?:any;
+    /**
+     * FaIcon code
+     */
+    icon?:string;
+    /**
+     * FaIcon color
+     */
+    iconColor?:string;
+    /**
+     * Set the title message
+     */
+    title?:string;
 }
 
 class message {

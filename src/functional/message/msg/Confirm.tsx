@@ -1,11 +1,15 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import Button from "./../../button/Button";
+import {FaIcon,Button} from "../../../index";
 
 export default class Confirm extends React.Component<any,any>{
 
 
     state:any;
+
+    static defaultProps:any={
+        iconColor:"primary"
+    }
 
     constructor(props:any){
         super(props)
@@ -33,7 +37,9 @@ export default class Confirm extends React.Component<any,any>{
             <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content">
                     <div className="modal-body">
-                        {this.props.message}
+                        {(this.props.icon !== undefined) ? <span><FaIcon  color={this.props.iconColor}  code={this.props.icon}/></span> : null}
+                        {(this.props.title !== undefined) ? <h3>{this.props.title}</h3> : null}
+                        {(this.props.message !== undefined) ? <p>{this.props.message}</p> : null}
                     </div>
                     <div className="modal-footer">
                         <button type="button" onClick={this.tmm.bind(this)} name="OK" className="btn btn-primary" data-dismiss="modal">Tamam</button>

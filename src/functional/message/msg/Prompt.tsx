@@ -1,10 +1,13 @@
 import * as React from "react";
-import TextInput from "./../../../inputs/TextInput";
+import {FaIcon,Button,TextInput} from "./../../../index";
 import * as ReactDOM from "react-dom";
-import Button from "./../../button/Button";
 
 export default class Prompt extends React.Component<any,any>{
     state:any;
+
+    static defaultProps:any={
+        iconColor:"primary"
+    }
 
     constructor(props:any){
         super(props)
@@ -35,6 +38,8 @@ export default class Prompt extends React.Component<any,any>{
             <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content">
                     <div className="modal-body">
+                        {(this.props.icon !== undefined) ? <span><FaIcon  color={this.props.iconColor}  code={this.props.icon}/></span> : null}
+                        {(this.props.title !== undefined) ? <h3>{this.props.title}</h3> : null}
                         <TextInput
                             ref={"text"}
                             name={"textInput"}
@@ -46,7 +51,7 @@ export default class Prompt extends React.Component<any,any>{
                     </div>
                     <div className="modal-footer">
                         <Button name="OK"  onClick={this.tmm.bind(this)} color={"primary"}>Tamam</Button>
-                        <Button name="CANCEL" onClick={this.ipt.bind(this)} color={"dark"}>İptal</Button>
+                        <Button name="CANCEL" outline onClick={this.ipt.bind(this)} color={"dark"}>İptal</Button>
                     </div>
                 </div>
             </div>

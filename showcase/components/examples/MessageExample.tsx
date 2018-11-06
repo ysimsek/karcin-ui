@@ -33,7 +33,7 @@ export default class MessageExample extends React.Component<any,any>{
      * Alert message
      */
     alertClick(){
-        Message.alert({message:this.state.message,callBack:(call)=>{
+        Message.alert({message:this.state.message,title:<div>Lorem Ipsum</div>,icon:"fa-exclamation-triangle",iconColor:"primary",callBack:(call)=>{
             console.log(call.response);
             }})
     }
@@ -42,7 +42,7 @@ export default class MessageExample extends React.Component<any,any>{
      * Confirm message
      */
     confirmClick(){
-        Message.confirm({message:this.state.message,callBack:(call)=>{
+        Message.confirm({message:this.state.message,title:"Confirm",icon:"fa-envelope",callBack:(call)=>{
                 console.log(call.response);
             }})
     }
@@ -51,7 +51,7 @@ export default class MessageExample extends React.Component<any,any>{
      * Prompt message
      */
     promptClick(){
-        Message.prompt({label:"Kullanıcı Adını Giriniz",placeholder:"...",callBack:(call)=>{
+        Message.prompt({label:"Kullanıcı Adını Giriniz",title:"Prompt",icon:"fa-exclamation-circle",iconColor:"success",placeholder:"...",callBack:(call)=>{
                 console.log(call.response);
             }})
     }
@@ -62,6 +62,8 @@ export default class MessageExample extends React.Component<any,any>{
     customClick(){
         Message.custom({
             message:this.state.message,
+            icon:"fa-envelope",
+            title:"Custom",
             button:[
                 {color:"primary", title:"Disabled",outline:true,disabled:true,icon:"fa-html5",iconAlign:"right",style:{color:"red"},className:"deneme", onClick(msg){
                     msg.close();
