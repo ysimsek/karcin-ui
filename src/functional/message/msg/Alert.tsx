@@ -8,7 +8,8 @@ export default class Alert extends React.Component<any,any>{
     state:any;
 
     static defaultProps:any={
-        iconColor:"primary"
+        iconColor:"primary",
+        color:"warning"
     }
 
     constructor(props:any){
@@ -25,9 +26,8 @@ export default class Alert extends React.Component<any,any>{
     render (){
         return this.getMessageElement()
     }
-
     getMessageElement(){
-        return <div className={"modal fade show-box "+(this.state.show == true ? "show" : "")}
+        return <div className={"modal fade show-box left "+(this.state.show == true ? "show" : "")}
                     style={this.state.show == true ? {display:"block"} : {display:"none"}}
                     id="exampleModalCenter"
                     tabIndex={-1}
@@ -37,12 +37,12 @@ export default class Alert extends React.Component<any,any>{
                     <div className="modal-dialog modal-dialog-centered" role="document">
                         <div className="modal-content">
                             <div className="modal-body">
-                                {(this.props.icon !== undefined) ? <span><FaIcon color={this.props.iconColor} code={this.props.icon}/></span> : null}
+                                {<span><FaIcon color={this.props.color} code={"fa-exclamation-triangle"}/></span>}
                                 {(this.props.title !== undefined) ? <h3>{this.props.title}</h3> : null}
                                 {(this.props.message !== undefined) ? <p>{this.props.message}</p> : null}
                             </div>
                             <div className="modal-footer">
-                                <Button color={"primary"} name={"OK"} onClick={this.tmm.bind(this)}>Tamam</Button>
+                                <Button color={this.props.color} name={"OK"} onClick={this.tmm.bind(this)}>Tamam</Button>
                             </div>
                         </div>
                     </div>

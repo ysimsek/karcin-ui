@@ -2048,6 +2048,14 @@ button-square-to-radius {
     border-radius: 3px;
     border-color: #f1efef;
     box-shadow: 0 1px 5px #757373;
+    position: relative;
+}
+.show-box .modal-content:after {
+    content:"";
+    width: 100%;
+    position: absolute;
+    left:0;
+    right: 0;
 }
 .show-box .modal-content .modal-body {
     text-align: center;
@@ -2079,4 +2087,86 @@ button-square-to-radius {
 .show-box .modal-body .karcin-input label {
     font-size: 15px;
     margin-bottom: 5px !important;
+}
+.show-box .modal-body .karcin-input{
+    margin-left: 111px;
+}
+
+
+.show-box.left {
+}
+.show-box.left .modal-content {
+    position: relative;
+    overflow: hidden;
+}
+.show-box.left .modal-content:after {
+    content:"";
+    width: 23%;
+    height: 100%;
+    position: absolute;
+    background-color: #ffc107;
+    opacity: 0.2;
+}
+.show-box.left .modal-content .modal-body {text-align: left;}
+.show-box.left .modal-content .modal-body p {
+    float: right;
+    width: 76%;
+}
+.show-box.left .modal-content .modal-body h3 {
+    float: right;
+    width: 76%;
+    font-size: 15px;
+    margin-bottom: 9px;
+}
+.show-box.left .modal-content .modal-body span {
+    float: left;
+    height: 100%;
+    width: 23%;
+    display: flex;
+    align-items: center;
+    font-size: 80px;
+    position: absolute;
+    padding-top: 8px;
+    z-index: 99;
+}
+.show-box.left .modal-footer {
+    text-align: right;
+}
+
+.show-box.right .modal-content {
+    position: relative;
+    overflow: hidden;
+}
+.show-box.right .modal-content .modal-body {text-align: left;}
+.show-box.right .modal-content .modal-body p {
+    float: left;
+    width: 76%;
+}
+.show-box.right .modal-content .modal-body h3 {
+    float: left;
+    width: 76%;
+    font-size: 15px;
+    margin-bottom: 9px;
+}
+.show-box.right .modal-content .modal-body span {
+    right:0;
+    height: calc(100% - 30px);
+    width: 23%;
+    display: flex;
+    align-items: center;
+    font-size: 80px;
+    position: absolute;
+}
+
+.show-box.left .modal-content:after {
+    content:"";
+    width: 23%;
+    height: 100%;
+    position: absolute;
+    background-color: #ffc107;
+    opacity: 0.2;
+    right: 0;
+}
+.show-box.right .modal-footer {
+    text-align: left;
 }

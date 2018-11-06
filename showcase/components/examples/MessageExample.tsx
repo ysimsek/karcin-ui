@@ -33,7 +33,7 @@ export default class MessageExample extends React.Component<any,any>{
      * Alert message
      */
     alertClick(){
-        Message.alert({message:this.state.message,title:<div>Lorem Ipsum</div>,icon:"fa-exclamation-triangle",iconColor:"primary",callBack:(call)=>{
+        Message.alert({message:"İşlemi Onaylıyor musunuz?",title:<div>Rapor işlemi</div>,callBack:(call)=>{
             console.log(call.response);
             }})
     }

@@ -28,7 +28,7 @@ export default class Prompt extends React.Component<any,any>{
     getMessageElement(){
         const {show,willUnmount} = this.props;
 
-        return <div className={"modal fade show-box "+(show == true ? "show" : "")}
+        return <div className={"modal fade show-box left "+(show == true ? "show" : "")}
                     style={this.state.show == true ? {display:"block"} : {display:"none"}}
                     id="exampleModalCenter"
                     tabIndex={-1}

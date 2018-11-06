@@ -27,7 +27,7 @@ export default class Confirm extends React.Component<any,any>{
     }
 
     getMessageElement(){
-        return <div className={"modal fade show-box "+(this.state.show == true ? "show" : "")}
+        return <div className={"modal fade show-box left "+(this.state.show == true ? "show" : "")}
                     style={this.state.show == true ? {display:"block"} : {display:"none"}}
                     id="exampleModalCenter"
                     tabIndex={-1}
