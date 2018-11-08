@@ -47,7 +47,9 @@
         {
           "id":1,
           "name":"textInput",
-          "title":"Text Input"
+          "title":"Text Input",
+          "href":"#/Components/TextInput",
+          "samples":"components/examples/TextInputExample"
         },
         {
           "id":2,

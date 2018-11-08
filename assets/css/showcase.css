@@ -11,7 +11,7 @@ body {padding: 0; margin: 0; font-family: 'Quicksand', sans-serif; color:#303030
 }
 
 .header-bg {
-    background: url("../img/bg.png") center center no-repeat;
+    background: url("../img/bg.jpg") center center no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -137,4 +137,30 @@ body {padding: 0; margin: 0; font-family: 'Quicksand', sans-serif; color:#303030
     .slide-title .btn.btn-lg {font-size: 1rem;}
     .slide-title h3 {font-size:48px;}
     .slide-title p {font-size:20px; }
+}
+
+.leftMenuDiv{
+    width: 20%;
+    height:100%;
+    background-color: #fbfafa;
+}
+.leftMenuSpan{
+    display:inherit;
+    border-bottom: 1px dotted #ccc;
+    margin-left: 20px;
+    margin-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.leftMenuSpan:hover{
+    background-color:#cccccc ;
+    box-shadow: 2px 4px #888888;
+}
+.leftMenuTitle{
+    display:inherit;
+    font-size: 22px;
+    margin-left: 20px;
+    margin-right: 5px;
+    background-color: #dc3545;
+    color: #FFFFFF;
 }

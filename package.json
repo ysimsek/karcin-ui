@@ -1,6 +1,6 @@
 {
   "name": "karcin-ui",
-  "version": "1.0.27",
+  "version": "ttt",
   "description": "Karçin UI - React & Typescript",
   "repository": "https://github.com/ysimsek/karcin-ui",
   "main": "index.tsx",
@@ -23,6 +23,7 @@
     "@types/reactstrap": "^5.0.12",
     "bootstrap": "^4.0.0",
     "font-awesome": "^4.7.0",
+    "is-js": "^0.1.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-highlight": "^0.10.0",

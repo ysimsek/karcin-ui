@@ -16,6 +16,7 @@ import { HashRouter as Router, Route, Link, browserHistory, Switch } from "react
 import Components from "./Components";
 import Docs from "./Docs";
 import NotFound from "./NotFound";
+import BaseIcon from "./base/BaseIcon";
 export default class Main extends React.Component<any, any> {
 
     constructor(props:any) {
@@ -29,7 +30,9 @@ export default class Main extends React.Component<any, any> {
     render() {
         return <div id="showcase-content">
                 <Navbar className={`main-menu ${(window.location.hash == "#/")?"active-menu":""}`} expand="md">
-                        <NavbarBrand href="#" className="mr-auto"><img src={`./img/logo-reverse.png`} height="50" /></NavbarBrand>
+                        <NavbarBrand href="#" className="mr-auto">
+                            <BaseIcon/>
+                        </NavbarBrand>
                         <NavbarToggler onClick={this.toggle}><FaIcon code={`${(this.state.isOpen)?"fa-times":"fa-bars"}`}  /></NavbarToggler>
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>

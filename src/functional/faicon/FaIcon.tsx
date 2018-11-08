@@ -23,6 +23,9 @@ export default class FaIcon extends React.Component<FaIconProps> {
         let classNameProps = this.props.className === undefined ? "" : this.props.className;
         let className = `fa ${(this.props.fixed ? "fa-fw" : "")} ${this.props.code} ${this.props.size} ${classNameProps}`;
         const { fixed, code, size, ...props } = this.props;
-        return <i {...props} className={className} aria-hidden="true" />;
+        return <i
+            {...props}
+            className={className}
+            aria-hidden="true"/>;
     }
 }

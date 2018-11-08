@@ -2,24 +2,22 @@ import * as React from "react";
 import { Container, Row, Col} from 'reactstrap';
 import {Button} from "karcin-ui";
 import * as Highlight from "react-highlight";
+import BaseIcon from "./base/BaseIcon";
 export default class HomePage extends React.Component<any, any> {
 
     constructor(props){
         super(props);
-
         this.getStarted.bind(this);
     }
 
     render() {
-        let version = (sessionStorage.getItem("version") != "$VERSION")?<p>{`v${sessionStorage.getItem("version")}`}</p>:null;
         return <div>
             <div className="header">
                 <div className="overlay"></div>
                 <div className="header-bg"></div>
                 <Container className="slide-title">
-                    <h3>Karçin UI Showcase</h3>
-                    <p>REACT &#38; TYPESCRIPT &#38; BOOTSTRAP</p>
-                    {version}
+                    <h6><BaseIcon/></h6>
+                    <p>PROGRAMMING</p>
                     <div>
                         <Button onClick={this.getStarted} color="primary" size="lg">GET STARTED</Button>{' '}
                         <Button href="#Components" color="success" size="lg">COMPONENTS</Button>

@@ -1,6 +1,7 @@
 import * as React from "react";
 import {Menu} from "karcin-ui";
 import RenderComponents from "./RenderComponent";
+import LeftMenu from "./base/LeftMenu";
 export default class Components extends React.Component<any, any> {
     private menucmp;
     constructor(props){
@@ -21,15 +22,16 @@ export default class Components extends React.Component<any, any> {
                 />
             );
         } else {
-            detailCmp = <span>Component Bulunamadı...</span>;
+            detailCmp = <span>404 Not Found</span>;
         }
 
         return <div className="content-component">
-            <div className="side-menu">
+            <div className="side-menu" style={{display:"none"}}>
                 <div className="side-menu-container">
                     <Menu ref={(v) => { this.menucmp = v; }} data={this.state.data} />
                 </div>
             </div>
+            <LeftMenu/>
             <div className="container-component content-page">{detailCmp}</div>
         </div>;
     }
