@@ -2046,19 +2046,14 @@ button-square-to-radius {
 
 .show-box .modal-content {
     border-radius: 3px;
-    border-color: #f1efef;
-    box-shadow: 0 1px 5px #757373;
     position: relative;
-}
-.show-box .modal-content:after {
-    content:"";
-    width: 100%;
-    position: absolute;
-    left:0;
-    right: 0;
+    border:0;
+    overflow: hidden;
+    box-shadow: 0 1px 8px #737373;
 }
 .show-box .modal-content .modal-body {
     text-align: center;
+    padding: 0;
 }
 .show-box .modal-content .modal-body span {
     font-size: 60px;
@@ -2070,7 +2065,8 @@ button-square-to-radius {
     font-size: 17px;
     font-weight: bold;
     margin: 0;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
+    font-size: 16px;
 }
 .show-box .modal-content .modal-body p {
     font-size: 13px;
@@ -2088,85 +2084,59 @@ button-square-to-radius {
     font-size: 15px;
     margin-bottom: 5px !important;
 }
-.show-box .modal-body .karcin-input{
-    margin-left: 111px;
-}
 
 
-.show-box.left {
-}
-.show-box.left .modal-content {
-    position: relative;
-    overflow: hidden;
-}
-.show-box.left .modal-content:after {
-    content:"";
-    width: 23%;
-    height: 100%;
-    position: absolute;
-    background-color: #ffc107;
-    opacity: 0.2;
-}
-.show-box.left .modal-content .modal-body {text-align: left;}
-.show-box.left .modal-content .modal-body p {
-    float: right;
-    width: 76%;
-}
-.show-box.left .modal-content .modal-body h3 {
-    float: right;
-    width: 76%;
-    font-size: 15px;
-    margin-bottom: 9px;
-}
-.show-box.left .modal-content .modal-body span {
+.show-box .modal-content .modal-body .alert-option {
+    width: 25%;
     float: left;
+    position: absolute;
     height: 100%;
-    width: 23%;
     display: flex;
+    justify-content: center;
     align-items: center;
-    font-size: 80px;
-    position: absolute;
-    padding-top: 8px;
-    z-index: 99;
-}
-.show-box.left .modal-footer {
-    text-align: right;
+    font-size: 65px;
+    color: #fff;
 }
 
-.show-box.right .modal-content {
-    position: relative;
-    overflow: hidden;
+
+
+.show-box .modal-content .modal-body .alert-option.primary{
+    background-color:#007bff;
 }
-.show-box.right .modal-content .modal-body {text-align: left;}
-.show-box.right .modal-content .modal-body p {
-    float: left;
-    width: 76%;
+.show-box .modal-content .modal-body .alert-option.secondary{
+    background-color:#6c757d;
 }
-.show-box.right .modal-content .modal-body h3 {
-    float: left;
-    width: 76%;
-    font-size: 15px;
-    margin-bottom: 9px;
+.show-box .modal-content .modal-body .alert-option.success{
+    background-color:#28a745;
 }
-.show-box.right .modal-content .modal-body span {
-    right:0;
-    height: calc(100% - 30px);
-    width: 23%;
-    display: flex;
-    align-items: center;
-    font-size: 80px;
-    position: absolute;
+.show-box .modal-content .modal-body .alert-option.info{
+    background-color:#17a2b8;
+}
+.show-box .modal-content .modal-body .alert-option.warning{
+    background-color:#ffc107;
+}
+.show-box .modal-content .modal-body .alert-option.danger{
+    background-color:#dc3545;
+}
+.show-box .modal-content .modal-body .alert-option.dark{
+    background-color:#343a40;
+}
+.show-box .modal-content .modal-body .alert-option.light{
+    background-color:#f8f9fa;
 }
 
-.show-box.left .modal-content:after {
-    content:"";
-    width: 23%;
-    height: 100%;
-    position: absolute;
-    background-color: #ffc107;
-    opacity: 0.2;
-    right: 0;
+.show-box .modal-content .modal-body .alert-option i,
+.show-box .modal-content .modal-body .alert-option svg {
+    color:#fff !important;
 }
-.show-box.right .modal-footer {
+
+.show-box .modal-content .modal-body .general-content {
+    width: 75%;
+    float: right;
     text-align: left;
+    padding: 15px;
 }
+
+.show-box .modal-content .modal-body .general-content p {}
+
+.show-box .modal-content .modal-body .general-content .btn {float: right;margin-top: 30px;margin-right: 2px;}

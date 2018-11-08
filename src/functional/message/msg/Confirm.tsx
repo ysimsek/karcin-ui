@@ -8,8 +8,21 @@ export default class Confirm extends React.Component<any,any>{
     state:any;
 
     static defaultProps:any={
-        iconColor:"primary"
+        iconColor:"primary",
+        color:"primary",
+        icon:""
     }
+
+    colorArr:any = {
+        primary : "faicon_primary",
+        secondary : "faicon_secondary",
+        success : "faicon_success",
+        info : "faicon_info",
+        warning : "faicon_warning",
+        danger : "faicon_danger",
+        dark : "faicon_dark",
+        light : "faicon_light"
+    };
 
     constructor(props:any){
         super(props)
@@ -27,6 +40,7 @@ export default class Confirm extends React.Component<any,any>{
     }
 
     getMessageElement(){
+        let color = this.props.color != undefined ? this.getColor(this.props.color) : "";
         return <div className={"modal fade show-box left "+(this.state.show == true ? "show" : "")}
                     style={this.state.show == true ? {display:"block"} : {display:"none"}}
                     id="exampleModalCenter"
@@ -37,18 +51,24 @@ export default class Confirm extends React.Component<any,any>{
             <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content">
                     <div className="modal-body">
-                        {(this.props.icon !== undefined) ? <span><FaIcon  color={this.props.iconColor}  code={this.props.icon}/></span> : null}
-                        {(this.props.title !== undefined) ? <h3>{this.props.title}</h3> : null}
-                        {(this.props.message !== undefined) ? <p>{this.props.message}</p> : null}
-                    </div>
-                    <div className="modal-footer">
-                        <button type="button" onClick={this.tmm.bind(this)} name="OK" className="btn btn-primary" data-dismiss="modal">Tamam</button>
-                        <button type="button" onClick={this.ipt.bind(this)} name="CANCEL" className="btn btn-primary btn-outline-dark">İptal</button>
+                        {<div className={"alert-option "+this.props.color}><FaIcon code={this.props.icon}/></div>}
+                        <div className="general-content">
+                            {(this.props.title !== undefined) ? <h3>{this.props.title}</h3> : null}
+                            {(this.props.message !== undefined) ? <p>{this.props.message}</p> : null}
+                            <Button onClick={this.tmm.bind(this)} name="OK" color={this.props.color} data-dismiss="modal">Tamam</Button>
+                            {' '}
+                            <button type="button" onClick={this.ipt.bind(this)} name="CANCEL" className="btn btn-outline-dark">İptal</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     }
+
+    getColor(color:string):string{
+        return this.colorArr[color] != undefined ? this.colorArr[color] : "";
+    }
+
 
     componentWillUnmount(){
         let mount:any = ReactDOM.findDOMNode(this);

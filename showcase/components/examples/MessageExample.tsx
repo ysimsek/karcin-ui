@@ -16,13 +16,34 @@ export default class MessageExample extends React.Component<any,any>{
     render(){
         return <div>
             <span className="example-reagent">MessageBox Alert</span>
-            <Button onClick={this.alertClick.bind(this)} color={"primary"}>Alert</Button>
+            <Button onClick={this.alertClick.bind(this)} color={"primary"}>primary</Button>{' '}
+            <Button onClick={this.alertClick.bind(this)} color={"success"}>success</Button>{' '}
+            <Button onClick={this.alertClick.bind(this)} color={"warning"}>warning</Button>{' '}
+            <Button onClick={this.alertClick.bind(this)} color={"danger"}>danger</Button>{' '}
+            <Button onClick={this.alertClick.bind(this)} color={"info"}>info</Button>{' '}
+            <Button onClick={this.alertClick.bind(this)} color={"secondary"}>secondary</Button>{' '}
+            <Button onClick={this.alertClick.bind(this)} color={"dark"}>dark</Button>{' '}
+            <Button onClick={this.alertClick.bind(this)} color={"light"}>light</Button>{' '}
 
             <span className="example-reagent">MessageBox Confirm</span>
-            <Button onClick={this.confirmClick.bind(this)} color={"primary"}>Confirm</Button>
+            <Button onClick={this.confirmClick.bind(this)} color={"primary"}>primary</Button>{' '}
+            <Button onClick={this.confirmClick.bind(this)} color={"success"}>success</Button>{' '}
+            <Button onClick={this.confirmClick.bind(this)} color={"warning"}>warning</Button>{' '}
+            <Button onClick={this.confirmClick.bind(this)} color={"danger"}>danger</Button>{' '}
+            <Button onClick={this.confirmClick.bind(this)} color={"info"}>info</Button>{' '}
+            <Button onClick={this.confirmClick.bind(this)} color={"secondary"}>secondary</Button>{' '}
+            <Button onClick={this.confirmClick.bind(this)} color={"dark"}>dark</Button>{' '}
+            <Button onClick={this.confirmClick.bind(this)} color={"light"}>light</Button>{' '}
 
             <span className="example-reagent">MessageBox Prompt</span>
-            <Button onClick={this.promptClick.bind(this)} color={"primary"}>Prompt</Button>
+            <Button onClick={this.promptClick.bind(this)} color={"primary"}>primary</Button>{' '}
+            <Button onClick={this.promptClick.bind(this)} color={"success"}>success</Button>{' '}
+            <Button onClick={this.promptClick.bind(this)} color={"warning"}>warning</Button>{' '}
+            <Button onClick={this.promptClick.bind(this)} color={"danger"}>danger</Button>{' '}
+            <Button onClick={this.promptClick.bind(this)} color={"info"}>info</Button>{' '}
+            <Button onClick={this.promptClick.bind(this)} color={"secondary"}>secondary</Button>{' '}
+            <Button onClick={this.promptClick.bind(this)} color={"dark"}>dark</Button>{' '}
+            <Button onClick={this.promptClick.bind(this)} color={"light"}>light</Button>{' '}
 
             <span className="example-reagent">MessageBox Custom</span>
             <Button onClick={this.customClick.bind(this)} color={"primary"}>Custom</Button>
@@ -32,8 +53,9 @@ export default class MessageExample extends React.Component<any,any>{
     /**
      * Alert message
      */
-    alertClick(){
-        Message.alert({message:"İşlemi Onaylıyor musunuz?",title:<div>Rapor işlemi</div>,callBack:(call)=>{
+    alertClick(e){
+        debugger
+        Message.alert({message:"İşlemi Onaylıyor musunuz?",color:e.target.textContent,title:<div>Rapor işlemi</div>,callBack:(call)=>{
             console.log(call.response);
             }})
     }
@@ -41,8 +63,8 @@ export default class MessageExample extends React.Component<any,any>{
     /**
      * Confirm message
      */
-    confirmClick(){
-        Message.confirm({message:this.state.message,title:"Confirm",icon:"fa-envelope",callBack:(call)=>{
+    confirmClick(e){
+        Message.confirm({message:this.state.message,color:e.target.textContent,title:"Confirm",icon:"fa-envelope",callBack:(call)=>{
                 console.log(call.response);
             }})
     }
@@ -50,8 +72,8 @@ export default class MessageExample extends React.Component<any,any>{
     /**
      * Prompt message
      */
-    promptClick(){
-        Message.prompt({label:"Kullanıcı Adını Giriniz",title:"Prompt",icon:"fa-exclamation-circle",iconColor:"success",placeholder:"...",callBack:(call)=>{
+    promptClick(e){
+        Message.prompt({label:"Kullanıcı Adını Giriniz",title:"Prompt",color:e.target.textContent,placeholder:"...",callBack:(call)=>{
                 console.log(call.response);
             }})
     }
