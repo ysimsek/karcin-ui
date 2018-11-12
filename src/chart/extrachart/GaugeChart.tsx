@@ -17,6 +17,7 @@ export interface GaugeChartProps  {
     kmh?:number;
     height?:number;
     interval?:number;
+    unit?:string;
 }
 
 export default class GaugeChart extends React.Component<any,any> {
@@ -27,7 +28,8 @@ export default class GaugeChart extends React.Component<any,any> {
         height : 400,
         value : 0,
         percent : false,
-        interval : 20
+        interval : 20,
+        unit : "km/h"
     }
 
 
@@ -51,7 +53,7 @@ export default class GaugeChart extends React.Component<any,any> {
                     "endValue": this.props.endValue,
                     "innerRadius": "95%"
                 }],
-                "bottomText": "0 km/h",
+                "bottomText": "0 "+this.props.unit,
                 "bottomTextYOffset": -80,
                 "bottomTextFontSize": 20,
                 "endValue": this.props.endValue
@@ -82,7 +84,7 @@ export default class GaugeChart extends React.Component<any,any> {
 
         let chart = <AmCharts.React options={data} style={{width: "100%", height: this.props.height + "px"}}/>
         chart.props.options.arrows[0]["value"] = this.props.endValue<this.props.value ? this.props.endValue : this.props.value;
-        chart.props.options.axes[0].bottomText =(this.props.endValue<this.props.value ? this.props.endValue : this.props.value)+" km/h"
+        chart.props.options.axes[0].bottomText =(this.props.endValue<this.props.value ? this.props.endValue : this.props.value)+" "+this.props.unit;
 
         return chart;
     }
