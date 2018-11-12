@@ -15,7 +15,7 @@ export default class GaugeChartExam extends React.Component<any,any>{
 
         return <Row>
             <Col md={6}>
-                <GaugeChart type={"black"} value={this.state.kmh} endValue={100}/>
+                <GaugeChart type={"black"} value={this.state.kmh} endValue={100} interval={2} color={"red"}/>
             </Col>
             <Col md={6}>
                 <GaugeChart value={this.state.kmh} percent={true} endValue={100} height={500}/>

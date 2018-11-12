@@ -16,6 +16,7 @@ export interface GaugeChartProps  {
     endValue?:number;
     kmh?:number;
     height?:number;
+    interval?:number;
 }
 
 export default class GaugeChart extends React.Component<any,any> {
@@ -25,7 +26,8 @@ export default class GaugeChart extends React.Component<any,any> {
         endValue : 220,
         height : 400,
         value : 0,
-        percent : false
+        percent : false,
+        interval : 20
     }
 
 
@@ -42,7 +44,7 @@ export default class GaugeChart extends React.Component<any,any> {
                 "axisThickness": 1,
                 "axisAlpha": 0.2,
                 "tickAlpha": 0.2,
-                "valueInterval": 20,
+                "valueInterval": this.props.interval,
                 "bands": [ {
                     "color": this.props.color != undefined ? this.props.color : "#84b761",
                     "startValue": this.props.startValue,
@@ -50,7 +52,8 @@ export default class GaugeChart extends React.Component<any,any> {
                     "innerRadius": "95%"
                 }],
                 "bottomText": "0 km/h",
-                "bottomTextYOffset": -20,
+                "bottomTextYOffset": -80,
+                "bottomTextFontSize": 20,
                 "endValue": this.props.endValue
             }],
             "arrows": [{
