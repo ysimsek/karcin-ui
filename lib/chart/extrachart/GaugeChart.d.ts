@@ -15,6 +15,7 @@ export interface GaugeChartProps {
     kmh?: number;
     height?: number;
     interval?: number;
+    unit?: string;
 }
 export default class GaugeChart extends React.Component<any, any> {
     static defaultProps: {
@@ -24,6 +25,7 @@ export default class GaugeChart extends React.Component<any, any> {
         value: number;
         percent: boolean;
         interval: number;
+        unit: string;
     };
     render(): JSX.Element;
     getKmGauge(): JSX.Element;
