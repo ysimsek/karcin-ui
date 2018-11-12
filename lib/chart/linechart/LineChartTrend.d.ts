@@ -52,6 +52,7 @@ export interface LineChartProps {
      * default false
      */
     scroll?: boolean;
+    height?: number;
 }
 export default class LineChartTrend extends React.Component<LineChartProps, any> {
     /**

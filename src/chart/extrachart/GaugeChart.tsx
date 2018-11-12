@@ -39,22 +39,39 @@ export default class GaugeChart extends React.Component<any,any> {
             "theme": "light",
             "growSlices": true,
             "axes": [{
-                "axisThickness": 0.1,
-                "axisAlpha": 0,
-                "tickAlpha": 0,
-                "valueInterval": 10,
+                "axisThickness": 1,
+                "axisAlpha": 0.2,
+                "tickAlpha": 0.2,
+                "valueInterval": 20,
                 "bands": [ {
-                    "color": "#f90000a1",
-                    "endValue": this.props.endValue,
-                    "innerRadius": "95%",
+                    "color": this.props.color != undefined ? this.props.color : "#84b761",
                     "startValue": this.props.startValue,
-                    "gradientRatio": [0.5, 0, -0.5]
+                    "endValue": this.props.endValue,
+                    "innerRadius": "95%"
                 }],
                 "bottomText": "0 km/h",
                 "bottomTextYOffset": -20,
-                "endValue": 220
+                "endValue": this.props.endValue
             }],
-            "arrows": [{}],
+            "arrows": [{
+                value:this.props.endValue<this.props.value ? this.props.endValue : this.props.value,
+            }],
+            startEffect: "easeOutSine",
+            tapToActivate: true,
+            autoResize: true,
+            autoDisplay: true,
+            autoMarginOffset: 0,
+            accessible: true,
+            addClassNames: false,
+            addCodeCredits: true,
+            adjustSize: true,
+            previousHeight: 0,
+            previousWidth: 0,
+            processCount: 1000,
+            processTimeout: 0,
+            product: "amcharts",
+            startDuration: 1,
+            svgIcons: true,
             "export": {
                 "enabled": true
             }
@@ -63,6 +80,7 @@ export default class GaugeChart extends React.Component<any,any> {
         let chart = <AmCharts.React options={data} style={{width: "100%", height: this.props.height + "px"}}/>
         chart.props.options.arrows[0]["value"] = this.props.endValue<this.props.value ? this.props.endValue : this.props.value;
         chart.props.options.axes[0].bottomText =(this.props.endValue<this.props.value ? this.props.endValue : this.props.value)+" km/h"
+
         return chart;
     }
     getPercentGauge(){

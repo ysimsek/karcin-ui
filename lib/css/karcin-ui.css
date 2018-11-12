@@ -2140,3 +2140,8 @@ button-square-to-radius {
 .show-box .modal-content .modal-body .general-content p {}
 
 .show-box .modal-content .modal-body .general-content .btn {float: right;margin-top: 30px;margin-right: 2px;}
+
+.amcharts-main-div .amcharts-chart-div svg g g text tspan{
+    color:red !important;
+}
+
