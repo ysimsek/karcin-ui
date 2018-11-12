@@ -79,22 +79,20 @@ export default class DataGridExample extends React.Component<any, any> {
         ];
 
         let contexData = [
-            {title:'Create', icon:'fa-plus'},
+            {title:'Create', icon:'fa-plus', callback:(e, e2)=>{
+                console.log(e, e2);
+            }},
             {title:'Edit', icon:'fa-edit'},
             {title:'Edit', icon:'fa-edit', items: [
                     {title:'Reactstrap', link:'https://reactstrap.github.io'}
                 ]},
         ];
         return (
-<<<<<<< HEAD
-            <DataGrid store={this.state.store} rowContextData={contexData} toolbars={toolbar} pageShow={2} fields={this.state.fields} pagination={true} title={"Deneme"}/>
-=======
-            <DataGrid store={this.state.store} toolbars={toolbar} pageShow={5} fields={this.state.fields} pagination={true} title={"Deneme"}/>
->>>>>>> 05ce7f74568ec3cf207b101b11dca87946d52767
+            <DataGrid store={this.state.store} rowContextData={contexData} toolbars={toolbar} pageShow={5} fields={this.state.fields} pagination={true} title={"Deneme"}/> 
         )
     }
 
-    createButton(){
+    createButton(){ 
         debugger;
     }
 }

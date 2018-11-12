@@ -1,5 +1,6 @@
 import Application from '../applications/Applications';
 import BaseClass from '../applications/BaseClass';
+import { isArray } from 'util';
 
 export default class LocaleEndPoint extends BaseClass {
 
@@ -57,10 +58,14 @@ export default class LocaleEndPoint extends BaseClass {
      * @param errorCallback 
      */
     create(items:any, callback?:any){
-        if(items !== undefined && items.length > 0){
-            items.forEach((value:any)=>{
-                this.__dataMap.push(value);
-            });
+        if(items !== undefined){
+            if(isArray(items)){
+                items.forEach((value:any)=>{
+                    this.__dataMap.push(value);
+                });
+            }else {
+                this.__dataMap.push(items);
+            }
             
             return this.response(callback);
         }
@@ -77,11 +82,17 @@ export default class LocaleEndPoint extends BaseClass {
         if(items !== undefined && items.length > 0){
 
             this.__dataMap.forEach((value:any, index:number)=>{
-                items.forEach((values:any) => {
-                    if(value[this.props.idField] === values[this.props.idField]){
+                if(isArray(items)){
+                    items.forEach((values:any) => {
+                        if(value[this.props.idField] === values[this.props.idField]){
+                            this.__dataMap[index] = values;
+                        }
+                    });
+                }else {
+                    if(items[this.props.idField] === items[this.props.idField]){
                         this.__dataMap[index] = values;
                     }
-                });
+                }
             });
             
             return this.response(callback);
@@ -93,11 +104,17 @@ export default class LocaleEndPoint extends BaseClass {
     delete(items:any, callback?:any){
         if(items !== undefined && items.length > 0){
             this.__dataMap.forEach((value:any, index:number) => {
-                items.forEach((values:any) => {
-                    if(value[this.props.idField] === values[this.props.idField]){
+                if(isArray(items)){
+                    items.forEach((values:any) => {
+                        if(value[this.props.idField] === values[this.props.idField]){
+                            this.__dataMap.splice(index, 1);
+                        }
+                    });
+                }else {
+                    if(items[this.props.idField] === items[this.props.idField]){
                         this.__dataMap.splice(index, 1);
                     }
-                });
+                }
             });
 
             return this.response(callback);

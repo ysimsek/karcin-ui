@@ -3,19 +3,13 @@ export interface basicObject {
     [key: string] : string | any
 }
 
+let ajaxCall:any = null;
+
 export default class Applications {
 
-    static ajaxCall:any = null;
-    props: basicObject = {
-        ajaxCallback:null
-    };
-
-
+    ajaxUrl:any = null;
 
     constructor(props?:any){
-        if(props !== undefined && props.ajaxCallback !== undefined){
-            Applications.ajaxCall = props.ajaxCallback;
-        }
     }
 
     /**
@@ -51,9 +45,21 @@ export default class Applications {
         }
     }
 
+    setAjaxCall(callback:any){
+        if(callback !== undefined){
+            ajaxCall = callback; 
+        }
+    }
+
+    setUrl(url:any){
+        if(url !== undefined){
+            this.ajaxUrl = url; 
+        }
+    }
+
     ajaxCallback(response?:any){
-        if(Applications.ajaxCall !== null){
-            Applications.ajaxCall(response)
+        if(ajaxCall !== null){
+            ajaxCall(response)
         }
     }
 }
