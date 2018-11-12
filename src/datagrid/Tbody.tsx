@@ -140,9 +140,8 @@ export default class Tbody extends React.Component<TbodyProps, TbodyState> {
 
             });
 
-            return [Rows, Context];
-
         }
+        return [Rows, Context];
     }
 
     contextCallback(e:any){

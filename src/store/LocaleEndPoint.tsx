@@ -90,7 +90,7 @@ export default class LocaleEndPoint extends BaseClass {
                     });
                 }else {
                     if(items[this.props.idField] === items[this.props.idField]){
-                        this.__dataMap[index] = values;
+                        this.__dataMap[index] = value;
                     }
                 }
             });
