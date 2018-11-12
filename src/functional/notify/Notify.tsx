@@ -8,20 +8,14 @@ import * as ReactDOM from "react-dom";
  *
  */
 export interface INotify{
-    position ?: string;
-    time ?: number;
-    onClick ?: React.MouseEventHandler<any>;
-    title ?: string;
-    message ?: string;
+    /**
+     * Set the data {position, message, time} or string
+     */
+    data ?: object | string;
 }
 
 class Notify extends React.Component<any,any>{
 
-    static defaultProps:Partial<INotify>={
-        position : "top-center",
-        time : 5 ,
-        message : "Notify Message"
-    }
     /**
      * Default message
      * @type {string}
@@ -84,8 +78,12 @@ class Notify extends React.Component<any,any>{
      * * * * bottom-left,bottom-right,bottom-center
      * @returns {any}
      */
-    static success = (data:object | any):any =>{
-        Notify.renderScreenData(data);
+    static success = (data:any):any =>{
+        if(typeof data == "object"){
+            Notify.renderScreenData(data);
+        }else if(typeof data == "string"){
+            Notify.message = data;
+        }
         let autoClose = Notify.time == false ? false : Notify.time*1000;
         // let position =
         toast.success(Notify.message, {
@@ -106,7 +104,11 @@ class Notify extends React.Component<any,any>{
      * @returns {any}
      */
     static error = (data:Object):any =>{
-        Notify.renderScreenData(data);
+        if(typeof data == "object"){
+            Notify.renderScreenData(data);
+        }else if(typeof data == "string"){
+            Notify.message = data;
+        }
         toast.error(Notify.message, {
             position : Notify.position,
             autoClose: Notify.time * 1000
@@ -125,7 +127,11 @@ class Notify extends React.Component<any,any>{
      * @returns {any}
      */
     static warning = (data:object):any =>{
-        Notify.renderScreenData(data);
+        if(typeof data == "object"){
+            Notify.renderScreenData(data);
+        }else if(typeof data == "string"){
+            Notify.message = data;
+        }
         toast.warn(Notify.message, {
             position: Notify.position,
             autoClose: Notify.time * 1000
@@ -144,7 +150,11 @@ class Notify extends React.Component<any,any>{
      * @returns {any}
      */
     static info = (data:object):any =>{
-        Notify.renderScreenData(data);
+        if(typeof data == "object"){
+            Notify.renderScreenData(data);
+        }else if(typeof data == "string"){
+            Notify.message = data;
+        }
         toast.info(Notify.message, {
             position: Notify.position,
             autoClose: Notify.time * 1000
@@ -164,7 +174,11 @@ class Notify extends React.Component<any,any>{
      * @returns {any}
      */
     static customNotify= (data:any):any =>{
-        Notify.renderScreenData(data);
+        if(typeof data == "object"){
+            Notify.renderScreenData(data);
+        }else if(typeof data == "string"){
+            Notify.message = data;
+        }
         toast(Notify.message, {
             position: Notify.position,
             autoClose: Notify.time * 1000,
@@ -182,7 +196,11 @@ class Notify extends React.Component<any,any>{
      * @returns {any}
      */
     static notify = (data:Object):any => {
-        Notify.renderScreenData(data);
+        if(typeof data == "object"){
+            Notify.renderScreenData(data);
+        }else if(typeof data == "string"){
+            Notify.message = data;
+        }
         toast("Default Notification!");
         toast.success(Notify.message, {
             position: toast.POSITION.TOP_CENTER,

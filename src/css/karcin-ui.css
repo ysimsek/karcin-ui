@@ -1794,17 +1794,17 @@ button-square-to-radius {
 .karcin-datagrid .datagrid-table .datagrid-head {background: #f5f2f2;border: solid 1px #c7c7c7;border-bottom:0;}
 .karcin-datagrid .datagrid-table .datagrid-head {display: table;width: 100%;table-layout: fixed;}
 .karcin-datagrid .datagrid-table .datagrid-body {height: 400px;border: solid 1px #c7c7c7;}
-.karcin-datagrid .datagrid-table .datagrid-body tbody {width: 100%;display: table;table-layout: fixed;}  
+.karcin-datagrid .datagrid-table .datagrid-body tbody {width: 100%;display: table;table-layout: fixed;}
 .karcin-datagrid .datagrid-table .datagrid-head tr {}
 
-.karcin-datagrid .datagrid-table .datagrid-head tr th {border:0;padding: 7px 9px;position:relative;border-right:solid 1px #c7c7c7;color: #5a5858;} 
+.karcin-datagrid .datagrid-table .datagrid-head tr th {border:0;padding: 7px 9px;position:relative;border-right:solid 1px #c7c7c7;color: #5a5858;}
 .karcin-datagrid .datagrid-table .datagrid-head tr th.group {border-bottom:solid 1px #c7c7c7;text-align: center;}
 .karcin-datagrid .datagrid-table .datagrid-head tr th.empty {
     border-bottom:none;
 }
 .karcin-datagrid .datagrid-table .datagrid-head tr th.empty.active {background-color: #4c8aca;}
 .karcin-datagrid .datagrid-table .datagrid-head tr th:first-child {border-right:solid 1px #c7c7c7 !important;}
-.karcin-datagrid .datagrid-table .datagrid-head tr th:last-child {border-right: 0;} 
+.karcin-datagrid .datagrid-table .datagrid-head tr th:last-child {border-right: 0;}
 .karcin-datagrid .datagrid-table .datagrid-body tbody tr td {
     border-bottom: solid 1px #c7c7c7;
     border-right: solid 1px #c7c7c7;
@@ -1819,7 +1819,7 @@ button-square-to-radius {
 .karcin-datagrid .datagrid-table .datagrid-body tbody tr:first-child td {border-top:0;}
 .karcin-datagrid .datagrid-table .datagrid-body tbody tr td:last-child {border-right: 0;}
 .karcin-datagrid .datagrid-table .datagrid-head tr th.active {background-color: #4c8aca;color:#ffffff;}
-.karcin-datagrid .datagrid-table .datagrid-head tr th.active .btn-group .btn {color:#ffffff;} 
+.karcin-datagrid .datagrid-table .datagrid-head tr th.active .btn-group .btn {color:#ffffff;}
 .karcin-datagrid .datagrid-table .datagrid-head tr th.active .order-icon {
     padding: 6px 8px;
     position: absolute;
@@ -2039,3 +2039,107 @@ button-square-to-radius {
 .karcin-dateInput .DateInput {
     width: 100%;
 }
+
+.show-box{
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.show-box .modal-content {
+    border-radius: 3px;
+    position: relative;
+    border:0;
+    overflow: hidden;
+    box-shadow: 0 1px 8px #737373;
+}
+.show-box .modal-content .modal-body {
+    text-align: center;
+    padding: 0;
+}
+.show-box .modal-content .modal-body span {
+    font-size: 60px;
+    line-height: 0;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+.show-box .modal-content .modal-body h3 {
+    font-size: 17px;
+    font-weight: bold;
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+.show-box .modal-content .modal-body p {
+    font-size: 13px;
+    margin: 0;
+}
+
+.show-box .modal-footer {
+    text-align: center;
+    display: inline-block;
+    border-top: none;
+    padding-top: 0;
+}
+
+.show-box .modal-body .karcin-input label {
+    font-size: 15px;
+    margin-bottom: 5px !important;
+}
+
+
+.show-box .modal-content .modal-body .alert-option {
+    width: 25%;
+    float: left;
+    position: absolute;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 65px;
+    color: #fff;
+}
+
+
+
+.show-box .modal-content .modal-body .alert-option.primary{
+    background-color:#007bff;
+}
+.show-box .modal-content .modal-body .alert-option.secondary{
+    background-color:#6c757d;
+}
+.show-box .modal-content .modal-body .alert-option.success{
+    background-color:#28a745;
+}
+.show-box .modal-content .modal-body .alert-option.info{
+    background-color:#17a2b8;
+}
+.show-box .modal-content .modal-body .alert-option.warning{
+    background-color:#ffc107;
+}
+.show-box .modal-content .modal-body .alert-option.danger{
+    background-color:#dc3545;
+}
+.show-box .modal-content .modal-body .alert-option.dark{
+    background-color:#343a40;
+}
+.show-box .modal-content .modal-body .alert-option.light{
+    background-color:#f8f9fa;
+}
+
+.show-box .modal-content .modal-body .alert-option i,
+.show-box .modal-content .modal-body .alert-option svg {
+    color:#fff !important;
+}
+
+.show-box .modal-content .modal-body .general-content {
+    width: 75%;
+    float: right;
+    text-align: left;
+    padding: 15px;
+}
+
+.show-box .modal-content .modal-body .general-content p {}
+
+.show-box .modal-content .modal-body .general-content .btn {float: right;margin-top: 30px;margin-right: 2px;}
+
+
+

@@ -12,8 +12,6 @@ import DataFilter from "./functional/datafilter/DataFilter";
 import PopOver from "./functional/tip/PopOver";
 import ToolTip from "./functional/tip/ToolTip";
 import Pagination from "./functional/paging/Pagination";
-import List from "./functional/list/List";
-import ListItem from "./functional/list/ListItem";
 import Progress from "./functional/progress/Progress";
 import CheckList from "./functional/list/CheckList";
 import DataForm from "./functional/dataform/DataForm";
@@ -63,7 +61,8 @@ import FileUpload from './functional/fileUpload/FileUpload';
 
 import PropertyGrid from "./functional/propertygrid/PropertyGrid";
 import Applications from "./applications/Applications";
-import i18n from "./i18n/i18n";
+import I18n from "./i18n/i18n";
+import Message from "./functional/message/Message";
 import "./css/karcin-ui.css";
 
 export {
@@ -80,8 +79,6 @@ export {
     Pagination,
     Progress,
     ToolTip,
-    List,
-    ListItem,
     CheckList,
     SelectInput,
     TextInput,
@@ -109,7 +106,7 @@ export {
     GaugeChart,
     CylinderChart,
     PyramidChart,
-    i18n,
+    I18n,
     LineChartTrend,
     DynamicChart,
     Store,
@@ -124,6 +121,7 @@ export {
     Condition,
     LookUp,
     FileUpload,
+    Message,
     Applications
 };
 export default Button;

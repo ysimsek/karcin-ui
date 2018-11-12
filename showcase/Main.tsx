@@ -10,7 +10,7 @@ import { Container, Row, Col, Collapse,
     DropdownToggle,
     DropdownMenu,
     DropdownItem} from 'reactstrap';
-import {FaIcon,i18n} from "karcin-ui";
+import {FaIcon,I18n} from "karcin-ui";
 import HomePage from "./HomePage";
 import { HashRouter as Router, Route, Link, browserHistory, Switch } from "react-router-dom";
 import Components from "./Components";
@@ -31,7 +31,7 @@ export default class Main extends React.Component<any, any> {
     constructor(props:any) {
         super(props);
         this.toggle = this.toggle.bind(this);
-        let lang = "tr";
+        let lang = "en";
 
         if (localStorage.getItem("lang") != undefined && localStorage.getItem("lang") != null){
             lang = localStorage.getItem("lang")
@@ -67,7 +67,7 @@ export default class Main extends React.Component<any, any> {
     }
 
     render() {
-        i18n.addLanguageData(language[this.state.lang]);
+        I18n.addLanguageData(language[this.state.lang]);
         return (
                     <div id="showcase-content">
                         <Navbar className={`main-menu ${(window.location.hash == "#/")?"active-menu":""}`} expand="md">
@@ -89,22 +89,22 @@ export default class Main extends React.Component<any, any> {
                                 <Nav className="ml-auto" navbar>
                                     <NavItem>
                                         <NavLink href="#Components">
-                                            {i18n.message("title.component")}
+                                            {I18n.message("title.component")}
                                         </NavLink>
                                     </NavItem>
                                     <NavItem>
                                         <NavLink href="#Docs">
-                                            {i18n.message("title.doc")}
+                                            {I18n.message("title.doc")}
                                         </NavLink>
                                     </NavItem>
                                     <NavItem>
                                         <NavLink href="#Samples">
-                                            {i18n.message("title.sample")}
+                                            {I18n.message("title.sample")}
                                         </NavLink>
                                     </NavItem>
                                     <NavItem>
                                         <NavLink href="#About">
-                                            {i18n.message("title.about")}
+                                            {I18n.message("title.about")}
                                         </NavLink>
                                     </NavItem>
                                     <NavItem>
@@ -112,14 +112,14 @@ export default class Main extends React.Component<any, any> {
                                     </NavItem>
                                     <UncontrolledDropdown nav inNavbar>
                                         <DropdownToggle nav caret>
-                                            {i18n.message("title.language")}
+                                            {I18n.message("title.language")}
                                         </DropdownToggle>
                                         <DropdownMenu right={true}>
                                             <DropdownItem onClick={this.langChange.bind(this,"tr")}>
-                                                {i18n.message("title.tr")}
+                                                {I18n.message("title.tr")}
                                             </DropdownItem>
                                             <DropdownItem onClick={this.langChange.bind(this,"en")}>
-                                                {i18n.message("title.en")}
+                                                {I18n.message("title.en")}
                                             </DropdownItem>
                                         </DropdownMenu>
                                     </UncontrolledDropdown>

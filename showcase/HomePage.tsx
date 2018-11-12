@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Container, Row, Col} from 'reactstrap';
-import {Button,i18n} from "karcin-ui";
+import {Button,I18n} from "karcin-ui";
 import * as Highlight from "react-highlight";
 export default class HomePage extends React.Component<any, any> {
 
@@ -15,19 +15,19 @@ export default class HomePage extends React.Component<any, any> {
         let date = null;
         if (sessionStorage.getItem("date")){
             let dateString = new Date(sessionStorage.getItem("date"));
-            date = <span>{i18n.message("home.buildDate")}: {dateString.toLocaleDateString()} {dateString.toLocaleTimeString()}</span>
+            date = <span>{I18n.message("home.buildDate")}: {dateString.toLocaleDateString()} {dateString.toLocaleTimeString()}</span>
         }
         return <div>
             <div className="header">
                 <div className="overlay"></div>
                 <div className="header-bg"></div>
                 <Container className="slide-title">
-                    <h3>Karçin UI {i18n.message("home.message")}</h3>
+                    <h3>Karçin UI {I18n.message("home.message")}</h3>
                     <p>REACT &#38; TYPESCRIPT &#38; BOOTSTRAP</p>
                     <p className="build-text">{version} {date}</p>
                     <div className="buttons">
-                        <Button onClick={this.getStarted} color="primary" size="lg">{i18n.message("home.started")}</Button>{' '}
-                        <Button href="#Components" color="success" size="lg">{i18n.message("title.component")}</Button>
+                        <Button onClick={this.getStarted} color="primary" size="lg">{I18n.message("home.started")}</Button>{' '}
+                        <Button href="#Components" color="success" size="lg">{I18n.message("title.component")}</Button>
                     </div>
                 </Container>
             </div>
@@ -35,16 +35,16 @@ export default class HomePage extends React.Component<any, any> {
                 <Container>
                     <Row>
                         <Col>
-                            <h2>{i18n.message("home.started")}</h2>
+                            <h2>{I18n.message("home.started")}</h2>
                             <hr/>
                             <h4>NPM</h4>
-                            <p>{i18n.message("home.npm")}</p>
+                            <p>{I18n.message("home.npm")}</p>
                             <pre><code className="hljs"><span className="hljs-keyword">npm install</span> --save <span className="hljs-string">karcin-ui</span></code></pre>
-                            <p>{i18n.message("or")}</p>
+                            <p>{I18n.message("or")}</p>
                             <pre><code className="hljs"><span className="hljs-keyword">yarn</span> add <span className="hljs-string">karcin-ui</span></code></pre>
-                            <p>{i18n.message("home.npm2")}</p>
+                            <p>{I18n.message("home.npm2")}</p>
                             <div className="example-card">
-                                <p>{i18n.message("example")}</p>
+                                <p>{I18n.message("example")}</p>
                                 <Button color="primary">Hello World!</Button>
                             </div>
                             <Highlight className='javascript'>{'import * as React from \'react\';\n' +

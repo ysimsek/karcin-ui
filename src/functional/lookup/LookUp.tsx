@@ -59,7 +59,7 @@ export default class LookUp extends React.Component<LookUpProp,LookUpState> {
                                     : '')}
                                     </span>}
                                     </div>
-                        <div className="show-button"><Button onClick={this.toggle}><FaIcon code={this.props.icon != undefined ? this.props.icon : "fa-search-plus"}/></Button></div>
+                        <div className="show-button"><Button outline onClick={this.toggle}><FaIcon code={this.props.icon != undefined ? this.props.icon : "fa-search-plus"}/></Button></div>
                     </div>
                 </div>
                 {this.returnModal()}

@@ -72,17 +72,7 @@
       "description":"<Tab/>, allow us to switch between pages"
     },
     {
-      "id":7,
-      "name":"Notify",
-      "title":"Notify",
-      "icon":"fa-exclamation-triangle",
-      "href":"#/Components/Notify",
-      "samples":"components/examples/NotifyExample",
-      "library":"functional/notify/Notify",
-      "description":"<Notify/>,  provides alert management on pages"
-    },
-    {
-      "id":8,
+      "id":5,
       "name":"Panel",
       "title":"Panel",
       "icon":"fa-window-maximize",
@@ -91,7 +81,7 @@
       "library":"functional/panel/Panel"
     },
     {
-      "id":8,
+      "id":6,
       "name":"DataFilter",
       "title":"DataFilter",
       "icon":"fa-sort-amount-asc",
@@ -100,7 +90,7 @@
       "library":"functional/datafilter/DataFilter"
     },
     {
-      "id":9,
+      "id":7,
       "name":"DataForm",
       "title":"DataForm",
       "icon":"fa-filter",
@@ -110,13 +100,13 @@
     },
     {
       "id":9,
-      "name":"List",
-      "title":"List",
-      "icon":"fa-list",
-      "href":"#/Components/List",
-      "samples":"components/examples/ListExample",
-      "library":"functional/list/List",
-      "description":"<List/>, allows listing the data for the page."
+      "name":"Notify",
+      "title":"Notify",
+      "icon":"fa-exclamation-triangle",
+      "href":"#/Components/Notify",
+      "samples":"components/examples/NotifyExample",
+      "library":"functional/notify/Notify",
+      "description":"<Notify/>,  provides alert management on pages"
     },
     {
       "id":10,
@@ -130,6 +120,17 @@
     },
     {
       "id":11,
+      "name":"Message",
+      "title":"Message",
+      "icon":"fa-envelope",
+      "href":"#/Components/Message",
+      "samples":"components/examples/MessageExample",
+      "library":"functional/message/Message",
+      "description":"<Message/>, allows alert the data for the component."
+    },
+
+    {
+      "id":12,
       "name":"PopOver",
       "title":"PopOver",
       "icon":"fa-comment",
@@ -139,7 +140,7 @@
       "description":"<PopOver/>, allows alert the data for the component."
     },
     {
-      "id":11,
+      "id":13,
       "name":"Pagination",
       "title":"Pagination",
       "icon":"fa-podcast",
@@ -149,7 +150,7 @@
       "description":"<Pagination/>, allows alert the data for the component."
     },
     {
-      "id":12,
+      "id":14,
       "name":"Progress",
       "title":"Progress",
       "icon":"fa-percent",
@@ -159,7 +160,7 @@
       "description":"<Progress/>"
     },
     {
-      "id":13,
+      "id":15,
       "name":"CheckList",
       "title":"CheckList",
       "icon":"fa-check",
@@ -169,7 +170,7 @@
       "description":"<CheckList/>"
     },
     {
-      "id":13,
+      "id":16,
       "name":"Calendar",
       "title":"Calendar",
       "icon":"fa-calendar",
@@ -179,7 +180,7 @@
       "description":"<Calendar/>"
     },
     {
-      "id":14,
+      "id":17,
       "name":"Loading",
       "title":"Loading",
       "icon":"fa-spinner",
@@ -189,17 +190,17 @@
       "description":"<Loading/>"
     },
     {
-      "id":17,
+      "id":18,
       "name":"AutoComplate",
       "title":"AutoComplate",
-      "icon":"fa-spinner",
+      "icon":"fa-certificate",
       "href":"#/Components/AutoComplate",
       "samples":"components/examples/AutoComplateExample",
       "library":"functional/autocomplate/AutoComplate",
       "description":"<AutoComplate/>"
     },
     {
-      "id":18,
+      "id":19,
       "name":"PropertyGrid",
       "title":"PropertyGrid",
       "icon":"fas fa-align-center",
@@ -328,7 +329,7 @@
       "id":4,
       "name":"LookUp",
       "title":"LookUp",
-      "icon":"fa-hand-pointer-o",
+      "icon":"fa-behance",
       "href":"#/Components/lookup",
       "samples":"components/examples/LookUpExample",
       "library":"functional/lookup/LookUp",
@@ -356,9 +357,9 @@
     },
     {
       "id":5,
-      "name":"i18n",
+      "name":"I18n",
       "title":"Internationalization",
-      "icon":"fa-upload",
+      "icon":"fa-bold",
       "href":"#/Components/I18N",
       "samples":"components/examples/I18nExample",
       "library":"application/I18NProvider",
