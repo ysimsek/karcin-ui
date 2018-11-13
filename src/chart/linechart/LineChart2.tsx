@@ -63,7 +63,7 @@ export default class DynamicChart extends React.Component<LineChart2Props,any>{
                 "position": "top"
             },
             "export": {
-                "enabled": true,
+                "enabled": false,
                 "position": "bottom-right"
             }
         };
