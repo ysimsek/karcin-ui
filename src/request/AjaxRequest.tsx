@@ -70,13 +70,13 @@ export default class AjaxRequest extends Application {
 
             // processor merge
             if(this.props.processor !== undefined){
-                this.ajaxProps['processor'] = this.props.processor;
-                this.ajaxProps['method'] = 'findAll';
+                this.ajaxProps['data']['processor'] = this.props.processor;
+                this.ajaxProps['data']['method'] = 'findAll';
             }
 
             // method merge
             if(this.props.method !== undefined){
-                this.ajaxProps['method'] = this.props.method;
+                this.ajaxProps['data']['method'] = this.props.method;
             }
 
             // data merge
@@ -162,5 +162,5 @@ export default class AjaxRequest extends Application {
             this.ajaxProps['headers']['Authorization'] = localStorage.getItem('token');
         }
     }
- 
+
 }

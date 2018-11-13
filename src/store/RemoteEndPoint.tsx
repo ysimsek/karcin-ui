@@ -115,7 +115,9 @@ export default class RemoteEndPoint extends BaseClass {
                 throw new Error(err);
             }
         }else {
-            throw new Error('Response Error!');
+            if(callback !== undefined){
+                callback(response); 
+            }
         }
         
     }
@@ -128,7 +130,7 @@ export default class RemoteEndPoint extends BaseClass {
      */
     read(callback?:any) {
         if (this.props.processor !== undefined && this.props.method !== undefined) {
-            this.props.method = null;
+            this.props.method = 'findByFilters'; 
             this.call(callback);
         }
     }
@@ -146,11 +148,11 @@ export default class RemoteEndPoint extends BaseClass {
     create(items: any, callback?:any) {
         if(items !== undefined){
             this.props.method = "add";
-            this.call(() => {
+            this.call((response:any) => {
                 this.read();
                 
                 if(callback !== undefined){
-                    callback();
+                    callback(response);
                 }
             }, items);
         }
@@ -159,9 +161,9 @@ export default class RemoteEndPoint extends BaseClass {
     update(items: any, callback?:any) {
         if(items !== undefined){
             this.props.method = "update";
-            this.call(() => {
+            this.call((response:any) => {
                 this.read();
-                callback();
+                callback(response);
             }, items);
         }
     }
@@ -169,9 +171,9 @@ export default class RemoteEndPoint extends BaseClass {
     delete(items: any, callback?:any) {
         if(items !== undefined){
             this.props.method = "deleteById";
-            this.call(() => {
+            this.call((response:any) => {
                 this.read();
-                callback();
+                callback(response);
             }, items);
         }
     }
