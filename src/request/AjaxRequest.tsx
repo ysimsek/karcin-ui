@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Application from './Applications';
+import Application from '../applications/Applications';
 
 export interface basicObject {
     [key: string]: string | any
