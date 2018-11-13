@@ -81,7 +81,7 @@ export default class AjaxRequest extends Application {
 
             // data merge
             if(this.props.data !== undefined){
-                this.ajaxProps['data']['data'] = this.props.data | [null];
+                this.ajaxProps['data'] = this.props.data;
             }
         }
     }

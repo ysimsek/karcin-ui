@@ -20,7 +20,7 @@ export default class Tbody extends React.Component<TbodyProps, TbodyState> {
     constructor(props: TbodyProps);
     UNSAFE_componentWillReceiveProps(props: TbodyProps): void;
     render(): JSX.Element;
-    getData(): any[];
+    getData(): any;
     contextCallback(e: any): void;
     /**
      * @param e

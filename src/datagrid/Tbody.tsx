@@ -49,14 +49,12 @@ export default class Tbody extends React.Component<TbodyProps, TbodyState> {
     }
 
     render(){
-        let getData:any = this.getData(),
-            rows:any    = getData[0],
-            context:any = getData[1];
+        let getData:any = this.getData();
+            //context:any = getData[1];
         return (<div className="datagrid-body">  
                 <Scrollbars>    
                     <tbody>
-                        {rows}
-                        {context}
+                        {getData}
                     </tbody>
                 </Scrollbars>
             </div>)
@@ -124,24 +122,25 @@ export default class Tbody extends React.Component<TbodyProps, TbodyState> {
                   }}
                   >{Cell}</tr>);
 
-                let newContextData:any = this.props.rowContextData.slice(0);
-                console.log(newContextData);
-                newContextData.forEach((val:any)=>{
-                    if(val !== undefined && val.callback !== undefined){
-                        val.rowItem = value;
-                        if(val.oldCallback === undefined){
-                            val['oldCallback'] = val.callback;
-                            val.callback = this.contextCallback;
+                if(this.props.rowContextData !== undefined){
+                    let newContextData:any = this.props.rowContextData.slice(0);
+                    newContextData.forEach((val:any)=>{
+                        if(val !== undefined && val.callback !== undefined){
+                            val.rowItem = value;
+                            if(val.oldCallback === undefined){
+                                val['oldCallback'] = val.callback;
+                                val.callback = this.contextCallback;
+                            }
                         }
-                    }
-                });
+                    });
 
-                Context.push((this.props.rowContextData !== undefined) ? <ContextMenu id={'row' + index} data={newContextData}></ContextMenu> : '');
+                    Context.push((this.props.rowContextData !== undefined) ? <ContextMenu id={'row' + index} data={newContextData}></ContextMenu> : '');
+                }
 
             });
 
         }
-        return [Rows, Context];
+        return Rows;
     }
 
     contextCallback(e:any){
