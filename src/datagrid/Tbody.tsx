@@ -101,7 +101,7 @@ export default class Tbody extends React.Component<TbodyProps, TbodyState> {
                     }
 
                     Cell.push(<td key={indexes} style={style} id={('row' + index)}>
-                        {(values.renderer !== undefined) ?  values.renderer(value, values) !== undefined ? value.renderer(value, values) : fieldValData : fieldValData}
+                        {(values.renderer !== undefined) ?  values.renderer(value, values) !== undefined ? values.renderer(value, values) : fieldValData : fieldValData} 
                     </td>);
 
                 });
