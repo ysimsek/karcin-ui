@@ -38,7 +38,9 @@ export default class ComposedBarChartExam extends React.Component<any,any>{
                                 categoryField={"continent"}
                                 categoryValue={"total"}
                                 theme={"light"}
-                                textColor={"black"}/>
+                                textColor={"black"}
+                                report={true}
+                            />
                         </Panel>
                     </Col>
                     <Col md={6}>

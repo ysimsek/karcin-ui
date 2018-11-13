@@ -57,6 +57,7 @@ export interface SimpleAreaChartProps{
     formatting ?: string;
     report ?: boolean;
     menu?:any;
+    reportName?:string;
 }
 
 export default class SimleAreaChart extends React.Component<SimpleAreaChartProps,any>{
@@ -87,9 +88,10 @@ export default class SimleAreaChart extends React.Component<SimpleAreaChartProps
         "xlsx": this.getXLSX(),
         "json": this.getJSON()
     }
-
+    reportName:any;
     constructor(props:any){
         super(props);
+        this.reportName = props.reportName != undefined ? this.props.reportName : ""
         this.state = {
             menu : props.menu != undefined ? this.createMenus(props.menu) : this.defaultMenus()
         }
@@ -129,46 +131,54 @@ export default class SimleAreaChart extends React.Component<SimpleAreaChartProps
         return this.defaultDownloadFunction[type];
     }
 
+    getRandomNumber(){
+        let nmb:number = Math.floor(Math.random() * 9999999999999);
+        return nmb;
+    }
+
     getPNG(){
-        return function(e:any) {
+        let name = this.reportName+this.getRandomNumber();
+        return function(this:any) {
             let me:any = this;
-            debugger
             me.capture({},function() {
                 me.toPNG( {}, function( data:any ) {
-                    me.download( data, "image/jpg", "ddsdsamCharts.png" );
+                    me.download( data, "image/jpg", name+".png" );
                 });
             });
         }
     }
 
     getJPG(){
-        return function() {
-            let me:any = this;
-            me.capture({},function() {
+        let name = this.reportName+this.getRandomNumber();
+        return function(this:any) {
+            let me:any=this;
+            me.capture({},function(this:any) {
                 me.toJPG( {}, function( data:any ) {
-                    me.download( data, "image/png", "jpsgshshs.jpg" );
+                    me.download( data, "image/png", name+".jpg" );
                 });
             });
         }
     }
 
     getCSV(){
-        return function() {
+        let name = this.reportName+this.getRandomNumber();
+        return function(this:any) {
             let me:any = this;
             me.capture({},function() {
                 me.toCSV( {}, function( data:any ) {
-                    me.download( data, "image/csv", "csvvvvv.csv" );
+                    me.download( data, "image/csv", name+".csv" );
                 });
             });
         }
     }
 
     getXLSX(){
-        return function() {
+        let name = this.reportName+this.getRandomNumber();
+        return function(this:any) {
             let me:any = this;
             me.capture({},function() {
                 me.toXLSX( {}, function( data:any ) {
-                    me.download( data, "file/xlsx", "aaa.xlsx" );
+                    me.download( data, "file/xlsx", name+".xlsx" );
                 });
             });
         }
@@ -176,22 +186,24 @@ export default class SimleAreaChart extends React.Component<SimpleAreaChartProps
     }
 
     getSVG(){
-        return function() {
+        let name = this.reportName+this.getRandomNumber();
+        return function(this:any) {
             let me:any = this;
             me.capture({},function() {
                 me.toSVG( {}, function( data:any ) {
-                    me.download( data, "file/svg", "svg.svg" );
+                    me.download( data, "file/svg", name+".svg" );
                 });
             });
         }
     }
 
     getJSON(){
-        return function() {
+        let name = this.reportName+this.getRandomNumber();
+        return function(this:any) {
             let me:any = this;
             me.capture({},function() {
                 me.toJSON( {}, function( data:any ) {
-                    me.download( data, "file/json", "jsonfile.json" );
+                    me.download( data, "file/json", name+".json" );
                 });
             });
         }

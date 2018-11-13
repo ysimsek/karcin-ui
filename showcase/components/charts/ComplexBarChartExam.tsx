@@ -2,7 +2,7 @@ import * as React from "react";
 import {ComplexBarChart,Panel} from "karcin-ui";
 import {Row,Col} from "reactstrap";
 
-export default class ComposedBarChartExam extends React.Component<any,any>{
+export default class ComplexBarChartExam extends React.Component<any,any>{
     render(){
         let data = [ {date: "2012-01-01", distance: 227, townName: "İstanbul", townName2: "İstanbul", townSize: 25, latitude: 40.71, duration: 408},
             {date: "2012-01-02", distance: 371, townName: "Ankara", townSize: 14, latitude: 38.89, duration: 482},
@@ -23,7 +23,9 @@ export default class ComposedBarChartExam extends React.Component<any,any>{
                         type={[
                             {type:"column",valueField:"distance"},
                             {type:"line",valueField:"latitude"},
-                            {type:"line",valueField:"duration"}]}/>
+                            {type:"line",valueField:"duration"}]}
+                        report={true}
+                    />
                 </Panel>
             </Col>
             <Col md={6}>
