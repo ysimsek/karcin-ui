@@ -33,7 +33,7 @@ export interface ContextMenuState {
     eventDirection: object | any;
 }
 
-export default class ContextMenu extends React.Component<ContextMenuProps, ContextMenuState> {
+export default class ContextMenu extends React.Component<any, any> {
 
     static defaultProps: Partial<ContextMenuProps> = {
         class: 'content-page'
