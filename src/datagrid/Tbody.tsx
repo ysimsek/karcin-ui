@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import TypeFormating from '../applications/TypeFormating';
 const { Scrollbars } = require('react-custom-scrollbars');
 import BaseClass from '../applications/BaseClass';
+import ContextMenu from '../functional/contextmenu/ContextMenu';
 
 export interface TbodyProps {
     store: any;
@@ -11,6 +12,7 @@ export interface TbodyProps {
     multiSelect?:boolean;
     onDoubleSelected?:any;
     select?:boolean | any;
+    rowContextData?:any;
 }
 
 export interface TbodyState {
@@ -47,10 +49,14 @@ export default class Tbody extends React.Component<TbodyProps, TbodyState> {
     }
 
     render(){
+        let getData:any = this.getData(),
+            rows:any    = getData[0],
+            context:any = getData[1];
         return (<div className="datagrid-body">  
                 <Scrollbars>    
                     <tbody>
-                        {this.getData()}
+                        {rows}
+                        {context}
                     </tbody>
                 </Scrollbars>
             </div>)
@@ -59,6 +65,7 @@ export default class Tbody extends React.Component<TbodyProps, TbodyState> {
     getData(){
         let data = this.props.store.props.data;   
         let Rows:any = [];
+        let Context:any = [];
 
         if(data !== undefined && data.length > 0){
             data.forEach((value:any, index:any)=>{
@@ -66,7 +73,6 @@ export default class Tbody extends React.Component<TbodyProps, TbodyState> {
                 if (value.id !== undefined) {
                     getId = parseInt(value.id);
                 }
-
 
                 let Cell:any = [];
                 this.state.fields.forEach((values:any, indexes:number) => {
@@ -78,7 +84,6 @@ export default class Tbody extends React.Component<TbodyProps, TbodyState> {
                     }else {
                         fieldValData = value[values.name];
                     }
-
 
                     new TypeFormating({
                         data: fieldValData,
@@ -97,7 +102,7 @@ export default class Tbody extends React.Component<TbodyProps, TbodyState> {
                         style['width'] = values.width + "px";
                     }
 
-                    Cell.push(<td key={indexes} style={style}>
+                    Cell.push(<td key={indexes} style={style} id={('row' + index)}>
                         {(values.renderer !== undefined) ?  values.renderer(value, values) !== undefined ? value.renderer(value, values) : fieldValData : fieldValData}
                     </td>);
 
@@ -106,6 +111,7 @@ export default class Tbody extends React.Component<TbodyProps, TbodyState> {
                 Rows.push(<tr 
                     key={index}
                     className={(this.state.clickActive.indexOf(getId) !== -1) ? 'active' : ''}
+                    id={('row' + index)}
                     onClick={(e) => {
                         if(this.props.select){
                             this.onClickRow(e, getId, data[index])
@@ -118,11 +124,30 @@ export default class Tbody extends React.Component<TbodyProps, TbodyState> {
                   }}
                   >{Cell}</tr>);
 
+                let newContextData:any = this.props.rowContextData.slice(0);
+                console.log(newContextData);
+                newContextData.forEach((val:any)=>{
+                    if(val !== undefined && val.callback !== undefined){
+                        val.rowItem = value;
+                        if(val.oldCallback === undefined){
+                            val['oldCallback'] = val.callback;
+                            val.callback = this.contextCallback;
+                        }
+                    }
+                });
+
+                Context.push((this.props.rowContextData !== undefined) ? <ContextMenu id={'row' + index} data={newContextData}></ContextMenu> : '');
+
             });
 
-            return Rows;
+            return [Rows, Context];
 
         }
+    }
+
+    contextCallback(e:any){
+        let newObj:any = {title:e.title, icon:e.icon, callback:e.oldCallback};
+        e.oldCallback(newObj, e.rowItem);
     }
 
     /**

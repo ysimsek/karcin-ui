@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Application from '../applications/Applications';
+import Application from './Applications';
 
 export interface basicObject {
     [key: string]: string | any
@@ -22,13 +22,18 @@ export default class AjaxRequest extends Application {
     ajaxProps: basicObject = {};
 
     constructor(props?: Object, callback?: any) {
-        super();
+        super(props);
 
         // url  control
-        let localUrl = localStorage.getItem('url');
+        let localUrl = localStorage.getItem('mainUrl');
         if(localUrl !== null){
             this.props.url = localUrl;
         }
+        
+        if(this.ajaxUrl !== undefined && this.ajaxUrl !== null){
+            this.props.url = this.ajaxUrl;
+        }
+
 
         // get object props control
         if (props !== undefined) {
@@ -44,7 +49,7 @@ export default class AjaxRequest extends Application {
 
     ajaxPropsMerge() {
 
-        // basic url control 
+        // basic url control
         if(this.props.url !== undefined){
             this.ajaxProps['url'] = this.props.url;
         }
@@ -55,28 +60,28 @@ export default class AjaxRequest extends Application {
             this.ajaxProps['headers'] = this.props.headers;
         }
 
-        // ajax post type 
+        // ajax post type
         this.ajaxProps['method'] = this.props.type || 'post';
-        
 
-        // method and processor control 
+
+        // method and processor control
         if (this.props.processor !== undefined || this.props.method !== undefined || this.props.data !== undefined) {
             this.ajaxProps['data'] = {'data': [null]};
 
             // processor merge
             if(this.props.processor !== undefined){
-                this.ajaxProps['processor'] = this.props.processor; 
+                this.ajaxProps['processor'] = this.props.processor;
                 this.ajaxProps['method'] = 'findAll';
             }
 
             // method merge
             if(this.props.method !== undefined){
-                this.ajaxProps['method'] = this.props.method; 
+                this.ajaxProps['method'] = this.props.method;
             }
-            
+
             // data merge
             if(this.props.data !== undefined){
-                this.ajaxProps['data'] = this.props.data; 
+                this.ajaxProps['data'] = this.props.data;
             }
         }
     }
@@ -87,7 +92,7 @@ export default class AjaxRequest extends Application {
      */
     call() {
         if (this.props.url !== undefined) {
-            // before token add 
+            // before token add
             this.beforeToken();
             axios(this.ajaxProps).then((response:any) => {
 
@@ -105,7 +110,9 @@ export default class AjaxRequest extends Application {
                 }
 
                 // token control method
-                this.afterToken(response['token']);
+                if(response.token !== undefined){
+                    this.afterToken();
+                }
 
             }).catch((error:any) => {
 
@@ -129,7 +136,7 @@ export default class AjaxRequest extends Application {
     }
 
 
-    afterToken(token: any) {
+    afterToken(token?: any) {
         let returnToken: any;
 
         if (token !== (undefined && null)) {
@@ -152,8 +159,8 @@ export default class AjaxRequest extends Application {
     beforeToken(){
         let token:any = localStorage.getItem('token');
         if(token !== null){
-            this.ajaxProps['headers']['Authorization'] = localStorage.getItem('token'); 
+            this.ajaxProps['headers']['Authorization'] = localStorage.getItem('token');
         }
     }
-
+ 
 }

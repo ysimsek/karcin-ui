@@ -37,7 +37,7 @@ export default class DataForm extends React.Component<DataFormProps,any>{
 
     static defaultProps = {
         col : 2,
-        buttonName : "Kaydet",
+        buttonName : "Kaydet", 
         nameText: "name",
         labelText:"label",
         typeText:"type",
