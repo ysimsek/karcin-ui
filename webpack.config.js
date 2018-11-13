@@ -34,7 +34,6 @@ const webpackConf = {
         },
         modules: [paths.app, paths.node_modules, paths.lib]
     },
-
     module: {
         rules: [
             // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.

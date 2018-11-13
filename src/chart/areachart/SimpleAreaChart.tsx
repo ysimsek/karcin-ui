@@ -1,6 +1,11 @@
 import * as React from "react";
 import "amcharts3/amcharts/amcharts";
 import "amcharts3/amcharts/serial";
+import "amcharts3/amcharts/plugins/export/export.min";
+import "amcharts3/amcharts/plugins/export/libs/FileSaver.js/FileSaver";
+import "amcharts3/amcharts/plugins/export/libs/jszip/jszip.min.js";
+require("amcharts3/amcharts/plugins/export/libs/pdfmake/pdfmake");
+require("amcharts3/amcharts/plugins/export/libs/pdfmake/vfs_fonts");
 import "amcharts3/amcharts/themes/light";
 import "amcharts3/amcharts/themes/chalk";
 import "amcharts3/amcharts/themes/dark";
@@ -8,6 +13,9 @@ import "amcharts3/amcharts/themes/patterns";
 import "amcharts3/amcharts/themes/black";
 import "amcharts3/amcharts/gauge"
 import "ammap3/ammap/ammap";
+import "amcharts3/amcharts/plugins/export/export.css";
+// import "amcharts3/amcharts/plugins/export/libs/fabric.js/fabric.min.js";
+
 var AmCharts = require("@amcharts/amcharts3-react");
 
 
@@ -47,6 +55,8 @@ export interface SimpleAreaChartProps{
      * date or undefined
      */
     formatting ?: string;
+    report ?: boolean;
+    menu?:any;
 }
 
 export default class SimleAreaChart extends React.Component<SimpleAreaChartProps,any>{
@@ -57,6 +67,188 @@ export default class SimleAreaChart extends React.Component<SimpleAreaChartProps
         theme : "none",
         height : 200,
         inline: false
+    }
+
+    // Dosya default isimleri için kullanılır
+    defaultDownloadType:any = {
+        "svg": "SVG",
+        "png": "PNG",
+        "jpg": "JPG",
+        "csv": "CSV",
+        "xlsx": "XLSX",
+        "json": "JSON"
+    }
+    //Dosya default fonksiyonları için kullanılır
+    defaultDownloadFunction:any = {
+        "svg": this.getSVG(),
+        "png": this.getPNG(),
+        "jpg": this.getJPG(),
+        "csv": this.getCSV(),
+        "xlsx": this.getXLSX(),
+        "json": this.getJSON()
+    }
+
+    constructor(props:any){
+        super(props);
+        this.state = {
+            menu : props.menu != undefined ? this.createMenus(props.menu) : this.defaultMenus()
+        }
+    }
+
+
+    createMenus(menu:any){
+        let arr:Array<any> = [];
+        let me:any = this;
+        try {
+            menu.map((elm: any, idx: number) => {
+                let childArr:any ={};
+                childArr.class = elm.type == "download" ? "export-main" : "export-drawing";
+                childArr.action = childArr.class == "export-drawing" ? "draw" : null;
+                childArr.menu = [];
+                if(elm.child != undefined){
+                    elm.child.map((subMenu:any,id:number)=>{
+                        let subChildMenu:any = {};
+                        subChildMenu.label = subMenu.label != undefined ? subMenu.label : me.defaultDownloadType[subMenu.type]
+                        subChildMenu.click = subMenu.callBack != undefined ? subMenu.callBack : this.seperateType(subMenu.type);
+                        if(subMenu.type == undefined){
+                            subChildMenu.label = "UNDEFINED TYPE"
+                        }
+                        childArr.menu.push(subChildMenu);
+                    });
+                }
+                  arr.push(childArr);
+            })
+            return arr;
+        }catch (e){
+            console.log(e);
+        }
+        return null;
+    }
+
+    seperateType(type:any){
+        return this.defaultDownloadFunction[type];
+    }
+
+    getPNG(){
+        return function(e:any) {
+            let me:any = this;
+            debugger
+            me.capture({},function() {
+                me.toPNG( {}, function( data:any ) {
+                    me.download( data, "image/jpg", "ddsdsamCharts.png" );
+                });
+            });
+        }
+    }
+
+    getJPG(){
+        return function() {
+            let me:any = this;
+            me.capture({},function() {
+                me.toJPG( {}, function( data:any ) {
+                    me.download( data, "image/png", "jpsgshshs.jpg" );
+                });
+            });
+        }
+    }
+
+    getCSV(){
+        return function() {
+            let me:any = this;
+            me.capture({},function() {
+                me.toCSV( {}, function( data:any ) {
+                    me.download( data, "image/csv", "csvvvvv.csv" );
+                });
+            });
+        }
+    }
+
+    getXLSX(){
+        return function() {
+            let me:any = this;
+            me.capture({},function() {
+                me.toXLSX( {}, function( data:any ) {
+                    me.download( data, "file/xlsx", "aaa.xlsx" );
+                });
+            });
+        }
+
+    }
+
+    getSVG(){
+        return function() {
+            let me:any = this;
+            me.capture({},function() {
+                me.toSVG( {}, function( data:any ) {
+                    me.download( data, "file/svg", "svg.svg" );
+                });
+            });
+        }
+    }
+
+    getJSON(){
+        return function() {
+            let me:any = this;
+            me.capture({},function() {
+                me.toJSON( {}, function( data:any ) {
+                    me.download( data, "file/json", "jsonfile.json" );
+                });
+            });
+        }
+    }
+
+    defaultMenus(){
+        let _this = this;
+        return [ {
+            "class": "export-main",
+            "menu": [ {
+                "label": "İndir",
+                "menu": [ {
+                    //png,jpg,csv,xlsx,svg,json
+                    // pdf,blob,canvas,array,Image(base64)
+                    label: "PNG",
+                    click: this.getPNG()
+                },
+                    {
+                        label: "JPG",
+                        click: this.getJPG()
+                    },
+                    {
+                        label: "CSV",
+                        click: this.getCSV()
+                    },
+                    {
+                        label: "XLSX",
+                        click: this.getXLSX()
+                    },
+                    {
+                        label: "SVG",
+                        click: this.getSVG()
+                    },
+                    {
+                        label: "JSON",
+                        click: this.getJSON()
+                    },
+                ]
+            }, {
+                "label": "Çizim Yap",
+                "action": "draw",
+                "menu": [ {
+                    "class": "export-drawing",
+                    "menu": [ {
+                        label: "Size ...",
+                        action: "draw.widths",
+                        widths: [ 5, 20, 30 ] // replaces the default choice
+                    }, {
+                        "label": "Edit",
+                        "menu": [ "UNDO", "REDO", "CANCEL" ]
+                    }, {
+                        "label": "Save",
+                        "format": "PNG"
+                    } ]
+                } ]
+            } ]
+        } ]
     }
 
     /**
@@ -119,11 +311,18 @@ export default class SimleAreaChart extends React.Component<SimpleAreaChartProps
                 "minorGridEnabled": true
             } : {"gridPosition": "start"},
             "export": {
-                "enabled": true
-            },
+                "enabled":this.props.report,
+                "menu": this.state.menu
+    },
             "dataProvider": this.props.data
         } ;
-        return <AmCharts.React options={data} style={{width:"100%",height:this.props.height+"px"}}/>;
+        let chrt:any = <AmCharts.React ref={"chartt"} options={data} style={{width:"100%",height:this.props.height+"px"}}/>;
+        return chrt;
+    }
+
+    componentDidMount(){
+        //this.refs.chartt._reactInternalFiber.updateQueue.firstUpdate.payload.chart
+        // debugger;
     }
 
 }
