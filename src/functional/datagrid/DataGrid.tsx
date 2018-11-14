@@ -6,7 +6,6 @@ import '../../css/karcin-ui.css';
 import TableBody from './TableBody';
 import TableHead from './TableHead';
 import Toolbar from './Toolbar';
-import Loading from '../loading/Loading';
 import {DOMAttributes} from "react";
 
 export interface DataGridProps extends DOMAttributes<any>{
@@ -200,7 +199,6 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
                                }}
                                {...this.props}
                                />
-                    <Loading show={false} size={'inset'} />
                     <TableBody ref={ref => {this.tbodyRef = ref; }}
                                 onSelected={(this.props.onSelected !== false ? (data:any, select:any)=>{
                                     this._selectedRow = data;

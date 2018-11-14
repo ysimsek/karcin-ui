@@ -1,39 +1,43 @@
-import * as React from 'react';
-import {__extends} from "tslib";
+class Loading{
 
-export interface LoadingProps {
-    show?:boolean | any;
-    size?:string | any;
-    className?:string | any
-}
+    element:any;
+    loading:any;
 
-export default class Loading extends React.Component<LoadingProps, any>{
+    add(obj?:any){
 
-    static defaultProps : Partial<LoadingProps> = {
-        show: true,
-        size: "full"
-    };
 
-    constructor(props:LoadingProps){
-        super(props);
 
-        this.state = {
-            show: this.props.show,
-            size: this.props.size
+        this.element = document.createElement('div');
+        this.element.classList.add("loading");
+        var name = obj != undefined ? (obj.label != undefined ? obj.label : "" ): "";
+        var id:any = obj != undefined ? (obj.id != undefined ? document.getElementById(obj.id) : null) : null;
+
+        if(id != null) {
+            this.element.innerHTML =
+                '<div class="pre-loading show">\n' +
+                '    <span class="glyphicon glyphicon-inset glyphicon-refresh spinning"></span>\n' +
+                '<div class="pre-loading-text">' + name + '</div>'
+            '</div>';
+
+            id.appendChild(this.element);
+            id.style.setProperty("position", "relative");
+            document.body.style.setProperty("overflow", "hidden");
+        }else{
+            this.element.innerHTML =
+                '<div class="pre-loading show">\n' +
+                '    <span class="glyphicon glyphicon-refresh spinning"></span>\n' +
+                '<div class="pre-loading-text">' + name + '</div>'
+            '</div>';
+            document.body.style.setProperty("overflow", "hidden");
+            document.body.appendChild(this.element);
         }
+
     }
 
-    UNSAFE_componentWillReceiveProps(props:LoadingProps){
-        this.setState(props);
+    remove(obj?:string){
+        document.body.removeChild(this.element)
     }
 
-
-    render(){
-        let styleClass = this.props.className === undefined ? "" : this.props.className;
-        return(
-            <div className={`pre-loading ${(this.props.show ? 'show' : '')} ${(this.props.size === 'inset' ? 'inset' : '')}`}>
-                <span className={`glyphicon glyphicon-refresh spinning ${styleClass}`}/>
-            </div>
-        );
-    }
 }
+export default new Loading();
+

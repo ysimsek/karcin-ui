@@ -1,5 +1,6 @@
 import * as React from "react";
 import {Loading, Button} from 'karcin-ui';
+import {Row,Col} from "reactstrap";
 
 export default class LoadingExample extends React.Component<any, any> {
 
@@ -11,10 +12,13 @@ export default class LoadingExample extends React.Component<any, any> {
         }
     }
     render() {
-        this.loadingClose();
+
         return (<div>
+                <Row id={"dd"}>
+                    dsadsads<br/>
+                    sdada<br/>
+                </Row>
                 <Button color="primary" onClick={this.loadingOpen.bind(this)}>Loading Open</Button>
-                <Loading show={this.state.loadingShowing} size={"full"}/>
             </div>
         );
     }
@@ -22,16 +26,12 @@ export default class LoadingExample extends React.Component<any, any> {
     loadingClose() {
         let self = this;
         setTimeout(() => {
-            self.setState({
-                loadingShowing:false
-            });
+                Loading.remove();
         }, 3000);
     }
 
     loadingOpen () {
-        this.setState({
-            loadingShowing:true
-        });
-        this.loadingClose();
+        Loading.add({id:"dd",label:"Loading..."});
+		// this.loadingClose();
     }
 }
