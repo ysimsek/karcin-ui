@@ -84,6 +84,7 @@ export default class LineTrendChartExam extends React.Component<any,any>{
                         categoryValue={"value"}
                         colorField={"color"}
                         categoryField={"date"}
+                        report={true}
                     /></Panel>
     }
 }
