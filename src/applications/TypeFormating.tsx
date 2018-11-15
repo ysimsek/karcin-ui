@@ -51,6 +51,21 @@ export default class TypeFormating {
                 returnValue = moment(this.props.data).format(formatTime);
             break;
 
+            case 'time':
+                if(this.props.data.format){
+                    formatTime = this.props.format;
+                }else {
+                    formatTime = "HH:mm:ss";
+                }
+
+                if(typeof this.props.data === 'object') {
+                    returnValue = moment(this.props.data).format(formatTime);
+                }else {
+                    returnValue = this.props.data;
+                }
+                
+            break;
+
             default:
                 returnValue = this.props.data.toString();
         }
