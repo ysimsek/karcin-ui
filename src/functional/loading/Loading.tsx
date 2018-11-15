@@ -33,11 +33,14 @@ class Loading{
 
     remove(obj?:any){
         try {
-            let child:any = document.getElementById("setLoadIdOfSystem") ;
-            let element:any = document.getElementById(obj.id);
-            obj != undefined ?(
-            obj.id != undefined ? element.removeChild(child) :
-                document.body.removeChild(this.element)) : document.body.removeChild(this.element)
+            if(obj != undefined){
+                let element:any = document.getElementById(obj.id);
+                let child:any = document.getElementById("setLoadIdOfSystem") ;
+                obj.id != undefined ? element.removeChild(child) : document.body.removeChild(this.element)
+            }else{
+                document.body.removeChild(this.element)
+            }
+
         }catch (e){
             console.log(e)
         }
