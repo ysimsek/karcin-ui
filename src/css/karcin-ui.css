@@ -1369,14 +1369,6 @@ button-square-to-radius {
     display: none;
 }
 
-.pre-loading-text{
-    color: #f9f9f9;
-    position: fixed;
-    top: 55%;
-    left: 46%;
-    font-size: 36px;
-    margin: auto;
-}
 
 .pre-loading.inset {
     position: absolute;
@@ -1402,6 +1394,34 @@ button-square-to-radius {
     border-radius: 50%;
     margin: auto;
 }
+
+
+.glyphicon.spinning.primary{
+    border-top-color:#007bff;
+}
+.glyphicon.spinning.secondary{
+    border-top-color:#6c757d;
+}
+.glyphicon.spinning.success{
+    border-top-color:#28a745;
+}
+.glyphicon.spinning.info{
+    border-top-color:#17a2b8;
+}
+.glyphicon.spinning.warning{
+    border-top-color:#ffc107;
+}
+.glyphicon.spinning.danger{
+    border-top-color:#dc3545;
+}
+.glyphicon.spinning.dark{
+    border-top-color:#343a40;
+}
+.glyphicon.spinning.light{
+    border-top-color:#f8f9fa;
+}
+
+
 
 .glyphicon-inset{
     width: 30px !important;
