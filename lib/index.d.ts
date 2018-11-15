@@ -41,7 +41,7 @@ import LineChartTrend from "./chart/linechart/LineChartTrend";
 import MapChart from "./chart/mapchart/MapChart";
 import DynamicChart from "./chart/linechart/DynamicChart";
 import GetInput from "./functional/getInput/GetInput";
-import ContextMenu from "./functional/contextmenu/contextMenu";
+import ContextMenu from "./functional/contextmenu/ContextMenu";
 import Store from "./store/Store";
 import Calendar from "./functional/calendar/Calendar";
 import Loading from "./functional/loading/Loading";

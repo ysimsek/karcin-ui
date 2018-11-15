@@ -64,7 +64,7 @@ export default class RadioInput extends React.Component<any,RadioInputProps>{
                     </div> : null}
                     <div
                         onChange={this.onChange.bind(this)}
-                        className={"form-control radio-properties "+this.props.className}>
+                        className={"form-control radio-properties "+ this.props.className}>
                         {this.returnRadioElements(this,this.props.items)}
                         </div>
         </form>

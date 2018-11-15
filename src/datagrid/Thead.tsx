@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import {ButtonDropdown, DropdownToggle, Button, DropdownMenu, DropdownItem, Input} from 'reactstrap';
 import FaIcon from "./../functional/faicon/FaIcon";
 import GetInput from "./../functional/getInput/GetInput";
+import { active } from "glamor";
 
 export interface TheadProps {
     store: any;
@@ -138,11 +139,16 @@ export default class Thead extends React.Component<TheadProps, TheadState> {
 
                     let style:any = {};
                     if(value.width !== undefined){
-                        style['width'] = value.width + "px";
+                        style['width'] = value.width + "px"; 
+                    }
+
+                    let activeClass = '';
+                    if(value.name !== undefined && ((this.state.orderIng.name !== (null || undefined) && value.name === this.state.orderIng.name) || this.state.filterShowing[value.name] !== undefined)){
+                        activeClass = 'active';
                     }
 
                     returnItem.push(<th key={indexes}
-                    className={`${(this.state.orderIng.name !== null && value.name === this.state.orderIng.name || this.state.filterShowing[value.name] ? 'active': '')}`} style={style} ref={(e) => itemRef = e}>
+                    className={`${activeClass}`} style={style} ref={(e) => itemRef = e}>
                             <div className="th-title">{value.label}</div>
                             <div className="right-option">
                                 {(value.filter === undefined || value.filter ? this.getFilter(value) : '')}

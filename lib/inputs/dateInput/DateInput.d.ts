@@ -1,20 +1,35 @@
-import * as React from 'react';
-import 'react-dates/initialize';
-import 'react-dates/lib/css/_datepicker.css';
-export interface DateInputProps {
-    name: any;
-    value?: any;
-    onChange?: any;
-    label?: any;
-    format?: any;
-    icon?: any;
-    id?: any;
+import * as React from "react";
+import moment = require('moment');
+import "react-datepicker/dist/react-datepicker.css";
+export interface DateInputState {
+    startDate: any;
+    displayName: string;
 }
-export default class DateInput extends React.Component<DateInputProps, any> {
-    static defaultProps: Partial<any>;
+export interface DateInputProps {
+    value?: string | any;
+    name?: string;
+    onChange?: any;
+    inline?: boolean;
+    showTime?: boolean;
+    startDate?: moment.Moment;
+    label?: string;
+    timeFormat?: string;
+    timeInterval?: number;
+    dateFormat?: string;
+    className?: string;
+    showTimeSelect?: any;
+    showTimeSelectOnly?: any;
+    timeIntervals?: any;
+    timeCaption?: any;
+}
+export default class DateInput extends React.Component<DateInputProps, DateInputState> {
+    static defaultProps: Partial<DateInputProps>;
     constructor(props: any);
-    componentWillReceiveProps(props: any): void;
     render(): JSX.Element;
-    toggleFocus(): void;
-    handleChange(data: any): void;
+    /**
+     *
+     * @param {moment.Moment | any | null} date
+     * @param getId
+     */
+    handleChange(date?: any, getId?: any): void;
 }
