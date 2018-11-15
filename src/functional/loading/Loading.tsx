@@ -19,7 +19,6 @@ class Loading{
             this.element.setAttribute("id","setLoadIdOfSystem")
             id.appendChild(this.element);
             id.style.setProperty("position", "relative");
-            document.body.style.setProperty("overflow", "hidden");
         }else{
             this.element.innerHTML =
                 '<div class="pre-loading show">\n' +
@@ -39,6 +38,7 @@ class Loading{
                 obj.id != undefined ? element.removeChild(child) : document.body.removeChild(this.element)
             }else{
                 document.body.removeChild(this.element)
+                document.body.style.removeProperty('overflow');
             }
 
         }catch (e){
