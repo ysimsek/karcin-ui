@@ -47,6 +47,8 @@ export default class SimpleBarChartExam extends React.Component<any,any>{
                         textColor={"#000000"}
                         categoryField={"country"}
                         categoryValue={"visits"}
+                        report={true}
+                        reportName={"SimpleChartReport_"}
                     />
                 </Panel>
              </Col>

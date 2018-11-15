@@ -101,7 +101,7 @@ export default class CylinderChart extends React.Component<CylinderChartProps,an
                 "gridAlpha": 0
             },
             "export": {
-                "enabled": true
+                "enabled": false
             }
         };
         return <AmCharts.React options={data} style={{width:"100%",height:this.props.height+"px"}}/>

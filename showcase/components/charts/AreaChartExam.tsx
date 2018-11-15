@@ -84,6 +84,7 @@ export default class AreaChartExam extends React.Component<any,any>{
                         categoryValue={"value"}
                         categoryField={"date"}
                         formatting={"date"}
+                        report={true}
                     />
                 </Panel>
             </Col>
@@ -96,6 +97,20 @@ export default class AreaChartExam extends React.Component<any,any>{
                         categoryValue={"value"}
                         categoryField={"date"}
                         formatting={"date"}
+                        report={true}
+                        menu={[
+                            {
+                                label:"İndir",
+                                type:"download",//draw
+                                child:[
+                                    {type:"svg"},
+                                    {label:"CSV İndir",type:"csv"},
+                                    {label:"Jpg İndir",type:"jpg",callBack:(res)=>{console.log(res)}},
+                                    {label:"Xlsx İndir",type:"xlsx",callBack:(res)=>{console.log(res)}},
+                                    {label:"Verileri Göster",callBack:(res)=>{console.log(res)}},
+                                ]
+                            }
+                        ]}
                     />
                 </Panel>
             </Col>

@@ -129,7 +129,7 @@ export default class LineChart extends React.Component<LineChartProps,any>{
                 "valueLineBalloonEnabled": true
             },
             "export": {
-                "enabled": true
+                "enabled": false
             },
             "dataProvider": this.props.data
         }

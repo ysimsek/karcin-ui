@@ -95,7 +95,7 @@ export default class PyramidChart extends React.Component<PyramidChartProps,any>
             "valueRepresents":this.props.representType,
             "balloonText": "[["+this.props.categoryTitle+"]]: [["+this.props.categoryField+"]]"+this.props.unit+"[[description]]",
             "export": {
-                "enabled": true
+                "enabled": false
             }
         };
         return <AmCharts.React options={data} style={{width:"100%",height:this.props.height+"px"}}/>

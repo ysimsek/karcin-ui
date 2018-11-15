@@ -25,7 +25,7 @@ export interface ContextMenuState {
     showContext?: boolean | any;
     eventDirection: object | any;
 }
-export default class ContextMenu extends React.Component<ContextMenuProps, ContextMenuState> {
+export default class ContextMenu extends React.Component<any, any> {
     static defaultProps: Partial<ContextMenuProps>;
     constructor(props: ContextMenuProps);
     render(): JSX.Element;

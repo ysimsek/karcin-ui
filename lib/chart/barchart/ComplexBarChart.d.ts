@@ -46,6 +46,9 @@ export interface ComposedBarChartData {
      * default false
      */
     scroll?: boolean;
+    report?: boolean;
+    menu?: any;
+    reportName?: string;
 }
 export default class ComplexBarChart extends React.Component<ComposedBarChartData, any> {
     /**
@@ -53,6 +56,60 @@ export default class ComplexBarChart extends React.Component<ComposedBarChartDat
      * @type {{height: number; theme: string; barColor: string}}
      */
     static defaultProps: Partial<ComposedBarChartData>;
+    defaultDownloadType: any;
+    defaultDownloadFunction: any;
+    state: any;
+    reportName: any;
+    constructor(props: any);
+    createMenus(menu: any): any[] | null;
+    seperateType(type: any): any;
+    getRandomNumber(): number;
+    getPNG(): (this: any) => void;
+    getJPG(): (this: any) => void;
+    getCSV(): (this: any) => void;
+    getXLSX(): (this: any) => void;
+    getSVG(): (this: any) => void;
+    getJSON(): (this: any) => void;
+    defaultMenus(): {
+        "class": string;
+        "menu": ({
+            "label": string;
+            "menu": {
+                label: string;
+                click: (this: any) => void;
+            }[];
+            "action"?: undefined;
+        } | {
+            "label": string;
+            "action": string;
+            "menu": {
+                "class": string;
+                "menu": ({
+                    label: string;
+                    action: string;
+                    widths: number[];
+                    "menu"?: undefined;
+                    "format"?: undefined;
+                } | {
+                    "label": string;
+                    "menu": string[];
+                    "action"?: undefined;
+                    widths?: undefined; /**
+                     * @returns {any}
+                     */
+                    "format"?: undefined;
+                } | {
+                    "label": string;
+                    "format": string;
+                    "action"?: undefined;
+                    widths?: undefined; /**
+                     * @returns {any}
+                     */
+                    "menu"?: undefined;
+                })[];
+            }[];
+        })[];
+    }[];
     /**
      * @returns {any}
      */

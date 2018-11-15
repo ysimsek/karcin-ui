@@ -46,6 +46,7 @@ export default class PieChartExam extends React.Component<any,any>{
                             categoryValue={"litres"}
                             height={300}
                             describeList={true}
+                            report={true}
                         />
                 </Panel>
             </Col>

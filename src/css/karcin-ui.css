@@ -416,6 +416,16 @@ a[href='http://www.amcharts.com'] {
     display: none !important;
 }
 
+a[href='http://www.amcharts.com/javascript-maps/'] {
+    display: none !important;
+}
+
+.amcharts-export-menu-top-right {
+    top: 10px;
+    right: 0;
+}
+
+
 /**
 New Reactstrap CSS
 */
@@ -1188,9 +1198,7 @@ notify color
     background-color: #ffc107 !important;
 }
 
-a[href='http://www.amcharts.com/javascript-maps/'] {
-    display: none !important;
-}
+
 
 /**
 * Context Menu

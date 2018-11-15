@@ -16,6 +16,9 @@ export interface GaugeChartProps {
     height?: number;
     interval?: number;
     unit?: string;
+    report?: boolean;
+    menu?: any;
+    reportName?: string;
 }
 export default class GaugeChart extends React.Component<any, any> {
     static defaultProps: {
@@ -27,6 +30,55 @@ export default class GaugeChart extends React.Component<any, any> {
         interval: number;
         unit: string;
     };
+    defaultDownloadType: any;
+    defaultDownloadFunction: any;
+    reportName: any;
+    constructor(props: any);
+    createMenus(menu: any): any[] | null;
+    seperateType(type: any): any;
+    getRandomNumber(): number;
+    getPNG(): (this: any) => void;
+    getJPG(): (this: any) => void;
+    getCSV(): (this: any) => void;
+    getXLSX(): (this: any) => void;
+    getSVG(): (this: any) => void;
+    getJSON(): (this: any) => void;
+    defaultMenus(): {
+        "class": string;
+        "menu": ({
+            "label": string;
+            "menu": {
+                label: string;
+                click: (this: any) => void;
+            }[];
+            "action"?: undefined;
+        } | {
+            "label": string;
+            "action": string;
+            "menu": {
+                "class": string;
+                "menu": ({
+                    label: string;
+                    action: string;
+                    widths: number[];
+                    "menu"?: undefined;
+                    "format"?: undefined;
+                } | {
+                    "label": string;
+                    "menu": string[];
+                    "action"?: undefined;
+                    widths?: undefined;
+                    "format"?: undefined;
+                } | {
+                    "label": string;
+                    "format": string;
+                    "action"?: undefined;
+                    widths?: undefined;
+                    "menu"?: undefined;
+                })[];
+            }[];
+        })[];
+    }[];
     render(): JSX.Element;
     getKmGauge(): JSX.Element;
     getPercentGauge(): JSX.Element;

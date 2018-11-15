@@ -18,6 +18,9 @@ export interface GaugeChartProps  {
     height?:number;
     interval?:number;
     unit?:string;
+    report ?: boolean;
+    menu?:any;
+    reportName?:string;
 }
 
 export default class GaugeChart extends React.Component<any,any> {
@@ -30,6 +33,198 @@ export default class GaugeChart extends React.Component<any,any> {
         percent : false,
         interval : 20,
         unit : "km/h"
+    }
+    // Dosya default isimleri için kullanılır
+    defaultDownloadType:any = {
+        "svg": "SVG",
+        "png": "PNG",
+        "jpg": "JPG",
+        "csv": "CSV",
+        "xlsx": "XLSX",
+        "json": "JSON"
+    }
+    //Dosya default fonksiyonları için kullanılır
+    defaultDownloadFunction:any = {
+        "svg": this.getSVG(),
+        "png": this.getPNG(),
+        "jpg": this.getJPG(),
+        "csv": this.getCSV(),
+        "xlsx": this.getXLSX(),
+        "json": this.getJSON()
+    }
+    reportName:any;
+    constructor(props:any){
+        super(props);
+        this.reportName = props.reportName != undefined ? this.props.reportName : ""
+        this.state = {
+            menu : props.menu != undefined ? this.createMenus(props.menu) : this.defaultMenus()
+        }
+    }
+
+
+    createMenus(menu:any){
+        let arr:Array<any> = [];
+        let me:any = this;
+        try {
+            menu.map((elm: any, idx: number) => {
+                let childArr:any ={};
+                childArr.class = elm.type == "download" ? "export-main" : "export-drawing";
+                childArr.action = childArr.class == "export-drawing" ? "draw" : null;
+                childArr.menu = [];
+                if(elm.child != undefined){
+                    elm.child.map((subMenu:any,id:number)=>{
+                        let subChildMenu:any = {};
+                        subChildMenu.label = subMenu.label != undefined ? subMenu.label : me.defaultDownloadType[subMenu.type]
+                        subChildMenu.click = subMenu.callBack != undefined ? subMenu.callBack : this.seperateType(subMenu.type);
+                        if(subMenu.type == undefined){
+                            subChildMenu.label = "UNDEFINED TYPE"
+                        }
+                        childArr.menu.push(subChildMenu);
+                    });
+                }
+                arr.push(childArr);
+            })
+            return arr;
+        }catch (e){
+            console.log(e);
+        }
+        return null;
+    }
+
+    seperateType(type:any){
+        return this.defaultDownloadFunction[type];
+    }
+
+    getRandomNumber(){
+        let nmb:number = Math.floor(Math.random() * 9999999999999);
+        return nmb;
+    }
+
+    getPNG(){
+        let name = this.reportName+this.getRandomNumber();
+        return function(this:any) {
+            let me:any = this;
+            me.capture({},function() {
+                me.toPNG( {}, function( data:any ) {
+                    me.download( data, "image/jpg", name+".png" );
+                });
+            });
+        }
+    }
+
+    getJPG(){
+        let name = this.reportName+this.getRandomNumber();
+        return function(this:any) {
+            let me:any=this;
+            me.capture({},function(this:any) {
+                me.toJPG( {}, function( data:any ) {
+                    me.download( data, "image/png", name+".jpg" );
+                });
+            });
+        }
+    }
+
+    getCSV(){
+        let name = this.reportName+this.getRandomNumber();
+        return function(this:any) {
+            let me:any = this;
+            me.capture({},function() {
+                me.toCSV( {}, function( data:any ) {
+                    me.download( data, "image/csv", name+".csv" );
+                });
+            });
+        }
+    }
+
+    getXLSX(){
+        let name = this.reportName+this.getRandomNumber();
+        return function(this:any) {
+            let me:any = this;
+            me.capture({},function() {
+                me.toXLSX( {}, function( data:any ) {
+                    me.download( data, "file/xlsx", name+".xlsx" );
+                });
+            });
+        }
+
+    }
+
+    getSVG(){
+        let name = this.reportName+this.getRandomNumber();
+        return function(this:any) {
+            let me:any = this;
+            me.capture({},function() {
+                me.toSVG( {}, function( data:any ) {
+                    me.download( data, "file/svg", name+".svg" );
+                });
+            });
+        }
+    }
+
+    getJSON(){
+        let name = this.reportName+this.getRandomNumber();
+        return function(this:any) {
+            let me:any = this;
+            me.capture({},function() {
+                me.toJSON( {}, function( data:any ) {
+                    me.download( data, "file/json", name+".json" );
+                });
+            });
+        }
+    }
+
+    defaultMenus(){
+        let _this = this;
+        return [ {
+            "class": "export-main",
+            "menu": [ {
+                "label": "İndir",
+                "menu": [ {
+                    //png,jpg,csv,xlsx,svg,json
+                    // pdf,blob,canvas,array,Image(base64)
+                    label: "PNG",
+                    click: this.getPNG()
+                },
+                    {
+                        label: "JPG",
+                        click: this.getJPG()
+                    },
+                    {
+                        label: "CSV",
+                        click: this.getCSV()
+                    },
+                    {
+                        label: "XLSX",
+                        click: this.getXLSX()
+                    },
+                    {
+                        label: "SVG",
+                        click: this.getSVG()
+                    },
+                    {
+                        label: "JSON",
+                        click: this.getJSON()
+                    },
+                ]
+            }, {
+                "label": "Çizim Yap",
+                "action": "draw",
+                "menu": [ {
+                    "class": "export-drawing",
+                    "menu": [ {
+                        label: "Size ...",
+                        action: "draw.widths",
+                        widths: [ 5, 20, 30 ] // replaces the default choice
+                    }, {
+                        "label": "Edit",
+                        "menu": [ "UNDO", "REDO", "CANCEL" ]
+                    }, {
+                        "label": "Save",
+                        "format": "PNG"
+                    } ]
+                } ]
+            } ]
+        } ]
     }
 
 
@@ -78,7 +273,8 @@ export default class GaugeChart extends React.Component<any,any> {
             startDuration: 1,
             svgIcons: true,
             "export": {
-                "enabled": true
+                "enabled":this.props.report,
+                "menu": this.state.menu
             }
         }
 
@@ -92,6 +288,10 @@ export default class GaugeChart extends React.Component<any,any> {
         let data =  {
             "theme": "light",
             "type": "gauge",
+            "export": {
+                "enabled":this.props.report,
+                "menu": this.state.menu
+            },
             "axes": [{
                 "topTextFontSize": 20,
                 "topTextYOffset": 70,

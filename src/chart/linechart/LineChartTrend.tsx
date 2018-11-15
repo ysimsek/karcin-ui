@@ -137,7 +137,7 @@ export default class LineChartTrend extends React.Component<LineChartProps,any>{
                 "minorGridEnabled": true
             },
             "export": {
-                "enabled": true
+                "enabled": false
             }
         }
 

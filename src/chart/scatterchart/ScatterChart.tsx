@@ -75,7 +75,7 @@ export default class ScatterChart extends React.Component<ScatterChartProps,any>
             "marginLeft": 46,
             "marginBottom": 35,
             "export": {
-                "enabled": true
+                "enabled": false
             }
         }
         return <AmCharts.React options={data} style={{width:"100%",height:this.props.height+"px"}}/>

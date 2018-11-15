@@ -4,7 +4,6 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const FileChanger = require("webpack-file-changer");
 const package = require("./package.json");
 const build = process.argv.indexOf("-p") !== -1;
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const paths = {
     root: appRoot.path,
     app: path.join(appRoot.path,"/showcase"),
@@ -54,20 +53,7 @@ const webpackConf = {
             },
             {
                 test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: {
-                        loader: 'css-loader',
-                        options: {
-                            // If you are having trouble with urls not resolving add this setting.
-                            // See https://github.com/webpack-contrib/css-loader#url
-                            url: false,
-                            minimize: true,
-                            sourceMap: true
-                        }
-                    }
-                    
-                  })
+                use: ['style-loader', 'css-loader']
             },
             {
                 test: /\.json$/,
@@ -83,27 +69,23 @@ const webpackConf = {
             },
             {
                 test: /\.scss$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: [
-                      {
-                          loader: 'css-loader',
-                          options: {
-                              // If you are having trouble with urls not resolving add this setting.
-                              // See https://github.com/webpack-contrib/css-loader#url
-                              url: false,
-                              minimize: true,
-                              sourceMap: true
-                          }
-                      }, 
-                      {
-                          loader: 'sass-loader',
-                          options: {
-                              sourceMap: true
-                          }
-                      }
-                    ]
-                  })
+                use: [
+                    {
+                        loader: require.resolve('style-loader'),
+                    },
+                    {
+                        loader: require.resolve('css-loader'),
+                        options: {
+                            importLoaders: 1,
+                            url:false,
+                            minimize:true,
+                            sourceMap:true
+                        }
+                    },
+                    {
+                        loader: require.resolve('sass-loader'),
+                    }
+                ]
             }
         ]
     },
@@ -112,8 +94,7 @@ const webpackConf = {
             {
                 from: "../assets"
             }
-        ]),
-        new ExtractTextPlugin("styles.css"),
+        ])
     ]
 };
 
