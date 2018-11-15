@@ -43,6 +43,18 @@ export default class DataForm extends React.Component<DataFormProps, any> {
      */
     getDateInput(value: any): JSX.Element;
     /**
+     * DateInput
+     * @param value
+     * @returns {any}
+     */
+    getDateTimeInput(value: any): JSX.Element;
+    /**
+     * DateInput
+     * @param value
+     * @returns {any}
+     */
+    getTimeInput(value: any): JSX.Element;
+    /**
      * TODO : RadioInput , SelectInput , CheckInput için sabit dataların olması sağlanacak
      * Dışardan data almaya müsait olacaktır.
      * @param value
