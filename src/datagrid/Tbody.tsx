@@ -79,8 +79,8 @@ export default class Tbody extends React.Component<TbodyProps, TbodyState> {
 
                     if(values.mapping !== undefined){
                         fieldValData = BaseClass.mappingDataFind(value, values.mapping);
-                    }else {
-                        fieldValData = value[values.name];
+                    }else if(values.name !== undefined){
+                        fieldValData = value[values.name]; 
                     }
 
                     new TypeFormating({

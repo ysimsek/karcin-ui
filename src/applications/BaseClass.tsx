@@ -82,7 +82,7 @@ export default class BaseClass {
 
     static findResponseData(response:any,mapping:any):any {
         if(response !== (undefined || null) && mapping !== undefined && mapping.length > 0){
-            return mapping.length > 0 ? BaseClass.findResponseData(response[mapping[0]], mapping.slice(1)) : response;
+            return mapping.length > 0 ? response[mapping[0]] !== (null || undefined) ? BaseClass.findResponseData(response[mapping[0]], mapping.slice(1)) : null : response;
         }else {
             return response;
         }

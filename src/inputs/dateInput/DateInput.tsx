@@ -1,80 +1,76 @@
-import * as React from 'react';
+import * as React from "react";
+import {Label} from 'reactstrap';
+import DatePickerX from 'react-datepicker';
 import moment = require('moment');
-import 'react-dates/initialize';
-import { SingleDatePicker } from 'react-dates';
-import 'react-dates/lib/css/_datepicker.css';
-import FaIcon from '../../functional/faicon/FaIcon';
+import "react-datepicker/dist/react-datepicker.css";
 
-export interface DateInputProps {
-    name:any;
-    value?:any;
-    onChange?:any;
-    label?:any;
-    format?:any;
-    icon?:any;
-    id?:any;
+export interface DateInputState {
+    startDate: any;
+    displayName: string;
 }
 
-export default class DateInput extends React.Component<DateInputProps, any>{
+export interface DateInputProps{
+    value ?: string | any;
+    name ?: string;
+    onChange ?: any;
+    inline ?: boolean;
+    showTime ?: boolean;
+    startDate ?: moment.Moment;
+    label ?: string;
+    timeFormat ?: string;
+    timeInterval ?: number;
+    dateFormat ?: string;
+    className ?: string;
+    showTimeSelect ?: any;
+    showTimeSelectOnly ?:any;
+    timeIntervals?:any;
+    timeCaption?:any;
+}
 
-    static defaultProps:Partial<any> = {
-        name: 'karcin-date',
-        value: moment(),
-        format: 'DD.MM.YYYY'
+export default class DateInput extends React.Component<DateInputProps, DateInputState> {
+
+    static defaultProps: Partial<DateInputProps> = {
+        startDate : moment(),
+        dateFormat: "DD.MM.YYYY"
     }
 
-    constructor(props:any){
+    constructor(props: any) {
         super(props);
-
         this.state = {
-            value: (this.props.value !== undefined ? moment(this.props.value, this.props.format) : moment()),
-            focused: false,
-            icon: this.props.icon
-        }
+            startDate : props.value !== (null && undefined) ? moment(props.value) : null,
+            displayName: 'Example'
+        };
     }
 
 
-    componentWillReceiveProps(props:any){
+    render() {
+        return (
+                <div>
+                    {this.props.label != undefined ? <Label className={"label-properties"}>{this.props.label}</Label> : null}
+                    <div>
+                        <DatePickerX
+                            {...this.props}
+                            selected={this.state.startDate}
+                            onChange={(e:any,id:any)=>{this.handleChange(e,id)}}
+                            className={"form-control "+this.props.className}
+                            inline={this.props.inline != undefined ? true : false}
+                            shouldCloseOnSelect={true}
+                        />
+                    </div>
+                </div>
+
+        );
+    }
+
+    /**
+     *
+     * @param {moment.Moment | any | null} date
+     * @param getId
+     */
+    handleChange(date?: any, getId?: any){
         this.setState({
-            value:moment(props.value, this.state.format)
+            startDate : date
         })
+        this.props.onChange({date : date,target : {parsedValue : moment(date._d).format(this.props.dateFormat), name : this.props.name}, id : getId});
     };
-
-    render(){
-        return (<div className={'karcin-dateInput'}>
-            <div className="form-group">
-            {(this.props.label !== undefined) ? <label className={'label-properties'}>{this.props.label}</label> : ''}
-            <SingleDatePicker
-                id={this.props.id}
-                date={this.state.value}
-                onDateChange={(e:any)=>{
-                    this.handleChange(e);
-                }}
-                focused={this.state.focused}
-                onFocusChange={()=>{this.toggleFocus()}}
-                numberOfMonths={1}
-                showDefaultInputIcon={(this.state.icon !== undefined ? true : false)}
-                customInputIcon={(this.state.icon !== undefined ? this.state.icon : '')}
-                hideKeyboardShortcutsPanel={true}
-            />
-            </div>
-        </div>);
-    }
-
-    toggleFocus(){
-        this.setState({
-            focused: !this.state.focused
-        })
-    }
-
-    handleChange(data:any){
-        let getDate:any = moment(data, this.props.format);
-
-        let datas:any = {};
-        datas['target'] = {'name': this.props.name, value:new Date(getDate)};
-
-        if(this.props.onChange !== undefined){
-            this.props.onChange(datas);
-        }
-    }
 }
