@@ -1,12 +1,8 @@
-import * as React from 'react';
-export interface LoadingProps {
-    show?: boolean | any;
-    size?: string | any;
-    className?: string | any;
+declare class Loading {
+    element: any;
+    loading: any;
+    add(obj?: any): void;
+    remove(obj?: any): void;
 }
-export default class Loading extends React.Component<LoadingProps, any> {
-    static defaultProps: Partial<LoadingProps>;
-    constructor(props: LoadingProps);
-    UNSAFE_componentWillReceiveProps(props: LoadingProps): void;
-    render(): JSX.Element;
-}
+declare const _default: Loading;
+export default _default;

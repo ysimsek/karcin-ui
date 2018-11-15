@@ -1,39 +1,51 @@
-import * as React from 'react';
-import {__extends} from "tslib";
+class Loading{
 
-export interface LoadingProps {
-    show?:boolean | any;
-    size?:string | any;
-    className?:string | any
-}
+    element:any;
+    loading:any;
 
-export default class Loading extends React.Component<LoadingProps, any>{
+    add(obj?:any){
+        this.element = document.createElement('div');
+        this.element.classList.add("loading");
+        var name = obj != undefined ? (obj.label != undefined ? obj.label : "" ): "";
+        var id:any = obj != undefined ? (obj.id != undefined ? document.getElementById(obj.id) : null) : null;
+        var color = obj != undefined ? (obj.color != undefined ? " "+obj.color:"") : "";
+        if(id != null) {
+            this.element.innerHTML =
+                '<div class="pre-loading show">\n' +
+                '    <span class="glyphicon glyphicon-inset glyphicon-refresh spinning' +
+                color +
+                '"></span>\n' +
+            '</div>';
+            this.element.setAttribute("id","setLoadIdOfSystem")
+            id.appendChild(this.element);
+            id.style.setProperty("position", "relative");
+        }else{
+            this.element.innerHTML =
+                '<div class="pre-loading show">\n' +
+                '    <span class="glyphicon glyphicon-refresh spinning'+ color+'"></span>\n'
+            '</div>';
+            document.body.style.setProperty("overflow", "hidden");
+            document.body.appendChild(this.element);
+        }
 
-    static defaultProps : Partial<LoadingProps> = {
-        show: true,
-        size: "full"
-    };
+    }
 
-    constructor(props:LoadingProps){
-        super(props);
+    remove(obj?:any){
+        try {
+            if(obj != undefined){
+                let element:any = document.getElementById(obj.id);
+                let child:any = document.getElementById("setLoadIdOfSystem") ;
+                obj.id != undefined ? element.removeChild(child) : document.body.removeChild(this.element)
+            }else{
+                document.body.removeChild(this.element)
+                document.body.style.removeProperty('overflow');
+            }
 
-        this.state = {
-            show: this.props.show,
-            size: this.props.size
+        }catch (e){
+            console.log(e)
         }
     }
 
-    UNSAFE_componentWillReceiveProps(props:LoadingProps){
-        this.setState(props);
-    }
-
-
-    render(){
-        let styleClass = this.props.className === undefined ? "" : this.props.className;
-        return(
-            <div className={`pre-loading ${(this.props.show ? 'show' : '')} ${(this.props.size === 'inset' ? 'inset' : '')}`}>
-                <span className={`glyphicon glyphicon-refresh spinning ${styleClass}`}/>
-            </div>
-        );
-    }
 }
+export default new Loading();
+

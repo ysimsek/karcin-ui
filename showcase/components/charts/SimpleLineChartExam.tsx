@@ -55,6 +55,7 @@ export default class SimpleLineChartExam extends React.Component<any,any>{
                         categoryField={"date"}
                         categoryValue={"value"}
                         formatting={"date"}
+                        report={true}
                     />
                 </Panel>
             </Col>
