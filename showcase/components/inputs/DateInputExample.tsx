@@ -7,7 +7,8 @@ export default class DateInputExample extends React.Component<any,any> {
     constructor(props: any) {
         super(props);
         this.state = {
-            value : null
+            value : null,
+            value3: '15:30'
         }
     }
 

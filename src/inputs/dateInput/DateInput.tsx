@@ -3,6 +3,7 @@ import {Label} from 'reactstrap';
 import DatePickerX from 'react-datepicker';
 import moment = require('moment');
 import "react-datepicker/dist/react-datepicker.css";
+import { start } from "repl";
 
 export interface DateInputState {
     startDate: any;
@@ -44,13 +45,21 @@ export default class DateInput extends React.Component<DateInputProps, DateInput
 
 
     render() {
+
+        let startDate = this.state.startDate;
+
+        //time'da sadece saat geldiği için tarih olduğunu anlamıyor. onun için bugünün tarihini alarak saati ekliyorum sorunu çözüyorum.
+        if(this.props.showTimeSelectOnly !== undefined){
+            startDate =  moment(moment(moment().format('DD.MM.YYY') + this.props.value, 'DD.MM.YYYY HH:mm:ss').format());
+        }
+
         return (
                 <div>
                     {this.props.label != undefined ? <Label className={"label-properties"}>{this.props.label}</Label> : null}
                     <div>
                         <DatePickerX
                             {...this.props}
-                            selected={this.state.startDate}
+                            selected={startDate}
                             onChange={(e:any,id:any)=>{this.handleChange(e,id)}}
                             className={"form-control "+this.props.className}
                             inline={this.props.inline != undefined ? true : false}
