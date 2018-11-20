@@ -20,6 +20,7 @@ export interface FooterProps {
     selectedRow?:any;
     pageShow?:any;
     fields?:any;
+    pageShowCount?:any;
 }
 
 
@@ -37,7 +38,7 @@ export default class Footer extends React.Component<FooterProps, any> {
      * Initial props value
      */
     static defaultProps: Partial<FooterProps> = {
-       
+        pageShowCount : 5
     };
 
     /**
@@ -68,7 +69,7 @@ export default class Footer extends React.Component<FooterProps, any> {
                 {(this.props.pageShow !== undefined && this.props.store !== undefined && this.props.store.props.totalCount > 0) ?
                     <div className="pagination-main">
                         <div className="pagination">
-                            <Pagination pageCount={5}
+                            <Pagination pageCount={this.props.pageShowCount}
                                         size={'sm'}
                                         type={"simple"}
                                         typeShowLength={this.props.pageShow}

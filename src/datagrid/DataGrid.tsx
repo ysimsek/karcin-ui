@@ -46,6 +46,11 @@ export interface DataGridProps {
     pageShow?: number | any;
 
     /**
+     * page show count
+     */
+    pageShowCount?:number | any;
+
+    /**
      * header toolbars
      */
     toolbars?:any;
