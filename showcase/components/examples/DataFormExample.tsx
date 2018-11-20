@@ -124,6 +124,9 @@ export default class DataFormExample extends React.Component<any,any>{
                     ref={(e)=>{
                         this.dataFormRef = e;
                     }}
+                    onChange={(e)=>{
+                        console.log(e)
+                    }}
             col={3} />
             <Button onClick={()=>{this.returnData()}}>Console</Button>
         </div>

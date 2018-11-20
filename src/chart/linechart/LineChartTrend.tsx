@@ -291,6 +291,7 @@ export default class LineChartTrend extends React.Component<LineChartProps,any>{
                 "tickLength": 0
             }],
             "graphs": [{
+                id:"g1",
                 "balloonText": "[[category]]<br><b><span style='font-size:14px;'>value:[[value]]</span></b>",
                 "bullet": "round",
                 "dashLength": 3,
@@ -311,9 +312,12 @@ export default class LineChartTrend extends React.Component<LineChartProps,any>{
                 "lineColor": "#CC0000"
             }],
             "chartScrollbar": {
-                "scrollbarHeight":2,
+                "scrollbarHeight":4,
+                "graph": "g1",
                 "offset":-1,
+                "autoGridCount": true,
                 "backgroundAlpha":0.1,
+                graphLineAlpha:0.3,
                 "backgroundColor":"#888888",
                 "selectedBackgroundColor":"#67b7dc",
                 "selectedBackgroundAlpha":1
@@ -323,12 +327,12 @@ export default class LineChartTrend extends React.Component<LineChartProps,any>{
                 "valueLineEabled":true,
                 "valueLineBalloonEnabled":true,
                 "valueLineAlpha":0.5,
-                "cursorAlpha":0
+                "cursorAlpha":7
             },
             "categoryField": this.props.categoryField,
             "categoryAxis": {
                 "parseDates": true,
-                "axisAlpha": 0,
+                "axisAlpha": 5,
                 "gridAlpha": 0.1,
                 "minorGridAlpha": 0.1,
                 "minorGridEnabled": true

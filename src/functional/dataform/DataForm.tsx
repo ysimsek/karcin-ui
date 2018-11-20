@@ -28,6 +28,7 @@ export interface DataFormProps{
     typeText?:any;
     values : Array<any> |any;
     label?:boolean;
+    onChange?:any
 }
 
 export default class DataForm extends React.Component<DataFormProps,any>{
@@ -37,7 +38,7 @@ export default class DataForm extends React.Component<DataFormProps,any>{
 
     static defaultProps = {
         col : 2,
-        buttonName : "Kaydet", 
+        buttonName : "Kaydet",
         nameText: "name",
         labelText:"label",
         typeText:"type",
@@ -49,6 +50,7 @@ export default class DataForm extends React.Component<DataFormProps,any>{
 
     }
     render(){
+
         return <div className={"karcin-dataform"}>
             <Row>
                 {this.returnElements(this.props.fields)}
@@ -289,6 +291,16 @@ export default class DataForm extends React.Component<DataFormProps,any>{
         let name:any = e.target.name;
         let state:any = [];
         state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
+        if (this.props.onChange){
+            let onChangeState = this.state;
+            onChangeState[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value
+            this.props.onChange({
+                target:{
+                    name:"dataform",
+                    value:onChangeState
+                }
+            });
+        }
         this.setState(state);
     }
 
@@ -312,6 +324,16 @@ export default class DataForm extends React.Component<DataFormProps,any>{
             })
         }
         this.setState(state);
+        if (this.props.onChange){
+            let onChangeState = this.state;
+            onChangeState[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value
+            this.props.onChange({
+                target:{
+                    name:"dataform",
+                    value:onChangeState
+                }
+            });
+        }
     }
 
     /**
