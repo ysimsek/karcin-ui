@@ -65,13 +65,13 @@ export default class Footer extends React.Component<FooterProps, any> {
     render(): any {
         return <div>
             <div className="toolbar footer">
-                {(this.props['pageShow'] !== undefined && this.props.store !== undefined && this.props.store.props.totalCount > 0) ?
+                {(this.props.pageShow !== undefined && this.props.store !== undefined && this.props.store.props.totalCount > 0) ?
                     <div className="pagination-main">
                         <div className="pagination">
                             <Pagination pageCount={5}
                                         size={'sm'}
                                         type={"simple"}
-                                        typeShowLength={this.props['pageShow']}
+                                        typeShowLength={this.props.pageShow}
                                         data={this.props.store.props.totalCount}
                                         selectedValue={(e:any) => {
                                             this.pageChange(e);

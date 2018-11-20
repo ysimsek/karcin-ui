@@ -49,7 +49,7 @@ export default class DateInput extends React.Component<DateInputProps, DateInput
         let startDate = this.state.startDate;
 
         //time'da sadece saat geldiği için tarih olduğunu anlamıyor. onun için bugünün tarihini alarak saati ekliyorum sorunu çözüyorum.
-        if(this.props.showTimeSelectOnly !== undefined){
+        if(this.props.showTimeSelectOnly !== undefined && this.props.value !== (null && undefined)){
             startDate =  moment(moment(moment().format('DD.MM.YYY') + this.props.value, 'DD.MM.YYYY HH:mm:ss').format());
         }
 
