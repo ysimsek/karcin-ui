@@ -80,6 +80,12 @@ export default class DataForm extends React.Component<DataFormProps,any>{
                     case "date" :
                         components.push(<Col key={idx} md={12/me.props.col}>{me.getDateInput(val)}</Col>);
                         break;
+                    case "dateTime" :
+                        components.push(<Col key={idx} md={12/me.props.col}>{me.getDateTimeInput(val)}</Col>);
+                        break;
+                    case "time" :
+                        components.push(<Col key={idx} md={12/me.props.col}>{me.getTimeInput(val)}</Col>);
+                        break;
                     case "radio" :
                         components.push(<Col key={idx} md={12/me.props.col}>{me.getRadioInput(val)}</Col>);
                         break;
@@ -160,6 +166,45 @@ export default class DataForm extends React.Component<DataFormProps,any>{
             name={value[this.props.nameText]}
             label={this.props.label != false ? value[this.props.labelText] : undefined}
             value={this.state[value[this.props.nameText]]}
+            onChange={this.handleChange.bind(this)}
+        />
+    }
+
+    /**
+     * DateInput
+     * @param value
+     * @returns {any}
+     */
+    getDateTimeInput(value:any){
+        return <DateInput
+            name={value[this.props.nameText]}
+            label={this.props.label != false ? value[this.props.labelText] : undefined}
+            value={this.state[value[this.props.nameText]]}
+            showTimeSelect
+            timeFormat="HH:mm"
+            timeIntervals={15}
+            dateFormat="LLL"
+            timeCaption="time"
+            onChange={this.handleChange.bind(this)}
+        />
+    }
+
+    /**
+     * DateInput
+     * @param value
+     * @returns {any}
+     */
+    getTimeInput(value:any){
+        return <DateInput
+            name={value[this.props.nameText]}
+            label={this.props.label != false ? value[this.props.labelText] : undefined}
+            value={this.state[value[this.props.nameText]]}
+            showTimeSelect
+            timeFormat="HH:mm"
+            showTimeSelectOnly
+            timeIntervals={15}
+            dateFormat="LT"
+            timeCaption="time"
             onChange={this.handleChange.bind(this)}
         />
     }
