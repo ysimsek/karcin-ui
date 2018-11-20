@@ -12,6 +12,7 @@ export interface DataFormProps {
     typeText?: any;
     values: Array<any> | any;
     label?: boolean;
+    onChange?: any;
 }
 export default class DataForm extends React.Component<DataFormProps, any> {
     fieldLength: number;
