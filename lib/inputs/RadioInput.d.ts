@@ -1,5 +1,6 @@
 import * as React from "react";
 export interface RadioInputProps {
+    id?: string | number;
     /**
      * Default value false
      */
@@ -48,6 +49,7 @@ export default class RadioInput extends React.Component<any, RadioInputProps> {
      * @param props
      */
     constructor(props: any);
+    UNSAFE_componentWillReceiveProps(props: any): void;
     /**
      * @returns {any}
      */
@@ -57,7 +59,7 @@ export default class RadioInput extends React.Component<any, RadioInputProps> {
      * @param {Array<any>} value
      * @returns {any}
      */
-    private returnRadioElements;
+    returnRadioElements(e: any, value: Array<any>): any;
     /**
      * Return props function
      * @param e
