@@ -124,7 +124,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
 
     UNSAFE_componentWillReceiveProps(props: SelectInputProps) {
         this.setState({
-            itemActive:this.props.activeItem
+            itemActive:props.activeItem
         });
     }
 
@@ -186,7 +186,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         this.props.items.forEach((value:any, index:number) => {
             let id = value[this.props.id];
             let val = value[this.props.value];
-            if(id !== undefined &&  val !== undefined){
+            if(id !== undefined &&  val !== undefined){ 
                 returnHtml.push(<option key={this.state.randomId + "-" + index} value={id}>{this.props.renderer !== undefined ? this.props.renderer(val) : val}</option>);
             }
         });

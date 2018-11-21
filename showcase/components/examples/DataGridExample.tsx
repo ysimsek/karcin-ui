@@ -25,8 +25,8 @@ export default class DataGridExample extends React.Component<any, any> {
                     "name": "title",
                     "label": "Başlık",
                     "width" : 600,
-                    "filter" : false,
-                    "order" : false
+                    "order" : false,
+                    "mapping": "title.deneme"
                 },
                 {
                     "type": "textarea",

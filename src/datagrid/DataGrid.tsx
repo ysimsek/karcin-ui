@@ -126,7 +126,7 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
         </div>)
     }
 
-    componentDidMount(){
+    componentDidMount(){ 
         if(this.props.pageShow !== undefined){
             this.props.store.pagination(this.props.pageShow);
         }

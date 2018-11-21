@@ -33,7 +33,7 @@ export default class RemoteEndPoint extends BaseClass {
         this.props = Application.mergeObject(this.props, props);
         this.__callback = callback;
 
-        this.paging();
+        this.paging(this.props.pageData, true);
         this.call();
     };
 
@@ -66,17 +66,13 @@ export default class RemoteEndPoint extends BaseClass {
 
                 if(param !== null){
                     for(let col in param){
-                        if(data[col] !== undefined){
-                            data[col].concat(param[col]);
-                        }else {
-                            data[col] = param[col];
-                        }
+                        data[col] = param[col];
                     }
                 }
 
                 // pagination object
-                for(let item in this.__paging){
-                    data[item] = this.__paging[item];
+                for(let item in this.props.pageData){
+                    data[item] = this.props.pageData[item];
                 }
 
             }
@@ -281,13 +277,14 @@ export default class RemoteEndPoint extends BaseClass {
         }
     }
 
-    paging(type?:any){
-        if(this.props.pageData !== undefined){
+    paging(pageData?:any, type?:any){
+        if(pageData !== undefined){
             for(let item in this.props.pageData){
-                this.__paging[item] = this.props.pageData[item];
+                this.__paging[item] = pageData[item];
+                this.props.pageData[item] = pageData[item];
             }
 
-            if(type !== undefined && type){
+            if(type === undefined){
                 this.call();
             }
         }

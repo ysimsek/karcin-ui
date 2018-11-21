@@ -59,6 +59,7 @@ export interface MenuState {
     collapseActive?: boolean;
     activeItem?:any;
     changeActiveItem?:any;
+    data:any;
 }
 
 export default class Menu extends React.Component<MenuProps, MenuState> {
@@ -88,6 +89,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
             menuActive: [],
             hover: this.props.hover,
             active: null,
+            data : this.props.data,
             activeControl: false,
             collapseActive: false,
             activeItem : this.props.active,
@@ -101,6 +103,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
      */
     componentWillReceiveProps(props: MenuProps) {
         this.setState({
+            data : props.data,
             hover: props.hover,
             activeItem: props.active
         });
@@ -119,7 +122,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
      * @returns {any}
      */
     render(): any {
-        let menusList = this.props.data.slice(0);
+        let menusList = this.state.data.slice(0);
         this.menuData = [];
         this.menuChilds = this.menuLoop(menusList, undefined, 0, false);
         return <Nav key="0" className={`karcin-menu ${(this.state.hover) ? 'hover-menu' : ''}`}>
