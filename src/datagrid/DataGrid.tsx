@@ -46,6 +46,11 @@ export interface DataGridProps {
     pageShow?: number | any;
 
     /**
+     * page show count
+     */
+    pageShowCount?:number | any;
+
+    /**
      * header toolbars
      */
     toolbars?:any;
@@ -121,7 +126,7 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
         </div>)
     }
 
-    componentDidMount(){
+    componentDidMount(){ 
         if(this.props.pageShow !== undefined){
             this.props.store.pagination(this.props.pageShow);
         }

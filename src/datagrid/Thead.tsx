@@ -317,7 +317,8 @@ export default class Thead extends React.Component<TheadProps, TheadState> {
                             <DropdownToggle><FaIcon code="fa-filter"/></DropdownToggle>
                             <DropdownMenu>
                                 <GetInput type={data.type} value={this.state.filterOption.value} onChange={(e:any)=>{
-                                    this.filterData(data.name, e);
+                                    let sendData = (data.mapping !== undefined ? data.mapping : data.name);
+                                    this.filterData(sendData, e);
                                 }}/>
                                 <Button><FaIcon code="fa-search"/></Button>
                             </DropdownMenu>

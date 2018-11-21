@@ -50,7 +50,13 @@ export default class Store {
      * Endpoint control
      */
     endPoint() {
+        
+        if(this.props.endPoint !== null){
+            this.props.endPoint = null;
+        }
+
         let sendProps = JSON.parse(JSON.stringify(this.props));
+
         if (this.props.processor !== undefined || this.props.originUrl !== undefined) {
             // get endpoint
             this.props.endPoint = new RemoteEndPoint(sendProps, (response: any) => {
@@ -91,7 +97,8 @@ export default class Store {
      * @param callback
      */
     read(callback?:any) {
-        this.props.endPoint.read(this.props, (data:any)=>{
+        this.props.endPoint.props = this.props;
+        this.props.endPoint.read((data:any)=>{
             this.endPointCallback(data);
         });
         this.__callback(this.props.data);

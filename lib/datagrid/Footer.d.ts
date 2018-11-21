@@ -7,6 +7,7 @@ export interface FooterProps {
     selectedRow?: any;
     pageShow?: any;
     fields?: any;
+    pageShowCount?: any;
 }
 export default class Footer extends React.Component<FooterProps, any> {
     /**

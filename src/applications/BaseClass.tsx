@@ -36,7 +36,7 @@ export default class BaseClass {
         let parentClass = Object.assign(this);
         
         parentClass.__dataMap = parentClass.props.data;
-        parentClass.__totalCount = count !== undefined ? count : parentClass.__dataMap.length;
+        parentClass.__totalCount = count !== undefined ? count : parentClass.__dataMap.length; 
 
         let pageData:Array<any> | any = [];
         if(parentClass.props.endPoint === 'localPoint' && parentClass.props.pageData.limit !== undefined &&  parentClass.props.pageData.limit > 0){
@@ -57,7 +57,7 @@ export default class BaseClass {
             callData = {'data': data, 'totalCount': callbackData.length};
         }else {
             let data = (pageData.length > 0) ? pageData : parentClass.__dataMap;
-            callData = {'data': data, 'totalCount': parentClass.__dataMap.length};
+            callData = {'data': data, 'totalCount': parentClass.__totalCount};
         }
 
         if(parentClass.__callback !== undefined){

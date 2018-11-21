@@ -52,6 +52,7 @@ export interface MenuState {
     collapseActive?: boolean;
     activeItem?: any;
     changeActiveItem?: any;
+    data: any;
 }
 export default class Menu extends React.Component<MenuProps, MenuState> {
     /**
