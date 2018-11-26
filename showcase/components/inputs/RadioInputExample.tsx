@@ -44,4 +44,5 @@ export default class RadioInputExample extends React.Component<any,any>{
         state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
         this.setState(state);
     }
+
 }
