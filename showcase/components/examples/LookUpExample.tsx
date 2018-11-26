@@ -5,13 +5,13 @@ export default class LookUpExample extends React.Component {
     render(){
         let field = [
             {
-                "property": "int",
-                "value": "id",
+                "type": "int",
+                "name": "id",
                 "label": "ID"
             },
             {
-                "property": "string",
-                "value": "title",
+                "type": "string",
+                "name": "title",
                 "label": "Başlık"
             }
         ];

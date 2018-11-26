@@ -125,10 +125,8 @@ export default class RemoteEndPoint extends BaseClass {
      * @param callback 
      */
     read(callback?:any) {
-        if (this.props.processor !== undefined && this.props.method !== undefined) {
-            this.props.method = 'findByFilters'; 
-            this.call(callback);
-        }
+        this.props.method = this.props.method || 'findByFilters'; 
+        this.call(callback);
     }
 
     /**
