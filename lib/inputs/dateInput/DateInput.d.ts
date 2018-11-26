@@ -1,5 +1,4 @@
 import * as React from "react";
-import moment = require('moment');
 import "react-datepicker/dist/react-datepicker.css";
 export interface DateInputState {
     startDate: any;
@@ -11,7 +10,6 @@ export interface DateInputProps {
     onChange?: any;
     inline?: boolean;
     showTime?: boolean;
-    startDate?: moment.Moment;
     label?: string;
     timeFormat?: string;
     timeInterval?: number;
@@ -24,7 +22,8 @@ export interface DateInputProps {
 }
 export default class DateInput extends React.Component<DateInputProps, DateInputState> {
     static defaultProps: Partial<DateInputProps>;
-    constructor(props: any);
+    constructor(props: DateInputProps);
+    UNSAFE_componentWillReceiveProps(props: DateInputProps): void;
     render(): JSX.Element;
     /**
      *

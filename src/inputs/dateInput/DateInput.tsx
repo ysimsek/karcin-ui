@@ -16,7 +16,6 @@ export interface DateInputProps{
     onChange ?: any;
     inline ?: boolean;
     showTime ?: boolean;
-    startDate ?: moment.Moment;
     label ?: string;
     timeFormat ?: string;
     timeInterval ?: number;
@@ -31,18 +30,23 @@ export interface DateInputProps{
 export default class DateInput extends React.Component<DateInputProps, DateInputState> {
 
     static defaultProps: Partial<DateInputProps> = {
-        startDate : moment(),
-        dateFormat: "DD.MM.YYYY"
+        dateFormat : "DD.MM.YYYY",
+        value : null
     }
 
-    constructor(props: any) {
+    constructor(props: DateInputProps) {
         super(props);
         this.state = {
-            startDate : props.value !== (null && undefined) ? moment(props.value) : null,
+            startDate : props.value !== (null && undefined) ? moment(props.value, this.props.dateFormat) : null,
             displayName: 'Example'
         };
     }
 
+    UNSAFE_componentWillReceiveProps(props:DateInputProps){
+        this.setState({
+            startDate : props.value !== (null && undefined) ? moment(props.value, this.props.dateFormat) : null,
+        })
+    }
 
     render() {
 
