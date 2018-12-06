@@ -13,7 +13,7 @@ export default class LocaleEndPoint extends BaseClass {
     props:any = {
         data: [],
         idField: 'id',
-        endPoint:'localPoint'
+        endPointName:'localPoint'
     };
 
     constructor(props:Object, callback:any){
@@ -32,9 +32,10 @@ export default class LocaleEndPoint extends BaseClass {
      * read data
      * @param callback 
      */
-    read(props:any, callback?:any){
+    read(props:Object | any, callback?:any){
         this.__oldDataMap = this.props.data.slice(0);
         this.mergeProps(props);
+
         return this.response(callback);
     }
 

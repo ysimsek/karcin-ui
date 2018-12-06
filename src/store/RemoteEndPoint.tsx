@@ -12,8 +12,8 @@ export default class RemoteEndPoint extends BaseClass {
     __totalCount:any = null;
 
     // request
-    requestStatus = true;
-    standartMethod = "findByFilters";
+    requestStatus:boolean = true;
+    runMethod:any;
 
     props: any = {
         idField: 'id',
@@ -22,7 +22,11 @@ export default class RemoteEndPoint extends BaseClass {
         url: null,
         param: [],
         method: 'findByFilters',
-        endPoint: 'remoteEndPoint',
+        readMethod : 'findByFilters',
+        createMethod : 'add',
+        updateMethod : 'update',
+        deleteMethod : 'deleteById',
+        endPointName: 'remoteEndPoint',
         responseData: 'data.resultMap.data.data',
         pageTotalData: 'data.resultMap.data.count',
         data: []
@@ -30,12 +34,19 @@ export default class RemoteEndPoint extends BaseClass {
 
     constructor(props: Object, callback: any) {
         super(props);
-        this.props = Application.mergeObject(this.props, props);
+        this.mergeProps(props);
         this.__callback = callback;
 
+
+        this.runMethod = this.props.method;
         this.paging(this.props.pageData, true);
         this.call();
     };
+
+
+    mergeProps(props: Object | any){
+        this.props = Application.mergeObject(this.props, props);
+    }
 
     /**
      * Remote ajax call 
@@ -79,7 +90,7 @@ export default class RemoteEndPoint extends BaseClass {
 
             this.props.data = [];
             this.props.data.push(data);
-            this.props.method = (this.props.method !== null ? this.props.method : this.standartMethod);
+            this.props.method = this.runMethod;
 
             let getData = new AjaxRequest(this.props, (response: any) => {
                 this.callbackReady(response, callback, item);
@@ -118,16 +129,16 @@ export default class RemoteEndPoint extends BaseClass {
         
     }
 
-    
-
     /**
      * Data read
      * @param callback 
      */
-    read(callback?:any) {
-        this.props.method = this.props.method || 'findByFilters'; 
+    read(props:Object | any, callback?:any) {
+        this.mergeProps(props);
+        this.runMethod = this.props.readMethod; 
         this.call(callback);
     }
+
 
     /**
      * reset 
@@ -141,10 +152,8 @@ export default class RemoteEndPoint extends BaseClass {
 
     create(items: any, callback?:any) {
         if(items !== undefined){
-            this.props.method = "add";
+            this.runMethod = this.props.createMethod; 
             this.call((response:any) => {
-                this.read();
-                
                 if(callback !== undefined){
                     callback(response);
                 }
@@ -154,9 +163,8 @@ export default class RemoteEndPoint extends BaseClass {
 
     update(items: any, callback?:any) {
         if(items !== undefined){
-            this.props.method = "update";
+            this.runMethod = this.props.updateMethod;
             this.call((response:any) => {
-                this.read();
                 callback(response);
             }, items);
         }
@@ -164,11 +172,16 @@ export default class RemoteEndPoint extends BaseClass {
 
     delete(items: any, callback?:any) {
         if(items !== undefined){
-            this.props.method = "deleteById";
+            this.runMethod = this.props.deleteMethod;
             this.call((response:any) => {
-                this.read();
                 callback(response);
             }, items);
+        }
+    }
+
+    propsChanges(props:Object | any){
+        for(let item in props){
+            this.props[item] = props[item]
         }
     }
 
@@ -179,7 +192,7 @@ export default class RemoteEndPoint extends BaseClass {
      */
     orderSort(fieldName: any, callback: any) {
         if (fieldName !== undefined) {
-            this.props.method = "findByFilters";
+            this.runMethod = this.props.readMethod;
 
             if(this.__orders.length > 0){
                 let control = false;
@@ -210,7 +223,7 @@ export default class RemoteEndPoint extends BaseClass {
      */
     orderReverse(fieldName: any, callback: any) {
         if (fieldName !== undefined) {
-            this.props.method = "findByFilters";
+            this.runMethod = this.props.readMethod;
 
             if(this.__orders.length > 0){
                 let control = false;
@@ -251,7 +264,7 @@ export default class RemoteEndPoint extends BaseClass {
      */
     filter(fieldName: any, value: any, operator: any, callback:any) {
         if (fieldName !== undefined && value !== undefined && operator !== undefined) {
-            this.props.method = "findByFilters";
+            this.runMethod = this.props.readMethod;
 
             if(this.__filters.length > 0){
                 let control = false;

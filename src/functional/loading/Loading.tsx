@@ -34,7 +34,7 @@ class Loading{
         try {
             if(obj != undefined){
                 let element:any = document.getElementById(obj.id);
-                let child:any = document.getElementById("setLoadIdOfSystem") ;
+                let child:any = element.querySelector("#setLoadIdOfSystem");
                 obj.id != undefined ? element.removeChild(child) : document.body.removeChild(this.element)
             }else{
                 document.body.removeChild(this.element)

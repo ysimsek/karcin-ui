@@ -37,16 +37,17 @@ export default class DateInput extends React.Component<DateInputProps, DateInput
     constructor(props: DateInputProps) {
         super(props);
         this.state = {
-            startDate : props.value !== (null && undefined) ? moment(props.value, this.props.dateFormat) : null,
+            startDate : this.renderDate(props),
             displayName: 'Example'
         };
     }
 
     UNSAFE_componentWillReceiveProps(props:DateInputProps){
         this.setState({
-            startDate : props.value !== (null && undefined) ? moment(props.value, this.props.dateFormat) : null,
+            startDate : this.renderDate(props),
         })
     }
+
 
     render() {
 
@@ -75,6 +76,21 @@ export default class DateInput extends React.Component<DateInputProps, DateInput
         );
     }
 
+
+    renderDate(props:DateInputProps){
+        let returnDate:any = null;
+        if(props.value !== (null && undefined)){
+            if(typeof props.value === 'number'){
+                returnDate = new Date(props.value);
+            }else {
+                returnDate = props.value;
+            }
+
+            returnDate = moment(returnDate, props.dateFormat)
+        }
+        return returnDate;
+    }
+
     /**
      *
      * @param {moment.Moment | any | null} date
@@ -84,6 +100,14 @@ export default class DateInput extends React.Component<DateInputProps, DateInput
         this.setState({
             startDate : date
         })
-        this.props.onChange({date : date,target : {parsedValue : moment(date._d).format(this.props.dateFormat), name : this.props.name}, id : getId});
+        this.props.onChange(
+            {
+                date : date,
+                target : {
+                    value : moment(date._d).format(this.props.dateFormat), 
+                    name : this.props.name
+                }, 
+                id : getId
+            });
     };
 }

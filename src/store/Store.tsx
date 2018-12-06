@@ -7,17 +7,21 @@ export default class Store {
         idField: "id",
         data: [],
         param: [],
-        originUrl: null,
-        endPoint: null,
-        //obje kontollü denetim için kullanılır
-        responseData: null,
+        originUrl : null,
+        endPoint : null,
+        responseData : null,
+        pageTotalData :null,
+        processor : null,
+        type : 'POST',
+
         /**
-         * Sayfalama kontrolü yapmak için kullanılır
+         * methods
          */
-        pageTotalData:null,
-        processor: null,
-        type: 'POST',
-        method: null,
+        method: 'findByFilters',
+        readMethod : 'findByFilters',
+        createMethod : 'add',
+        updateMethod : 'update',
+        deleteMethod : 'deleteById',
         totalCount:0,
         pageData: {},
     };
@@ -62,8 +66,6 @@ export default class Store {
             this.props.endPoint = new RemoteEndPoint(sendProps, (response: any) => {
                 this.endPointCallback(response)
             });
-
-            this.__endPoint = 'remoteEndPoint';
         }else {
             // old data
             this.__oldData = this.props.data.slice(0);
@@ -72,9 +74,9 @@ export default class Store {
             this.props.endPoint = new LocalEndPoint(sendProps, (response: any) => {
                 this.endPointCallback(response);
             });
-
-            this.__endPoint = 'localeEndPoint';
         }
+
+        this.__endPoint = this.props.endPoint.props.endPointName;
     }
 
     /**
@@ -97,12 +99,12 @@ export default class Store {
      * @param callback
      */
     read(callback?:any) {
-        this.props.endPoint.props = this.props;
-        this.props.endPoint.read((data:any)=>{
+        this.props.endPoint.read(this.props, (data:any)=>{
             this.endPointCallback(data);
         });
-        this.__callback(this.props.data);
 
+        this.__callback(this.props.data);
+        
         if(callback !== undefined)
             callback(this.props.data);
     }

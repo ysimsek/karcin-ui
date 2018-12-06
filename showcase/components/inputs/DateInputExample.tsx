@@ -7,7 +7,7 @@ export default class DateInputExample extends React.Component<any,any> {
     constructor(props: any) {
         super(props);
         this.state = {
-            value : null,
+            value : 1541156608000,
             value3:null
         }
     }
@@ -34,13 +34,13 @@ export default class DateInputExample extends React.Component<any,any> {
                     </Col>
                     <Col md={4}>
                         <DateInput
-                            name={"value2"}
+                            name={"value4"}
                             label={"Time DatePicker"}
-                            value={this.state.value2}
+                            value={this.state.value4}
                             showTimeSelect
                             timeFormat="HH:mm"
                             timeIntervals={15}
-                            dateFormat="LLL"
+                            dateFormat="DD.MM.YYYY HH:mm:ss"
                             timeCaption="time"
                             onChange={this.handleChange.bind(this)}
                         />
@@ -63,7 +63,7 @@ export default class DateInputExample extends React.Component<any,any> {
     }
     handleChange(e:any){
         let state = [];
-        state[e.target.name] = e.target.parsedValue != undefined ? e.target.parsedValue : e.target.value;
+        state[e.target.name] = e.target.value;
         this.setState(state); 
     }
 

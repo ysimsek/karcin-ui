@@ -25,6 +25,7 @@ export default class DateInput extends React.Component<DateInputProps, DateInput
     constructor(props: DateInputProps);
     UNSAFE_componentWillReceiveProps(props: DateInputProps): void;
     render(): JSX.Element;
+    renderDate(props: DateInputProps): any;
     /**
      *
      * @param {moment.Moment | any | null} date

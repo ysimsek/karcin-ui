@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Input} from 'reactstrap';
 import FaIcon from '../../functional/faicon/FaIcon'
 import '../../css/karcin-ui.css';
-import {DataGridProps} from "../../functional/datagrid/DataGrid";
+const { Scrollbars } = require('react-custom-scrollbars');
 
 export interface SelectInputProps {
     /**
@@ -336,7 +336,7 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
 
         this.state.dropDownItems.data = getPropsItems.slice(0);
 
-        return <div className="select-dropdown">{itemsList}</div>;
+        return <div className="select-dropdown"><Scrollbars style={{width: '100%', height: '100%'}}>{itemsList}</Scrollbars></div>;
     }
 
 

@@ -57,14 +57,7 @@ export default class DataGridExample extends React.Component<any, any> {
                     {id:8, title:'C', developers:'Ken Thompson ve Dennis Ritchie', year:'1972', aciklama:'Programlama Dili'},
                     {id:9, title:'C++', developers:'Bjarne Stroustrup', year:'1979', aciklama:'Programlama Dili'},
                     {id:10, title:'AngularJS', developers:'Misko Hevery', year:'2009', aciklama:'Programlama Dili'},
-                    {id:11, title:'ReactJS', developers:'Facebook', year:'2013', aciklama:'Programlama Dili'},
-                    {id:12, title:'Vue', developers:'Evan You', year:'2014', aciklama:'Programlama Dili'},
-                    {id:13, title:'Pascal', developers:'Niklaus Wirth', year:'1970', aciklama:'Programlama Dili'},
-                    {id:14, title:'HTML', developers:'W3C ve WHATWG', year:'1993', aciklama:'Programlama Dili'},
-                    {id:15, title:'CSS', developers: 'World Wide Web Consortium', year:'1996', aciklama:'Programlama Dili'},
-                    {id:16, title:'Android', developers:'Google,Open Handset Alliance', year:'2008', aciklama:'Programlama Dili'},
-                    {id:17, title:'D', developers:'Walter Bright, Andrei Alexandrescu', year:'2001', aciklama:'Programlama Dili'},
-                    {id:18, title:'Cobol', developers:'Üniversiteler, Hükümetler ve Ticari Kuruluşlar', year:'1959', aciklama:'Programlama Dili'}
+                    {id:11, title:'ReactJS', developers:'Facebook', year:'2013', aciklama:'Programlama Dili'}
                 ]
             })
         };
@@ -87,12 +80,23 @@ export default class DataGridExample extends React.Component<any, any> {
                     {title:'Reactstrap', link:'https://reactstrap.github.io'}
                 ]},
         ];
-        return (
+        return (<div>
             <DataGrid store={this.state.store} rowContextData={contexData} toolbars={toolbar} pageShow={5} fields={this.state.fields} pagination={true} title={"Deneme"}/> 
+            <Button onClick={this.createButton}>Tıkla</Button>
+            </div>
         )
     }
 
-    createButton(){ 
-        debugger;
+    createButton = () => { 
+        this.state.store.props.data = [
+            {id:12, title:'Vue', developers:'Evan You', year:'2014', aciklama:'Programlama Dili'},
+                    {id:13, title:'Pascal', developers:'Niklaus Wirth', year:'1970', aciklama:'Programlama Dili'},
+                    {id:14, title:'HTML', developers:'W3C ve WHATWG', year:'1993', aciklama:'Programlama Dili'},
+                    {id:15, title:'CSS', developers: 'World Wide Web Consortium', year:'1996', aciklama:'Programlama Dili'},
+                    {id:16, title:'Android', developers:'Google,Open Handset Alliance', year:'2008', aciklama:'Programlama Dili'},
+                    {id:17, title:'D', developers:'Walter Bright, Andrei Alexandrescu', year:'2001', aciklama:'Programlama Dili'},
+                    {id:18, title:'Cobol', developers:'Üniversiteler, Hükümetler ve Ticari Kuruluşlar', year:'1959', aciklama:'Programlama Dili'}
+        ];
+        this.state.store.read();
     }
 }

@@ -7,9 +7,10 @@ export default class RemoteEndPoint extends BaseClass {
     __paging: any;
     __totalCount: any;
     requestStatus: boolean;
-    standartMethod: string;
+    runMethod: any;
     props: any;
     constructor(props: Object, callback: any);
+    mergeProps(props: Object | any): void;
     /**
      * Remote ajax call
      * @param callback
@@ -24,7 +25,7 @@ export default class RemoteEndPoint extends BaseClass {
      * Data read
      * @param callback
      */
-    read(callback?: any): void;
+    read(props: Object | any, callback?: any): void;
     /**
      * reset
      * @param successCallback
@@ -33,6 +34,7 @@ export default class RemoteEndPoint extends BaseClass {
     create(items: any, callback?: any): void;
     update(items: any, callback?: any): void;
     delete(items: any, callback?: any): void;
+    propsChanges(props: Object | any): void;
     /**
      * order sort
      * @param fieldName

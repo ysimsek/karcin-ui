@@ -341,7 +341,7 @@ export default class Thead extends React.Component<TheadProps, TheadState> {
         this.state.filterOption.fieldName = fieldName;
 
         // local endpoint options
-        if (this.props.store.props.endPoint.props.endPoint === 'localPoint') {
+        if (this.props.store.props.endPoint.props.endPointName === 'localPoint') {
             this.props.store.filter(fieldName, value, (response:any) => {
                 data = response;
             });

@@ -12,7 +12,7 @@ export default class LocaleEndPoint extends BaseClass {
      * read data
      * @param callback
      */
-    read(props: any, callback?: any): any;
+    read(props: Object | any, callback?: any): any;
     /**
      * reset data
      * @param callback

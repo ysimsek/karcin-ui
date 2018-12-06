@@ -173,7 +173,7 @@ export default class DataGrid extends React.Component<DataGridProps, DataGridSta
     dataGridLoadComponent() {
 
         // loading control
-        if(this.props.store.props.endPoint !== undefined && this.props.store.props.endPoint.props.endPoint === 'remoteEndPoint' && this.loadingShow.response === undefined){
+        if(this.props.store.props.endPoint !== undefined && this.props.store.props.endPoint.props.endPointName === 'remoteEndPoint' && this.loadingShow.response === undefined){
             this.loadingShow.show = true;
         }else {
             this.loadingShow.show = false;

@@ -1,5 +1,3 @@
-import Applications from "./Applications";
-
 
 export default class BaseClass {
     constructor(props:any){
@@ -39,7 +37,7 @@ export default class BaseClass {
         parentClass.__totalCount = count !== undefined ? count : parentClass.__dataMap.length; 
 
         let pageData:Array<any> | any = [];
-        if(parentClass.props.endPoint === 'localPoint' && parentClass.props.pageData.limit !== undefined &&  parentClass.props.pageData.limit > 0){
+        if(parentClass.props.endPointName === 'localPoint' && parentClass.props.pageData.limit !== undefined &&  parentClass.props.pageData.limit > 0){
                 let pages = parentClass.props.pageData;
                 let datas =  (callbackData !== undefined) ? callbackData : parentClass.__dataMap;
 
