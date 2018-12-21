@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {Input} from 'reactstrap';
-import FaIcon from '../../functional/faicon/FaIcon'
 import '../../css/karcin-ui.css';
-import {DataGridProps} from "../../functional/datagrid/DataGrid";
-import { active } from 'glamor';
 
 export interface AutoComplateProps {
     /**

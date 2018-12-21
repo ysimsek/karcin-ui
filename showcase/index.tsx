@@ -5,7 +5,4 @@ import Main from "./Main";
 import { HashRouter as Router} from "react-router-dom";
 
 
-ReactDOM.render(
-    <Router><Main /></Router>,
-    document.getElementById("content")
-);
+ReactDOM.render(<Router><Main /></Router>,document.getElementById("content"));

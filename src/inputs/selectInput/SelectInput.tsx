@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {Input} from 'reactstrap';
-import FaIcon from '../../functional/faicon/FaIcon'
+import FaIcon from '../../functional/faicon/FaIcon';
+import Label from '../../functional/label/Label';
 import '../../css/karcin-ui.css';
 const { Scrollbars } = require('react-custom-scrollbars');
 
@@ -141,10 +142,10 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
 
         return <div className={`karcin-select-input select-${this.state.randomId} karcin-input`} onClick={() => { if(this.props.type !== "single") { this.inputFocus();} }}>
             <div className={this.props.margin == true ? "propertygrid-select": `form-group ${this.props.labelPosition}`}>
-                {this.labelResult()}
+                {this.props.label ? <Label>{this.props.label}</Label> : ''}
                 <div className="select-input-result">
                     {selectInputType}
-                    {(this.state.showing.multiDrop && this.props.items.length !== this.state.selectedItem.length) ? this.getDropDownItems() : ''}
+                    {(this.state.showing.multiDrop && this.props.items.length !== this.state.selectedItem.ids.length) ? this.getDropDownItems() : ''}
                 </div>
             </div>
         </div>;
@@ -208,16 +209,6 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
         });
     }
 
-    /**
-     * label return methodu
-     */
-    labelResult(){
-        let returnLabel:any = null;
-        if(this.props.label !== undefined){
-            returnLabel = <label className={"label-properties"}>{this.props.label}</label>
-        }
-        return returnLabel;
-    }
 
     /**
      * input focus method

@@ -13,6 +13,8 @@ export default class Store {
         pageTotalData :null,
         processor : null,
         type : 'POST',
+        filters: [],
+        orders: [],
 
         /**
          * methods
@@ -237,6 +239,23 @@ export default class Store {
     }
 
     /**
+     * Set Filters
+     * @param filters 
+     */
+    setFilters(filters:any){
+        if(filters && filters.length > 0){
+            this.props.endPoint.setFilters(filters);
+        }
+    }
+
+    /**
+     * Reset Filters
+     */
+    resetFilters(){
+        this.props.endPoint.resetFilters();
+    }
+
+    /**
      * data page
      * @param page
      * @param pageShow
@@ -254,6 +273,7 @@ export default class Store {
             }
         }
     }
+    
 
 
 }

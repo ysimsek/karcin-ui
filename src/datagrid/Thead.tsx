@@ -1,9 +1,9 @@
 import * as React from "react";
 import 'bootstrap/dist/css/bootstrap.css';
-import {ButtonDropdown, DropdownToggle, Button, DropdownMenu, DropdownItem, Input} from 'reactstrap';
+import {ButtonDropdown, DropdownToggle, Button, DropdownMenu, DropdownItem} from 'reactstrap';
 import FaIcon from "./../functional/faicon/FaIcon";
 import GetInput from "./../functional/getInput/GetInput";
-import { active } from "glamor";
+import Input from "./../inputs/Input";
 
 export interface TheadProps {
     store: any;
@@ -164,11 +164,26 @@ export default class Thead extends React.Component<TheadProps, TheadState> {
                     style['width'] = data.width + "px";
                 }
 
+                let active = false;
+                let activeType = null;
+
+                // order active
+                if(this.state.orderIng.name && data.name === this.state.orderIng.name){
+                    active = true;
+                    activeType = 'order';
+                }
+
+                // filter active
+                if(this.state.filterOption.fieldName && data.name === this.state.filterOption.fieldName && this.state.filterOption.value){
+                    active = true;
+                    activeType = 'filter';
+                }
+
                 returnItem.push(<th key={index} style={style}
-                    className={`${(this.state.orderIng.name !== null && data.name === this.state.orderIng.name ? 'active': '')}`} ref={(e) => itemRef = e}>
+                    className={`${(active ? 'active': '')}`} ref={(e) => itemRef = e}>
                         <div className="th-title">{data.label}</div> 
                         <div className="right-option">
-                            {(data.filter === undefined || data.filter ? this.getFilter(data) : '')}
+                            {(data.filter === undefined || data.filter ? this.getFilter(data, activeType) : '')}
                             {this.orderIcon(data)}
                         </div>
                         {this.dropDownMenu(data)}
@@ -229,15 +244,11 @@ export default class Thead extends React.Component<TheadProps, TheadState> {
             fieldButtons.push(<DropdownItem header>Field Showing</DropdownItem>);
 
             this.state.fields.forEach((values:any, index:any)=>{
-                if(values['visibility'] !== undefined && !values['visibility']){
-                    fieldButtons.push(<DropdownItem onClick={()=>{
-                        this.fieldShowing(index);
-                    }}><Input type="checkbox" defaultChecked={false}/>{values.label}</DropdownItem>);
-                }else {
-                    fieldButtons.push(<DropdownItem onClick={()=>{
-                        this.fieldShowing(index);
-                    }}><Input type="checkbox" defaultChecked={true}/>{values.label}</DropdownItem>);
-                }
+                fieldButtons.push(<DropdownItem onClick={()=>{
+                    this.fieldShowing(index);
+                }}><Input type="checkbox" lineText={values.label} name={"checkbox-" + index} checked={(values['visibility'] !== undefined && !values['visibility'] ? false : true)}/>
+                </DropdownItem>);
+
             });
         }
 
@@ -310,21 +321,29 @@ export default class Thead extends React.Component<TheadProps, TheadState> {
         return returnIcon;
     }
 
-    getFilter(data:any){
+    getFilter(data:any, activeType?:any){
         let filterContent:any;
 
         filterContent = <ButtonDropdown isOpen={(this.state.filterShowing[data.name] !== undefined && this.state.filterShowing[data.name]) ? this.state.filterShowing[data.name] : false} toggle={()=>{this.filterToggle(data)}}>
-                            <DropdownToggle><FaIcon code="fa-filter"/></DropdownToggle>
+                            <DropdownToggle>{(activeType === 'filter' ? <FaIcon code="fa-times" onClick={()=>{
+                                this.filterRemove();
+                            }}/> : <FaIcon code="fa-filter"/>)}</DropdownToggle>
                             <DropdownMenu>
-                                <GetInput type={data.type} value={this.state.filterOption.value} onChange={(e:any)=>{
+                                <Input type={data.type} value={(data.name === this.state.filterOption.fieldName ? this.state.filterOption.value : '')} onChange={(e:any)=>{
                                     let sendData = (data.mapping !== undefined ? data.mapping : data.name);
                                     this.filterData(sendData, e);
                                 }}/>
-                                <Button><FaIcon code="fa-search"/></Button>
                             </DropdownMenu>
                         </ButtonDropdown>;
 
         return filterContent; 
+    }
+
+    filterRemove(){
+        this.state.filterOption.fieldName = '';
+        this.state.filterOption.value = '';
+        this.props.store.resetFilters();
+        this.forceUpdate();
     }
 
     filterToggle(data:any){
@@ -333,8 +352,9 @@ export default class Thead extends React.Component<TheadProps, TheadState> {
     }
 
     filterData(fieldName: any, element: any) {
+        
         let data:any;
-        let value = element;
+        let value = element.target.value;
         this._filterDelay = 0;
 
         this.state.filterOption.value = value;
@@ -342,10 +362,9 @@ export default class Thead extends React.Component<TheadProps, TheadState> {
 
         // local endpoint options
         if (this.props.store.props.endPoint.props.endPointName === 'localPoint') {
-            this.props.store.filter(fieldName, value, (response:any) => {
-                data = response;
-            });
-
+            let filterSend = {fieldName:fieldName, value:value};
+            this.props.store.resetFilters();
+            this.props.store.setFilters([filterSend]);
         } 
         // remote endpoint options
         else {
@@ -356,9 +375,9 @@ export default class Thead extends React.Component<TheadProps, TheadState> {
             this._filterInterval = setInterval(() => {
                 this._filterDelay += this.state.filterRemote.interval;
                 if (this._filterDelay >= this.state.filterRemote.timeout) {
-                    this.props.store.filter(fieldName, "%" + value + "%", "LIKE", (response:any) => {
-                        data = response; 
-                    }); 
+                    let filtersSend = {fieldName: fieldName, value:'%' + value + '%', operator: 'LIKE'};
+                    this.props.store.resetFilters();
+                    this.props.store.setFilters([filtersSend]);
                     clearInterval(this._filterInterval);
                 }
             }, this.state.filterRemote.interval);

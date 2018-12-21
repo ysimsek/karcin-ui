@@ -217,26 +217,6 @@
       "icon":"fa-italic",
       "items":[
         {
-          "id":1,
-          "name":"NumericInput",
-          "title":"NumericInput",
-          "href":"#/Components/NumericInput",
-          "samples":"components/inputs/NumericInputExample",
-          "library":"input/NumericInput",
-          "description":"Use karcin-ui custom NumericInput props for actions in forms, dialogs, and more. Includes support for a handful of contextual variations, sizes, states, and more."
-
-        },
-        {
-          "id":2,
-          "name":"PasswordInput",
-          "title":"PasswordInput",
-          "href":"#/Components/PasswordInput",
-          "samples":"components/inputs/PasswordInputExample",
-          "library":"input/PasswordInput",
-          "description":"<PasswordInput> is the default input field to collect password data from form."
-
-        },
-        {
           "id":7,
           "name":"SelectInput",
           "title":"SelectInput",
@@ -247,30 +227,12 @@
         },
         {
           "id":4,
-          "name":"TextInput",
-          "title":"TextInput",
-          "href":"#/Components/TextInput",
-          "samples":"components/inputs/TextInputExample",
-          "library":"input/TextInput",
+          "name":"Input",
+          "title":"Inputs",
+          "href":"#/Components/Inputs",
+          "samples":"components/inputs/InputsExample",
+          "library":"input/Inputs",
           "description":"<TextInput> is the default input field to collect one line text data from form."
-        },
-        {
-          "id":5,
-          "name":"TextArea",
-          "title":"TextArea",
-          "href":"#/Components/TextArea",
-          "samples":"components/inputs/TextAreaExample",
-          "library":"input/TextArea",
-          "description":"<TextArea> is the large input field to collect multi line text data from form."
-        },
-        {
-          "id":6,
-          "name":"RadioInput",
-          "title":"RadioInput",
-          "href":"#/Components/RadioInput",
-          "samples":"components/inputs/RadioInputExample",
-          "library":"input/RadioInput",
-          "description":"<RadioInput />, provides data control on the form."
         },
         {
           "id":7,
@@ -288,14 +250,6 @@
           "href":"#/Components/ToggleButton",
           "samples":"components/inputs/ToggleButtonExample",
           "library":"input/ToggleButton"
-        },
-        {
-          "id":8,
-          "name":"CheckInput",
-          "title":"CheckInput",
-          "href":"#/Components/CheckInput",
-          "samples":"components/inputs/CheckInputExample",
-          "library":"inputs/CheckInput"
         },
         {
           "id":9,

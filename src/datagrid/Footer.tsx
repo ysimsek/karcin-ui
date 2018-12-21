@@ -78,6 +78,10 @@ export default class Footer extends React.Component<FooterProps, any> {
                                             this.pageChange(e);
                                         }}/>
                         </div>
+                        <div className="page-showing">
+                            <span><strong>Gösterilen : </strong>{this.props.store.props.pageData.start} - {this.props.store.props.pageData.start + this.props.store.props.pageData.limit}</span>
+                            <span><strong>Toplam : </strong>{this.props.store.props.totalCount}</span>
+                        </div>
                     </div>
                     : ''}
             </div>

@@ -37,7 +37,7 @@ export default class Thead extends React.Component<TheadProps, TheadState> {
     removeResizing(e?: any, itemRef?: any): void;
     widthResult: (event?: any) => void;
     getGroupAdd(data?: any, groupName?: any, index?: any): any;
-    dropDownMenu(value: any): "" | JSX.Element;
+    dropDownMenu(value: any): JSX.Element | "";
     toggleDropdown(name: any): void;
     fieldShowing(index: any): void;
     orderIng(value: any, type: any): void;

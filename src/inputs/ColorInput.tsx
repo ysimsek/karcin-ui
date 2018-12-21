@@ -1,7 +1,7 @@
 import * as React from "react";
-import {Label} from "reactstrap";
 import Input from "./base/BaseInput";
 import {TextInputProps} from "./TextInput";
+import Label from "../functional/label/Label";
 
 export interface ColorInputProps extends React.InputHTMLAttributes<HTMLInputElement>{
     style?: React.CSSProperties;

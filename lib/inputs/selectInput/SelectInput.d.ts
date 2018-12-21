@@ -83,10 +83,6 @@ export default class SelectInput extends React.Component<SelectInputProps, Selec
      */
     singleHandleChange(event: any): void;
     /**
-     * label return methodu
-     */
-    labelResult(): any;
-    /**
      * input focus method
      */
     inputFocus(): void;

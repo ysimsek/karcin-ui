@@ -1,5 +1,4 @@
 import * as React from "react";
-import { CSSModule } from "reactstrap";
 export interface LabelProps {
     /**
      * Show or Hide default false
@@ -9,9 +8,18 @@ export interface LabelProps {
      * Bonded another components
      */
     for?: string;
-    tag?: string;
+    /**
+     * class name
+     */
     className?: string;
-    cssModule?: CSSModule;
+    /**
+     * id
+     */
+    id?: string;
+    /**
+     * css module
+     */
+    cssModule?: React.CSSProperties;
     /**
      * Text size , default 16px
      */
@@ -20,13 +28,11 @@ export interface LabelProps {
      * Color (red,blue), hex or rgb
      */
     color?: string;
+    style?: any;
+    requireText?: string;
+    [key: string]: any;
 }
 export default class Label extends React.Component<LabelProps, any> {
-    /**
-     * Initial props value
-     * @type {{size: number}}
-     */
-    static defaultProps: Partial<LabelProps>;
     /**
      * Initial values
      * @param props

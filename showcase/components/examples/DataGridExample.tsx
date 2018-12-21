@@ -25,16 +25,15 @@ export default class DataGridExample extends React.Component<any, any> {
                     "name": "title",
                     "label": "Başlık",
                     "width" : 600,
-                    "order" : false,
-                    "mapping": "title.deneme"
+                    "order" : false
                 },
                 {
-                    "type": "textarea",
+                    "type": "string",
                     "name": "developers",
                     "label": "Geliştirici"
                 },
                 {
-                    "type": "textarea",
+                    "type": "date",
                     "name": "year",
                     "label": "Çıkış Tarihi"
                 },
@@ -66,9 +65,9 @@ export default class DataGridExample extends React.Component<any, any> {
     render() {
 
         let toolbar = [
-            {name:'Create', icon:'fa-plus', disabled:false, onClick:this.createButton.bind(this)},
-            {name:'Edit', icon:'fa-edit', disabled:true, onClick:this.createButton.bind(this)},
-            {name:'Delete', icon:'fa-trash', disabled:true, onClick:this.createButton.bind(this)}
+            {name:'Create', icon:'fa-plus', disabled:false},
+            {name:'Edit', icon:'fa-edit', disabled:true},
+            {name:'Delete', icon:'fa-trash', disabled:true}
         ];
 
         let contexData = [
@@ -81,22 +80,8 @@ export default class DataGridExample extends React.Component<any, any> {
                 ]},
         ];
         return (<div>
-            <DataGrid store={this.state.store} rowContextData={contexData} toolbars={toolbar} pageShow={5} fields={this.state.fields} pagination={true} title={"Deneme"}/> 
-            <Button onClick={this.createButton}>Tıkla</Button>
+            <DataGrid store={this.state.store} rowContextData={contexData} toolbars={toolbar} pageShow={5} fields={this.state.fields} pagination={true} title={"Deneme"}/>
             </div>
         )
-    }
-
-    createButton = () => { 
-        this.state.store.props.data = [
-            {id:12, title:'Vue', developers:'Evan You', year:'2014', aciklama:'Programlama Dili'},
-                    {id:13, title:'Pascal', developers:'Niklaus Wirth', year:'1970', aciklama:'Programlama Dili'},
-                    {id:14, title:'HTML', developers:'W3C ve WHATWG', year:'1993', aciklama:'Programlama Dili'},
-                    {id:15, title:'CSS', developers: 'World Wide Web Consortium', year:'1996', aciklama:'Programlama Dili'},
-                    {id:16, title:'Android', developers:'Google,Open Handset Alliance', year:'2008', aciklama:'Programlama Dili'},
-                    {id:17, title:'D', developers:'Walter Bright, Andrei Alexandrescu', year:'2001', aciklama:'Programlama Dili'},
-                    {id:18, title:'Cobol', developers:'Üniversiteler, Hükümetler ve Ticari Kuruluşlar', year:'1959', aciklama:'Programlama Dili'}
-        ];
-        this.state.store.read();
     }
 }

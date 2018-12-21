@@ -26,6 +26,9 @@ import CheckInput from "./inputs/CheckInput";
 import ToggleButton from "./inputs/ToggleButton";
 import ColorInput from "./inputs/ColorInput";
 
+// base ınput 
+import Input from "./inputs/Input";
+
 import DateInput from "./inputs/dateInput/DateInput";
 
 import AreaChart from "./chart/areachart/SimpleAreaChart";
@@ -122,6 +125,7 @@ export {
     LookUp,
     FileUpload,
     Message,
-    Applications
+    Applications,
+    Input
 };
 export default Button;

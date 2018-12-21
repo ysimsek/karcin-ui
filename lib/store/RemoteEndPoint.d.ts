@@ -59,5 +59,13 @@ export default class RemoteEndPoint extends BaseClass {
      * @param callback
      */
     filter(fieldName: any, value: any, operator: any, callback: any): void;
+    /**
+     * set Filtes
+     */
+    setFilters(filters: any): void;
+    /**
+     * reset filters
+     */
+    resetFilters(): void;
     paging(pageData?: any, type?: any): void;
 }

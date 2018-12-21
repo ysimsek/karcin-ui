@@ -21,6 +21,8 @@ export default class RemoteEndPoint extends BaseClass {
         type: null,
         url: null,
         param: [],
+        filters: [],
+        orders: [],
         method: 'findByFilters',
         readMethod : 'findByFilters',
         createMethod : 'add',
@@ -40,6 +42,7 @@ export default class RemoteEndPoint extends BaseClass {
 
         this.runMethod = this.props.method;
         this.paging(this.props.pageData, true);
+        this.setFilters(this.props.filters);
         this.call();
     };
 
@@ -286,6 +289,30 @@ export default class RemoteEndPoint extends BaseClass {
         } else {
             throw new Error('Field name empty');
         }
+    }
+
+    /**
+     * set Filtes
+     */
+
+    setFilters(filters:any){
+        if(filters.length > 0){
+            filters.forEach((value:any, index:number)=>{
+                if(value.fieldName && value.value && value.operator){
+                    value['index'] = 1;
+                    this.__filters.push(value);
+                }else {
+                    console.error('fieldName, value ve operatorlarından bir değer bulunamadı');
+                }
+            });
+        }
+    }
+
+    /**
+     * reset filters
+     */
+    resetFilters(){
+        this.__filters = [];
     }
 
     paging(pageData?:any, type?:any){

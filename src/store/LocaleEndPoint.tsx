@@ -13,13 +13,16 @@ export default class LocaleEndPoint extends BaseClass {
     props:any = {
         data: [],
         idField: 'id',
-        endPointName:'localPoint'
+        endPointName:'localPoint',
+        filters: []
     };
 
     constructor(props:Object, callback:any){
         super(props);
         this.mergeProps(props);
         this.__callback = callback;
+
+        this.setFilters(this.props.filters);
         this.read(props);
     }
 
@@ -194,6 +197,29 @@ export default class LocaleEndPoint extends BaseClass {
         return this.response(callback, data);
     }
 
+    setFilters(filters:any, callback?:any){
+        if(filters.length > 0){
+            let data:any = this.__oldDataMap.slice(0);
+            data = this.__dataMap.filter((value:any, index:number)=>{
+                let returnData;
+                filters.forEach((values:any, indexes:number)=>{
+                    if(value[values['fieldName']].toUpperCase().indexOf(values.value.toUpperCase()) !== -1){
+                        returnData = value;
+                    }
+                });
+
+                return returnData;
+            });
+
+            return this.response(callback, data);
+        }
+    }
+
+    resetFilters(callback?:any){
+        let oldData = this.__oldDataMap.slice(0);
+        return this.response(callback, oldData);
+    }
+
     paging(pageData:any){
         if(pageData !== undefined){
             for(let item in pageData){
@@ -203,4 +229,5 @@ export default class LocaleEndPoint extends BaseClass {
             return this.response();
         }
     }
+
 }

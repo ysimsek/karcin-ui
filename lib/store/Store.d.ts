@@ -87,6 +87,15 @@ export default class Store {
      */
     filter(fieldName: any, value: any, operator?: any, callback?: any): void;
     /**
+     * Set Filters
+     * @param filters
+     */
+    setFilters(filters: any): void;
+    /**
+     * Reset Filters
+     */
+    resetFilters(): void;
+    /**
      * data page
      * @param page
      * @param pageShow
