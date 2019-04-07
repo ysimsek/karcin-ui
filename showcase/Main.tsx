@@ -141,7 +141,7 @@ export default class Main extends React.Component<any, any> {
                                         <iframe src="https://ghbtns.com/github-btn.html?user=ysimsek&amp;repo=karcin-ui&amp;type=star&amp;count=true" scrolling="0" width="100" height="20px"></iframe>
                                         <iframe src="https://ghbtns.com/github-btn.html?user=ysimsek&amp;repo=karcin-ui&amp;type=fork&amp;count=true" scrolling="0" width="100" height="20px"></iframe>
                                     </Col>
-                                    <Col className="footer-right"><img src="./img/logo_asis.png" height="50" /></Col>
+                                    <Col className="footer-right"><img src="./img/logo_cekino.png" height="35" /></Col>
                                 </Row>
                             </Container>
                         </div>
